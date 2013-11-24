@@ -1,0 +1,84 @@
+
+body
+{
+	background-color:#eee;
+	padding-top:60px;
+}
+
+header
+{
+	margin-top:16px;
+}
+
+footer
+{
+	text-align:right;
+}
+
+.container
+{
+	background-color:#fff;
+}
+
+.fusio-header
+{
+}
+
+.fusio-nav
+{
+	border-bottom:1px solid #aaa;
+}
+
+.fusio-footer
+{
+	margin-top:16px;
+	background-color:#eee;
+}
+
+.fusio-highlights
+{
+}
+
+.fusio-highlights img
+{
+	margin-top:12px;
+}
+
+.fusio-documentation
+{
+}
+
+.fusio-documentation
+{
+	padding-left:0px;
+}
+
+.fusio-documentation li
+{
+	list-style-type:none;
+	border-left:6px solid #eee;
+	margin-left:0px;
+	margin-bottom:4px;
+	padding:4px;
+	padding-left:6px;
+}
+
+.fusio-documentation h4
+{
+	margin-top:0px;
+}
+
+.fusio-documentation-description
+{
+}
+
+.fusio-documentation-parameter
+{
+}
+
+.fusio-documentation-parameter td
+{
+	padding:6px 4px;
+	padding-left:0px;
+}
+

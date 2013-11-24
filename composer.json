@@ -1,0 +1,22 @@
+{
+  "name": "psx/sample",
+  "description": "PSX sample project",
+  "homepage": "http://phpsx.org",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Christoph Kappestein",
+      "email": "k42b3.x@gmail.com",
+      "homepage": "http://k42b3.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3",
+    "psx/psx": "0.7.*@dev"
+  },
+  "autoload": {
+    "psr-0": {
+      "Fusio": "library/"
+    }
+  }
+}

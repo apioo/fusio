@@ -1,0 +1,26 @@
+
+# main API endpoint
+GET|POST|PUT|DELETE /api Fusio\Api\Application\Index
+
+# oauth
+GET|POST /oauth/request_token Fusio\Api\Application\Oauth\RequestToken
+GET      /oauth/authorize Fusio\Api\Application\Oauth\Authorize
+GET|POST /oauth/access_token Fusio\Api\Application\Oauth\AccessToken
+
+# backend
+GET|POST /backend/login Fusio\Backend\Application\Login
+GET      /backend/overview Fusio\Backend\Application\Overview
+GET|POST /backend/datasource Fusio\Backend\Application\Datasource
+GET|POST /backend/api Fusio\Backend\Application\Api
+GET|POST /backend/filter Fusio\Backend\Application\Filter
+GET|POST /backend/app Fusio\Backend\Application\App
+GET|POST /backend/trigger Fusio\Backend\Application\Trigger
+GET      /backend/log Fusio\Backend\Application\Log
+
+# frontend
+GET      / Fusio\Frontend\Application\Index
+GET      /documentation Fusio\Frontend\Application\Documentation
+GET      /library Fusio\Frontend\Application\Library
+GET|POST /register Fusio\Frontend\Application\Register
+GET|POST /login Fusio\Frontend\Application\Login
+
