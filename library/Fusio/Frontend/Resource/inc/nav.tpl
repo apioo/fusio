@@ -24,13 +24,28 @@
 				<li>
 					<a href="<?php echo $url; ?>support">Support</a>
 				</li>
+				<?php if(!$user->isAuthenticated()): ?>
 				<li>
 					<a href="<?php echo $url; ?>register">Register</a>
 				</li>
+				<?php else: ?>
+				<li>
+					<a href="<?php echo $url; ?>application">Application</a>
+				</li>
+				<?php endif; ?>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				<?php if($user->isAuthenticated()): ?>
 				<li>
-					<a href="<?php echo $url; ?>login">Login</a>
+					<span>Logged in <?php echo $user->getName(); ?></span>
+				</li>
+				<?php endif; ?>
+				<li>
+					<?php if(!$user->isAuthenticated()): ?>
+						<a href="<?php echo $url; ?>login">Login</a>
+					<?php else: ?>
+						<a href="<?php echo $url; ?>logout">Logout</a>
+					<?php endif; ?>
 				</li>
 			</ul>
 		</div>

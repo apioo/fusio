@@ -97,20 +97,6 @@ class Field
 
 	public function isRequired()
 	{
-		return !empty($this->required);
-	}
-
-	public function getObjectName()
-	{
-		switch ($this->objectName) {
-			case 'String':
-			case 'Integer':
-			case 'Float':
-			case 'Boolean':
-				return $this->objectName;
-
-			default:
-				return '<a href="#" onclick="fusio.showObjectDetails(' . $this->objectId . ');return false;">' . $this->objectName . '</a>';
-		}
+		return (boolean) $this->required;
 	}
 }

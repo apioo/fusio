@@ -1,14 +1,9 @@
 <?php
 
-namespace Sample\Demo\Application;
+namespace Fusio\Backend\Application;
 
-use PSX\Module\ViewAbstract;
+use Fusio\Controller\BackendController;
 
-class Index extends ViewAbstract
+class Index extends BackendController
 {
-	public function onLoad()
-	{
-		$this->getTemplate()->assign('title', 'PSX Framework');
-		$this->getTemplate()->assign('subTitle', 'Template sample ...');
-	}
 }

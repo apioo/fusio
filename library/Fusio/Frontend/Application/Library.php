@@ -2,11 +2,8 @@
 
 namespace Fusio\Frontend\Application;
 
-use PSX\Module\ViewAbstract;
+use Fusio\Controller\FrontendController;
 
-class Library extends ViewAbstract
+class Library extends FrontendController
 {
-	public function onLoad()
-	{
-	}
 }

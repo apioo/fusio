@@ -9,7 +9,7 @@ GET|POST /oauth/access_token Fusio\Api\Application\Oauth\AccessToken
 
 # backend
 GET|POST /backend/login Fusio\Backend\Application\Login
-GET      /backend/overview Fusio\Backend\Application\Overview
+GET      /backend Fusio\Backend\Application\Index
 GET|POST /backend/datasource Fusio\Backend\Application\Datasource
 GET|POST /backend/api Fusio\Backend\Application\Api
 GET|POST /backend/filter Fusio\Backend\Application\Filter
@@ -21,6 +21,7 @@ GET      /backend/log Fusio\Backend\Application\Log
 GET      / Fusio\Frontend\Application\Index
 GET      /documentation Fusio\Frontend\Application\Documentation
 GET      /library Fusio\Frontend\Application\Library
+GET      /support Fusio\Frontend\Application\Support
 GET|POST /register Fusio\Frontend\Application\Register
 GET|POST /login Fusio\Frontend\Application\Login
 

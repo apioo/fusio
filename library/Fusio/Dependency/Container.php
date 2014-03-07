@@ -23,7 +23,10 @@
 
 namespace Fusio\Dependency;
 
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
 use Fusio\ApiManager;
+use PSX\Dependency\DefaultContainer;
 
 /**
  * Container
@@ -32,7 +35,7 @@ use Fusio\ApiManager;
  * @license http://www.gnu.org/licenses/gpl.html GPLv3
  * @link    http://phpsx.org
  */
-class Container extends \PSX\Dependency\Container
+class Container extends DefaultContainer
 {
 	public function getApiManager()
 	{
@@ -42,6 +45,20 @@ class Container extends \PSX\Dependency\Container
 	public function getApp()
 	{
 		return new User($this->getParameter('app.id'));
+	}
+
+	public function getEntityManager()
+	{
+		$isDevMode = $this->get('config')->get('psx_debug');
+		$config    = Setup::createAnnotationMetadataConfiguration(array('library/Fusio/Entity'), $isDevMode, 'cache');
+		$conn      = array(
+			'driver'   => 'pdo_mysql',
+			'user'     => $this->get('config')->get('psx_sql_user'),
+			'password' => $this->get('config')->get('psx_sql_pw'),
+			'dbname'   => $this->get('config')->get('psx_sql_db'),
+		);
+
+		return EntityManager::create($conn, $config);
 	}
 }
 

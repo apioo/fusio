@@ -1,0 +1,73 @@
+
+body
+{
+	background-color:#eee;
+	background:url(http://127.0.0.1/projects/fusio/public/img/backend/nav.png) repeat-y;
+}
+
+header
+{
+	display:block;
+	background-color:#444;
+	border-bottom:1px solid #222;
+}
+
+header h4
+{
+	padding:14px 12px;
+	margin:0px;
+}
+
+header h4 a
+{
+	color:#fff;
+	font-size:1.4em;
+}
+
+#sidebar
+{
+	width:213px;
+	float:left;
+	background-color:#fff;
+}
+
+#sidebar > ul
+{
+	list-style-type:none;
+	margin:0px;
+	padding:0px;
+}
+
+#sidebar > ul li
+{
+}
+
+#sidebar > ul li a
+{
+	padding:12px 12px;
+	display:block;
+	border-bottom:1px solid #ccc;
+	border-top:1px solid #fff;
+	background-color:#eee;
+
+	background:linear-gradient(to bottom, #ffffff 0%,#f5f5f5 100%);
+}
+
+#content
+{
+	margin-left:213px;
+}
+
+#content .wrapper
+{
+	float:left;
+	width:100%;
+	background-color:#fff;
+	border-left:1px solid #ccc;
+}
+
+#content .wrapper > .container-fluid 
+{
+	padding-left:25px;
+	padding-right:25px;
+}

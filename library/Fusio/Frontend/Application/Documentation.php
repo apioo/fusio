@@ -2,11 +2,11 @@
 
 namespace Fusio\Frontend\Application;
 
-use PSX\Module\ViewAbstract;
+use Fusio\Controller\FrontendController;
 use PSX\Sql;
 use PSX\Exception;
 
-class Documentation extends ViewAbstract
+class Documentation extends FrontendController
 {
 	/**
 	 * @httpMethod GET
