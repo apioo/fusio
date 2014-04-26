@@ -27,15 +27,23 @@ class Index extends ApiAbstract
 
 	public function onLoad()
 	{
-		$this->app = $this->getApp();
-		$this->am  = $this->getApiManager();
-		$this->api = $this->am->getApiByPath($this->basePath);
+		try
+		{
+			$app      = $this->getAppManager()->getApp($this->getContainer()->getParameter('app.id'));
+			$response = $this->getApiManager()->executeRequest($app, $this->request);
 
-		if (!$this->api instanceof Api) {
-			throw new InvalidMethodException('Path not found', 404);
+			$this->setBody($response);
+		}
+		catch(\Exception $e)
+		{
+			$code    = isset(Http::$codes[$e->getCode()]) ? $e->getCode() : 500;
+			$message = new Message($e->getMessage(), true);
+
+			$this->setResponse($message, $code);
 		}
 	}
 
+	/*
 	public function onGet()
 	{
 		try
@@ -46,12 +54,12 @@ class Index extends ApiAbstract
 			}
 
 			// check right
-			if ($this->app->hasPermission($this->api->getId(), Api::GET)) {
+			if ($this->appManager->hasPermission($this->api->getId(), Api::GET)) {
 				throw new PermissionException('Not allowed', 403);
 			}
 
 			// check request limit
-			if ($this->api->hasRequestLimitExceeded($this->app, Api::GET)) {
+			if ($this->apiManager->hasRequestLimitExceeded($this->app, Api::GET)) {
 				throw new RequestLimitExceededException('Request limit exceeded', 403);
 			}
 
@@ -82,12 +90,12 @@ class Index extends ApiAbstract
 			}
 
 			// check right
-			if ($this->app->hasRight($this->api->getId(), Api::POST)) {
+			if ($this->appManager->hasRight($this->api->getId(), Api::POST)) {
 				throw new PermissionException('Not allowed', 403);
 			}
 
 			// check request limit
-			if ($this->api->hasRequestLimitExceeded($this->app, Api::POST)) {
+			if ($this->apiManager->hasRequestLimitExceeded($this->app, Api::POST)) {
 				throw new RequestLimitExceededException('Request limit exceeded', 403);
 			}
 
@@ -124,12 +132,12 @@ class Index extends ApiAbstract
 			}
 
 			// check right
-			if ($this->app->hasRight($this->api->getId(), Api::PUT)) {
+			if ($this->appManager->hasRight($this->api->getId(), Api::PUT)) {
 				throw new PermissionException('Not allowed', 403);
 			}
 
 			// check request limit
-			if ($this->api->hasRequestLimitExceeded($this->app, Api::PUT)) {
+			if ($this->apiManager->hasRequestLimitExceeded($this->app, Api::PUT)) {
 				throw new RequestLimitExceededException('Request limit exceeded', 403);
 			}
 
@@ -197,4 +205,5 @@ class Index extends ApiAbstract
 			$this->setResponse($message, $code);
 		}
 	}
+	*/
 }

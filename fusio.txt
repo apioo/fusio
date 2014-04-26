@@ -7,7 +7,7 @@
   source
 - a user can define an new api endpoint the endpoint includes the corresponding
   table and filter rules
-- ist is possible to add mapping rules to map from database field to custom 
+- it is possible to add mapping rules to map from database field to custom 
   fields
 - when creating an api endpoint constraints should be detected so that ids can 
   be checked if submitted
@@ -22,4 +22,5 @@
   users can see the API documentation and download clients
 - probably an api status
 - possibility for users to register an application
+
 

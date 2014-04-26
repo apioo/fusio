@@ -33,4 +33,44 @@ class Trigger
 	 * @var string
 	 */
 	protected $param;
+
+	public function setId($id)
+	{
+		$this->id = $id;
+	}
+	
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function setType($type)
+	{
+		$this->type = $type;
+	}
+	
+	public function getType()
+	{
+		return $this->type;
+	}
+
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
+	
+	public function getName()
+	{
+		return $this->name;
+	}
+
+	public function setParam($param)
+	{
+		$this->param = $param;
+	}
+	
+	public function getParam()
+	{
+		return $this->param;
+	}
 }

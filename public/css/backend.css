@@ -24,6 +24,11 @@ header h4 a
 	font-size:1.4em;
 }
 
+header h4 a:hover
+{
+	color:#fff;
+}
+
 #sidebar
 {
 	width:213px;
@@ -68,6 +73,29 @@ header h4 a
 
 #content .wrapper > .container-fluid 
 {
-	padding-left:25px;
-	padding-right:25px;
+	padding-left:15px;
+	padding-right:15px;
+
+	background:url(http://127.0.0.1/projects/fusio/public/img/backend/breadcrumb.png) repeat-x;
+}
+
+.breadcrumb
+{
+	padding:13px 2px;
+	background-color:transparent;
+	margin-bottom:4px;
+}
+
+.form-control
+{
+	border-radius:0px;
+	-webkit-box-shadow:0;
+	box-shadow:0;
+	-webkit-transition:0;
+	transition:0;
+}
+
+.btn
+{
+	border-radius:0px;
 }

@@ -29,13 +29,42 @@ class Datasource
 	 */
 	protected $param;
 
-	/**
-	 * @OneToMany(targetEntity="Fusio\Entity\DatasourceField", mappedBy="datasource")
-	 */
-	protected $fields;
-
 	public function __construct()
 	{
 		$this->fields = new ArrayCollection();
+	}
+
+	public function setConnection($connection)
+	{
+		$this->connection = $connection;
+	}
+	
+	public function getConnection()
+	{
+		return $this->connection;
+	}
+
+	public function setParam($param)
+	{
+		$this->param = $param;
+	}
+	
+	public function getParam()
+	{
+		return $this->param;
+	}
+
+	public function getHandler()
+	{
+		$connection = $this->connection->getConnection();
+
+		if($connection instanceof Connection\Mysql)
+		{
+			$handler = new Mysql($connection, $this->fields);
+		}
+		else
+		{
+			throw new \Exception('Could not establish a connection');
+		}
 	}
 }

@@ -10,18 +10,33 @@ GET|POST /oauth/access_token Fusio\Api\Application\Oauth\AccessToken
 # backend
 GET|POST /backend/login Fusio\Backend\Application\Login
 GET      /backend Fusio\Backend\Application\Index
+GET|POST /backend/connection Fusio\Backend\Application\Connection
+GET|POST /backend/connection/types Fusio\Backend\Application\Connection::getTypes
+GET|POST /backend/connection/parameters/:type Fusio\Backend\Application\Connection::getParameters
 GET|POST /backend/datasource Fusio\Backend\Application\Datasource
+GET|POST /backend/datasource/parameters/:connection_id Fusio\Backend\Application\Datasource
 GET|POST /backend/api Fusio\Backend\Application\Api
 GET|POST /backend/filter Fusio\Backend\Application\Filter
 GET|POST /backend/app Fusio\Backend\Application\App
 GET|POST /backend/trigger Fusio\Backend\Application\Trigger
+GET|POST /backend/user Fusio\Backend\Application\User
 GET      /backend/log Fusio\Backend\Application\Log
 
 # frontend
 GET      / Fusio\Frontend\Application\Index
-GET      /documentation Fusio\Frontend\Application\Documentation
+GET      /home Fusio\Frontend\Application\Index
+GET      /documentation Fusio\Frontend\Application\Documentation::doIndex
+GET      /documentation/detail/:id Fusio\Frontend\Application\Documentation::doDetail
 GET      /library Fusio\Frontend\Application\Library
 GET      /support Fusio\Frontend\Application\Support
 GET|POST /register Fusio\Frontend\Application\Register
 GET|POST /login Fusio\Frontend\Application\Login
+
+# fusio api
+GET|POST /managment/app Fusio\Managment\Application\App
+GET|POST /managment/connection Fusio\Managment\Application\Connection
+GET|POST /managment/datasource Fusio\Managment\Application\Datasource
+GET|POST /managment/model Fusio\Managment\Application\Model
+GET|POST /managment/trigger Fusio\Managment\Application\Trigger
+GET|POST /managment/user Fusio\Managment\Application\User
 

@@ -8,10 +8,6 @@ use PSX\Exception;
 
 class Documentation extends FrontendController
 {
-	/**
-	 * @httpMethod GET
-	 * @path /
-	 */
 	public function doIndex()
 	{
 		$sql = 'SELECT 
@@ -26,10 +22,6 @@ class Documentation extends FrontendController
 		$this->getTemplate()->assign('apis', $result);
 	}
 
-	/**
-	 * @httpMethod GET
-	 * @path /detail/{id}
-	 */
 	public function doDetail()
 	{
 		$sql = 'SELECT 

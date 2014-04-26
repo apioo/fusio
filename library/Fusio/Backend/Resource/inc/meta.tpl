@@ -7,3 +7,7 @@
 <link href="<?php echo $base; ?>/css/backend.css" rel="stylesheet" media="screen" />
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="<?php echo $base; ?>/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+var psx_url = '<?php echo $url; ?>';
+</script>
+<script src="<?php echo $base; ?>/js/backend.js"></script>

@@ -4,6 +4,7 @@ namespace Fusio\Controller;
 
 use Fusio\User;
 use PSX\Controller\ViewAbstract;
+use PSX\Exception;
 
 class BackendController extends ViewAbstract
 {
@@ -20,20 +21,25 @@ class BackendController extends ViewAbstract
 
 	protected function getCurrentUser()
 	{
-		$user = new User();
-		$user->setAuthenticated(false);
-
 		$userId = $this->getSession()->get('user_id');
-
 		if(!empty($userId))
 		{
-			$record = $this->getDatabaseManager()
-				->getHandler('Fusio\Frontend\User\Handler')
-				->getById($userId);
+			$userEntity = $this->getEntityManager()
+				->getRepository('Fusio\Entity\User')
+				->find($userId);
 
-			$user->setId($record->getId());
-			$user->setName($record->getName());
+			$user = new User();
+			$user->setId($userEntity->getId());
+			$user->setName($userEntity->getName());
 			$user->setAuthenticated(true);
+		}
+		else
+		{
+			$user = new User();
+			$user->setId(0);
+			$user->setName('Anonymous');
+			$user->setAuthenticated(false);
+			//throw new Exception('Unauthorized request');
 		}
 
 		return $user;

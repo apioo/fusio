@@ -22,13 +22,53 @@ class ApiTrigger
 	protected $api;
 
 	/**
-	 * @ManyToOne(targetEntity="Fusio\Entity\Trigger")
-	 */
-	protected $trigger;
-	
-	/**
 	 * @Column(type="string")
 	 * @var string
 	 */
 	protected $method;
+
+	/**
+	 * @ManyToOne(targetEntity="Fusio\Entity\Trigger")
+	 */
+	protected $trigger;
+
+	public function setId($id)
+	{
+		$this->id = $id;
+	}
+	
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function setApi($api)
+	{
+		$this->api = $api;
+	}
+	
+	public function getApi()
+	{
+		return $this->api;
+	}
+
+	public function setTrigger($trigger)
+	{
+		$this->trigger = $trigger;
+	}
+	
+	public function getTrigger()
+	{
+		return $this->trigger;
+	}
+
+	public function setMethod($method)
+	{
+		$this->method = $method;
+	}
+	
+	public function getMethod()
+	{
+		return $this->method;
+	}
 }

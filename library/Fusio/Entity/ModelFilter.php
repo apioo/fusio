@@ -38,4 +38,54 @@ class ModelFilter
 	 * @var integer
 	 */
 	protected $priority;
+
+	public function setId($id)
+	{
+		$this->id = $id;
+	}
+	
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function setField($field)
+	{
+		$this->field = $field;
+	}
+	
+	public function getField()
+	{
+		return $this->field;
+	}
+
+	public function setClassName($className)
+	{
+		$this->className = $className;
+	}
+	
+	public function getClassName()
+	{
+		return $this->className;
+	}
+
+	public function setParam($param)
+	{
+		$this->param = $param;
+	}
+	
+	public function getParam()
+	{
+		return $this->param;
+	}
+
+	public function setPriority($priority)
+	{
+		$this->priority = $priority;
+	}
+	
+	public function getPriority()
+	{
+		return $this->priority;
+	}
 }

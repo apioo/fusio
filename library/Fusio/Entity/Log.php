@@ -49,4 +49,74 @@ class Log
 	 * @var DateTime
 	 */
 	protected $date;
+
+	public function setId($id)
+	{
+		$this->id = $id;
+	}
+	
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function setApi($api)
+	{
+		$this->api = $api;
+	}
+	
+	public function getApi()
+	{
+		return $this->api;
+	}
+
+	public function setApp($app)
+	{
+		$this->app = $app;
+	}
+	
+	public function getApp()
+	{
+		return $this->app;
+	}
+
+	public function setIp($ip)
+	{
+		$this->ip = $ip;
+	}
+	
+	public function getIp()
+	{
+		return $this->ip;
+	}
+
+	public function setLevel($level)
+	{
+		$this->level = $level;
+	}
+	
+	public function getLevel()
+	{
+		return $this->level;
+	}
+
+	public function setMessage($message)
+	{
+		$this->message = $message;
+	}
+	
+	public function getMessage()
+	{
+		return $this->message;
+	}
+
+	public function setDate($date)
+	{
+		$this->date = $date;
+	}
+	
+	public function getDate()
+	{
+		return $this->date;
+	}
 }

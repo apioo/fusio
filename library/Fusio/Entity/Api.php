@@ -19,16 +19,6 @@ class Api
 	protected $id;
 
 	/**
-	 * @ManyToOne(targetEntity="Fusio\Entity\Datasource")
-	 */
-	protected $datasource;
-
-	/**
-	 * @ManyToOne(targetEntity="Fusio\Entity\Model")
-	 */
-	protected $model;
-
-	/**
 	 * @Column(type="integer")
 	 * @var integer
 	 */
@@ -57,6 +47,11 @@ class Api
 	 * @var string
 	 */
 	protected $description;
+
+	/**
+	 * @OneToMany(targetEntity="Fusio\Entity\ApiAction", mappedBy="api")
+	 */
+	protected $actions;
 
 	/**
 	 * @OneToMany(targetEntity="Fusio\Entity\ApiLimit", mappedBy="api")
@@ -134,6 +129,11 @@ class Api
 		return $this->allowedMethod;
 	}
 
+	public function isMethodAllowed($method)
+	{
+		return strpos($method, $this->allowedMethod) !== false;
+	}
+
 	public function setPath($path)
 	{
 		$this->path = $path;
@@ -152,6 +152,11 @@ class Api
 	public function getDescription()
 	{
 		return $this->description;
+	}
+
+	public function getActions()
+	{
+		return $this->actions;
 	}
 
 	public function getLimits()

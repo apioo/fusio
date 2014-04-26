@@ -50,4 +50,74 @@ class AppToken
 	 * @var DateTime
 	 */
 	protected $date;
+
+	public function setId($id)
+	{
+		$this->id = $id;
+	}
+	
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function setApp($app)
+	{
+		$this->app = $app;
+	}
+	
+	public function getApp()
+	{
+		return $this->app;
+	}
+
+	public function setStatus($status)
+	{
+		$this->status = $status;
+	}
+	
+	public function getStatus()
+	{
+		return $this->status;
+	}
+
+	public function setIp($ip)
+	{
+		$this->ip = $ip;
+	}
+	
+	public function getIp()
+	{
+		return $this->ip;
+	}
+
+	public function setToken($token)
+	{
+		$this->token = $token;
+	}
+	
+	public function getToken()
+	{
+		return $this->token;
+	}
+
+	public function setExpire($expire)
+	{
+		$this->expire = $expire;
+	}
+	
+	public function getExpire()
+	{
+		return $this->expire;
+	}
+
+	public function setDate($date)
+	{
+		$this->date = $date;
+	}
+	
+	public function getDate()
+	{
+		return $this->date;
+	}
 }

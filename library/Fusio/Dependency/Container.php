@@ -27,6 +27,8 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use Fusio\ApiManager;
 use PSX\Dependency\DefaultContainer;
+use PSX\Handler\Doctrine\Manager as DoctrineManager;
+use PSX\Handler\Doctrine\RecordHydrator;
 
 /**
  * Container
@@ -47,18 +49,28 @@ class Container extends DefaultContainer
 		return new User($this->getParameter('app.id'));
 	}
 
+	public function getDoctrineManager()
+	{
+		return new DoctrineManager($this->get('entity_manager'));
+	}
+
 	public function getEntityManager()
 	{
+		$paths     = array('library/Fusio/Entity');
 		$isDevMode = $this->get('config')->get('psx_debug');
-		$config    = Setup::createAnnotationMetadataConfiguration(array('library/Fusio/Entity'), $isDevMode, 'cache');
-		$conn      = array(
+		$dbParams  = array(
 			'driver'   => 'pdo_mysql',
 			'user'     => $this->get('config')->get('psx_sql_user'),
 			'password' => $this->get('config')->get('psx_sql_pw'),
 			'dbname'   => $this->get('config')->get('psx_sql_db'),
 		);
 
-		return EntityManager::create($conn, $config);
+		$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+		$config->addCustomHydrationMode(RecordHydrator::HYDRATE_RECORD, 'PSX\Handler\Doctrine\RecordHydrator');
+
+		$entityManager = EntityManager::create($dbParams, $config);
+
+		return $entityManager;
 	}
 }
 

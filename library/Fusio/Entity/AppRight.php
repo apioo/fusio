@@ -31,4 +31,34 @@ class AppRight
 	 * @var boolean
 	 */
 	protected $allowed;
+
+	public function setId($id)
+	{
+		$this->id = $id;
+	}
+	
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function setApp($app)
+	{
+		$this->app = $app;
+	}
+	
+	public function getApp()
+	{
+		return $this->app;
+	}
+
+	public function setApi($api)
+	{
+		$this->api = $api;
+	}
+	
+	public function getApi()
+	{
+		return $this->api;
+	}
 }

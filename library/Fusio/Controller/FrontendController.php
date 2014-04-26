@@ -21,18 +21,19 @@ class FrontendController extends ViewAbstract
 	protected function getCurrentUser()
 	{
 		$user = new User();
+		$user->setId(0);
+		$user->setName('Anonymous');
 		$user->setAuthenticated(false);
 
 		$userId = $this->getSession()->get('user_id');
-
 		if(!empty($userId))
 		{
-			$record = $this->getDatabaseManager()
-				->getHandler('Fusio\Frontend\User\Handler')
-				->getById($userId);
+			$userEntity = $this->getEntityManager()
+				->getRepository('Fusio\Entity\User')
+				->find($userId);
 
-			$user->setId($record->getId());
-			$user->setName($record->getName());
+			$user->setId($userEntity->getId());
+			$user->setName($userEntity->getName());
 			$user->setAuthenticated(true);
 		}
 
