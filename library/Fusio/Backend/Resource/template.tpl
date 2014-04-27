@@ -16,7 +16,7 @@
 			<div class="container-fluid">
 				<ol class="breadcrumb">
 					<li><a href="<?php echo $url; ?>backend">Backend</a></li>
-					<li class="active">Api</li>
+					<li class="active">Template</li>
 				</ol>
 				<table class="table">
 				<colgroup>
@@ -25,7 +25,7 @@
 				</colgroup>
 				<thead>
 				<tr>
-					<th>Path</th>
+					<th>Name</th>
 					<th>Action</th>
 				</tr>
 				</thead>
@@ -36,7 +36,7 @@
 				</tr>
 				</tbody>
 				</table>
-				<a href="<?php echo $url; ?>backend/api/add" class="btn btn-primary">Add api</a>
+				<button type="button" class="btn btn-primary" onclick="fusio.template.add()">Add template</button>
 			</div>
 		</div>
 	</div>

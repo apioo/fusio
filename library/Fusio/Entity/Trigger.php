@@ -20,19 +20,24 @@ class Trigger
 	 * @Column(type="string")
 	 * @var string
 	 */
-	protected $type;
-
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
 	protected $name;
 
 	/**
 	 * @Column(type="string")
 	 * @var string
 	 */
-	protected $param;
+	protected $description;
+
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $class;
+
+	/**
+	 * @OneToMany(targetEntity="Fusio\Entity\ApiTrigger", mappedBy="trigger")
+	 */
+	protected $actions;
 
 	public function setId($id)
 	{
@@ -42,16 +47,6 @@ class Trigger
 	public function getId()
 	{
 		return $this->id;
-	}
-
-	public function setType($type)
-	{
-		$this->type = $type;
-	}
-	
-	public function getType()
-	{
-		return $this->type;
 	}
 
 	public function setName($name)
@@ -64,13 +59,28 @@ class Trigger
 		return $this->name;
 	}
 
-	public function setParam($param)
+	public function setDescription($description)
 	{
-		$this->param = $param;
+		$this->description = $description;
 	}
 	
-	public function getParam()
+	public function getDescription()
 	{
-		return $this->param;
+		return $this->description;
+	}
+
+	public function setClass($class)
+	{
+		$this->class = $class;
+	}
+	
+	public function getClass()
+	{
+		return $this->class;
+	}
+
+	public function getActions()
+	{
+		return $this->actions;
 	}
 }

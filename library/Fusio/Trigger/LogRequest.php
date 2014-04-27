@@ -1,12 +1,11 @@
 <?php
 
-namespace Fusio\Action;
+namespace Fusio\Trigger;
 
-use Fusio\ActionAbstract;
 use Fusio\Parameter;
 use PSX\Http\Request;
 
-class Void extends ActionAbstract
+class LogRequest extends ModelActionAbstract
 {
 	public function execute(Request $request, array $parameters)
 	{

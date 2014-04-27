@@ -99,3 +99,20 @@ header h4 a:hover
 {
 	border-radius:0px;
 }
+
+.fusio-api-add-fieldset
+{
+
+}
+
+.fusio-api-add-fieldset legend
+{
+	background-color:#eee;
+	padding:4px;
+	padding-left:8px;
+	font-size:0.9em;
+	font-weight:bold;
+	border-bottom:1px solid #999;
+	margin-bottom:4px;
+}
+

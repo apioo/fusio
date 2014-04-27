@@ -2,6 +2,8 @@
 
 namespace Fusio\Backend\Application;
 
+use Fusio\Connection\Factory;
+use Fusio\Connection\FactoryInterface;
 use Fusio\Controller\BackendController;
 
 class Connection extends BackendController
@@ -15,18 +17,10 @@ class Connection extends BackendController
 
 	public function getParameters()
 	{
-		$type  = $this->getUriFragments('type');
-		$class = 'Fusio\\Connection\\' . ucfirst($type);
+		$type = $this->getUriFragments('type');
 
-		if(class_exists($class))
-		{
-			return $this->setBody(array(
-				'parameters' => call_user_func($class . '::getConnectionParameters'),
-			));
-		}
-		else
-		{
-			throw new \Exception('Type does not exist');
-		}
+		return $this->setBody(array(
+			'parameters' => Factory::factory($type)->getParameters(),
+		));
 	}
 }

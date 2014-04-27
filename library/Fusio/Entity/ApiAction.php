@@ -28,6 +28,12 @@ class ApiAction
 	protected $method;
 
 	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $param;
+
+	/**
 	 * @ManyToOne(targetEntity="Fusio\Entity\Action", inversedBy="actions")
 	 */
 	protected $action;
@@ -60,6 +66,16 @@ class ApiAction
 	public function getMethod()
 	{
 		return $this->method;
+	}
+
+	public function setParam($param)
+	{
+		$this->param = $param;
+	}
+	
+	public function getParam()
+	{
+		return json_decode($this->param, true);
 	}
 
 	public function setAction($action)

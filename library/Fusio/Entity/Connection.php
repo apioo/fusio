@@ -2,6 +2,8 @@
 
 namespace Fusio\Entity;
 
+use Fusio\Connection\Factory;
+
 /**
  * @Entity
  * @Table(name="fusio_connection")
@@ -71,21 +73,11 @@ class Connection
 	
 	public function getParam()
 	{
-		return $this->param;
+		return json_decode($this->param, true);
 	}
 
-	public function getConnection()
+	public function getConnector()
 	{
-		$className = $this->type;
-
-		if(class_exists($className))
-		{
-			$param = array();
-			parse_str($this->param, $param);
-
-			$connection = new $className();
-
-			return $connection->connect($param);
-		}
+		return Factory::factory($this->getType())->getConnector($this->getParam());
 	}
 }

@@ -2,11 +2,10 @@
 
 namespace Fusio\Action;
 
-use Fusio\ActionAbstract;
 use Fusio\Parameter;
 use PSX\Http\Request;
 
-class Void extends ActionAbstract
+class CustomResponse extends ActionAbstract
 {
 	public function execute(Request $request, array $parameters)
 	{
@@ -14,6 +13,8 @@ class Void extends ActionAbstract
 
 	public function getParameters()
 	{
-		return array();
+		return array(
+			new Parameter\Text('template_id', 'Template'),
+		);
 	}
 }

@@ -6,7 +6,7 @@ use PSX\Http\Request;
 
 interface ActionInterface
 {
-	public function execute(Request $request, $parameters);
+	public function execute(Request $request, array $parameters);
 
 	public function getParameters();
 }

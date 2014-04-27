@@ -26,6 +26,7 @@ namespace Fusio\Dependency;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use Fusio\ApiManager;
+use Fusio\ActionFactory;
 use PSX\Dependency\DefaultContainer;
 use PSX\Handler\Doctrine\Manager as DoctrineManager;
 use PSX\Handler\Doctrine\RecordHydrator;
@@ -42,6 +43,11 @@ class Container extends DefaultContainer
 	public function getApiManager()
 	{
 		return new ApiManager();
+	}
+
+	public function getActionFactory()
+	{
+		return new ActionFactory($this);
 	}
 
 	public function getApp()

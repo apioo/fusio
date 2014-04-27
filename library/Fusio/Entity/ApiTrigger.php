@@ -28,6 +28,12 @@ class ApiTrigger
 	protected $method;
 
 	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $param;
+
+	/**
 	 * @ManyToOne(targetEntity="Fusio\Entity\Trigger")
 	 */
 	protected $trigger;
@@ -70,5 +76,25 @@ class ApiTrigger
 	public function getMethod()
 	{
 		return $this->method;
+	}
+
+	public function setParam($param)
+	{
+		$this->param = $param;
+	}
+	
+	public function getParam()
+	{
+		return json_decode($this->param, true);
+	}
+
+	public function setTrigger($trigger)
+	{
+		$this->trigger = $trigger;
+	}
+	
+	public function getTrigger()
+	{
+		return $this->trigger;
 	}
 }
