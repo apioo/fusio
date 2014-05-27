@@ -2,8 +2,16 @@
 
 namespace Fusio\Backend\Application;
 
-use Fusio\Controller\BackendController;
+use PSX\Controller\HandlerApiAbstract;
 
-class Model extends BackendController
+class Model extends HandlerApiAbstract
 {
+	protected function getDefaultHandler()
+	{
+		return $this->getDoctrineManager()
+			->getHandler(function($manager){
+				return $manager->createQueryBuilder()
+					->from('Fusio\Entity\Model', 'model');
+			});
+	}
 }

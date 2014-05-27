@@ -24,6 +24,11 @@ class ModelField
 	protected $model;
 
 	/**
+	 * @ManyToOne(targetEntity="Fusio\Entity\Model")
+	 */
+	protected $reference;
+
+	/**
 	 * @Column(type="integer")
 	 * @var integer
 	 */
@@ -34,6 +39,12 @@ class ModelField
 	 * @var string
 	 */
 	protected $type;
+
+	/**
+	 * @Column(type="integer")
+	 * @var string
+	 */
+	protected $length;
 
 	/**
 	 * @Column(type="boolean")

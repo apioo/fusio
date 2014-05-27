@@ -19,7 +19,7 @@ class Model
 	protected $id;
 
 	/**
-	 * @Column(type="string")
+	 * @Column(type="string", length=64)
 	 * @var string
 	 */
 	protected $name;

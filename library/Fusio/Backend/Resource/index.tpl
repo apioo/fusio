@@ -1,47 +1,15 @@
-<!DOCTYPE html>
 <html>
 <head>
-	<?php include($location . '/inc/meta.tpl'); ?>
+    <title>Fusio (<?php echo \Fusio\Base::getVersion(); ?>)</title>
+	<!--<link rel="stylesheet" type="text/css" href="http://cdn.sencha.io/ext-4.2.0-gpl/resources/css/ext-all.css">-->
+	<link rel="stylesheet" type="text/css" href="http://cdn.sencha.io/ext-4.2.0-gpl/resources/ext-theme-neptune/ext-theme-neptune-all.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $base; ?>/css/backend.css">
+	<script type="text/javascript" src="http://cdn.sencha.io/ext-4.2.0-gpl/ext-all.js"></script>
+	<script type="text/javascript">
+	var base_url = '<?php echo $base; ?>';
+	var url = '<?php echo $url; ?>';
+	</script>
+	<script type="text/javascript" src="<?php echo $base; ?>/js/fusio/app/Application.js"></script>
 </head>
-<body>
-
-<?php include($location . '/inc/header.tpl'); ?>
-
-<div class="main">
-	<div id="sidebar">
-		<?php include($location . '/inc/nav.tpl'); ?>
-	</div>
-	<div id="content">
-		<div class="wrapper">
-			<div class="container-fluid">
-				<ol class="breadcrumb">
-					<li><a href="<?php echo $url; ?>backend">Backend</a></li>
-					<li class="active">Home</li>
-				</ol>
-				<div class="row">
-					<div class="col-md-6">
-						<h4>App usage</h4>
-						<p>Top 10 apps and request count for the last month</p>
-					</div>
-					<div class="col-md-6">
-						<h4>Overall usage</h4>
-						<p>All incommidng requests for the last month</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<h4>User</h4>
-						<p>Top 10 new users</p>
-					</div>
-					<div class="col-md-6">
-						<h4>Log</h4>
-						<p>Top 10 new log entries</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</body>
+<body></body>
 </html>

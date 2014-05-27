@@ -1,47 +1,36 @@
 
 # main API endpoint
-GET|POST|PUT|DELETE /api Fusio\Api\Application\Index
+GET|POST|PUT|DELETE /api/* Fusio\Api\Application\Index
 
 # oauth
-GET|POST /oauth/request_token Fusio\Api\Application\Oauth\RequestToken
-GET      /oauth/authorize Fusio\Api\Application\Oauth\Authorize
-GET|POST /oauth/access_token Fusio\Api\Application\Oauth\AccessToken
+GET|POST            /oauth/request_token Fusio\Api\Application\Oauth\RequestToken
+GET                 /oauth/authorize Fusio\Api\Application\Oauth\Authorize
+GET|POST            /oauth/access_token Fusio\Api\Application\Oauth\AccessToken
 
 # backend
-GET|POST /backend/login Fusio\Backend\Application\Login
-GET      /backend Fusio\Backend\Application\Index
-GET      /backend/api Fusio\Backend\Application\Api
-GET      /backend/api/add Fusio\Backend\Application\Api\Add
-GET      /backend/api/add/parameters/:action_id Fusio\Backend\Application\Api\Add::getParameters
-GET      /backend/api/add/tables/:connection_id Fusio\Backend\Application\Api\Add::getTables
-GET      /backend/api/add/fields/:connection_id/:table Fusio\Backend\Application\Api\Add::getFields
-GET      /backend/connection Fusio\Backend\Application\Connection
-GET      /backend/connection/types Fusio\Backend\Application\Connection::getTypes
-GET      /backend/connection/parameters/:type Fusio\Backend\Application\Connection::getParameters
-GET      /backend/action Fusio\Backend\Application\Action
-GET      /backend/model Fusio\Backend\Application\Model
-GET      /backend/template Fusio\Backend\Application\Template
-GET      /backend/trigger Fusio\Backend\Application\Trigger
-GET      /backend/app Fusio\Backend\Application\App
-GET      /backend/user Fusio\Backend\Application\User
-GET      /backend/log Fusio\Backend\Application\Log
+GET                 /backend Fusio\Backend\Application\Index
+GET|POST            /backend/login Fusio\Backend\Application\Login
+GET|POST|PUT|DELETE /backend/action Fusio\Backend\Application\Action
+GET|POST|PUT|DELETE /backend/api Fusio\Backend\Application\Api
+GET                 /backend/api/add Fusio\Backend\Application\Api\Add
+GET                 /backend/api/add/parameters/:action_id Fusio\Backend\Application\Api\Add::getParameters
+GET                 /backend/api/add/tables/:connection_id Fusio\Backend\Application\Api\Add::getTables
+GET                 /backend/api/add/fields/:connection_id/:table Fusio\Backend\Application\Api\Add::getFields
+GET|POST|PUT|DELETE /backend/app Fusio\Backend\Application\App
+GET|POST|PUT|DELETE /backend/connection Fusio\Backend\Application\Connection
+GET                 /backend/connection/types Fusio\Backend\Application\Connection::getTypes
+GET                 /backend/connection/parameters/:type Fusio\Backend\Application\Connection::getParameters
+GET|POST|PUT|DELETE /backend/model Fusio\Backend\Application\Model
+GET|POST|PUT|DELETE /backend/trigger Fusio\Backend\Application\Trigger
+GET|POST|PUT|DELETE /backend/user Fusio\Backend\Application\User
 
 # frontend
-GET      / Fusio\Frontend\Application\Index
-GET      /home Fusio\Frontend\Application\Index
-GET      /documentation Fusio\Frontend\Application\Documentation::doIndex
-GET      /documentation/detail/:id Fusio\Frontend\Application\Documentation::doDetail
-GET      /library Fusio\Frontend\Application\Library
-GET      /support Fusio\Frontend\Application\Support
-GET|POST /register Fusio\Frontend\Application\Register
-GET|POST /login Fusio\Frontend\Application\Login
-
-# fusio api
-GET|POST /managment/action Fusio\Managment\Application\Action
-GET|POST /managment/api Fusio\Managment\Application\Api
-GET|POST /managment/app Fusio\Managment\Application\App
-GET|POST /managment/connection Fusio\Managment\Application\Connection
-GET|POST /managment/model Fusio\Managment\Application\Model
-GET|POST /managment/trigger Fusio\Managment\Application\Trigger
-GET|POST /managment/user Fusio\Managment\Application\User
+GET                 / Fusio\Frontend\Application\Index
+GET                 /home Fusio\Frontend\Application\Index
+GET                 /documentation Fusio\Frontend\Application\Documentation::doIndex
+GET                 /documentation/detail/:id Fusio\Frontend\Application\Documentation::doDetail
+GET                 /library Fusio\Frontend\Application\Library
+GET                 /support Fusio\Frontend\Application\Support
+GET|POST            /register Fusio\Frontend\Application\Register
+GET|POST            /login Fusio\Frontend\Application\Login
 

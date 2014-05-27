@@ -1,6 +1,6 @@
 <?php
 
-namespace Fusio\Managment\Application;
+namespace Fusio\Backend\Application\Api;
 
 use PSX\Controller\HandlerApiAbstract;
 
@@ -11,7 +11,7 @@ class Trigger extends HandlerApiAbstract
 		return $this->getDoctrineManager()
 			->getHandler(function($manager){
 				return $manager->createQueryBuilder()
-					->from('Fusio\Entity\Trigger', 'trigger');
+					->from('Fusio\Entity\ApiTrigger', 'trigger');
 			});
 	}
 }

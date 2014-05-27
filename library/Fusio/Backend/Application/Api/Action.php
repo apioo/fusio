@@ -1,17 +1,17 @@
 <?php
 
-namespace Fusio\Managment\Application\Api;
+namespace Fusio\Backend\Application\Api;
 
 use PSX\Controller\HandlerApiAbstract;
 
-class Field extends HandlerApiAbstract
+class Action extends HandlerApiAbstract
 {
 	protected function getDefaultHandler()
 	{
 		return $this->getDoctrineManager()
 			->getHandler(function($manager){
 				return $manager->createQueryBuilder()
-					->from('Fusio\Entity\ModelField', 'field');
+					->from('Fusio\Entity\ApiAction', 'action');
 			});
 	}
 }

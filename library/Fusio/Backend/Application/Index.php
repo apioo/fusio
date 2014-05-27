@@ -2,8 +2,8 @@
 
 namespace Fusio\Backend\Application;
 
-use Fusio\Controller\BackendController;
+use PSX\Controller\ViewAbstract;
 
-class Index extends BackendController
+class Index extends ViewAbstract
 {
 }

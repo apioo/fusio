@@ -22,7 +22,7 @@ class ModelFilter
 	protected $field;
 
 	/**
-	 * @Column(type="string")
+	 * @Column(type="string", length=128)
 	 * @var string
 	 */
 	protected $className;
