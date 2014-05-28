@@ -1,16 +1,20 @@
 
-Ext.define('Fusio.view.Model', {
+Ext.define('Fusio.view.View', {
     extend: 'Fusio.Grid',
 
-    alias: 'widget.model',
-    title: 'Model',
-    cls: 'fusio-model',
+    alias: 'widget.view',
+    title: 'View',
+    cls: 'fusio-view',
 
     getDefaultColumns: function(){
         return [{
             text: 'Id',
             dataIndex: 'id',
             width: 80
+        },{
+            text: 'Type',
+            dataIndex: 'type',
+            width: 300
         },{
             text: 'Name',
             dataIndex: 'name',
@@ -19,13 +23,13 @@ Ext.define('Fusio.view.Model', {
     },
 
     getDefaultStore: function(){
-        return 'Models';
+        return 'Views';
     },
 
     getDetailPanel: function(){
         return {
             header: false,
-            xtype: 'model_detail',
+            xtype: 'view_detail',
             selected_record: this.getSelectedRecord()
         };
     }

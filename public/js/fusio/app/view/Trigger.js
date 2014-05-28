@@ -1,10 +1,10 @@
 
-Ext.define('Fusio.view.Model', {
+Ext.define('Fusio.view.Trigger', {
     extend: 'Fusio.Grid',
 
-    alias: 'widget.model',
-    title: 'Model',
-    cls: 'fusio-model',
+    alias: 'widget.trigger',
+    title: 'Trigger',
+    cls: 'fusio-trigger',
 
     getDefaultColumns: function(){
         return [{
@@ -19,13 +19,13 @@ Ext.define('Fusio.view.Model', {
     },
 
     getDefaultStore: function(){
-        return 'Models';
+        return 'Triggers';
     },
 
     getDetailPanel: function(){
         return {
             header: false,
-            xtype: 'model_detail',
+            xtype: 'trigger_detail',
             selected_record: this.getSelectedRecord()
         };
     }

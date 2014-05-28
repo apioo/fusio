@@ -6,7 +6,7 @@ Ext.define('Fusio.view.ModelDetail', {
 
     title: 'Model detail',
     border: false,
-    cls: 'fusio-model-fields',
+    cls: 'fusio-model-detail',
     defaultType: 'textfield',
     bodyPadding: 5,
 

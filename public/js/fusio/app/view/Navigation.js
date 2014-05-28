@@ -15,10 +15,10 @@ Ext.define('Fusio.view.Navigation', {
                 expanded: true,
                 text: 'Fusio',
                 children: [{ 
-                    text: 'Api', 
+                    text: 'Endpoint', 
                     expanded: true,
                     children: [{
-                        text: 'Endpoint', 
+                        text: 'Api', 
                         id: 'Fusio.controller.Api',
                         leaf: true 
                     },{
