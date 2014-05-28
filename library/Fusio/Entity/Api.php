@@ -25,18 +25,6 @@ class Api
 	protected $status;
 
 	/**
-	 * @Column(type="boolean")
-	 * @var boolean
-	 */
-	protected $default;
-
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
-	protected $allowedMethod;
-
-	/**
 	 * @Column(type="string")
 	 * @var string
 	 */
@@ -49,9 +37,14 @@ class Api
 	protected $description;
 
 	/**
-	 * @OneToMany(targetEntity="Fusio\Entity\ApiAction", mappedBy="api")
+	 * @ManyToOne(targetEntity="Fusio\Entity\Model")
 	 */
-	protected $actions;
+	protected $model;
+
+	/**
+	 * @ManyToOne(targetEntity="Fusio\Entity\View")
+	 */
+	protected $view;
 
 	/**
 	 * @OneToMany(targetEntity="Fusio\Entity\ApiLimit", mappedBy="api")
@@ -79,26 +72,6 @@ class Api
 		return $this->id;
 	}
 
-	public function setDatasource($datasource)
-	{
-		$this->datasource = $datasource;
-	}
-	
-	public function getDatasource()
-	{
-		return $this->datasource;
-	}
-
-	public function setModel($model)
-	{
-		$this->model = $model;
-	}
-	
-	public function getModel()
-	{
-		return $this->model;
-	}
-
 	public function setStatus($status)
 	{
 		$this->status = $status;
@@ -107,31 +80,6 @@ class Api
 	public function getStatus()
 	{
 		return $this->status;
-	}
-
-	public function setDefault($default)
-	{
-		$this->default = $default;
-	}
-	
-	public function getDefault()
-	{
-		return $this->default;
-	}
-
-	public function setAllowedMethod($allowedMethod)
-	{
-		$this->allowedMethod = $allowedMethod;
-	}
-	
-	public function getAllowedMethod()
-	{
-		return $this->allowedMethod;
-	}
-
-	public function isMethodAllowed($method)
-	{
-		return strpos($method, $this->allowedMethod) !== false;
 	}
 
 	public function setPath($path)
@@ -152,6 +100,26 @@ class Api
 	public function getDescription()
 	{
 		return $this->description;
+	}
+
+	public function setModel($model)
+	{
+		$this->model = $model;
+	}
+	
+	public function getModel()
+	{
+		return $this->model;
+	}
+
+	public function setView($view)
+	{
+		$this->view = $view;
+	}
+	
+	public function getView()
+	{
+		return $this->view;
 	}
 
 	public function getActions()

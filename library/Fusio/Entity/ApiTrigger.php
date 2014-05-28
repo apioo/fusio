@@ -87,14 +87,4 @@ class ApiTrigger
 	{
 		return json_decode($this->param, true);
 	}
-
-	public function setTrigger($trigger)
-	{
-		$this->trigger = $trigger;
-	}
-	
-	public function getTrigger()
-	{
-		return $this->trigger;
-	}
 }
