@@ -1,6 +1,6 @@
 
 # main API endpoint
-GET|POST|PUT|DELETE /api/* Fusio\Api\Application\Index
+GET|POST|PUT|DELETE /api/*path Fusio\Api\Application\Index
 
 # oauth
 GET|POST            /oauth/request_token Fusio\Api\Application\Oauth\RequestToken
@@ -23,6 +23,7 @@ GET                 /backend/connection/parameters/:type Fusio\Backend\Applicati
 GET|POST|PUT|DELETE /backend/model Fusio\Backend\Application\Model
 GET|POST|PUT|DELETE /backend/trigger Fusio\Backend\Application\Trigger
 GET|POST|PUT|DELETE /backend/user Fusio\Backend\Application\User
+GET|POST|PUT|DELETE /backend/view Fusio\Backend\Application\View
 
 # frontend
 GET                 / Fusio\Frontend\Application\Index
