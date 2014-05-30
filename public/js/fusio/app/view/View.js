@@ -26,11 +26,11 @@ Ext.define('Fusio.view.View', {
         return 'Views';
     },
 
-    getDetailPanel: function(){
+    getDetailPanel: function(record){
         return {
             header: false,
             xtype: 'view_detail',
-            selected_record: this.getSelectedRecord()
+            selectedRecord: record
         };
     }
 

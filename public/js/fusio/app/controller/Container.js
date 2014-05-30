@@ -31,8 +31,6 @@ Ext.define('Fusio.controller.Container', {
     		// if not found load tab
 	    	var controller = this.getController(rec.raw.id);
 	    	if (controller) {
-		    	controller.init();
-
 		    	var c = container.add({
 		    		title: rec.raw.text,
 		    		xtype: rec.raw.text.toLowerCase(),

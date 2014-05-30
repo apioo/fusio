@@ -22,11 +22,11 @@ Ext.define('Fusio.view.Model', {
         return 'Models';
     },
 
-    getDetailPanel: function(){
+    getDetailPanel: function(record){
         return {
             header: false,
             xtype: 'model_detail',
-            selected_record: this.getSelectedRecord()
+            selectedRecord: record
         };
     }
 

@@ -17,17 +17,20 @@ Ext.define('Fusio.Grid', {
             xtype: 'toolbar',
             items: [{
                 xtype: 'button',
+                cls: 'fusio-grid-button-create',
                 text: 'Create',
                 handler: this.showCreateDialog,
                 scope: this
             },{
                 xtype: 'button',
+                cls: 'fusio-grid-button-update',
                 text: 'Update',
                 disabled: true,
                 handler: this.showUpdateDialog,
                 scope: this
             },{
                 xtype: 'button',
+                cls: 'fusio-grid-button-delete',
                 text: 'Delete',
                 disabled: true,
                 handler: this.showDeleteDialog,
@@ -40,6 +43,21 @@ Ext.define('Fusio.Grid', {
             pageSize: 16,
             store: this.getDefaultStore(),
             displayInfo: true
+        };
+
+        this.listeners = {
+            scope: this,
+            itemclick: function(){
+                var buttons = this.query('button[cls~=fusio-grid-button-update]');
+                if (buttons) {
+                    buttons[0].enable();
+                }
+
+                buttons = this.query('button[cls~=fusio-grid-button-delete]');
+                if (buttons) {
+                    buttons[0].enable();
+                }
+            }
         };
 
         this.callParent();
@@ -64,7 +82,7 @@ Ext.define('Fusio.Grid', {
         return this.getSelectionModel().getLastSelected();
     },
 
-    showDetailWindow: function(){
+    showDetailWindow: function(type, record){
         Ext.create('Ext.window.Window', {
             title: 'Details',
             height: 600,
@@ -72,20 +90,20 @@ Ext.define('Fusio.Grid', {
             modal: true,
             layout: 'fit',
             resizeable: false,
-            items: [this.getDetailPanel()]
+            items: [this.getDetailPanel(type, record)]
         }).show();
     },
 
     showCreateDialog: function(){
-        this.showDetailWindow();
+        this.showDetailWindow('create', null);
     },
 
     showUpdateDialog: function(){
-        this.showDetailWindow();
+        this.showDetailWindow('update', this.getSelectedRecord());
     },
 
     showDeleteDialog: function(){
-        this.showDetailWindow();
+        this.showDetailWindow('delete', this.getSelectedRecord());
     }
 
 });

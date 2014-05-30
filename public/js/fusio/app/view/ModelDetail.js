@@ -59,17 +59,11 @@ Ext.define('Fusio.view.ModelDetail', {
                     typeAhead: true,
                     triggerAction: 'all',
                     store: [
-                        ['smallint', 'smallint'],
-                        ['integer', 'integer'],
-                        ['bigint', 'bigint'],
-                        ['decimal', 'decimal'],
-                        ['float', 'float'],
                         ['string', 'string'],
-                        ['text', 'text'],
+                        ['integer', 'integer'],
+                        ['float', 'float'],
                         ['boolean', 'boolean'],
-                        ['date', 'date'],
-                        ['datetime', 'datetime'],
-                        ['time', 'time'],
+                        ['array', 'array'],
                         ['object', 'object']
                     ]
                 })

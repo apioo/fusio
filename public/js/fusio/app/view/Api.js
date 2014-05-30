@@ -26,11 +26,12 @@ Ext.define('Fusio.view.Api', {
         return 'Apis';
     },
 
-    getDetailPanel: function(){
+    getDetailPanel: function(type, record){
         return {
             header: false,
             xtype: 'api_detail',
-            selected_record: this.getSelectedRecord()
+            type: type,
+            selectedRecord: record
         };
     }
 
