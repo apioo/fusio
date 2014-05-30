@@ -9,6 +9,7 @@
 	var base_url = '<?php echo $base; ?>';
 	var url = '<?php echo $url; ?>';
 	</script>
+	<script type="text/javascript" src="<?php echo $base; ?>/js/ace/ace.js"></script>
 	<script type="text/javascript" src="<?php echo $base; ?>/js/fusio/app/Application.js"></script>
 </head>
 <body></body>
