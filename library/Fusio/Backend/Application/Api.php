@@ -11,7 +11,9 @@ class Api extends HandlerApiAbstract
 		return $this->getDoctrineManager()
 			->getHandler(function($manager){
 				return $manager->createQueryBuilder()
-					->from('Fusio\Entity\Api', 'api');
+					->from('Fusio\Entity\Api', 'api')
+					->innerJoin('api.model', 'model')
+					->innerJoin('api.view', 'view');
 			});
 	}
 }
