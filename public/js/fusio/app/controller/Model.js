@@ -1,12 +1,12 @@
 
 Ext.define('Fusio.controller.Model', {
-    extend: 'Ext.app.Controller',
+    extend: 'Fusio.controller.DefaultController',
 
     views: ['Model', 'ModelDetail'],
     stores: ['Models', 'ModelFields'],
 
-    init: function() {
-        this.getModelsStore().load();
+    getType: function(){
+        return 'model';
     }
 
 });

@@ -1,33 +1,10 @@
 
 Ext.define('Fusio.view.ApiDetail', {
-    extend: 'Ext.form.Panel',
+    extend: 'Fusio.DetailPanel',
 
     alias: 'widget.api_detail',
 
-    title: 'API detail',
-    border: false,
-    cls: 'fusio-api-detail',
-    defaultType: 'textfield',
-    bodyPadding: 5,
-
-    initComponent: function() {
-
-        this.buttons = [{
-            text: 'Reset',
-            scope: this,
-            handler: function(){
-                this.getForm().reset();
-            }
-        },{
-            text: 'Submit',
-            formBind: true,
-            disabled: true,
-            scope: this,
-            handler: function(){
-                this.fireEvent('record_' + this.type, this);
-            }
-        }];
-
+    getDefaultItems: function(){
         var statusStore = Ext.create('Ext.data.Store', {
             fields: ['key', 'value'],
             data: [
@@ -42,7 +19,7 @@ Ext.define('Fusio.view.ApiDetail', {
         Ext.data.StoreManager.lookup('Models').load();
         Ext.data.StoreManager.lookup('Views').load();
 
-        this.items = [{
+        return [{
             xtype: 'hiddenfield',
             name: 'id',
             value: this.selectedRecord ? this.selectedRecord.get('id') : null
@@ -87,8 +64,6 @@ Ext.define('Fusio.view.ApiDetail', {
             editable: false,
             value: this.selectedRecord ? this.selectedRecord.get('viewId') : null
         }];
-
-        this.callParent();
     }
 
 });

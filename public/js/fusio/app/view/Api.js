@@ -24,15 +24,6 @@ Ext.define('Fusio.view.Api', {
 
     getDefaultStore: function(){
         return 'Apis';
-    },
-
-    getDetailPanel: function(type, record){
-        return {
-            header: false,
-            xtype: 'api_detail',
-            type: type,
-            selectedRecord: record
-        };
     }
 
 });

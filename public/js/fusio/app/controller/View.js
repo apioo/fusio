@@ -1,11 +1,13 @@
 
 Ext.define('Fusio.controller.View', {
-    extend: 'Ext.app.Controller',
+    extend: 'Fusio.controller.DefaultController',
+    requires: 'Fusio.Editor',
 
-    views: ['View'],
-    stores: ['Views'],
+    views: ['View', 'ViewDetail'],
+    stores: ['Views', 'ViewTypes'],
 
-    init: function() {
+    getType: function(){
+        return 'view';
     }
 
 });

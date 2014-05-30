@@ -3,6 +3,11 @@ Ext.define('Fusio.controller.Navigation', {
     extend: 'Ext.app.Controller',
 
     views: ['Navigation'],
+    stores: ['NavigationEntries'],
+    refs: [{
+        selector: 'navigation',
+        ref: 'navigation'
+    }],
 
     init: function(){
         this.control({
@@ -13,12 +18,7 @@ Ext.define('Fusio.controller.Navigation', {
     },
 
     onLaunch: function(){
-        this.application.fireEvent('load_controller', {
-            raw: {
-                text: 'Model', 
-                id: 'Fusio.controller.Model'
-            }
-        });
+        this.getNavigation().getSelectionModel().select(1);
     },
 
     onNavigationSelect: function(selModel, selection) {

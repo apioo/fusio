@@ -4,7 +4,7 @@ Ext.define('Fusio.controller.Container', {
 
     views: ['Container'],
 	refs: [{
-	    selector: 'panel[cls~=fusio-container]',
+	    selector: 'container[cls~=fusio-container]',
 	    ref: 'container'
 	}],
 
@@ -38,6 +38,8 @@ Ext.define('Fusio.controller.Container', {
 		    	});
 
 		    	container.setActiveTab(c);
+
+		    	controller.onLaunch();
 	    	} else {
 				console.log('Unknown controller ' + rec.raw.id);
 	    	}

@@ -3,7 +3,8 @@ Ext.define('Fusio.view.Viewport', {
     extend: 'Ext.container.Viewport',
     requires: [
         'Fusio.view.Container',
-        'Fusio.view.Navigation'
+        'Fusio.view.Navigation',
+        'Fusio.view.DetailWindow'
     ],
     layout: 'border',
     initComponent: function() {

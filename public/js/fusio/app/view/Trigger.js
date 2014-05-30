@@ -22,10 +22,11 @@ Ext.define('Fusio.view.Trigger', {
         return 'Triggers';
     },
 
-    getDetailPanel: function(record){
+    getDetailPanel: function(type, record){
         return {
             header: false,
             xtype: 'trigger_detail',
+            type: type,
             selectedRecord: record
         };
     }

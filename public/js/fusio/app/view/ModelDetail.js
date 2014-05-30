@@ -1,41 +1,10 @@
 
 Ext.define('Fusio.view.ModelDetail', {
-    extend: 'Ext.form.Panel',
+    extend: 'Fusio.DetailPanel',
 
     alias: 'widget.model_detail',
 
-    title: 'Model detail',
-    border: false,
-    cls: 'fusio-model-detail',
-    defaultType: 'textfield',
-    bodyPadding: 5,
-
-    buttons: [{
-        text: 'Reset',
-        handler: function(){
-            this.up('form').getForm().reset();
-        }
-    },{
-        text: 'Submit',
-        formBind: true,
-        disabled: true,
-        handler: function(){
-            var form = this.up('form').getForm();
-            if (form.isValid()) {
-                form.submit({
-                    success: function(form, action){
-                        Ext.Msg.alert('Success', action.result.msg);
-                    },
-                    failure: function(form, action){
-                        Ext.Msg.alert('Failed', action.result.msg);
-                    }
-                });
-            }
-        }
-    }],
-
-    initComponent: function() {
-
+    getDefaultItems: function(){
         var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
             clicksToMoveEditor: 1,
             autoCancel: false,
@@ -129,13 +98,11 @@ Ext.define('Fusio.view.ModelDetail', {
             plugins: [rowEditing]
         });
 
-        this.items = [{
+        return [{
             fieldLabel: 'Name',
             name: 'name',
             allowBlank: false
-        },grid];
-
-        this.callParent();
+        }, grid];
     }
 
 });

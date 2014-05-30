@@ -83,15 +83,7 @@ Ext.define('Fusio.Grid', {
     },
 
     showDetailWindow: function(type, record){
-        Ext.create('Ext.window.Window', {
-            title: 'Details',
-            height: 600,
-            width: 800,
-            modal: true,
-            layout: 'fit',
-            resizeable: false,
-            items: [this.getDetailPanel(type, record)]
-        }).show();
+        this.fireEvent('show_dialog', type, record);
     },
 
     showCreateDialog: function(){

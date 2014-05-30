@@ -24,14 +24,6 @@ Ext.define('Fusio.view.View', {
 
     getDefaultStore: function(){
         return 'Views';
-    },
-
-    getDetailPanel: function(record){
-        return {
-            header: false,
-            xtype: 'view_detail',
-            selectedRecord: record
-        };
     }
 
 });

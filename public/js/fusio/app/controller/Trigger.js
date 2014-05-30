@@ -1,11 +1,12 @@
 
 Ext.define('Fusio.controller.Trigger', {
-    extend: 'Ext.app.Controller',
+    extend: 'Fusio.controller.DefaultController',
 
-    views: ['Trigger'],
+    views: ['Trigger', 'TriggerDetail'],
     stores: ['Triggers'],
 
-    init: function() {
+    getType: function(){
+        return 'trigger';
     }
 
 });
