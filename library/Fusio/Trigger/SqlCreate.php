@@ -6,14 +6,9 @@ use Fusio\Parameter;
 use Fusio\TriggerAbstract;
 use PSX\Http\Request;
 
-class LogRequest extends TriggerAbstract
+class SqlCreate extends SqlOperationAbstract
 {
 	public function execute(Request $request, array $parameters)
 	{
-	}
-
-	public function getParameters()
-	{
-		return array();
 	}
 }

@@ -8,6 +8,8 @@ namespace Fusio\Entity;
  */
 class View
 {
+	const TYPE_SQL_QUERY = 'sql-query';
+
 	/**
 	 * @Id 
 	 * @GeneratedValue 

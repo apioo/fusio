@@ -3,9 +3,10 @@
 namespace Fusio\Trigger;
 
 use Fusio\Parameter;
+use Fusio\TriggerAbstract;
 use PSX\Http\Request;
 
-class BeanstalkdPutPublish extends ModelActionAbstract
+class BeanstalkdPutPublish extends TriggerAbstract
 {
 	public function execute(Request $request, array $parameters)
 	{

@@ -8,6 +8,14 @@ namespace Fusio\Entity;
  */
 class Trigger
 {
+	const TYPE_SQL_CREATE   = 'sql-create';
+	const TYPE_SQL_UPDATE   = 'sql-update';
+	const TYPE_SQL_DELETE   = 'sql-delete';
+	const TYPE_PHP_TRIGGER  = 'php-trigger';
+	const TYPE_CLI_EXECUTE  = 'cli-execute';
+	const TYPE_HTTP_WEBHOOK = 'http-webhook';
+	const TYPE_MQ_RABBITMQ  = 'mq-rabbitmq';
+
 	/**
 	 * @Id 
 	 * @GeneratedValue 
@@ -20,19 +28,19 @@ class Trigger
 	 * @Column(type="string")
 	 * @var string
 	 */
+	protected $type;
+
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
 	protected $name;
 
 	/**
 	 * @Column(type="string")
 	 * @var string
 	 */
-	protected $description;
-
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
-	protected $class;
+	protected $param;
 
 	/**
 	 * @OneToMany(targetEntity="Fusio\Entity\ApiTrigger", mappedBy="trigger")

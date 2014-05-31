@@ -31,6 +31,30 @@ class Api
 	protected $path;
 
 	/**
+	 * @Column(type="smallint")
+	 * @var string
+	 */
+	protected $methodGet;
+
+	/**
+	 * @Column(type="smallint")
+	 * @var string
+	 */
+	protected $methodPost;
+
+	/**
+	 * @Column(type="smallint")
+	 * @var string
+	 */
+	protected $methodPut;
+
+	/**
+	 * @Column(type="smallint")
+	 * @var string
+	 */
+	protected $methodDelete;
+
+	/**
 	 * @Column(type="string")
 	 * @var string
 	 */
@@ -90,6 +114,56 @@ class Api
 	public function getPath()
 	{
 		return $this->path;
+	}
+
+	public function setMethodGet($methodGet)
+	{
+		$this->methodGet = (integer) $methodGet;
+	}
+
+	public function hasMethodGet()
+	{
+		return $this->methodGet == 1;
+	}
+
+	public function setMethodPost($methodPost)
+	{
+		$this->methodPost = (integer) $methodPost;
+	}
+
+	public function hasMethodPost()
+	{
+		return $this->methodPost == 1;
+	}
+
+	public function setMethodPut($methodPut)
+	{
+		$this->methodPut = (integer) $methodPut;
+	}
+
+	public function hasMethodPut()
+	{
+		return $this->methodPut == 1;
+	}
+
+	public function setMethodDelete($methodDelete)
+	{
+		$this->methodDelete = (integer) $methodDelete;
+	}
+
+	public function hasMethodDelete()
+	{
+		return $this->methodDelete == 1;
+	}
+
+	public function getAllowedMethods()
+	{
+		return array_filter(array(
+			$this->hasMethodGet()    ? 'GET'    : null,
+			$this->hasMethodPost()   ? 'POST'   : null,
+			$this->hasMethodPut()    ? 'PUT'    : null,
+			$this->hasMethodDelete() ? 'DELETE' : null,
+		));
 	}
 
 	public function setDescription($description)

@@ -3,9 +3,10 @@
 namespace Fusio\Trigger;
 
 use Fusio\Parameter;
+use Fusio\TriggerAbstract;
 use PSX\Http\Request;
 
-class SendMail extends ModelActionAbstract
+class SendMail extends TriggerAbstract
 {
 	public function execute(Request $request, array $parameters)
 	{

@@ -2,6 +2,7 @@
 
 namespace Fusio;
 
+use Fusio\Api\InvalidRequestMethodException;
 use PSX\Http\Request;
 
 class ApiManager
@@ -15,19 +16,18 @@ class ApiManager
 
 	public function executeRequest(App $app, Request $request)
 	{
-		// check method
-		$allowedMethods = explode(',', $api->getAllowedMethod());
-
-		if (in_array($request->getMethod(), $allowedMethods)) {
-			throw new InvalidRequestMethod('Invalid request method ' . $request->getMethod(), $request->getMethod(), $allowedMethods);
-		}
-
 		// get api
-		$api = $this->getApiByRequest($request);
+		$api = $this->getApiByPath($this->getUriFragments('path'));
+
+		// check method
+		$allowedMethods = $api->getAllowedMethods();
+		if (in_array($request->getMethod(), $allowedMethods)) {
+			throw new InvalidRequestMethodException('Request method ' . $request->getMethod() . ' not allowed', 405, $request->getMethod(), $allowedMethods);
+		}
 
 		// check right
 		if ($this->appManager->hasPermission($app, $api, $request->getMethod())) {
-			throw new PermissionException('Not allowed', 403);
+			throw new ForbiddenException('Not allowed', 403);
 		}
 
 		// check request limit
@@ -36,16 +36,16 @@ class ApiManager
 		}
 
 		// execute action
-		$this->executeAction($api, $request);
+		$this->executeAction($api, $app, $request);
 
 		// call trigger
 
 		return $response;
 	}
 
-	protected function getApiByRequest(Request $request)
+	protected function getApiByPath($path)
 	{
-		$api = $this->apiRepository->findOneByPath($request->getUrl()->getPath());
+		$api = $this->apiRepository->findOneByPath($path);
 
 		if ($api instanceof Api) {
 			return $api;
@@ -59,30 +59,34 @@ class ApiManager
 		
 	}
 
-	protected function executeAction(Api $api, Request $request)
+	protected function executeAction(Api $api, App $app, Request $request)
 	{
-		$actions = $api->getActions();
-		foreach ($actions as $action) {
-			if ($action->getMethod() == $request->getMethod()) {
-				$className = $action->getAction()->getClass();
-				if (class_exists($className)) {
-					$actionObject = new $className();
-					if ($actionObject instanceof ActionInterface) {
-						return $actionObject->execute($request, $action->getParam());
-					}
-				}
-			}
+		// parse the model if we have an fitting request
+		if(in_array($request->getMethod(), array('POST', 'PUT', 'DELETE')))
+		{
+			// @TOOD parse model into an record using $api->getModel();
 		}
 
-		throw new InvalidActionAttached('No action was attached to this request method', 500);
-	}
-
-	protected function executeTrigger(Api $api, $requestMethod)
-	{
+		// call fitting triggers
+		$context  = new Context($api, $app);
 		$triggers = $api->getTrigger();
 
-		foreach ($triggers as $trigger) {
-			
+		foreach($triggers as $triggerEntity)
+		{
+			try
+			{
+				if($triggerEntity->getMethod() == $request->getMethod())
+				{
+					$parameters = json_decode($triggerEntity->getParam(), true);
+
+					$trigger = $this->triggerFactory->factory($triggerEntity->getType());
+					$trigger->execute($request, $parameters, $context);
+				}
+			}
+			catch(\Exception $e)
+			{
+				// @TODO log error
+			}
 		}
 	}
 }

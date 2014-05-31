@@ -11,8 +11,9 @@ interface TriggerInterface
 	 *
 	 * @param PSX\Http\Request $request
 	 * @param array $parameters
+	 * @param Fusio\Context $context
 	 */
-	public function execute(Request $request, array $parameters);
+	public function execute(Request $request, array $parameters, Context $Context = null);
 
 	/**
 	 * Returns an array containing the fields which are needed by the trigger
