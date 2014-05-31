@@ -40,6 +40,31 @@ Ext.define('Fusio.view.ApiDetail', {
             emptyText: '/v1/acme/store',
             value: this.selectedRecord ? this.selectedRecord.get('path') : null
         },{
+            fieldLabel: 'Methods',
+            xtype: 'checkboxgroup',
+            columns: [80, 80, 80, 80],
+            items: [{
+                boxLabel: 'GET',
+                name: 'methodGet',
+                inputValue: '1',
+                checked: this.selectedRecord ? this.selectedRecord.get('methodGet') : true
+            }, {
+                boxLabel: 'POST',
+                name: 'methodPost',
+                inputValue: '1',
+                checked: this.selectedRecord ? this.selectedRecord.get('methodPost') : true
+            }, {
+                boxLabel: 'PUT',
+                name: 'methodPut',
+                inputValue: '1',
+                checked: this.selectedRecord ? this.selectedRecord.get('methodPut') : true
+            }, {
+                boxLabel: 'DELETE',
+                name: 'methodDelete',
+                inputValue: '1',
+                checked: this.selectedRecord ? this.selectedRecord.get('methodDelete') : true
+            }]
+        },{
             fieldLabel: 'Description',
             name: 'description',
             value: this.selectedRecord ? this.selectedRecord.get('description') : null

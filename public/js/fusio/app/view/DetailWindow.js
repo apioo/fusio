@@ -10,5 +10,6 @@ Ext.define('Fusio.view.DetailWindow', {
     modal: true,
     layout: 'fit',
     resizeable: false,
+    closeAction: 'destroy',
     cls: 'fusio-detail-window'
 });

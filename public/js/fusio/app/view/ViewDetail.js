@@ -15,6 +15,7 @@ Ext.define('Fusio.view.ApiDetail', {
             name: 'type',
             displayField: 'value',
             valueField: 'key',
+            value: 'mysql-query',
             store: 'ViewTypes',
             forceSelection: true,
             editable: false,
@@ -47,7 +48,7 @@ Ext.define('Fusio.view.ApiDetail', {
             xtype: 'fieldcontainer',
             //fieldLabel: 'Parameters',
             cls: 'fusio-view-detail-parameters',
-            items: []
+            items: this.getMysqlQueryParameters()
         }];
     },
 
