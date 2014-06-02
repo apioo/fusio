@@ -8,6 +8,9 @@ Ext.define('Fusio.DetailPanel', {
     border: false,
     cls: 'fusio-detail',
     defaultType: 'textfield',
+    defaults: {
+        width: 770
+    },
     bodyPadding: 5,
 
     initComponent: function() {

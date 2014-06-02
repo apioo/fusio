@@ -81,3 +81,14 @@ footer
 	padding:6px 4px;
 	padding-left:0px;
 }
+
+.fusio-documentation-endpoints
+{
+	list-style-type:none;
+	padding:16px 0px;
+}
+
+.fusio-api-deprecated
+{
+	text-decoration:line-through;
+}

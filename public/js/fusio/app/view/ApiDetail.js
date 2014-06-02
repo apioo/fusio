@@ -40,54 +40,131 @@ Ext.define('Fusio.view.ApiDetail', {
             emptyText: '/v1/acme/store',
             value: this.selectedRecord ? this.selectedRecord.get('path') : null
         },{
-            fieldLabel: 'Methods',
-            xtype: 'checkboxgroup',
-            columns: [80, 80, 80, 80],
-            items: [{
-                boxLabel: 'GET',
-                name: 'methodGet',
-                inputValue: '1',
-                checked: this.selectedRecord ? this.selectedRecord.get('methodGet') : true
-            }, {
-                boxLabel: 'POST',
-                name: 'methodPost',
-                inputValue: '1',
-                checked: this.selectedRecord ? this.selectedRecord.get('methodPost') : true
-            }, {
-                boxLabel: 'PUT',
-                name: 'methodPut',
-                inputValue: '1',
-                checked: this.selectedRecord ? this.selectedRecord.get('methodPut') : true
-            }, {
-                boxLabel: 'DELETE',
-                name: 'methodDelete',
-                inputValue: '1',
-                checked: this.selectedRecord ? this.selectedRecord.get('methodDelete') : true
-            }]
-        },{
+            xtype: 'textareafield',
             fieldLabel: 'Description',
             name: 'description',
             value: this.selectedRecord ? this.selectedRecord.get('description') : null
         },{
-            xtype: 'combo',
-            fieldLabel: 'Model',
-            name: 'model',
-            displayField: 'name',
-            valueField: 'id',
-            store: Ext.data.StoreManager.lookup('Models'),
-            forceSelection: true,
-            editable: false,
-            value: this.selectedRecord ? this.selectedRecord.get('modelId') : null
+            xtype: 'fieldcontainer',
+            fieldLabel: 'GET',
+            layout: 'hbox',
+            items: [{
+                xtype: 'checkbox',
+                name: 'get',
+                margins: '0 6 0 0'
+            },{
+                xtype: 'combo',
+                flex: 2,
+                emptyText: 'Request parser',
+                name: 'model',
+                displayField: 'name',
+                valueField: 'id',
+                store: Ext.data.StoreManager.lookup('Models'),
+                editable: false,
+                disabled: true,
+                value: this.selectedRecord ? this.selectedRecord.get('modelId') : null
+            },{
+                xtype: 'combo',
+                flex: 2,
+                emptyText: 'Response view',
+                margins: '0 0 0 6',
+                name: 'view',
+                displayField: 'name',
+                valueField: 'id',
+                store: Ext.data.StoreManager.lookup('Views'),
+                editable: false,
+                value: this.selectedRecord ? this.selectedRecord.get('viewId') : null
+            }]
         },{
-            xtype: 'combo',
-            fieldLabel: 'View',
-            name: 'view',
-            displayField: 'name',
-            valueField: 'id',
-            store: Ext.data.StoreManager.lookup('Views'),
-            forceSelection: true,
-            editable: false,
-            value: this.selectedRecord ? this.selectedRecord.get('viewId') : null
+            xtype: 'fieldcontainer',
+            fieldLabel: 'POST',
+            layout: 'hbox',
+            items: [{
+                xtype: 'checkbox',
+                name: 'get',
+                margins: '0 6 0 0'
+            },{
+                xtype: 'combo',
+                flex: 2,
+                emptyText: 'Request parser',
+                name: 'model',
+                displayField: 'name',
+                valueField: 'id',
+                store: Ext.data.StoreManager.lookup('Models'),
+                editable: false,
+                value: this.selectedRecord ? this.selectedRecord.get('modelId') : null
+            },{
+                xtype: 'combo',
+                flex: 2,
+                emptyText: 'Response view',
+                margins: '0 0 0 6',
+                name: 'view',
+                displayField: 'name',
+                valueField: 'id',
+                store: Ext.data.StoreManager.lookup('Views'),
+                editable: false,
+                value: this.selectedRecord ? this.selectedRecord.get('viewId') : null
+            }]
+        },{
+            xtype: 'fieldcontainer',
+            fieldLabel: 'PUT',
+            layout: 'hbox',
+            items: [{
+                xtype: 'checkbox',
+                name: 'get',
+                margins: '0 6 0 0'
+            },{
+                xtype: 'combo',
+                flex: 2,
+                emptyText: 'Request parser',
+                name: 'model',
+                displayField: 'name',
+                valueField: 'id',
+                store: Ext.data.StoreManager.lookup('Models'),
+                editable: false,
+                value: this.selectedRecord ? this.selectedRecord.get('modelId') : null
+            },{
+                xtype: 'combo',
+                flex: 2,
+                emptyText: 'Response view',
+                margins: '0 0 0 6',
+                name: 'view',
+                displayField: 'name',
+                valueField: 'id',
+                store: Ext.data.StoreManager.lookup('Views'),
+                editable: false,
+                value: this.selectedRecord ? this.selectedRecord.get('viewId') : null
+            }]
+        },{
+            xtype: 'fieldcontainer',
+            fieldLabel: 'DELETE',
+            layout: 'hbox',
+            items: [{
+                xtype: 'checkbox',
+                name: 'get',
+                margins: '0 6 0 0'
+            },{
+                xtype: 'combo',
+                flex: 2,
+                emptyText: 'Request parser',
+                name: 'model',
+                displayField: 'name',
+                valueField: 'id',
+                store: Ext.data.StoreManager.lookup('Models'),
+                editable: false,
+                value: this.selectedRecord ? this.selectedRecord.get('modelId') : null
+            },{
+                xtype: 'combo',
+                flex: 2,
+                emptyText: 'Response view',
+                margins: '0 0 0 6',
+                name: 'view',
+                displayField: 'name',
+                valueField: 'id',
+                store: Ext.data.StoreManager.lookup('Views'),
+                editable: false,
+                value: this.selectedRecord ? this.selectedRecord.get('viewId') : null
+            }]
         }];
     }
 

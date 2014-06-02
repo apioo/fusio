@@ -16,6 +16,10 @@ Ext.define('Fusio.store.NavigationEntries', {
                 id: 'Fusio.controller.Model',
                 leaf: true 
             },{
+                text: 'Parser', 
+                id: 'Fusio.controller.Parser',
+                leaf: true 
+            },{
                 text: 'View', 
                 id: 'Fusio.controller.View',
                 leaf: true 
