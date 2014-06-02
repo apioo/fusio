@@ -53,4 +53,9 @@ class Model
 	{
 		return $this->name;
 	}
+
+	public function getFields()
+	{
+		return $this->fields;
+	}
 }

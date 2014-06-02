@@ -4,13 +4,12 @@ namespace Fusio\Entity;
 
 /**
  * @Entity
- * @Table(name="fusio_view")
+ * @Table(name="fusio_parser")
  */
-class View
+class Parser
 {
-	const TYPE_SQL_QUERY       = 'sql-query';
-	const TYPE_JSON_RESPONSE   = 'json-response';
-	const TYPE_STATIC_RESPONSE = 'static-response';
+	const TYPE_GENERIC_PARSER = 'generic-parser';
+	const TYPE_DOM_PARSER     = 'dom-parser';
 
 	/**
 	 * @Id 

@@ -148,4 +148,9 @@ class ModelField
 	{
 		return $this->filter;
 	}
+
+	public function getReference()
+	{
+		return $this->reference;
+	}
 }

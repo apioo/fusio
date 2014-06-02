@@ -2,13 +2,12 @@
 
 namespace Fusio\Trigger;
 
-use Fusio\Parameter;
-use Fusio\TriggerAbstract;
-use PSX\Http\Request;
+use Fusio\Context;
+use PSX\Data\RecordInterface;
 
 class SqlDelete extends SqlOperationAbstract
 {
-	public function execute(Request $request, array $parameters)
+	public function execute(RecordInterface $record, array $parameters, Context $Context)
 	{
 	}
 }

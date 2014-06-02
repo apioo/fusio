@@ -2,7 +2,7 @@
 
 namespace Fusio;
 
-use PSX\Http\Request;
+use PSX\Data\RecordInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 abstract class TriggerAbstract
@@ -14,5 +14,5 @@ abstract class TriggerAbstract
 		$this->container = $container;
 	}
 
-	abstract public function execute(Request $request, array $parameters, Context $Context = null);
+	abstract public function execute(RecordInterface $record, array $parameters, Context $Context);
 }

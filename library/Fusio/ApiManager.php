@@ -4,6 +4,7 @@ namespace Fusio;
 
 use Fusio\Api\InvalidRequestMethodException;
 use PSX\Http\Request;
+use PSX\Http\Response;
 
 class ApiManager
 {
@@ -14,7 +15,7 @@ class ApiManager
 		$this->appManager = $appManager;
 	}
 
-	public function executeRequest(App $app, Request $request)
+	public function executeRequest(App $app, Request $request, Response $response)
 	{
 		// get api
 		$api = $this->getApiByPath($this->getUriFragments('path'));
@@ -35,12 +36,8 @@ class ApiManager
 			throw new RequestLimitExceededException('Request limit exceeded', 403);
 		}
 
-		// execute action
-		$this->executeAction($api, $app, $request);
-
-		// call trigger
-
-		return $response;
+		// execute
+		$this->execute($api, $app, $request, $response);
 	}
 
 	protected function getApiByPath($path)
@@ -59,16 +56,46 @@ class ApiManager
 		
 	}
 
-	protected function executeAction(Api $api, App $app, Request $request)
+	protected function execute(Api $api, App $app, Request $request, Response $response)
 	{
-		// parse the model if we have an fitting request
-		if(in_array($request->getMethod(), array('POST', 'PUT', 'DELETE')))
+		$context  = new Context($api, $app, $request, $response);
+		$methods  = $api->getMethods();
+		$model    = null;
+		$match    = false;
+
+		foreach($methods as $methodEntity)
 		{
-			// @TOOD parse model into an record using $api->getModel();
+			if($methodEntity->getMethod() == $request->getMethod())
+			{
+				$parserEntity = $methodEntity->getParser();
+
+				if($parserEntity instanceof Parser)
+				{
+					$parameters = $this->getParameters($parserEntity->getParam());
+					$parser     = $this->parserFactory->factory($parserEntity->getType());
+					$model      = $parser->transform($request, $parameters, $parser->getModel(), $context);
+				}
+
+				$viewEntity = $methodEntity->getView();
+
+				if($viewEntity instanceof View)
+				{
+					$parameters = $this->getParameters($viewEntity->getParam());
+					$view       = $this->viewFactory->factory($viewEntity->getType());
+					$view->generate($request, $response, $parameters, $parser->getModel(), $context);
+				}
+
+				$match = true;
+				break;
+			}
+		}
+
+		if(!$match)
+		{
+			throw new InvalidRequestMethodException('Request method not allowed', 405, $request->getMethod(), $api->getAllowedMethods());
 		}
 
 		// call fitting triggers
-		$context  = new Context($api, $app);
 		$triggers = $api->getTrigger();
 
 		foreach($triggers as $triggerEntity)
@@ -77,10 +104,9 @@ class ApiManager
 			{
 				if($triggerEntity->getMethod() == $request->getMethod())
 				{
-					$parameters = json_decode($triggerEntity->getParam(), true);
-
-					$trigger = $this->triggerFactory->factory($triggerEntity->getType());
-					$trigger->execute($request, $parameters, $context);
+					$parameters = $this->getParameters($triggerEntity->getParam());
+					$trigger    = $this->triggerFactory->factory($triggerEntity->getType());
+					$trigger->execute($model, $parameters, $context);
 				}
 			}
 			catch(\Exception $e)
@@ -88,5 +114,19 @@ class ApiManager
 				// @TODO log error
 			}
 		}
+
+		return $response;
+	}
+
+	protected function getParameters($param)
+	{
+		$parameters = array();
+
+		if(!empty($param))
+		{
+			$parameters = json_decode($param, true);
+		}
+
+		return $parameters;
 	}
 }

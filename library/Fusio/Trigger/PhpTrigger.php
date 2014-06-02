@@ -4,11 +4,12 @@ namespace Fusio\Trigger;
 
 use Fusio\Parameter;
 use Fusio\TriggerAbstract;
-use PSX\Http\Request;
+use Fusio\Context;
+use PSX\Data\RecordInterface;
 
 class PhpTrigger extends TriggerAbstract
 {
-	public function execute(Request $request, array $parameters)
+	public function execute(RecordInterface $record, array $parameters, Context $Context)
 	{
 		$className = isset($parameters['class'])     ? $parameters['class']     : null;
 		$arguments = isset($parameters['arguments']) ? $parameters['arguments'] : null;

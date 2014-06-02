@@ -9,9 +9,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
-			<h3>Documentation</h3>
-
+		<div class="col-md-9">
 			<h4>Endpoints</h4>
 			<ul class="fusio-documentation">
 				<?php foreach($apis as $api): ?>
@@ -21,6 +19,9 @@
 				</li>
 				<?php endforeach; ?>
 			</ul>
+		</div>
+		<div class="col-md-3">
+			<?php include($location . '/inc/documentation_endpoint.tpl'); ?>
 		</div>
 	</div>
 </div>

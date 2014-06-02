@@ -4,7 +4,6 @@ namespace Fusio\Trigger;
 
 use Fusio\Parameter;
 use Fusio\TriggerAbstract;
-use PSX\Http\Request;
 
 abstract class SqlOperationAbstract extends TriggerAbstract
 {
