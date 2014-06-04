@@ -5,10 +5,16 @@ namespace Fusio\Trigger;
 use Fusio\Parameter;
 use Fusio\TriggerAbstract;
 use Fusio\Context;
+use Fusio\Entity\Trigger;
 use PSX\Data\RecordInterface;
 
 class PhpTrigger extends TriggerAbstract
 {
+	public function getName()
+	{
+		return Trigger::TYPE_PHP_TRIGGER;
+	}
+
 	public function execute(RecordInterface $record, array $parameters, Context $Context)
 	{
 		$className = isset($parameters['class'])     ? $parameters['class']     : null;

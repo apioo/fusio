@@ -2,9 +2,6 @@
 
 namespace Fusio;
 
-use PSX\Http\Request;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
 class TriggerFactory
 {
 	protected $triggers = array();
@@ -18,7 +15,7 @@ class TriggerFactory
 	{
 		foreach($this->triggers as $trigger)
 		{
-			if($trigger->getType() == $trigger)
+			if($trigger->getType() == $type)
 			{
 				return $trigger;
 			}

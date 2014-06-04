@@ -10,7 +10,14 @@ use PSX\Http\Response;
 interface ParserInterface
 {
 	/**
-	 * Triggers an specific action from the given request
+	 * Returns the name of the parser
+	 *
+	 * @return string
+	 */
+	public function getName();
+
+	/**
+	 * Parses the request body and returns an RecordInterface
 	 *
 	 * @param PSX\Http\Request $request
 	 * @param array $parameters
@@ -18,7 +25,7 @@ interface ParserInterface
 	 * @param Fusio\Context $context
 	 * @return PSX\Data\RecordInterface
 	 */
-	public function transform(Request $request, array $parameters, Model $model, Context $context)
+	public function transform(Request $request, array $parameters, Model $model, Context $context);
 
 	/**
 	 * Returns an array containing the fields which are needed by the view

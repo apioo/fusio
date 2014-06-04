@@ -2,10 +2,14 @@
 
 namespace Fusio;
 
+use Fusio\Context;
+use Fusio\Entity\Model;
 use PSX\Data\RecordInterface;
+use PSX\Http\Request;
+use PSX\Http\Response;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-abstract class TriggerAbstract implements TriggerInterface
+abstract class ViewAbstract
 {
 	protected $container;
 
@@ -19,5 +23,5 @@ abstract class TriggerAbstract implements TriggerInterface
 		return array();
 	}
 
-	abstract public function execute(RecordInterface $record, array $parameters, Context $Context);
+	abstract public function generate(Request $request, Response $response, array $parameters, Model $model, Context $context);
 }

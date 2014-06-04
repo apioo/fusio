@@ -7,8 +7,13 @@ use Fusio\TriggerAbstract;
 use Fusio\Context;
 use PSX\Data\RecordInterface;
 
-class AmqpPublish extends TriggerAbstract
+class RabbitmqPublish extends TriggerAbstract
 {
+	public function getName()
+	{
+		return Trigger::TYPE_MQ_RABBITMQ;
+	}
+
 	public function execute(RecordInterface $record, array $parameters, Context $Context)
 	{
 	}

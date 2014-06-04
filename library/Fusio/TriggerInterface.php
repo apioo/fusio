@@ -8,6 +8,13 @@ use PSX\Http\Request;
 interface TriggerInterface
 {
 	/**
+	 * Returns the name of the trigger
+	 *
+	 * @return string
+	 */
+	public function getName();
+
+	/**
 	 * Triggers an specific action from the given request
 	 *
 	 * @param PSX\Data\RecordInterface $record

@@ -8,8 +8,8 @@ namespace Fusio\Entity;
  */
 class Parser
 {
-	const TYPE_GENERIC_PARSER = 'generic-parser';
-	const TYPE_DOM_PARSER     = 'dom-parser';
+	const TYPE_GENERIC_FORMAT = 'generic-format';
+	const TYPE_XML_DOM        = 'xml-dom';
 
 	/**
 	 * @Id 

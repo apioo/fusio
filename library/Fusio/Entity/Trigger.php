@@ -8,13 +8,16 @@ namespace Fusio\Entity;
  */
 class Trigger
 {
-	const TYPE_SQL_CREATE   = 'sql-create';
-	const TYPE_SQL_UPDATE   = 'sql-update';
-	const TYPE_SQL_DELETE   = 'sql-delete';
-	const TYPE_PHP_TRIGGER  = 'php-trigger';
-	const TYPE_CLI_EXECUTE  = 'cli-execute';
-	const TYPE_HTTP_WEBHOOK = 'http-webhook';
-	const TYPE_MQ_RABBITMQ  = 'mq-rabbitmq';
+	const TYPE_SQL_CREATE    = 'sql-create';
+	const TYPE_SQL_UPDATE    = 'sql-update';
+	const TYPE_SQL_DELETE    = 'sql-delete';
+	const TYPE_PHP_TRIGGER   = 'php-trigger';
+	const TYPE_CLI_EXECUTE   = 'cli-execute';
+	const TYPE_HTTP_WEBHOOK  = 'http-webhook';
+	const TYPE_MQ_RABBITMQ   = 'mq-rabbitmq';
+	const TYPE_MQ_BEANSTALKD = 'mq-beanstalkd';
+	const TYPE_MAIL_SEND     = 'mail-send';
+	const TYPE_LOG_REQUEST   = 'log-request';
 
 	/**
 	 * @Id 

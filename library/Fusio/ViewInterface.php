@@ -10,7 +10,14 @@ use PSX\Http\Response;
 interface ViewInterface
 {
 	/**
-	 * Triggers an specific action from the given request
+	 * Returns the name of the view
+	 *
+	 * @return string
+	 */
+	public function getName();
+
+	/**
+	 * Generates an response
 	 *
 	 * @param PSX\Http\Request $request
 	 * @param PSX\Http\Response $response
@@ -18,7 +25,7 @@ interface ViewInterface
 	 * @param Fusio\Entity\Model $model
 	 * @param Fusio\Context $context
 	 */
-	public function generate(Request $request, Response $response, array $parameters, Model $model, Context $context)
+	public function generate(Request $request, Response $response, array $parameters, Model $model, Context $context);
 
 	/**
 	 * Returns an array containing the fields which are needed by the view
