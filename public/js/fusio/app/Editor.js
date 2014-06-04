@@ -38,7 +38,7 @@ Ext.define('Fusio.Editor', {
         // ace editor
         me.editor = ace.edit(me.editorId);
         me.editor.setTheme('ace/theme/eclipse');
-        me.editor.getSession().setMode('ace/mode/sql');
+        me.editor.getSession().setMode('ace/mode/' + me.mode);
         me.editor.setValue(me.rawValue, -1);
     },
 

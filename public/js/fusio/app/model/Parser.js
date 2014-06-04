@@ -1,5 +1,5 @@
 
-Ext.define('Fusio.model.Trigger', {
+Ext.define('Fusio.model.Parser', {
     extend: 'Ext.data.Model',
     fields: [
         { name: 'id', type: 'integer' },

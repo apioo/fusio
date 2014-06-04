@@ -1,8 +1,8 @@
 
-Ext.define('Fusio.view.ViewDetail', {
+Ext.define('Fusio.view.TriggerDetail', {
     extend: 'Fusio.DetailPanel',
 
-    alias: 'widget.view_detail',
+    alias: 'widget.trigger_detail',
 
     getDefaultItems: function(){
         return [{
@@ -15,14 +15,14 @@ Ext.define('Fusio.view.ViewDetail', {
             name: 'type',
             displayField: 'value',
             valueField: 'key',
-            value: 'sql-query',
-            store: 'ViewTypes',
+            value: 'sql-create',
+            store: 'TriggerTypes',
             forceSelection: true,
             editable: false,
             listeners: {
                 scope: this,
                 select: function(el){
-                    var parameters = this.query('fieldcontainer[cls~=fusio-view-detail-parameters]');
+                    var parameters = this.query('fieldcontainer[cls~=fusio-trigger-detail-parameters]');
                     if (parameters) {
                         var parameter = parameters[0];
                         var params;
@@ -52,11 +52,11 @@ Ext.define('Fusio.view.ViewDetail', {
             value: this.selectedRecord ? this.selectedRecord.get('name') : null
         },{
             xtype: 'fieldcontainer',
-            cls: 'fusio-view-detail-parameters',
+            cls: 'fusio-trigger-detail-parameters',
             defaults: {
                 width: 770
             },
-            items: this.getSqlQueryParameters()
+            items: this.getSqlCreateParameters()
         }];
     },
 
