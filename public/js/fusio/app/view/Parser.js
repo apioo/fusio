@@ -24,6 +24,15 @@ Ext.define('Fusio.view.Parser', {
 
     getDefaultStore: function(){
         return 'Parsers';
+    },
+
+    getDetailPanel: function(type, record){
+        return {
+            header: false,
+            xtype: 'parser_detail',
+            type: type,
+            selectedRecord: record
+        };
     }
 
 });

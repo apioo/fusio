@@ -2,7 +2,7 @@
 Ext.define('Fusio.view.TriggerDetail', {
     extend: 'Fusio.DetailPanel',
 
-    alias: 'widget.trigger_detail',
+    alias: 'widget.parser_detail',
 
     getDefaultItems: function(){
         return [{
@@ -22,7 +22,7 @@ Ext.define('Fusio.view.TriggerDetail', {
             listeners: {
                 scope: this,
                 select: function(el){
-                    var parameters = this.query('fieldcontainer[cls~=fusio-trigger-detail-parameters]');
+                    var parameters = this.query('fieldcontainer[cls~=fusio-parser-detail-parameters]');
                     if (parameters) {
                         var parameter = parameters[0];
                         var params;
@@ -66,7 +66,7 @@ Ext.define('Fusio.view.TriggerDetail', {
             value: this.selectedRecord ? this.selectedRecord.get('name') : null
         },{
             xtype: 'fieldcontainer',
-            cls: 'fusio-trigger-detail-parameters',
+            cls: 'fusio-parser-detail-parameters',
             defaults: {
                 width: 770
             },

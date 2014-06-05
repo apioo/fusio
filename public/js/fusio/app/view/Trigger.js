@@ -12,6 +12,10 @@ Ext.define('Fusio.view.Trigger', {
             dataIndex: 'id',
             width: 80
         },{
+            text: 'Type',
+            dataIndex: 'type',
+            width: 300
+        },{
             text: 'Name',
             dataIndex: 'name',
             flex: 1
