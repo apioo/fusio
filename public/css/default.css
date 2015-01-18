@@ -1,94 +1,99 @@
 
+html, body, .container-fluid, .row 
+{
+    height:100%;
+}
+
 body
-{
-	background-color:#eee;
-	padding-top:60px;
-}
-
-header
-{
-	margin-top:16px;
-}
-
-footer
-{
-	text-align:right;
-}
-
-.container
 {
 	background-color:#fff;
 }
 
-.fusio-header
+pre
 {
+	padding:0px;
+	margin:0px;
+	border:none;
+	border-radius:0px;
 }
 
-.fusio-nav
+.sidebar 
 {
-	border-bottom:1px solid #aaa;
+	background-color:#021c35;
 }
 
-.fusio-footer
+@media (min-width: 992px){
+  .sidebar {
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    z-index:1000;
+    display:block;
+    background-color:#021c35;
+  }
+}
+
+.fusio-navigation
 {
+	background-color:#021c35;
+	overflow:hidden;
+}
+
+.fusio-navigation ul
+{
+	list-style-type:none;
+	padding:0px;
+	margin:0px;
 	margin-top:16px;
-	background-color:#eee;
 }
 
-.fusio-highlights
+.fusio-navigation a
 {
+	display:block;
+	padding:8px 0px;
+	color:#fff;
+	font-family:monospace;
 }
 
-.fusio-highlights img
+.fusio-navigation .nav-head
 {
-	margin-top:12px;
-}
-
-.fusio-documentation
-{
-}
-
-.fusio-documentation
-{
-	padding-left:0px;
-}
-
-.fusio-documentation li
-{
-	list-style-type:none;
-	border-left:6px solid #eee;
-	margin-left:0px;
+	color:#55acee;
+	font-weight:bold;
+	font-size:0.8em;
+	padding:8px;
 	margin-bottom:4px;
-	padding:4px;
-	padding-left:6px;
+	border-bottom:1px solid #55acee;
 }
 
-.fusio-documentation h4
+.fusio-content
 {
-	margin-top:0px;
+	background-color:#fff;
+	margin-bottom:64px;
 }
 
-.fusio-documentation-description
+.fusio-content > div > h1
 {
+	background-color:#eee;
+	background:linear-gradient(#fff, #eee);
+	padding:8px 15px;
+	margin:0px -15px;
+	margin-bottom:10px;
+	border-bottom:2px solid #021c35;
+	font-size:1.4em;
+	font-weight:bold;
+	font-family:monospace;
 }
 
-.fusio-documentation-parameter
+/* general bootstrap fixes */
+.form-control, .btn
 {
+	border-radius:0px;
 }
 
-.fusio-documentation-parameter td
+.nav-tabs > li > a
 {
-	padding:6px 4px;
-	padding-left:0px;
+	border-radius:0px;
 }
 
-.fusio-documentation-endpoints
-{
-	list-style-type:none;
-	padding:16px 0px;
-}
-
-.fusio-api-deprecated
-{
-	text-decoration:line-through;
-}
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

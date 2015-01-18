@@ -1,7 +1,7 @@
 {
-  "name": "fusio/fusio",
-  "description": "Simple API delivery",
-  "homepage": "http://fusio-project.org",
+  "name": "psx/sample",
+  "description": "PSX sample project",
+  "homepage": "http://phpsx.org",
   "license": "GPL-3.0",
   "authors": [
     {
@@ -12,13 +12,11 @@
   ],
   "require": {
     "php": ">=5.3",
-    "psx/psx": "dev-master",
-    "doctrine/orm": "2.4.*",
-    "symfony/yaml": "2.*"
+    "psx/psx": "dev-master"
   },
   "autoload": {
     "psr-0": {
-      "Fusio": "library/"
+      "Fusio": "src/"
     }
   }
 }
