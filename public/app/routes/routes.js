@@ -140,7 +140,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	$scope.route = route;
 
 	$scope.update = function(route){
-		$http.put('http://127.0.0.1/projects/fusio/public/index.php/backend/routes', route)
+		$http.put('http://127.0.0.1/projects/fusio/public/index.php/backend/routes/' + route.id, route)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
@@ -163,7 +163,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	$scope.route = route;
 
 	$scope.delete = function(route){
-		$http.delete('http://127.0.0.1/projects/fusio/public/index.php/backend/routes', route)
+		$http.delete('http://127.0.0.1/projects/fusio/public/index.php/backend/routes/' + route.id)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {

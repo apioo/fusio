@@ -1,9 +1,4 @@
 
-html, body, .container-fluid, .row 
-{
-    height:100%;
-}
-
 body
 {
 	background-color:#fff;
@@ -17,26 +12,53 @@ pre
 	border-radius:0px;
 }
 
+.container-fluid
+{
+	margin-top:60px;
+}
+
+.fusio-header
+{
+	background-color:#032c53;
+	width:100%;
+	top:0px;
+	left:0px;
+	height:60px;
+	position:fixed;
+	z-index:1;
+}
+
+.fusio-header h1
+{
+	color:#55acee;
+	margin:0px 15px;
+	padding:10px 0px;
+	font-size:2.6em;
+	font-weight:bold;
+	text-shadow:1px 1px #ccc;
+}
+
+.fusio-header h1 > span
+{
+	color:#ccc;
+	font-size:0.4em;
+	text-shadow:none;
+}
+
 .sidebar 
 {
 	background-color:#021c35;
+	position:fixed;
+	height:100%;
 }
 
-@media (min-width: 992px){
-  .sidebar {
-    position:fixed;
-    top:0;
-    left:0;
-    bottom:0;
-    z-index:1000;
-    display:block;
-    background-color:#021c35;
-  }
+.content
+{
+	background-color:#fff;
 }
 
 .fusio-navigation
 {
-	background-color:#021c35;
 	overflow:hidden;
 }
 
@@ -45,7 +67,8 @@ pre
 	list-style-type:none;
 	padding:0px;
 	margin:0px;
-	margin-top:16px;
+	margin-top:6px;
+	margin-bottom:32px;
 }
 
 .fusio-navigation a
@@ -54,6 +77,13 @@ pre
 	padding:8px 0px;
 	color:#fff;
 	font-family:monospace;
+	text-decoration:none;
+	white-space:nowrap;
+}
+
+.fusio-navigation a:hover
+{
+	color:#55acee;
 }
 
 .fusio-navigation .nav-head
@@ -83,6 +113,24 @@ pre
 	font-size:1.4em;
 	font-weight:bold;
 	font-family:monospace;
+}
+
+.fusio-search
+{
+}
+
+.fusio-search .table td
+{
+	border-top:none;
+}
+
+.fusio-grid
+{
+}
+
+.fusio-options
+{
+	white-space:nowrap;
 }
 
 /* general bootstrap fixes */

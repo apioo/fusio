@@ -19,17 +19,17 @@ class Path extends FilterAbstract
 		{
 			if(substr($value, 0, 1) != '/')
 			{
-				throw new StatusCode\BadRequestException('Path must start with an /');
+				return false;
 			}
+
+			return true;
 		}
-		else
-		{
-			throw new BadRequestException('Path must not be empty');
-		}
+
+		return false;
 	}
 
 	public function getErrorMessage()
 	{
-		return '%s must contain only alphabetic (A-Z) or numeric (0-9) signs';
+		return '%s has an invalid structure';
 	}
 }

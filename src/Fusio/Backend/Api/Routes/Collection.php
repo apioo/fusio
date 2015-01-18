@@ -1,8 +1,7 @@
 <?php
 
-namespace Fusio\Backend\Api;
+namespace Fusio\Backend\Api\Routes;
 
-use Fusio\Backend\Filter;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
 use PSX\Api\View;
@@ -11,19 +10,17 @@ use PSX\Data\RecordInterface;
 use PSX\Filter as PSXFilter;
 use PSX\Sql\Condition;
 use PSX\Validate;
+use PSX\Validate\Property;
+use PSX\Validate\RecordValidator;
 
 /**
  * Routes
  *
  * @see http://phpsx.org/doc/design/controller.html
  */
-class Routes extends SchemaApiAbstract
+class Collection extends SchemaApiAbstract
 {
-	/**
-	 * @Inject
-	 * @var Doctrine\DBAL\Connection
-	 */
-	protected $connection;
+	use ValidatorTrait;
 
 	/**
 	 * @Inject
@@ -82,11 +79,15 @@ class Routes extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->create($record);
+		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->create(array(
+			'methods'    => $record->getMethods(),
+			'path'       => $record->getPath(),
+			'controller' => $record->getController(),
+		));
 
 		return array(
 			'success' => true,
-			'message' => 'Routes successful created',
+			'message' => 'Route successful created',
 		);
 	}
 
@@ -101,11 +102,16 @@ class Routes extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->update($record);
+		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->update(array(
+			'id'         => $record->getId(),
+			'methods'    => $record->getMethods(),
+			'path'       => $record->getPath(),
+			'controller' => $record->getController(),
+		));
 
 		return array(
 			'success' => true,
-			'message' => 'Routes successful created',
+			'message' => 'Route successful updated',
 		);
 	}
 
@@ -120,21 +126,13 @@ class Routes extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->delete($record);
+		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->delete(array(
+			'id' => $record->getId(),
+		));
 
 		return array(
 			'success' => true,
-			'message' => 'Routes successful created',
+			'message' => 'Route successful deleted',
 		);
-	}
-
-	protected function getValidator()
-	{
-		return new RecordValidator(new Validate(), array(
-			new Property('id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Routes'))));
-			new Property('methods', Validate::TYPE_STRING, array(new Filter\Methods()));
-			new Property('path', Validate::TYPE_STRING, array(new Filter\Path()));
-			new Property('controller', Validate::TYPE_STRING, array(new Filter\Controller()));
-		));
 	}
 }

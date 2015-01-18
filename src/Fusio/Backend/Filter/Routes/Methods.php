@@ -22,19 +22,17 @@ class Methods extends FilterAbstract
 			$methodDiff = array_diff($methods, array('GET', 'POST', 'PUT', 'DELETE'));
 			if(count($methodDiff) > 0)
 			{
-				throw new StatusCode\BadRequestException('Methods must contain only GET, POST, PUT or DELETE');
+				return false;
 			}
 
 			return implode('|', $methods);
 		}
-		else
-		{
-			throw new StatusCode\BadRequestException('Methods must not be empty');
-		}
+
+		return false;
 	}
 
 	public function getErrorMessage()
 	{
-		return '%s must contain only alphabetic (A-Z) or numeric (0-9) signs';
+		return '%s must contain only GET, POST, PUT or DELETE';
 	}
 }

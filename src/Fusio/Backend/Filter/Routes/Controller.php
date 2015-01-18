@@ -3,7 +3,6 @@
 namespace Fusio\Backend\Filter\Routes;
 
 use PSX\FilterAbstract;
-use PSX\Http\Exception as StatusCode;
 
 /**
  * Controller
@@ -21,6 +20,6 @@ class Controller extends FilterAbstract
 
 	public function getErrorMessage()
 	{
-		return '%s must contain only alphabetic (A-Z) or numeric (0-9) signs';
+		return '%s must be an valid controller';
 	}
 }
