@@ -19,7 +19,8 @@
 		</div>
 		<div class="form-group">
 			<label for="controller">Controller:</label>
-			<input type="text" id="controller" ng-model="route.controller" class="form-control" value="{{route.methods}}">
+			<select id="controller" ng-model="route.controller" ng-options="controller.id as controller.name for controller in controllers" class="form-control">
+			</select>
 		</div>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>

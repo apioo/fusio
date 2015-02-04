@@ -45,6 +45,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.openCreateDialog = function(){
 		var modalInstance = $modal.open({
+			size: 'lg',
 			templateUrl: 'app/routes/create.html',
 			controller: 'RoutesCreateCtrl'
 		});
@@ -62,6 +63,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.openUpdateDialog = function(route){
 		var modalInstance = $modal.open({
+			size: 'lg',
 			templateUrl: 'app/routes/update.html',
 			controller: 'RoutesUpdateCtrl',
 			resolve: {
@@ -84,6 +86,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.openDeleteDialog = function(route){
 		var modalInstance = $modal.open({
+			size: 'lg',
 			templateUrl: 'app/routes/delete.html',
 			controller: 'RoutesDeleteCtrl',
 			resolve: {
@@ -112,11 +115,56 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.route = {
 		methods: "",
-		path: "",
-		controller: ""
+		path: ""
 	};
+	$scope.controllers = [];
+	$scope.template = null;
+
+	// schema api config
+	$scope.options = [];
+
+	$scope.methods = ['GET', 'POST', 'PUT', 'DELETE'];
+	$scope.requestSchema = [{
+		id: 0,
+		name: 'No-Schema'
+	},{
+		id: 1,
+		name: 'Passthru'
+	},{
+		id: 2,
+		name: 'foo-schema'
+	}];
+	$scope.responseSchema = [{
+		id: 0,
+		name: 'No-Schema'
+	},{
+		id: 1,
+		name: 'Passthru'
+	},{
+		id: 2,
+		name: 'bar-schema'
+	}];
+	$scope.actions = [{
+		id: 1,
+		name: 'sql-action'
+	}];
 
 	$scope.create = function(route){
+
+		var controller = null;
+		if ($scope.template == 'controller-schema-abstract') {
+			controller = 'Fusio\Controller\SchemaApiAbstract';
+		} else if ($scope.template == 'controller-view-abstract') {
+			controller = 'Fusio\Controller\ViewApiAbstract';
+		}
+
+		var data = {
+			methods: route.methods,
+			path: route.path,
+			controller: controller,
+			options: $scope.options
+		};
+
 		$http.post('http://127.0.0.1/projects/fusio/public/index.php/backend/routes', route)
 			.success(function(data){
 				$scope.response = data;
@@ -129,15 +177,45 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 			});
 	};
 
+	$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/controller')
+		.success(function(data){
+			$scope.controllers = data.entry;
+
+			$scope.template = 'controller-schema-abstract';
+		});
+
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
 	};
+
+	$scope.addOptionRow = function(){
+		$scope.options.push({
+			method: 'GET',
+			request: 1,
+			response: 1,
+			action: 1
+		});
+	};
+
+	$scope.removeOptionRow = function(row){
+		var newOptions = [];
+		for (var i = 0; i < $scope.options.length; i++) {
+			var option = $scope.options[i];
+			if (option['$$hashKey'] != row['$$hashKey']) {
+				newOptions.push($scope.options[i]);
+			}
+		}
+		$scope.options = newOptions;
+	};
+
+	$scope.addOptionRow();
 
 }])
 
 .controller('RoutesUpdateCtrl', ['$scope', '$http', '$modalInstance', 'route', function($scope, $http, $modalInstance, route){
 
 	$scope.route = route;
+	$scope.controllers = [];
 
 	$scope.update = function(route){
 		$http.put('http://127.0.0.1/projects/fusio/public/index.php/backend/routes/' + route.id, route)
@@ -151,6 +229,11 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 				$scope.response = data;
 			});
 	};
+
+	$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/controller')
+		.success(function(data){
+			$scope.controllers = data.entry;
+		});
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');

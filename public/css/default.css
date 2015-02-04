@@ -14,32 +14,34 @@ pre
 
 .container-fluid
 {
-	margin-top:60px;
+	margin-top:40px;
 }
 
 .fusio-header
 {
-	background-color:#032c53;
+	background-color:#fff;
+	background-color:#021c35;
 	width:100%;
 	top:0px;
 	left:0px;
-	height:60px;
+	height:40px;
 	position:fixed;
 	z-index:1;
 }
 
 .fusio-header h1
 {
-	color:#55acee;
+	color:#eee;
 	margin:0px 15px;
 	padding:10px 0px;
-	font-size:2.6em;
+	font-size:1.6em;
 	font-weight:bold;
-	text-shadow:1px 1px #ccc;
+	text-shadow:1px 1px #aaa;
 }
 
 .fusio-header h1 > span
 {
+	vertical-align:middle;
 	color:#ccc;
 	font-size:0.4em;
 	text-shadow:none;
@@ -68,7 +70,14 @@ pre
 	padding:0px;
 	margin:0px;
 	margin-top:6px;
-	margin-bottom:32px;
+	margin-bottom:8px;
+	padding-bottom:8px;
+	border-bottom:1px solid #eee;
+}
+
+.fusio-navigation ul:last-child
+{
+	border-bottom:none;
 }
 
 .fusio-navigation a
@@ -104,15 +113,13 @@ pre
 
 .fusio-content > div > h1
 {
-	background-color:#eee;
-	background:linear-gradient(#fff, #eee);
-	padding:8px 15px;
+	background-color:#222;
+	color:#fff;
+	padding:12px 15px;
 	margin:0px -15px;
 	margin-bottom:10px;
-	border-bottom:2px solid #021c35;
-	font-size:1.4em;
-	font-weight:bold;
-	font-family:monospace;
+	border-bottom:1px solid #021c35;
+	font-size:0.9em;
 }
 
 .fusio-search
