@@ -2,10 +2,11 @@
 
 var fusioApp = angular.module('fusioApp', [
 	'ngRoute',
+	'ngSanitize',
 	'ui.bootstrap',
 	'fusioApp.app',
 	'fusioApp.connection',
-	'fusioApp.controller',
+	'fusioApp.action',
 	'fusioApp.dashboard',
 	'fusioApp.log',
 	'fusioApp.login',

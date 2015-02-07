@@ -9,6 +9,10 @@ load an different configuration depending on the environment.
 
 return array(
 
+	// Locations where Fusio searches for action controller. These actions can 
+	// then be installed in the interface
+	'fusio_action_paths'      => [__DIR__ . '/src/Fusio/Action'],
+
 	// The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
 	// http://localhost.com)
 	'psx_url'                 => 'http://127.0.0.1/projects/fusio/public',

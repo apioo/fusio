@@ -1,6 +1,6 @@
 <?php
 
-namespace Fusio\Backend\Schema\Controller;
+namespace Fusio\Backend\Schema\Action;
 
 use PSX\Data\SchemaAbstract;
 
@@ -17,7 +17,7 @@ class Collection extends SchemaAbstract
 		$sb->integer('totalItems');
 		$sb->integer('startIndex');
 		$sb->arrayType('entry')
-			->setPrototype($this->getSchema('Fusio\Backend\Schema\Controller'));
+			->setPrototype($this->getSchema('Fusio\Backend\Schema\Action'));
 
 		return $sb->getProperty();
 	}

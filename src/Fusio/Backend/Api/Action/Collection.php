@@ -1,6 +1,6 @@
 <?php
 
-namespace Fusio\Backend\Api\Controller;
+namespace Fusio\Backend\Api\Action;
 
 use PSX\Api\Documentation;
 use PSX\Api\Version;
@@ -41,10 +41,10 @@ class Collection extends SchemaApiAbstract
 	{
 		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
 		$view = new View();
-		$view->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Controller\Collection'));
-		$view->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Controller\Create'), $message);
-		$view->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Controller\Update'), $message);
-		$view->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Controller\Delete'), $message);
+		$view->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Collection'));
+		$view->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Create'), $message);
+		$view->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Update'), $message);
+		$view->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Delete'), $message);
 
 		return new Documentation\Simple($view);
 	}
@@ -62,9 +62,9 @@ class Collection extends SchemaApiAbstract
 		$condition  = !empty($search) ? new Condition(['path', 'LIKE', '%' . $search . '%']) : null;
 
 		return array(
-			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Controller')->getCount($condition),
+			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Action')->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Controller')->getAll($startIndex, null, null, null, $condition),
+			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Action')->getAll($startIndex, null, null, null, $condition),
 		);
 	}
 
@@ -79,15 +79,15 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Controller')->create(array(
-			'methods'    => $record->getMethods(),
-			'path'       => $record->getPath(),
-			'controller' => $record->getController(),
+		$this->tableManager->getTable('Fusio\Backend\Table\Action')->create(array(
+			'name'   => $record->getName(),
+			'class'  => $record->getClass(),
+			'config' => $record->getConfig()->getRecordInfo()->getData(),
 		));
 
 		return array(
 			'success' => true,
-			'message' => 'Route successful created',
+			'message' => 'Action successful created',
 		);
 	}
 
@@ -102,11 +102,11 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Controller')->update(array(
-			'id'         => $record->getId(),
-			'methods'    => $record->getMethods(),
-			'path'       => $record->getPath(),
-			'controller' => $record->getController(),
+		$this->tableManager->getTable('Fusio\Backend\Table\Action')->update(array(
+			'id'     => $record->getId(),
+			'name'   => $record->getName(),
+			'class'  => $record->getClass(),
+			'config' => $record->getConfig()->getRecordInfo()->getData(),
 		));
 
 		return array(
@@ -126,7 +126,7 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Controller')->delete(array(
+		$this->tableManager->getTable('Fusio\Backend\Table\Action')->delete(array(
 			'id' => $record->getId(),
 		));
 

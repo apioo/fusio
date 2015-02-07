@@ -1,6 +1,6 @@
 <?php
 
-namespace Fusio\Backend\Api\Controller;
+namespace Fusio\Backend\Api\Action;
 
 use PSX\Api\Documentation;
 use PSX\Api\Version;
@@ -11,7 +11,7 @@ use PSX\Http\Exception as StatusCode;
 use PSX\Sql\Condition;
 
 /**
- * Controller
+ * Action
  *
  * @see http://phpsx.org/doc/design/controller.html
  */
@@ -38,8 +38,8 @@ class Entity extends SchemaApiAbstract
 	{
 		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
 		$view = new View();
-		$view->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Controller'));
-		$view->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Controller\Update'), $message);
+		$view->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Action'));
+		$view->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Update'), $message);
 		$view->setDelete(null, $message);
 
 		return new Documentation\Simple($view);
@@ -53,16 +53,16 @@ class Entity extends SchemaApiAbstract
 	 */
 	protected function doGet(Version $version)
 	{
-		$routeId = (int) $this->getUriFragment('route_id');
-		$route   = $this->tableManager->getTable('Fusio\Backend\Table\Controller')->get($routeId);
+		$actionId = (int) $this->getUriFragment('action_id');
+		$action   = $this->tableManager->getTable('Fusio\Backend\Table\Action')->get($actionId);
 
-		if(!empty($route))
+		if(!empty($action))
 		{
-			return $route;
+			return $action;
 		}
 		else
 		{
-			throw new StatusCode\NotFoundException('Could not find route');
+			throw new StatusCode\NotFoundException('Could not find action');
 		}
 	}
 
@@ -86,28 +86,28 @@ class Entity extends SchemaApiAbstract
 	 */
 	protected function doUpdate(RecordInterface $record, Version $version)
 	{
-		$routeId = (int) $this->getUriFragment('route_id');
-		$route   = $this->tableManager->getTable('Fusio\Backend\Table\Controller')->get($routeId);
+		$actionId = (int) $this->getUriFragment('action_id');
+		$action   = $this->tableManager->getTable('Fusio\Backend\Table\Action')->get($actionId);
 
-		if(!empty($route))
+		if(!empty($action))
 		{
 			$this->getValidator()->validate($record);
 
-			$this->tableManager->getTable('Fusio\Backend\Table\Controller')->update(array(
-				'id'         => $route['id'],
+			$this->tableManager->getTable('Fusio\Backend\Table\Action')->update(array(
+				'id'         => $action['id'],
 				'methods'    => $record->getMethods(),
 				'path'       => $record->getPath(),
-				'controller' => $record->getController(),
+				'controller' => $record->getAction(),
 			));
 
 			return array(
 				'success' => true,
-				'message' => 'Controller successful updated',
+				'message' => 'Action successful updated',
 			);
 		}
 		else
 		{
-			throw new StatusCode\NotFoundException('Could not find route');
+			throw new StatusCode\NotFoundException('Could not find action');
 		}
 	}
 
@@ -120,23 +120,23 @@ class Entity extends SchemaApiAbstract
 	 */
 	protected function doDelete(RecordInterface $record, Version $version)
 	{
-		$routeId = (int) $this->getUriFragment('route_id');
-		$route   = $this->tableManager->getTable('Fusio\Backend\Table\Controller')->get($routeId);
+		$actionId = (int) $this->getUriFragment('action_id');
+		$action   = $this->tableManager->getTable('Fusio\Backend\Table\Action')->get($actionId);
 
-		if(!empty($route))
+		if(!empty($action))
 		{
-			$this->tableManager->getTable('Fusio\Backend\Table\Controller')->delete(array(
-				'id' => $route['id']
+			$this->tableManager->getTable('Fusio\Backend\Table\Action')->delete(array(
+				'id' => $action['id']
 			));
 
 			return array(
 				'success' => true,
-				'message' => 'Controller successful deleted',
+				'message' => 'Action successful deleted',
 			);
 		}
 		else
 		{
-			throw new StatusCode\NotFoundException('Could not find route');
+			throw new StatusCode\NotFoundException('Could not find action');
 		}
 	}
 }

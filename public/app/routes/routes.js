@@ -117,8 +117,14 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		methods: "",
 		path: ""
 	};
-	$scope.controllers = [];
-	$scope.template = null;
+	$scope.controllers = [{
+		id: 'controller-schema-abstract',
+		name: 'Schema API'
+	},{
+		id: 'controller-view-abstract',
+		name: 'View API'
+	}];
+	$scope.config = 'controller-schema-abstract';
 
 	// schema api config
 	$scope.options = [];
@@ -126,7 +132,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	$scope.methods = ['GET', 'POST', 'PUT', 'DELETE'];
 	$scope.requestSchema = [{
 		id: 0,
-		name: 'No-Schema'
+		name: 'Disabled'
 	},{
 		id: 1,
 		name: 'Passthru'
@@ -136,7 +142,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	}];
 	$scope.responseSchema = [{
 		id: 0,
-		name: 'No-Schema'
+		name: 'Disabled'
 	},{
 		id: 1,
 		name: 'Passthru'
@@ -152,9 +158,9 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	$scope.create = function(route){
 
 		var controller = null;
-		if ($scope.template == 'controller-schema-abstract') {
+		if ($scope.config == 'controller-schema-abstract') {
 			controller = 'Fusio\Controller\SchemaApiAbstract';
-		} else if ($scope.template == 'controller-view-abstract') {
+		} else if ($scope.config == 'controller-view-abstract') {
 			controller = 'Fusio\Controller\ViewApiAbstract';
 		}
 
@@ -176,13 +182,6 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 				$scope.response = data;
 			});
 	};
-
-	$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/controller')
-		.success(function(data){
-			$scope.controllers = data.entry;
-
-			$scope.template = 'controller-schema-abstract';
-		});
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
