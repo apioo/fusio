@@ -14,9 +14,9 @@ trait ValidatorTrait
 	{
 		return new RecordValidator(new Validate(), array(
 			new Property('id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Schema')))),
-			new Property('extends_id', Validate::TYPE_INTEGER),
+			new Property('extendsId', Validate::TYPE_INTEGER),
 			new Property('name', Validate::TYPE_STRING),
-			new Property('property_name', Validate::TYPE_STRING),
+			new Property('propertyName', Validate::TYPE_STRING),
 			new Property('fields', Validate::TYPE_ARRAY),
 		));
 	}

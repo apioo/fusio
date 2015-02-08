@@ -17,6 +17,7 @@ trait ValidatorTrait
 			new Property('methods', Validate::TYPE_STRING, array(new Filter\Methods())),
 			new Property('path', Validate::TYPE_STRING, array(new Filter\Path())),
 			new Property('controller', Validate::TYPE_STRING, array(new Filter\Controller())),
+			new Property('config', Validate::TYPE_ARRAY),
 		));
 	}
 }

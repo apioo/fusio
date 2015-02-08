@@ -8,6 +8,7 @@ use PSX\Api\View;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Filter as PSXFilter;
+use PSX\Sql;
 use PSX\Sql\Condition;
 use PSX\Validate;
 use PSX\Validate\Property;
@@ -64,7 +65,7 @@ class Collection extends SchemaApiAbstract
 		return array(
 			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Routes')->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Routes')->getAll($startIndex, null, null, null, $condition),
+			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Routes')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
 		);
 	}
 
@@ -79,10 +80,14 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
+		// replace dash with backslash
+		$controller = str_replace('-', '\\', $record->getController());
+
 		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->create(array(
 			'methods'    => $record->getMethods(),
 			'path'       => $record->getPath(),
-			'controller' => $record->getController(),
+			'controller' => $controller,
+			'config'     => $record->getConfig(),
 		));
 
 		return array(
@@ -102,11 +107,15 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
+		// replace dash with backslash
+		$controller = str_replace('-', '\\', $record->getController());
+
 		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->update(array(
 			'id'         => $record->getId(),
 			'methods'    => $record->getMethods(),
 			'path'       => $record->getPath(),
-			'controller' => $record->getController(),
+			'controller' => $controller,
+			'config'     => $record->getConfig(),
 		));
 
 		return array(

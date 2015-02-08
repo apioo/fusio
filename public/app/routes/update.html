@@ -10,19 +10,54 @@
 	<form name="routesUpdateForm" ng-submit="update(route)">
 		<input type="hidden" ng-model="route.id" value="{{route.id}}" />
 		<div class="form-group">
-			<label for="methods">Methods:</label>
-			<input type="text" id="methods" ng-model="route.methods" class="form-control" value="{{route.methods}}">
-		</div>
-		<div class="form-group">
 			<label for="path">Path:</label>
 			<input type="text" id="path" ng-model="route.path" class="form-control" value="{{route.path}}">
 		</div>
-		<div class="form-group">
-			<label for="controller">Controller:</label>
-			<select id="controller" ng-model="route.controller" ng-options="controller.id as controller.name for controller in controllers" class="form-control">
-			</select>
-		</div>
+
+		<ng-include src="route.controller"></ng-include>
+
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 	</form>
 </div>
+
+<script type="text/ng-template" id="Fusio-Controller-SchemaApiController">
+	<table class="table">
+	<colgroup>
+		<col width="100" />
+		<col width="200" />
+		<col width="200" />
+		<col width="200" />
+		<col width="50" />
+	</colgroup>
+	<tr>
+		<th>Method</th>
+		<th>Request</th>
+		<th>Response</th>
+		<th>Action</th>
+		<th></th>
+	</tr>
+	<tr ng-repeat="option in route.config">
+		<td>
+			<select class="form-control" ng-model="option.method" ng-options="method for method in methods">
+			</select>
+		</td>
+		<td>
+			<select class="form-control" ng-model="option.request" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="option.method == 'GET'">
+			</select>
+		</td>
+		<td>
+			<select class="form-control" ng-model="option.response" ng-options="schema.id as schema.name for schema in schemas">
+			</select>
+		</td>
+		<td>
+			<select class="form-control" ng-model="option.action" ng-options="action.id as action.name for action in actions">
+			</select>
+		</td>
+		<td>
+			<a ng-click="removeOptionRow(option)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+		</td>
+	</tr>
+	</table>
+	<a ng-click="addOptionRow()" class="btn btn-default">Add</a>
+</script>

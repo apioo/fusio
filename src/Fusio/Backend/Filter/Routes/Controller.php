@@ -15,7 +15,14 @@ class Controller extends FilterAbstract
 {
 	public function apply($value)
 	{
-		return true;
+		$value = str_replace('-', '\\', $value);
+
+		if(class_exists($value))
+		{
+			return $value;
+		}
+
+		return false;
 	}
 
 	public function getErrorMessage()

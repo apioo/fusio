@@ -27,14 +27,12 @@
 	<colgroup>
 		<col width="200" />
 		<col width="*" />
-		<col width="400" />
 		<col width="100" />
 	</colgroup>
 	<thead>
 	<tr>
 		<th>Methods</th>
 		<th>Path</th>
-		<th>Controller</th>
 		<th></th>
 	</tr>
 	</thead>
@@ -42,11 +40,10 @@
 	<tr ng-repeat="route in routes">
 		<td>{{route.methods}}</td>
 		<td>{{route.path}}</td>
-		<td>{{route.controller}}</td>
 		<td>
 			<div class="fusio-options">
-				<a ng-click="openUpdateDialog(route)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
-				<a ng-click="openDeleteDialog(route)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+				<a ng-click="openUpdateDialog(route)" ng-disabled="route.path.indexOf('/backend') == 0" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+				<a ng-click="openDeleteDialog(route)" ng-disabled="route.path.indexOf('/backend') == 0" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 			</div>
 		</td>
 	</tr>

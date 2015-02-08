@@ -8,6 +8,7 @@ use PSX\Api\View;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Filter as PSXFilter;
+use PSX\Sql;
 use PSX\Sql\Condition;
 use PSX\Validate;
 use PSX\Validate\Property;
@@ -64,7 +65,7 @@ class Collection extends SchemaApiAbstract
 		return array(
 			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Action')->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Action')->getAll($startIndex, null, null, null, $condition),
+			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Action')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
 		);
 	}
 

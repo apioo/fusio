@@ -23,6 +23,7 @@ class Routes extends TableAbstract
 			'methods' => self::TYPE_VARCHAR,
 			'path' => self::TYPE_VARCHAR,
 			'controller' => self::TYPE_VARCHAR,
+			'config' => self::TYPE_ARRAY,
 		);
 	}
 }

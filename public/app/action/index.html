@@ -25,21 +25,18 @@
 <div class="fusio-grid">
 	<table class="table">
 	<colgroup>
-		<col width="400" />
 		<col width="*" />
 		<col width="100" />
 	</colgroup>
 	<thead>
 	<tr>
 		<th>Name</th>
-		<th>Class</th>
 		<th></th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr ng-repeat="action in actions">
 		<td>{{action.name}}</td>
-		<td>{{action.class}}</td>
 		<td>
 			<div class="fusio-options">
 				<a ng-click="openUpdateDialog(action)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>

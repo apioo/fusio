@@ -8,6 +8,7 @@ use PSX\Api\View;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Filter as PSXFilter;
+use PSX\Sql;
 use PSX\Sql\Condition;
 use PSX\Validate;
 use PSX\Validate\Property;
@@ -62,7 +63,7 @@ class Collection extends SchemaApiAbstract
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
 		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
 
-		$result      = $this->tableManager->getTable('Fusio\Backend\Table\Schema')->getAll($startIndex, null, null, null, $condition);
+		$result      = $this->tableManager->getTable('Fusio\Backend\Table\Schema')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition);
 		$fieldsTable = $this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields');
 
 		// append the fields
@@ -92,15 +93,99 @@ class Collection extends SchemaApiAbstract
 		$schemaTable = $this->tableManager->getTable('Fusio\Backend\Table\Schema');
 
 		$schemaTable->create(array(
-			'extends_id'    => $record->getExtendsId(),
-			'name'          => $record->getName(),
-			'property_name' => $record->getPropertyName(),
+			'extendsId'    => $record->getExtendsId(),
+			'name'         => $record->getName(),
+			'propertyName' => $record->getPropertyName(),
 		));
 
 		// insert fields
 		$schemaId = $schemaTable->getLastInsertId();
-		$fields   = $record->getFields();
 
+		$this->insertFields($schemaId, $record->getFields());
+
+		return array(
+			'success' => true,
+			'message' => 'Schema successful created',
+		);
+	}
+
+	/**
+	 * Returns the PUT response
+	 *
+	 * @param PSX\Data\RecordInterface $record
+	 * @param PSX\Api\Version $version
+	 * @return array|PSX\Data\RecordInterface
+	 */
+	protected function doUpdate(RecordInterface $record, Version $version)
+	{
+		$this->getValidator()->validate($record);
+
+		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->update(array(
+			'id'           => $record->getId(),
+			'extendsId'    => $record->getExtendsId(),
+			'name'         => $record->getName(),
+			'propertyName' => $record->getPropertyName(),
+		));
+
+		$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->deleteAllFromSchema($record->getId());
+
+		$this->insertFields($record->getId(), $record->getFields());
+
+		return array(
+			'success' => true,
+			'message' => 'Schema successful updated',
+		);
+	}
+
+	/**
+	 * Returns the DELETE response
+	 *
+	 * @param PSX\Data\RecordInterface $record
+	 * @param PSX\Api\Version $version
+	 * @return array|PSX\Data\RecordInterface
+	 */
+	protected function doDelete(RecordInterface $record, Version $version)
+	{
+		$this->getValidator()->validate($record);
+
+		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->delete(array(
+			'id' => $record->getId(),
+		));
+
+		$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->deleteAllFromSchema($record->getId());
+
+		return array(
+			'success' => true,
+			'message' => 'Schema successful deleted',
+		);
+	}
+
+	protected function parsePattern($pattern)
+	{
+		set_error_handler(__CLASS__ . '::pregMatchErrorHandler');
+		preg_match('/^(' . $pattern . '){1}$/', 'foobar');
+		restore_error_handler();
+	}
+
+	protected function parseEnumeration($enum)
+	{
+		$enum   = explode(',', $enum);
+		$result = array();
+
+		foreach($enum as $value)
+		{
+			$value = trim($value);
+			if(ctype_alnum($value))
+			{
+				$result[] = $value;
+			}
+		}
+
+		return !empty($result) ? implode(',', $result) : null;
+	}
+
+	protected function insertFields($schemaId, $fields)
+	{
 		if(!empty($fields) && is_array($fields))
 		{
 			foreach($fields as $field)
@@ -135,7 +220,7 @@ class Collection extends SchemaApiAbstract
 				}
 
 				$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->create(array(
-					'schema_id'   => $schemaId,
+					'schemaId'    => $schemaId,
 					'ref'         => $field->getRef(),
 					'name'        => $field->getName(),
 					'type'        => $field->getType(),
@@ -147,79 +232,6 @@ class Collection extends SchemaApiAbstract
 				));
 			}
 		}
-
-
-		return array(
-			'success' => true,
-			'message' => 'Schema successful created',
-		);
-	}
-
-	/**
-	 * Returns the PUT response
-	 *
-	 * @param PSX\Data\RecordInterface $record
-	 * @param PSX\Api\Version $version
-	 * @return array|PSX\Data\RecordInterface
-	 */
-	protected function doUpdate(RecordInterface $record, Version $version)
-	{
-		$this->getValidator()->validate($record);
-
-		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->update(array(
-			'id'   => $record->getId(),
-			'name' => $record->getName(),
-		));
-
-		return array(
-			'success' => true,
-			'message' => 'Schema successful updated',
-		);
-	}
-
-	/**
-	 * Returns the DELETE response
-	 *
-	 * @param PSX\Data\RecordInterface $record
-	 * @param PSX\Api\Version $version
-	 * @return array|PSX\Data\RecordInterface
-	 */
-	protected function doDelete(RecordInterface $record, Version $version)
-	{
-		$this->getValidator()->validate($record);
-
-		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->delete(array(
-			'id' => $record->getId(),
-		));
-
-		return array(
-			'success' => true,
-			'message' => 'Schema successful deleted',
-		);
-	}
-
-	protected function parsePattern($pattern)
-	{
-		set_error_handler(__CLASS__ . '::pregMatchErrorHandler');
-		preg_match('/^(' . $pattern . '){1}$/', 'foobar');
-		restore_error_handler();
-	}
-
-	protected function parseEnumeration($enum)
-	{
-		$enum   = explode(',', $enum);
-		$result = array();
-
-		foreach($enum as $value)
-		{
-			$value = trim($value);
-			if(ctype_alnum($value))
-			{
-				$result[] = $value;
-			}
-		}
-
-		return !empty($result) ? implode(',', $result) : null;
 	}
 
 	public static function pregMatchErrorHandler($errno, $errstr)

@@ -31,4 +31,12 @@ class Fields extends TableAbstract
 			'enumeration' => self::TYPE_VARCHAR,
 		);
 	}
+
+	public function deleteAllFromSchema($schemaId)
+	{
+		$sql = 'DELETE FROM fusio_schema_fields
+				      WHERE schemaId = :id';
+
+		$this->connection->executeQuery($sql, array('id' => $schemaId));
+	}
 }
