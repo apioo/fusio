@@ -114,18 +114,15 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 .controller('SchemaCreateCtrl', ['$scope', '$http', '$modalInstance', function($scope, $http, $modalInstance){
 
 	$scope.schema = {
+		extends_id: 0,
 		name: '',
-		extends_id: '',
 		property_name: '',
-		extend: '',
 		fields: []
 	};
-	$scope.fieldTypes = ['Array', 'Boolean', 'Date', 'Datetime', 'Float', 'Integer', 'Object', 'String', 'Time']
+	$scope.fieldTypes = ['Array', 'Boolean', 'Date', 'Datetime', 'Float', 'Integer', 'Object', 'String', 'Time'];
+	$scope.schemas = [];
 
 	$scope.create = function(schema){
-
-		var data = {};
-
 		$http.post('http://127.0.0.1/projects/fusio/public/index.php/backend/schema', schema)
 			.success(function(data){
 				$scope.response = data;
@@ -142,10 +139,22 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 		$modalInstance.dismiss('cancel');
 	};
 
+	$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/schema')
+		.success(function(data){
+			var schemas = [{id: 0, name: 'No schema'}];
+			schemas = schemas.concat(data.entry);
+
+			$scope.schemas = schemas;
+			$scope.schema.extends_id = 0;
+		});
+
 	$scope.addFieldRow = function(){
 		$scope.schema.fields.push({
 			name: '',
-			type: 'String'
+			type: 'String',
+			constraint: '',
+			required: false,
+			ref: 0
 		});
 	};
 
@@ -167,6 +176,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 .controller('SchemaUpdateCtrl', ['$scope', '$http', '$modalInstance', 'schema', function($scope, $http, $modalInstance, schema){
 
 	$scope.schema = schema;
+	$scope.fieldTypes = ['Array', 'Boolean', 'Date', 'Datetime', 'Float', 'Integer', 'Object', 'String', 'Time'];
 	$scope.schemas = [];
 
 	$scope.update = function(schema){
@@ -182,13 +192,37 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 			});
 	};
 
-	$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/schema')
-		.success(function(data){
-			$scope.schemas = data.entry;
-		});
-
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
+	};
+
+	$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/schema')
+		.success(function(data){
+			var schemas = [{id: 0, name: 'No schema'}];
+			schemas = schemas.concat(data.entry);
+
+			$scope.schemas = schemas;
+		});
+
+	$scope.addFieldRow = function(){
+		$scope.schema.fields.push({
+			name: '',
+			type: 'String',
+			constraint: '',
+			required: false,
+			ref: 0
+		});
+	};
+
+	$scope.removeFieldRow = function(row){
+		var newFields = [];
+		for (var i = 0; i < $scope.schema.fields.length; i++) {
+			var field = $scope.schema.fields[i];
+			if (field['$$hashKey'] != row['$$hashKey']) {
+				newFields.push($scope.schema.fields[i]);
+			}
+		}
+		$scope.schema.fields = newFields;
 	};
 
 }])

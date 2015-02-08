@@ -19,7 +19,6 @@ pre
 
 .fusio-header
 {
-	background-color:#fff;
 	background-color:#55acee;
 	background-image:url(../img/grid.png);
 	background-repeat:no-repeat;
@@ -33,8 +32,6 @@ pre
 
 .fusio-header h1
 {
-	color:#eee;
-	color:#021c35;
 	color:#fff;
 	margin:0px 15px;
 	padding:5px 0px;

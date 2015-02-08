@@ -1,6 +1,6 @@
 <?php
 
-namespace Fusio\Backend\Table;
+namespace Fusio\Backend\Table\Schema;
 
 use PSX\Sql\TableAbstract;
 
@@ -20,9 +20,15 @@ class Fields extends TableAbstract
 	{
 		return array(
 			'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-			'schema_id' => self::TYPE_INT,
+			'schemaId' => self::TYPE_INT,
+			'refId' => self::TYPE_INT,
 			'name' => self::TYPE_VARCHAR,
 			'type' => self::TYPE_VARCHAR,
+			'required' => self::TYPE_INT,
+			'min' => self::TYPE_INT,
+			'max' => self::TYPE_INT,
+			'pattern' => self::TYPE_VARCHAR,
+			'enumeration' => self::TYPE_VARCHAR,
 		);
 	}
 }

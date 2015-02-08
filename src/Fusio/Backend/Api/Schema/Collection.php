@@ -12,6 +12,7 @@ use PSX\Sql\Condition;
 use PSX\Validate;
 use PSX\Validate\Property;
 use PSX\Validate\RecordValidator;
+use PSX\Http\Exception as StatusCode;
 
 /**
  * Collection
@@ -61,10 +62,19 @@ class Collection extends SchemaApiAbstract
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
 		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
 
+		$result      = $this->tableManager->getTable('Fusio\Backend\Table\Schema')->getAll($startIndex, null, null, null, $condition);
+		$fieldsTable = $this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields');
+
+		// append the fields
+		foreach($result as $key => $row)
+		{
+			$result[$key]['fields'] = $fieldsTable->getBySchemaId($row['id']);
+		}
+
 		return array(
 			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Schema')->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Schema')->getAll($startIndex, null, null, null, $condition),
+			'entry'      => $result,
 		);
 	}
 
@@ -79,9 +89,65 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->create(array(
-			'name' => $record->getName(),
+		$schemaTable = $this->tableManager->getTable('Fusio\Backend\Table\Schema');
+
+		$schemaTable->create(array(
+			'extends_id'    => $record->getExtendsId(),
+			'name'          => $record->getName(),
+			'property_name' => $record->getPropertyName(),
 		));
+
+		// insert fields
+		$schemaId = $schemaTable->getLastInsertId();
+		$fields   = $record->getFields();
+
+		if(!empty($fields) && is_array($fields))
+		{
+			foreach($fields as $field)
+			{
+				//$this->getFieldValidator()->validate($field);
+
+				$constraint  = $field->getConstraint();
+				$min         = null;
+				$max         = null;
+				$pattern     = null;
+				$enumeration = null;
+
+				if(!empty($constraint))
+				{
+					if(preg_match('/^(\d+),\s?(\d+)$/', $constraint, $matches))
+					{
+						$min = (int) $matches[1];
+						$max = (int) $matches[2];
+					}
+					else if(substr($constraint, 0, 2) == 'P=')
+					{
+						$pattern = $this->parsePattern(substr($constraint, 2));
+					}
+					else if(substr($constraint, 0, 2) == 'E=')
+					{
+						$enumeration = $this->parseEnumeration(substr($constraint, 2));
+					}
+					else
+					{
+						throw new StatusCode\BadRequestException('Invalid constraint must be i.e.: "0,9", "P=[A-z]+" or "E=foo,bar,baz"');
+					}
+				}
+
+				$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->create(array(
+					'schema_id'   => $schemaId,
+					'ref'         => $field->getRef(),
+					'name'        => $field->getName(),
+					'type'        => $field->getType(),
+					'required'    => $field->getRequired(),
+					'min'         => $min,
+					'max'         => $max,
+					'pattern'     => $pattern,
+					'enumeration' => $enumeration,
+				));
+			}
+		}
+
 
 		return array(
 			'success' => true,
@@ -130,5 +196,36 @@ class Collection extends SchemaApiAbstract
 			'success' => true,
 			'message' => 'Schema successful deleted',
 		);
+	}
+
+	protected function parsePattern($pattern)
+	{
+		set_error_handler(__CLASS__ . '::pregMatchErrorHandler');
+		preg_match('/^(' . $pattern . '){1}$/', 'foobar');
+		restore_error_handler();
+	}
+
+	protected function parseEnumeration($enum)
+	{
+		$enum   = explode(',', $enum);
+		$result = array();
+
+		foreach($enum as $value)
+		{
+			$value = trim($value);
+			if(ctype_alnum($value))
+			{
+				$result[] = $value;
+			}
+		}
+
+		return !empty($result) ? implode(',', $result) : null;
+	}
+
+	public static function pregMatchErrorHandler($errno, $errstr)
+	{
+		restore_error_handler();
+
+		throw new StatusCode\BadRequestException('Invalid regexp: ' . $errstr);
 	}
 }
