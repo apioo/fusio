@@ -171,7 +171,7 @@ angular.module('fusioApp.action', ['ngRoute'])
 	$scope.config = null;
 
 	$scope.update = function(action){
-		$http.put('http://127.0.0.1/projects/fusio/public/index.php/backend/action/' + action.id, route)
+		$http.put('http://127.0.0.1/projects/fusio/public/index.php/backend/action/' + action.id, action)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {

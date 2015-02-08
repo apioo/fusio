@@ -2,6 +2,7 @@
 
 namespace Fusio;
 
+use Doctrine\DBAL\Connection;
 use PSX\Dependency\ObjectBuilderInterface;
 
 class ActionFactory

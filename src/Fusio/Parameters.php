@@ -24,6 +24,11 @@ class Parameters implements IteratorAggregate
 		return isset($this->container[$key]);
 	}
 
+	public function isEmpty()
+	{
+		return empty($this->container);
+	}
+
 	public function getIterator()
 	{
 		return new ArrayIterator($this->container);

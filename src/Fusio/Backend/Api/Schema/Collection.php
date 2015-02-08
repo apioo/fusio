@@ -1,6 +1,6 @@
 <?php
 
-namespace Fusio\Backend\Api\Action;
+namespace Fusio\Backend\Api\Schema;
 
 use PSX\Api\Documentation;
 use PSX\Api\Version;
@@ -14,7 +14,7 @@ use PSX\Validate\Property;
 use PSX\Validate\RecordValidator;
 
 /**
- * Controller
+ * Collection
  *
  * @see http://phpsx.org/doc/design/controller.html
  */
@@ -41,10 +41,10 @@ class Collection extends SchemaApiAbstract
 	{
 		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
 		$view = new View();
-		$view->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Collection'));
-		$view->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Create'), $message);
-		$view->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Update'), $message);
-		$view->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Delete'), $message);
+		$view->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Schema\Collection'));
+		$view->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Schema\Create'), $message);
+		$view->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Schema\Update'), $message);
+		$view->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Schema\Delete'), $message);
 
 		return new Documentation\Simple($view);
 	}
@@ -59,12 +59,12 @@ class Collection extends SchemaApiAbstract
 	{
 		$startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
+		$condition  = !empty($search) ? new Condition(['path', 'LIKE', '%' . $search . '%']) : null;
 
 		return array(
-			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Action')->getCount($condition),
+			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Schema')->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Action')->getAll($startIndex, null, null, null, $condition),
+			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Schema')->getAll($startIndex, null, null, null, $condition),
 		);
 	}
 
@@ -79,15 +79,15 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Action')->create(array(
-			'name'   => $record->getName(),
-			'class'  => $record->getClass(),
-			'config' => $record->getConfig()->getRecordInfo()->getData(),
+		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->create(array(
+			'methods'    => $record->getMethods(),
+			'path'       => $record->getPath(),
+			'controller' => $record->getController(),
 		));
 
 		return array(
 			'success' => true,
-			'message' => 'Action successful created',
+			'message' => 'Schema successful created',
 		);
 	}
 
@@ -102,16 +102,16 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Action')->update(array(
-			'id'     => $record->getId(),
-			'name'   => $record->getName(),
-			'class'  => $record->getClass(),
-			'config' => $record->getConfig()->getRecordInfo()->getData(),
+		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->update(array(
+			'id'         => $record->getId(),
+			'methods'    => $record->getMethods(),
+			'path'       => $record->getPath(),
+			'controller' => $record->getController(),
 		));
 
 		return array(
 			'success' => true,
-			'message' => 'Route successful updated',
+			'message' => 'Schema successful updated',
 		);
 	}
 
@@ -126,13 +126,13 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Action')->delete(array(
+		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->delete(array(
 			'id' => $record->getId(),
 		));
 
 		return array(
 			'success' => true,
-			'message' => 'Route successful deleted',
+			'message' => 'Schema successful deleted',
 		);
 	}
 }

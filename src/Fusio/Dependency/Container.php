@@ -2,6 +2,7 @@
 
 namespace Fusio\Dependency;
 
+use Fusio\ActionExecutor;
 use Fusio\ActionFactory;
 use Fusio\ActionParser;
 use Fusio\ConnectionFactory;
@@ -32,6 +33,14 @@ class Container extends DefaultContainer
 	public function getActionFactory()
 	{
 		return new ActionFactory($this->get('object_builder'));
+	}
+
+	/**
+	 * @return Fusio\ActionExecutor
+	 */
+	public function getActionExecutor()
+	{
+		return new ActionExecutor($this->get('connection'), $this->get('action_factory'));
 	}
 
 	/**
