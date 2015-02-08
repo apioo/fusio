@@ -14,17 +14,19 @@ pre
 
 .container-fluid
 {
-	margin-top:40px;
+	margin-top:38px;
 }
 
 .fusio-header
 {
 	background-color:#fff;
-	background-color:#021c35;
+	background-color:#55acee;
+	background-image:url(../img/grid.png);
+	background-repeat:no-repeat;
 	width:100%;
 	top:0px;
 	left:0px;
-	height:40px;
+	height:38px;
 	position:fixed;
 	z-index:1;
 }
@@ -32,19 +34,41 @@ pre
 .fusio-header h1
 {
 	color:#eee;
+	color:#021c35;
+	color:#fff;
 	margin:0px 15px;
-	padding:10px 0px;
-	font-size:1.6em;
+	padding:5px 0px;
+	font-size:1.8em;
 	font-weight:bold;
-	text-shadow:1px 1px #aaa;
+	text-shadow:2px 1px #444;
 }
 
 .fusio-header h1 > span
 {
 	vertical-align:middle;
-	color:#ccc;
+	color:#fff;
 	font-size:0.4em;
 	text-shadow:none;
+}
+
+.fusio-header-profile
+{
+	margin:10px 20px;
+}
+
+.fusio-header-profile a
+{
+	color:#fff;
+}
+
+.fusio-header-profile a:hover, a:focus
+{
+	text-decoration:none;
+}
+
+.fusio-header-profile a span
+{
+	margin-right:4px;
 }
 
 .sidebar 
@@ -52,6 +76,14 @@ pre
 	background-color:#021c35;
 	position:fixed;
 	height:100%;
+}
+
+@media (max-width:991px) {
+	.sidebar 
+	{
+		position:relative;
+		height:none;
+	}
 }
 
 .content
@@ -151,4 +183,12 @@ pre
 	border-radius:0px;
 }
 
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.nav, .pagination, .carousel, .panel-title a 
+{ 
+	cursor: pointer; 
+}
+
+.dropdown-menu
+{
+	border-radius:0px;
+}

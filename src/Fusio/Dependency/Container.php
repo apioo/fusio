@@ -7,6 +7,7 @@ use Fusio\ActionFactory;
 use Fusio\ActionParser;
 use Fusio\ConnectionFactory;
 use Fusio\Loader\RoutingParser;
+use Fusio\Data\SchemaManager;
 use PSX\Dependency\DefaultContainer;
 
 class Container extends DefaultContainer
@@ -50,4 +51,14 @@ class Container extends DefaultContainer
 	{
 		return new ConnectionFactory($this->get('connection'));
 	}
+
+	/**
+	 * @return PSX\Data\Schema\SchemaManagerInterface
+	 */
+	/*
+	public function getSchemaManager()
+	{
+		return new SchemaManager($this->get('connection'));
+	}
+	*/
 }

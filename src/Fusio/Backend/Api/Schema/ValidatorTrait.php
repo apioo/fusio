@@ -1,8 +1,8 @@
 <?php
 
-namespace Fusio\Backend\Api\Routes;
+namespace Fusio\Backend\Api\Schema;
 
-use Fusio\Backend\Filter\Routes as Filter;
+use Fusio\Backend\Filter\Schema as Filter;
 use PSX\Filter as PSXFilter;
 use PSX\Validate;
 use PSX\Validate\Property;
@@ -13,10 +13,8 @@ trait ValidatorTrait
 	protected function getValidator()
 	{
 		return new RecordValidator(new Validate(), array(
-			new Property('id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Routes')))),
-			new Property('methods', Validate::TYPE_STRING, array(new Filter\Methods())),
-			new Property('path', Validate::TYPE_STRING, array(new Filter\Path())),
-			new Property('controller', Validate::TYPE_STRING, array(new Filter\Controller())),
+			new Property('id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Schema')))),
+			new Property('name', Validate::TYPE_STRING),
 		));
 	}
 }

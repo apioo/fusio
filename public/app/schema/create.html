@@ -1,0 +1,49 @@
+
+<div class="modal-header">
+	<h3 class="modal-title">Create</h3>
+</div>
+
+<div class="modal-body">
+	<div ng-if="!response.success && response.message" class="alert alert-danger" role="alert">
+		{{response.message}}
+	</div>
+	<form name="schemasCreateForm" ng-submit="create(schema)">
+		<div class="form-group">
+			<label for="name">Name:</label>
+			<input type="text" id="name" ng-model="schema.name" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="property_name">Property name:</label>
+			<input type="text" id="property_name" ng-model="schema.property_name" class="form-control">
+		</div>
+
+		<table class="table">
+		<colgroup>
+			<col width="*" />
+			<col width="140" />
+			<col width="50" />
+		</colgroup>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="field in schema.fields">
+			<td>
+				<input type="text" id="name" ng-model="field.name" class="form-control">
+			</td>
+			<td>
+				<select class="form-control" ng-model="field.type" ng-options="type as type for type in fieldTypes">
+				</select>
+			</td>
+			<td>
+				<a ng-click="removeFieldRow(field)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+			</td>
+		</tr>
+		</table>
+		<a ng-click="addFieldRow()" class="btn btn-default">Add</a>
+
+		<button type="submit" class="btn btn-primary">Save</button>
+		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+	</form>
+</div>

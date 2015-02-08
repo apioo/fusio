@@ -20,7 +20,9 @@ class Schema extends TableAbstract
 	{
 		return array(
 			'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
+			'extendsId' => self::TYPE_INT,
 			'name' => self::TYPE_VARCHAR,
+			'propertyName' => self::TYPE_VARCHAR,
 		);
 	}
 }

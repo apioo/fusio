@@ -1,5 +1,51 @@
 
 <h1>Schema</h1>
 
-<p>foobar</p>
+<div class="fusio-search">
+	<table class="table">
+	<colgroup>
+		<col width="*" />
+		<col width="100" />
+	</colgroup>
+	<tr>
+		<td>
+			<form name="schemasSearchForm" ng-submit="doSearch(search)">
+				<input type="text" class="form-control" ng-model="search" placeholder="Search i.e. person" />
+			</form>
+		</td>
+		<td><a class="btn btn-primary" ng-click="openCreateDialog()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
+	</tr>
+	</table>
+</div>
 
+<div ng-if="response.success" class="alert alert-success" role="alert">
+	{{response.message}}
+</div>
+
+<div class="fusio-grid">
+	<table class="table">
+	<colgroup>
+		<col width="*" />
+		<col width="100" />
+	</colgroup>
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="schema in schemas">
+		<td>{{schema.name}}</td>
+		<td>
+			<div class="fusio-options">
+				<a ng-click="openUpdateDialog(schema)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+				<a ng-click="openDeleteDialog(schema)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+			</div>
+		</td>
+	</tr>
+	</tbody>
+	</table>
+</div>
+
+<pagination total-items="totalItems" items-per-page="16" ng-model="startIndex" ng-change="pageChanged()"></pagination>

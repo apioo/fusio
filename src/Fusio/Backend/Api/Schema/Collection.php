@@ -59,7 +59,7 @@ class Collection extends SchemaApiAbstract
 	{
 		$startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-		$condition  = !empty($search) ? new Condition(['path', 'LIKE', '%' . $search . '%']) : null;
+		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
 
 		return array(
 			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Schema')->getCount($condition),
@@ -80,9 +80,7 @@ class Collection extends SchemaApiAbstract
 		$this->getValidator()->validate($record);
 
 		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->create(array(
-			'methods'    => $record->getMethods(),
-			'path'       => $record->getPath(),
-			'controller' => $record->getController(),
+			'name' => $record->getName(),
 		));
 
 		return array(
@@ -103,10 +101,8 @@ class Collection extends SchemaApiAbstract
 		$this->getValidator()->validate($record);
 
 		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->update(array(
-			'id'         => $record->getId(),
-			'methods'    => $record->getMethods(),
-			'path'       => $record->getPath(),
-			'controller' => $record->getController(),
+			'id'   => $record->getId(),
+			'name' => $record->getName(),
 		));
 
 		return array(
