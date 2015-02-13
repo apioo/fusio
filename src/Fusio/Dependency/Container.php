@@ -13,11 +13,11 @@ use PSX\Dependency\DefaultContainer;
 class Container extends DefaultContainer
 {
 	/**
-	 * @return PSX\Loader\RoutingParserInterface
+	 * @return PSX\Loader\LocationFinderInterface
 	 */
-	public function getRoutingParser()
+	public function getLoaderLocationFinder()
 	{
-		return new RoutingParser\Table($this->get('connection'));
+		return new RoutingParser($this->get('connection'));
 	}
 
 	/**
@@ -55,10 +55,8 @@ class Container extends DefaultContainer
 	/**
 	 * @return PSX\Data\Schema\SchemaManagerInterface
 	 */
-	/*
-	public function getSchemaManager()
+	public function getApiSchemaManager()
 	{
 		return new SchemaManager($this->get('connection'));
 	}
-	*/
 }

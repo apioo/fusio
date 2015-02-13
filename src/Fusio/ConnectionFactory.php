@@ -23,7 +23,7 @@ class ConnectionFactory
 	 */
 	public function getById($connectionId)
 	{
-		$connection = $this->connection->fetchRow('SELECT type, parameters FROM fusio_connection WHERE id = :id', array('id' => $connectionId));
+		$connection = $this->connection->fetchAssoc('SELECT type, parameters FROM fusio_connection WHERE id = :id', array('id' => $connectionId));
 
 		if(empty($connection))
 		{

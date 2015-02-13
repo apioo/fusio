@@ -18,7 +18,7 @@ class ActionExecutor
 
 	public function execute($actionId, Parameters $parameters, Body $data)
 	{
-		$action = $this->connection->fetchRow('SELECT class, config FROM fusio_action WHERE id = :id', array('id' => $actionId));
+		$action = $this->connection->fetchAssoc('SELECT class, config FROM fusio_action WHERE id = :id', array('id' => $actionId));
 
 		if(empty($action))
 		{

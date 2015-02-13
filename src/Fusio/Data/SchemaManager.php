@@ -18,16 +18,17 @@ class SchemaManager implements SchemaManagerInterface
 
 	public function getSchema($schemaId)
 	{
-		$sql = '    SELECT field.name, 
-				           field.type, 
-				           schema.property_name
+		$sql = '    SELECT fields.name, 
+				           fields.type, 
+				           fields.refId, 
+				           schema.propertyName
 				      FROM fusio_schema_fields fields
-				INNER JOIN fusio_schema schema
-				        ON schema.id = fields.schema_id
+				INNER JOIN fusio_schema `schema`
+				        ON schema.id = fields.schemaId
 				     WHERE schema.id = :id';
 
 		$fields = $this->connection->fetchAll($sql, array('id' => $schemaId));
-		$name   = isset($fields[0]['property_name']) ? $fields[0]['property_name'] : null;
+		$name   = isset($fields[0]['propertyName']) ? $fields[0]['propertyName'] : null;
 
 		if(!empty($name))
 		{
@@ -35,11 +36,11 @@ class SchemaManager implements SchemaManagerInterface
 
 			foreach($fields as $field)
 			{
-				switch($field['type'])
+				switch(strtolower($field['type']))
 				{
 					case 'array':
 						$schema->arrayType($field['name'])
-							->setPrototype($this->getSchema($field['ref']));
+							->setPrototype($this->getSchema($field['refId'])->getDefinition());
 						break;
 
 					case 'boolean':
@@ -63,7 +64,7 @@ class SchemaManager implements SchemaManagerInterface
 						break;
 
 					case 'object':
-						$schema->objectType($field['name'], $this->getSchema($field['ref']));
+						$schema->objectType($field['name'], $this->getSchema($field['refId'])->getDefinition());
 						break;
 
 					case 'string':
@@ -76,7 +77,7 @@ class SchemaManager implements SchemaManagerInterface
 				}
 			}
 
-			return $schema->getProperty();
+			return new Schema($schema->getProperty());
 		}
 		else
 		{

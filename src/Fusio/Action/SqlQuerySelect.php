@@ -6,6 +6,7 @@ use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
 use Fusio\Parameters;
+use Fusio\Response;
 use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
@@ -48,8 +49,11 @@ class SqlQuerySelect implements ActionInterface
 			}
 
 			$result = $connection->fetchAll($sql, $params);
+			$key    = $configuration->get('propertyName') ?: 'entry';
 
-			return CurveArray::nest($result);
+			return new Response(200, [], CurveArray::nest(array(
+				$key => $result,
+			)));
 		}
 		else
 		{
@@ -72,6 +76,7 @@ class SqlQuerySelect implements ActionInterface
 
 		$form = new Form\Container();
 		$form->add($connectionElement);
+		$form->add(new Element\Input('propertyName', 'Property name'));
 		$form->add($sqlElement);
 
 		return $form;
