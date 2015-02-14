@@ -7,11 +7,20 @@ use Fusio\Factory;
 use Fusio\Parser;
 use Fusio\Connector;
 use Fusio\Loader\RoutingParser;
+use Fusio\Loader\DatabaseRoutes;
 use Fusio\Data\SchemaManager;
 use PSX\Dependency\DefaultContainer;
 
 class Container extends DefaultContainer
 {
+	/**
+	 * @return PSX\Loader\LocationFinderInterface
+	 */
+	public function getRoutingParser()
+	{
+		return new DatabaseRoutes($this->get('connection'));
+	}
+
 	/**
 	 * @return PSX\Loader\LocationFinderInterface
 	 */

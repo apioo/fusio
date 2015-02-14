@@ -5,11 +5,15 @@ namespace Fusio\Controller;
 use Fusio\Response;
 use Fusio\Parameters;
 use Fusio\Body;
+use PSX\Api\DocumentedInterface;
+use PSX\Api\Documentation;
+use PSX\Api\View;
 use PSX\ControllerAbstract;
 use PSX\Data\Record;
 use PSX\Http\Exception as StatusCode;
+use PSX\Data\Schema\InvalidSchemaException;
 
-class SchemaApiController extends ControllerAbstract
+class SchemaApiController extends ControllerAbstract implements DocumentedInterface
 {
 	const SCHEMA_PASSTHRU = 1;
 
@@ -33,22 +37,7 @@ class SchemaApiController extends ControllerAbstract
 
 	public function onLoad()
 	{
-		$config = $this->context->get('fusio.config');
-		$method = $this->request->getMethod();
-
-		if(!empty($config) && is_array($config))
-		{
-			foreach($config as $record)
-			{
-				if($record->getMethod() == $method)
-				{
-					$requestSchemaId  = (int) $record->getRequest();
-					$responseSchemaId = (int) $record->getResponse();
-					$actionId         = (int) $record->getAction();
-					break;
-				}
-			}
-		}
+		list($requestSchemaId, $responseSchemaId, $actionId) = $this->getConfiguration($this->request->getMethod());
 
 		// read request data
 		if(!in_array($method, ['HEAD', 'GET']) && !empty($requestSchemaId))
@@ -104,5 +93,69 @@ class SchemaApiController extends ControllerAbstract
 			$this->setResponseCode(204);
 			$this->setBody('');
 		}
+	}
+
+	public function getDocumentation()
+	{
+		$view    = new View();
+		$methods = array(
+			View::METHOD_GET    => 'GET', 
+			View::METHOD_POST   => 'POST', 
+			View::METHOD_PUT    => 'PUT', 
+			View::METHOD_DELETE => 'DELETE'
+		);
+
+		foreach($methods as $type => $method)
+		{
+			list($requestSchemaId, $responseSchemaId, $actionId) = $this->getConfiguration($method);
+
+			if(!empty($requestSchemaId))
+			{
+				try
+				{
+					$view->set($type | View::TYPE_REQUEST, $this->apiSchemaManager->getSchema($requestSchemaId));
+				}
+				catch(InvalidSchemaException $e)
+				{
+				}
+			}
+
+			if(!empty($responseSchemaId))
+			{
+				try
+				{
+					$view->set($type | View::TYPE_RESPONSE, $this->apiSchemaManager->getSchema($responseSchemaId));
+				}
+				catch(InvalidSchemaException $e)
+				{
+				}
+			}
+		}
+
+		return new Documentation\Simple($view);
+	}
+
+	protected function getConfiguration($method)
+	{
+		$config           = $this->context->get('fusio.config');
+		$requestSchemaId  = null;
+		$responseSchemaId = null;
+		$actionId         = null;
+
+		if(!empty($config) && is_array($config))
+		{
+			foreach($config as $record)
+			{
+				if($record->getMethod() == $method)
+				{
+					$requestSchemaId  = (int) $record->getRequest();
+					$responseSchemaId = (int) $record->getResponse();
+					$actionId         = (int) $record->getAction();
+					break;
+				}
+			}
+		}
+
+		return [$requestSchemaId, $responseSchemaId, $actionId];
 	}
 }
