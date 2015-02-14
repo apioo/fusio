@@ -1,0 +1,26 @@
+
+<div class="modal-header">
+	<h3 class="modal-title">Create</h3>
+</div>
+
+<div class="modal-body">
+	<div ng-if="!response.success && response.message" class="alert alert-danger" role="alert">
+		{{response.message}}
+	</div>
+	<form name="routesCreateForm" ng-submit="create(connection)">
+		<div class="form-group">
+			<label for="name">Name:</label>
+			<input type="text" id="name" ng-model="connection.name" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="class">Class:</label>
+			<select id="class" ng-model="connection.class" ng-click="loadConfig()" ng-options="conn.class as conn.name for conn in connections" class="form-control">
+			</select>
+		</div>
+
+		<div id="config-form"></div>
+
+		<button type="submit" class="btn btn-primary">Save</button>
+		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+	</form>
+</div>

@@ -21,9 +21,9 @@ class Pipe implements ActionInterface
 
 	/**
 	 * @Inject
-	 * @var Fusio\ActionExecutor
+	 * @var Fusio\Executor
 	 */
-	protected $actionExecutor;
+	protected $executor;
 
 	public function getName()
 	{
@@ -32,27 +32,17 @@ class Pipe implements ActionInterface
 
 	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
 	{
-		$response = $this->actionExecutor->execute($configuration->get('source'), $parameters, $data);
+		$response = $this->executor->execute($configuration->get('source'), $parameters, $data);
 		$data     = Body::fromArray($response);
 
-		return $this->actionExecutor->execute($configuration->get('destination'), $parameters, $data);
+		return $this->executor->execute($configuration->get('destination'), $parameters, $data);
 	}
 
 	public function getForm()
 	{
-		$srcElement  = new Element\Select('source', 'Source');
-		$destElement = new Element\Select('destination', 'Destination');
-		$result      = $this->connection->fetchAll('SELECT id, name FROM fusio_action ORDER BY name ASC');
-
-		foreach($result as $row)
-		{
-			$srcElement->add($row['id'], $row['name']);
-			$destElement->add($row['id'], $row['name']);
-		}
-
 		$form = new Form\Container();
-		$form->add($srcElement);
-		$form->add($destElement);
+		$form->add(new Element\Action('source', 'Source', $this->connection));
+		$form->add(new Element\Action('destination', 'Destination', $this->connection));
 
 		return $form;
 	}

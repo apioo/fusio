@@ -14,7 +14,10 @@ class Select extends Element
 	{
 		parent::__construct($name, $title);
 
-		$this->options = $options;
+		foreach($options as $key => $value)
+		{
+			$this->addOption($key, $value);
+		}
 	}
 
 	public function setOptions(array $options)

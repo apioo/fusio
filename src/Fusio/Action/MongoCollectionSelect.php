@@ -32,7 +32,7 @@ class MongoCollectionSelect implements ActionInterface
 
 	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
 	{
-		$connection = $this->connectionFactory->getById($configuration->get('connection'));
+		$connection = $this->connectionFactory->getConnection($configuration->get('connection'));
 
 		if($connection instanceof MongoDB)
 		{
@@ -62,16 +62,8 @@ class MongoCollectionSelect implements ActionInterface
 
 	public function getForm()
 	{
-		$connectionElement = new Element\Select('connection', 'Connection');
-		$result = $this->connection->fetchAll('SELECT id, name FROM fusio_connection ORDER BY name ASC');
-
-		foreach($result as $row)
-		{
-			$connectionElement->add($row['id'], $row['name']);
-		}
-
 		$form = new Form\Container();
-		$form->add($connectionElement);
+		$form->add(new Element\Connection('connection', 'Connection', $this->connection));
 		$form->add(new Element\Input('collection', 'Collection'));
 		$form->add(new Element\TextArea('criteria', 'Criteria'));
 		$form->add(new Element\TextArea('projection', 'Projection'));

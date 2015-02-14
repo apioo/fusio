@@ -4,7 +4,7 @@ namespace Fusio;
 
 use PSX\Data\RecordInterface;
 
-interface ActionInterface
+interface ActionInterface extends ConfigurableInterface
 {
 	/**
 	 * An action executes a specific action and returns an array as result. This
@@ -19,13 +19,4 @@ interface ActionInterface
 	 * @return array
 	 */
 	public function handle(Parameters $parameters, Body $data, Parameters $configuration);
-
-	/**
-	 * Returns an form which the user needs to configure before the action can
-	 * be used. The entered values get then passed as Configuration to the 
-	 * handle method
-	 *
-	 * @return Fusio\Form\Container
-	 */
-	public function getForm();
 }

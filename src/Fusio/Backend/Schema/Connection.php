@@ -5,25 +5,23 @@ namespace Fusio\Backend\Schema;
 use PSX\Data\SchemaAbstract;
 
 /**
- * Action
+ * Connection
  *
  * @see http://phpsx.org/doc/concept/schema.html
  */
-class Action extends SchemaAbstract
+class Connection extends SchemaAbstract
 {
 	public function getDefinition()
 	{
 		$config = $this->getSchemaBuilder('config');
 		$config->string('url');
-		$config->integer('connection');
-		$config->string('sql');
-		$config->string('collection');
-		$config->string('criteria');
-		$config->string('projection');
-		$config->string('propertyName');
-		$config->string('response');
+		$config->string('type');
+		$config->string('host');
+		$config->string('username');
+		$config->string('password');
+		$config->string('database');
 
-		$sb = $this->getSchemaBuilder('action');
+		$sb = $this->getSchemaBuilder('connection');
 		$sb->integer('id');
 		$sb->string('name');
 		$sb->string('class');

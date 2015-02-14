@@ -22,9 +22,9 @@ class Condition implements ActionInterface
 
 	/**
 	 * @Inject
-	 * @var Fusio\ActionExecutor
+	 * @var Fusio\Executor
 	 */
-	protected $actionExecutor;
+	protected $executor;
 
 	public function getName()
 	{
@@ -38,30 +38,20 @@ class Condition implements ActionInterface
 
 		if(empty($condition) || $language->evaluate($condition, $data->toArray()))
 		{
-			return $this->actionExecutor->execute($configuration->get('true'), $parameters, $data);
+			return $this->executor->execute($configuration->get('true'), $parameters, $data);
 		}
 		else
 		{
-			return $this->actionExecutor->execute($configuration->get('false'), $parameters, $data);
+			return $this->executor->execute($configuration->get('false'), $parameters, $data);
 		}
 	}
 
 	public function getForm()
 	{
-		$trueElement  = new Element\Select('true', 'True');
-		$falseElement = new Element\Select('false', 'False');
-		$result       = $this->connection->fetchAll('SELECT id, name FROM fusio_action ORDER BY name ASC');
-
-		foreach($result as $row)
-		{
-			$trueElement->add($row['id'], $row['name']);
-			$falseElement->add($row['id'], $row['name']);
-		}
-
 		$form = new Form\Container();
 		$form->add(new Element\Input('condition', 'Condition'));
-		$form->add($trueElement);
-		$form->add($falseElement);
+		$form->add(new Element\Action('true', 'True', $this->connection));
+		$form->add(new Element\Action('false', 'False', $this->connection));
 
 		return $form;
 	}

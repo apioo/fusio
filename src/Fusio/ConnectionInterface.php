@@ -1,10 +1,8 @@
 <?php
 
-namespace Fusio\Connection;
+namespace Fusio;
 
-use Fusio\ConnectionInterface;
-
-interface ConnectionInterface
+interface ConnectionInterface extends ConfigurableInterface
 {
 	/**
 	 * Returns an arbitrary connection to a system. This can be i.e. an mysql
@@ -16,11 +14,4 @@ interface ConnectionInterface
 	 * @return mixed
 	 */
 	public function getConnection(Parameters $config);
-
-	/**
-	 * Returns the form where the user can configure the connection
-	 *
-	 * @return Fusio\Form\Container
-	 */
-	public function getForm();
 }

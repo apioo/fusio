@@ -2,33 +2,36 @@
 
 namespace Fusio\Connection;
 
+use Doctrine\DBAL\DriverManager;
 use Fusio\ConnectionInterface;
 use Fusio\Parameters;
 use Fusio\Form;
 use Fusio\Form\Element;
 
-class MongoDB implements ConnectionInterface
+class Native implements ConnectionInterface
 {
 	public function getName()
 	{
-		return 'Mongo-DB';
+		return 'Native';
 	}
 
 	/**
-	 * @return MongoDB
+	 * @Inject
+	 * @var Doctrine\DBAL\Connection
+	 */
+	protected $connection;
+
+	/**
+	 * @return Doctrine\DBAL\Connection
 	 */
 	public function getConnection(Parameters $config)
 	{
-		$client = new MongoClient($config->get('url'));
-
-		return $client->selectDB($config->get('database'));
+		return $this->connection;
 	}
 
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\Input('url', 'Url'));
-		$form->add(new Element\Input('database', 'Database'));
 
 		return $form;
 	}

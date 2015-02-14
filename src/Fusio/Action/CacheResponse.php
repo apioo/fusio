@@ -27,9 +27,9 @@ class CacheResponse implements ActionInterface
 
 	/**
 	 * @Inject
-	 * @var Fusio\ActionExecutor
+	 * @var Fusio\Executor
 	 */
-	protected $actionExecutor;
+	protected $executor;
 
 	public function getName()
 	{
@@ -43,7 +43,7 @@ class CacheResponse implements ActionInterface
 
 		if(!$item->isHit())
 		{
-			$response = $this->actionExecutor->execute($configuration->get('action'), $parameters, $data);;
+			$response = $this->executor->execute($configuration->get('action'), $parameters, $data);;
 
 			$item->set($response, $configuration->get('expire'));
 
@@ -59,16 +59,8 @@ class CacheResponse implements ActionInterface
 
 	public function getForm()
 	{
-		$actionElement = new Element\Select('action', 'Action');
-		$result        = $this->connection->fetchAll('SELECT id, name FROM fusio_action ORDER BY name ASC');
-
-		foreach($result as $row)
-		{
-			$actionElement->add($row['id'], $row['name']);
-		}
-
 		$form = new Form\Container();
-		$form->add($actionElement);
+		$form->add(new Element\Action('action', 'Action', $this->connection));
 		$form->add(new Element\Input('expire', 'Expire'));
 
 		return $form;

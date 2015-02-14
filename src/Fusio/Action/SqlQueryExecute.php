@@ -62,20 +62,9 @@ class SqlQueryExecute implements ActionInterface
 
 	public function getForm()
 	{
-		$sqlElement = new Element\TextArea('sql', 'SQL');
-		$sqlElement->setMode('sql');
-
-		$connectionElement = new Element\Select('connection', 'Connection');
-		$result = $this->connection->fetchAll('SELECT id, name FROM fusio_connection ORDER BY name ASC');
-
-		foreach($result as $row)
-		{
-			$connectionElement->add($row['id'], $row['name']);
-		}
-
 		$form = new Form\Container();
-		$form->add($connectionElement);
-		$form->add($sqlElement);
+		$form->add(new Element\Connection('connection', 'Connection', $this->connection));
+		$form->add(new Element\TextArea('sql', 'SQL', 'sql'));
 
 		return $form;
 	}

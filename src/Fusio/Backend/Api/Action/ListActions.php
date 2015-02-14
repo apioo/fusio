@@ -19,7 +19,7 @@ class ListActions extends ApiAbstract
 	public function doIndex()
 	{
 		$this->setBody(array(
-			'actions' => $this->actionParser->getActions()
+			'actions' => $this->actionParser->getClasses()
 		));
 	}
 

@@ -2,10 +2,10 @@
 
 namespace Fusio\Dependency;
 
-use Fusio\ActionExecutor;
-use Fusio\ActionFactory;
-use Fusio\ActionParser;
-use Fusio\ConnectionFactory;
+use Fusio\Executor;
+use Fusio\Factory;
+use Fusio\Parser;
+use Fusio\Connector;
 use Fusio\Loader\RoutingParser;
 use Fusio\Data\SchemaManager;
 use PSX\Dependency\DefaultContainer;
@@ -21,11 +21,23 @@ class Container extends DefaultContainer
 	}
 
 	/**
+	 * @return PSX\Data\Schema\SchemaManagerInterface
+	 */
+	public function getApiSchemaManager()
+	{
+		return new SchemaManager($this->get('connection'));
+	}
+
+	/**
 	 * @return Fusio\ActionParser
 	 */
 	public function getActionParser()
 	{
-		return new ActionParser($this->get('action_factory'), $this->get('config')->get('fusio_action_paths'));
+		return new Parser\Action(
+			$this->get('action_factory'), 
+			$this->get('config')->get('fusio_action_paths'), 
+			'Fusio\ActionInterface'
+		);
 	}
 
 	/**
@@ -33,15 +45,27 @@ class Container extends DefaultContainer
 	 */
 	public function getActionFactory()
 	{
-		return new ActionFactory($this->get('object_builder'));
+		return new Factory\Action($this->get('object_builder'));
 	}
 
 	/**
-	 * @return Fusio\ActionExecutor
+	 * @return Fusio\Executor
 	 */
-	public function getActionExecutor()
+	public function getExecutor()
 	{
-		return new ActionExecutor($this->get('connection'), $this->get('action_factory'));
+		return new Executor($this->get('connection'), $this->get('action_factory'));
+	}
+
+	/**
+	 * @return Fusio\Parser\Connection
+	 */
+	public function getConnectionParser()
+	{
+		return new Parser\Connection(
+			$this->get('connection_factory'), 
+			$this->get('config')->get('fusio_connection_paths'), 
+			'Fusio\ConnectionInterface'
+		);
 	}
 
 	/**
@@ -49,14 +73,14 @@ class Container extends DefaultContainer
 	 */
 	public function getConnectionFactory()
 	{
-		return new ConnectionFactory($this->get('connection'));
+		return new Factory\Connection($this->get('object_builder'));
 	}
 
 	/**
-	 * @return PSX\Data\Schema\SchemaManagerInterface
+	 * @return Fusio\Connector
 	 */
-	public function getApiSchemaManager()
+	public function getConnector()
 	{
-		return new SchemaManager($this->get('connection'));
+		return new Connector($this->get('connection'), $this->get('connection_factory'));
 	}
 }

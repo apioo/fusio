@@ -21,9 +21,9 @@ class SchemaApiController extends ControllerAbstract
 
 	/**
 	 * @Inject
-	 * @var Fusio\ActionExecutor
+	 * @var Fusio\Executor
 	 */
-	protected $actionExecutor;
+	protected $executor;
 
 	/**
 	 * @Inject
@@ -72,7 +72,7 @@ class SchemaApiController extends ControllerAbstract
 		{
 			$parameters = new Parameters($this->request->getQueryParams());
 			$body       = new Body($request);
-			$response   = $this->actionExecutor->execute($actionId, $parameters, $body);
+			$response   = $this->executor->execute($actionId, $parameters, $body);
 		}
 		else
 		{

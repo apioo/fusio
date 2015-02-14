@@ -22,9 +22,9 @@ class SqlQuerySelect implements ActionInterface
 
 	/**
 	 * @Inject
-	 * @var Fusio\ConnectionFactory
+	 * @var Fusio\Connector
 	 */
-	protected $connectionFactory;
+	protected $connector;
 
 	public function getName()
 	{
@@ -33,7 +33,7 @@ class SqlQuerySelect implements ActionInterface
 
 	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
 	{
-		$connection = $this->connectionFactory->getById($configuration->get('connection'));
+		$connection = $this->connector->getConnection($configuration->get('connection'));
 
 		if($connection instanceof Connection)
 		{
@@ -63,16 +63,8 @@ class SqlQuerySelect implements ActionInterface
 
 	public function getForm()
 	{
-		$result      = $this->connection->fetchAll('SELECT id, name FROM fusio_connection ORDER BY name ASC');
-		$connections = array();
-
-		foreach($result as $row)
-		{
-			$connections[] = array('key' => $row['id'], 'value' => $row['name']);
-		}
-
 		$form = new Form\Container();
-		$form->add(new Element\Select('connection', 'Connection', $connections));
+		$form->add(new Element\Connection('connection', 'Connection', $this->connection));
 		$form->add(new Element\Input('propertyName', 'Property name'));
 		$form->add(new Element\TextArea('sql', 'SQL', 'sql'));
 

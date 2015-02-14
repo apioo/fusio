@@ -21,9 +21,9 @@ class Composite implements ActionInterface
 
 	/**
 	 * @Inject
-	 * @var Fusio\ActionExecutor
+	 * @var Fusio\Executor
 	 */
-	protected $actionExecutor;
+	protected $executor;
 
 	public function getName()
 	{
@@ -32,26 +32,16 @@ class Composite implements ActionInterface
 
 	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
 	{
-		$this->actionExecutor->execute($configuration->get('in'), $parameters, $data);
+		$this->executor->execute($configuration->get('in'), $parameters, $data);
 
-		return $this->actionExecutor->execute($configuration->get('out'), $parameters, $data);
+		return $this->executor->execute($configuration->get('out'), $parameters, $data);
 	}
 
 	public function getForm()
 	{
-		$inElement  = new Element\Select('in', 'In');
-		$outElement = new Element\Select('out', 'Out');
-		$result     = $this->connection->fetchAll('SELECT id, name FROM fusio_action ORDER BY name ASC');
-
-		foreach($result as $row)
-		{
-			$inElement->add($row['id'], $row['name']);
-			$outElement->add($row['id'], $row['name']);
-		}
-
 		$form = new Form\Container();
-		$form->add($inElement);
-		$form->add($outElement);
+		$form->add(new Element\Action('in', 'In', $this->connection));
+		$form->add(new Element\Action('out', 'Out', $this->connection));
 
 		return $form;
 	}
