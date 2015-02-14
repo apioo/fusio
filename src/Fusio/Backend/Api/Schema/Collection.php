@@ -221,7 +221,7 @@ class Collection extends SchemaApiAbstract
 
 				$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->create(array(
 					'schemaId'    => $schemaId,
-					'ref'         => $field->getRef(),
+					'refId'       => $field->getRefId(),
 					'name'        => $field->getName(),
 					'type'        => $field->getType(),
 					'required'    => $field->getRequired(),

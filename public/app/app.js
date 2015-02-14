@@ -4,6 +4,7 @@ var fusioApp = angular.module('fusioApp', [
 	'ngRoute',
 	'ngSanitize',
 	'ui.bootstrap',
+	'ui.ace',
 	'fusioApp.app',
 	'fusioApp.connection',
 	'fusioApp.action',

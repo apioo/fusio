@@ -6,10 +6,11 @@
   "license": "GPLv3",
   "private": true,
   "dependencies": {
-    "bootstrap": "3.1.1",
     "angular": "~1.2",
     "angular-route": "~1.2",
     "angular-sanitize": "~1.2",
-    "angular-bootstrap": "~0.12"
+    "angular-bootstrap": "~0.12",
+    "angular-ui-ace": "~0.2",
+    "bootstrap": "3.1.1"
   }
 }

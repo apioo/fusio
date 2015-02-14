@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('fusioApp.action', ['ngRoute'])
+angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/action', {
@@ -17,7 +17,7 @@ angular.module('fusioApp.action', ['ngRoute'])
 	$scope.load = function(){
 		var search = encodeURIComponent($scope.search);
 
-		$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/action?search=' + search).success(function(data){
+		$http.get(fusio_url + 'backend/action?search=' + search).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.startIndex = 0;
 			$scope.actions = data.entry;
@@ -28,7 +28,7 @@ angular.module('fusioApp.action', ['ngRoute'])
 		var startIndex = ($scope.startIndex - 1) * 16;
 		var search = encodeURIComponent($scope.search);
 
-		$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/action?startIndex=' + startIndex + '&search=' + search).success(function(data){
+		$http.get(fusio_url + 'backend/action?startIndex=' + startIndex + '&search=' + search).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.actions = data.entry;
 		});
@@ -36,7 +36,7 @@ angular.module('fusioApp.action', ['ngRoute'])
 
 	$scope.doSearch = function(search){
 		var search = encodeURIComponent(search);
-		$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/action?search=' + search).success(function(data){
+		$http.get(fusio_url + 'backend/action?search=' + search).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.startIndex = 0;
 			$scope.actions = data.entry;
@@ -119,10 +119,9 @@ angular.module('fusioApp.action', ['ngRoute'])
 		config: {}
 	};
 	$scope.actions = [];
-	$scope.config = null;
 
 	$scope.create = function(action){
-		$http.post('http://127.0.0.1/projects/fusio/public/index.php/backend/action', action)
+		$http.post(fusio_url + 'backend/action', action)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
@@ -134,7 +133,7 @@ angular.module('fusioApp.action', ['ngRoute'])
 			});
 	};
 
-	$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/action/list')
+	$http.get(fusio_url + 'backend/action/list')
 		.success(function(data){
 			$scope.actions = data.actions;
 
@@ -150,7 +149,7 @@ angular.module('fusioApp.action', ['ngRoute'])
 
 	$scope.loadConfig = function(){
 		if ($scope.action.class) {
-			$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/action/form?class=' + encodeURIComponent($scope.action.class))
+			$http.get(fusio_url + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
 				.success(function(data){
 					var linkFn = formBuilder.buildHtml(data.element);
 					var el = linkFn($scope);
@@ -164,14 +163,17 @@ angular.module('fusioApp.action', ['ngRoute'])
 
 }])
 
-.controller('ActionUpdateCtrl', ['$scope', '$http', '$modalInstance', 'action', 'formBuilder', function($scope, $http, $modalInstance, action, formBuilder){
+.controller('ActionUpdateCtrl', ['$scope', '$http', '$modalInstance', 'action', 'formBuilder', '$timeout', function($scope, $http, $modalInstance, action, formBuilder, $timeout){
+
+	if (angular.isArray(action.config)) {
+		action.config = {};
+	}
 
 	$scope.action = action;
 	$scope.actions = [];
-	$scope.config = null;
 
 	$scope.update = function(action){
-		$http.put('http://127.0.0.1/projects/fusio/public/index.php/backend/action/' + action.id, action)
+		$http.put(fusio_url + 'backend/action/' + action.id, action)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
@@ -189,7 +191,7 @@ angular.module('fusioApp.action', ['ngRoute'])
 
 	$scope.loadConfig = function(){
 		if ($scope.action.class) {
-			$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/action/form?class=' + encodeURIComponent($scope.action.class))
+			$http.get(fusio_url + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
 				.success(function(data){
 					var linkFn = formBuilder.buildHtml(data.element);
 					var el = linkFn($scope);
@@ -202,7 +204,7 @@ angular.module('fusioApp.action', ['ngRoute'])
 	};
 
 	$scope.loadConfig();
-	
+
 }])
 
 .controller('ActionDeleteCtrl', ['$scope', '$http', '$modalInstance', 'action', function($scope, $http, $modalInstance, action){
@@ -210,7 +212,7 @@ angular.module('fusioApp.action', ['ngRoute'])
 	$scope.action = action;
 
 	$scope.delete = function(action){
-		$http.delete('http://127.0.0.1/projects/fusio/public/index.php/backend/action/' + action.id)
+		$http.delete(fusio_url + 'backend/action/' + action.id)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {

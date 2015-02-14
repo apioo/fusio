@@ -17,6 +17,7 @@ class Field extends SchemaAbstract
 		$sb->integer('id');
 		$sb->string('name');
 		$sb->string('type');
+		$sb->integer('refId');
 
 		return $sb->getProperty();
 	}

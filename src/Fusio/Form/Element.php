@@ -7,16 +7,12 @@ use PSX\Data\RecordAbstract;
 class Element extends RecordAbstract
 {
 	protected $name;
-	protected $value;
 	protected $title;
-	protected $toolTip;
 
-	public function __construct($name, $title, $value = null, $toolTip = null)
+	public function __construct($name, $title)
 	{
-		$this->name    = $name;
-		$this->title   = $title;
-		$this->value   = $value;
-		$this->toolTip = $toolTip;
+		$this->name  = $name;
+		$this->title = $title;
 	}
 
 	public function setName($name)
@@ -29,16 +25,6 @@ class Element extends RecordAbstract
 		return $this->name;
 	}
 
-	public function setValue($value)
-	{
-		$this->value = $value;
-	}
-	
-	public function getValue()
-	{
-		return $this->value;
-	}
-
 	public function setTitle($title)
 	{
 		$this->title = $title;
@@ -47,15 +33,5 @@ class Element extends RecordAbstract
 	public function getTitle()
 	{
 		return $this->title;
-	}
-
-	public function setToolTip($toolTip)
-	{
-		$this->toolTip = $toolTip;
-	}
-	
-	public function getToolTip()
-	{
-		return $this->toolTip;
 	}
 }

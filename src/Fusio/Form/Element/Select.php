@@ -8,14 +8,28 @@ class Select extends Element
 {
 	protected $element = 'http://fusio-project.org/ns/2015/form/select';
 
-	public function __construct($name, $title, array $value = array(), $toolTip = null)
+	protected $options;
+
+	public function __construct($name, $title, array $options = array())
 	{
-		parent::__construct($name, $title, $value, $toolTip);
+		parent::__construct($name, $title);
+
+		$this->options = $options;
 	}
 
-	public function add($key, $value)
+	public function setOptions(array $options)
 	{
-		$this->value[] = array(
+		$this->options = $options;
+	}
+
+	public function getOptions()
+	{
+		return $this->options;
+	}
+
+	public function addOption($key, $value)
+	{
+		$this->options[] = array(
 			'key'   => $key,
 			'value' => $value,
 		);

@@ -14,12 +14,12 @@
 			<input type="text" id="name" ng-model="schema.name" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="property_name">Property name:</label>
-			<input type="text" id="property_name" ng-model="schema.propertyName" class="form-control">
+			<label for="propertyName">Property name:</label>
+			<input type="text" id="propertyName" ng-model="schema.propertyName" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="extends">Extends:</label>
-			<select id="property_name" ng-model="schema.extendsId" ng-options="schem.id as schem.name for schem in schemas" class="form-control">
+			<label for="extendsId">Extends:</label>
+			<select id="extendsId" ng-model="schema.extendsId" ng-options="schem.id as schem.name for schem in schemas" class="form-control">
 			</select>
 		</div>
 
@@ -55,7 +55,7 @@
 				<input type="checkbox" ng-model="field.required" style="margin:8px;">
 			</td>
 			<td>
-				<select ng-model="field.ref" ng-options="schem.id as schem.name for schem in schemas" ng-disabled="field.type != 'Object' && field.type != 'Array'" class="form-control">
+				<select ng-model="field.refId" ng-options="schem.id as schem.name for schem in schemas" ng-disabled="field.type != 'Object' && field.type != 'Array'" class="form-control">
 				</select>
 			</td>
 			<td>

@@ -63,21 +63,18 @@ class SqlQuerySelect implements ActionInterface
 
 	public function getForm()
 	{
-		$sqlElement = new Element\TextArea('sql', 'SQL');
-		$sqlElement->setMode('sql');
-
-		$connectionElement = new Element\Select('connection', 'Connection');
-		$result = $this->connection->fetchAll('SELECT id, name FROM fusio_connection ORDER BY name ASC');
+		$result      = $this->connection->fetchAll('SELECT id, name FROM fusio_connection ORDER BY name ASC');
+		$connections = array();
 
 		foreach($result as $row)
 		{
-			$connectionElement->add($row['id'], $row['name']);
+			$connections[] = array('key' => $row['id'], 'value' => $row['name']);
 		}
 
 		$form = new Form\Container();
-		$form->add($connectionElement);
+		$form->add(new Element\Select('connection', 'Connection', $connections));
 		$form->add(new Element\Input('propertyName', 'Property name'));
-		$form->add($sqlElement);
+		$form->add(new Element\TextArea('sql', 'SQL', 'sql'));
 
 		return $form;
 	}

@@ -7,8 +7,10 @@ use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
 use Fusio\Parameters;
 use Fusio\Body;
+use Fusio\Response;
 use Fusio\Form;
 use Fusio\Form\Element;
+use PSX\Json;
 
 class StaticResponse implements ActionInterface
 {
@@ -23,7 +25,7 @@ class StaticResponse implements ActionInterface
 
 		if(!empty($response))
 		{
-			return Json::decode($response);
+			return new Response(200, [], Json::decode($response));
 		}
 		else
 		{
@@ -34,7 +36,7 @@ class StaticResponse implements ActionInterface
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\TextArea('response', 'Response'));
+		$form->add(new Element\TextArea('response', 'Response', 'json'));
 
 		return $form;
 	}

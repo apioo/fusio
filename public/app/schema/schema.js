@@ -17,7 +17,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 	$scope.load = function(){
 		var search = encodeURIComponent($scope.search);
 
-		$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/schema?search=' + search).success(function(data){
+		$http.get(fusio_url + 'backend/schema?search=' + search).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.startIndex = 0;
 			$scope.schemas = data.entry;
@@ -28,7 +28,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 		var startIndex = ($scope.startIndex - 1) * 16;
 		var search = encodeURIComponent($scope.search);
 
-		$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/schema?startIndex=' + startIndex + '&search=' + search).success(function(data){
+		$http.get(fusio_url + 'backend/schema?startIndex=' + startIndex + '&search=' + search).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.schemas = data.entry;
 		});
@@ -36,7 +36,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.doSearch = function(search){
 		var search = encodeURIComponent(search);
-		$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/schema?search=' + search).success(function(data){
+		$http.get(fusio_url + 'backend/schema?search=' + search).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.startIndex = 0;
 			$scope.schemas = data.entry;
@@ -114,16 +114,16 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 .controller('SchemaCreateCtrl', ['$scope', '$http', '$modalInstance', function($scope, $http, $modalInstance){
 
 	$scope.schema = {
-		extends_id: 0,
+		extendsId: 0,
 		name: '',
-		property_name: '',
+		propertyName: '',
 		fields: []
 	};
 	$scope.fieldTypes = ['Array', 'Boolean', 'Date', 'Datetime', 'Float', 'Integer', 'Object', 'String', 'Time'];
 	$scope.schemas = [];
 
 	$scope.create = function(schema){
-		$http.post('http://127.0.0.1/projects/fusio/public/index.php/backend/schema', schema)
+		$http.post(fusio_url + 'backend/schema', schema)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
@@ -139,13 +139,13 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 		$modalInstance.dismiss('cancel');
 	};
 
-	$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/schema')
+	$http.get(fusio_url + 'backend/schema')
 		.success(function(data){
 			var schemas = [{id: 0, name: 'No schema'}];
 			schemas = schemas.concat(data.entry);
 
 			$scope.schemas = schemas;
-			$scope.schema.extends_id = 0;
+			$scope.schema.extendsId = 0;
 		});
 
 	$scope.addFieldRow = function(){
@@ -154,7 +154,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 			type: 'String',
 			constraint: '',
 			required: false,
-			ref: 0
+			refId: 0
 		});
 	};
 
@@ -180,7 +180,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 	$scope.schemas = [];
 
 	$scope.update = function(schema){
-		$http.put('http://127.0.0.1/projects/fusio/public/index.php/backend/schema/' + schema.id, schema)
+		$http.put(fusio_url + 'backend/schema/' + schema.id, schema)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
@@ -196,7 +196,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 		$modalInstance.dismiss('cancel');
 	};
 
-	$http.get('http://127.0.0.1/projects/fusio/public/index.php/backend/schema')
+	$http.get(fusio_url + 'backend/schema')
 		.success(function(data){
 			var schemas = [{id: 0, name: 'No schema'}];
 			schemas = schemas.concat(data.entry);
@@ -210,7 +210,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 			type: 'String',
 			constraint: '',
 			required: false,
-			ref: 0
+			refId: 0
 		});
 	};
 
@@ -232,7 +232,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 	$scope.schema = schema;
 
 	$scope.delete = function(schema){
-		$http.delete('http://127.0.0.1/projects/fusio/public/index.php/backend/schema/' + schema.id)
+		$http.delete(fusio_url + 'backend/schema/' + schema.id)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {

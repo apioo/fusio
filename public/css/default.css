@@ -194,3 +194,10 @@ pre
 {
 	border-radius:0px;
 }
+
+.ace_editor
+{
+	height:200px;
+	border:1px solid #ccc;
+}
+

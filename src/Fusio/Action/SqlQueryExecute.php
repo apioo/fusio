@@ -7,9 +7,9 @@ use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
 use Fusio\Parameters;
 use Fusio\Body;
+use Fusio\Response;
 use Fusio\Form;
 use Fusio\Form\Element;
-use PSX\Util\CurveArray;
 
 class SqlQueryExecute implements ActionInterface
 {
@@ -49,10 +49,10 @@ class SqlQueryExecute implements ActionInterface
 
 			$connection->execute($sql, $params);
 
-			return array(
+			return new Response(200, [], array(
 				'success' => true,
 				'message' => 'Execution was successful'
-			);
+			));
 		}
 		else
 		{

@@ -20,6 +20,8 @@ class Action extends SchemaAbstract
 		$config->string('collection');
 		$config->string('criteria');
 		$config->string('projection');
+		$config->string('propertyName');
+		$config->string('response');
 
 		$sb = $this->getSchemaBuilder('controller');
 		$sb->integer('id');
