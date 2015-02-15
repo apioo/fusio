@@ -30,7 +30,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 
 		$http.get(fusio_url + 'backend/connection?startIndex=' + startIndex + '&search=' + search).success(function(data){
 			$scope.totalItems = data.totalItems;
-			$scope.connection = data.entry;
+			$scope.connections = data.entry;
 		});
 	};
 
@@ -39,7 +39,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 		$http.get(fusio_url + 'backend/connection?search=' + search).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.startIndex = 0;
-			$scope.connection = data.entry;
+			$scope.connections = data.entry;
 		});
 	};
 

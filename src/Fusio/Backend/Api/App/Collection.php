@@ -1,7 +1,8 @@
 <?php
 
-namespace Fusio\Backend\Api\Routes;
+namespace Fusio\Backend\Api\App;
 
+use DateTime;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
 use PSX\Api\View;
@@ -13,9 +14,11 @@ use PSX\Sql\Condition;
 use PSX\Validate;
 use PSX\Validate\Property;
 use PSX\Validate\RecordValidator;
+use PSX\OpenSsl;
+use PSX\Util\Uuid;
 
 /**
- * Routes
+ * App
  *
  * @see http://phpsx.org/doc/design/controller.html
  */
@@ -42,10 +45,10 @@ class Collection extends SchemaApiAbstract
 	{
 		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
 		$view = new View();
-		$view->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Routes\Collection'));
-		$view->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Routes\Create'), $message);
-		$view->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Routes\Update'), $message);
-		$view->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Routes\Delete'), $message);
+		$view->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\App\Collection'));
+		$view->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\App\Create'), $message);
+		$view->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\App\Update'), $message);
+		$view->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\App\Delete'), $message);
 
 		return new Documentation\Simple($view);
 	}
@@ -60,18 +63,12 @@ class Collection extends SchemaApiAbstract
 	{
 		$startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-		$condition  = new Condition(['path', 'NOT LIKE', '/backend%']);
-		$condition->add('path', 'NOT LIKE', '/documentation%');
-
-		if(!empty($search))
-		{
-			$condition->add('path', 'LIKE', '%' . $search . '%');
-		}
+		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
 
 		return array(
-			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Routes')->getCount($condition),
+			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\App')->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Routes')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\App')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
 		);
 	}
 
@@ -86,19 +83,21 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		// replace dash with backslash
-		$controller = str_replace('-', '\\', $record->getController());
+		$appKey    = Uuid::pseudoRandom();
+		$appSecret = hash('sha256', OpenSsl::randomPseudoBytes(256));
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->create(array(
-			'methods'    => $record->getMethods(),
-			'path'       => $record->getPath(),
-			'controller' => $controller,
-			'config'     => $record->getConfig(),
+		$this->tableManager->getTable('Fusio\Backend\Table\App')->create(array(
+			'status'    => $record->getStatus(),
+			'name'      => $record->getName(),
+			'url'       => $record->getUrl(),
+			'appKey'    => $appKey,
+			'appSecret' => $appSecret,
+			'date'      => new DateTime(),
 		));
 
 		return array(
 			'success' => true,
-			'message' => 'Route successful created',
+			'message' => 'App successful created',
 		);
 	}
 
@@ -113,20 +112,16 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		// replace dash with backslash
-		$controller = str_replace('-', '\\', $record->getController());
-
-		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->update(array(
-			'id'         => $record->getId(),
-			'methods'    => $record->getMethods(),
-			'path'       => $record->getPath(),
-			'controller' => $controller,
-			'config'     => $record->getConfig(),
+		$this->tableManager->getTable('Fusio\Backend\Table\App')->update(array(
+			'id'     => $record->getId(),
+			'status' => $record->getStatus(),
+			'name'   => $record->getName(),
+			'url'    => $record->getUrl(),
 		));
 
 		return array(
 			'success' => true,
-			'message' => 'Route successful updated',
+			'message' => 'App successful updated',
 		);
 	}
 
@@ -141,13 +136,13 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->delete(array(
+		$this->tableManager->getTable('Fusio\Backend\Table\App')->delete(array(
 			'id' => $record->getId(),
 		));
 
 		return array(
 			'success' => true,
-			'message' => 'Route successful deleted',
+			'message' => 'App successful deleted',
 		);
 	}
 }

@@ -45,6 +45,7 @@ class RoutingParser implements LocationFinderInterface
 				$context->set(Context::KEY_FRAGMENT, $parameters);
 				$context->set(Context::KEY_SOURCE, $row['controller']);
 				$context->set('fusio.config', $config);
+				$context->set('fusio.routeId', $row['id']);
 
 				return $request;
 			}

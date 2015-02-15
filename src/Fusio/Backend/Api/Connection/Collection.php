@@ -60,7 +60,7 @@ class Collection extends SchemaApiAbstract
 	{
 		$startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-		$condition  = !empty($search) ? new Condition(['path', 'LIKE', '%' . $search . '%']) : null;
+		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
 
 		return array(
 			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Connection')->getCount($condition),

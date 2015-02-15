@@ -35,12 +35,29 @@ class SchemaApiController extends ControllerAbstract implements DocumentedInterf
 	 */
 	protected $apiSchemaManager;
 
+	/**
+	 * @Inject
+	 * @var Fusio\Logger
+	 */
+	protected $apiLogger;
+
 	public function onLoad()
 	{
 		list($requestSchemaId, $responseSchemaId, $actionId) = $this->getConfiguration($this->request->getMethod());
 
+		// we get the appId from authentication
+		$appId = 0;
+
+		// log request
+		$this->apiLogger->log(
+			$appId,
+			$this->context->get('fusio.routeId'),
+			$_SERVER['REMOTE_ADDR'],
+			$this->request
+		);
+
 		// read request data
-		if(!in_array($method, ['HEAD', 'GET']) && !empty($requestSchemaId))
+		if(!in_array($this->request->getMethod(), ['HEAD', 'GET']) && !empty($requestSchemaId))
 		{
 			if($responseSchemaId == self::SCHEMA_PASSTHRU)
 			{

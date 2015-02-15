@@ -5,6 +5,7 @@ namespace Fusio\Dependency;
 use Fusio\Executor;
 use Fusio\Factory;
 use Fusio\Parser;
+use Fusio\Logger;
 use Fusio\Connector;
 use Fusio\Loader\RoutingParser;
 use Fusio\Loader\DatabaseRoutes;
@@ -35,6 +36,14 @@ class Container extends DefaultContainer
 	public function getApiSchemaManager()
 	{
 		return new SchemaManager($this->get('connection'));
+	}
+
+	/**
+	 * @return Fusio\Logger
+	 */
+	public function getApiLogger()
+	{
+		return new Logger($this->get('connection'));
 	}
 
 	/**
