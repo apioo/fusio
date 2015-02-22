@@ -14,7 +14,7 @@ class Delete extends SchemaAbstract
 	public function getDefinition()
 	{
 		$schema = $this->getSchema('Fusio\Backend\Schema\Routes');
-		$schema->getChild('id')->setRequired(true);
+		$schema->get('id')->setRequired(true);
 
 		return $schema;
 	}

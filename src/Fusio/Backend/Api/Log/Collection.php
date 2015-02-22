@@ -42,10 +42,10 @@ class Collection extends SchemaApiAbstract
 	public function getDocumentation()
 	{
 		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
-		$view = new View();
-		$view->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Log\Collection'));
+		$builder = new View\Builder();
+		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Log\Collection'));
 
-		return new Documentation\Simple($view);
+		return new Documentation\Simple($builder->getView());
 	}
 
 	/**

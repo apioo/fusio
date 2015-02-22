@@ -14,8 +14,8 @@ class Create extends SchemaAbstract
 	public function getDefinition()
 	{
 		$schema = $this->getSchema('Fusio\Backend\Schema\Action');
-		$schema->getChild('name')->setRequired(true);
-		$schema->getChild('config')->setRequired(true);
+		$schema->get('name')->setRequired(true);
+		$schema->get('config')->setRequired(true);
 
 		return $schema;
 	}

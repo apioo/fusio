@@ -41,13 +41,13 @@ class Collection extends SchemaApiAbstract
 	public function getDocumentation()
 	{
 		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
-		$view = new View();
-		$view->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Collection'));
-		$view->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Create'), $message);
-		$view->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Update'), $message);
-		$view->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Delete'), $message);
+		$builder = new View\Builder();
+		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Collection'));
+		$builder->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Create'), $message);
+		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Update'), $message);
+		$builder->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Delete'), $message);
 
-		return new Documentation\Simple($view);
+		return new Documentation\Simple($builder->getView());
 	}
 
 	/**

@@ -37,12 +37,12 @@ class Entity extends SchemaApiAbstract
 	public function getDocumentation()
 	{
 		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
-		$view = new View();
-		$view->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Connection'));
-		$view->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Connection\Update'), $message);
-		$view->setDelete(null, $message);
+		$builder = new View\Builder();
+		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Connection'));
+		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Connection\Update'), $message);
+		$builder->setDelete(null, $message);
 
-		return new Documentation\Simple($view);
+		return new Documentation\Simple($builder->getView());
 	}
 
 	/**

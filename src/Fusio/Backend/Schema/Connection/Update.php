@@ -14,7 +14,7 @@ class Update extends SchemaAbstract
 	public function getDefinition()
 	{
 		$schema = $this->getSchema('Fusio\Backend\Schema\Connection');
-		$schema->getChild('id')->setRequired(true);
+		$schema->get('id')->setRequired(true);
 
 		return $schema;
 	}
