@@ -2,6 +2,7 @@
 
 namespace Fusio\Dependency;
 
+use Fusio\Backend\Api\Authorization\ClientCredentials;
 use Fusio\Executor;
 use Fusio\Factory;
 use Fusio\Parser;
@@ -9,11 +10,21 @@ use Fusio\Logger;
 use Fusio\Connector;
 use Fusio\Loader\RoutingParser;
 use Fusio\Loader\DatabaseRoutes;
+use Fusio\Loader\ResourceListing;
 use Fusio\Data\SchemaManager;
 use PSX\Dependency\DefaultContainer;
+use PSX\Oauth2\Provider\GrantTypeFactory;
 
 class Container extends DefaultContainer
 {
+	public function getOauth2GrantTypeFactory()
+	{
+		$factory = new GrantTypeFactory();
+		$factory->add(new ClientCredentials($this->get('connection')));
+
+		return $factory;
+	}
+
 	/**
 	 * @return PSX\Loader\LocationFinderInterface
 	 */
@@ -39,6 +50,14 @@ class Container extends DefaultContainer
 	}
 
 	/**
+	 * @return PSX\Api\ResourceListing
+	 */
+	public function getResourceListing()
+	{
+		return new ResourceListing($this->get('routing_parser'), $this->get('controller_factory'));
+	}
+
+	/**
 	 * @return Fusio\Logger
 	 */
 	public function getApiLogger()
@@ -47,7 +66,7 @@ class Container extends DefaultContainer
 	}
 
 	/**
-	 * @return Fusio\ActionParser
+	 * @return Fusio\Parser\Action
 	 */
 	public function getActionParser()
 	{
@@ -59,7 +78,7 @@ class Container extends DefaultContainer
 	}
 
 	/**
-	 * @return Fusio\ActionFactory
+	 * @return Fusio\Factory\Action
 	 */
 	public function getActionFactory()
 	{
@@ -87,7 +106,7 @@ class Container extends DefaultContainer
 	}
 
 	/**
-	 * @return Fusio\ConnectionFactory
+	 * @return Fusio\Factory\Connection
 	 */
 	public function getConnectionFactory()
 	{

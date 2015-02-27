@@ -2,6 +2,7 @@
 
 namespace Fusio\Backend\Api\Connection;
 
+use Fusio\Backend\Api\Authorization\ProtectionTrait;
 use Fusio\Form;
 use PSX\Controller\ApiAbstract;
 
@@ -10,6 +11,8 @@ use PSX\Controller\ApiAbstract;
  */
 class ListConnections extends ApiAbstract
 {
+	use ProtectionTrait;
+
 	/**
 	 * @Inject
 	 * @var Fusio\ConnectionParser

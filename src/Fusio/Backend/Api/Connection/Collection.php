@@ -2,6 +2,7 @@
 
 namespace Fusio\Backend\Api\Connection;
 
+use Fusio\Backend\Api\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
 use PSX\Api\View;
@@ -21,6 +22,7 @@ use PSX\Validate\RecordValidator;
  */
 class Collection extends SchemaApiAbstract
 {
+	use ProtectionTrait;
 	use ValidatorTrait;
 
 	/**

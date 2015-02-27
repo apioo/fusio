@@ -164,6 +164,10 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 		value: 'Deactivated'
 	}];
 
+	$http.get(fusio_url + 'backend/scope?count=1024').success(function(data){
+		$scope.scopes = data.entry;
+	});
+
 	$scope.update = function(app){
 		$http.put(fusio_url + 'backend/app/' + app.id, app)
 			.success(function(data){

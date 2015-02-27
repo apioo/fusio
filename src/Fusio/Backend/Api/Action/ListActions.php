@@ -2,6 +2,7 @@
 
 namespace Fusio\Backend\Api\Action;
 
+use Fusio\Backend\Api\Authorization\ProtectionTrait;
 use Fusio\Form;
 use PSX\Controller\ApiAbstract;
 
@@ -10,6 +11,8 @@ use PSX\Controller\ApiAbstract;
  */
 class ListActions extends ApiAbstract
 {
+	use ProtectionTrait;
+
 	/**
 	 * @Inject
 	 * @var Fusio\ActionParser

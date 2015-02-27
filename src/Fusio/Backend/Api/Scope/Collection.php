@@ -1,7 +1,8 @@
 <?php
 
-namespace Fusio\Backend\Api\Action;
+namespace Fusio\Backend\Api\Scope;
 
+use DateTime;
 use Fusio\Backend\Api\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
@@ -14,9 +15,11 @@ use PSX\Sql\Condition;
 use PSX\Validate;
 use PSX\Validate\Property;
 use PSX\Validate\RecordValidator;
+use PSX\OpenSsl;
+use PSX\Util\Uuid;
 
 /**
- * Controller
+ * Scope
  *
  * @see http://phpsx.org/doc/design/controller.html
  */
@@ -44,10 +47,10 @@ class Collection extends SchemaApiAbstract
 	{
 		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
 		$builder = new View\Builder();
-		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Collection'));
-		$builder->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Create'), $message);
-		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Update'), $message);
-		$builder->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Delete'), $message);
+		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Scope\Collection'));
+		$builder->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Scope\Create'), $message);
+		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Scope\Update'), $message);
+		$builder->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Scope\Delete'), $message);
 
 		return new Documentation\Simple($builder->getView());
 	}
@@ -64,10 +67,19 @@ class Collection extends SchemaApiAbstract
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
 		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
 
+		$result     = $this->tableManager->getTable('Fusio\Backend\Table\Scope')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition);
+		$routeTable = $this->tableManager->getTable('Fusio\Backend\Table\Scope\Route');
+
+		// append the fields
+		foreach($result as $key => $row)
+		{
+			$result[$key]['routes'] = $routeTable->getByScopeId($row['id']);
+		}
+
 		return array(
-			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Action')->getCount($condition),
+			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Scope')->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Action')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+			'entry'      => $result,
 		);
 	}
 
@@ -82,15 +94,20 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Action')->create(array(
-			'name'   => $record->getName(),
-			'class'  => $record->getClass(),
-			'config' => $record->getConfig()->getRecordInfo()->getData(),
+		$scopeTable = $this->tableManager->getTable('Fusio\Backend\Table\Scope');
+
+		$scopeTable->create(array(
+			'name' => $record->getName(),
 		));
+
+		// insert routes
+		$scopeId = $scopeTable->getLastInsertId();
+
+		$this->insertRoutes($scopeId, $record->getRoutes());
 
 		return array(
 			'success' => true,
-			'message' => 'Action successful created',
+			'message' => 'Scope successful created',
 		);
 	}
 
@@ -105,16 +122,18 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Action')->update(array(
-			'id'     => $record->getId(),
-			'name'   => $record->getName(),
-			'class'  => $record->getClass(),
-			'config' => $record->getConfig()->getRecordInfo()->getData(),
+		$this->tableManager->getTable('Fusio\Backend\Table\Scope')->update(array(
+			'id'   => $record->getId(),
+			'name' => $record->getName(),
 		));
+
+		$this->tableManager->getTable('Fusio\Backend\Table\Scope\Route')->deleteAllFromScope($record->getId());
+
+		$this->insertRoutes($record->getId(), $record->getRoutes());
 
 		return array(
 			'success' => true,
-			'message' => 'Route successful updated',
+			'message' => 'Scope successful updated',
 		);
 	}
 
@@ -129,13 +148,36 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Action')->delete(array(
+		$this->tableManager->getTable('Fusio\Backend\Table\Scope')->delete(array(
 			'id' => $record->getId(),
 		));
 
+		$this->tableManager->getTable('Fusio\Backend\Table\Scope\Route')->deleteAllFromScope($record->getId());
+
 		return array(
 			'success' => true,
-			'message' => 'Route successful deleted',
+			'message' => 'Scope successful deleted',
 		);
+	}
+
+	protected function insertRoutes($scopeId, $routes)
+	{
+		if(!empty($routes) && is_array($routes))
+		{
+			foreach($routes as $route)
+			{
+				//$this->getFieldValidator()->validate($field);
+
+				if($route->getAllow())
+				{
+					$this->tableManager->getTable('Fusio\Backend\Table\Scope\Route')->create(array(
+						'scopeId' => $scopeId,
+						'routeId' => $route->getRouteId(),
+						'allow'   => $route->getAllow() ? 1 : 0,
+						'methods' => $route->getMethods(),
+					));
+				}
+			}
+		}
 	}
 }

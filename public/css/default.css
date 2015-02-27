@@ -169,6 +169,11 @@ pre
 	white-space:nowrap;
 }
 
+.fusio-table-tab tbody tr:first-child td
+{
+	border-top:none;
+}
+
 /* general bootstrap fixes */
 .form-control, .btn
 {

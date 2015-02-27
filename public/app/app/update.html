@@ -30,6 +30,36 @@
 			<label for="appSecret">App-Secret:</label>
 			<input type="text" id="appKey" ng-model="app.appSecret" class="form-control" readonly="readonly">
 		</div>
+		<tabset>
+			<tab heading="Scopes">
+				<table class="table fusio-table-tab">
+				<colgroup>
+					<col width="20" />
+					<col width="*" />
+				</colgroup>
+				<tbody>
+				<tr ng-repeat="scope in scopes">
+					<td><input type="checkbox" value="{{scope.id}}" id="scope-{{scope.id}}" /></td>
+					<td><label for="scope-{{scope.id}}">{{scope.name}}</label></td>
+				</tr>
+				</tbody>
+				</table>
+			</tab>
+			<tab heading="Tokens">
+				<table class="table fusio-table-tab">
+				<colgroup>
+					<col width="*" />
+					<col width="50" />
+				</colgroup>
+				<tbody>
+				<tr ng-repeat="token in tokens">
+					<td>{{token.token}}</td>
+					<td><a ng-click="removeToken(token)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+				</tr>
+				</tbody>
+				</table>		
+			</tab>
+		</tabset>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 	</form>

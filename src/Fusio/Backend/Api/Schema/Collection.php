@@ -2,6 +2,7 @@
 
 namespace Fusio\Backend\Api\Schema;
 
+use Fusio\Backend\Api\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
 use PSX\Api\View;
@@ -22,6 +23,7 @@ use PSX\Http\Exception as StatusCode;
  */
 class Collection extends SchemaApiAbstract
 {
+	use ProtectionTrait;
 	use ValidatorTrait;
 
 	/**

@@ -2,6 +2,7 @@
 
 namespace Fusio\Backend\Api\Routes;
 
+use Fusio\Backend\Api\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
 use PSX\Api\View;
@@ -17,6 +18,7 @@ use PSX\Sql\Condition;
  */
 class Entity extends SchemaApiAbstract
 {
+	use ProtectionTrait;
 	use ValidatorTrait;
 
 	/**

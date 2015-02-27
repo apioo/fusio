@@ -1,12 +1,14 @@
 
-<iframe src="about:blank" name="sink" style="display:none"></iframe>
-
 <div class="modal-header">
 	<h3 class="modal-title">Login</h3>
 </div>
 
+<div ng-if="response" class="alert alert-danger" role="alert">
+	{{response}}
+</div>
+
 <div class="modal-body">
-	<form name="loginForm" action="" target="sink" method="post" ng-controller="LoginCtrl" ng-submit="login(credentials)" novalidate form-autofill-fix>
+	<form name="loginForm" method="post" ng-submit="login(credentials)" novalidate>
 		<div class="form-group">
 			<label for="username">Username:</label>
 			<input type="text" id="username" ng-model="credentials.username" class="form-control">

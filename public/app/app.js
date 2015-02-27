@@ -15,7 +15,8 @@ var fusioApp = angular.module('fusioApp', [
 	'fusioApp.schema',
 	'fusioApp.settings',
 	'fusioApp.trigger',
-	'fusioApp.user'
+	'fusioApp.user',
+	'fusioApp.scope'
 ]);
 
 fusioApp.config(['$routeProvider', function($routeProvider){

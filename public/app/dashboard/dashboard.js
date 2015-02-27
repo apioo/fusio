@@ -9,18 +9,17 @@ angular.module('fusioApp.dashboard', ['ngRoute'])
   });
 }])
 
-.controller('DashboardCtrl', ['$scope', '$http', '$modal', function ($scope, $http, $modal) {
+.controller('DashboardCtrl', ['$scope', '$http', function ($scope, $http) {
 
-	function assignCurrentUser (user) {
-		$rootScope.currentUser = user;
-		return user;
-	}
-
+	/*
 	var modalInstance = $modal.open({
 		templateUrl: 'app/login/index.html',
 		controller: 'LoginCtrl'
 	});
 
 	modalInstance.result.then(assignCurrentUser);
+	*/
+
+
 
 }]);
