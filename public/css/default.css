@@ -174,6 +174,80 @@ pre
 	border-top:none;
 }
 
+.fusio-panel
+{
+	height:300px;
+}
+
+.fusio-panel table tbody tr:first-child td
+{
+	border-top:none;
+}
+
+.fusio-panel table
+{
+}
+
+.fusio-login
+{
+	background:#eee;
+	position:fixed; 
+	left:0px; 
+	top:0px;
+	z-index:2; 
+	width:100%;
+	height:100%;
+	visibility:visible;
+}
+
+.fusio-login header
+{
+	background-color:#55acee;
+	background-image:url(../img/grid.png);
+	background-repeat:no-repeat;
+	width:100%;
+	top:0px;
+	left:0px;
+	height:38px;
+}
+
+.fusio-login header h1
+{
+	color:#fff;
+	margin:0px 15px;
+	padding:5px 0px;
+	font-size:1.8em;
+	font-weight:bold;
+	text-shadow:2px 1px #444;
+}
+
+.fusio-login header h1 > span
+{
+	vertical-align:middle;
+	color:#fff;
+	font-size:0.4em;
+	text-shadow:none;
+}
+
+.fusio-login-panel
+{
+	background-color:#fff;
+	width:400px;
+	border:1px solid #aaa;
+	margin:0 auto;
+	margin-top:32px;
+}
+
+.fusio-login-panel-body
+{
+	margin:8px;
+}
+
+.fusio-hidden
+{
+	visibility:hidden;
+}
+
 /* general bootstrap fixes */
 .form-control, .btn
 {
@@ -200,9 +274,18 @@ pre
 	border-radius:0px;
 }
 
+.panel
+{
+	border-radius:0px;
+}
+
+.alert
+{
+	border-radius:0px;
+}
+
 .ace_editor
 {
 	height:200px;
 	border:1px solid #ccc;
 }
-

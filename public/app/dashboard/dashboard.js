@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('fusioApp.dashboard', ['ngRoute'])
+angular.module('fusioApp.dashboard', ['ngRoute', 'chart.js'])
 
 .config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/dashboard', {
@@ -11,15 +11,28 @@ angular.module('fusioApp.dashboard', ['ngRoute'])
 
 .controller('DashboardCtrl', ['$scope', '$http', function ($scope, $http) {
 
-	/*
-	var modalInstance = $modal.open({
-		templateUrl: 'app/login/index.html',
-		controller: 'LoginCtrl'
+	$http.get(fusio_url + 'backend/dashboard/incoming_requests').success(function(data){
+		$scope.incomingRequests = data;
 	});
 
-	modalInstance.result.then(assignCurrentUser);
-	*/
+	$http.get(fusio_url + 'backend/dashboard/most_used_routes').success(function(data){
+		$scope.mostUsedRoutes = data.entry;
+	});
 
+	$http.get(fusio_url + 'backend/dashboard/most_used_apps').success(function(data){
+		$scope.mostUsedApps = data.entry;
+	});
 
+	$http.get(fusio_url + 'backend/dashboard/latest_requests').success(function(data){
+		$scope.latestRequests = data.entry;
+	});
+
+	$http.get(fusio_url + 'backend/dashboard/latest_apps').success(function(data){
+		$scope.latestApps = data.entry;
+	});
+
+	$http.get(fusio_url + 'backend/dashboard/latest_users').success(function(data){
+		$scope.latestUsers = data.entry;
+	});
 
 }]);

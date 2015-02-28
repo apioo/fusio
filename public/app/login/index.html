@@ -1,22 +1,24 @@
 
-<div class="modal-header">
-	<h3 class="modal-title">Login</h3>
-</div>
-
-<div ng-if="response" class="alert alert-danger" role="alert">
-	{{response}}
-</div>
-
-<div class="modal-body">
-	<form name="loginForm" method="post" ng-submit="login(credentials)" novalidate>
-		<div class="form-group">
-			<label for="username">Username:</label>
-			<input type="text" id="username" ng-model="credentials.username" class="form-control">
+<div class="fusio-login">
+	<div class="fusio-login-panel">
+		<header>
+			<h1>Fusio <span>(v0.1)</span></h1>
+		</header>
+		<div class="fusio-login-panel-body">
+			<div ng-if="response" class="alert alert-danger" role="alert">
+				{{response}}
+			</div>
+			<form name="loginForm" method="post" ng-submit="login(credentials)" novalidate>
+				<div class="form-group">
+					<label for="username">Username:</label>
+					<input type="text" id="username" ng-model="credentials.username" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="password">Password:</label>
+					<input type="password" id="password" ng-model="credentials.password" class="form-control">
+				</div>
+				<button type="submit" class="btn btn-default">Login</button>
+			</form>
 		</div>
-		<div class="form-group">
-			<label for="password">Password:</label>
-			<input type="password" id="password" ng-model="credentials.password" class="form-control">
-		</div>
-		<button type="submit" class="btn btn-default">Login</button>
-	</form>
+	</div>
 </div>

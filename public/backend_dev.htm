@@ -12,15 +12,19 @@
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+	<link href="bower_components/angular-chart.js/dist/angular-chart.css" rel="stylesheet" media="screen">
 	<link href="css/default.css" rel="stylesheet" media="screen">
 	<script src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+	<script src="bower_components/Chart.js/Chart.min.js"></script>
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 	<script src="bower_components/angular-ui-ace/ui-ace.js"></script>
+	<script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
 	<script src="app/app.js"></script>
 	<script src="app/login/login.js"></script>
+	<script src="app/logout/logout.js"></script>
 	<script src="app/dashboard/dashboard.js"></script>
 	<script src="app/routes/routes.js"></script>
 	<script src="app/schema/schema.js"></script>
@@ -37,15 +41,13 @@
 	var fusio_url = 'http://127.0.0.1/projects/fusio/public/index.php/';
 	</script>
 </head>
-<body>
+<body class="fusio-hidden">
 
 <header class="fusio-header">
 	<div class="btn-group pull-right fusio-header-profile">
 		<span class="dropdown" dropdown on-toggle="toggled(open)">
 			<a href class="dropdown-toggle" dropdown-toggle><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Administrator</a>
 			<ul class="dropdown-menu dropdown-menu-right">
-				<li><a href="#/settings">Settings</a></li>
-				<li><a href="#/change_password">Change password</a></li>
 				<li><a href="#/logout">Logout</a></li>
 			</ul>
 		</span>
@@ -65,7 +67,6 @@
 					<li><a href="#/connection"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Connection</a></li>
 					<li><a href="#/app"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> App</a></li>
 					<li><a href="#/scope"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Scope</a></li>
-					<li><a href="#/settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
 					<li><a href="#/log"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Log</a></li>
 					<li><a href="#/user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User</a></li>
 				</ul>

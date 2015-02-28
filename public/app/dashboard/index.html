@@ -1,5 +1,96 @@
 
-<h1>Welcome, ...</h1>
+<h1>Dashboard</h1>
 
-<p>foobar</p>
+<div class="row">
+	<div class="col-md-4">
+		<div class="panel panel-default fusio-panel">
+			<div class="panel-heading">Incoming request chart</div>
+			<div class="panel-body">
+				<canvas class="chart chart-line" data="incomingRequests.data" labels="incomingRequests.labels" series="incomingRequests.series"></canvas>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-default fusio-panel">
+			<div class="panel-heading">Most used routes (last month)</div>
+			<div class="panel-body">
+				<table class="table">
+				<colgroup>
+					<col width="60" />
+					<col width="*" />
+				</colgroup>
+				<tbody>
+				<tr ng-repeat="route in mostUsedRoutes">
+					<td>{{route.count}}</td>
+					<td>{{route.path}}</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-default fusio-panel">
+			<div class="panel-heading">Most used apps (last month)</div>
+			<div class="panel-body">
+				<table class="table">
+				<colgroup>
+					<col width="60" />
+					<col width="*" />
+				</colgroup>
+				<tbody>
+				<tr ng-repeat="app in mostUsedApps">
+					<td>{{app.count}}</td>
+					<td>{{app.name}}</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
 
+<div class="row">
+	<div class="col-md-4">
+		<div class="panel panel-default fusio-panel">
+			<div class="panel-heading">Latest requests</div>
+			<div class="panel-body">
+				<table class="table">
+				<tbody>
+				<tr ng-repeat="request in latestRequests">
+					<td>{{request.path}}</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-default fusio-panel">
+			<div class="panel-heading">Latest apps</div>
+			<div class="panel-body">
+				<table class="table">
+				<tbody>
+				<tr ng-repeat="app in latestApps">
+					<td>{{app.name}}</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-default fusio-panel">
+			<div class="panel-heading">Latest users</div>
+			<div class="panel-body">
+				<table class="table">
+				<tbody>
+				<tr ng-repeat="user in latestUsers">
+					<td>{{user.name}}</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

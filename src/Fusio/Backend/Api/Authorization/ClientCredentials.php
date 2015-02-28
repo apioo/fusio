@@ -49,7 +49,7 @@ class ClientCredentials extends ClientCredentialsAbstract
 								    date = NOW()';
 
 				$expires = new \DateTime();
-				$expires->add(new \DateInterval('PT1H'));
+				$expires->add(new \DateInterval('PT6H'));
 
 				$this->connection->executeUpdate($sql, array(
 					'app_id'  => 1,
