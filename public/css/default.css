@@ -190,7 +190,7 @@ pre
 
 .fusio-login
 {
-	background:#eee;
+	background-color:#021c35;
 	position:fixed; 
 	left:0px; 
 	top:0px;
@@ -205,17 +205,18 @@ pre
 	background-color:#55acee;
 	background-image:url(../img/grid.png);
 	background-repeat:no-repeat;
+	background-position:bottom;
 	width:100%;
 	top:0px;
 	left:0px;
-	height:38px;
+	height:50px;
 }
 
 .fusio-login header h1
 {
 	color:#fff;
 	margin:0px 15px;
-	padding:5px 0px;
+	padding:10px 0px;
 	font-size:1.8em;
 	font-weight:bold;
 	text-shadow:2px 1px #444;
@@ -233,7 +234,7 @@ pre
 {
 	background-color:#fff;
 	width:400px;
-	border:1px solid #aaa;
+	border:1px solid #fff;
 	margin:0 auto;
 	margin-top:32px;
 }
