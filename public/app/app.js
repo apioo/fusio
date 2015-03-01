@@ -15,7 +15,6 @@ var fusioApp = angular.module('fusioApp', [
 	'fusioApp.logout',
 	'fusioApp.routes',
 	'fusioApp.schema',
-	'fusioApp.settings',
 	'fusioApp.trigger',
 	'fusioApp.user',
 	'fusioApp.scope'
