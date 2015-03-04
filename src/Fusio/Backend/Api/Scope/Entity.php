@@ -60,6 +60,10 @@ class Entity extends SchemaApiAbstract
 
 		if(!empty($scope))
 		{
+			$scope['routes'] = $this->tableManager
+				->getTable('Fusio\Backend\Table\Scope\Route')
+				->getByScopeId($scope['id']);
+
 			return $scope;
 		}
 		else

@@ -67,19 +67,12 @@ class Collection extends SchemaApiAbstract
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
 		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
 
-		$result     = $this->tableManager->getTable('Fusio\Backend\Table\Scope')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition);
-		$routeTable = $this->tableManager->getTable('Fusio\Backend\Table\Scope\Route');
-
-		// append the fields
-		foreach($result as $key => $row)
-		{
-			$result[$key]['routes'] = $routeTable->getByScopeId($row['id']);
-		}
+		$table = $this->tableManager->getTable('Fusio\Backend\Table\Scope');
 
 		return array(
-			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Scope')->getCount($condition),
+			'totalItems' => $table->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $result,
+			'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
 		);
 	}
 

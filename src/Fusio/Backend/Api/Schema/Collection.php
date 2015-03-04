@@ -65,19 +65,13 @@ class Collection extends SchemaApiAbstract
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
 		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
 
-		$result      = $this->tableManager->getTable('Fusio\Backend\Table\Schema')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition);
-		$fieldsTable = $this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields');
-
-		// append the fields
-		foreach($result as $key => $row)
-		{
-			$result[$key]['fields'] = $fieldsTable->getBySchemaId($row['id']);
-		}
+		$table = $this->tableManager->getTable('Fusio\Backend\Table\Schema');
+		$table->setRestrictedFields(['propertyName']);
 
 		return array(
-			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Schema')->getCount($condition),
+			'totalItems' => $table->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $result,
+			'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
 		);
 	}
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fusio\Backend\Api\Log;
+namespace Fusio\Backend\Api\User;
 
 use Fusio\Backend\Api\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
@@ -19,6 +19,7 @@ use PSX\Sql\Condition;
 class Entity extends SchemaApiAbstract
 {
 	use ProtectionTrait;
+	use ValidatorTrait;
 
 	/**
 	 * @Inject
@@ -39,7 +40,9 @@ class Entity extends SchemaApiAbstract
 	{
 		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
 		$builder = new View\Builder();
-		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Log'));
+		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\User'));
+		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Update'), $message);
+		$builder->setDelete(null, $message);
 
 		return new Documentation\Simple($builder->getView());
 	}
@@ -52,16 +55,16 @@ class Entity extends SchemaApiAbstract
 	 */
 	protected function doGet(Version $version)
 	{
-		$logId = (int) $this->getUriFragment('app_id');
-		$log   = $this->tableManager->getTable('Fusio\Backend\Table\Log')->get($logId);
+		$userId = (int) $this->getUriFragment('user_id');
+		$user   = $this->tableManager->getTable('Fusio\Backend\Table\User')->get($userId);
 
-		if(!empty($log))
+		if(!empty($user))
 		{
-			return $log;
+			return $user;
 		}
 		else
 		{
-			throw new StatusCode\NotFoundException('Could not find app');
+			throw new StatusCode\NotFoundException('Could not find user');
 		}
 	}
 
@@ -85,6 +88,28 @@ class Entity extends SchemaApiAbstract
 	 */
 	protected function doUpdate(RecordInterface $record, Version $version)
 	{
+		$userId = (int) $this->getUriFragment('user_id');
+		$user   = $this->tableManager->getTable('Fusio\Backend\Table\User')->get($userId);
+
+		if(!empty($user))
+		{
+			$this->getValidator()->validate($record);
+
+			$this->tableManager->getTable('Fusio\Backend\Table\User')->update(array(
+				'id'     => $user['id'],
+				'status' => $record->getStatus(),
+				'name'   => $record->getName(),
+			));
+
+			return array(
+				'success' => true,
+				'message' => 'User successful updated',
+			);
+		}
+		else
+		{
+			throw new StatusCode\NotFoundException('Could not find user');
+		}
 	}
 
 	/**
@@ -96,5 +121,23 @@ class Entity extends SchemaApiAbstract
 	 */
 	protected function doDelete(RecordInterface $record, Version $version)
 	{
+		$userId = (int) $this->getUriFragment('user_id');
+		$user   = $this->tableManager->getTable('Fusio\Backend\Table\User')->get($userId);
+
+		if(!empty($user))
+		{
+			$this->tableManager->getTable('Fusio\Backend\Table\User')->delete(array(
+				'id' => $user['id']
+			));
+
+			return array(
+				'success' => true,
+				'message' => 'User successful deleted',
+			);
+		}
+		else
+		{
+			throw new StatusCode\NotFoundException('Could not find user');
+		}
 	}
 }

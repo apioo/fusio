@@ -60,6 +60,11 @@ class Entity extends SchemaApiAbstract
 
 		if(!empty($schema))
 		{
+			// append the fields
+			$schema['fields'] = $this->tableManager
+				->getTable('Fusio\Backend\Table\Schema\Fields')
+				->getBySchemaId($schema['id']);
+
 			return $schema;
 		}
 		else

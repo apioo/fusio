@@ -80,10 +80,13 @@ class Collection extends SchemaApiAbstract
 			$condition->add('path', 'LIKE', '%' . $search . '%');
 		}
 
+		$table = $this->tableManager->getTable('Fusio\Backend\Table\Log');
+		$table->setRestrictedFields(['header', 'body']);
+
 		return array(
-			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\Log')->getCount($condition),
+			'totalItems' => $table->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\Log')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+			'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
 		);
 	}
 

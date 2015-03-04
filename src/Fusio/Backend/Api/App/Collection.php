@@ -67,10 +67,13 @@ class Collection extends SchemaApiAbstract
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
 		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
 
+		$table = $this->tableManager->getTable('Fusio\Backend\Table\App');
+		$table->setRestrictedFields(['url', 'appSecret']);
+
 		return array(
-			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\App')->getCount($condition),
+			'totalItems' => $table->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $this->tableManager->getTable('Fusio\Backend\Table\App')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+			'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
 		);
 	}
 

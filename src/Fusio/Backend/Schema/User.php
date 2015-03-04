@@ -5,21 +5,18 @@ namespace Fusio\Backend\Schema;
 use PSX\Data\SchemaAbstract;
 
 /**
- * Log
+ * User
  *
  * @see http://phpsx.org/doc/concept/schema.html
  */
-class Log extends SchemaAbstract
+class User extends SchemaAbstract
 {
 	public function getDefinition()
 	{
-		$sb = $this->getSchemaBuilder('log');
+		$sb = $this->getSchemaBuilder('user');
 		$sb->integer('id');
-		$sb->string('ip');
-		$sb->string('method');
-		$sb->string('path');
-		$sb->string('header');
-		$sb->string('body');
+		$sb->integer('status');
+		$sb->string('name');
 		$sb->dateTime('date');
 
 		return $sb->getProperty();

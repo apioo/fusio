@@ -15,7 +15,7 @@ class Schema extends SchemaAbstract
 	{
 		$sb = $this->getSchemaBuilder('schema');
 		$sb->integer('id');
-		$sb->string('extendsId');
+		$sb->integer('extendsId');
 		$sb->string('name');
 		$sb->string('propertyName');
 		$sb->arrayType('fields')

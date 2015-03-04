@@ -1,7 +1,8 @@
 <?php
 
-namespace Fusio\Backend\Api\Action;
+namespace Fusio\Backend\Api\User;
 
+use DateTime;
 use Fusio\Backend\Api\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
@@ -14,9 +15,11 @@ use PSX\Sql\Condition;
 use PSX\Validate;
 use PSX\Validate\Property;
 use PSX\Validate\RecordValidator;
+use PSX\OpenSsl;
+use PSX\Util\Uuid;
 
 /**
- * Controller
+ * User
  *
  * @see http://phpsx.org/doc/design/controller.html
  */
@@ -44,10 +47,10 @@ class Collection extends SchemaApiAbstract
 	{
 		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
 		$builder = new View\Builder();
-		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Collection'));
-		$builder->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Create'), $message);
-		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Update'), $message);
-		$builder->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Delete'), $message);
+		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Collection'));
+		$builder->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Create'), $message);
+		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Update'), $message);
+		$builder->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Delete'), $message);
 
 		return new Documentation\Simple($builder->getView());
 	}
@@ -64,13 +67,12 @@ class Collection extends SchemaApiAbstract
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
 		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
 
-		$table = $this->tableManager->getTable('Fusio\Backend\Table\Action');
-		$table->setRestrictedFields(['class', 'config']);
+		$result = $this->tableManager->getTable('Fusio\Backend\Table\User')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition);
 
 		return array(
-			'totalItems' => $table->getCount($condition),
+			'totalItems' => $this->tableManager->getTable('Fusio\Backend\Table\User')->getCount($condition),
 			'startIndex' => $startIndex,
-			'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+			'entry'      => $result,
 		);
 	}
 
@@ -85,15 +87,18 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Action')->create(array(
-			'name'   => $record->getName(),
-			'class'  => $record->getClass(),
-			'config' => $record->getConfig()->getRecordInfo()->getData(),
+		$password = sha1(mcrypt_create_iv(40));
+
+		$this->tableManager->getTable('Fusio\Backend\Table\User')->create(array(
+			'status'   => $record->getStatus(),
+			'name'     => $record->getName(),
+			'password' => \password_hash($password, PASSWORD_DEFAULT),
+			'date'     => new DateTime(),
 		));
 
 		return array(
 			'success' => true,
-			'message' => 'Action successful created',
+			'message' => 'User successful created. The following password was assigned to the account: ' . $password,
 		);
 	}
 
@@ -108,16 +113,15 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Action')->update(array(
+		$this->tableManager->getTable('Fusio\Backend\Table\User')->update(array(
 			'id'     => $record->getId(),
+			'status' => $record->getStatus(),
 			'name'   => $record->getName(),
-			'class'  => $record->getClass(),
-			'config' => $record->getConfig()->getRecordInfo()->getData(),
 		));
 
 		return array(
 			'success' => true,
-			'message' => 'Route successful updated',
+			'message' => 'User successful updated',
 		);
 	}
 
@@ -132,13 +136,13 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		$this->tableManager->getTable('Fusio\Backend\Table\Action')->delete(array(
+		$this->tableManager->getTable('Fusio\Backend\Table\User')->delete(array(
 			'id' => $record->getId(),
 		));
 
 		return array(
 			'success' => true,
-			'message' => 'Route successful deleted',
+			'message' => 'User successful deleted',
 		);
 	}
 }
