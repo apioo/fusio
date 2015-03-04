@@ -9,7 +9,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 	});
 }])
 
-.controller('SchemaCtrl', ['$scope', '$http', '$modal', '$timeout', function($scope, $http, $modal, $timeout){
+.controller('SchemaCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
 
 	$scope.response = null;
 	$scope.search = '';
@@ -53,10 +53,6 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
 	};
@@ -76,10 +72,6 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
 	};
@@ -99,12 +91,12 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 	$scope.load();
@@ -137,6 +129,10 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 	$http.get(fusio_url + 'backend/schema')
@@ -196,6 +192,10 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 		$modalInstance.dismiss('cancel');
 	};
 
+	$scope.closeResponse = function(){
+		$scope.response = null;
+	};
+
 	$http.get(fusio_url + 'backend/schema')
 		.success(function(data){
 			var schemas = [{id: 0, name: 'No schema'}];
@@ -225,6 +225,11 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 		$scope.schema.fields = newFields;
 	};
 
+	$http.get(fusio_url + 'backend/schema/' + schema.id)
+		.success(function(data){
+			$scope.schema = data;
+		});
+
 }])
 
 .controller('SchemaDeleteCtrl', ['$scope', '$http', '$modalInstance', 'schema', function($scope, $http, $modalInstance, schema){
@@ -246,6 +251,10 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 }]);

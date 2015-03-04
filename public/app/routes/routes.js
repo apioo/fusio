@@ -9,7 +9,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	});
 }])
 
-.controller('RoutesCtrl', ['$scope', '$http', '$modal', '$timeout', function($scope, $http, $modal, $timeout){
+.controller('RoutesCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
 
 	$scope.response = null;
 	$scope.search = '';
@@ -20,12 +20,6 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		$http.get(fusio_url + 'backend/routes?search=' + search).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.startIndex = 0;
-
-			// replace backslash with dash
-			for (var i = 0; i < data.entry.length; i++) {
-				data.entry[i].controller = data.entry[i].controller.replace(/\\/g, '-');
-			}
-
 			$scope.routes = data.entry;
 		});
 	};
@@ -59,10 +53,6 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
 	};
@@ -82,10 +72,6 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
 	};
@@ -105,12 +91,12 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 	$scope.load();
@@ -171,6 +157,10 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		$modalInstance.dismiss('cancel');
 	};
 
+	$scope.closeResponse = function(){
+		$scope.response = null;
+	};
+
 	$scope.addOptionRow = function(){
 		$scope.route.config.push({
 			method: 'GET',
@@ -226,6 +216,14 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 			});
 	};
 
+	$http.get(fusio_url + 'backend/routes/' + route.id)
+		.success(function(data){
+			// replace backslash with dash
+			data.controller = data.controller.replace(/\\/g, '-');
+
+			$scope.route = data;
+		});
+
 	$http.get(fusio_url + 'backend/action')
 		.success(function(data){
 			$scope.actions = data.entry;
@@ -238,6 +236,10 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 	$scope.addOptionRow = function(){
@@ -285,6 +287,10 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 }]);

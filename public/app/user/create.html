@@ -7,19 +7,15 @@
 	<alert type="danger" close="closeResponse()" ng-if="response.success === false">
 		{{response.message}}
 	</alert>
-	<form name="routesCreateForm" ng-submit="create(app)">
+	<form name="usersCreateForm" ng-submit="create(user)">
 		<div class="form-group">
 			<label for="status">Status:</label>
-			<select id="status" ng-model="app.status" ng-options="state.key as state.value for state in states" class="form-control">
+			<select id="status" ng-model="user.status" ng-options="status.id as status.name for status in statuuus" class="form-control">
 			</select>
 		</div>
 		<div class="form-group">
 			<label for="name">Name:</label>
-			<input type="text" id="name" ng-model="app.name" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="url">Url:</label>
-			<input type="text" id="url" ng-model="app.url" class="form-control">
+			<input type="text" id="name" ng-model="user.name" class="form-control">
 		</div>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>

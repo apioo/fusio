@@ -4,9 +4,9 @@
 </div>
 
 <div class="modal-body">
-	<div ng-if="!response.success && response.message" class="alert alert-danger" role="alert">
+	<alert type="danger" close="closeResponse()" ng-if="response.success === false">
 		{{response.message}}
-	</div>
+	</alert>
 	<form name="routesCreateForm" ng-submit="create(scope)">
 		<div class="form-group">
 			<label for="name">Name:</label>
@@ -32,7 +32,7 @@
 		</thead>
 		<tbody>
 		<tr ng-repeat="route in routes">
-			<td><label for="route-{{route.id}}">{{route.path}}</label></td>
+			<td>{{route.path}}</td>
 			<td><input type="checkbox" ng-model="route.allowedMethods.get" value="GET" ng-disabled="route.methods.indexOf('GET') == -1" /></td>
 			<td><input type="checkbox" ng-model="route.allowedMethods.post" value="POST" ng-disabled="route.methods.indexOf('POST') == -1" /></td>
 			<td><input type="checkbox" ng-model="route.allowedMethods.put" value="PUT" ng-disabled="route.methods.indexOf('PUT') == -1" /></td>

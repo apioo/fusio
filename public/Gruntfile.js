@@ -3,7 +3,11 @@ module.exports = function(grunt){
   grunt.initConfig({
     concat: {
       options: {
-        separator: ';\n'
+        separator: ';\n',
+        process: function(src, filepath) {
+          return '// Source: ' + filepath + '\n' +
+            src.replace(/\/\/# sourceMappingURL=([A-z0-9\-\.\_]+)/g, '').trim();
+        },
       },
       dist: {
         src: [
@@ -11,7 +15,6 @@ module.exports = function(grunt){
           './bower_components/ace-builds/src-min-noconflict/mode-json.js',
           './bower_components/ace-builds/src-min-noconflict/mode-sql.js',
           './bower_components/ace-builds/src-min-noconflict/mode-haml.js',
-          './bower_components/ace-builds/src-min-noconflict/mode-text.js',
           './bower_components/ace-builds/src-min-noconflict/mode-xml.js',
           './bower_components/ace-builds/src-min-noconflict/worker-json.js',
           './bower_components/Chart.js/Chart.min.js',
@@ -41,7 +44,6 @@ module.exports = function(grunt){
             './app/routes/routes.js',
             './app/schema/schema.js',
             './app/action/action.js',
-            './app/trigger/trigger.js',
             './app/connection/connection.js',
             './app/app/app.js',
             './app/log/log.js',

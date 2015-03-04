@@ -4,9 +4,9 @@
 </div>
 
 <div class="modal-body">
-	<div ng-if="!response.success && response.message" class="alert alert-danger" role="alert">
+	<alert type="danger" close="closeResponse()" ng-if="response.success === false">
 		{{response.message}}
-	</div>
+	</alert>
 	<form name="actionCreateForm" ng-submit="create(action)">
 		<div class="form-group">
 			<label for="name">Name:</label>

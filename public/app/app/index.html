@@ -18,9 +18,13 @@
 	</table>
 </div>
 
-<div ng-if="response.success" class="alert alert-success" role="alert">
+<alert type="success" close="closeResponse()" ng-if="response.success === true">
 	{{response.message}}
-</div>
+</alert>
+
+<alert type="danger" close="closeResponse()" ng-if="response.success === false">
+	{{response.message}}
+</alert>
 
 <div class="fusio-grid">
 	<table class="table">

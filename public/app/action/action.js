@@ -9,7 +9,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
   });
 }])
 
-.controller('ActionCtrl', ['$scope', '$http', '$modal', '$timeout', function($scope, $http, $modal, $timeout){
+.controller('ActionCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
 
 	$scope.response = null;
 	$scope.search = '';
@@ -53,10 +53,6 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
 	};
@@ -76,10 +72,6 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
 	};
@@ -99,12 +91,12 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 	$scope.load();
@@ -147,6 +139,10 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		$modalInstance.dismiss('cancel');
 	};
 
+	$scope.closeResponse = function(){
+		$scope.response = null;
+	};
+
 	$scope.loadConfig = function(){
 		if ($scope.action.class) {
 			$http.get(fusio_url + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
@@ -164,10 +160,6 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 }])
 
 .controller('ActionUpdateCtrl', ['$scope', '$http', '$modalInstance', 'action', 'formBuilder', '$timeout', function($scope, $http, $modalInstance, action, formBuilder, $timeout){
-
-	if (angular.isArray(action.config)) {
-		action.config = {};
-	}
 
 	$scope.action = action;
 	$scope.actions = [];
@@ -189,6 +181,10 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		$modalInstance.dismiss('cancel');
 	};
 
+	$scope.closeResponse = function(){
+		$scope.response = null;
+	};
+
 	$scope.loadConfig = function(){
 		if ($scope.action.class) {
 			$http.get(fusio_url + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
@@ -203,7 +199,16 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		}
 	};
 
-	$scope.loadConfig();
+	$http.get(fusio_url + 'backend/action/' + action.id)
+		.success(function(data){
+			if (angular.isArray(data.config)) {
+				data.config = {};
+			}
+
+			$scope.action = data;
+
+			$scope.loadConfig();
+		});
 
 }])
 
@@ -226,6 +231,10 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 }]);

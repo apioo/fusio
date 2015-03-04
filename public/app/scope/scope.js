@@ -9,7 +9,7 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 	});
 }])
 
-.controller('ScopeCtrl', ['$scope', '$http', '$modal', '$timeout', function($scope, $http, $modal, $timeout){
+.controller('ScopeCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
 
 	$scope.response = null;
 	$scope.search = '';
@@ -53,10 +53,6 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
 	};
@@ -76,10 +72,6 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
 	};
@@ -99,12 +91,12 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 	$scope.load();
@@ -160,6 +152,10 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 }])
@@ -237,6 +233,10 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 		$modalInstance.dismiss('cancel');
 	};
 
+	$scope.closeResponse = function(){
+		$scope.response = null;
+	};
+
 }])
 
 .controller('ScopeDeleteCtrl', ['$scope', '$http', '$modalInstance', 'scope', function($scope, $http, $modalInstance, scope){
@@ -258,6 +258,10 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 }]);

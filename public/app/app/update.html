@@ -4,9 +4,9 @@
 </div>
 
 <div class="modal-body">
-	<div ng-if="!response.success && response.message" class="alert alert-danger" role="alert">
+	<alert type="danger" close="closeResponse()" ng-if="response.success === false">
 		{{response.message}}
-	</div>
+	</alert>
 	<form name="routesUpdateForm" ng-submit="update(app)">
 		<input type="hidden" ng-model="app.id" value="{{app.id}}" />
 		<div class="form-group">

@@ -9,7 +9,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 	});
 }])
 
-.controller('ConnectionCtrl', ['$scope', '$http', '$modal', '$timeout', function($scope, $http, $modal, $timeout){
+.controller('ConnectionCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
 
 	$scope.response = null;
 	$scope.search = '';
@@ -53,10 +53,6 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
 	};
@@ -76,10 +72,6 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
 	};
@@ -99,12 +91,12 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 		modalInstance.result.then(function(response){
 			$scope.response = response;
 			$scope.load();
-
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
 		}, function(){
 		});
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 	$scope.load();
@@ -146,6 +138,10 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 	$scope.loadConfig = function(){
@@ -192,6 +188,10 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 		$modalInstance.dismiss('cancel');
 	};
 
+	$scope.closeResponse = function(){
+		$scope.response = null;
+	};
+
 	$scope.loadConfig = function(){
 		if ($scope.connection.class) {
 			$http.get(fusio_url + 'backend/connection/form?class=' + encodeURIComponent($scope.connection.class))
@@ -208,7 +208,12 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 		}
 	};
 
-	$scope.loadConfig();
+	$http.get(fusio_url + 'backend/connection/' + connection.id)
+		.success(function(data){
+			$scope.connection = data;
+
+			$scope.loadConfig();
+		});
 
 }])
 
@@ -231,6 +236,10 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
+	};
+
+	$scope.closeResponse = function(){
+		$scope.response = null;
 	};
 
 }]);

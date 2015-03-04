@@ -7,15 +7,11 @@
 	<alert type="danger" close="closeResponse()" ng-if="response.success === false">
 		{{response.message}}
 	</alert>
-	<form name="routesDeleteForm" ng-submit="delete(schema)">
-		<input type="hidden" ng-model="schema.id" value="{{schema.id}}" />
+	<form name="usersDeleteForm" ng-submit="delete(user)">
+		<input type="hidden" ng-model="user.id" value="{{user.id}}" />	
 		<div class="form-group">
 			<label for="name">Name:</label>
-			<input type="text" id="name" ng-model="schema.name" class="form-control">
-		</div>
-		<div class="form-group">
-			<label for="property_name">Property name:</label>
-			<input type="text" id="property_name" ng-model="schema.propertyName" class="form-control">
+			<input type="text" id="name" ng-model="user.name" class="form-control" disabled="disabled">
 		</div>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
