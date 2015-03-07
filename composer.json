@@ -1,7 +1,7 @@
 {
-  "name": "psx/sample",
-  "description": "PSX sample project",
-  "homepage": "http://phpsx.org",
+  "name": "fusio/fusio",
+  "description": "Fusio project",
+  "homepage": "http://fusio-project.org",
   "license": "GPL-3.0",
   "authors": [
     {
@@ -12,7 +12,8 @@
   ],
   "require": {
     "php": ">=5.3",
-    "psx/psx": "dev-master"
+    "psx/psx": "0.9.6",
+    "ircmaxell/password-compat": "1.0.4"
   },
   "autoload": {
     "psr-0": {
