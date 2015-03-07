@@ -31,7 +31,7 @@ module.exports = function(grunt){
     },
     uglify: {
       options: {
-        banner: '/*\n Fusio v0.1\n (c) 2015 Christoph Kappestein http://fusio-project.org\n License: GPLv3\n*/\n',
+        banner: '/*\n fusio\n Copyright (C) 2015 Christoph Kappestein\n License: GPLv3\n*/\n',
         mangle: false
       },
       dist: {
