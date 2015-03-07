@@ -1,6 +1,6 @@
 <?php
 /*
- * fusio
+ * Fusio
  * A web-application to create dynamically RESTful APIs
  * 
  * Copyright (C) 2015 Christoph Kappestein <k42b3.x@gmail.com>
@@ -35,7 +35,7 @@ use Fusio\Form\Element;
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
- * @link    http://phpsx.org
+ * @link    http://fusio-project.org
  */
 class SqlQueryExecute implements ActionInterface
 {
