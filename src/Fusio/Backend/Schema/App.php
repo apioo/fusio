@@ -16,6 +16,7 @@ class App extends SchemaAbstract
 		$sb = $this->getSchemaBuilder('app');
 		$sb->integer('id');
 		$sb->integer('status');
+		$sb->integer('userId');
 		$sb->string('name');
 		$sb->string('url');
 		$sb->string('appKey');

@@ -3,6 +3,7 @@
 namespace Fusio\Backend\Schema;
 
 use PSX\Data\SchemaAbstract;
+use PSX\Data\Schema\Property;
 
 /**
  * User
@@ -17,6 +18,8 @@ class User extends SchemaAbstract
 		$sb->integer('id');
 		$sb->integer('status');
 		$sb->string('name');
+		$sb->arrayType('scopes')
+			->setPrototype(new Property\String('name'));
 		$sb->dateTime('date');
 
 		return $sb->getProperty();

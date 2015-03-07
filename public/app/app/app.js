@@ -143,6 +143,19 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 		$scope.response = null;
 	};
 
+	$scope.getUsers = function(name){
+		return $http.get(fusio_url + 'backend/user?search=' + encodeURIComponent(name)).then(function(response){
+			if (angular.isArray(response.data.entry)) {
+				return response.data.entry;
+				return response.data.entry.map(function(item){
+					return item.name;
+				});
+			} else {
+				return [];
+			}
+		});
+	};
+
 }])
 
 .controller('AppUpdateCtrl', ['$scope', '$http', '$modalInstance', 'app', function($scope, $http, $modalInstance, app){

@@ -46,7 +46,7 @@ class SchemaApiController extends ControllerAbstract implements DocumentedInterf
 		list($requestSchemaId, $responseSchemaId, $actionId) = $this->getConfiguration($this->request->getMethod());
 
 		// we get the appId from authentication
-		$appId = 0;
+		$appId = null;
 
 		// log request
 		$this->apiLogger->log(

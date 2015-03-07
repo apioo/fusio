@@ -1,0 +1,20 @@
+
+<div class="modal-header">
+	<h3 class="modal-title">Detail</h3>
+</div>
+
+<div class="modal-body">
+	<dl class="fusio-log-entry">
+		<dt>IP</dt>
+		<dd><pre>{{log.ip}}</pre></dd>
+		<dt>Method</dt>
+		<dd><pre>{{log.method}}</pre></dd>
+		<dt>Path</dt>
+		<dd><pre>{{log.path}}</pre></dd>
+		<dt>Header</dt>
+		<dd><pre>{{log.header}}</pre></dd>
+		<dt ng-if="log.body">Body</dt>
+		<dd ng-if="log.body"><pre>{{log.body}}</pre></dd>
+	</dl>
+	<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+</div>

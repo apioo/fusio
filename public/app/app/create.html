@@ -14,6 +14,10 @@
 			</select>
 		</div>
 		<div class="form-group">
+			<label for="userId">User:</label>
+			<input type="text" id="user" ng-model="selectedUser" placeholder="User-name" typeahead="user as user.name for user in getUsers($viewValue)" typeahead-on-select="app.userId = $item.id" class="form-control">
+		</div>
+		<div class="form-group">
 			<label for="name">Name:</label>
 			<input type="text" id="name" ng-model="app.name" class="form-control">
 		</div>

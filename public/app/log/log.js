@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('fusioApp.log', ['ngRoute'])
+angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/log', {
@@ -9,7 +9,7 @@ angular.module('fusioApp.log', ['ngRoute'])
   });
 }])
 
-.controller('LogCtrl', ['$scope', '$http', function($scope, $http){
+.controller('LogCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
 
 	$scope.response = null;
 	$scope.search = '';
@@ -54,8 +54,8 @@ angular.module('fusioApp.log', ['ngRoute'])
 	$scope.openDetailDialog = function(log){
 		var modalInstance = $modal.open({
 			size: 'lg',
-			templateUrl: 'app/log/update.html',
-			controller: 'ConnectionUpdateCtrl',
+			templateUrl: 'app/log/detail.html',
+			controller: 'LogDetailCtrl',
 			resolve: {
 				log: function(){
 					return log;
@@ -85,5 +85,20 @@ angular.module('fusioApp.log', ['ngRoute'])
 		});
 
 	$scope.load();
+
+}])
+
+.controller('LogDetailCtrl', ['$scope', '$http', '$modalInstance', 'log', function($scope, $http, $modalInstance, log){
+
+	$scope.log = log;
+
+	$scope.close = function(){
+		$modalInstance.dismiss('cancel');
+	};
+
+	$http.get(fusio_url + 'backend/log/' + log.id)
+		.success(function(data){
+			$scope.log = data;
+		});
 
 }]);

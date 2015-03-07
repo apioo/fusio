@@ -47,8 +47,6 @@ class Collection extends SchemaApiAbstract
 		$builder = new View\Builder();
 		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Schema\Collection'));
 		$builder->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Schema\Create'), $message);
-		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Schema\Update'), $message);
-		$builder->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Schema\Delete'), $message);
 
 		return new Documentation\Simple($builder->getView());
 	}
@@ -114,23 +112,6 @@ class Collection extends SchemaApiAbstract
 	 */
 	protected function doUpdate(RecordInterface $record, Version $version)
 	{
-		$this->getValidator()->validate($record);
-
-		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->update(array(
-			'id'           => $record->getId(),
-			'extendsId'    => $record->getExtendsId(),
-			'name'         => $record->getName(),
-			'propertyName' => $record->getPropertyName(),
-		));
-
-		$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->deleteAllFromSchema($record->getId());
-
-		$this->insertFields($record->getId(), $record->getFields());
-
-		return array(
-			'success' => true,
-			'message' => 'Schema successful updated',
-		);
 	}
 
 	/**
@@ -142,18 +123,6 @@ class Collection extends SchemaApiAbstract
 	 */
 	protected function doDelete(RecordInterface $record, Version $version)
 	{
-		$this->getValidator()->validate($record);
-
-		$this->tableManager->getTable('Fusio\Backend\Table\Schema')->delete(array(
-			'id' => $record->getId(),
-		));
-
-		$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->deleteAllFromSchema($record->getId());
-
-		return array(
-			'success' => true,
-			'message' => 'Schema successful deleted',
-		);
 	}
 
 	protected function parsePattern($pattern)

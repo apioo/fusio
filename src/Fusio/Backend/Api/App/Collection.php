@@ -49,8 +49,6 @@ class Collection extends SchemaApiAbstract
 		$builder = new View\Builder();
 		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\App\Collection'));
 		$builder->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\App\Create'), $message);
-		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\App\Update'), $message);
-		$builder->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\App\Delete'), $message);
 
 		return new Documentation\Simple($builder->getView());
 	}
@@ -115,19 +113,6 @@ class Collection extends SchemaApiAbstract
 	 */
 	protected function doUpdate(RecordInterface $record, Version $version)
 	{
-		$this->getValidator()->validate($record);
-
-		$this->tableManager->getTable('Fusio\Backend\Table\App')->update(array(
-			'id'     => $record->getId(),
-			'status' => $record->getStatus(),
-			'name'   => $record->getName(),
-			'url'    => $record->getUrl(),
-		));
-
-		return array(
-			'success' => true,
-			'message' => 'App successful updated',
-		);
 	}
 
 	/**
@@ -139,15 +124,5 @@ class Collection extends SchemaApiAbstract
 	 */
 	protected function doDelete(RecordInterface $record, Version $version)
 	{
-		$this->getValidator()->validate($record);
-
-		$this->tableManager->getTable('Fusio\Backend\Table\App')->delete(array(
-			'id' => $record->getId(),
-		));
-
-		return array(
-			'success' => true,
-			'message' => 'App successful deleted',
-		);
 	}
 }

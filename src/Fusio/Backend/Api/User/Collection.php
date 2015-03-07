@@ -45,12 +45,10 @@ class Collection extends SchemaApiAbstract
 	 */
 	public function getDocumentation()
 	{
-		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
+		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\User\Message');
 		$builder = new View\Builder();
 		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Collection'));
 		$builder->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Create'), $message);
-		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Update'), $message);
-		$builder->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Delete'), $message);
 
 		return new Documentation\Simple($builder->getView());
 	}
@@ -89,16 +87,20 @@ class Collection extends SchemaApiAbstract
 
 		$password = sha1(mcrypt_create_iv(40));
 
-		$this->tableManager->getTable('Fusio\Backend\Table\User')->create(array(
+		$table = $this->tableManager->getTable('Fusio\Backend\Table\User');
+		$table->create(array(
 			'status'   => $record->getStatus(),
 			'name'     => $record->getName(),
 			'password' => \password_hash($password, PASSWORD_DEFAULT),
 			'date'     => new DateTime(),
 		));
 
+		$this->insertScopes($table->getLastInsertId(), $record->getScopes());
+
 		return array(
-			'success' => true,
-			'message' => 'User successful created. The following password was assigned to the account: ' . $password,
+			'success'  => true,
+			'message'  => 'User successful created',
+			'password' => $password,
 		);
 	}
 
@@ -111,18 +113,6 @@ class Collection extends SchemaApiAbstract
 	 */
 	protected function doUpdate(RecordInterface $record, Version $version)
 	{
-		$this->getValidator()->validate($record);
-
-		$this->tableManager->getTable('Fusio\Backend\Table\User')->update(array(
-			'id'     => $record->getId(),
-			'status' => $record->getStatus(),
-			'name'   => $record->getName(),
-		));
-
-		return array(
-			'success' => true,
-			'message' => 'User successful updated',
-		);
 	}
 
 	/**
@@ -134,15 +124,24 @@ class Collection extends SchemaApiAbstract
 	 */
 	protected function doDelete(RecordInterface $record, Version $version)
 	{
-		$this->getValidator()->validate($record);
+	}
 
-		$this->tableManager->getTable('Fusio\Backend\Table\User')->delete(array(
-			'id' => $record->getId(),
-		));
+	protected function insertScopes($userId, $scopes)
+	{
+		if(!empty($scopes) && is_array($scopes))
+		{
+			$scopeTable = $this->tableManager->getTable('Fusio\Backend\Table\User\Scope');
+			$scopes     = $this->tableManager
+				->getTable('Fusio\Backend\Table\Scope')
+				->getByNames($scopes);
 
-		return array(
-			'success' => true,
-			'message' => 'User successful deleted',
-		);
+			foreach($scopes as $scope)
+			{
+				$scopeTable->create(array(
+					'userId'  => $userId,
+					'scopeId' => $scope['id'],
+				));
+			}
+		}
 	}
 }

@@ -17,6 +17,18 @@
 			<label for="name">Name:</label>
 			<input type="text" id="name" ng-model="user.name" class="form-control">
 		</div>
+		<table class="table fusio-table-tab">
+		<colgroup>
+			<col width="20" />
+			<col width="*" />
+		</colgroup>
+		<tbody>
+		<tr ng-repeat="scope in scopes">
+			<td><input type="checkbox" ng-model="user.scopes[$index]" ng-true-value="{{scope.name}}" ng-false-value="" id="scope-{{scope.id}}" /></td>
+			<td><label for="scope-{{scope.id}}">{{scope.name}}</label></td>
+		</tr>
+		</tbody>
+		</table>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 	</form>

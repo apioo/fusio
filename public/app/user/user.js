@@ -108,7 +108,8 @@ angular.module('fusioApp.user', ['ngRoute', 'ui.bootstrap'])
 	$scope.user = {
 		status: 0,
 		name: '',
-		password: ''
+		password: '',
+		scopes: []
 	};
 
 	$scope.statuuus = [{
@@ -121,6 +122,12 @@ angular.module('fusioApp.user', ['ngRoute', 'ui.bootstrap'])
 		id: 2,
 		name: 'Disabled'
 	}];
+
+	$scope.scopes = [];
+
+	$http.get(fusio_url + 'backend/scope?count=1024').success(function(data){
+		$scope.scopes = data.entry;
+	});
 
 	$scope.create = function(user){
 		$http.post(fusio_url + 'backend/user', user)
@@ -160,6 +167,14 @@ angular.module('fusioApp.user', ['ngRoute', 'ui.bootstrap'])
 		name: 'Disabled'
 	}];
 
+	$scope.scopes = [];
+
+	$http.get(fusio_url + 'backend/scope?count=1024').success(function(data){
+		$scope.scopes = data.entry;
+
+		$scope.loadUser();
+	});
+
 	$scope.update = function(user){
 		$http.put(fusio_url + 'backend/user/' + user.id, user)
 			.success(function(data){
@@ -180,6 +195,28 @@ angular.module('fusioApp.user', ['ngRoute', 'ui.bootstrap'])
 	$scope.closeResponse = function(){
 		$scope.response = null;
 	};
+
+	$scope.loadUser = function(){
+		$http.get(fusio_url + 'backend/user/' + user.id)
+			.success(function(data){
+				var scopes = [];
+				if (angular.isArray(data.scopes)) {
+					for (var i = 0; i < $scope.scopes.length; i++) {
+						var found = null;
+						for (var j = 0; j < data.scopes.length; j++) {
+							if ($scope.scopes[i].name == data.scopes[j]) {
+								found = $scope.scopes[i].name;
+								break;
+							}
+						}
+						scopes.push(found);
+					}
+				}
+				data.scopes = scopes;
+
+				$scope.user = data;
+			});
+	}
 
 }])
 

@@ -166,31 +166,33 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.routes = [];
 
-	$http.get(fusio_url + 'backend/routes?count=1024').success(function(data){
-		var routes = [];
-		for (var i = 0; i < data.entry.length; i++) {
-			var route = data.entry[i];
-			if ($scope.scope.routes) {
-				for (var j = 0; j < $scope.scope.routes.length; j++) {
-					if ($scope.scope.routes[j].routeId == route.id) {
-						var methods = [];
-						if ($scope.scope.routes[j].methods) {
-							methods = $scope.scope.routes[j].methods.split('|');
-						}
-						var allowedMethods = {};
-						for (var k = 0; k < methods.length; k++) {
-							allowedMethods[methods[k].toLowerCase()] = true;
-						}
+	$scope.loadRoutes = function(){
+		$http.get(fusio_url + 'backend/routes?count=1024').success(function(data){
+			var routes = [];
+			for (var i = 0; i < data.entry.length; i++) {
+				var route = data.entry[i];
+				if ($scope.scope.routes) {
+					for (var j = 0; j < $scope.scope.routes.length; j++) {
+						if ($scope.scope.routes[j].routeId == route.id) {
+							var methods = [];
+							if ($scope.scope.routes[j].methods) {
+								methods = $scope.scope.routes[j].methods.split('|');
+							}
+							var allowedMethods = {};
+							for (var k = 0; k < methods.length; k++) {
+								allowedMethods[methods[k].toLowerCase()] = true;
+							}
 
-						route['allow'] = $scope.scope.routes[j].allow ? true : false;
-						route['allowedMethods'] = allowedMethods;
+							route['allow'] = $scope.scope.routes[j].allow ? true : false;
+							route['allowedMethods'] = allowedMethods;
+						}
 					}
 				}
+				routes.push(route);
 			}
-			routes.push(route);
-		}
-		$scope.routes = routes;
-	});
+			$scope.routes = routes;
+		});
+	};
 
 	$scope.update = function(scope){
 		var routes = [];
@@ -236,6 +238,13 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 	$scope.closeResponse = function(){
 		$scope.response = null;
 	};
+
+	$http.get(fusio_url + 'backend/scope/' + scope.id)
+		.success(function(data){
+			$scope.scope = data;
+
+			$scope.loadRoutes();
+		});
 
 }])
 

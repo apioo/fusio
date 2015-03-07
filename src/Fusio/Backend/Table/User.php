@@ -26,4 +26,23 @@ class User extends TableAbstract
 			'date' => self::TYPE_DATETIME,
 		);
 	}
+
+	public function getScopeNames($userId)
+	{
+		$sql = '    SELECT scope.name 
+				      FROM fusio_user_scope userScope 
+				INNER JOIN fusio_scope scope 
+				        ON scope.id = userScope.scopeId 
+				     WHERE userScope.userId = :userId';
+
+		$scopes = $this->connection->fetchAll($sql, array('userId' => $userId));
+		$names  = array();
+
+		foreach($scopes as $scope)
+		{
+			$names[] = $scope['name'];
+		}
+
+		return $names;
+	}
 }

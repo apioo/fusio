@@ -60,6 +60,10 @@ class Entity extends SchemaApiAbstract
 
 		if(!empty($user))
 		{
+			$user['scopes'] = $this->tableManager
+				->getTable('Fusio\Backend\Table\User')
+				->getScopeNames($userId);
+
 			return $user;
 		}
 		else
@@ -101,6 +105,10 @@ class Entity extends SchemaApiAbstract
 				'name'   => $record->getName(),
 			));
 
+			$this->tableManager->getTable('Fusio\Backend\Table\User\Scope')->deleteAllFromUser($user['id']);
+
+			$this->insertScopes($user['id'], $record->getScopes());
+
 			return array(
 				'success' => true,
 				'message' => 'User successful updated',
@@ -130,6 +138,8 @@ class Entity extends SchemaApiAbstract
 				'id' => $user['id']
 			));
 
+			$this->tableManager->getTable('Fusio\Backend\Table\User\Scope')->deleteAllFromUser($user['id']);
+
 			return array(
 				'success' => true,
 				'message' => 'User successful deleted',
@@ -138,6 +148,25 @@ class Entity extends SchemaApiAbstract
 		else
 		{
 			throw new StatusCode\NotFoundException('Could not find user');
+		}
+	}
+
+	protected function insertScopes($userId, $scopes)
+	{
+		if(!empty($scopes) && is_array($scopes))
+		{
+			$scopeTable = $this->tableManager->getTable('Fusio\Backend\Table\User\Scope');
+			$scopes     = $this->tableManager
+				->getTable('Fusio\Backend\Table\Scope')
+				->getByNames($scopes);
+
+			foreach($scopes as $scope)
+			{
+				$scopeTable->create(array(
+					'userId'  => $userId,
+					'scopeId' => $scope['id'],
+				));
+			}
 		}
 	}
 }

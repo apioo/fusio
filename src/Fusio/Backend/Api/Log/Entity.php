@@ -52,7 +52,7 @@ class Entity extends SchemaApiAbstract
 	 */
 	protected function doGet(Version $version)
 	{
-		$logId = (int) $this->getUriFragment('app_id');
+		$logId = (int) $this->getUriFragment('log_id');
 		$log   = $this->tableManager->getTable('Fusio\Backend\Table\Log')->get($logId);
 
 		if(!empty($log))
@@ -61,7 +61,7 @@ class Entity extends SchemaApiAbstract
 		}
 		else
 		{
-			throw new StatusCode\NotFoundException('Could not find app');
+			throw new StatusCode\NotFoundException('Could not find log');
 		}
 	}
 

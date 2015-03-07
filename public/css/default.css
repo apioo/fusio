@@ -249,6 +249,12 @@ pre
 	visibility:hidden;
 }
 
+.fusio-log-entry pre
+{
+	padding:6px;
+	margin-bottom:8px;
+}
+
 /* general bootstrap fixes */
 .form-control, .btn
 {
@@ -289,4 +295,9 @@ pre
 {
 	height:200px;
 	border:1px solid #ccc;
+}
+
+.dropdown-menu
+{
+	width:calc(100% - 40px);
 }

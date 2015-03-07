@@ -46,8 +46,6 @@ class Collection extends SchemaApiAbstract
 		$builder = new View\Builder();
 		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Collection'));
 		$builder->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Create'), $message);
-		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Update'), $message);
-		$builder->setDelete($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Delete'), $message);
 
 		return new Documentation\Simple($builder->getView());
 	}
@@ -106,19 +104,6 @@ class Collection extends SchemaApiAbstract
 	 */
 	protected function doUpdate(RecordInterface $record, Version $version)
 	{
-		$this->getValidator()->validate($record);
-
-		$this->tableManager->getTable('Fusio\Backend\Table\Action')->update(array(
-			'id'     => $record->getId(),
-			'name'   => $record->getName(),
-			'class'  => $record->getClass(),
-			'config' => $record->getConfig()->getRecordInfo()->getData(),
-		));
-
-		return array(
-			'success' => true,
-			'message' => 'Route successful updated',
-		);
 	}
 
 	/**
@@ -130,15 +115,5 @@ class Collection extends SchemaApiAbstract
 	 */
 	protected function doDelete(RecordInterface $record, Version $version)
 	{
-		$this->getValidator()->validate($record);
-
-		$this->tableManager->getTable('Fusio\Backend\Table\Action')->delete(array(
-			'id' => $record->getId(),
-		));
-
-		return array(
-			'success' => true,
-			'message' => 'Route successful deleted',
-		);
 	}
 }
