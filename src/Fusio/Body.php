@@ -21,6 +21,10 @@
 
 namespace Fusio;
 
+use PSX\Data\Accessor;
+use PSX\Data\RecordInterface;
+use PSX\Validate;
+
 /**
  * Body
  *
@@ -30,6 +34,38 @@ namespace Fusio;
  */
 class Body
 {
+	protected $data;
+	protected $accessor;
+
+	/**
+	 * Data is either an RecordInterface if an schema was provided or an 
+	 * array/DOMDocument if the passthru schema was selected
+	 *
+	 * @param mixed $data
+	 */
+	public function __construct($data)
+	{
+		$this->setData($data);
+	}
+
+	public function getData()
+	{
+		return $this->data;
+	}
+
+	public function setData($data)
+	{
+		$fields = $data instanceof RecordInterface || is_array($data) ? $this->normalize($data) : array();
+
+		$this->data     = $data;
+		$this->accessor = new Accessor(new Validate(), $fields);
+	}
+
+	public function get($key)
+	{
+		return $this->accessor->get($key);
+	}
+
 	public function toArray()
 	{
 		return array();
@@ -37,6 +73,37 @@ class Body
 
 	public static function fromArray(array $data)
 	{
-		return new self();
+		return new self($data);
+	}
+
+	protected function normalize($data)
+	{
+		if($data instanceof RecordInterface)
+		{
+			$result = array();
+			$fields = $data->getRecordInfo()->getData();
+
+			foreach($fields as $key => $value)
+			{
+				$result[$key] = $this->normalize($value);
+			}
+
+			return $result;
+		}
+		else if(is_array($data))
+		{
+			$result = array();
+
+			foreach($data as $key => $value)
+			{
+				$result[$key] = $this->normalize($value);
+			}
+
+			return $result;
+		}
+		else
+		{
+			return $data;
+		}
 	}
 }

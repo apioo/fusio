@@ -81,6 +81,9 @@ class Entity extends SchemaApiAbstract
 
 		if(!empty($app))
 		{
+			$app['scopes'] = $this->tableManager->getTable('Fusio\Backend\Table\Scope')
+				->getByApp($app['id']);
+
 			return $app;
 		}
 		else

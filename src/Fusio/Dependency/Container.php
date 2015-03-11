@@ -21,6 +21,7 @@
 
 namespace Fusio\Dependency;
 
+use Monolog\Logger as SystemLogger;
 use Fusio\Backend\Api\Authorization\ClientCredentials;
 use Fusio\Executor;
 use Fusio\Factory;
@@ -33,6 +34,8 @@ use Fusio\Loader\ResourceListing;
 use Fusio\Data\SchemaManager;
 use PSX\Dependency\DefaultContainer;
 use PSX\Oauth2\Provider\GrantTypeFactory;
+use PSX\Log;
+use PSX\Data\Importer;
 
 /**
  * Container
@@ -49,6 +52,17 @@ class Container extends DefaultContainer
 		$factory->add(new ClientCredentials($this->get('connection')));
 
 		return $factory;
+	}
+
+	/**
+	 * @return Psr\Log\LoggerInterface
+	 */
+	public function getLogger()
+	{
+		$logger = new SystemLogger('psx');
+		$logger->pushHandler(new Log\LogCasterHandler());
+
+		return $logger;
 	}
 
 	/**

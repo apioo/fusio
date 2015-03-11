@@ -67,8 +67,16 @@ class SchemaApiController extends ControllerAbstract implements DocumentedInterf
 	 */
 	protected $apiLogger;
 
+	/**
+	 * @Inject
+	 * @var Psr\Log\LoggerInterface
+	 */
+	protected $logger;
+
 	public function onLoad()
 	{
+		parent::onLoad();
+
 		list($requestSchemaId, $responseSchemaId, $actionId) = $this->getConfiguration($this->request->getMethod());
 
 		// we get the appId from authentication
@@ -85,7 +93,7 @@ class SchemaApiController extends ControllerAbstract implements DocumentedInterf
 		// read request data
 		if(!in_array($this->request->getMethod(), ['HEAD', 'GET']) && !empty($requestSchemaId))
 		{
-			if($responseSchemaId == self::SCHEMA_PASSTHRU)
+			if($requestSchemaId == self::SCHEMA_PASSTHRU)
 			{
 				$request = $this->getBody();
 			}
@@ -102,7 +110,7 @@ class SchemaApiController extends ControllerAbstract implements DocumentedInterf
 		// execute action
 		if(!empty($actionId))
 		{
-			$parameters = new Parameters($this->request->getQueryParams());
+			$parameters = new Parameters(array_merge($this->request->getQueryParams(), $this->uriFragments));
 			$body       = new Body($request);
 			$response   = $this->executor->execute($actionId, $parameters, $body);
 		}
@@ -128,7 +136,7 @@ class SchemaApiController extends ControllerAbstract implements DocumentedInterf
 			}
 			else
 			{
-				$this->setBody($this->schemaAssimilator->assimilate($response->getBody(), $this->apiSchemaManager->getSchema($responseSchemaId)));
+				$this->setBody($this->schemaAssimilator->assimilate($this->apiSchemaManager->getSchema($responseSchemaId), $response->getBody()));
 			}
 		}
 		else

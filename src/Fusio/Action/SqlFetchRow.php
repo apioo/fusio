@@ -25,19 +25,21 @@ use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
 use Fusio\Parameters;
-use Fusio\Body;
 use Fusio\Response;
+use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
+use PSX\Http\Exception as StatusCode;
+use PSX\Util\CurveArray;
 
 /**
- * SqlQueryExecute
+ * SqlFetchRow
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class SqlQueryExecute implements ActionInterface
+class SqlFetchRow implements ActionInterface
 {
 	/**
 	 * @Inject
@@ -47,18 +49,18 @@ class SqlQueryExecute implements ActionInterface
 
 	/**
 	 * @Inject
-	 * @var Fusio\ConnectionFactory
+	 * @var Fusio\Connector
 	 */
-	protected $connectionFactory;
+	protected $connector;
 
 	public function getName()
 	{
-		return 'SQL-Query-Execute';
+		return 'SQL-Fetch-Row';
 	}
 
 	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
 	{
-		$connection = $this->connectionFactory->getById($configuration->get('connection'));
+		$connection = $this->connector->getConnection($configuration->get('connection'));
 
 		if($connection instanceof Connection)
 		{
@@ -73,12 +75,14 @@ class SqlQueryExecute implements ActionInterface
 				}
 			}
 
-			$connection->execute($sql, $params);
+			$result = $connection->fetchAssoc($sql, $params);
 
-			return new Response(200, [], array(
-				'success' => true,
-				'message' => 'Execution was successful'
-			));
+			if(empty($result))
+			{
+				throw new StatusCode\NotFoundException('Entry not available');
+			}
+
+			return new Response(200, [], CurveArray::nest($result));
 		}
 		else
 		{

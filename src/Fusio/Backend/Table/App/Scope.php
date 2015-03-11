@@ -45,9 +45,4 @@ class Scope extends TableAbstract
 			'scopeId' => self::TYPE_INT,
 		);
 	}
-
-	public function getScopesByApp()
-	{
-		
-	}
 }

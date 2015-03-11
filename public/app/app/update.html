@@ -39,7 +39,7 @@
 				</colgroup>
 				<tbody>
 				<tr ng-repeat="scope in scopes">
-					<td><input type="checkbox" value="{{scope.id}}" id="scope-{{scope.id}}" /></td>
+					<td><input type="checkbox" ng-model="app.scopes[$index]" ng-true-value="{{scope.name}}" ng-false-value="" id="scope-{{scope.id}}" /></td>
 					<td><label for="scope-{{scope.id}}">{{scope.name}}</label></td>
 				</tr>
 				</tbody>

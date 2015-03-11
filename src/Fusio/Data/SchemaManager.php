@@ -56,58 +56,56 @@ class SchemaManager implements SchemaManagerInterface
 		$fields = $this->connection->fetchAll($sql, array('id' => $schemaId));
 		$name   = isset($fields[0]['propertyName']) ? $fields[0]['propertyName'] : null;
 
-		if(!empty($name))
+		if(empty($name))
 		{
-			$schema = new Builder($name);
+			$name = 'record';
+		}
 
-			foreach($fields as $field)
+		$schema = new Builder($name);
+
+		foreach($fields as $field)
+		{
+			switch(strtolower($field['type']))
 			{
-				switch(strtolower($field['type']))
-				{
-					case 'array':
-						$schema->arrayType($field['name'])
-							->setPrototype($this->getSchema($field['refId'])->getDefinition());
-						break;
+				case 'array':
+					$schema->arrayType($field['name'])
+						->setPrototype($this->getSchema($field['refId'])->getDefinition());
+					break;
 
-					case 'boolean':
-						$schema->boolean($field['name']);
-						break;
+				case 'boolean':
+					$schema->boolean($field['name']);
+					break;
 
-					case 'date':
-						$schema->date($field['name']);
-						break;
+				case 'date':
+					$schema->date($field['name']);
+					break;
 
-					case 'datetime':
-						$schema->dateTime($field['name']);
-						break;
+				case 'datetime':
+					$schema->dateTime($field['name']);
+					break;
 
-					case 'float':
-						$schema->float($field['name']);
-						break;
+				case 'float':
+					$schema->float($field['name']);
+					break;
 
-					case 'integer':
-						$schema->integer($field['name']);
-						break;
+				case 'integer':
+					$schema->integer($field['name']);
+					break;
 
-					case 'object':
-						$schema->objectType($field['name'], $this->getSchema($field['refId'])->getDefinition());
-						break;
+				case 'object':
+					$schema->complexType($field['name'], $this->getSchema($field['refId'])->getDefinition());
+					break;
 
-					case 'string':
-						$schema->string($field['name']);
-						break;
+				case 'string':
+					$schema->string($field['name']);
+					break;
 
-					case 'time':
-						$schema->time($field['name']);
-						break;
-				}
+				case 'time':
+					$schema->time($field['name']);
+					break;
 			}
+		}
 
-			return new Schema($schema->getProperty());
-		}
-		else
-		{
-			throw new InvalidSchemaException('Could not find schema');
-		}
+		return new Schema($schema->getProperty());
 	}
 }

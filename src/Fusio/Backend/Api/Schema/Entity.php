@@ -123,7 +123,7 @@ class Entity extends SchemaApiAbstract
 
 			$this->tableManager->getTable('Fusio\Backend\Table\Schema')->update(array(
 				'id'           => $schema['id'],
-				'extendsId'    => $record->getExtendsId(),
+				'extendsId'    => $record->getExtendsId() ?: null,
 				'name'         => $record->getName(),
 				'propertyName' => $record->getPropertyName(),
 			));
@@ -211,7 +211,7 @@ class Entity extends SchemaApiAbstract
 
 				$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->create(array(
 					'schemaId'    => $schemaId,
-					'refId'       => $field->getRefId(),
+					'refId'       => $field->getRefId() ?: null,
 					'name'        => $field->getName(),
 					'type'        => $field->getType(),
 					'required'    => $field->getRequired(),

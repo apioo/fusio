@@ -32,13 +32,13 @@ use Fusio\Form\Element;
 use PSX\Util\CurveArray;
 
 /**
- * SqlQuerySelect
+ * SqlFetchAll
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class SqlQuerySelect implements ActionInterface
+class SqlFetchAll implements ActionInterface
 {
 	/**
 	 * @Inject
@@ -54,7 +54,7 @@ class SqlQuerySelect implements ActionInterface
 
 	public function getName()
 	{
-		return 'SQL-Query-Select';
+		return 'SQL-Fetch-All';
 	}
 
 	public function handle(Parameters $parameters, Body $data, Parameters $configuration)

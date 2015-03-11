@@ -110,7 +110,9 @@ class Collection extends SchemaApiAbstract
 		$appKey    = Uuid::pseudoRandom();
 		$appSecret = hash('sha256', OpenSsl::randomPseudoBytes(256));
 
-		$this->tableManager->getTable('Fusio\Backend\Table\App')->create(array(
+		$table = $this->tableManager->getTable('Fusio\Backend\Table\App');
+		$table->create(array(
+			'userId'    => $record->getUserId(),
 			'status'    => $record->getStatus(),
 			'name'      => $record->getName(),
 			'url'       => $record->getUrl(),
@@ -118,6 +120,11 @@ class Collection extends SchemaApiAbstract
 			'appSecret' => $appSecret,
 			'date'      => new DateTime(),
 		));
+
+		$appId = $table->getLastInsertId();
+
+		// insert scopes to the app which are assigned to the user
+		$this->insertDefaultScopes($appId, $record->getUserId());
 
 		return array(
 			'success' => true,
@@ -145,5 +152,19 @@ class Collection extends SchemaApiAbstract
 	 */
 	protected function doDelete(RecordInterface $record, Version $version)
 	{
+	}
+
+	protected function insertDefaultScopes($appId, $userId)
+	{
+		$scopes = $this->tableManager->getTable('Fusio\Backend\Table\Scope')->getByUser($userId);
+		$table  = $this->tableManager->getTable('Fusio\Backend\Table\App\Scope');
+
+		foreach($scopes as $scope)
+		{
+			$table->create(array(
+				'appId'   => $appId,
+				'scopeId' => $scope['id'],
+			));
+		}
 	}
 }

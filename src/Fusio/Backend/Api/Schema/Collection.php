@@ -108,7 +108,7 @@ class Collection extends SchemaApiAbstract
 		$schemaTable = $this->tableManager->getTable('Fusio\Backend\Table\Schema');
 
 		$schemaTable->create(array(
-			'extendsId'    => $record->getExtendsId(),
+			'extendsId'    => $record->getExtendsId() ?: null,
 			'name'         => $record->getName(),
 			'propertyName' => $record->getPropertyName(),
 		));
@@ -207,7 +207,7 @@ class Collection extends SchemaApiAbstract
 
 				$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->create(array(
 					'schemaId'    => $schemaId,
-					'refId'       => $field->getRefId(),
+					'refId'       => $field->getRefId() ?: null,
 					'name'        => $field->getName(),
 					'type'        => $field->getType(),
 					'required'    => $field->getRequired(),

@@ -177,6 +177,7 @@ pre
 .fusio-panel
 {
 	height:300px;
+	overflow:hidden;
 }
 
 .fusio-panel table tbody tr:first-child td
@@ -301,3 +302,4 @@ pre
 {
 	width:calc(100% - 40px);
 }
+

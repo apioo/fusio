@@ -48,10 +48,10 @@ class Scope extends TableAbstract
 
 	public function getByUser($userId)
 	{
-		$sql = '    SELECT id, 
-				           name 
+		$sql = '    SELECT scope.id, 
+				           scope.name 
 				      FROM fusio_user_scope userScope 
-				INNER JOIN fusio_scope user 
+				INNER JOIN fusio_scope scope 
 				        ON scope.id = userScope.scopeId 
 				     WHERE userScope.userId = :userId';
 
@@ -60,8 +60,8 @@ class Scope extends TableAbstract
 
 	public function getByApp($appId)
 	{
-		$sql = '    SELECT id, 
-				           name 
+		$sql = '    SELECT scope.id, 
+				           scope.name 
 				      FROM fusio_app_scope appScope 
 				INNER JOIN fusio_scope scope 
 				        ON scope.id = appScope.scopeId 

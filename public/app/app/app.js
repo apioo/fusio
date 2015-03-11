@@ -175,6 +175,8 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 
 	$http.get(fusio_url + 'backend/scope?count=1024').success(function(data){
 		$scope.scopes = data.entry;
+
+		$scope.loadApp();
 	});
 
 	$scope.update = function(app){
@@ -198,10 +200,27 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 		$scope.response = null;
 	};
 
-	$http.get(fusio_url + 'backend/app/' + app.id)
-		.success(function(data){
-			$scope.app = data;
-		});
+	$scope.loadApp = function(){
+		$http.get(fusio_url + 'backend/app/' + app.id)
+			.success(function(data){
+				var scopes = [];
+				if (angular.isArray(data.scopes)) {
+					for (var i = 0; i < $scope.scopes.length; i++) {
+						var found = null;
+						for (var j = 0; j < data.scopes.length; j++) {
+							if ($scope.scopes[i].name == data.scopes[j]) {
+								found = $scope.scopes[i].name;
+								break;
+							}
+						}
+						scopes.push(found);
+					}
+				}
+				data.scopes = scopes;
+
+				$scope.app = data;
+			});
+	};
 
 }])
 

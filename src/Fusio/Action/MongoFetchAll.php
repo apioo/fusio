@@ -28,16 +28,18 @@ use Fusio\Parameters;
 use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
+use MongoCollection;
+use MongoDB;
 use PSX\Util\CurveArray;
 
 /**
- * MongoCollectionSelect
+ * MongoFetchAll
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class MongoCollectionSelect implements ActionInterface
+class MongoFetchAll implements ActionInterface
 {
 	/**
 	 * @Inject
@@ -53,7 +55,7 @@ class MongoCollectionSelect implements ActionInterface
 
 	public function getName()
 	{
-		return 'Mongo-Collection-Select';
+		return 'Mongo-Fetch-All';
 	}
 
 	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
@@ -73,7 +75,15 @@ class MongoCollectionSelect implements ActionInterface
 				$fields = $configuration->get('projection');
 				$fields = !empty($fields) ? Json::decode($fields) : array();
 
-				return $collection->find($query, $fields);
+				$result = $collection->find($query, $fields);
+				$data   = array();
+
+				foreach($result as $row)
+				{
+					$data[] = $row;
+				}
+
+				return $data;
 			}
 			else
 			{
@@ -91,8 +101,8 @@ class MongoCollectionSelect implements ActionInterface
 		$form = new Form\Container();
 		$form->add(new Element\Connection('connection', 'Connection', $this->connection));
 		$form->add(new Element\Input('collection', 'Collection'));
-		$form->add(new Element\TextArea('criteria', 'Criteria'));
-		$form->add(new Element\TextArea('projection', 'Projection'));
+		$form->add(new Element\TextArea('criteria', 'Criteria', 'json'));
+		$form->add(new Element\TextArea('projection', 'Projection', 'json'));
 
 		return $form;
 	}

@@ -41,6 +41,7 @@ class App extends TableAbstract
 	{
 		return array(
 			'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
+			'userId' => self::TYPE_INT,
 			'status' => self::TYPE_INT,
 			'name' => self::TYPE_VARCHAR,
 			'url' => self::TYPE_VARCHAR,
