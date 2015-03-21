@@ -22,6 +22,9 @@
 namespace Fusio\Backend\Api\Authorization;
 
 use Doctrine\DBAL\Connection;
+use Fusio\Backend\Table\App;
+use Fusio\Backend\Table\App\Token as AppToken;
+use Fusio\Backend\Table\User;
 use Hautelook\Phpass\PasswordHash;
 use PSX\Oauth2\Provider\GrantType\ClientCredentialsAbstract;
 use PSX\Oauth2\Provider\Credentials;
@@ -54,7 +57,7 @@ class ClientCredentials extends ClientCredentialsAbstract
 			       AND name = :name';
 
 		$user = $this->connection->fetchAssoc($sql, array(
-			'status' => 1,
+			'status' => User::STATUS_ADMINISTRATOR,
 			'name'   => $credentials->getClientId(),
 		));
 
@@ -68,6 +71,7 @@ class ClientCredentials extends ClientCredentialsAbstract
 				$sql = 'INSERT INTO fusio_app_token
 								SET appId = :app_id, 
 								    userId = :user_id, 
+								    status = :status, 
 								    token = :token, 
 								    scope = :scope, 
 								    ip = :ip, 
@@ -78,8 +82,9 @@ class ClientCredentials extends ClientCredentialsAbstract
 				$expires->add(new \DateInterval('PT6H'));
 
 				$this->connection->executeUpdate($sql, array(
-					'app_id'  => 1,
+					'app_id'  => App::BACKEND,
 					'user_id' => $user['id'],
+					'status'  => AppToken::STATUS_ACTIVE,
 					'token'   => $accessToken,
 					'scope'   => 'backend',
 					'ip'      => $_SERVER['REMOTE_ADDR'],

@@ -32,6 +32,10 @@ use PSX\Sql\TableAbstract;
  */
 class User extends TableAbstract
 {
+	const STATUS_CONSUMER      = 0;
+	const STATUS_ADMINISTRATOR = 1;
+	const STATUS_DISABLED      = 2;
+
 	public function getName()
 	{
 		return 'fusio_user';

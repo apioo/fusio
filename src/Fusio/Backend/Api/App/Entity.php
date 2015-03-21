@@ -84,6 +84,9 @@ class Entity extends SchemaApiAbstract
 			$app['scopes'] = $this->tableManager->getTable('Fusio\Backend\Table\Scope')
 				->getByApp($app['id']);
 
+			$app['tokens'] = $this->tableManager->getTable('Fusio\Backend\Table\App\Token')
+				->getTokensByApp($app['id']);
+
 			return $app;
 		}
 		else
@@ -126,6 +129,10 @@ class Entity extends SchemaApiAbstract
 				'url'    => $record->getUrl(),
 			));
 
+			$this->tableManager->getTable('Fusio\Backend\Table\App\Scope')->deleteAllFromApp($appId);
+
+			$this->insertScopes($appId, $record['scopes']);
+
 			return array(
 				'success' => true,
 				'message' => 'App successful updated',
@@ -151,6 +158,8 @@ class Entity extends SchemaApiAbstract
 
 		if(!empty($app))
 		{
+			$this->tableManager->getTable('Fusio\Backend\Table\App\Scope')->deleteAllFromApp($appId);
+
 			$this->tableManager->getTable('Fusio\Backend\Table\App')->delete(array(
 				'id' => $app['id']
 			));
@@ -163,6 +172,20 @@ class Entity extends SchemaApiAbstract
 		else
 		{
 			throw new StatusCode\NotFoundException('Could not find app');
+		}
+	}
+
+	protected function insertScopes($appId, $scopes)
+	{
+		$scopes = $this->tableManager->getTable('Fusio\Backend\Table\Scope')->getByNames($scopes);
+		$table  = $this->tableManager->getTable('Fusio\Backend\Table\App\Scope');
+
+		foreach($scopes as $scope)
+		{
+			$table->create(array(
+				'appId'   => $appId,
+				'scopeId' => $scope['id'],
+			));
 		}
 	}
 }

@@ -23,6 +23,7 @@ namespace Fusio\Backend\Api\Authorization;
 
 use Closure;
 use Doctrine\DBAL\Connection;
+use Fusio\Backend\Table\App\Token as AppToken;
 use PSX\Dispatch\Filter\Oauth2Authentication;
 
 /**
@@ -54,9 +55,13 @@ class AuthenticationFilter extends Oauth2Authentication
 				       expire,
 				       date
 				  FROM fusio_app_token
-				 WHERE token = :token';
+				 WHERE token = :token
+				   AND status = :status';
 
-		$token = $this->connection->fetchAssoc($sql, array('token' => $accessToken));
+		$token = $this->connection->fetchAssoc($sql, array(
+			'token'  => $accessToken,
+			'status' => AppToken::STATUS_ACTIVE,
+		));
 
 		if(!empty($token))
 		{

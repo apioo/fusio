@@ -45,4 +45,12 @@ class Scope extends TableAbstract
 			'scopeId' => self::TYPE_INT,
 		);
 	}
+
+	public function deleteAllFromApp($appId)
+	{
+		$sql = 'DELETE FROM fusio_app_scope
+				      WHERE appId = :appId';
+
+		$this->connection->executeQuery($sql, array('appId' => $appId));
+	}
 }

@@ -21,6 +21,7 @@
 
 namespace Fusio\Backend\Api\Authorization;
 
+use Fusio\Backend\Table\App;
 use PSX\Controller\ApiAbstract;
 use PSX\Http\Exception as StatusCode;
 
@@ -34,6 +35,12 @@ use PSX\Http\Exception as StatusCode;
 class Revoke extends ApiAbstract
 {
 	use ProtectionTrait;
+
+	/**
+	 * @Inject
+	 * @var PSX\Sql\TableManager
+	 */
+	protected $tableManager;
 
 	public function onPost()
 	{
@@ -56,10 +63,7 @@ class Revoke extends ApiAbstract
 			// scope so we can invalidate only tokens for the backend
 			if(!empty($row) && $row['userId'] == $this->userId && strpos($row['scope'], 'backend') !== false)
 			{
-				$sql = 'DELETE FROM fusio_app_token 
-						      WHERE id = :id';
-
-				$this->connection->executeUpdate($sql, array('id' => $row['id']));
+				$this->tableManager->getTable('Fusio\Backend\Table\App\Token')->removeTokenFromApp(App::BACKEND, $row['id']);
 			}
 			else
 			{

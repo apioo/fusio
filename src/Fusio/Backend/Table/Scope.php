@@ -48,30 +48,53 @@ class Scope extends TableAbstract
 
 	public function getByUser($userId)
 	{
-		$sql = '    SELECT scope.id, 
-				           scope.name 
+		$sql = '    SELECT scope.name 
 				      FROM fusio_user_scope userScope 
 				INNER JOIN fusio_scope scope 
 				        ON scope.id = userScope.scopeId 
 				     WHERE userScope.userId = :userId';
 
-		return $this->project($sql, array('userId' => $userId));
+		$result = $this->connection->fetchAll($sql, array('userId' => $userId)) ?: array();
+		$names  = array();
+
+		foreach($result as $row)
+		{
+			$names[] = $row['name'];
+		}
+
+		return $names;
 	}
 
 	public function getByApp($appId)
 	{
-		$sql = '    SELECT scope.id, 
-				           scope.name 
+		$sql = '    SELECT scope.name 
 				      FROM fusio_app_scope appScope 
 				INNER JOIN fusio_scope scope 
 				        ON scope.id = appScope.scopeId 
 				     WHERE appScope.appId = :appId';
 
-		return $this->project($sql, array('appId' => $appId));
+		$result = $this->connection->fetchAll($sql, array('appId' => $appId)) ?: array();
+		$names  = array();
+
+		foreach($result as $row)
+		{
+			$names[] = $row['name'];
+		}
+
+		return $names;
 	}
 
 	public function getByNames(array $names)
 	{
-		return $this->getAll(0, 1024, null, null, new Condition(['name', 'IN', array_filter($names)]));
+		$names = array_filter($names);
+
+		if(!empty($names))
+		{
+			return $this->getAll(0, 1024, null, null, new Condition(['name', 'IN', $names]));
+		}
+		else
+		{
+			return array();
+		}
 	}
 }

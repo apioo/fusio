@@ -22,6 +22,7 @@
 namespace Fusio\Backend\Schema;
 
 use PSX\Data\SchemaAbstract;
+use PSX\Data\Schema\Property;
 
 /**
  * App
@@ -42,6 +43,10 @@ class App extends SchemaAbstract
 		$sb->string('url');
 		$sb->string('appKey');
 		$sb->string('appSecret');
+		$sb->arrayType('scopes')
+			->setPrototype(new Property\String('name'));
+		$sb->arrayType('tokens')
+			->setPrototype($this->getSchema('Fusio\Backend\Schema\App\Token'));
 
 		return $sb->getProperty();
 	}

@@ -21,6 +21,7 @@
 
 namespace Fusio\Backend\Table\App;
 
+use PSX\Sql\Condition;
 use PSX\Sql\TableAbstract;
 
 /**
@@ -32,6 +33,9 @@ use PSX\Sql\TableAbstract;
  */
 class Token extends TableAbstract
 {
+	const STATUS_ACTIVE  = 0x1;
+	const STATUS_DELETED = 0x2;
+
 	public function getName()
 	{
 		return 'fusio_app_token';
@@ -43,11 +47,36 @@ class Token extends TableAbstract
 			'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
 			'appId' => self::TYPE_INT,
 			'userId' => self::TYPE_INT,
+			'status' => self::TYPE_INT,
 			'token' => self::TYPE_VARCHAR,
 			'scope' => self::TYPE_VARCHAR,
 			'ip' => self::TYPE_VARCHAR,
 			'expire' => self::TYPE_INT,
 			'date' => self::TYPE_DATETIME,
 		);
+	}
+
+	public function getTokensByApp($appId)
+	{
+		$con = new Condition();
+		$con->add('appId', '=', $appId);
+		$con->add('status', '=', self::STATUS_ACTIVE);
+		$con->add('expire', '>', time());
+
+		return $this->getBy($con);
+	}
+
+	public function removeTokenFromApp($appId, $tokenId)
+	{
+		$sql = 'UPDATE fusio_app_token
+				   SET status = :status
+				 WHERE appId = :appId
+				   AND id = :id';
+
+		$this->connection->executeUpdate($sql, array(
+			'status' => self::STATUS_DELETED,
+			'appId'  => $appId, 
+			'id'     => $tokenId
+		));
 	}
 }

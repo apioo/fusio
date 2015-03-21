@@ -180,6 +180,10 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 	});
 
 	$scope.update = function(app){
+		if (app.tokens) {
+			delete app.tokens;
+		}
+
 		$http.put(fusio_url + 'backend/app/' + app.id, app)
 			.success(function(data){
 				$scope.response = data;
@@ -219,6 +223,22 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 				data.scopes = scopes;
 
 				$scope.app = data;
+			});
+	};
+
+	$scope.removeToken = function(token){
+		$http.delete(fusio_url + 'backend/app/' + app.id + '/token/' + token.id)
+			.success(function(data){
+				if ($scope.app.tokens) {
+					var tokens = [];
+					for (var i = 0; i < $scope.app.tokens.length; i++) {
+						if ($scope.app.tokens[i].id != token.id) {
+							tokens.push($scope.app.tokens[i]);
+							break;
+						}
+					}
+					$scope.app.tokens = tokens;
+				}
 			});
 	};
 

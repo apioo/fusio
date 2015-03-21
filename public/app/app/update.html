@@ -46,14 +46,17 @@
 				</table>
 			</tab>
 			<tab heading="Tokens">
-				<table class="table fusio-table-tab">
+				<table class="table fusio-table-tab fusio-table-tab-token">
 				<colgroup>
 					<col width="*" />
 					<col width="50" />
 				</colgroup>
 				<tbody>
-				<tr ng-repeat="token in tokens">
-					<td>{{token.token}}</td>
+				<tr ng-repeat="token in app.tokens">
+					<td>
+						<pre>{{token.token}}</pre>
+						<small>Requested on {{token.date | date:'short'}} by {{token.ip}}, expires on  {{token.expire | date:'short'}}</small>
+					</td>
 					<td><a ng-click="removeToken(token)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
 				</tr>
 				</tbody>

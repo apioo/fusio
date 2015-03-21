@@ -32,6 +32,8 @@ use PSX\Sql\TableAbstract;
  */
 class App extends TableAbstract
 {
+	const BACKEND = 1;
+
 	public function getName()
 	{
 		return 'fusio_app';

@@ -21,32 +21,38 @@
 
 namespace Fusio\Backend\Api\App;
 
-use Fusio\Backend\Filter\App as Filter;
-use PSX\Filter as PSXFilter;
-use PSX\Validate;
-use PSX\Validate\Property;
-use PSX\Validate\RecordValidator;
+use Fusio\Backend\Api\Authorization\ProtectionTrait;
+use PSX\Controller\ApiAbstract;
 
 /**
- * ValidatorTrait
+ * Token
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-trait ValidatorTrait
+class Token extends ApiAbstract
 {
-	protected function getValidator()
+	use ProtectionTrait;
+
+	/**
+	 * @Inject
+	 * @var PSX\Sql\TableManager
+	 */
+	protected $tableManager;
+
+	public function doRemove()
 	{
-		return new RecordValidator(new Validate(), array(
-			new Property('id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\App')))),
-			new Property('userId', Validate::TYPE_INTEGER),
-			new Property('status', Validate::TYPE_INTEGER),
-			new Property('name', Validate::TYPE_STRING),
-			new Property('url', Validate::TYPE_STRING),
-			new Property('appKey', Validate::TYPE_STRING),
-			new Property('appSecret', Validate::TYPE_STRING),
-			new Property('scopes', Validate::TYPE_ARRAY),
+		$appId   = $this->getUriFragment('app_id');
+		$tokenId = $this->getUriFragment('token_id');
+
+		$app = $this->tableManager->getTable('Fusio\Backend\Table\App')->get($appId);
+
+		$this->tableManager->getTable('Fusio\Backend\Table\App\Token')->removeTokenFromApp($appId, $tokenId);
+
+		$this->setBody(array(
+			'success' => true,
+			'message' => 'Removed token successful',
 		));
 	}
 }
