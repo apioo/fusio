@@ -24,7 +24,8 @@ namespace Fusio\Backend\Api\Routes;
 use Fusio\Backend\Api\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
-use PSX\Api\View;
+use PSX\Api\Resource;
+use PSX\Loader\Context;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Filter as PSXFilter;
@@ -63,12 +64,18 @@ class Collection extends SchemaApiAbstract
 	 */
 	public function getDocumentation()
 	{
-		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
-		$builder = new View\Builder();
-		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Routes\Collection'));
-		$builder->setPost($this->schemaManager->getSchema('Fusio\Backend\Schema\Routes\Create'), $message);
+		$resource = new Resource(Resource::STATUS_ACTIVE, $this->context->get(Context::KEY_PATH));
 
-		return new Documentation\Simple($builder->getView());
+		$resource->addMethod(Resource\Factory::getMethod('GET')
+			->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\Routes\Collection'))
+		);
+
+		$resource->addMethod(Resource\Factory::getMethod('POST')
+			->setRequest($this->schemaManager->getSchema('Fusio\Backend\Schema\Routes\Create'))
+			->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\Message'))
+		);
+
+		return new Documentation\Simple($resource);
 	}
 
 	/**

@@ -47,7 +47,7 @@ class DatabaseRoutes implements RoutingParserInterface
 		if($this->_collection === null)
 		{
 			$collection = new RoutingCollection();
-			$result     = $this->connection->fetchAll('SELECT id, methods, path, controller, config FROM fusio_routes WHERE path NOT LIKE "/backend/%"');
+			$result     = $this->connection->fetchAll('SELECT id, methods, path, controller, config FROM fusio_routes');
 
 			foreach($result as $row)
 			{

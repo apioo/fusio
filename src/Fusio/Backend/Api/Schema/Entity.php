@@ -24,7 +24,8 @@ namespace Fusio\Backend\Api\Schema;
 use Fusio\Backend\Api\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
-use PSX\Api\View;
+use PSX\Api\Resource;
+use PSX\Loader\Context;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Http\Exception as StatusCode;
@@ -59,13 +60,22 @@ class Entity extends SchemaApiAbstract
 	 */
 	public function getDocumentation()
 	{
-		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
-		$builder = new View\Builder();
-		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\Schema'));
-		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\Schema\Update'), $message);
-		$builder->setDelete(null, $message);
+		$resource = new Resource(Resource::STATUS_ACTIVE, $this->context->get(Context::KEY_PATH));
 
-		return new Documentation\Simple($builder->getView());
+		$resource->addMethod(Resource\Factory::getMethod('GET')
+			->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\Schema'))
+		);
+
+		$resource->addMethod(Resource\Factory::getMethod('PUT')
+			->setRequest($this->schemaManager->getSchema('Fusio\Backend\Schema\Schema\Update'))
+			->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\Message'))
+		);
+
+		$resource->addMethod(Resource\Factory::getMethod('DELETE')
+			->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\Message'))
+		);
+
+		return new Documentation\Simple($resource);
 	}
 
 	/**

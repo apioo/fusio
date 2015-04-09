@@ -59,13 +59,22 @@ class Entity extends SchemaApiAbstract
 	 */
 	public function getDocumentation()
 	{
-		$message = $this->schemaManager->getSchema('Fusio\Backend\Schema\Message');
-		$builder = new View\Builder();
-		$builder->setGet($this->schemaManager->getSchema('Fusio\Backend\Schema\User'));
-		$builder->setPut($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Update'), $message);
-		$builder->setDelete(null, $message);
+		$resource = new Resource(Resource::STATUS_ACTIVE, $this->context->get(Context::KEY_PATH));
 
-		return new Documentation\Simple($builder->getView());
+		$resource->addMethod(Resource\Factory::getMethod('GET')
+			->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\User'))
+		);
+
+		$resource->addMethod(Resource\Factory::getMethod('PUT')
+			->setRequest($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Update'))
+			->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\Message'))
+		);
+
+		$resource->addMethod(Resource\Factory::getMethod('DELETE')
+			->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\Message'))
+		);
+
+		return new Documentation\Simple($resource);
 	}
 
 	/**

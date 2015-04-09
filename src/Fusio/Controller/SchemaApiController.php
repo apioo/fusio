@@ -26,11 +26,12 @@ use Fusio\Parameters;
 use Fusio\Body;
 use PSX\Api\DocumentedInterface;
 use PSX\Api\Documentation;
-use PSX\Api\View;
+use PSX\Api\Resource;
 use PSX\ControllerAbstract;
 use PSX\Data\Record;
 use PSX\Http\Exception as StatusCode;
 use PSX\Data\Schema\InvalidSchemaException;
+use PSX\Loader\Context;
 
 /**
  * SchemaApiController
@@ -148,23 +149,23 @@ class SchemaApiController extends ControllerAbstract implements DocumentedInterf
 
 	public function getDocumentation()
 	{
-		$view    = new View();
-		$methods = array(
-			View::METHOD_GET    => 'GET', 
-			View::METHOD_POST   => 'POST', 
-			View::METHOD_PUT    => 'PUT', 
-			View::METHOD_DELETE => 'DELETE'
-		);
+		$resource = new Resource(Resource::STATUS_ACTIVE, $this->context->get(Context::KEY_PATH));
+		$methods  = array('GET', 'POST', 'PUT', 'DELETE');
 
-		foreach($methods as $type => $method)
+		foreach($methods as $methodName)
 		{
-			list($requestSchemaId, $responseSchemaId, $actionId) = $this->getConfiguration($method);
+			$method    = Resource\Factory::getMethod($methodName);
+			$hasSchema = false;
+
+			list($requestSchemaId, $responseSchemaId, $actionId) = $this->getConfiguration($methodName);
 
 			if(!empty($requestSchemaId))
 			{
 				try
 				{
-					$view->set($type | View::TYPE_REQUEST, $this->apiSchemaManager->getSchema($requestSchemaId));
+					$method->setRequest($this->apiSchemaManager->getSchema($requestSchemaId));
+
+					$hasSchema = true;
 				}
 				catch(InvalidSchemaException $e)
 				{
@@ -175,15 +176,22 @@ class SchemaApiController extends ControllerAbstract implements DocumentedInterf
 			{
 				try
 				{
-					$view->set($type | View::TYPE_RESPONSE, $this->apiSchemaManager->getSchema($responseSchemaId));
+					$method->addResponse(200, $this->apiSchemaManager->getSchema($responseSchemaId));
+
+					$hasSchema = true;
 				}
 				catch(InvalidSchemaException $e)
 				{
 				}
 			}
+
+			if($hasSchema)
+			{
+				$resource->addMethod($method);
+			}
 		}
 
-		return new Documentation\Simple($view);
+		return new Documentation\Simple($resource);
 	}
 
 	protected function getConfiguration($method)

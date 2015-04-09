@@ -21,9 +21,8 @@
 
 namespace Fusio\Loader;
 
-use PSX\Api\ResourceListing as PSXResourceListing;
-use PSX\Api\ResourceListing\Resource;
-use PSX\Api\View;
+use PSX\Api\Resource\Listing\ControllerDocumentation;
+use PSX\Api\Resource;
 use PSX\Api\DocumentedInterface;
 use PSX\Api\DocumentationInterface;
 use PSX\Dispatch\ControllerFactoryInterface;
@@ -40,89 +39,13 @@ use PSX\Http\ResponseInterface;
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class ResourceListing extends PSXResourceListing
+class ResourceListing extends ControllerDocumentation
 {
-	public function getResources(RequestInterface $request, ResponseInterface $response, Context $context)
+	protected function newContext(array $route)
 	{
-		$collections = $this->routingParser->getCollection();
-		$result      = array();
+		$context = parent::newContext($route);
+		$context->set('fusio.config', $route[3]);
 
-		foreach($collections as $collection)
-		{
-			list($methods, $path, $source, $config) = $collection;
-
-			$parts     = explode('::', $source, 2);
-			$className = isset($parts[0]) ? $parts[0] : null;
-
-			if(class_exists($className))
-			{
-				$ctx = clone $context;
-				$ctx->set(Context::KEY_PATH, $path);
-				$ctx->set('fusio.config', $config);
-
-				$controller = $this->getController($className, $request, $response, $ctx);
-
-				if($controller instanceof DocumentedInterface)
-				{
-					$name = substr(strrchr(get_class($controller), '\\'), 1);
-					$doc  = $controller->getDocumentation();
-
-					if($doc instanceof DocumentationInterface)
-					{
-						$result[] = new Resource(
-							$name,
-							$methods,
-							$path,
-							$source,
-							$doc
-						);
-					}
-				}
-			}
-		}
-
-		return $result;
-	}
-
-	public function getResource($sourcePath, RequestInterface $request, ResponseInterface $response, Context $context)
-	{
-		$matcher     = new PathMatcher($sourcePath);
-		$collections = $this->routingParser->getCollection();
-
-		foreach($collections as $collection)
-		{
-			list($methods, $path, $source, $config) = $collection;
-
-			$parts     = explode('::', $source, 2);
-			$className = isset($parts[0]) ? $parts[0] : null;
-
-			if(class_exists($className) && $matcher->match($path))
-			{
-				$ctx = clone $context;
-				$ctx->set(Context::KEY_PATH, $path);
-				$ctx->set('fusio.config', $config);
-
-				$controller = $this->getController($className, $request, $response, $ctx);
-
-				if($controller instanceof DocumentedInterface)
-				{
-					$name = substr(strrchr(get_class($controller), '\\'), 1);
-					$doc  = $controller->getDocumentation();
-
-					if($doc instanceof DocumentationInterface)
-					{
-						return new Resource(
-							$name,
-							$methods,
-							$path,
-							$source,
-							$doc
-						);
-					}
-				}
-			}
-		}
-
-		return null;
+		return $context;
 	}
 }
