@@ -30,7 +30,6 @@ use Fusio\Form;
 use Fusio\Form\Element;
 use MongoCollection;
 use MongoDB;
-use PSX\Util\CurveArray;
 
 /**
  * MongoFetchRow

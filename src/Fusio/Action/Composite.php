@@ -28,7 +28,6 @@ use Fusio\Parameters;
 use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
-use PSX\Util\CurveArray;
 
 /**
  * Composite
