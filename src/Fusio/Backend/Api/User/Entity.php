@@ -24,11 +24,12 @@ namespace Fusio\Backend\Api\User;
 use Fusio\Backend\Api\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
-use PSX\Api\View;
+use PSX\Api\Resource;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Http\Exception as StatusCode;
 use PSX\Sql\Condition;
+use PSX\Loader\Context;
 
 /**
  * Entity
