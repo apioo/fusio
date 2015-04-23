@@ -57,6 +57,7 @@ class Container extends DefaultContainer
 	/**
 	 * @return Psr\Log\LoggerInterface
 	 */
+	/*
 	public function getLogger()
 	{
 		$logger = new SystemLogger('psx');
@@ -64,6 +65,7 @@ class Container extends DefaultContainer
 
 		return $logger;
 	}
+	*/
 
 	/**
 	 * @return PSX\Loader\LocationFinderInterface
