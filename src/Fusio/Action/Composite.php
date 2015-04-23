@@ -47,9 +47,9 @@ class Composite implements ActionInterface
 
 	/**
 	 * @Inject
-	 * @var Fusio\Executor
+	 * @var Fusio\Processor
 	 */
-	protected $executor;
+	protected $processor;
 
 	public function getName()
 	{
@@ -58,9 +58,9 @@ class Composite implements ActionInterface
 
 	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
 	{
-		$this->executor->execute($configuration->get('in'), $parameters, $data);
+		$this->processor->execute($configuration->get('in'), $parameters, $data);
 
-		return $this->executor->execute($configuration->get('out'), $parameters, $data);
+		return $this->processor->execute($configuration->get('out'), $parameters, $data);
 	}
 
 	public function getForm()

@@ -23,7 +23,7 @@ namespace Fusio\Dependency;
 
 use Monolog\Logger as SystemLogger;
 use Fusio\Backend\Api\Authorization\ClientCredentials;
-use Fusio\Executor;
+use Fusio\Processor;
 use Fusio\Factory;
 use Fusio\Parser;
 use Fusio\Logger;
@@ -126,11 +126,11 @@ class Container extends DefaultContainer
 	}
 
 	/**
-	 * @return Fusio\Executor
+	 * @return Fusio\Processor
 	 */
-	public function getExecutor()
+	public function getProcessor()
 	{
-		return new Executor($this->get('connection'), $this->get('action_factory'));
+		return new Processor($this->get('connection'), $this->get('action_factory'));
 	}
 
 	/**

@@ -27,7 +27,7 @@ use Fusio\Body;
 use PSX\Api\DocumentedInterface;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
-use PSX\ControllerAbstract;
+use PSX\Controller\ApiAbstract;
 use PSX\Data\Record;
 use PSX\Http\Exception as StatusCode;
 use PSX\Data\Schema\InvalidSchemaException;
@@ -40,7 +40,7 @@ use PSX\Loader\Context;
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class SchemaApiController extends ControllerAbstract implements DocumentedInterface
+class SchemaApiController extends ApiAbstract implements DocumentedInterface
 {
 	const SCHEMA_PASSTHRU = 1;
 
@@ -52,9 +52,9 @@ class SchemaApiController extends ControllerAbstract implements DocumentedInterf
 
 	/**
 	 * @Inject
-	 * @var Fusio\Executor
+	 * @var Fusio\Processor
 	 */
-	protected $executor;
+	protected $processor;
 
 	/**
 	 * @Inject
@@ -111,9 +111,9 @@ class SchemaApiController extends ControllerAbstract implements DocumentedInterf
 		// execute action
 		if(!empty($actionId))
 		{
-			$parameters = new Parameters(array_merge($this->request->getQueryParams(), $this->uriFragments));
+			$parameters = new Parameters(array_merge($this->getParameters(), $this->uriFragments));
 			$body       = new Body($request);
-			$response   = $this->executor->execute($actionId, $parameters, $body);
+			$response   = $this->processor->execute($actionId, $parameters, $body);
 		}
 		else
 		{

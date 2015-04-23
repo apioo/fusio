@@ -48,9 +48,9 @@ class Condition implements ActionInterface
 
 	/**
 	 * @Inject
-	 * @var Fusio\Executor
+	 * @var Fusio\Processor
 	 */
-	protected $executor;
+	protected $processor;
 
 	public function getName()
 	{
@@ -64,11 +64,11 @@ class Condition implements ActionInterface
 
 		if(empty($condition) || $language->evaluate($condition, $data->toArray()))
 		{
-			return $this->executor->execute($configuration->get('true'), $parameters, $data);
+			return $this->processor->execute($configuration->get('true'), $parameters, $data);
 		}
 		else
 		{
-			return $this->executor->execute($configuration->get('false'), $parameters, $data);
+			return $this->processor->execute($configuration->get('false'), $parameters, $data);
 		}
 	}
 

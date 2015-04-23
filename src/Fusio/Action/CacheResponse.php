@@ -53,9 +53,9 @@ class CacheResponse implements ActionInterface
 
 	/**
 	 * @Inject
-	 * @var Fusio\Executor
+	 * @var Fusio\Processor
 	 */
-	protected $executor;
+	protected $processor;
 
 	public function getName()
 	{
@@ -69,7 +69,7 @@ class CacheResponse implements ActionInterface
 
 		if(!$item->isHit())
 		{
-			$response = $this->executor->execute($configuration->get('action'), $parameters, $data);;
+			$response = $this->processor->execute($configuration->get('action'), $parameters, $data);;
 
 			$item->set($response, $configuration->get('expire'));
 

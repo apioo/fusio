@@ -47,9 +47,9 @@ class Pipe implements ActionInterface
 
 	/**
 	 * @Inject
-	 * @var Fusio\Executor
+	 * @var Fusio\Processor
 	 */
-	protected $executor;
+	protected $processor;
 
 	public function getName()
 	{
@@ -58,10 +58,10 @@ class Pipe implements ActionInterface
 
 	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
 	{
-		$response = $this->executor->execute($configuration->get('source'), $parameters, $data);
+		$response = $this->processor->execute($configuration->get('source'), $parameters, $data);
 		$data     = Body::fromArray($response);
 
-		return $this->executor->execute($configuration->get('destination'), $parameters, $data);
+		return $this->processor->execute($configuration->get('destination'), $parameters, $data);
 	}
 
 	public function getForm()

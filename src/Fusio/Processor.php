@@ -25,13 +25,13 @@ use Doctrine\DBAL\Connection;
 use PSX\Dependency\ObjectBuilderInterface;
 
 /**
- * Executor
+ * Processor
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Executor
+class Processor
 {
 	protected $connection;
 	protected $factory;
