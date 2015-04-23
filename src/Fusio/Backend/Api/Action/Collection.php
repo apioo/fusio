@@ -70,7 +70,7 @@ class Collection extends SchemaApiAbstract
 			->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Collection'))
 		);
 
-		$resource->addMethod(Resource\Factory::getMethod('GET')
+		$resource->addMethod(Resource\Factory::getMethod('POST')
 			->setRequest($this->schemaManager->getSchema('Fusio\Backend\Schema\Action\Create'))
 			->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\Message'))
 		);
