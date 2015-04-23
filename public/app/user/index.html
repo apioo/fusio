@@ -20,7 +20,8 @@
 
 <alert type="success" close="closeResponse()" ng-if="response.success === true">
 	{{response.message}}
-	<div ng-show="response.password">The following password was assigned to the account: {{response.password}}</div>
+	<div ng-show="response.password">The following password was assigned to the account: {{response.password}}.<br>
+	<b>Note please save the password for the user. Because of security reasons there is no way to recover the password later on.</b></div>
 </alert>
 
 <alert type="danger" close="closeResponse()" ng-if="response.success === false">
