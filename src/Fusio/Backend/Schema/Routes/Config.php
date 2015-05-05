@@ -35,6 +35,7 @@ class Config extends SchemaAbstract
 	public function getDefinition()
 	{
 		$sb = $this->getSchemaBuilder('config');
+		$sb->boolean('public');
 		$sb->string('method');
 		$sb->integer('request');
 		$sb->integer('response');

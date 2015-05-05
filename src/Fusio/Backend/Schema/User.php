@@ -40,7 +40,7 @@ class User extends SchemaAbstract
 		$sb->integer('status');
 		$sb->string('name');
 		$sb->arrayType('scopes')
-			->setPrototype(new Property\String('name'));
+			->setPrototype(Property::getString('name'));
 		$sb->dateTime('date');
 
 		return $sb->getProperty();

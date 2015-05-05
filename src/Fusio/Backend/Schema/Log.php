@@ -37,6 +37,7 @@ class Log extends SchemaAbstract
 		$sb = $this->getSchemaBuilder('log');
 		$sb->integer('id');
 		$sb->string('ip');
+		$sb->string('userAgent');
 		$sb->string('method');
 		$sb->string('path');
 		$sb->string('header');
