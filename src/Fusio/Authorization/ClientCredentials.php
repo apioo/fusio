@@ -49,8 +49,7 @@ class ClientCredentials extends ClientCredentialsAbstract
 	protected function generate(Credentials $credentials, $scope)
 	{
 		$sql = 'SELECT id, 
-				       userId, 
-				       password
+				       userId
 			      FROM fusio_app
 			     WHERE appKey = :app_key
 			       AND appSecret = :app_secret

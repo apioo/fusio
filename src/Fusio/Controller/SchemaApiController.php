@@ -30,7 +30,7 @@ use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Controller\ApiAbstract;
 use PSX\Data\Record;
-use PSX\Dispatch\Filter\Oauth2Authentication;
+use Fusio\Authorization\Oauth2Filter;
 use PSX\Dispatch\Filter\UserAgentEnforcer;
 use PSX\Http\Exception as StatusCode;
 use PSX\Data\Schema\InvalidSchemaException;
