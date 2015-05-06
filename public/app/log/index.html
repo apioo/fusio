@@ -33,6 +33,7 @@
 	<colgroup>
 		<col width="80" />
 		<col width="*" />
+		<col width="200" />
 		<col width="150" />
 		<col width="150" />
 		<col width="50" />
@@ -41,6 +42,7 @@
 	<tr>
 		<th>Method</th>
 		<th>Path</th>
+		<th>User-Agent</th>
 		<th>IP</th>
 		<th>Date</th>
 		<th></th>
@@ -50,6 +52,7 @@
 	<tr ng-repeat="log in logs">
 		<td>{{log.method}}</td>
 		<td>{{log.path}}</td>
+		<td><div style="overflow:hidden;width:200px;white-space:nowrap;" title="{{log.userAgent}}">{{log.userAgent}}</div></td>
 		<td>{{log.ip}}</td>
 		<td>{{log.date | date: 'short'}}</td>
 		<td>

@@ -21,7 +21,7 @@
 
 namespace Fusio\Backend\Api\Connection;
 
-use Fusio\Backend\Api\Authorization\ProtectionTrait;
+use Fusio\Authorization\ProtectionTrait;
 use Fusio\Form;
 use PSX\Controller\ApiAbstract;
 

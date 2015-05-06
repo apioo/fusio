@@ -22,7 +22,8 @@
 namespace Fusio\Dependency;
 
 use Monolog\Logger as SystemLogger;
-use Fusio\Backend\Api\Authorization\ClientCredentials;
+use Fusio\Authorization as ApiAuthorization;
+use Fusio\Backend\Authorization as BackendAuthorization;
 use Fusio\Processor;
 use Fusio\Factory;
 use Fusio\Parser;
@@ -46,10 +47,18 @@ use PSX\Data\Importer;
  */
 class Container extends DefaultContainer
 {
-	public function getOauth2GrantTypeFactory()
+	public function getApiGrantTypeFactory()
 	{
 		$factory = new GrantTypeFactory();
-		$factory->add(new ClientCredentials($this->get('connection')));
+		$factory->add(new ApiAuthorization\ClientCredentials($this->get('connection')));
+
+		return $factory;
+	}
+
+	public function getBackendGrantTypeFactory()
+	{
+		$factory = new GrantTypeFactory();
+		$factory->add(new BackendAuthorization\ClientCredentials($this->get('connection')));
 
 		return $factory;
 	}

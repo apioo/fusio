@@ -44,6 +44,7 @@ class Log extends TableAbstract
 			'appId' => self::TYPE_INT,
 			'routeId' => self::TYPE_INT,
 			'ip' => self::TYPE_VARCHAR,
+			'userAgent' => self::TYPE_VARCHAR,
 			'method' => self::TYPE_VARCHAR,
 			'path' => self::TYPE_VARCHAR,
 			'header' => self::TYPE_TEXT,

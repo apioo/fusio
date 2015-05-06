@@ -24,6 +24,7 @@
 <script type="text/ng-template" id="Fusio-Controller-SchemaApiController">
 	<table class="table">
 	<colgroup>
+		<col width="20" />
 		<col width="100" />
 		<col width="200" />
 		<col width="200" />
@@ -31,6 +32,7 @@
 		<col width="50" />
 	</colgroup>
 	<tr>
+		<th><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></th>
 		<th>Method</th>
 		<th>Request</th>
 		<th>Response</th>
@@ -38,6 +40,9 @@
 		<th></th>
 	</tr>
 	<tr ng-repeat="option in route.config">
+		<td>
+			<input type="checkbox" ng-model="option.public" style="margin-top:10px;">
+		</td>
 		<td>
 			<select class="form-control" ng-model="option.method" ng-options="method for method in methods">
 			</select>

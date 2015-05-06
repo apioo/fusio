@@ -19,19 +19,20 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Api\App;
+namespace Fusio\Authorization;
 
-use Fusio\Authorization\ProtectionTrait;
+use Fusio\Backend\Table\App;
 use PSX\Controller\ApiAbstract;
+use PSX\Http\Exception as StatusCode;
 
 /**
- * Token
+ * Revoke
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Token extends ApiAbstract
+class Revoke extends ApiAbstract
 {
 	use ProtectionTrait;
 
@@ -41,18 +42,37 @@ class Token extends ApiAbstract
 	 */
 	protected $tableManager;
 
-	public function doRemove()
+	public function onPost()
 	{
-		$appId   = $this->getUriFragment('app_id');
-		$tokenId = $this->getUriFragment('token_id');
+		$header = $this->getHeader('Authorization');
+		$parts  = explode(' ', $header, 2);
+		$type   = isset($parts[0]) ? $parts[0] : null;
+		$token  = isset($parts[1]) ? $parts[1] : null;
 
-		$app = $this->tableManager->getTable('Fusio\Backend\Table\App')->get($appId);
+		if($type == 'Bearer')
+		{
+			$sql = 'SELECT id, 
+					       appId,
+					       userId,
+					       scope
+					  FROM fusio_app_token 
+					 WHERE token = :token';
 
-		$this->tableManager->getTable('Fusio\Backend\Table\App\Token')->removeTokenFromApp($appId, $tokenId);
+			$row = $this->connection->fetchAssoc($sql, array('token' => $token));
 
-		$this->setBody(array(
-			'success' => true,
-			'message' => 'Removed token successful',
-		));
+			// the token must be assigned to the user
+			if(!empty($row) && $row['appId'] == $this->appId && $row['userId'] == $this->userId)
+			{
+				$this->tableManager->getTable('Fusio\Backend\Table\App\Token')->removeTokenFromApp($this->appId, $row['id']);
+			}
+			else
+			{
+				throw new StatusCode\BadRequestException('Invalid token');
+			}
+		}
+		else
+		{
+			throw new StatusCode\BadRequestException('Invalid token type');
+		}
 	}
 }

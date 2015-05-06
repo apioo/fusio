@@ -19,37 +19,22 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Api\Dashboard;
+namespace Fusio\Backend\Authorization;
 
-use DateTime;
-use DateInterval;
-use Fusio\Authorization\ProtectionTrait;
-use PSX\Controller\ApiAbstract;
+use PSX\Oauth2\Provider\TokenAbstract;
 
 /**
- * LatestApps
+ * Token
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class LatestApps extends ApiAbstract
+class Token extends TokenAbstract
 {
-	use ProtectionTrait;
-
-	public function onGet()
-	{
-		$sql = '    SELECT name,
-				           date
-				      FROM fusio_app
-				  ORDER BY date DESC
-				     LIMIT 6';
-
-		$result = $this->connection->fetchAll($sql);
-
-		$this->setBody(array(
-			'entry' => $result,
-		));
-	}
+	/**
+	 * @Inject backend_grant_type_factory
+	 * @var PSX\Oauth2\Provider\GrantTypeFactory
+	 */
+	protected $grantTypeFactory;
 }
-

@@ -19,7 +19,7 @@ angular.module('fusioApp.logout', ['ngRoute'])
 		$location.path('/login');
 	}
 
-	$http.post(fusio_url + 'backend/revoke', null)
+	$http.post(fusio_url + 'authorization/revoke', null)
 		.success(removeToken)
 		.error(removeToken);
 

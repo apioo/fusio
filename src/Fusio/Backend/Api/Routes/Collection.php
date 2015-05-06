@@ -21,7 +21,7 @@
 
 namespace Fusio\Backend\Api\Routes;
 
-use Fusio\Backend\Api\Authorization\ProtectionTrait;
+use Fusio\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
 use PSX\Api\Resource;
@@ -90,6 +90,7 @@ class Collection extends SchemaApiAbstract
 		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
 		$condition  = new Condition(['path', 'NOT LIKE', '/backend%']);
 		$condition->add('path', 'NOT LIKE', '/documentation%');
+		$condition->add('path', 'NOT LIKE', '/authorization%');
 
 		if(!empty($search))
 		{

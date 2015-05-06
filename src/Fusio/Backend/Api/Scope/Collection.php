@@ -22,7 +22,7 @@
 namespace Fusio\Backend\Api\Scope;
 
 use DateTime;
-use Fusio\Backend\Api\Authorization\ProtectionTrait;
+use Fusio\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
 use PSX\Api\Version;
 use PSX\Api\Resource;

@@ -24,14 +24,18 @@ namespace Fusio\Controller;
 use Fusio\Response;
 use Fusio\Parameters;
 use Fusio\Body;
+use Fusio\Backend\Table\App\Token;
 use PSX\Api\DocumentedInterface;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Controller\ApiAbstract;
 use PSX\Data\Record;
+use PSX\Dispatch\Filter\Oauth2Authentication;
+use PSX\Dispatch\Filter\UserAgentEnforcer;
 use PSX\Http\Exception as StatusCode;
 use PSX\Data\Schema\InvalidSchemaException;
 use PSX\Loader\Context;
+use PSX\Oauth2\Authorization\Exception\InvalidScopeException;
 
 /**
  * SchemaApiController
@@ -49,6 +53,12 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 	 * @var PSX\Data\Schema\Assimilator
 	 */
 	protected $schemaAssimilator;
+
+	/**
+	 * @Inject
+	 * @var Doctrine\DBAL\Connection
+	 */
+	protected $connection;
 
 	/**
 	 * @Inject
@@ -74,33 +84,38 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 	 */
 	protected $logger;
 
+	/**
+	 * @var PSX\Data\Record
+	 */
+	protected $routeConfig;
+
+	/**
+	 * @var integer
+	 */
+	protected $appId;
+
 	public function onLoad()
 	{
 		parent::onLoad();
 
-		list($requestSchemaId, $responseSchemaId, $actionId) = $this->getConfiguration($this->request->getMethod());
-
-		// we get the appId from authentication
-		$appId = null;
-
 		// log request
 		$this->apiLogger->log(
-			$appId,
+			$this->appId,
 			$this->context->get('fusio.routeId'),
 			$_SERVER['REMOTE_ADDR'],
 			$this->request
 		);
 
 		// read request data
-		if(!in_array($this->request->getMethod(), ['HEAD', 'GET']) && !empty($requestSchemaId))
+		if(!in_array($this->request->getMethod(), ['HEAD', 'GET']) && $this->getRouteConfiguration('request') > 0)
 		{
-			if($requestSchemaId == self::SCHEMA_PASSTHRU)
+			if($this->getRouteConfiguration('request') == self::SCHEMA_PASSTHRU)
 			{
 				$request = $this->getBody();
 			}
 			else
 			{
-				$request = $this->import($this->apiSchemaManager->getSchema($requestSchemaId));
+				$request = $this->import($this->apiSchemaManager->getSchema($this->getRouteConfiguration('request')));
 			}
 		}
 		else
@@ -109,11 +124,11 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 		}
 
 		// execute action
-		if(!empty($actionId))
+		if($this->getRouteConfiguration('action') > 0)
 		{
 			$parameters = new Parameters(array_merge($this->getParameters(), $this->uriFragments));
 			$body       = new Body($request);
-			$response   = $this->processor->execute($actionId, $parameters, $body);
+			$response   = $this->processor->execute($this->getRouteConfiguration('action'), $parameters, $body);
 		}
 		else
 		{
@@ -121,7 +136,7 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 		}
 
 		// send response
-		if($response instanceof Response && !empty($responseSchemaId))
+		if($response instanceof Response && $this->getRouteConfiguration('response') > 0)
 		{
 			$this->setResponseCode($response->getStatusCode() ?: 200);
 
@@ -131,13 +146,13 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 				$this->response->setHeader($name, $value);
 			}
 
-			if($responseSchemaId == self::SCHEMA_PASSTHRU)
+			if($this->getRouteConfiguration('response') == self::SCHEMA_PASSTHRU)
 			{
 				$this->setBody($response->getBody());
 			}
 			else
 			{
-				$this->setBody($this->schemaAssimilator->assimilate($this->apiSchemaManager->getSchema($responseSchemaId), $response->getBody()));
+				$this->setBody($this->schemaAssimilator->assimilate($this->apiSchemaManager->getSchema($this->getRouteConfiguration('response')), $response->getBody()));
 			}
 		}
 		else
@@ -157,13 +172,11 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 			$method    = Resource\Factory::getMethod($methodName);
 			$hasSchema = false;
 
-			list($requestSchemaId, $responseSchemaId, $actionId) = $this->getConfiguration($methodName);
-
-			if(!empty($requestSchemaId))
+			if($this->getRouteConfiguration('request') > 0)
 			{
 				try
 				{
-					$method->setRequest($this->apiSchemaManager->getSchema($requestSchemaId));
+					$method->setRequest($this->apiSchemaManager->getSchema($this->getRouteConfiguration('request')));
 
 					$hasSchema = true;
 				}
@@ -172,11 +185,11 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 				}
 			}
 
-			if(!empty($responseSchemaId))
+			if($this->getRouteConfiguration('response') > 0)
 			{
 				try
 				{
-					$method->addResponse(200, $this->apiSchemaManager->getSchema($responseSchemaId));
+					$method->addResponse(200, $this->apiSchemaManager->getSchema($this->getRouteConfiguration('response')));
 
 					$hasSchema = true;
 				}
@@ -194,27 +207,59 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 		return new Documentation\Simple($resource);
 	}
 
-	protected function getConfiguration($method)
+	/**
+	 * Returns an config value for the current router configuration. Currently
+	 * this can be one of: public, request, response and action
+	 *
+	 * @param string $method
+	 * @param string $key
+	 * @return mixed
+	 */
+	protected function getRouteConfiguration($key)
 	{
-		$config           = $this->context->get('fusio.config');
-		$requestSchemaId  = null;
-		$responseSchemaId = null;
-		$actionId         = null;
-
-		if(!empty($config) && is_array($config))
+		if($this->routeConfig === null)
 		{
-			foreach($config as $record)
+			$config = $this->context->get('fusio.config');
+
+			if(!empty($config) && is_array($config))
 			{
-				if($record->getMethod() == $method)
+				foreach($config as $record)
 				{
-					$requestSchemaId  = (int) $record->getRequest();
-					$responseSchemaId = (int) $record->getResponse();
-					$actionId         = (int) $record->getAction();
-					break;
+					if($record->getMethod() == $this->request->getMethod())
+					{
+						$this->routeConfig = $record;
+						break;
+					}
 				}
 			}
 		}
 
-		return [$requestSchemaId, $responseSchemaId, $actionId];
+		if($this->routeConfig !== null)
+		{
+			return $this->routeConfig->getProperty($key);
+		}
+
+		return null;
+	}
+
+	public function getPreFilter()
+	{
+		$isPublic = (bool) $this->getRouteConfiguration('public');
+		$filter   = array();
+
+		// it is required for every request to have an user agent which 
+		// identifies the client
+		$filter[] = new UserAgentEnforcer();
+
+		if(!$isPublic)
+		{
+			$filter[] = new Oauth2Filter($this->connection, $this->request->getMethod(), $this->context->get('fusio.routeId'), function($accessToken){
+
+				$this->appId = $accessToken['appId'];
+
+			});
+		}
+
+		return $filter;
 	}
 }

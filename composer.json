@@ -12,8 +12,9 @@
   ],
   "require": {
     "php": ">=5.3",
-    "psx/psx": "0.9.6",
-    "ircmaxell/password-compat": "1.0.4"
+    "psx/psx": "~1.0",
+    "ircmaxell/password-compat": "1.0.4",
+    "symfony/expression-language": "2.6.4"
   },
   "autoload": {
     "psr-0": {

@@ -47,6 +47,7 @@ class Logger
 				        SET `appId` = :appId,
 				            `routeId` = :routeId,
 				            `ip` = :ip,
+				            `userAgent` = :userAgent,
 				            `method` = :method,
 				            `path` = :path,
 				            `header` = :header,
@@ -54,13 +55,14 @@ class Logger
 				            `date` = NOW()';
 
 		$this->connection->executeUpdate($sql, array(
-			'appId'   => $appId,
-			'routeId' => $routeId,
-			'ip'      => $ip,
-			'method'  => $request->getMethod(),
-			'path'    => $request->getRequestTarget(),
-			'header'  => $this->getHeadersAsString($request),
-			'body'    => $this->getBodyAsString($request),
+			'appId'     => $appId,
+			'routeId'   => $routeId,
+			'ip'        => $ip,
+			'userAgent' => $request->getHeader('User-Agent'),
+			'method'    => $request->getMethod(),
+			'path'      => $request->getRequestTarget(),
+			'header'    => $this->getHeadersAsString($request),
+			'body'      => $this->getBodyAsString($request),
 		));
 	}
 

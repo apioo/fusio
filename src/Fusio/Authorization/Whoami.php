@@ -19,37 +19,41 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Api\Dashboard;
+namespace Fusio\Authorization;
 
-use DateTime;
-use DateInterval;
-use Fusio\Authorization\ProtectionTrait;
 use PSX\Controller\ApiAbstract;
+use PSX\Http\Exception as StatusCode;
 
 /**
- * LatestApps
+ * Whoami
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class LatestApps extends ApiAbstract
+class Whoami extends ApiAbstract
 {
 	use ProtectionTrait;
 
 	public function onGet()
 	{
-		$sql = '    SELECT name,
-				           date
-				      FROM fusio_app
-				  ORDER BY date DESC
-				     LIMIT 6';
+		$sql = 'SELECT id, 
+				       status, 
+				       name 
+				  FROM fusio_user 
+				 WHERE id = :id';
 
-		$result = $this->connection->fetchAll($sql);
-
-		$this->setBody(array(
-			'entry' => $result,
+		$user = $this->connection->fetchAssoc($sql, array(
+			'id' => $this->userId
 		));
+
+		if(!empty($user))
+		{
+			$this->setBody($user);
+		}
+		else
+		{
+			throw new StatusCode\UnauthorizedException('Not authenticated', 'Bearer');
+		}
 	}
 }
-

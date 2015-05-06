@@ -19,37 +19,51 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Api\Dashboard;
+namespace Fusio\Authorization;
 
-use DateTime;
-use DateInterval;
-use Fusio\Authorization\ProtectionTrait;
-use PSX\Controller\ApiAbstract;
+use PSX\Dispatch\Filter\UserAgentEnforcer;
 
 /**
- * LatestApps
+ * ProtectionTrait
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class LatestApps extends ApiAbstract
+trait ProtectionTrait
 {
-	use ProtectionTrait;
+	/**
+	 * @Inject
+	 * @var Doctrine\DBAL\Connection
+	 */
+	protected $connection;
 
-	public function onGet()
+	/**
+	 * ID of the app
+	 *
+	 * @var integer
+	 */
+	protected $appId;
+
+	/**
+	 * ID of the authenticated user
+	 *
+	 * @var integer
+	 */
+	protected $userId;
+
+	public function getPreFilter()
 	{
-		$sql = '    SELECT name,
-				           date
-				      FROM fusio_app
-				  ORDER BY date DESC
-				     LIMIT 6';
+		$filter = array();
 
-		$result = $this->connection->fetchAll($sql);
+		$filter[] = new UserAgentEnforcer();
+		$filter[] = new Oauth2Filter($this->connection, $this->request->getMethod(), $this->context->get('fusio.routeId'), function($accessToken){
 
-		$this->setBody(array(
-			'entry' => $result,
-		));
+			$this->appId  = $accessToken['appId'];
+			$this->userId = $accessToken['userId'];
+
+		});
+
+		return $filter;
 	}
 }
-

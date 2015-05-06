@@ -32,6 +32,10 @@ use PSX\Sql\TableAbstract;
  */
 class App extends TableAbstract
 {
+	const STATUS_ACTIVE      = 0x1;
+	const STATUS_PENDING     = 0x2;
+	const STATUS_DEACTIVATED = 0x3;
+
 	const BACKEND = 1;
 
 	public function getName()
