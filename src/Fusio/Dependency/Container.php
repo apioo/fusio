@@ -21,22 +21,23 @@
 
 namespace Fusio\Dependency;
 
-use Monolog\Logger as SystemLogger;
 use Fusio\Authorization as ApiAuthorization;
 use Fusio\Backend\Authorization as BackendAuthorization;
-use Fusio\Processor;
-use Fusio\Factory;
-use Fusio\Parser;
-use Fusio\Logger;
 use Fusio\Connector;
-use Fusio\Loader\RoutingParser;
+use Fusio\Data\SchemaManager;
+use Fusio\Factory;
 use Fusio\Loader\DatabaseRoutes;
 use Fusio\Loader\ResourceListing;
-use Fusio\Data\SchemaManager;
-use PSX\Dependency\DefaultContainer;
-use PSX\Oauth2\Provider\GrantTypeFactory;
-use PSX\Log;
+use Fusio\Loader\RoutingParser;
+use Fusio\Logger;
+use Fusio\Parser;
+use Fusio\Processor;
+use Fusio\Schema;
+use Monolog\Logger as SystemLogger;
 use PSX\Data\Importer;
+use PSX\Dependency\DefaultContainer;
+use PSX\Log;
+use PSX\Oauth2\Provider\GrantTypeFactory;
 
 /**
  * Container
@@ -66,7 +67,6 @@ class Container extends DefaultContainer
 	/**
 	 * @return Psr\Log\LoggerInterface
 	 */
-	/*
 	public function getLogger()
 	{
 		$logger = new SystemLogger('psx');
@@ -74,7 +74,6 @@ class Container extends DefaultContainer
 
 		return $logger;
 	}
-	*/
 
 	/**
 	 * @return PSX\Loader\LocationFinderInterface
@@ -170,5 +169,13 @@ class Container extends DefaultContainer
 	public function getConnector()
 	{
 		return new Connector($this->get('connection'), $this->get('connection_factory'));
+	}
+
+	/**
+	 * @return Fusio\Schema\Parser
+	 */
+	public function getSchemaParser()
+	{
+		return new Schema\Parser($this->get('connection'));
 	}
 }

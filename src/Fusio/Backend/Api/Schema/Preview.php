@@ -19,29 +19,53 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Data;
+namespace Fusio\Backend\Api\Schema;
 
+use Fusio\Authorization\ProtectionTrait;
+use PSX\Controller\ApiAbstract;
 use PSX\Data\SchemaInterface;
-use PSX\Data\Schema\PropertyInterface;
+use PSX\Data\Schema\Generator;
+use PSX\Http\Exception as StatusCode;
+use RuntimeException;
 
 /**
- * Schema
+ * Preview
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Schema implements SchemaInterface
+class Preview extends ApiAbstract
 {
-	protected $property;
+	use ProtectionTrait;
 
-	public function __construct(PropertyInterface $property)
+	public function onGet()
 	{
-		$this->property = $property;
-	}
+		$sql = 'SELECT schema.cache
+				  FROM fusio_schema `schema`
+				 WHERE schema.id = :id';
 
-	public function getDefinition()
-	{
-		return $this->property;
+		$row = $this->connection->fetchAssoc($sql, array('id' => $this->getUriFragment('schema_id')));
+
+		if(!empty($row))
+		{
+			$generator = new Generator\Html();
+			$schema    = unserialize($row['cache']);
+
+			if($schema instanceof SchemaInterface)
+			{
+				$this->setHeader('Content-Type', 'text/html');
+				$this->setBody($generator->generate($schema));
+			}
+			else
+			{
+				throw new RuntimeException('Invalid schema');
+			}
+		}
+		else
+		{
+			throw new StatusCode\NotFoundException('Invalid schema id');
+		}
 	}
 }
+

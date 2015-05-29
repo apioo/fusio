@@ -56,6 +56,12 @@ class Collection extends SchemaApiAbstract
 
 	/**
 	 * @Inject
+	 * @var Fusio\Schema\Parser
+	 */
+	protected $schemaParser;
+
+	/**
+	 * @Inject
 	 * @var PSX\Sql\TableManager
 	 */
 	protected $tableManager;
@@ -113,17 +119,11 @@ class Collection extends SchemaApiAbstract
 		$this->getValidator()->validate($record);
 
 		$schemaTable = $this->tableManager->getTable('Fusio\Backend\Table\Schema');
-
 		$schemaTable->create(array(
-			'extendsId'    => $record->getExtendsId() ?: null,
-			'name'         => $record->getName(),
-			'propertyName' => $record->getPropertyName(),
+			'name'   => $record->getName(),
+			'source' => $record->getSource(),
+			'cache'  => $this->schemaParser->parse($record->getSource(), $record->getName()),
 		));
-
-		// insert fields
-		$schemaId = $schemaTable->getLastInsertId();
-
-		$this->insertFields($schemaId, $record->getFields());
 
 		return array(
 			'success' => true,
@@ -151,86 +151,5 @@ class Collection extends SchemaApiAbstract
 	 */
 	protected function doDelete(RecordInterface $record, Version $version)
 	{
-	}
-
-	protected function parsePattern($pattern)
-	{
-		set_error_handler(__CLASS__ . '::pregMatchErrorHandler');
-		preg_match('/^(' . $pattern . '){1}$/', 'foobar');
-		restore_error_handler();
-	}
-
-	protected function parseEnumeration($enum)
-	{
-		$enum   = explode(',', $enum);
-		$result = array();
-
-		foreach($enum as $value)
-		{
-			$value = trim($value);
-			if(ctype_alnum($value))
-			{
-				$result[] = $value;
-			}
-		}
-
-		return !empty($result) ? implode(',', $result) : null;
-	}
-
-	protected function insertFields($schemaId, $fields)
-	{
-		if(!empty($fields) && is_array($fields))
-		{
-			foreach($fields as $field)
-			{
-				//$this->getFieldValidator()->validate($field);
-
-				$constraint  = $field->getConstraint();
-				$min         = null;
-				$max         = null;
-				$pattern     = null;
-				$enumeration = null;
-
-				if(!empty($constraint))
-				{
-					if(preg_match('/^(\d+),\s?(\d+)$/', $constraint, $matches))
-					{
-						$min = (int) $matches[1];
-						$max = (int) $matches[2];
-					}
-					else if(substr($constraint, 0, 2) == 'P=')
-					{
-						$pattern = $this->parsePattern(substr($constraint, 2));
-					}
-					else if(substr($constraint, 0, 2) == 'E=')
-					{
-						$enumeration = $this->parseEnumeration(substr($constraint, 2));
-					}
-					else
-					{
-						throw new StatusCode\BadRequestException('Invalid constraint must be i.e.: "0,9", "P=[A-z]+" or "E=foo,bar,baz"');
-					}
-				}
-
-				$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->create(array(
-					'schemaId'    => $schemaId,
-					'refId'       => $field->getRefId() ?: null,
-					'name'        => $field->getName(),
-					'type'        => $field->getType(),
-					'required'    => $field->getRequired(),
-					'min'         => $min,
-					'max'         => $max,
-					'pattern'     => $pattern,
-					'enumeration' => $enumeration,
-				));
-			}
-		}
-	}
-
-	public static function pregMatchErrorHandler($errno, $errstr)
-	{
-		restore_error_handler();
-
-		throw new StatusCode\BadRequestException('Invalid regexp: ' . $errstr);
 	}
 }

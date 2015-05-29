@@ -36,11 +36,8 @@ class Schema extends SchemaAbstract
 	{
 		$sb = $this->getSchemaBuilder('schema');
 		$sb->integer('id');
-		$sb->integer('extendsId');
 		$sb->string('name');
-		$sb->string('propertyName');
-		$sb->arrayType('fields')
-			->setPrototype($this->getSchema('Fusio\Backend\Schema\Schema\Field'));
+		$sb->string('source');
 
 		return $sb->getProperty();
 	}

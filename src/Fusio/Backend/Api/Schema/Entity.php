@@ -51,6 +51,12 @@ class Entity extends SchemaApiAbstract
 
 	/**
 	 * @Inject
+	 * @var Fusio\Schema\Parser
+	 */
+	protected $schemaParser;
+
+	/**
+	 * @Inject
 	 * @var PSX\Sql\TableManager
 	 */
 	protected $tableManager;
@@ -91,11 +97,6 @@ class Entity extends SchemaApiAbstract
 
 		if(!empty($schema))
 		{
-			// append the fields
-			$schema['fields'] = $this->tableManager
-				->getTable('Fusio\Backend\Table\Schema\Fields')
-				->getBySchemaId($schema['id']);
-
 			return $schema;
 		}
 		else
@@ -132,15 +133,11 @@ class Entity extends SchemaApiAbstract
 			$this->getValidator()->validate($record);
 
 			$this->tableManager->getTable('Fusio\Backend\Table\Schema')->update(array(
-				'id'           => $schema['id'],
-				'extendsId'    => $record->getExtendsId() ?: null,
-				'name'         => $record->getName(),
-				'propertyName' => $record->getPropertyName(),
+				'id'     => $schema['id'],
+				'name'   => $record->getName(),
+				'source' => $record->getSource(),
+				'cache'  => $this->schemaParser->parse($record->getSource(), $record->getName()),
 			));
-
-			$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->deleteAllFromSchema($schema['id']);
-
-			$this->insertFields($schema['id'], $record->getFields());
 
 			return array(
 				'success' => true,
@@ -171,8 +168,6 @@ class Entity extends SchemaApiAbstract
 				'id' => $schema['id']
 			));
 
-			$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->deleteAllFromSchema($schema['id']);
-
 			return array(
 				'success' => true,
 				'message' => 'Schema successful deleted',
@@ -181,56 +176,6 @@ class Entity extends SchemaApiAbstract
 		else
 		{
 			throw new StatusCode\NotFoundException('Could not find schema');
-		}
-	}
-
-	protected function insertFields($schemaId, $fields)
-	{
-		if(!empty($fields) && is_array($fields))
-		{
-			foreach($fields as $field)
-			{
-				//$this->getFieldValidator()->validate($field);
-
-				$constraint  = $field->getConstraint();
-				$min         = null;
-				$max         = null;
-				$pattern     = null;
-				$enumeration = null;
-
-				if(!empty($constraint))
-				{
-					if(preg_match('/^(\d+),\s?(\d+)$/', $constraint, $matches))
-					{
-						$min = (int) $matches[1];
-						$max = (int) $matches[2];
-					}
-					else if(substr($constraint, 0, 2) == 'P=')
-					{
-						$pattern = $this->parsePattern(substr($constraint, 2));
-					}
-					else if(substr($constraint, 0, 2) == 'E=')
-					{
-						$enumeration = $this->parseEnumeration(substr($constraint, 2));
-					}
-					else
-					{
-						throw new StatusCode\BadRequestException('Invalid constraint must be i.e.: "0,9", "P=[A-z]+" or "E=foo,bar,baz"');
-					}
-				}
-
-				$this->tableManager->getTable('Fusio\Backend\Table\Schema\Fields')->create(array(
-					'schemaId'    => $schemaId,
-					'refId'       => $field->getRefId() ?: null,
-					'name'        => $field->getName(),
-					'type'        => $field->getType(),
-					'required'    => $field->getRequired(),
-					'min'         => $min,
-					'max'         => $max,
-					'pattern'     => $pattern,
-					'enumeration' => $enumeration,
-				));
-			}
 		}
 	}
 }

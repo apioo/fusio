@@ -13,56 +13,9 @@
 			<input type="text" id="name" ng-model="schema.name" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="propertyName">Property name:</label>
-			<input type="text" id="propertyName" ng-model="schema.propertyName" class="form-control">
+			<label for="source">JsonSchema:</label>
+			<div ui-ace="{mode: 'json'}" id="source" ng-model="schema.source"></div>
 		</div>
-		<div class="form-group">
-			<label for="extendsId">Extends:</label>
-			<select id="extendsId" ng-model="schema.extendsId" ng-options="schem.id as schem.name for schem in schemas" class="form-control">
-			</select>
-		</div>
-
-		<table class="table">
-		<colgroup>
-			<col width="*" />
-			<col width="140" />
-			<col width="140" />
-			<col width="80" />
-			<col width="200" />
-			<col width="50" />
-		</colgroup>
-		<tr>
-			<th>Name</th>
-			<th>Type</th>
-			<th>Constraint</th>
-			<th>Required</th>
-			<th>Reference</th>
-			<th></th>
-		</tr>
-		<tr ng-repeat="field in schema.fields">
-			<td>
-				<input type="text" ng-model="field.name" class="form-control">
-			</td>
-			<td>
-				<select class="form-control" ng-model="field.type" ng-options="type as type for type in fieldTypes">
-				</select>
-			</td>
-			<td>
-				<input type="text" ng-model="field.constraint" class="form-control" ng-disabled="field.type == 'Object' || field.type == 'Array'">
-			</td>
-			<td>
-				<input type="checkbox" ng-model="field.required" style="margin:8px;">
-			</td>
-			<td>
-				<select ng-model="field.refId" ng-options="schem.id as schem.name for schem in schemas" ng-disabled="field.type != 'Object' && field.type != 'Array'" class="form-control">
-				</select>
-			</td>
-			<td>
-				<a ng-click="removeFieldRow(field)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-			</td>
-		</tr>
-		</table>
-		<a ng-click="addFieldRow()" class="btn btn-default">Add</a>
 
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>

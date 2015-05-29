@@ -106,13 +106,9 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 .controller('SchemaCreateCtrl', ['$scope', '$http', '$modalInstance', function($scope, $http, $modalInstance){
 
 	$scope.schema = {
-		extendsId: 0,
 		name: '',
-		propertyName: '',
-		fields: []
+		source: ''
 	};
-	$scope.fieldTypes = ['Array', 'Boolean', 'Date', 'Datetime', 'Float', 'Integer', 'Object', 'String', 'Time'];
-	$scope.schemas = [];
 
 	$scope.create = function(schema){
 		$http.post(fusio_url + 'backend/schema', schema)
@@ -135,52 +131,18 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 		$scope.response = null;
 	};
 
-	$http.get(fusio_url + 'backend/schema')
-		.success(function(data){
-			var schemas = [{id: 0, name: 'No schema'}];
-			schemas = schemas.concat(data.entry);
-
-			$scope.schemas = schemas;
-			$scope.schema.extendsId = 0;
-		});
-
-	$scope.addFieldRow = function(){
-		$scope.schema.fields.push({
-			name: '',
-			type: 'String',
-			constraint: '',
-			required: false,
-			refId: 0
-		});
-	};
-
-	$scope.removeFieldRow = function(row){
-		var newFields = [];
-		for (var i = 0; i < $scope.schema.fields.length; i++) {
-			var field = $scope.schema.fields[i];
-			if (field['$$hashKey'] != row['$$hashKey']) {
-				newFields.push($scope.schema.fields[i]);
-			}
-		}
-		$scope.schema.fields = newFields;
-	};
-
-	$scope.addFieldRow();
-
 }])
 
 .controller('SchemaUpdateCtrl', ['$scope', '$http', '$modalInstance', 'schema', function($scope, $http, $modalInstance, schema){
 
 	$scope.schema = schema;
-	$scope.fieldTypes = ['Array', 'Boolean', 'Date', 'Datetime', 'Float', 'Integer', 'Object', 'String', 'Time'];
-	$scope.schemas = [];
 
 	$scope.update = function(schema){
 		$http.put(fusio_url + 'backend/schema/' + schema.id, schema)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
-					$modalInstance.close(data);
+					$scope.loadPreview(schema.id);
 				}
 			})
 			.error(function(data){
@@ -196,33 +158,11 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 		$scope.response = null;
 	};
 
-	$http.get(fusio_url + 'backend/schema')
-		.success(function(data){
-			var schemas = [{id: 0, name: 'No schema'}];
-			schemas = schemas.concat(data.entry);
-
-			$scope.schemas = schemas;
-		});
-
-	$scope.addFieldRow = function(){
-		$scope.schema.fields.push({
-			name: '',
-			type: 'String',
-			constraint: '',
-			required: false,
-			refId: 0
-		});
-	};
-
-	$scope.removeFieldRow = function(row){
-		var newFields = [];
-		for (var i = 0; i < $scope.schema.fields.length; i++) {
-			var field = $scope.schema.fields[i];
-			if (field['$$hashKey'] != row['$$hashKey']) {
-				newFields.push($scope.schema.fields[i]);
-			}
-		}
-		$scope.schema.fields = newFields;
+	$scope.loadPreview = function(schemaId){
+		$http.get(fusio_url + 'backend/schema/preview/' + schemaId)
+			.success(function(data){
+				$scope.preview = data;
+			});
 	};
 
 	$http.get(fusio_url + 'backend/schema/' + schema.id)

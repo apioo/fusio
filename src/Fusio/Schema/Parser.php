@@ -19,27 +19,46 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Schema\Schema;
+namespace Fusio\Schema;
 
-use PSX\Data\SchemaAbstract;
+use Doctrine\DBAL\Connection;
+use PSX\Data\Accessor;
+use PSX\Data\RecordInterface;
+use PSX\Data\Schema\Parser\JsonSchema;
+use PSX\Data\Schema\Parser\JsonSchema\RefResolver;
+use PSX\File;
+use PSX\Validate;
 
 /**
- * Field
+ * Parser
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Field extends SchemaAbstract
+class Parser
 {
-	public function getDefinition()
-	{
-		$sb = $this->getSchemaBuilder('field');
-		$sb->integer('id');
-		$sb->string('name');
-		$sb->string('type');
-		$sb->integer('refId');
+	protected $connection;
 
-		return $sb->getProperty();
+	public function __construct(Connection $connection)
+	{
+		$this->connection = $connection;
+	}
+
+	/**
+	 * Parses and resolves the json schema source and returns the object 
+	 * presentation of the schema
+	 *
+	 * @param string $source
+	 */
+	public function parse($source)
+	{
+		$resolver = new RefResolver();
+		$resolver->addResolver('schema', new Resolver($this->connection));
+
+		$parser = new JsonSchema(null, $resolver);
+		$schema = $parser->parse($source);
+
+		return serialize($schema);
 	}
 }
