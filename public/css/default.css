@@ -308,3 +308,23 @@ pre
 	width:calc(100% - 40px);
 }
 
+/* psx schema */
+.psx-complex-type
+{
+
+}
+
+.psx-complex-type h1
+{
+	margin:0px;
+	margin-top:8px;
+	padding:6px;
+	padding-left:8px;
+	font-size:20px;
+	background-color:#eee;
+}
+
+.psx-property-required
+{
+	text-decoration:underline;
+}
