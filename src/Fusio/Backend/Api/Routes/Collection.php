@@ -98,7 +98,7 @@ class Collection extends SchemaApiAbstract
 		}
 
 		$table = $this->tableManager->getTable('Fusio\Backend\Table\Routes');
-		$table->setRestrictedFields(['controller', 'config']);
+		$table->setRestrictedFields(['config']);
 
 		return array(
 			'totalItems' => $table->getCount($condition),
@@ -118,14 +118,11 @@ class Collection extends SchemaApiAbstract
 	{
 		$this->getValidator()->validate($record);
 
-		// replace dash with backslash
-		$controller = str_replace('-', '\\', $record->getController());
-
 		$this->tableManager->getTable('Fusio\Backend\Table\Routes')->create(array(
 			'methods'    => $record->getMethods(),
 			'path'       => $record->getPath(),
-			'controller' => $controller,
-			'config'     => $record->getConfig(),
+			'controller' => 'Fusio\Controller\SchemaApiController',
+			'config'     => $record->getVersions(),
 		));
 
 		return array(

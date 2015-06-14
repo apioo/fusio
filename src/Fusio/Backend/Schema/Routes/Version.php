@@ -19,30 +19,28 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Api\Routes;
+namespace Fusio\Backend\Schema\Routes;
 
-use Fusio\Backend\Filter\Routes as Filter;
-use PSX\Filter as PSXFilter;
-use PSX\Validate;
-use PSX\Validate\Property;
-use PSX\Validate\RecordValidator;
+use PSX\Data\SchemaAbstract;
 
 /**
- * ValidatorTrait
+ * Version
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-trait ValidatorTrait
+class Version extends SchemaAbstract
 {
-	protected function getValidator()
+	public function getDefinition()
 	{
-		return new RecordValidator(new Validate(), array(
-			new Property('id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Routes')))),
-			new Property('methods', Validate::TYPE_STRING, array(new Filter\Methods())),
-			new Property('path', Validate::TYPE_STRING, array(new Filter\Path())),
-			new Property('versions', Validate::TYPE_ARRAY),
-		));
+		$sb = $this->getSchemaBuilder('config');
+		$sb->boolean('active');
+		$sb->integer('status');
+		$sb->string('name');
+		$sb->arrayType('methods')
+			->setPrototype($this->getSchema('Fusio\Backend\Schema\Routes\Method'));
+
+		return $sb->getProperty();
 	}
 }

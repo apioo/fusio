@@ -106,31 +106,26 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 .controller('RoutesCreateCtrl', ['$scope', '$http', '$modalInstance', function($scope, $http, $modalInstance){
 
 	$scope.route = {
-		methods: '',
+		methods: 'GET|POST|PUT|DELETE',
 		path: '',
-		controller: 'Fusio-Controller-SchemaApiController',
 		config: []
 	};
-	$scope.controllers = [{
-		id: 'Fusio-Controller-SchemaApiController',
-		name: 'Schema API'
-	}];
 
 	$scope.methods = ['GET', 'POST', 'PUT', 'DELETE'];
 	$scope.schemas = [];
 	$scope.actions = [];
+	$scope.statuuus = [{
+		key: 1,
+		value: "Development"
+	},{
+		key: 2,
+		value: "Production"
+	},{
+		key: 3,
+		value: "Deprecated"
+	}];
 
 	$scope.create = function(route){
-		var methods = '';
-		for (var i = 0; i < $scope.route.config.length; i++) {
-			methods+= $scope.route.config[i].method;
-			if (i < $scope.route.config.length - 1) {
-				methods+= '|';
-			}
-		}
-
-		route.methods = methods;
-
 		$http.post(fusio_url + 'backend/routes', route)
 			.success(function(data){
 				$scope.response = data;
@@ -161,28 +156,59 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		$scope.response = null;
 	};
 
-	$scope.addOptionRow = function(){
-		$scope.route.config.push({
-			method: 'GET',
-			request: 0,
-			response: 1,
-			action: 1
-		});
+	$scope.addVersion = function(){
+		var versions = [];
+		for (var i = 0; i < $scope.route.config.length; i++) {
+			var version = $scope.route.config[i];
+			version.active = false;
+
+			versions.push(version);
+		}
+
+		versions.push($scope.newVersion());
+
+		$scope.route.config = versions;
 	};
 
-	$scope.removeOptionRow = function(row){
-		var newOptions = [];
+	$scope.removeVersion = function(version){
+		var versions = [];
 		for (var i = 0; i < $scope.route.config.length; i++) {
-			var option = $scope.route.config[i];
-			if (option['$$hashKey'] != row['$$hashKey']) {
-				newOptions.push($scope.route.config[i]);
+			if ($scope.route.config[i].name != version.name) {
+				versions.push($scope.route.config[i]);
 			}
 		}
-		$scope.route.config = newOptions;
+		$scope.route.config = versions;
 	};
 
-	$scope.addOptionRow();
+	$scope.newVersion = function(){
+		var version = {
+			name: "" + ($scope.getLatestVersion() + 1),
+			active: true,
+			status: 1,
+			methods: []
+		};
 
+		for(var i = 0; i < $scope.methods.length; i++) {
+			version.methods.push({
+				name: $scope.methods[i]
+			});
+		}
+
+		return version;
+	};
+
+	$scope.getLatestVersion = function(){
+		var version = 0;
+		for (var i = 0; i < $scope.route.config.length; i++) {
+			if ($scope.route.config[i].name > version) {
+				version = $scope.route.config[i].name;
+			}
+		}
+		return version;
+	};
+
+	$scope.addVersion();
+	
 }])
 
 .controller('RoutesUpdateCtrl', ['$scope', '$http', '$modalInstance', 'route', function($scope, $http, $modalInstance, route){
@@ -194,16 +220,6 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	$scope.actions = [];
 
 	$scope.update = function(route){
-		var methods = '';
-		for (var i = 0; i < $scope.route.config.length; i++) {
-			methods+= $scope.route.config[i].method;
-			if (i < $scope.route.config.length - 1) {
-				methods+= '|';
-			}
-		}
-
-		route.methods = methods;
-
 		$http.put(fusio_url + 'backend/routes/' + route.id, route)
 			.success(function(data){
 				$scope.response = data;
@@ -218,9 +234,6 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 
 	$http.get(fusio_url + 'backend/routes/' + route.id)
 		.success(function(data){
-			// replace backslash with dash
-			data.controller = data.controller.replace(/\\/g, '-');
-
 			$scope.route = data;
 		});
 
@@ -242,28 +255,55 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		$scope.response = null;
 	};
 
-	$scope.addOptionRow = function(){
-		if (!$scope.route.config) {
-			$scope.route.config = [];
+	$scope.addVersion = function(){
+		var versions = [];
+		for (var i = 0; i < $scope.route.config.length; i++) {
+			var version = $scope.route.config[i];
+			version.active = false;
+
+			versions.push(version);
 		}
 
-		$scope.route.config.push({
-			method: 'GET',
-			request: 0,
-			response: 1,
-			action: 1
-		});
+		versions.push($scope.newVersion());
+
+		$scope.route.config = versions;
 	};
 
-	$scope.removeOptionRow = function(row){
-		var newOptions = [];
+	$scope.removeVersion = function(version){
+		var versions = [];
 		for (var i = 0; i < $scope.route.config.length; i++) {
-			var option = $scope.route.config[i];
-			if (option['$$hashKey'] != row['$$hashKey']) {
-				newOptions.push($scope.route.config[i]);
+			if ($scope.route.config[i].name != version.name) {
+				versions.push($scope.route.config[i]);
 			}
 		}
-		$scope.route.config = newOptions;
+		$scope.route.config = versions;
+	};
+
+	$scope.newVersion = function(){
+		var version = {
+			name: "" + ($scope.getLatestVersion() + 1),
+			active: true,
+			status: 1,
+			methods: []
+		};
+
+		for(var i = 0; i < $scope.methods.length; i++) {
+			version.methods.push({
+				name: $scope.methods[i]
+			});
+		}
+
+		return version;
+	};
+
+	$scope.getLatestVersion = function(){
+		var version = 0;
+		for (var i = 0; i < $scope.route.config.length; i++) {
+			if ($scope.route.config[i].name > version) {
+				version = $scope.route.config[i].name;
+			}
+		}
+		return version;
 	};
 
 }])

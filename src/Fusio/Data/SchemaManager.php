@@ -44,7 +44,8 @@ class SchemaManager implements SchemaManagerInterface
 
 	public function getSchema($schemaId)
 	{
-		$sql = 'SELECT schema.cache
+		$sql = 'SELECT schema.name,
+				       schema.cache
 				  FROM fusio_schema `schema`
 				 WHERE schema.id = :id';
 
@@ -60,7 +61,7 @@ class SchemaManager implements SchemaManagerInterface
 			}
 			else
 			{
-				throw new InvalidSchemaException('Schema cache is not available');
+				throw new InvalidSchemaException('Cache is not available for schema ' . $row['name']);
 			}
 		}
 		else

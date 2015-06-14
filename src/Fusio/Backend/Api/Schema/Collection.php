@@ -98,7 +98,7 @@ class Collection extends SchemaApiAbstract
 		$condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
 
 		$table = $this->tableManager->getTable('Fusio\Backend\Table\Schema');
-		$table->setRestrictedFields(['propertyName']);
+		$table->setRestrictedFields(['propertyName', 'source', 'cache']);
 
 		return array(
 			'totalItems' => $table->getCount($condition),

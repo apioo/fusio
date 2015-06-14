@@ -70,7 +70,7 @@ class Container extends DefaultContainer
 	public function getLogger()
 	{
 		$logger = new SystemLogger('psx');
-		$logger->pushHandler(new Log\LogCasterHandler());
+		//$logger->pushHandler(new Log\LogCasterHandler());
 
 		return $logger;
 	}

@@ -24,22 +24,23 @@ namespace Fusio\Backend\Schema\Routes;
 use PSX\Data\SchemaAbstract;
 
 /**
- * Config
+ * Method
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Config extends SchemaAbstract
+class Method extends SchemaAbstract
 {
 	public function getDefinition()
 	{
-		$sb = $this->getSchemaBuilder('config');
+		$sb = $this->getSchemaBuilder('method');
+		$sb->boolean('active');
 		$sb->boolean('public');
-		$sb->string('method');
+		$sb->string('name');
+		$sb->integer('action');
 		$sb->integer('request');
 		$sb->integer('response');
-		$sb->integer('action');
 
 		return $sb->getProperty();
 	}

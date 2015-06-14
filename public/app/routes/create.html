@@ -10,58 +10,54 @@
 	<form name="routesCreateForm" ng-submit="create(route)">
 		<div class="form-group">
 			<label for="path">Path:</label>
-			<input type="text" id="path" ng-model="route.path" class="form-control">
+			<input type="text" id="path" ng-model="route.path" class="form-control" aria-describedby="pathHelp">
+			<span class="help-block" id="pathHelp">The path under which the endpoint is available i.e. <code>/acme/news</code>. It is possible to use variable path fragments i.e. <code>/acme/news/:news</code> or <code>/acme/archive/$year&lt;[0-9]+&gt;</code> these fragments can be used by an action</span>
 		</div>
+		<tabset>
+			<tab ng-repeat="version in route.config" heading="v{{version.name}}">
+				<div class="form-group">
+					<label for="status">Status:</label>
+					<select class="form-control" ng-model="version.status" ng-options="status.key as status.value for status in statuuus" aria-describedby="statusHelp">
+					</select>
+					<span class="help-block" id="statusHelp">You can test the endpoint in <code>Development</code> status. Once the status is <code>Production</code> all input fields are disabled. Then it is only possible to set the status to <code>Deprecated</code> where eventually the version can be deleted</span>
+				</div>
+				<tabset>
+					<tab ng-repeat="method in version.methods" heading="{{method.name}}">
+						<div class="checkbox">
+							<label><input type="checkbox" ng-model="method.active" aria-describedby="activeHelp"> <b>Active</b></label>
+							<span class="help-block" id="activeHelp">It is possible to use this request method on the endpoint</span>
+						</div>
+						<div class="checkbox">
+							<label><input type="checkbox" ng-model="method.public" aria-describedby="publicHelp"> <b>Public</b></label>
+							<span class="help-block" id="publicHelp">Endpoint can be accessed without an authorization key</span>
+						</div>
+						<div class="form-group">
+							<label for="status">Request:</label>
+							<select class="form-control" ng-model="method.request" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="method.name == 'GET'" aria-describedby="requestHelp">
+							</select>
+							<span class="help-block" id="requestHelp">The allowed format for incoming requests. If you choose <code>Passthru</code> all incoming data is forwarded to the action</span>
+						</div>
+						<div class="form-group">
+							<label for="status">Response:</label>
+							<select class="form-control" ng-model="method.response" ng-options="schema.id as schema.name for schema in schemas" aria-describedby="requestHelp">
+							</select>
+							<span class="help-block" id="requestHelp">The allowed format for outgoing responses. If you choose <code>Passthru</code> all outgoing data is send to the client</span>
+						</div>
+						<div class="form-group">
+							<label for="status">Action:</label>
+							<select class="form-control" ng-model="method.action" ng-options="action.id as action.name for action in actions" aria-describedby="actionHelp">
+							</select>
+							<span class="help-block" id="actionHelp">The action which receives the request and produces an response</span>
+						</div>
+					</tab>
+				</tabset>
+				<a ng-click="removeVersion(version)" ng-disabled="version.status == 2 || versions.length == 1" class="btn btn-default pull-right">Remove version</a>
+			</tab>
+		</tabset>
 
-		<ng-include src="route.controller"></ng-include>
+		<a ng-click="addVersion()" class="btn btn-default">Add version</a>
 
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 	</form>
 </div>
-
-<script type="text/ng-template" id="Fusio-Controller-SchemaApiController">
-	<table class="table">
-	<colgroup>
-		<col width="20" />
-		<col width="100" />
-		<col width="200" />
-		<col width="200" />
-		<col width="200" />
-		<col width="50" />
-	</colgroup>
-	<tr>
-		<th><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></th>
-		<th>Method</th>
-		<th>Request</th>
-		<th>Response</th>
-		<th>Action</th>
-		<th></th>
-	</tr>
-	<tr ng-repeat="option in route.config">
-		<td>
-			<input type="checkbox" ng-model="option.public" style="margin-top:10px;">
-		</td>
-		<td>
-			<select class="form-control" ng-model="option.method" ng-options="method for method in methods">
-			</select>
-		</td>
-		<td>
-			<select class="form-control" ng-model="option.request" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="option.method == 'GET'">
-			</select>
-		</td>
-		<td>
-			<select class="form-control" ng-model="option.response" ng-options="schema.id as schema.name for schema in schemas">
-			</select>
-		</td>
-		<td>
-			<select class="form-control" ng-model="option.action" ng-options="action.id as action.name for action in actions">
-			</select>
-		</td>
-		<td>
-			<a ng-click="removeOptionRow(option)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-		</td>
-	</tr>
-	</table>
-	<a ng-click="addOptionRow()" class="btn btn-default">Add</a>
-</script>

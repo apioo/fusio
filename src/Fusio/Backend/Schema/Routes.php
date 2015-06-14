@@ -40,9 +40,8 @@ class Routes extends SchemaAbstract
 			->setMinLength(3)
 			->setMaxLength(20);
 		$sb->string('path');
-		$sb->string('controller');
 		$sb->arrayType('config')
-			->setPrototype($this->getSchema('Fusio\Backend\Schema\Routes\Config'));
+			->setPrototype($this->getSchema('Fusio\Backend\Schema\Routes\Version'));
 
 		return $sb->getProperty();
 	}

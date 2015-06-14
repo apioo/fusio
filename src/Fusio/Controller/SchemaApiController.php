@@ -109,13 +109,13 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 		// read request data
 		if(!in_array($this->request->getMethod(), ['HEAD', 'GET']) && $this->getRouteConfiguration('request') > 0)
 		{
-			if($this->getRouteConfiguration('request') == self::SCHEMA_PASSTHRU)
+			if($this->getRouteConfiguration('request', $this->request->getMethod()) == self::SCHEMA_PASSTHRU)
 			{
 				$request = $this->getBody();
 			}
 			else
 			{
-				$request = $this->import($this->apiSchemaManager->getSchema($this->getRouteConfiguration('request')));
+				$request = $this->import($this->apiSchemaManager->getSchema($this->getRouteConfiguration('request', $this->request->getMethod())));
 			}
 		}
 		else
@@ -128,7 +128,7 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 		{
 			$parameters = new Parameters(array_merge($this->getParameters(), $this->uriFragments));
 			$body       = new Body($request);
-			$response   = $this->processor->execute($this->getRouteConfiguration('action'), $parameters, $body);
+			$response   = $this->processor->execute($this->getRouteConfiguration('action', $this->request->getMethod()), $parameters, $body);
 		}
 		else
 		{
@@ -136,7 +136,7 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 		}
 
 		// send response
-		if($response instanceof Response && $this->getRouteConfiguration('response') > 0)
+		if($response instanceof Response && $this->getRouteConfiguration('response', $this->request->getMethod()) > 0)
 		{
 			$this->setResponseCode($response->getStatusCode() ?: 200);
 
@@ -146,13 +146,13 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 				$this->response->setHeader($name, $value);
 			}
 
-			if($this->getRouteConfiguration('response') == self::SCHEMA_PASSTHRU)
+			if($this->getRouteConfiguration('response', $this->request->getMethod()) == self::SCHEMA_PASSTHRU)
 			{
 				$this->setBody($response->getBody());
 			}
 			else
 			{
-				$this->setBody($this->schemaAssimilator->assimilate($this->apiSchemaManager->getSchema($this->getRouteConfiguration('response')), $response->getBody()));
+				$this->setBody($this->schemaAssimilator->assimilate($this->apiSchemaManager->getSchema($this->getRouteConfiguration('response', $this->request->getMethod())), $response->getBody()));
 			}
 		}
 		else
@@ -160,6 +160,27 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 			$this->setResponseCode(204);
 			$this->setBody('');
 		}
+	}
+
+	public function getPreFilter()
+	{
+		$isPublic = (bool) $this->getRouteConfiguration('public', $this->request->getMethod());
+		$filter   = array();
+
+		// it is required for every request to have an user agent which 
+		// identifies the client
+		$filter[] = new UserAgentEnforcer();
+
+		if(!$isPublic)
+		{
+			$filter[] = new Oauth2Filter($this->connection, $this->request->getMethod(), $this->context->get('fusio.routeId'), function($accessToken){
+
+				$this->appId = $accessToken['appId'];
+
+			});
+		}
+
+		return $filter;
 	}
 
 	public function getDocumentation()
@@ -172,11 +193,11 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 			$method    = Resource\Factory::getMethod($methodName);
 			$hasSchema = false;
 
-			if($this->getRouteConfiguration('request') > 0)
+			if($this->getRouteConfiguration('request', $methodName) > 0)
 			{
 				try
 				{
-					$method->setRequest($this->apiSchemaManager->getSchema($this->getRouteConfiguration('request')));
+					$method->setRequest($this->apiSchemaManager->getSchema($this->getRouteConfiguration('request', $methodName)));
 
 					$hasSchema = true;
 				}
@@ -185,11 +206,11 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 				}
 			}
 
-			if($this->getRouteConfiguration('response') > 0)
+			if($this->getRouteConfiguration('response', $methodName) > 0)
 			{
 				try
 				{
-					$method->addResponse(200, $this->apiSchemaManager->getSchema($this->getRouteConfiguration('response')));
+					$method->addResponse(200, $this->apiSchemaManager->getSchema($this->getRouteConfiguration('response', $methodName)));
 
 					$hasSchema = true;
 				}
@@ -211,11 +232,11 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 	 * Returns an config value for the current router configuration. Currently
 	 * this can be one of: public, request, response and action
 	 *
-	 * @param string $method
 	 * @param string $key
+	 * @param string $requestMethod
 	 * @return mixed
 	 */
-	protected function getRouteConfiguration($key)
+	protected function getRouteConfiguration($key, $requestMethod)
 	{
 		if($this->routeConfig === null)
 		{
@@ -225,7 +246,7 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 			{
 				foreach($config as $record)
 				{
-					if($record->getMethod() == $this->request->getMethod())
+					if($record->getMethod() == $requestMethod)
 					{
 						$this->routeConfig = $record;
 						break;
@@ -242,24 +263,37 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 		return null;
 	}
 
-	public function getPreFilter()
+	protected function getVersion(DocumentationInterface $doc)
 	{
-		$isPublic = (bool) $this->getRouteConfiguration('public');
-		$filter   = array();
-
-		// it is required for every request to have an user agent which 
-		// identifies the client
-		$filter[] = new UserAgentEnforcer();
-
-		if(!$isPublic)
+		if($doc->isVersionRequired())
 		{
-			$filter[] = new Oauth2Filter($this->connection, $this->request->getMethod(), $this->context->get('fusio.routeId'), function($accessToken){
+			$accept  = $this->getHeader('Accept');
+			$matches = array();
 
-				$this->appId = $accessToken['appId'];
+			preg_match('/^application\/vnd\.([a-z.-_]+)\.v([\d]+)\+([a-z]+)$/', $accept, $matches);
 
-			});
+			$name    = isset($matches[1]) ? $matches[1] : null;
+			$version = isset($matches[2]) ? $matches[2] : null;
+			$format  = isset($matches[3]) ? $matches[3] : null;
+
+			if($version !== null)
+			{
+				return new Version((int) $version);
+			}
+			else
+			{
+				// it is strongly recommended that clients specify an explicit
+				// version but forcing that with an exception is not a good user
+				// experience therefore we use the latest version if nothing is 
+				// specified
+				return new Version($doc->getLatestVersion());
+
+				//throw new StatusCode\UnsupportedMediaTypeException('Requires an Accept header containing an explicit version');
+			}
 		}
-
-		return $filter;
+		else
+		{
+			return new Version(1);
+		}
 	}
 }
