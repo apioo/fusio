@@ -131,7 +131,7 @@ class Entity extends SchemaApiAbstract
 				'methods'    => $record->getMethods(),
 				'path'       => $record->getPath(),
 				'controller' => 'Fusio\Controller\SchemaApiController',
-				'config'     => $record->getVersions(),
+				'config'     => $record->getConfig(),
 			));
 
 			return array(
