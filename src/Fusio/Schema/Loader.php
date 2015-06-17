@@ -19,46 +19,51 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Loader;
+namespace Fusio\Schema;
 
 use Doctrine\DBAL\Connection;
-use PSX\Loader\RoutingParserInterface;
+use PSX\Data\SchemaInterface;
+use RuntimeException;
 
 /**
- * DatabaseRoutes
+ * Loader
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class DatabaseRoutes implements RoutingParserInterface
+class Loader
 {
 	protected $connection;
-
-	protected $_collection;
 
 	public function __construct(Connection $connection)
 	{
 		$this->connection = $connection;
 	}
 
-	public function getCollection()
+	public function getSchema($schemaId)
 	{
-		if($this->_collection === null)
+		$row  = $this->connection->fetchAssoc('SELECT name, cache FROM fusio_schema WHERE id LIKE :id', array('id' => $schemaId));
+
+		if(!empty($row))
 		{
-			$collection = new RoutingCollection();
-			$result     = $this->connection->fetchAll('SELECT id, methods, path, controller, config FROM fusio_routes WHERE status = 1');
+			$cache = isset($row['cache']) ? $row['cache'] : null;
 
-			foreach($result as $row)
+			if(!empty($cache))
 			{
-				$config = !empty($row['config']) ? unserialize($row['config']) : array();
+				$cache = unserialize($cache);
 
-				$collection->add(explode('|', $row['methods']), $row['path'], $row['controller'], $config);
+				if($cache instanceof SchemaInterface)
+				{
+					return $cache;
+				}
 			}
 
-			$this->_collection = $collection;
+			throw new RuntimeException(sprintf('Schema %s cache not available', $row['name']));
 		}
-
-		return $this->_collection;
+		else
+		{
+			throw new RuntimeException('Invalid schema reference ' . $schemaId);
+		}
 	}
 }

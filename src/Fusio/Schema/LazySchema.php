@@ -19,46 +19,30 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Loader;
+namespace Fusio\Schema;
 
-use Doctrine\DBAL\Connection;
-use PSX\Loader\RoutingParserInterface;
+use PSX\Data\SchemaInterface;
 
 /**
- * DatabaseRoutes
+ * LazySchema
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class DatabaseRoutes implements RoutingParserInterface
+class LazySchema implements SchemaInterface
 {
-	protected $connection;
+	protected $loader;
+	protected $schemaId;
 
-	protected $_collection;
-
-	public function __construct(Connection $connection)
+	public function __construct(Loader $loader, $schemaId)
 	{
-		$this->connection = $connection;
+		$this->loader   = $loader;
+		$this->schemaId = (int) $schemaId;
 	}
 
-	public function getCollection()
+	public function getDefinition()
 	{
-		if($this->_collection === null)
-		{
-			$collection = new RoutingCollection();
-			$result     = $this->connection->fetchAll('SELECT id, methods, path, controller, config FROM fusio_routes WHERE status = 1');
-
-			foreach($result as $row)
-			{
-				$config = !empty($row['config']) ? unserialize($row['config']) : array();
-
-				$collection->add(explode('|', $row['methods']), $row['path'], $row['controller'], $config);
-			}
-
-			$this->_collection = $collection;
-		}
-
-		return $this->_collection;
+		return $this->loader->getSchema($this->schemaId)->getDefinition();
 	}
 }

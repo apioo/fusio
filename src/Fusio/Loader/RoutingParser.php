@@ -49,7 +49,7 @@ class RoutingParser implements LocationFinderInterface
 	{
 		$method      = $request->getMethod();
 		$pathMatcher = new PathMatcher($request->getUri()->getPath());
-		$result      = $this->connection->fetchAll('SELECT id, methods, path, controller, config FROM fusio_routes');
+		$result      = $this->connection->fetchAll('SELECT id, methods, path, controller, config FROM fusio_routes WHERE status = 1');
 
 		foreach($result as $row)
 		{

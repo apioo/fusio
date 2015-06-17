@@ -42,7 +42,7 @@ trait ValidatorTrait
 			new Property('id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Routes')))),
 			new Property('methods', Validate::TYPE_STRING, array(new Filter\Methods())),
 			new Property('path', Validate::TYPE_STRING, array(new Filter\Path())),
-			new Property('versions', Validate::TYPE_ARRAY),
+			new Property('config', Validate::TYPE_ARRAY),
 		));
 	}
 }

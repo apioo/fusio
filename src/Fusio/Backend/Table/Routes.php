@@ -41,6 +41,7 @@ class Routes extends TableAbstract
 	{
 		return array(
 			'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
+			'status' => self::TYPE_INT,
 			'methods' => self::TYPE_VARCHAR,
 			'path' => self::TYPE_VARCHAR,
 			'controller' => self::TYPE_VARCHAR,

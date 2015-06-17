@@ -34,6 +34,7 @@ use Fusio\Parser;
 use Fusio\Processor;
 use Fusio\Schema;
 use Monolog\Logger as SystemLogger;
+use PSX\Api;
 use PSX\Data\Importer;
 use PSX\Dependency\DefaultContainer;
 use PSX\Log;
@@ -104,7 +105,16 @@ class Container extends DefaultContainer
 	 */
 	public function getResourceListing()
 	{
-		return new ResourceListing($this->get('routing_parser'), $this->get('controller_factory'));
+		$resourceListing = new ResourceListing($this->get('routing_parser'), $this->get('controller_factory'));
+
+		if($this->get('config')->get('psx_debug'))
+		{
+			return $resourceListing;
+		}
+		else
+		{
+			return new Api\Resource\Listing\CachedListing($resourceListing, $this->get('cache'));
+		}
 	}
 
 	/**
@@ -177,5 +187,13 @@ class Container extends DefaultContainer
 	public function getSchemaParser()
 	{
 		return new Schema\Parser($this->get('connection'));
+	}
+
+	/**
+	 * @return Fusio\Schema\Loader
+	 */
+	public function getSchemaLoader()
+	{
+		return new Schema\Loader($this->get('connection'));
 	}
 }

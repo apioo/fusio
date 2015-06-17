@@ -159,8 +159,9 @@ class Entity extends SchemaApiAbstract
 
 		if(!empty($route))
 		{
-			$this->tableManager->getTable('Fusio\Backend\Table\Routes')->delete(array(
-				'id' => $route['id']
+			$this->tableManager->getTable('Fusio\Backend\Table\Routes')->update(array(
+				'id'     => $route['id'],
+				'status' => 0,
 			));
 
 			return array(

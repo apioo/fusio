@@ -21,21 +21,21 @@
 
 namespace Fusio\Controller;
 
-use Fusio\Response;
-use Fusio\Parameters;
+use Fusio\Authorization\Oauth2Filter;
 use Fusio\Body;
-use Fusio\Backend\Table\App\Token;
+use Fusio\Parameters;
+use Fusio\Response;
+use Fusio\Schema\LazySchema;
 use PSX\Api\DocumentedInterface;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
-use PSX\Controller\ApiAbstract;
+use PSX\Api\Version;
+use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\Record;
-use Fusio\Authorization\Oauth2Filter;
+use PSX\Data\RecordInterface;
 use PSX\Dispatch\Filter\UserAgentEnforcer;
 use PSX\Http\Exception as StatusCode;
-use PSX\Data\Schema\InvalidSchemaException;
 use PSX\Loader\Context;
-use PSX\Oauth2\Authorization\Exception\InvalidScopeException;
 
 /**
  * SchemaApiController
@@ -44,15 +44,9 @@ use PSX\Oauth2\Authorization\Exception\InvalidScopeException;
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class SchemaApiController extends ApiAbstract implements DocumentedInterface
+class SchemaApiController extends SchemaApiAbstract implements DocumentedInterface
 {
 	const SCHEMA_PASSTHRU = 1;
-
-	/**
-	 * @Inject
-	 * @var PSX\Data\Schema\Assimilator
-	 */
-	protected $schemaAssimilator;
 
 	/**
 	 * @Inject
@@ -80,19 +74,16 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 
 	/**
 	 * @Inject
-	 * @var Psr\Log\LoggerInterface
+	 * @var Fusio\Schema\Loader
 	 */
-	protected $logger;
-
-	/**
-	 * @var PSX\Data\Record
-	 */
-	protected $routeConfig;
+	protected $schemaLoader;
 
 	/**
 	 * @var integer
 	 */
 	protected $appId;
+
+	private $activeMethod;
 
 	public function onLoad()
 	{
@@ -105,66 +96,11 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 			$_SERVER['REMOTE_ADDR'],
 			$this->request
 		);
-
-		// read request data
-		if(!in_array($this->request->getMethod(), ['HEAD', 'GET']) && $this->getRouteConfiguration('request') > 0)
-		{
-			if($this->getRouteConfiguration('request', $this->request->getMethod()) == self::SCHEMA_PASSTHRU)
-			{
-				$request = $this->getBody();
-			}
-			else
-			{
-				$request = $this->import($this->apiSchemaManager->getSchema($this->getRouteConfiguration('request', $this->request->getMethod())));
-			}
-		}
-		else
-		{
-			$request = new Record();
-		}
-
-		// execute action
-		if($this->getRouteConfiguration('action') > 0)
-		{
-			$parameters = new Parameters(array_merge($this->getParameters(), $this->uriFragments));
-			$body       = new Body($request);
-			$response   = $this->processor->execute($this->getRouteConfiguration('action', $this->request->getMethod()), $parameters, $body);
-		}
-		else
-		{
-			throw new StatusCode\ServiceUnavailableException('No action provided');
-		}
-
-		// send response
-		if($response instanceof Response && $this->getRouteConfiguration('response', $this->request->getMethod()) > 0)
-		{
-			$this->setResponseCode($response->getStatusCode() ?: 200);
-
-			$headers = $response->getHeaders();
-			foreach($headers as $name => $value)
-			{
-				$this->response->setHeader($name, $value);
-			}
-
-			if($this->getRouteConfiguration('response', $this->request->getMethod()) == self::SCHEMA_PASSTHRU)
-			{
-				$this->setBody($response->getBody());
-			}
-			else
-			{
-				$this->setBody($this->schemaAssimilator->assimilate($this->apiSchemaManager->getSchema($this->getRouteConfiguration('response', $this->request->getMethod())), $response->getBody()));
-			}
-		}
-		else
-		{
-			$this->setResponseCode(204);
-			$this->setBody('');
-		}
 	}
 
 	public function getPreFilter()
 	{
-		$isPublic = (bool) $this->getRouteConfiguration('public', $this->request->getMethod());
+		$isPublic = $this->getActiveMethod()->getPublic();
 		$filter   = array();
 
 		// it is required for every request to have an user agent which 
@@ -185,115 +121,163 @@ class SchemaApiController extends ApiAbstract implements DocumentedInterface
 
 	public function getDocumentation()
 	{
-		$resource = new Resource(Resource::STATUS_ACTIVE, $this->context->get(Context::KEY_PATH));
-		$methods  = array('GET', 'POST', 'PUT', 'DELETE');
+		$doc    = new Documentation\Version();
+		$config = $this->context->get('fusio.config');
 
-		foreach($methods as $methodName)
+		if(is_array($config))
 		{
-			$method    = Resource\Factory::getMethod($methodName);
-			$hasSchema = false;
-
-			if($this->getRouteConfiguration('request', $methodName) > 0)
+			foreach($config as $version)
 			{
-				try
+				if($version->getActive())
 				{
-					$method->setRequest($this->apiSchemaManager->getSchema($this->getRouteConfiguration('request', $methodName)));
+					$resource = new Resource($version->getStatus(), $this->context->get(Context::KEY_PATH));
+					$methods  = $version->getMethods();
 
-					$hasSchema = true;
-				}
-				catch(InvalidSchemaException $e)
-				{
-				}
-			}
+					foreach($methods as $method)
+					{
+						if($method->getActive())
+						{
+							$resourceMethod = Resource\Factory::getMethod($method->getName());
 
-			if($this->getRouteConfiguration('response', $methodName) > 0)
-			{
-				try
-				{
-					$method->addResponse(200, $this->apiSchemaManager->getSchema($this->getRouteConfiguration('response', $methodName)));
+							if($method->getRequest() > 0)
+							{
+								$resourceMethod->setRequest(new LazySchema($this->schemaLoader, $method->getRequest()));
+							}
 
-					$hasSchema = true;
-				}
-				catch(InvalidSchemaException $e)
-				{
-				}
-			}
+							if($method->getResponse() > 0)
+							{
+								$resourceMethod->addResponse(200, new LazySchema($this->schemaLoader, $method->getResponse()));
+							}
 
-			if($hasSchema)
-			{
-				$resource->addMethod($method);
+							$resource->addMethod($resourceMethod);
+						}
+					}
+
+					$doc->addResource($version->getName(), $resource);
+				}
 			}
 		}
 
-		return new Documentation\Simple($resource);
+		return $doc;
 	}
 
-	/**
-	 * Returns an config value for the current router configuration. Currently
-	 * this can be one of: public, request, response and action
-	 *
-	 * @param string $key
-	 * @param string $requestMethod
-	 * @return mixed
-	 */
-	protected function getRouteConfiguration($key, $requestMethod)
+	protected function doGet(Version $version)
 	{
-		if($this->routeConfig === null)
-		{
-			$config = $this->context->get('fusio.config');
+		return $this->executeAction(new Record(), $version);
+	}
 
-			if(!empty($config) && is_array($config))
+	protected function doCreate(RecordInterface $record, Version $version)
+	{
+		return $this->executeAction($record, $version);
+	}
+
+	protected function doUpdate(RecordInterface $record, Version $version)
+	{
+		return $this->executeAction($record, $version);
+	}
+
+	protected function doDelete(RecordInterface $record, Version $version)
+	{
+		return $this->executeAction($record, $version);
+	}
+
+	private function executeAction(RecordInterface $record, Version $version)
+	{
+		$actionId = $this->getActiveMethod()->getAction();
+
+		if($actionId > 0)
+		{
+			$parameters = new Parameters(array_merge($this->getParameters(), $this->uriFragments));
+			$body       = new Body($record);
+
+			$response   = $this->processor->execute($actionId, $parameters, $body);
+			$headers    = $response->getHeaders();
+
+			if(!empty($headers))
 			{
-				foreach($config as $record)
+				foreach($headers as $name => $value)
 				{
-					if($record->getMethod() == $requestMethod)
+					$this->setHeader($name, $value);
+				}
+			}
+
+			return $response->getBody();
+		}
+		else
+		{
+			throw new StatusCode\ServiceUnavailableException('No action provided');
+		}
+	}
+
+	private function getActiveMethod()
+	{
+		if($this->activeMethod)
+		{
+			return $this->activeMethod;
+		}
+
+		$version = $this->getSubmittedVersionNumber();
+		$methods = $this->getAvailableMethods();
+
+		if($version !== null)
+		{
+			if(isset($methods[$version]))
+			{
+				$method = $methods[$version];
+			}
+			else
+			{
+				throw new StatusCode\UnsupportedMediaTypeException('Provided media type does not exist');
+			}
+		}
+		else
+		{
+			$method = end($methods);
+		}
+
+		if(empty($method))
+		{
+			throw new StatusCode\MethodNotAllowedException('Given request method is not supported', $this->getAllowedMethods());
+		}
+
+		return $this->activeMethod = $method;
+	}
+
+	private function getAvailableMethods()
+	{
+		$config = $this->context->get('fusio.config');
+		$result = array();
+
+		if(is_array($config))
+		{
+			foreach($config as $version)
+			{
+				if($version->getActive())
+				{
+					$methods = $version->getMethods();
+					foreach($methods as $method)
 					{
-						$this->routeConfig = $record;
-						break;
+						if($method->getActive())
+						{
+							if($method->getName() == $this->request->getMethod())
+							{
+								$result[$version->getName()] = $method;
+							}
+						}
 					}
 				}
 			}
 		}
 
-		if($this->routeConfig !== null)
-		{
-			return $this->routeConfig->getProperty($key);
-		}
+		ksort($result);
 
-		return null;
+		return $result;
 	}
 
-	protected function getVersion(DocumentationInterface $doc)
+	private function getAllowedMethods()
 	{
-		if($doc->isVersionRequired())
-		{
-			$accept  = $this->getHeader('Accept');
-			$matches = array();
+		// @TODO return allowed request methods
 
-			preg_match('/^application\/vnd\.([a-z.-_]+)\.v([\d]+)\+([a-z]+)$/', $accept, $matches);
-
-			$name    = isset($matches[1]) ? $matches[1] : null;
-			$version = isset($matches[2]) ? $matches[2] : null;
-			$format  = isset($matches[3]) ? $matches[3] : null;
-
-			if($version !== null)
-			{
-				return new Version((int) $version);
-			}
-			else
-			{
-				// it is strongly recommended that clients specify an explicit
-				// version but forcing that with an exception is not a good user
-				// experience therefore we use the latest version if nothing is 
-				// specified
-				return new Version($doc->getLatestVersion());
-
-				//throw new StatusCode\UnsupportedMediaTypeException('Requires an Accept header containing an explicit version');
-			}
-		}
-		else
-		{
-			return new Version(1);
-		}
+		return array();
 	}
 }

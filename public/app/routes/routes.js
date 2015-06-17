@@ -200,8 +200,9 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	$scope.getLatestVersion = function(){
 		var version = 0;
 		for (var i = 0; i < $scope.route.config.length; i++) {
-			if ($scope.route.config[i].name > version) {
-				version = $scope.route.config[i].name;
+			var ver = parseInt($scope.route.config[i].name);
+			if (ver > version) {
+				version = ver;
 			}
 		}
 		return version;
@@ -219,6 +220,17 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	$scope.schemas = [];
 	$scope.actions = [];
 
+	$scope.statuuus = [{
+		key: 1,
+		value: "Development"
+	},{
+		key: 2,
+		value: "Production"
+	},{
+		key: 3,
+		value: "Deprecated"
+	}];
+	
 	$scope.update = function(route){
 		$http.put(fusio_url + 'backend/routes/' + route.id, route)
 			.success(function(data){
