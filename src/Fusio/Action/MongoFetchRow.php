@@ -74,7 +74,14 @@ class MongoFetchRow implements ActionInterface
 				$fields = $configuration->get('projection');
 				$fields = !empty($fields) ? Json::decode($fields) : array();
 
-				return $collection->findOne($query, $fields);
+				$result = $collection->findOne($query, $fields);
+
+				if(empty($result))
+				{
+					throw new StatusCode\NotFoundException('Entry not available');
+				}
+
+				return new Response(200, [], $result);
 			}
 			else
 			{
@@ -90,10 +97,10 @@ class MongoFetchRow implements ActionInterface
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\Connection('connection', 'Connection', $this->connection));
-		$form->add(new Element\Input('collection', 'Collection'));
-		$form->add(new Element\TextArea('criteria', 'Criteria', 'json'));
-		$form->add(new Element\TextArea('projection', 'Projection', 'json'));
+		$form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The MongoDB connection which should be used'));
+		$form->add(new Element\Input('collection', 'Collection', 'text', 'The data gets fetched from this collection'));
+		$form->add(new Element\TextArea('criteria', 'Criteria', 'json', 'Specifies selection criteria using <a href="http://docs.mongodb.org/manual/reference/operator/">query operators</a>. To return all documents in a collection, omit this parameter or pass an empty document ({})'));
+		$form->add(new Element\TextArea('projection', 'Projection', 'json', 'Specifies the fields to return using <a href="http://docs.mongodb.org/manual/reference/operator/projection/">projection operators</a>. To return all fields in the matching document, omit this parameter.'));
 
 		return $form;
 	}

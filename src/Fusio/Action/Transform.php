@@ -28,28 +28,18 @@ use Fusio\Parameters;
 use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
+use MongoCollection;
+use MongoDB;
 
 /**
- * CacheResponse
+ * Transform
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class CacheResponse implements ActionInterface
+class Transform implements ActionInterface
 {
-	/**
-	 * @Inject
-	 * @var Doctrine\DBAL\Connection
-	 */
-	protected $connection;
-
-	/**
-	 * @Inject
-	 * @var PSX\Cache
-	 */
-	protected $cache;
-
 	/**
 	 * @Inject
 	 * @var Fusio\Processor
@@ -58,35 +48,22 @@ class CacheResponse implements ActionInterface
 
 	public function getName()
 	{
-		return 'Cache-Response';
+		return 'Transform';
 	}
 
 	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
 	{
-		$key  = md5('action_' . $configuration->get('action'));
-		$item = $this->cache->getItem($key);
+		$patch = new Patch($configuration->get('patch'));
+		$data  = $patch->apply($data->getData());
 
-		if(!$item->isHit())
-		{
-			$response = $this->processor->execute($configuration->get('action'), $parameters, $data);;
-
-			$item->set($response, $configuration->get('expire'));
-
-			$this->cache->save($item);
-		}
-		else
-		{
-			$response = $item->get();
-		}
-
-		return $response;
+		return $this->processor->execute($configuration->get('action'), $parameters, new Body($data));
 	}
 
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\Action('action', 'Action', $this->connection, 'The response of this action gets cached'));
-		$form->add(new Element\Input('expire', 'Expire', 'text', 'Number of seconds when the cache expires'));
+		$form->add(new Element\Action('action', 'Action', $this->connection, 'Executes this action with the transformed result'));
+		$form->add(new Element\TextArea('patch', 'Patch', 'json', 'The transformation rules using the <a href="https://tools.ietf.org/html/rfc6902">JSON Patch</a> format'));
 
 		return $form;
 	}

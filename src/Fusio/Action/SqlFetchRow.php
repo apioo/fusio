@@ -64,15 +64,30 @@ class SqlFetchRow implements ActionInterface
 
 		if($connection instanceof Connection)
 		{
-			$sql    = $configuration->get('sql');
+			$sql = $configuration->get('sql');
+
+			preg_match_all('/(\:)([A-z0-9\-\_\/]+)/', $sql, $matches);
+
+			$types  = isset($matches[1]) ? $matches[1] : array();
+			$keys   = isset($matches[2]) ? $matches[2] : array();
 			$params = array();
 
-			foreach($parameters as $key => $value)
+			foreach($keys as $index => $key)
 			{
-				if(strpos($sql, ':' . $key) !== false)
+				$sql   = str_replace($types[$index] . $key, '?', $sql);
+				$value = null;
+
+				if($types[$index] == ':')
 				{
-					$params[$key] = $value;
+					$value = $parameters->get($key) ?: null;
 				}
+
+				if($value instanceof RecordInterface || $value instanceof \stdClass || is_array($value))
+				{
+					$value = serialize($value);
+				}
+
+				$params[$index] = $value;
 			}
 
 			$result = $connection->fetchAssoc($sql, $params);
@@ -94,7 +109,7 @@ class SqlFetchRow implements ActionInterface
 	{
 		$form = new Form\Container();
 		$form->add(new Element\Connection('connection', 'Connection', $this->connection));
-		$form->add(new Element\TextArea('sql', 'SQL', 'sql'));
+		$form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The SELECT statment which gets executed. Uri fragments and GET parameters can be used with i.e. <code>:news_id</code>'));
 
 		return $form;
 	}

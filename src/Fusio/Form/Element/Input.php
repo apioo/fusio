@@ -35,9 +35,9 @@ class Input extends Element
 	protected $element = 'http://fusio-project.org/ns/2015/form/input';
 	protected $type;
 
-	public function __construct($name, $title, $type = 'text')
+	public function __construct($name, $title, $type = 'text', $help = null)
 	{
-		parent::__construct($name, $title);
+		parent::__construct($name, $title, $help);
 
 		$this->type = $type;
 	}

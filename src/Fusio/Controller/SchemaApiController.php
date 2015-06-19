@@ -124,38 +124,32 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
 		$doc    = new Documentation\Version();
 		$config = $this->context->get('fusio.config');
 
-		if(is_array($config))
+		foreach($config as $version)
 		{
-			foreach($config as $version)
+			$resource = new Resource($version->getStatus(), $this->context->get(Context::KEY_PATH));
+			$methods  = $version->getMethods();
+
+			foreach($methods as $method)
 			{
-				if($version->getActive())
+				if($method->getActive())
 				{
-					$resource = new Resource($version->getStatus(), $this->context->get(Context::KEY_PATH));
-					$methods  = $version->getMethods();
+					$resourceMethod = Resource\Factory::getMethod($method->getName());
 
-					foreach($methods as $method)
+					if($method->getRequest() > 0)
 					{
-						if($method->getActive())
-						{
-							$resourceMethod = Resource\Factory::getMethod($method->getName());
-
-							if($method->getRequest() > 0)
-							{
-								$resourceMethod->setRequest(new LazySchema($this->schemaLoader, $method->getRequest()));
-							}
-
-							if($method->getResponse() > 0)
-							{
-								$resourceMethod->addResponse(200, new LazySchema($this->schemaLoader, $method->getResponse()));
-							}
-
-							$resource->addMethod($resourceMethod);
-						}
+						$resourceMethod->setRequest(new LazySchema($this->schemaLoader, $method->getRequest()));
 					}
 
-					$doc->addResource($version->getName(), $resource);
+					if($method->getResponse() > 0)
+					{
+						$resourceMethod->addResponse(200, new LazySchema($this->schemaLoader, $method->getResponse()));
+					}
+
+					$resource->addMethod($resourceMethod);
 				}
 			}
+
+			$doc->addResource($version->getName(), $resource);
 		}
 
 		return $doc;
@@ -248,23 +242,14 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
 		$config = $this->context->get('fusio.config');
 		$result = array();
 
-		if(is_array($config))
+		foreach($config as $version)
 		{
-			foreach($config as $version)
+			$methods = $version->getMethods();
+			foreach($methods as $method)
 			{
-				if($version->getActive())
+				if($method->getName() == $this->request->getMethod() && $method->getActive())
 				{
-					$methods = $version->getMethods();
-					foreach($methods as $method)
-					{
-						if($method->getActive())
-						{
-							if($method->getName() == $this->request->getMethod())
-							{
-								$result[$version->getName()] = $method;
-							}
-						}
-					}
+					$result[$version->getName()] = $method;
 				}
 			}
 		}

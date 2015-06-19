@@ -29,6 +29,7 @@ use Fusio\Body;
 use Fusio\Response;
 use Fusio\Form;
 use Fusio\Form\Element;
+use PSX\Data\RecordInterface;
 
 /**
  * SqlExecute
@@ -62,30 +63,34 @@ class SqlExecute implements ActionInterface
 
 		if($connection instanceof Connection)
 		{
-			$sql    = $configuration->get('sql');
+			$sql = $configuration->get('sql');
+
+			preg_match_all('/(\#|\:)([A-z0-9\-\_\/]+)/', $sql, $matches);
+
+			$types  = isset($matches[1]) ? $matches[1] : array();
+			$keys   = isset($matches[2]) ? $matches[2] : array();
 			$params = array();
 
-			foreach($parameters as $key => $value)
+			foreach($keys as $index => $key)
 			{
-				if(strpos($sql, ':' . $key) !== false)
+				$sql   = str_replace($types[$index] . $key, '?', $sql);
+				$value = null;
+
+				if($types[$index] == ':')
 				{
-					$params[$key] = $value;
+					$value = $parameters->get($key) ?: null;
 				}
-			}
+				else if($types[$index] == '#')
+				{
+					$value = $data->get($name) ?: null;
+				}
 
-			// replace body parameters
-			preg_match_all('/{{([A-z0-9\.]+)}}/', $sql, $matches);
+				if($value instanceof RecordInterface || $value instanceof \stdClass || is_array($value))
+				{
+					$value = serialize($value);
+				}
 
-			$keys = isset($matches[1]) ? $matches[1] : array();
-
-			foreach($keys as $index => $name)
-			{
-				$value = $data->get($name) ?: null;
-				$key   = 'body_' . $index;
-
-				$params[$key] = $value;
-
-				$sql = str_replace('{{' . $name . '}}', ':' . $key, $sql);
+				$params[$index] = $value;
 			}
 
 			$connection->execute($sql, $params);
@@ -104,8 +109,8 @@ class SqlExecute implements ActionInterface
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\Connection('connection', 'Connection', $this->connection));
-		$form->add(new Element\TextArea('sql', 'SQL', 'sql'));
+		$form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The SQL connection which should be used'));
+		$form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The INSERT, UPDATE or DELETE query which gets executed. Uri fragments and GET parameters can be used with i.e. <code>:news_id</code>. The body data can be accessed with i.e. <code>#/author/name</code>'));
 
 		return $form;
 	}

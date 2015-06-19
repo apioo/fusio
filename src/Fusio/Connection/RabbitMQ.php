@@ -19,27 +19,51 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Schema;
+namespace Fusio\Connection;
 
-use PSX\Data\SchemaAbstract;
+use Fusio\ConnectionInterface;
+use Fusio\Parameters;
+use Fusio\Form;
+use Fusio\Form\Element;
+use PhpAmqpLib\Connection\AMQPConnection;
 
 /**
- * Schema
+ * RabbitMQ
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Schema extends SchemaAbstract
+class RabbitMQ implements ConnectionInterface
 {
-	public function getDefinition()
+	public function getName()
 	{
-		$sb = $this->getSchemaBuilder('schema');
-		$sb->integer('id');
-		$sb->string('name')
-			->setPattern('[A-z0-9\-\_]{3,64}');
-		$sb->string('source');
+		return 'RabbitMQ';
+	}
 
-		return $sb->getProperty();
+	/**
+	 * @return MongoDB
+	 */
+	public function getConnection(Parameters $config)
+	{
+		return new AMQPConnection(
+			$config->get('host'), 
+			$config->get('port'), 
+			$config->get('user'), 
+			$config->get('password'), 
+			$config->get('vhost')
+		);
+	}
+
+	public function getForm()
+	{
+		$form = new Form\Container();
+		$form->add(new Element\Input('host', 'Host'));
+		$form->add(new Element\Input('port', 'Port'));
+		$form->add(new Element\Input('user', 'User'));
+		$form->add(new Element\Input('password', 'Password'));
+		$form->add(new Element\Input('vhost', 'VHost'));
+
+		return $form;
 	}
 }

@@ -30,6 +30,7 @@ use Fusio\Response;
 use Fusio\Form;
 use Fusio\Form\Element;
 use PSX\Json;
+use PSX\Http;
 
 /**
  * StaticResponse
@@ -51,7 +52,9 @@ class StaticResponse implements ActionInterface
 
 		if(!empty($response))
 		{
-			return new Response(200, [], Json::decode($response));
+			$statusCode = $configuration->get('statusCode') ?: 200;
+
+			return new Response($statusCode, [], json_decode($response));
 		}
 		else
 		{
@@ -62,7 +65,8 @@ class StaticResponse implements ActionInterface
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\TextArea('response', 'Response', 'json'));
+		$form->add(new Element\Select('statusCode', 'Status-Code', Http::$codes, 'The returned status code'));
+		$form->add(new Element\TextArea('response', 'Response', 'json', 'The response in JSON format'));
 
 		return $form;
 	}

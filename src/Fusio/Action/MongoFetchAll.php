@@ -25,6 +25,7 @@ use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
 use Fusio\Parameters;
+use Fusio\Response;
 use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
@@ -75,14 +76,9 @@ class MongoFetchAll implements ActionInterface
 				$fields = !empty($fields) ? Json::decode($fields) : array();
 
 				$result = $collection->find($query, $fields);
-				$data   = array();
+				$key    = $configuration->get('propertyName') ?: 'entry';
 
-				foreach($result as $row)
-				{
-					$data[] = $row;
-				}
-
-				return $data;
+				return new Response(200, [], $result);
 			}
 			else
 			{
@@ -98,10 +94,11 @@ class MongoFetchAll implements ActionInterface
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\Connection('connection', 'Connection', $this->connection));
-		$form->add(new Element\Input('collection', 'Collection'));
-		$form->add(new Element\TextArea('criteria', 'Criteria', 'json'));
-		$form->add(new Element\TextArea('projection', 'Projection', 'json'));
+		$form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The MongoDB connection which should be used'));
+		$form->add(new Element\Input('propertyName', 'Property name', 'text', 'The name of the property under which the result should be inserted'));
+		$form->add(new Element\Input('collection', 'Collection', 'text', 'The data gets fetched from this collection'));
+		$form->add(new Element\TextArea('criteria', 'Criteria', 'json', 'Specifies selection criteria using <a href="http://docs.mongodb.org/manual/reference/operator/">query operators</a>. To return all documents in a collection, omit this parameter or pass an empty document ({})'));
+		$form->add(new Element\TextArea('projection', 'Projection', 'json', 'Specifies the fields to return using <a href="http://docs.mongodb.org/manual/reference/operator/projection/">projection operators</a>. To return all fields in the matching document, omit this parameter.'));
 
 		return $form;
 	}

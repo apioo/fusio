@@ -25,6 +25,7 @@ use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
 use Fusio\Parameters;
+use Fusio\Response;
 use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
@@ -59,24 +60,24 @@ class HttpRequest implements ActionInterface
 
 		if($response->getStatusCode() >= 200 && $response->getStatusCode() < 300)
 		{
-			return array(
+			return new Response(200, [], [
 				'success' => true,
 				'message' => 'Request successful'
-			);
+			]);
 		}
 		else
 		{
-			return array(
+			return new Response(200, [], [
 				'success' => false,
 				'message' => 'Request failed'
-			);
+			]);
 		}
 	}
 
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\Input('url', 'Url'));
+		$form->add(new Element\Input('url', 'Url', 'text', 'Sends an HTTP POST request to the given url. The data is json encoded in the body'));
 
 		return $form;
 	}

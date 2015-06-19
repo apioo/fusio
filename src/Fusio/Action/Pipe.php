@@ -66,8 +66,8 @@ class Pipe implements ActionInterface
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\Action('source', 'Source', $this->connection));
-		$form->add(new Element\Action('destination', 'Destination', $this->connection));
+		$form->add(new Element\Action('source', 'Source', $this->connection, 'Executes this action and uses the response as input for the destination action'));
+		$form->add(new Element\Action('destination', 'Destination', $this->connection, 'The action which receives the response from the source action and returns the response'));
 
 		return $form;
 	}

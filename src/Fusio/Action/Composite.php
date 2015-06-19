@@ -65,8 +65,8 @@ class Composite implements ActionInterface
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\Action('in', 'In', $this->connection));
-		$form->add(new Element\Action('out', 'Out', $this->connection));
+		$form->add(new Element\Action('in', 'In', $this->connection, 'The request will be redirected to this action'));
+		$form->add(new Element\Action('out', 'Out', $this->connection, 'The response of this action will be used as response'));
 
 		return $form;
 	}

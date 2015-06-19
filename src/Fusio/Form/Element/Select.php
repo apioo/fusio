@@ -36,9 +36,9 @@ class Select extends Element
 
 	protected $options;
 
-	public function __construct($name, $title, array $options = array())
+	public function __construct($name, $title, array $options = array(), $help = null)
 	{
-		parent::__construct($name, $title);
+		parent::__construct($name, $title, $help);
 
 		foreach($options as $key => $value)
 		{

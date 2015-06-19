@@ -34,9 +34,9 @@ class Connection extends Select
 {
 	protected $_connection;
 
-	public function __construct($name, $title, DBALConnection $connection)
+	public function __construct($name, $title, DBALConnection $connection, $help = null)
 	{
-		parent::__construct($name, $title);
+		parent::__construct($name, $title, array(), $help);
 
 		$this->_connection = $connection;
 

@@ -80,12 +80,12 @@ class Body
 	{
 		if($data instanceof RecordInterface)
 		{
-			$result = array();
+			$result = new \stdClass();
 			$fields = $data->getRecordInfo()->getData();
 
 			foreach($fields as $key => $value)
 			{
-				$result[$key] = $this->normalize($value);
+				$result->$key = $this->normalize($value);
 			}
 
 			return $result;

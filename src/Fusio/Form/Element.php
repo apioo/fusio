@@ -34,11 +34,13 @@ class Element extends RecordAbstract
 {
 	protected $name;
 	protected $title;
+	protected $help;
 
-	public function __construct($name, $title)
+	public function __construct($name, $title, $help = null)
 	{
 		$this->name  = $name;
 		$this->title = $title;
+		$this->help  = $help;
 	}
 
 	public function setName($name)
@@ -59,5 +61,15 @@ class Element extends RecordAbstract
 	public function getTitle()
 	{
 		return $this->title;
+	}
+
+	public function setHelp($help)
+	{
+		$this->help = $help;
+	}
+	
+	public function getHelp()
+	{
+		return $this->help;
 	}
 }

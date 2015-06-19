@@ -19,27 +19,41 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Schema;
+namespace Fusio\Connection;
 
-use PSX\Data\SchemaAbstract;
+use Pheanstalk\Pheanstalk;
+use Fusio\ConnectionInterface;
+use Fusio\Parameters;
+use Fusio\Form;
+use Fusio\Form\Element;
 
 /**
- * Schema
+ * Beanstalk
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Schema extends SchemaAbstract
+class Beanstalk implements ConnectionInterface
 {
-	public function getDefinition()
+	public function getName()
 	{
-		$sb = $this->getSchemaBuilder('schema');
-		$sb->integer('id');
-		$sb->string('name')
-			->setPattern('[A-z0-9\-\_]{3,64}');
-		$sb->string('source');
+		return 'Beanstalk';
+	}
 
-		return $sb->getProperty();
+	/**
+	 * @return MongoDB
+	 */
+	public function getConnection(Parameters $config)
+	{
+		return new Pheanstalk($config->get('host'));
+	}
+
+	public function getForm()
+	{
+		$form = new Form\Container();
+		$form->add(new Element\Input('host', 'Host'));
+
+		return $form;
 	}
 }

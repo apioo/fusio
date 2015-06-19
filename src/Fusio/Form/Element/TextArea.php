@@ -35,9 +35,9 @@ class TextArea extends Element
 	protected $element = 'http://fusio-project.org/ns/2015/form/textarea';
 	protected $mode;
 
-	public function __construct($name, $title, $mode)
+	public function __construct($name, $title, $mode, $help = null)
 	{
-		parent::__construct($name, $title);
+		parent::__construct($name, $title, $help);
 
 		$this->mode = $mode;
 	}
