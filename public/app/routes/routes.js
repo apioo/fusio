@@ -114,15 +114,19 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	$scope.methods = ['GET', 'POST', 'PUT', 'DELETE'];
 	$scope.schemas = [];
 	$scope.actions = [];
+
 	$scope.statuuus = [{
-		key: 1,
+		key: 4,
 		value: "Development"
 	},{
-		key: 2,
+		key: 1,
 		value: "Production"
 	},{
-		key: 3,
+		key: 2,
 		value: "Deprecated"
+	},{
+		key: 3,
+		value: "Closed"
 	}];
 
 	$scope.create = function(route){
@@ -184,7 +188,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		var version = {
 			name: "" + ($scope.getLatestVersion() + 1),
 			active: true,
-			status: 1,
+			status: 4,
 			methods: []
 		};
 
@@ -221,14 +225,17 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	$scope.actions = [];
 
 	$scope.statuuus = [{
-		key: 1,
+		key: 4,
 		value: "Development"
 	},{
-		key: 2,
+		key: 1,
 		value: "Production"
 	},{
-		key: 3,
+		key: 2,
 		value: "Deprecated"
+	},{
+		key: 3,
+		value: "Closed"
 	}];
 	
 	$scope.update = function(route){
@@ -295,7 +302,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		var version = {
 			name: "" + ($scope.getLatestVersion() + 1),
 			active: true,
-			status: 1,
+			status: 4,
 			methods: []
 		};
 
@@ -311,8 +318,9 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	$scope.getLatestVersion = function(){
 		var version = 0;
 		for (var i = 0; i < $scope.route.config.length; i++) {
-			if ($scope.route.config[i].name > version) {
-				version = $scope.route.config[i].name;
+			var ver = parseInt($scope.route.config[i].name);
+			if (ver > version) {
+				version = ver;
 			}
 		}
 		return version;

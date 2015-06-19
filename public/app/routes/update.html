@@ -11,10 +11,10 @@
 		<input type="hidden" ng-model="route.id" value="{{route.id}}" />
 		<div class="form-group">
 			<label for="path">Path:</label>
-			<input type="text" id="path" ng-model="route.path" class="form-control" value="{{route.path}}">
+			<input type="text" id="path" ng-model="route.path" ng-disabled="true" class="form-control" value="{{route.path}}">
 		</div>
 		<tabset>
-			<tab ng-repeat="version in route.config" heading="v{{version.name}}">
+			<tab ng-repeat="version in route.config" heading="v{{version.name}}" active="version.active">
 				<div class="form-group">
 					<label for="status">Status:</label>
 					<select class="form-control" ng-model="version.status" ng-options="status.key as status.value for status in statuuus" aria-describedby="statusHelp">
@@ -24,36 +24,38 @@
 				<tabset>
 					<tab ng-repeat="method in version.methods" heading="{{method.name}}">
 						<div class="checkbox">
-							<label><input type="checkbox" ng-model="method.active" aria-describedby="activeHelp"> <b>Active</b></label>
+							<label><input type="checkbox" ng-model="method.active" ng-disabled="version.status == 1" aria-describedby="activeHelp"> <b>Active</b></label>
 							<span class="help-block" id="activeHelp">It is possible to use this request method on the endpoint</span>
 						</div>
 						<div class="checkbox">
-							<label><input type="checkbox" ng-model="method.public" aria-describedby="publicHelp"> <b>Public</b></label>
+							<label><input type="checkbox" ng-model="method.public" ng-disabled="version.status == 1" aria-describedby="publicHelp"> <b>Public</b></label>
 							<span class="help-block" id="publicHelp">Endpoint can be accessed without an authorization key</span>
 						</div>
 						<div class="form-group">
 							<label for="status">Request:</label>
-							<select class="form-control" ng-model="method.request" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="method.name == 'GET'" aria-describedby="requestHelp">
+							<select class="form-control" ng-model="method.request" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="method.name == 'GET' || version.status == 1" aria-describedby="requestHelp">
 							</select>
 							<span class="help-block" id="requestHelp">The allowed format for incoming requests. If you choose <code>Passthru</code> all incoming data is forwarded to the action</span>
 						</div>
 						<div class="form-group">
 							<label for="status">Response:</label>
-							<select class="form-control" ng-model="method.response" ng-options="schema.id as schema.name for schema in schemas" aria-describedby="requestHelp">
+							<select class="form-control" ng-model="method.response" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="version.status == 1" aria-describedby="requestHelp">
 							</select>
 							<span class="help-block" id="requestHelp">The allowed format for outgoing responses. If you choose <code>Passthru</code> all outgoing data is send to the client</span>
 						</div>
 						<div class="form-group">
 							<label for="status">Action:</label>
-							<select class="form-control" ng-model="method.action" ng-options="action.id as action.name for action in actions" aria-describedby="actionHelp">
+							<select class="form-control" ng-model="method.action" ng-options="action.id as action.name for action in actions" ng-disabled="version.status == 1" aria-describedby="actionHelp">
 							</select>
 							<span class="help-block" id="actionHelp">The action which receives the request and produces an response</span>
 						</div>
 					</tab>
 				</tabset>
-				<a ng-click="removeVersion(version)" ng-disabled="version.status == 2 || route.config.length == 1" class="btn btn-default pull-right">Remove version</a>
+				<a ng-click="removeVersion(version)" ng-disabled="version.status == 1 || route.config.length == 1" class="btn btn-default pull-right">Remove version</a>
 			</tab>
 		</tabset>
+
+		<a ng-click="addVersion()" class="btn btn-default">Add version</a>
 
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>

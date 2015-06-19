@@ -10,16 +10,8 @@
 	<form name="routesDeleteForm" ng-submit="delete(route)">
 		<input type="hidden" ng-model="route.id" value="{{route.id}}" />
 		<div class="form-group">
-			<label for="methods">Methods:</label>
-			<input type="text" id="methods" ng-model="route.methods" class="form-control" value="{{route.methods}}" disabled="disabled">
-		</div>
-		<div class="form-group">
 			<label for="path">Path:</label>
 			<input type="text" id="path" ng-model="route.path" class="form-control" value="{{route.path}}" disabled="disabled">
-		</div>
-		<div class="form-group">
-			<label for="controller">Controller:</label>
-			<input type="text" id="controller" ng-model="route.controller" class="form-control" value="{{route.controller}}" disabled="disabled">
 		</div>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
