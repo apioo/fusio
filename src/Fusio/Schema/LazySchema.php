@@ -45,4 +45,9 @@ class LazySchema implements SchemaInterface
 	{
 		return $this->loader->getSchema($this->schemaId)->getDefinition();
 	}
+
+	public function getSchemaId()
+	{
+		return $this->schemaId;
+	}
 }

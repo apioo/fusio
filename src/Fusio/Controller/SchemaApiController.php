@@ -29,10 +29,12 @@ use Fusio\Schema\LazySchema;
 use PSX\Api\DocumentedInterface;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
+use PSX\Api\Resource\MethodAbstract;
 use PSX\Api\Version;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\Record;
 use PSX\Data\RecordInterface;
+use PSX\Data\SchemaInterface;
 use PSX\Dispatch\Filter\UserAgentEnforcer;
 use PSX\Http\Exception as StatusCode;
 use PSX\Loader\Context;
@@ -173,6 +175,57 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
 	protected function doDelete(RecordInterface $record, Version $version)
 	{
 		return $this->executeAction($record, $version);
+	}
+
+	protected function parseRequest(MethodAbstract $method)
+	{
+		if($method->hasRequest())
+		{
+			if($method->getRequest() instanceof LazySchema && $method->getRequest()->getSchemaId() == self::SCHEMA_PASSTHRU)
+			{
+				return $this->import(new Record());
+			}
+			else
+			{
+				return $this->import($method->getRequest());
+			}
+		}
+		else
+		{
+			return new Record();
+		}
+	}
+
+	protected function sendResponse(MethodAbstract $method, $response)
+	{
+		$statusCode = $this->response->getStatusCode();
+		if(!empty($statusCode) && $method->hasResponse($statusCode))
+		{
+			$schema = $method->getResponse($statusCode);
+		}
+		else
+		{
+			$schema = $this->getSuccessfulResponse($method, $statusCode);
+		}
+
+		if($schema instanceof SchemaInterface)
+		{
+			$this->setResponseCode($statusCode);
+
+			if($schema instanceof LazySchema && $schema->getSchemaId() == self::SCHEMA_PASSTHRU)
+			{
+				$this->setBody($response);
+			}
+			else
+			{
+				$this->setBody($this->schemaAssimilator->assimilate($schema, $response));
+			}
+		}
+		else
+		{
+			$this->setResponseCode(204);
+			$this->setBody('');
+		}
 	}
 
 	private function executeAction(RecordInterface $record, Version $version)
