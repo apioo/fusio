@@ -29,57 +29,65 @@ use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Response;
+use PhpAmqpLib\Connection\AMQPConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 use PSX\Data\Writer;
 
 /**
- * HttpRequest
+ * RabbitMqPush
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class HttpRequest implements ActionInterface
+class RabbitMqPush implements ActionInterface
 {
 	/**
 	 * @Inject
-	 * @var PSX\Http
+	 * @var Doctrine\DBAL\Connection
 	 */
-	protected $http;
+	protected $connection;
+
+	/**
+	 * @Inject
+	 * @var Fusio\Connector
+	 */
+	protected $connector;
 
 	public function getName()
 	{
-		return 'HTTP-Request';
+		return 'RabbitMQ-Push';
 	}
 
 	public function handle(Request $request, Parameters $configuration)
 	{
-		$headers  = array('User-Agent' => 'Fusio');
-		$writer   = new Writer\Json();
-		$body     = $writer->write($request->getBody());
-		$request  = new PostRequest($configuration->get('url'), $headers, $body);
+		$connection = $this->connector->getConnection($configuration->get('connection'));
 
-		$response = $this->http->request($request);
-
-		if($response->getStatusCode() >= 200 && $response->getStatusCode() < 300)
+		if($connection instanceof AMQPConnection)
 		{
-			return new Response(200, [], [
+			$writer  = new Writer\Json();
+			$body    = $writer->write($request->getBody());
+			$message = new AMQPMessage($body, array('content_type' => $writer->getContentType(), 'delivery_mode' => 2));
+
+			$channel = $connection->channel();
+			$channel->basic_publish($message, '', $configuration->get('queue'));
+
+			return new Response(200, [], array(
 				'success' => true,
-				'message' => 'Request successful'
-			]);
+				'message' => 'Push was successful'
+			));
 		}
 		else
 		{
-			return new Response(200, [], [
-				'success' => false,
-				'message' => 'Request failed'
-			]);
+			throw new ConfigurationException('Given connection must be an AMQP connection');
 		}
 	}
 
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\Input('url', 'Url', 'text', 'Sends an HTTP POST request to the given url. The data is json encoded in the body'));
+		$form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The RabbitMQ connection which should be used'));
+		$form->add(new Element\Input('queue', 'Queue', 'text', 'The name of the queue'));
 
 		return $form;
 	}

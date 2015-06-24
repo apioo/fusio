@@ -24,11 +24,11 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
-use Fusio\Parameters;
-use Fusio\Response;
-use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
+use Fusio\Request;
+use Fusio\Response;
 use PSX\Http\Exception as StatusCode;
 use PSX\Util\CurveArray;
 
@@ -58,37 +58,14 @@ class SqlFetchRow implements ActionInterface
 		return 'SQL-Fetch-Row';
 	}
 
-	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration)
 	{
 		$connection = $this->connector->getConnection($configuration->get('connection'));
 
 		if($connection instanceof Connection)
 		{
 			$sql = $configuration->get('sql');
-
-			preg_match_all('/(\:)([A-z0-9\-\_\/]+)/', $sql, $matches);
-
-			$types  = isset($matches[1]) ? $matches[1] : array();
-			$keys   = isset($matches[2]) ? $matches[2] : array();
-			$params = array();
-
-			foreach($keys as $index => $key)
-			{
-				$sql   = str_replace($types[$index] . $key, '?', $sql);
-				$value = null;
-
-				if($types[$index] == ':')
-				{
-					$value = $parameters->get($key) ?: null;
-				}
-
-				if($value instanceof RecordInterface || $value instanceof \stdClass || is_array($value))
-				{
-					$value = serialize($value);
-				}
-
-				$params[$index] = $value;
-			}
+			$sql = SqlExecute::substituteParameters($request, $sql, $params);
 
 			$result = $connection->fetchAssoc($sql, $params);
 

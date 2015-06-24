@@ -21,38 +21,55 @@
 
 namespace Fusio;
 
-use Doctrine\DBAL\Connection;
-use PSX\Dependency\ObjectBuilderInterface;
+use PSX\Data\RecordInterface;
 
 /**
- * Processor
+ * Request
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Processor
+class Request
 {
-	protected $connection;
-	protected $factory;
+	protected $request;
+	protected $uriFragments;
+	protected $parameters;
+	protected $body;
 
-	public function __construct(Connection $connection, Factory\Action $factory)
+	public function __construct(RequestInterface $request, array $uriFragments, array $parameters, RecordInterface $body)
 	{
-		$this->connection = $connection;
-		$this->factory    = $factory;
+		$this->request      = $request;
+		$this->uriFragments = $uriFragments;
+		$this->parameters   = $parameters;
+		$this->body         = $body;
 	}
 
-	public function execute($actionId, Request $request)
+	public function getHeader($name)
 	{
-		$action = $this->connection->fetchAssoc('SELECT class, config FROM fusio_action WHERE id = :id', array('id' => $actionId));
+		return $this->request->getHeader($name);
+	}
 
-		if(empty($action))
-		{
-			throw new ConfigurationException('Invalid action');
-		}
+	public function getUriFragment($name)
+	{
+		return isset($this->uriFragments[$name]) ? $this->uriFragments[$name] : null;
+	}
 
-		$config = !empty($action['config']) ? unserialize($action['config']) : array();
+	public function getParameter($name)
+	{
+		return isset($this->parameters[$name]) ? $this->parameters[$name] : null;
+	}
 
-		return $this->factory->factory($action['class'])->handle($request, new Parameters($config));
+	public function getBody()
+	{
+		return $this->body;
+	}
+
+	public function withBody(RecordInterface $body)
+	{
+		$self = clone $this;
+		$self->body = $body;
+
+		return $self;
 	}
 }

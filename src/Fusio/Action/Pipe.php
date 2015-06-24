@@ -24,10 +24,13 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
-use Fusio\Parameters;
-use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
+use Fusio\Request;
+use PSX\Data\Record;
+use PSX\Data\Record\GraphTraverser;
+use PSX\Data\Record\Visitor\StdClassSerializeVisitor;
 
 /**
  * Pipe
@@ -50,17 +53,29 @@ class Pipe implements ActionInterface
 	 */
 	protected $processor;
 
+	/**
+	 * @Inject
+	 * @var PSX\Data\Record\ImporterManager
+	 */
+	protected $importerManager;
+
 	public function getName()
 	{
 		return 'Pipe';
 	}
 
-	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration)
 	{
-		$response = $this->processor->execute($configuration->get('source'), $parameters, $data);
-		$data     = Body::fromArray($response);
+		$response = $this->processor->execute($configuration->get('source'), $request);
 
-		return $this->processor->execute($configuration->get('destination'), $parameters, $data);
+		$visitor   = new StdClassSerializeVisitor();
+		$traverser = new GraphTraverser();
+		$traverser->traverse($response->getBody(), $visitor);
+
+		$importer = $this->importerManager->getImporterByInstance('PSX\Data\Record\Importer\Record');
+		$body     = $importer->importer(new Record(), $visitor->getObject());
+
+		return $this->processor->execute($configuration->get('destination'), $request->withBody($body));
 	}
 
 	public function getForm()

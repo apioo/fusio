@@ -24,10 +24,10 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
-use Fusio\Parameters;
-use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
+use Fusio\Request;
 
 /**
  * Composite
@@ -55,11 +55,11 @@ class Composite implements ActionInterface
 		return 'Composite';
 	}
 
-	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration)
 	{
-		$this->processor->execute($configuration->get('in'), $parameters, $data);
+		$this->processor->execute($configuration->get('in'), $request);
 
-		return $this->processor->execute($configuration->get('out'), $parameters, $data);
+		return $this->processor->execute($configuration->get('out'), $request);
 	}
 
 	public function getForm()

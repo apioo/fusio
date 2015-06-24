@@ -24,10 +24,10 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
-use Fusio\Parameters;
-use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
+use Fusio\Request;
 
 /**
  * CacheResponse
@@ -61,14 +61,14 @@ class CacheResponse implements ActionInterface
 		return 'Cache-Response';
 	}
 
-	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration)
 	{
 		$key  = md5('action_' . $configuration->get('action'));
 		$item = $this->cache->getItem($key);
 
 		if(!$item->isHit())
 		{
-			$response = $this->processor->execute($configuration->get('action'), $parameters, $data);;
+			$response = $this->processor->execute($configuration->get('action'), $request);
 
 			$item->set($response, $configuration->get('expire'));
 

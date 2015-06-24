@@ -24,10 +24,10 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
-use Fusio\Parameters;
-use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
+use Fusio\Request;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 /**
@@ -56,18 +56,21 @@ class Condition implements ActionInterface
 		return 'Condition';
 	}
 
-	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration)
 	{
 		$condition = $configuration->get('condition');
 		$language  = new ExpressionLanguage();
+		$values    = array(
 
-		if(empty($condition) || $language->evaluate($condition, $data->toArray()))
+		);
+
+		if(!empty($condition) && $language->evaluate($condition, $values))
 		{
-			return $this->processor->execute($configuration->get('true'), $parameters, $data);
+			return $this->processor->execute($configuration->get('true'), $request);
 		}
 		else
 		{
-			return $this->processor->execute($configuration->get('false'), $parameters, $data);
+			return $this->processor->execute($configuration->get('false'), $request);
 		}
 	}
 

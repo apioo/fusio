@@ -24,10 +24,10 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
-use Fusio\Parameters;
-use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
+use Fusio\Request;
 use MongoCollection;
 use MongoDB;
 
@@ -51,12 +51,14 @@ class Transform implements ActionInterface
 		return 'Transform';
 	}
 
-	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration)
 	{
+		/*
 		$patch = new Patch($configuration->get('patch'));
 		$data  = $patch->apply($data->getData());
+		*/
 
-		return $this->processor->execute($configuration->get('action'), $parameters, new Body($data));
+		return $this->processor->execute($configuration->get('action'), $parameters, $request);
 	}
 
 	public function getForm()

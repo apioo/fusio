@@ -21,9 +21,6 @@
 
 namespace Fusio;
 
-use ArrayIterator;
-use IteratorAggregate;
-
 /**
  * Response
  *

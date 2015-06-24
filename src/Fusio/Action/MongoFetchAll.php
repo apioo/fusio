@@ -24,11 +24,11 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
-use Fusio\Parameters;
-use Fusio\Response;
-use Fusio\Body;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
+use Fusio\Request;
+use Fusio\Response;
 use MongoCollection;
 use MongoDB;
 
@@ -58,7 +58,7 @@ class MongoFetchAll implements ActionInterface
 		return 'Mongo-Fetch-All';
 	}
 
-	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration)
 	{
 		$connection = $this->connectionFactory->getConnection($configuration->get('connection'));
 

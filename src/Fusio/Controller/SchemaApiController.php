@@ -234,11 +234,15 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
 
 		if($actionId > 0)
 		{
-			$parameters = new Parameters(array_merge($this->getParameters(), $this->uriFragments));
-			$body       = new Body($record);
-
-			$response   = $this->processor->execute($actionId, $parameters, $body);
+			$request    = new Request($this->request, $this->getParameters(), $this->uriFragments, $record);
+			$response   = $this->processor->execute($actionId, $request);
+			$statusCode = $response->getStatusCode();
 			$headers    = $response->getHeaders();
+
+			if(!empty($statusCode))
+			{
+				$this->setResponseCode($statusCode);
+			}
 
 			if(!empty($headers))
 			{

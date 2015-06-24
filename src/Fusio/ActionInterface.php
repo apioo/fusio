@@ -39,10 +39,9 @@ interface ActionInterface extends ConfigurableInterface
 	 * is always an empty record. All actions must be placed in the Action 
 	 * folder
 	 *
-	 * @param Fusio\Parameters $parameters
-	 * @param Fusio\Body $data
+	 * @param Fusio\Request $request
 	 * @param Fusio\Parameters $configuration
-	 * @return array
+	 * @return Fusio\Response
 	 */
-	public function handle(Parameters $parameters, Body $data, Parameters $configuration);
+	public function handle(Request $request, Parameters $configuration);
 }

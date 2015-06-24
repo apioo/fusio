@@ -24,11 +24,11 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
-use Fusio\Parameters;
-use Fusio\Body;
-use Fusio\Response;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
+use Fusio\Request;
+use Fusio\Response;
 use PSX\Json;
 use PSX\Http;
 
@@ -46,7 +46,7 @@ class StaticResponse implements ActionInterface
 		return 'Static-Response';
 	}
 
-	public function handle(Parameters $parameters, Body $data, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration)
 	{
 		$response = $configuration->get('response');
 
