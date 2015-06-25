@@ -80,7 +80,7 @@ class HttpRequest implements ActionInterface
 	public function getForm()
 	{
 		$form = new Form\Container();
-		$form->add(new Element\Input('url', 'Url', 'text', 'Sends an HTTP POST request to the given url. The data is json encoded in the body'));
+		$form->add(new Element\Input('url', 'Url', 'text', 'Sends an HTTP POST request to the given url. The body contains the json encoded data from the request'));
 
 		return $form;
 	}

@@ -88,7 +88,7 @@ class SqlFetchRow implements ActionInterface
 	{
 		$form = new Form\Container();
 		$form->add(new Element\Connection('connection', 'Connection', $this->connection));
-		$form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The SELECT statment which gets executed. Uri fragments and GET parameters can be used with i.e. <code>:news_id</code>'));
+		$form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The SELECT statment which gets executed. Uri fragments can be used with i.e. <code>!news_id</code> and GET parameters with i.e. <code>:news_id</code>'));
 
 		return $form;
 	}

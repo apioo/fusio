@@ -30,7 +30,9 @@ use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Response;
+use PSX\Data\Accessor;
 use PSX\Data\RecordInterface;
+use PSX\Validate;
 
 /**
  * SqlExecute
@@ -85,7 +87,7 @@ class SqlExecute implements ActionInterface
 	{
 		$form = new Form\Container();
 		$form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The SQL connection which should be used'));
-		$form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The INSERT, UPDATE or DELETE query which gets executed. Uri fragments and GET parameters can be used with i.e. <code>:news_id</code>. The body data can be accessed with i.e. <code>#/author/name</code>'));
+		$form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The INSERT, UPDATE or DELETE query which gets executed. Uri fragments can be used with i.e. <code>!news_id</code> and GET parameters with i.e. <code>:news_id</code>. The body data can be accessed with i.e. <code>#author.name</code>'));
 
 		return $form;
 	}
@@ -94,9 +96,10 @@ class SqlExecute implements ActionInterface
 	{
 		preg_match_all('/(\#|\:|\!)([A-z0-9\-\_\/]+)/', $sql, $matches);
 
-		$types  = isset($matches[1]) ? $matches[1] : array();
-		$keys   = isset($matches[2]) ? $matches[2] : array();
-		$params = array();
+		$types    = isset($matches[1]) ? $matches[1] : array();
+		$keys     = isset($matches[2]) ? $matches[2] : array();
+		$params   = array();
+		$accessor = new Accessor(new Validate(), $request->getBody());
 
 		foreach($keys as $index => $key)
 		{
@@ -115,8 +118,7 @@ class SqlExecute implements ActionInterface
 			{
 				if($withBodyParameters)
 				{
-					// seach in the body
-					$value = $data->get($name) ?: null;
+					$value = $accessor->get($name) ?: null;
 				}
 				else
 				{
