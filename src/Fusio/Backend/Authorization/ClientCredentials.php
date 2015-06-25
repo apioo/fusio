@@ -80,7 +80,7 @@ class ClientCredentials extends ClientCredentialsAbstract
 								    date = NOW()';
 
 				$expires = new \DateTime();
-				$expires->add(new \DateInterval('PT30M'));
+				$expires->add(new \DateInterval('PT1H'));
 
 				$this->connection->executeUpdate($sql, array(
 					'app_id'  => App::BACKEND,
