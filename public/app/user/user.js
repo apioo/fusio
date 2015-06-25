@@ -108,7 +108,6 @@ angular.module('fusioApp.user', ['ngRoute', 'ui.bootstrap'])
 	$scope.user = {
 		status: 0,
 		name: '',
-		password: '',
 		scopes: []
 	};
 
