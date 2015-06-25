@@ -21,6 +21,7 @@
 
 namespace Fusio\Dependency;
 
+use Fusio\App;
 use Fusio\Authorization as ApiAuthorization;
 use Fusio\Backend\Authorization as BackendAuthorization;
 use Fusio\Connector;
@@ -195,5 +196,13 @@ class Container extends DefaultContainer
 	public function getSchemaLoader()
 	{
 		return new Schema\Loader($this->get('connection'));
+	}
+
+	/**
+	 * @return Fusio\App\Loader
+	 */
+	public function getAppLoader()
+	{
+		return new App\Loader($this->get('connection'));
 	}
 }

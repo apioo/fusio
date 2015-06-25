@@ -24,6 +24,7 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
+use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
@@ -58,7 +59,7 @@ class BeanstalkPush implements ActionInterface
 		return 'Beanstalk-Push';
 	}
 
-	public function handle(Request $request, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration, Context $context)
 	{
 		$connection = $this->connector->getConnection($configuration->get('connection'));
 

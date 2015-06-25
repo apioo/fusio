@@ -24,6 +24,7 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
+use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
@@ -64,9 +65,9 @@ class Pipe implements ActionInterface
 		return 'Pipe';
 	}
 
-	public function handle(Request $request, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration, Context $context)
 	{
-		$response = $this->processor->execute($configuration->get('source'), $request);
+		$response = $this->processor->execute($configuration->get('source'), $request, $context);
 
 		$visitor   = new StdClassSerializeVisitor();
 		$traverser = new GraphTraverser();
@@ -75,7 +76,7 @@ class Pipe implements ActionInterface
 		$importer = $this->importerManager->getImporterByInstance('PSX\Data\Record\Importer\Record');
 		$body     = $importer->importer(new Record(), $visitor->getObject());
 
-		return $this->processor->execute($configuration->get('destination'), $request->withBody($body));
+		return $this->processor->execute($configuration->get('destination'), $request->withBody($body), $context);
 	}
 
 	public function getForm()

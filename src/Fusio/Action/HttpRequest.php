@@ -24,6 +24,7 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
+use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
@@ -51,7 +52,7 @@ class HttpRequest implements ActionInterface
 		return 'HTTP-Request';
 	}
 
-	public function handle(Request $request, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration, Context $context)
 	{
 		$headers  = array('User-Agent' => 'Fusio');
 		$writer   = new Writer\Json();

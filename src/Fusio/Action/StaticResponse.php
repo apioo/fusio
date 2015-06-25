@@ -24,6 +24,7 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
+use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
@@ -46,7 +47,7 @@ class StaticResponse implements ActionInterface
 		return 'Static-Response';
 	}
 
-	public function handle(Request $request, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration, Context $context)
 	{
 		$response = $configuration->get('response');
 

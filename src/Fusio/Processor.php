@@ -42,7 +42,7 @@ class Processor
 		$this->factory    = $factory;
 	}
 
-	public function execute($actionId, Request $request)
+	public function execute($actionId, Request $request, Context $context)
 	{
 		$action = $this->connection->fetchAssoc('SELECT class, config FROM fusio_action WHERE id = :id', array('id' => $actionId));
 
@@ -53,6 +53,6 @@ class Processor
 
 		$config = !empty($action['config']) ? unserialize($action['config']) : array();
 
-		return $this->factory->factory($action['class'])->handle($request, new Parameters($config));
+		return $this->factory->factory($action['class'])->handle($request, new Parameters($config), $context);
 	}
 }

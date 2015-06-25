@@ -21,47 +21,42 @@
 
 namespace Fusio;
 
-use PSX\Data\Accessor;
-use PSX\Data\RecordInterface;
-use PSX\Validate;
-
 /**
- * Body
+ * Context
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Body
+class Context
 {
-	protected function normalize($data)
+	protected $routeId;
+	protected $app;
+
+	public function __construct($routeId, App $app)
 	{
-		if($data instanceof RecordInterface)
-		{
-			$result = new \stdClass();
-			$fields = $data->getRecordInfo()->getData();
+		$this->routeId = $routeId;
+		$this->app     = $app;
+	}
 
-			foreach($fields as $key => $value)
-			{
-				$result->$key = $this->normalize($value);
-			}
+	/**
+	 * Returns the id of the route
+	 *
+	 * @return integer
+	 */
+	public function getRouteId()
+	{
+		return $this->routeId;
+	}
 
-			return $result;
-		}
-		else if(is_array($data))
-		{
-			$result = array();
-
-			foreach($data as $key => $value)
-			{
-				$result[$key] = $this->normalize($value);
-			}
-
-			return $result;
-		}
-		else
-		{
-			return $data;
-		}
+	/**
+	 * Returns the app which was used for this request. Can also be an anonymous 
+	 * app if authorization is not required for the endpoint
+	 *
+	 * @return Fusio\App
+	 */
+	public function getApp()
+	{
+		return $this->app;
 	}
 }

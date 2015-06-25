@@ -22,6 +22,7 @@
 namespace Fusio;
 
 use PSX\Data\RecordInterface;
+use PSX\Http\RequestInterface;
 
 /**
  * Request
@@ -40,8 +41,8 @@ class Request
 	public function __construct(RequestInterface $request, array $uriFragments, array $parameters, RecordInterface $body)
 	{
 		$this->request      = $request;
-		$this->uriFragments = $uriFragments;
-		$this->parameters   = $parameters;
+		$this->uriFragments = new Parameters($uriFragments);
+		$this->parameters   = new Parameters($parameters);
 		$this->body         = $body;
 	}
 
@@ -52,12 +53,22 @@ class Request
 
 	public function getUriFragment($name)
 	{
-		return isset($this->uriFragments[$name]) ? $this->uriFragments[$name] : null;
+		return $this->uriFragments->get($name);
+	}
+
+	public function getUriFragments()
+	{
+		return $this->uriFragments;
 	}
 
 	public function getParameter($name)
 	{
-		return isset($this->parameters[$name]) ? $this->parameters[$name] : null;
+		return $this->parameters->get($name);
+	}
+
+	public function getParameters()
+	{
+		return $this->parameters;
 	}
 
 	public function getBody()

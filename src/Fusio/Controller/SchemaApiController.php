@@ -22,8 +22,9 @@
 namespace Fusio\Controller;
 
 use Fusio\Authorization\Oauth2Filter;
-use Fusio\Body;
+use Fusio\Context as FusioContext;
 use Fusio\Parameters;
+use Fusio\Request;
 use Fusio\Response;
 use Fusio\Schema\LazySchema;
 use PSX\Api\DocumentedInterface;
@@ -81,15 +82,29 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
 	protected $schemaLoader;
 
 	/**
+	 * @Inject
+	 * @var Fusio\App\Loader
+	 */
+	protected $appLoader;
+
+	/**
 	 * @var integer
 	 */
 	protected $appId;
+
+	/**
+	 * @var Fusio\App
+	 */
+	protected $app;
 
 	private $activeMethod;
 
 	public function onLoad()
 	{
 		parent::onLoad();
+
+		// load app
+		$this->app = $this->appLoader->getById($this->appId);
 
 		// log request
 		$this->apiLogger->log(
@@ -234,8 +249,9 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
 
 		if($actionId > 0)
 		{
-			$request    = new Request($this->request, $this->getParameters(), $this->uriFragments, $record);
-			$response   = $this->processor->execute($actionId, $request);
+			$context    = new FusioContext($this->context->get('fusio.routeId'), $this->app);
+			$request    = new Request($this->request, $this->uriFragments, $this->getParameters(), $record);
+			$response   = $this->processor->execute($actionId, $request, $context);
 			$statusCode = $response->getStatusCode();
 			$headers    = $response->getHeaders();
 

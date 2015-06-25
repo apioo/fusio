@@ -41,7 +41,8 @@ interface ActionInterface extends ConfigurableInterface
 	 *
 	 * @param Fusio\Request $request
 	 * @param Fusio\Parameters $configuration
+	 * @param Fusio\Context $context
 	 * @return Fusio\Response
 	 */
-	public function handle(Request $request, Parameters $configuration);
+	public function handle(Request $request, Parameters $configuration, Context $context);
 }

@@ -59,4 +59,9 @@ class Parameters implements IteratorAggregate
 	{
 		return new ArrayIterator($this->container);
 	}
+
+	public function toArray()
+	{
+		return $this->container;
+	}
 }

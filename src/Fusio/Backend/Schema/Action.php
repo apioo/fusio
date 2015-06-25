@@ -43,6 +43,9 @@ class Action extends SchemaAbstract
 		$config->string('projection');
 		$config->string('propertyName');
 		$config->string('response');
+		$config->string('condition');
+		$config->string('true');
+		$config->string('false');
 
 		$sb = $this->getSchemaBuilder('action');
 		$sb->integer('id');

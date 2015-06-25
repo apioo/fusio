@@ -23,12 +23,18 @@ namespace Fusio\Action;
 
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
+use Fusio\App\RateLimit;
 use Fusio\ConfigurationException;
+use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
+use PSX\Data\Accessor;
+use PSX\Validate;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use Symfony\Component\ExpressionLanguage\ParsedExpression;
+use Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface;
 
 /**
  * Condition
@@ -37,7 +43,7 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Condition implements ActionInterface
+class Condition implements ActionInterface, ParserCacheInterface
 {
 	/**
 	 * @Inject
@@ -51,26 +57,37 @@ class Condition implements ActionInterface
 	 */
 	protected $processor;
 
+	/**
+	 * @Inject
+	 * @var PSX\Cache
+	 */
+	protected $cache;
+
 	public function getName()
 	{
 		return 'Condition';
 	}
 
-	public function handle(Request $request, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration, Context $context)
 	{
 		$condition = $configuration->get('condition');
-		$language  = new ExpressionLanguage();
+		$language  = new ExpressionLanguage($this);
 		$values    = array(
-
+			'rateLimit'    => new RateLimit($this->connection, $context),
+			'app'          => $context->getApp(),
+			'routeId'      => $context->getRouteId(),
+			'uriFragments' => $request->getUriFragments(),
+			'parameters'   => $request->getParameters(),
+			'body'         => new Accessor(new Validate(), $request->getBody()),
 		);
 
 		if(!empty($condition) && $language->evaluate($condition, $values))
 		{
-			return $this->processor->execute($configuration->get('true'), $request);
+			return $this->processor->execute($configuration->get('true'), $request, $context);
 		}
 		else
 		{
-			return $this->processor->execute($configuration->get('false'), $request);
+			return $this->processor->execute($configuration->get('false'), $request, $context);
 		}
 	}
 
@@ -82,5 +99,20 @@ class Condition implements ActionInterface
 		$form->add(new Element\Action('false', 'False', $this->connection));
 
 		return $form;
+	}
+
+	public function save($key, ParsedExpression $expression)
+	{
+		$item = $this->cache->getItem(md5($key));
+		$item->set($expression);
+
+		$this->cache->save($item);
+	}
+
+	public function fetch($key)
+	{
+		$item = $this->cache->getItem(md5($key));
+
+		return $item->isHit() ? $item->get() : null;
 	}
 }

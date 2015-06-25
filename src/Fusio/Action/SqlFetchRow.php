@@ -24,6 +24,7 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
+use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
@@ -58,14 +59,15 @@ class SqlFetchRow implements ActionInterface
 		return 'SQL-Fetch-Row';
 	}
 
-	public function handle(Request $request, Parameters $configuration)
+	public function handle(Request $request, Parameters $configuration, Context $context)
 	{
 		$connection = $this->connector->getConnection($configuration->get('connection'));
 
 		if($connection instanceof Connection)
 		{
-			$sql = $configuration->get('sql');
-			$sql = SqlExecute::substituteParameters($request, $sql, $params);
+			$params = array();
+			$sql    = $configuration->get('sql');
+			$sql    = SqlExecute::substituteParameters($request, $sql, $params);
 
 			$result = $connection->fetchAssoc($sql, $params);
 
