@@ -123,7 +123,7 @@ class Entity extends SchemaApiAbstract
             $this->getValidator()->validate($record);
 
             $this->tableManager->getTable('Fusio\Backend\Table\Connection')->update(array(
-                'id'     => $record->getId(),
+                'id'     => $connection->getId(),
                 'name'   => $record->getName(),
                 'class'  => $record->getClass(),
                 'config' => $record->getConfig()->getRecordInfo()->getData(),
@@ -152,7 +152,7 @@ class Entity extends SchemaApiAbstract
 
         if (!empty($connection)) {
             $this->tableManager->getTable('Fusio\Backend\Table\Connection')->delete(array(
-                'id' => $connection['id']
+                'id' => $connection->getId()
             ));
 
             return array(

@@ -26,6 +26,10 @@ class FormTest extends ControllerDbTestCase
             "element": "http:\/\/fusio-project.org\/ns\/2015\/form\/select",
             "options": [
                 {
+                    "key": 2,
+                    "value": "DBAL"
+                },
+                {
                     "key": 1,
                     "value": "Native-Connection"
                 }

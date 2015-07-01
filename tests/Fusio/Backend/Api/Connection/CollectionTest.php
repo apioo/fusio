@@ -1,6 +1,6 @@
 <?php
 
-namespace Fusio\Backend\Api\Action;
+namespace Fusio\Backend\Api\Connection;
 
 use PSX\Http\Request;
 use PSX\Http\Response;
@@ -18,7 +18,7 @@ class CollectionTest extends ControllerDbTestCase
 
     public function testGet()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/action', 'GET', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/connection', 'GET', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
@@ -31,11 +31,11 @@ class CollectionTest extends ControllerDbTestCase
     "entry": [
         {
             "id": 2,
-            "name": "Sql-Fetch-Row"
+            "name": "DBAL"
         },
         {
             "id": 1,
-            "name": "Sql-Fetch-All"
+            "name": "Native-Connection"
         }
     ]
 }
@@ -47,15 +47,18 @@ JSON;
 
     public function testPost()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/action', 'POST', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/connection', 'POST', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
             'name'   => 'Foo',
-            'class'  => 'Fusio\Action\SqlFetchRow',
+            'class'  => 'Fusio\Connection\DBAL',
             'config' => [
-                'connection' => 1,
-                'sql'        => 'SELECT * FROM foo'
+            	'type'     => 'pdo_mysql',
+            	'host'     => '127.0.0.1',
+            	'username' => 'root',
+            	'password' => 'foo',
+            	'database' => 'bar',
             ],
         ]));
 
@@ -63,7 +66,7 @@ JSON;
         $expect = <<<'JSON'
 {
     "success": true,
-    "message": "Action successful created"
+    "message": "Connection successful created"
 }
 JSON;
 
@@ -73,7 +76,7 @@ JSON;
         // check database
         $sql = Environment::getService('connection')->createQueryBuilder()
             ->select('id', 'name', 'class', 'config')
-            ->from('fusio_action')
+            ->from('fusio_connection')
             ->orderBy('id', 'DESC')
             ->setFirstResult(0)
             ->setMaxResults(1)
@@ -83,13 +86,13 @@ JSON;
 
         $this->assertEquals(3, $row['id']);
         $this->assertEquals('Foo', $row['name']);
-        $this->assertEquals('Fusio\Action\SqlFetchRow', $row['class']);
-        $this->assertEquals('a:2:{s:10:"connection";i:1;s:3:"sql";s:17:"SELECT * FROM foo";}', $row['config']);
+        $this->assertEquals('Fusio\Connection\DBAL', $row['class']);
+        $this->assertEquals('a:5:{s:4:"type";s:9:"pdo_mysql";s:4:"host";s:9:"127.0.0.1";s:8:"username";s:4:"root";s:8:"password";s:3:"foo";s:8:"database";s:3:"bar";}', $row['config']);
     }
 
     public function testPut()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/action', 'PUT', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/connection', 'PUT', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
@@ -103,7 +106,7 @@ JSON;
 
     public function testDelete()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/action', 'DELETE', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/connection', 'DELETE', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([

@@ -34,9 +34,6 @@ class Update extends SchemaAbstract
 {
     public function getDefinition()
     {
-        $schema = $this->getSchema('Fusio\Backend\Schema\Connection');
-        $schema->get('id')->setRequired(true);
-
-        return $schema;
+        return $this->getSchema('Fusio\Backend\Schema\Connection');
     }
 }

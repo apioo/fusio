@@ -18,14 +18,16 @@
     <fusio_scope_routes id="4" scopeId="1" routeId="4" allow="1" methods="GET" />
     <fusio_scope_routes id="5" scopeId="1" routeId="5" allow="1" methods="GET|POST|PUT|DELETE" />
     <fusio_scope_routes id="6" scopeId="1" routeId="6" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="7" scopeId="1" routeId="7" allow="1" methods="GET|POST|PUT|DELETE" />
+    <fusio_scope_routes id="7" scopeId="1" routeId="7" allow="1" methods="DELETE" />
     <fusio_scope_routes id="8" scopeId="1" routeId="8" allow="1" methods="GET|POST|PUT|DELETE" />
     <fusio_scope_routes id="9" scopeId="1" routeId="9" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="10" scopeId="1" routeId="10" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="11" scopeId="1" routeId="11" allow="1" methods="GET|POST|PUT|DELETE" />
+    <fusio_scope_routes id="10" scopeId="1" routeId="10" allow="1" methods="GET" />
+    <fusio_scope_routes id="11" scopeId="1" routeId="11" allow="1" methods="GET" />
     <fusio_scope_routes id="12" scopeId="1" routeId="12" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="13" scopeId="1" routeId="13" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="14" scopeId="1" routeId="14" allow="1" methods="GET|POST|PUT|DELETE" />
+    <fusio_scope_routes id="13" scopeId="1" routeId="13" allow="1" methods="GET" />
+    <fusio_scope_routes id="14" scopeId="1" routeId="14" allow="1" methods="GET" />
+    <fusio_scope_routes id="15" scopeId="1" routeId="15" allow="1" methods="GET|POST|PUT|DELETE" />
+    <fusio_scope_routes id="16" scopeId="1" routeId="16" allow="1" methods="GET|POST|PUT|DELETE" />
     <fusio_schema id="1" name="Passthru" source="{}" cache="" />
     <fusio_routes id="1" status="1" methods="GET|POST|PUT|DELETE" path="/backend" controller="Fusio\Backend\Application\Index" />
     <fusio_routes id="2" status="1" methods="GET|POST|PUT|DELETE" path="/backend/action" controller="Fusio\Backend\Api\Action\Collection" />
@@ -60,7 +62,9 @@
     <fusio_routes id="31" status="1" methods="POST" path="/authorization/revoke" controller="Fusio\Authorization\Revoke" />
     <fusio_routes id="32" status="1" methods="GET|POST" path="/authorization/token" controller="Fusio\Authorization\Token" />
     <fusio_routes id="33" status="1" methods="GET" path="/authorization/whoami" controller="Fusio\Authorization\Whoami" />
-    <fusio_connection id="1" name="Native-Connection" class="Fusio\Connection\Native" config="" />
+    <fusio_routes id="34" status="1" methods="GET" path="/foo" controller="Fusio\Controller\SchemaApiController" config="a:1:{i:0;C:15:&quot;PSX\Data\Record&quot;:606:{a:2:{s:4:&quot;name&quot;;s:6:&quot;config&quot;;s:6:&quot;fields&quot;;a:4:{s:6:&quot;active&quot;;b:1;s:6:&quot;status&quot;;i:4;s:4:&quot;name&quot;;s:1:&quot;1&quot;;s:7:&quot;methods&quot;;a:4:{i:0;C:15:&quot;PSX\Data\Record&quot;:141:{a:2:{s:4:&quot;name&quot;;s:6:&quot;method&quot;;s:6:&quot;fields&quot;;a:5:{s:6:&quot;active&quot;;b:1;s:6:&quot;public&quot;;b:1;s:4:&quot;name&quot;;s:3:&quot;GET&quot;;s:6:&quot;action&quot;;i:19;s:8:&quot;response&quot;;i:1;}}}i:1;C:15:&quot;PSX\Data\Record&quot;:71:{a:2:{s:4:&quot;name&quot;;s:6:&quot;method&quot;;s:6:&quot;fields&quot;;a:1:{s:4:&quot;name&quot;;s:4:&quot;POST&quot;;}}}i:2;C:15:&quot;PSX\Data\Record&quot;:70:{a:2:{s:4:&quot;name&quot;;s:6:&quot;method&quot;;s:6:&quot;fields&quot;;a:1:{s:4:&quot;name&quot;;s:3:&quot;PUT&quot;;}}}i:3;C:15:&quot;PSX\Data\Record&quot;:73:{a:2:{s:4:&quot;name&quot;;s:6:&quot;method&quot;;s:6:&quot;fields&quot;;a:1:{s:4:&quot;name&quot;;s:6:&quot;DELETE&quot;;}}}}}}}}" />
+    <fusio_connection id="1" name="Native-Connection" class="Fusio\Connection\Native" config="a:0:{}" />
+    <fusio_connection id="2" name="DBAL" class="Fusio\Connection\DBAL" config="a:5:{s:4:&quot;type&quot;;s:9:&quot;pdo_mysql&quot;;s:4:&quot;host&quot;;s:9:&quot;127.0.0.1&quot;;s:8:&quot;username&quot;;s:4:&quot;root&quot;;s:8:&quot;password&quot;;s:3:&quot;foo&quot;;s:8:&quot;database&quot;;s:3:&quot;bar&quot;;}" />
     <fusio_app id="1" userId="1" status="1" name="Backend" url="http://fusio-project.org" appKey="40d05050-52df-4982-9550-09f46522b73b" appSecret="dede66744fffadc418f8aa87cb843f66004c070b200b2c224800d6d2f6b11e32" date="2015-02-15 12:44:41" />
     <fusio_app id="2" userId="2" status="1" name="Foo-App" url="http://google.com" appKey="5347307d-d801-4075-9aaa-a21a29a448c5" appSecret="342cefac55939b31cd0a26733f9a4f061c0829ed87dae7caff50feaa55aff23d" date="2015-02-22 22:19:07" />
     <fusio_app id="3" userId="2" status="2" name="Pending" url="http://google.com" appKey="7c14809c-544b-43bd-9002-23e1c2de6067" appSecret="bb0574181eb4a1326374779fe33e90e2c427f28ab0fc1ffd168bfd5309ee7caa" date="2015-02-22 22:19:07" />
@@ -70,4 +74,11 @@
     <fusio_app_scope id="3" appId="2" scopeId="4" />
     <fusio_app_scope id="4" appId="2" scopeId="5" />
     <fusio_app_token id="1" appId="1" userId="1" status="1" token="da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf" scope="backend" ip="127.0.0.1" date="2015-06-25 22:49:09" />
+    <fusio_log id="1" appId="1" routeId="1" ip="127.0.0.1" userAgent="Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36" method="GET" path="/bar" header="Authorization: 
+Host: 127.0.0.1
+Connection: keep-alive
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4" body="foobar" date="2015-06-25 22:49:09" />
 </dataset>

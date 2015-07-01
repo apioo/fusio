@@ -123,7 +123,7 @@ class Entity extends SchemaApiAbstract
             $this->getValidator()->validate($record);
 
             $this->tableManager->getTable('Fusio\Backend\Table\Routes')->update(array(
-                'id'         => $route['id'],
+                'id'         => $route->getId(),
                 'methods'    => $record->getMethods(),
                 'path'       => $record->getPath(),
                 'controller' => 'Fusio\Controller\SchemaApiController',
@@ -153,7 +153,7 @@ class Entity extends SchemaApiAbstract
 
         if (!empty($route)) {
             $this->tableManager->getTable('Fusio\Backend\Table\Routes')->update(array(
-                'id'     => $route['id'],
+                'id'     => $route->getId(),
                 'status' => 0,
             ));
 
