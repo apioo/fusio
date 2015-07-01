@@ -82,10 +82,11 @@ class ClientCredentials extends ClientCredentialsAbstract
 							    scope = :scope, 
 							    ip = :ip, 
 							    expire = :expire, 
-							    date = NOW()';
+							    date = :date';
 
 			$expires = new \DateTime();
 			$expires->add(new \DateInterval('PT6H'));
+			$now = new \DateTime();
 
 			$this->connection->executeUpdate($sql, array(
 				'app_id'  => $app['id'],
@@ -94,7 +95,8 @@ class ClientCredentials extends ClientCredentialsAbstract
 				'token'   => $accessToken,
 				'scope'   => implode(',', $scopes),
 				'ip'      => $_SERVER['REMOTE_ADDR'],
-				'expire'  => $expires->getTimestamp(),
+				'expire'  => $expires->format($this->connection->getDatabasePlatform()->getDateTimeFormatString()),
+				'date'    => $now->format($this->connection->getDatabasePlatform()->getDateTimeFormatString()),
 			));
 
 			$token = new AccessToken();

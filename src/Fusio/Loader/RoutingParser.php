@@ -47,9 +47,20 @@ class RoutingParser implements LocationFinderInterface
 
 	public function resolve(RequestInterface $request, Context $context)
 	{
-		$method      = $request->getMethod();
+		$sql = 'SELECT id, 
+				       methods, 
+				       path, 
+				       controller, 
+				       config 
+				  FROM fusio_routes 
+				 WHERE status = 1 
+				   AND methods LIKE :method';
+
+		$method = $request->getMethod();
 		$pathMatcher = new PathMatcher($request->getUri()->getPath());
-		$result      = $this->connection->fetchAll('SELECT id, methods, path, controller, config FROM fusio_routes WHERE status = 1');
+		$result      = $this->connection->fetchAll($sql, array(
+			'method' => '%' . $method . '%'
+		));
 
 		foreach($result as $row)
 		{

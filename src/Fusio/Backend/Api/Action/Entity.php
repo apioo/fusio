@@ -127,7 +127,7 @@ class Entity extends SchemaApiAbstract
 			$this->getValidator()->validate($record);
 
 			$this->tableManager->getTable('Fusio\Backend\Table\Action')->update(array(
-				'id'     => $record->getId(),
+				'id'     => $action->getId(),
 				'name'   => $record->getName(),
 				'class'  => $record->getClass(),
 				'config' => $record->getConfig()->getRecordInfo()->getData(),

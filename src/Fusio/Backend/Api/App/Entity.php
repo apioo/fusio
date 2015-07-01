@@ -133,7 +133,7 @@ class Entity extends SchemaApiAbstract
 			$this->getValidator()->validate($record);
 
 			$this->tableManager->getTable('Fusio\Backend\Table\App')->update(array(
-				'id'     => $appId,
+				'id'     => $app->getId(),
 				'status' => $record->getStatus(),
 				'name'   => $record->getName(),
 				'url'    => $record->getUrl(),
@@ -141,7 +141,11 @@ class Entity extends SchemaApiAbstract
 
 			$this->tableManager->getTable('Fusio\Backend\Table\App\Scope')->deleteAllFromApp($appId);
 
-			$this->insertScopes($appId, $record['scopes']);
+			$scopes = $record->getScopes();
+
+			if (!empty($scopes) && is_array($scopes)) {
+				$this->insertScopes($appId, $scopes);
+			}
 
 			return array(
 				'success' => true,

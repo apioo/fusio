@@ -78,7 +78,7 @@ class Container extends DefaultContainer
 	}
 
 	/**
-	 * @return PSX\Loader\LocationFinderInterface
+	 * @return PSX\Loader\RoutingParserInterface
 	 */
 	public function getRoutingParser()
 	{

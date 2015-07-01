@@ -55,6 +55,7 @@ class Oauth2Filter extends Oauth2Authentication
 
 	protected function isValidToken($token)
 	{
+		$now = new \DateTime();
 		$sql = 'SELECT appToken.appId,
 				       appToken.userId,
 				       appToken.token,
@@ -64,12 +65,18 @@ class Oauth2Filter extends Oauth2Authentication
 				  FROM fusio_app_token appToken
 				 WHERE appToken.token = :token
 				   AND appToken.status = :status
-				   AND UNIX_TIMESTAMP() < appToken.expire';
+				   AND (appToken.expire IS NULL OR appToken.expire > :now)';
 
-		$accessToken = $this->connection->fetchAssoc($sql, array('token' => $token, 'status' => Token::STATUS_ACTIVE));
+		$accessToken = $this->connection->fetchAssoc($sql, array(
+			'token'  => $token, 
+			'status' => Token::STATUS_ACTIVE,
+			'now'    => $now->format($this->connection->getDatabasePlatform()->getDateTimeFormatString()),
+		));
 
 		if(!empty($accessToken))
 		{
+			$expire = $accessToken['scope'];
+
 			// these are the scopes which are assigned to the token
 			$entitledScopes = explode(',', $accessToken['scope']);
 
