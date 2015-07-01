@@ -2,19 +2,19 @@
 /*
  * Fusio
  * A web-application to create dynamically RESTful APIs
- * 
+ *
  * Copyright (C) 2015 Christoph Kappestein <k42b3.x@gmail.com>
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -32,35 +32,34 @@ use Fusio\Form\Element;
  */
 class Select extends Element
 {
-	protected $element = 'http://fusio-project.org/ns/2015/form/select';
+    protected $element = 'http://fusio-project.org/ns/2015/form/select';
 
-	protected $options;
+    protected $options;
 
-	public function __construct($name, $title, array $options = array(), $help = null)
-	{
-		parent::__construct($name, $title, $help);
+    public function __construct($name, $title, array $options = array(), $help = null)
+    {
+        parent::__construct($name, $title, $help);
 
-		foreach($options as $key => $value)
-		{
-			$this->addOption($key, $value);
-		}
-	}
+        foreach ($options as $key => $value) {
+            $this->addOption($key, $value);
+        }
+    }
 
-	public function setOptions(array $options)
-	{
-		$this->options = $options;
-	}
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
+    }
 
-	public function getOptions()
-	{
-		return $this->options;
-	}
+    public function getOptions()
+    {
+        return $this->options;
+    }
 
-	public function addOption($key, $value)
-	{
-		$this->options[] = array(
-			'key'   => $key,
-			'value' => $value,
-		);
-	}
+    public function addOption($key, $value)
+    {
+        $this->options[] = array(
+            'key'   => $key,
+            'value' => $value,
+        );
+    }
 }

@@ -2,19 +2,19 @@
 /*
  * Fusio
  * A web-application to create dynamically RESTful APIs
- * 
+ *
  * Copyright (C) 2015 Christoph Kappestein <k42b3.x@gmail.com>
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -47,103 +47,100 @@ use PSX\Util\Uuid;
  */
 class Collection extends SchemaApiAbstract
 {
-	use ProtectionTrait;
+    use ProtectionTrait;
 
-	/**
-	 * @Inject
-	 * @var PSX\Data\Schema\SchemaManagerInterface
-	 */
-	protected $schemaManager;
+    /**
+     * @Inject
+     * @var PSX\Data\Schema\SchemaManagerInterface
+     */
+    protected $schemaManager;
 
-	/**
-	 * @Inject
-	 * @var PSX\Sql\TableManager
-	 */
-	protected $tableManager;
+    /**
+     * @Inject
+     * @var PSX\Sql\TableManager
+     */
+    protected $tableManager;
 
-	/**
-	 * @return PSX\Api\DocumentationInterface
-	 */
-	public function getDocumentation()
-	{
-		$resource = new Resource(Resource::STATUS_ACTIVE, $this->context->get(Context::KEY_PATH));
+    /**
+     * @return PSX\Api\DocumentationInterface
+     */
+    public function getDocumentation()
+    {
+        $resource = new Resource(Resource::STATUS_ACTIVE, $this->context->get(Context::KEY_PATH));
 
-		$resource->addMethod(Resource\Factory::getMethod('GET')
-			->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\Log\Collection'))
-		);
+        $resource->addMethod(Resource\Factory::getMethod('GET')
+            ->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\Log\Collection'))
+        );
 
-		return new Documentation\Simple($resource);
-	}
+        return new Documentation\Simple($resource);
+    }
 
-	/**
-	 * Returns the GET response
-	 *
-	 * @param PSX\Api\Version $version
-	 * @return array|PSX\Data\RecordInterface
-	 */
-	protected function doGet(Version $version)
-	{
-		$startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: null;
-		$appId      = $this->getParameter('appId', Validate::TYPE_INTEGER) ?: null;
-		$routeId    = $this->getParameter('routeId', Validate::TYPE_INTEGER) ?: null;
-		$search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-		$condition  = new Condition();
+    /**
+     * Returns the GET response
+     *
+     * @param PSX\Api\Version $version
+     * @return array|PSX\Data\RecordInterface
+     */
+    protected function doGet(Version $version)
+    {
+        $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: null;
+        $appId      = $this->getParameter('appId', Validate::TYPE_INTEGER) ?: null;
+        $routeId    = $this->getParameter('routeId', Validate::TYPE_INTEGER) ?: null;
+        $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
+        $condition  = new Condition();
 
-		if(!empty($appId))
-		{
-			$condition->add('appId', '=', $appId);
-		}
+        if (!empty($appId)) {
+            $condition->add('appId', '=', $appId);
+        }
 
-		if(!empty($routeId))
-		{
-			$condition->add('routeId', '=', $routeId);
-		}
+        if (!empty($routeId)) {
+            $condition->add('routeId', '=', $routeId);
+        }
 
-		if(!empty($search))
-		{
-			$condition->add('path', 'LIKE', '%' . $search . '%');
-		}
+        if (!empty($search)) {
+            $condition->add('path', 'LIKE', '%' . $search . '%');
+        }
 
-		$table = $this->tableManager->getTable('Fusio\Backend\Table\Log');
-		$table->setRestrictedFields(['header', 'body']);
+        $table = $this->tableManager->getTable('Fusio\Backend\Table\Log');
+        $table->setRestrictedFields(['header', 'body']);
 
-		return array(
-			'totalItems' => $table->getCount($condition),
-			'startIndex' => $startIndex,
-			'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
-		);
-	}
+        return array(
+            'totalItems' => $table->getCount($condition),
+            'startIndex' => $startIndex,
+            'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+        );
+    }
 
-	/**
-	 * Returns the POST response
-	 *
-	 * @param PSX\Data\RecordInterface $record
-	 * @param PSX\Api\Version $version
-	 * @return array|PSX\Data\RecordInterface
-	 */
-	protected function doCreate(RecordInterface $record, Version $version)
-	{
-	}
+    /**
+     * Returns the POST response
+     *
+     * @param PSX\Data\RecordInterface $record
+     * @param PSX\Api\Version $version
+     * @return array|PSX\Data\RecordInterface
+     */
+    protected function doCreate(RecordInterface $record, Version $version)
+    {
+    }
 
-	/**
-	 * Returns the PUT response
-	 *
-	 * @param PSX\Data\RecordInterface $record
-	 * @param PSX\Api\Version $version
-	 * @return array|PSX\Data\RecordInterface
-	 */
-	protected function doUpdate(RecordInterface $record, Version $version)
-	{
-	}
+    /**
+     * Returns the PUT response
+     *
+     * @param PSX\Data\RecordInterface $record
+     * @param PSX\Api\Version $version
+     * @return array|PSX\Data\RecordInterface
+     */
+    protected function doUpdate(RecordInterface $record, Version $version)
+    {
+    }
 
-	/**
-	 * Returns the DELETE response
-	 *
-	 * @param PSX\Data\RecordInterface $record
-	 * @param PSX\Api\Version $version
-	 * @return array|PSX\Data\RecordInterface
-	 */
-	protected function doDelete(RecordInterface $record, Version $version)
-	{
-	}
+    /**
+     * Returns the DELETE response
+     *
+     * @param PSX\Data\RecordInterface $record
+     * @param PSX\Api\Version $version
+     * @return array|PSX\Data\RecordInterface
+     */
+    protected function doDelete(RecordInterface $record, Version $version)
+    {
+    }
 }

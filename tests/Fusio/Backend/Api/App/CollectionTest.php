@@ -11,20 +11,20 @@ use PSX\Url;
 
 class CollectionTest extends ControllerDbTestCase
 {
-	public function getDataSet()
-	{
-		return $this->createFlatXMLDataSet(__DIR__ . '/../../../fixture.xml');
-	}
+    public function getDataSet()
+    {
+        return $this->createFlatXMLDataSet(__DIR__ . '/../../../fixture.xml');
+    }
 
-	public function testGet()
-	{
-		$response = $this->sendRequest('http://127.0.0.1/backend/app', 'GET', array(
-			'User-Agent'    => 'Fusio TestCase', 
-			'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
-		));
+    public function testGet()
+    {
+        $response = $this->sendRequest('http://127.0.0.1/backend/app', 'GET', array(
+            'User-Agent'    => 'Fusio TestCase',
+            'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
+        ));
 
-		$body   = (string) $response->getBody();
-		$expect = <<<'JSON'
+        $body   = (string) $response->getBody();
+        $expect = <<<'JSON'
 {
     "totalItems": 4,
     "startIndex": 0,
@@ -62,23 +62,23 @@ class CollectionTest extends ControllerDbTestCase
 JSON;
 
         $this->assertEquals(200, $response->getStatusCode(), $body);
-		$this->assertJsonStringEqualsJsonString($expect, $body, $body);
-	}
+        $this->assertJsonStringEqualsJsonString($expect, $body, $body);
+    }
 
-	public function testPost()
-	{
-		$response = $this->sendRequest('http://127.0.0.1/backend/app', 'POST', array(
-			'User-Agent'    => 'Fusio TestCase', 
-			'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
-		), json_encode([
-			'status' => 0,
-			'userId' => 1,
-			'name'   => 'Foo',
-			'url'    => 'http://google.com',
-		]));
+    public function testPost()
+    {
+        $response = $this->sendRequest('http://127.0.0.1/backend/app', 'POST', array(
+            'User-Agent'    => 'Fusio TestCase',
+            'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
+        ), json_encode([
+            'status' => 0,
+            'userId' => 1,
+            'name'   => 'Foo',
+            'url'    => 'http://google.com',
+        ]));
 
-		$body   = (string) $response->getBody();
-		$expect = <<<'JSON'
+        $body   = (string) $response->getBody();
+        $expect = <<<'JSON'
 {
     "success": true,
     "message": "App successful created"
@@ -86,7 +86,7 @@ JSON;
 JSON;
 
         $this->assertEquals(201, $response->getStatusCode(), $body);
-		$this->assertJsonStringEqualsJsonString($expect, $body, $body);
+        $this->assertJsonStringEqualsJsonString($expect, $body, $body);
 
         // check database
         $sql = Environment::getService('connection')->createQueryBuilder()
@@ -104,33 +104,33 @@ JSON;
         $this->assertEquals(1, $row['userId']);
         $this->assertEquals('Foo', $row['name']);
         $this->assertEquals('http://google.com', $row['url']);
-	}
+    }
 
-	public function testPut()
-	{
-		$response = $this->sendRequest('http://127.0.0.1/backend/app', 'PUT', array(
-			'User-Agent'    => 'Fusio TestCase', 
-			'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
-		), json_encode([
-			'foo' => 'bar',
-		]));
+    public function testPut()
+    {
+        $response = $this->sendRequest('http://127.0.0.1/backend/app', 'PUT', array(
+            'User-Agent'    => 'Fusio TestCase',
+            'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
+        ), json_encode([
+            'foo' => 'bar',
+        ]));
 
-		$body = (string) $response->getBody();
+        $body = (string) $response->getBody();
 
         $this->assertEquals(405, $response->getStatusCode(), $body);
-	}
+    }
 
-	public function testDelete()
-	{
-		$response = $this->sendRequest('http://127.0.0.1/backend/app', 'DELETE', array(
-			'User-Agent'    => 'Fusio TestCase', 
-			'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
-		), json_encode([
-			'foo' => 'bar',
-		]));
+    public function testDelete()
+    {
+        $response = $this->sendRequest('http://127.0.0.1/backend/app', 'DELETE', array(
+            'User-Agent'    => 'Fusio TestCase',
+            'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
+        ), json_encode([
+            'foo' => 'bar',
+        ]));
 
-		$body = (string) $response->getBody();
+        $body = (string) $response->getBody();
 
-		$this->assertEquals(405, $response->getStatusCode(), $body);
-	}
+        $this->assertEquals(405, $response->getStatusCode(), $body);
+    }
 }

@@ -6,20 +6,20 @@ use PSX\Test\ControllerDbTestCase;
 
 class FormTest extends ControllerDbTestCase
 {
-	public function getDataSet()
-	{
-		return $this->createFlatXMLDataSet(__DIR__ . '/../../../fixture.xml');
-	}
+    public function getDataSet()
+    {
+        return $this->createFlatXMLDataSet(__DIR__ . '/../../../fixture.xml');
+    }
 
-	public function testGet()
-	{
-		$response = $this->sendRequest('http://127.0.0.1/backend/action/form?class=' . urlencode('Fusio\\Action\\SqlFetchRow'), 'GET', array(
-			'User-Agent'    => 'Fusio TestCase', 
-			'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
-		));
+    public function testGet()
+    {
+        $response = $this->sendRequest('http://127.0.0.1/backend/action/form?class=' . urlencode('Fusio\\Action\\SqlFetchRow'), 'GET', array(
+            'User-Agent'    => 'Fusio TestCase',
+            'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
+        ));
 
-		$body   = (string) $response->getBody();
-		$expect = <<<'JSON'
+        $body   = (string) $response->getBody();
+        $expect = <<<'JSON'
 {
     "element": [
         {
@@ -45,6 +45,6 @@ class FormTest extends ControllerDbTestCase
 JSON;
 
         $this->assertEquals(null, $response->getStatusCode(), $body);
-		$this->assertJsonStringEqualsJsonString($expect, $body, $body);
-	}
+        $this->assertJsonStringEqualsJsonString($expect, $body, $body);
+    }
 }

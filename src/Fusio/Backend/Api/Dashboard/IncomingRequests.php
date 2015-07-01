@@ -2,19 +2,19 @@
 /*
  * Fusio
  * A web-application to create dynamically RESTful APIs
- * 
+ *
  * Copyright (C) 2015 Christoph Kappestein <k42b3.x@gmail.com>
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -35,37 +35,35 @@ use PSX\Controller\ApiAbstract;
  */
 class IncomingRequests extends ApiAbstract
 {
-	use ProtectionTrait;
+    use ProtectionTrait;
 
-	const PAST_DAYS = 9;
+    const PAST_DAYS = 9;
 
-	public function onGet()
-	{
-		$past = new DateTime();
-		$past->sub(new DateInterval('P' . self::PAST_DAYS. 'D'));
+    public function onGet()
+    {
+        $past = new DateTime();
+        $past->sub(new DateInterval('P' . self::PAST_DAYS. 'D'));
 
-		$labels = array();
-		$data   = array();
+        $labels = array();
+        $data   = array();
 
-		for($i = 0; $i <= self::PAST_DAYS; $i++)
-		{
-			$sql = 'SELECT COUNT(id) as count
-					  FROM fusio_log 
+        for ($i = 0; $i <= self::PAST_DAYS; $i++) {
+            $sql = 'SELECT COUNT(id) as count
+					  FROM fusio_log
 					 WHERE DATE(date) = :date';
 
-			$count = $this->connection->fetchColumn($sql, array('date' => $past->format('Y-m-d')));
+            $count = $this->connection->fetchColumn($sql, array('date' => $past->format('Y-m-d')));
 
-			$data[]   = (int) $count;
-			$labels[] = $past->format('d.m');
+            $data[]   = (int) $count;
+            $labels[] = $past->format('d.m');
 
-			$past->add(new DateInterval('P1D'));
-		}
+            $past->add(new DateInterval('P1D'));
+        }
 
-		$this->setBody(array(
-			'labels' => $labels,
-			'data'   => [$data],
-			'series' => ['Requests'],
-		));
-	}
+        $this->setBody(array(
+            'labels' => $labels,
+            'data'   => [$data],
+            'series' => ['Requests'],
+        ));
+    }
 }
-

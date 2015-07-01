@@ -2,19 +2,19 @@
 /*
  * Fusio
  * A web-application to create dynamically RESTful APIs
- * 
+ *
  * Copyright (C) 2015 Christoph Kappestein <k42b3.x@gmail.com>
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -50,159 +50,156 @@ use PSX\Oauth2\Provider\GrantTypeFactory;
  */
 class Container extends DefaultContainer
 {
-	public function getApiGrantTypeFactory()
-	{
-		$factory = new GrantTypeFactory();
-		$factory->add(new ApiAuthorization\ClientCredentials($this->get('connection')));
+    public function getApiGrantTypeFactory()
+    {
+        $factory = new GrantTypeFactory();
+        $factory->add(new ApiAuthorization\ClientCredentials($this->get('connection')));
 
-		return $factory;
-	}
+        return $factory;
+    }
 
-	public function getBackendGrantTypeFactory()
-	{
-		$factory = new GrantTypeFactory();
-		$factory->add(new BackendAuthorization\ClientCredentials($this->get('connection')));
+    public function getBackendGrantTypeFactory()
+    {
+        $factory = new GrantTypeFactory();
+        $factory->add(new BackendAuthorization\ClientCredentials($this->get('connection')));
 
-		return $factory;
-	}
+        return $factory;
+    }
 
-	/**
-	 * @return Psr\Log\LoggerInterface
-	 */
-	public function getLogger()
-	{
-		$logger = new SystemLogger('psx');
-		//$logger->pushHandler(new Log\LogCasterHandler());
+    /**
+     * @return Psr\Log\LoggerInterface
+     */
+    public function getLogger()
+    {
+        $logger = new SystemLogger('psx');
+        //$logger->pushHandler(new Log\LogCasterHandler());
 
-		return $logger;
-	}
+        return $logger;
+    }
 
-	/**
-	 * @return PSX\Loader\RoutingParserInterface
-	 */
-	public function getRoutingParser()
-	{
-		return new DatabaseRoutes($this->get('connection'));
-	}
+    /**
+     * @return PSX\Loader\RoutingParserInterface
+     */
+    public function getRoutingParser()
+    {
+        return new DatabaseRoutes($this->get('connection'));
+    }
 
-	/**
-	 * @return PSX\Loader\LocationFinderInterface
-	 */
-	public function getLoaderLocationFinder()
-	{
-		return new RoutingParser($this->get('connection'));
-	}
+    /**
+     * @return PSX\Loader\LocationFinderInterface
+     */
+    public function getLoaderLocationFinder()
+    {
+        return new RoutingParser($this->get('connection'));
+    }
 
-	/**
-	 * @return PSX\Data\Schema\SchemaManagerInterface
-	 */
-	public function getApiSchemaManager()
-	{
-		return new SchemaManager($this->get('connection'));
-	}
+    /**
+     * @return PSX\Data\Schema\SchemaManagerInterface
+     */
+    public function getApiSchemaManager()
+    {
+        return new SchemaManager($this->get('connection'));
+    }
 
-	/**
-	 * @return PSX\Api\ResourceListing
-	 */
-	public function getResourceListing()
-	{
-		$resourceListing = new ResourceListing($this->get('routing_parser'), $this->get('controller_factory'));
+    /**
+     * @return PSX\Api\ResourceListing
+     */
+    public function getResourceListing()
+    {
+        $resourceListing = new ResourceListing($this->get('routing_parser'), $this->get('controller_factory'));
 
-		if($this->get('config')->get('psx_debug'))
-		{
-			return $resourceListing;
-		}
-		else
-		{
-			return new Api\Resource\Listing\CachedListing($resourceListing, $this->get('cache'));
-		}
-	}
+        if ($this->get('config')->get('psx_debug')) {
+            return $resourceListing;
+        } else {
+            return new Api\Resource\Listing\CachedListing($resourceListing, $this->get('cache'));
+        }
+    }
 
-	/**
-	 * @return Fusio\Logger
-	 */
-	public function getApiLogger()
-	{
-		return new Logger($this->get('connection'));
-	}
+    /**
+     * @return Fusio\Logger
+     */
+    public function getApiLogger()
+    {
+        return new Logger($this->get('connection'));
+    }
 
-	/**
-	 * @return Fusio\Parser\Action
-	 */
-	public function getActionParser()
-	{
-		return new Parser\Action(
-			$this->get('action_factory'), 
-			$this->get('config')->get('fusio_action_paths'), 
-			'Fusio\ActionInterface'
-		);
-	}
+    /**
+     * @return Fusio\Parser\Action
+     */
+    public function getActionParser()
+    {
+        return new Parser\Action(
+            $this->get('action_factory'),
+            $this->get('config')->get('fusio_action_paths'),
+            'Fusio\ActionInterface'
+        );
+    }
 
-	/**
-	 * @return Fusio\Factory\Action
-	 */
-	public function getActionFactory()
-	{
-		return new Factory\Action($this->get('object_builder'));
-	}
+    /**
+     * @return Fusio\Factory\Action
+     */
+    public function getActionFactory()
+    {
+        return new Factory\Action($this->get('object_builder'));
+    }
 
-	/**
-	 * @return Fusio\Processor
-	 */
-	public function getProcessor()
-	{
-		return new Processor($this->get('connection'), $this->get('action_factory'));
-	}
+    /**
+     * @return Fusio\Processor
+     */
+    public function getProcessor()
+    {
+        return new Processor($this->get('connection'), $this->get('action_factory'));
+    }
 
-	/**
-	 * @return Fusio\Parser\Connection
-	 */
-	public function getConnectionParser()
-	{
-		return new Parser\Connection(
-			$this->get('connection_factory'), 
-			$this->get('config')->get('fusio_connection_paths'), 
-			'Fusio\ConnectionInterface'
-		);
-	}
+    /**
+     * @return Fusio\Parser\Connection
+     */
+    public function getConnectionParser()
+    {
+        return new Parser\Connection(
+            $this->get('connection_factory'),
+            $this->get('config')->get('fusio_connection_paths'),
+            'Fusio\ConnectionInterface'
+        );
+    }
 
-	/**
-	 * @return Fusio\Factory\Connection
-	 */
-	public function getConnectionFactory()
-	{
-		return new Factory\Connection($this->get('object_builder'));
-	}
+    /**
+     * @return Fusio\Factory\Connection
+     */
+    public function getConnectionFactory()
+    {
+        return new Factory\Connection($this->get('object_builder'));
+    }
 
-	/**
-	 * @return Fusio\Connector
-	 */
-	public function getConnector()
-	{
-		return new Connector($this->get('connection'), $this->get('connection_factory'));
-	}
+    /**
+     * @return Fusio\Connector
+     */
+    public function getConnector()
+    {
+        return new Connector($this->get('connection'), $this->get('connection_factory'));
+    }
 
-	/**
-	 * @return Fusio\Schema\Parser
-	 */
-	public function getSchemaParser()
-	{
-		return new Schema\Parser($this->get('connection'));
-	}
+    /**
+     * @return Fusio\Schema\Parser
+     */
+    public function getSchemaParser()
+    {
+        return new Schema\Parser($this->get('connection'));
+    }
 
-	/**
-	 * @return Fusio\Schema\Loader
-	 */
-	public function getSchemaLoader()
-	{
-		return new Schema\Loader($this->get('connection'));
-	}
+    /**
+     * @return Fusio\Schema\Loader
+     */
+    public function getSchemaLoader()
+    {
+        return new Schema\Loader($this->get('connection'));
+    }
 
-	/**
-	 * @return Fusio\App\Loader
-	 */
-	public function getAppLoader()
-	{
-		return new App\Loader($this->get('connection'));
-	}
+    /**
+     * @return Fusio\App\Loader
+     */
+    public function getAppLoader()
+    {
+        return new App\Loader($this->get('connection'));
+    }
 }

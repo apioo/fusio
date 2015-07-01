@@ -2,19 +2,19 @@
 /*
  * Fusio
  * A web-application to create dynamically RESTful APIs
- * 
+ *
  * Copyright (C) 2015 Christoph Kappestein <k42b3.x@gmail.com>
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -42,54 +42,50 @@ use PSX\Util\CurveArray;
  */
 class SqlFetchRow implements ActionInterface
 {
-	/**
-	 * @Inject
-	 * @var Doctrine\DBAL\Connection
-	 */
-	protected $connection;
+    /**
+     * @Inject
+     * @var Doctrine\DBAL\Connection
+     */
+    protected $connection;
 
-	/**
-	 * @Inject
-	 * @var Fusio\Connector
-	 */
-	protected $connector;
+    /**
+     * @Inject
+     * @var Fusio\Connector
+     */
+    protected $connector;
 
-	public function getName()
-	{
-		return 'SQL-Fetch-Row';
-	}
+    public function getName()
+    {
+        return 'SQL-Fetch-Row';
+    }
 
-	public function handle(Request $request, Parameters $configuration, Context $context)
-	{
-		$connection = $this->connector->getConnection($configuration->get('connection'));
+    public function handle(Request $request, Parameters $configuration, Context $context)
+    {
+        $connection = $this->connector->getConnection($configuration->get('connection'));
 
-		if($connection instanceof Connection)
-		{
-			$params = array();
-			$sql    = $configuration->get('sql');
-			$sql    = SqlExecute::substituteParameters($request, $sql, $params);
+        if ($connection instanceof Connection) {
+            $params = array();
+            $sql    = $configuration->get('sql');
+            $sql    = SqlExecute::substituteParameters($request, $sql, $params);
 
-			$result = $connection->fetchAssoc($sql, $params);
+            $result = $connection->fetchAssoc($sql, $params);
 
-			if(empty($result))
-			{
-				throw new StatusCode\NotFoundException('Entry not available');
-			}
+            if (empty($result)) {
+                throw new StatusCode\NotFoundException('Entry not available');
+            }
 
-			return new Response(200, [], CurveArray::nest($result));
-		}
-		else
-		{
-			throw new ConfigurationException('Given connection must be an DBAL connection');
-		}
-	}
+            return new Response(200, [], CurveArray::nest($result));
+        } else {
+            throw new ConfigurationException('Given connection must be an DBAL connection');
+        }
+    }
 
-	public function getForm()
-	{
-		$form = new Form\Container();
-		$form->add(new Element\Connection('connection', 'Connection', $this->connection));
-		$form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The SELECT statment which gets executed. Uri fragments can be used with i.e. <code>!news_id</code> and GET parameters with i.e. <code>:news_id</code>'));
+    public function getForm()
+    {
+        $form = new Form\Container();
+        $form->add(new Element\Connection('connection', 'Connection', $this->connection));
+        $form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The SELECT statment which gets executed. Uri fragments can be used with i.e. <code>!news_id</code> and GET parameters with i.e. <code>:news_id</code>'));
 
-		return $form;
-	}
+        return $form;
+    }
 }

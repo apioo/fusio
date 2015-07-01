@@ -2,19 +2,19 @@
 /*
  * Fusio
  * A web-application to create dynamically RESTful APIs
- * 
+ *
  * Copyright (C) 2015 Christoph Kappestein <k42b3.x@gmail.com>
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -43,53 +43,50 @@ use PSX\Data\Writer;
  */
 class RabbitMqPush implements ActionInterface
 {
-	/**
-	 * @Inject
-	 * @var Doctrine\DBAL\Connection
-	 */
-	protected $connection;
+    /**
+     * @Inject
+     * @var Doctrine\DBAL\Connection
+     */
+    protected $connection;
 
-	/**
-	 * @Inject
-	 * @var Fusio\Connector
-	 */
-	protected $connector;
+    /**
+     * @Inject
+     * @var Fusio\Connector
+     */
+    protected $connector;
 
-	public function getName()
-	{
-		return 'RabbitMQ-Push';
-	}
+    public function getName()
+    {
+        return 'RabbitMQ-Push';
+    }
 
-	public function handle(Request $request, Parameters $configuration, Context $context)
-	{
-		$connection = $this->connector->getConnection($configuration->get('connection'));
+    public function handle(Request $request, Parameters $configuration, Context $context)
+    {
+        $connection = $this->connector->getConnection($configuration->get('connection'));
 
-		if($connection instanceof AMQPConnection)
-		{
-			$writer  = new Writer\Json();
-			$body    = $writer->write($request->getBody());
-			$message = new AMQPMessage($body, array('content_type' => $writer->getContentType(), 'delivery_mode' => 2));
+        if ($connection instanceof AMQPConnection) {
+            $writer  = new Writer\Json();
+            $body    = $writer->write($request->getBody());
+            $message = new AMQPMessage($body, array('content_type' => $writer->getContentType(), 'delivery_mode' => 2));
 
-			$channel = $connection->channel();
-			$channel->basic_publish($message, '', $configuration->get('queue'));
+            $channel = $connection->channel();
+            $channel->basic_publish($message, '', $configuration->get('queue'));
 
-			return new Response(200, [], array(
-				'success' => true,
-				'message' => 'Push was successful'
-			));
-		}
-		else
-		{
-			throw new ConfigurationException('Given connection must be an AMQP connection');
-		}
-	}
+            return new Response(200, [], array(
+                'success' => true,
+                'message' => 'Push was successful'
+            ));
+        } else {
+            throw new ConfigurationException('Given connection must be an AMQP connection');
+        }
+    }
 
-	public function getForm()
-	{
-		$form = new Form\Container();
-		$form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The RabbitMQ connection which should be used'));
-		$form->add(new Element\Input('queue', 'Queue', 'text', 'The name of the queue'));
+    public function getForm()
+    {
+        $form = new Form\Container();
+        $form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The RabbitMQ connection which should be used'));
+        $form->add(new Element\Input('queue', 'Queue', 'text', 'The name of the queue'));
 
-		return $form;
-	}
+        return $form;
+    }
 }
