@@ -22,7 +22,6 @@
 namespace Fusio\Backend\Table;
 
 use PSX\Sql\TableAbstract;
-use PSX\Sql\Condition;
 
 /**
  * Schema

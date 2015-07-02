@@ -2,12 +2,8 @@
 
 namespace Fusio\Backend\Api\App;
 
-use PSX\Http\Request;
-use PSX\Http\Response;
-use PSX\Http\Stream\TempStream;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
-use PSX\Url;
 
 class CollectionTest extends ControllerDbTestCase
 {

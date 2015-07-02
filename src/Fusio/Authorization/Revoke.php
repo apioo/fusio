@@ -38,7 +38,7 @@ class Revoke extends ApiAbstract
 
     /**
      * @Inject
-     * @var PSX\Sql\TableManager
+     * @var \PSX\Sql\TableManager
      */
     protected $tableManager;
 

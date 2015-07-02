@@ -22,9 +22,10 @@
 namespace Fusio\Connection;
 
 use Fusio\ConnectionInterface;
-use Fusio\Parameters;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
+use MongoClient;
 
 /**
  * MongoDB
@@ -41,7 +42,8 @@ class MongoDB implements ConnectionInterface
     }
 
     /**
-     * @return MongoDB
+     * @param \Fusio\Parameters $config
+     * @return \MongoDB
      */
     public function getConnection(Parameters $config)
     {

@@ -21,7 +21,6 @@
 
 namespace Fusio\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
 use Fusio\Context;
@@ -44,13 +43,13 @@ class BeanstalkPush implements ActionInterface
 {
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 
     /**
      * @Inject
-     * @var Fusio\Connector
+     * @var \Fusio\Connector
      */
     protected $connector;
 

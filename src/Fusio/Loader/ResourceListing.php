@@ -21,16 +21,8 @@
 
 namespace Fusio\Loader;
 
-use PSX\Api\Resource\Listing\ControllerDocumentation;
 use PSX\Api\Resource;
-use PSX\Api\DocumentedInterface;
-use PSX\Api\DocumentationInterface;
-use PSX\Dispatch\ControllerFactoryInterface;
-use PSX\Loader\Context;
-use PSX\Loader\RoutingParserInterface;
-use PSX\Loader\PathMatcher;
-use PSX\Http\RequestInterface;
-use PSX\Http\ResponseInterface;
+use PSX\Api\Resource\Listing\ControllerDocumentation;
 
 /**
  * ResourceListing

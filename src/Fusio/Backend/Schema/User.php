@@ -21,8 +21,8 @@
 
 namespace Fusio\Backend\Schema;
 
-use PSX\Data\SchemaAbstract;
 use PSX\Data\Schema\Property;
+use PSX\Data\SchemaAbstract;
 
 /**
  * User

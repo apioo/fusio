@@ -22,8 +22,6 @@
 namespace Fusio\Schema;
 
 use Doctrine\DBAL\Connection;
-use PSX\Data\Accessor;
-use PSX\Data\RecordInterface;
 use PSX\Data\Schema\Parser\JsonSchema;
 use PSX\Data\Schema\Parser\JsonSchema\RefResolver;
 use PSX\File;

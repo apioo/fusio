@@ -21,7 +21,6 @@
 
 namespace Fusio\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
 use Fusio\Context;
@@ -44,15 +43,15 @@ class MongoFetchAll implements ActionInterface
 {
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 
     /**
      * @Inject
-     * @var Fusio\ConnectionFactory
+     * @var \Fusio\Connector
      */
-    protected $connectionFactory;
+    protected $connector;
 
     public function getName()
     {
@@ -61,7 +60,7 @@ class MongoFetchAll implements ActionInterface
 
     public function handle(Request $request, Parameters $configuration, Context $context)
     {
-        $connection = $this->connectionFactory->getConnection($configuration->get('connection'));
+        $connection = $this->connector->getConnection($configuration->get('connection'));
 
         if ($connection instanceof MongoDB) {
             $collection = $configuration->get('collection');
@@ -69,10 +68,10 @@ class MongoFetchAll implements ActionInterface
 
             if ($collection instanceof MongoCollection) {
                 $query  = $configuration->get('criteria');
-                $query  = !empty($query) ? Json::decode($query) : array();
+                $query  = !empty($query) ? json_decode($query) : array();
 
                 $fields = $configuration->get('projection');
-                $fields = !empty($fields) ? Json::decode($fields) : array();
+                $fields = !empty($fields) ? json_decode($fields) : array();
 
                 $result = $collection->find($query, $fields);
                 $key    = $configuration->get('propertyName') ?: 'entry';

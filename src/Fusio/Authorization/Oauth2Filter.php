@@ -74,8 +74,6 @@ class Oauth2Filter extends Oauth2Authentication
         ));
 
         if (!empty($accessToken)) {
-            $expire = $accessToken['scope'];
-
             // these are the scopes which are assigned to the token
             $entitledScopes = explode(',', $accessToken['scope']);
 

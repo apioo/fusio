@@ -34,7 +34,7 @@ class Token extends TokenAbstract
 {
     /**
      * @Inject api_grant_type_factory
-     * @var PSX\Oauth2\Provider\GrantTypeFactory
+     * @var \PSX\Oauth2\Provider\GrantTypeFactory
      */
     protected $grantTypeFactory;
 }

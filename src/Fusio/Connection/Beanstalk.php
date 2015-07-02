@@ -21,11 +21,11 @@
 
 namespace Fusio\Connection;
 
-use Pheanstalk\Pheanstalk;
 use Fusio\ConnectionInterface;
-use Fusio\Parameters;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
+use Pheanstalk\Pheanstalk;
 
 /**
  * Beanstalk
@@ -42,7 +42,8 @@ class Beanstalk implements ConnectionInterface
     }
 
     /**
-     * @return MongoDB
+     * @param \Fusio\Parameters $config
+     * @return \MongoDB
      */
     public function getConnection(Parameters $config)
     {

@@ -22,8 +22,8 @@
 namespace Fusio;
 
 use Doctrine\DBAL\Connection;
-use PSX\Http\Stream\Util;
 use PSX\Http\RequestInterface;
+use PSX\Http\Stream\Util;
 
 /**
  * Logger

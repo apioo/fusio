@@ -21,7 +21,6 @@
 
 namespace Fusio\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
 use Fusio\Context;
@@ -30,8 +29,8 @@ use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Response;
-use PSX\Json;
 use PSX\Http;
+use PSX\Json;
 
 /**
  * StaticResponse

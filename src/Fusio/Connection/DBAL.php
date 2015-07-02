@@ -23,9 +23,9 @@ namespace Fusio\Connection;
 
 use Doctrine\DBAL\DriverManager;
 use Fusio\ConnectionInterface;
-use Fusio\Parameters;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
 
 /**
  * DBAL
@@ -42,7 +42,8 @@ class DBAL implements ConnectionInterface
     }
 
     /**
-     * @return Doctrine\DBAL\Connection
+     * @param \Fusio\Parameters $config
+     * @return \Doctrine\DBAL\Connection
      */
     public function getConnection(Parameters $config)
     {

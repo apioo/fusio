@@ -67,7 +67,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return Psr\Log\LoggerInterface
+     * @return \Psr\Log\LoggerInterface
      */
     public function getLogger()
     {
@@ -78,7 +78,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return PSX\Loader\RoutingParserInterface
+     * @return \PSX\Loader\RoutingParserInterface
      */
     public function getRoutingParser()
     {
@@ -86,7 +86,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return PSX\Loader\LocationFinderInterface
+     * @return \PSX\Loader\LocationFinderInterface
      */
     public function getLoaderLocationFinder()
     {
@@ -94,7 +94,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return PSX\Data\Schema\SchemaManagerInterface
+     * @return \PSX\Data\Schema\SchemaManagerInterface
      */
     public function getApiSchemaManager()
     {
@@ -102,7 +102,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return PSX\Api\ResourceListing
+     * @return \PSX\Api\Resource\ListingInterface
      */
     public function getResourceListing()
     {
@@ -116,7 +116,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return Fusio\Logger
+     * @return \Fusio\Logger
      */
     public function getApiLogger()
     {
@@ -124,7 +124,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return Fusio\Parser\Action
+     * @return \Fusio\Parser\Action
      */
     public function getActionParser()
     {
@@ -136,7 +136,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return Fusio\Factory\Action
+     * @return \Fusio\Factory\Action
      */
     public function getActionFactory()
     {
@@ -144,7 +144,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return Fusio\Processor
+     * @return \Fusio\Processor
      */
     public function getProcessor()
     {
@@ -152,7 +152,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return Fusio\Parser\Connection
+     * @return \Fusio\Parser\Connection
      */
     public function getConnectionParser()
     {
@@ -164,7 +164,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return Fusio\Factory\Connection
+     * @return \Fusio\Factory\Connection
      */
     public function getConnectionFactory()
     {
@@ -172,7 +172,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return Fusio\Connector
+     * @return \Fusio\Connector
      */
     public function getConnector()
     {
@@ -180,7 +180,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return Fusio\Schema\Parser
+     * @return \Fusio\Schema\Parser
      */
     public function getSchemaParser()
     {
@@ -188,7 +188,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return Fusio\Schema\Loader
+     * @return \Fusio\Schema\Loader
      */
     public function getSchemaLoader()
     {
@@ -196,7 +196,7 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return Fusio\App\Loader
+     * @return \Fusio\App\Loader
      */
     public function getAppLoader()
     {

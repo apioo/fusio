@@ -38,7 +38,7 @@ class ListActions extends ApiAbstract
 
     /**
      * @Inject
-     * @var Fusio\ActionParser
+     * @var \Fusio\Parser\Action
      */
     protected $actionParser;
 

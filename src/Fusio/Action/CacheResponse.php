@@ -21,9 +21,7 @@
 
 namespace Fusio\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
-use Fusio\ConfigurationException;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
@@ -41,19 +39,19 @@ class CacheResponse implements ActionInterface
 {
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 
     /**
      * @Inject
-     * @var PSX\Cache
+     * @var \PSX\Cache
      */
     protected $cache;
 
     /**
      * @Inject
-     * @var Fusio\Processor
+     * @var \Fusio\Processor
      */
     protected $processor;
 

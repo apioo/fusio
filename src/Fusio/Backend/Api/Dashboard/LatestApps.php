@@ -21,8 +21,6 @@
 
 namespace Fusio\Backend\Api\Dashboard;
 
-use DateTime;
-use DateInterval;
 use Fusio\Authorization\ProtectionTrait;
 use PSX\Controller\ApiAbstract;
 

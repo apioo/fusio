@@ -21,11 +21,10 @@
 
 namespace Fusio\Connection;
 
-use Doctrine\DBAL\DriverManager;
 use Fusio\ConnectionInterface;
-use Fusio\Parameters;
 use Fusio\Form;
 use Fusio\Form\Element;
+use Fusio\Parameters;
 
 /**
  * Native
@@ -43,12 +42,13 @@ class Native implements ConnectionInterface
 
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 
     /**
-     * @return Doctrine\DBAL\Connection
+     * @param \Fusio\Parameters $config
+     * @return \Doctrine\DBAL\Connection
      */
     public function getConnection(Parameters $config)
     {

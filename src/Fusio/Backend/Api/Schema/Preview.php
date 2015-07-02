@@ -23,8 +23,8 @@ namespace Fusio\Backend\Api\Schema;
 
 use Fusio\Authorization\ProtectionTrait;
 use PSX\Controller\ApiAbstract;
-use PSX\Data\SchemaInterface;
 use PSX\Data\Schema\Generator;
+use PSX\Data\SchemaInterface;
 use PSX\Http\Exception as StatusCode;
 use RuntimeException;
 

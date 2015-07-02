@@ -23,12 +23,11 @@ namespace Fusio\Backend\Api\User;
 
 use Fusio\Authorization\ProtectionTrait;
 use PSX\Api\Documentation;
-use PSX\Api\Version;
 use PSX\Api\Resource;
+use PSX\Api\Version;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Http\Exception as StatusCode;
-use PSX\Sql\Condition;
 use PSX\Loader\Context;
 
 /**
@@ -45,18 +44,18 @@ class Entity extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var PSX\Data\Schema\SchemaManagerInterface
+     * @var \PSX\Data\Schema\SchemaManagerInterface
      */
     protected $schemaManager;
 
     /**
      * @Inject
-     * @var PSX\Sql\TableManager
+     * @var \PSX\Sql\TableManager
      */
     protected $tableManager;
 
     /**
-     * @return PSX\Api\DocumentationInterface
+     * @return \PSX\Api\DocumentationInterface
      */
     public function getDocumentation()
     {
@@ -81,8 +80,8 @@ class Entity extends SchemaApiAbstract
     /**
      * Returns the GET response
      *
-     * @param PSX\Api\Version $version
-     * @return array|PSX\Data\RecordInterface
+     * @param \PSX\Api\Version $version
+     * @return array|\PSX\Data\RecordInterface
      */
     protected function doGet(Version $version)
     {
@@ -103,9 +102,9 @@ class Entity extends SchemaApiAbstract
     /**
      * Returns the POST response
      *
-     * @param PSX\Data\RecordInterface $record
-     * @param PSX\Api\Version $version
-     * @return array|PSX\Data\RecordInterface
+     * @param \PSX\Data\RecordInterface $record
+     * @param \PSX\Api\Version $version
+     * @return array|\PSX\Data\RecordInterface
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
@@ -114,9 +113,9 @@ class Entity extends SchemaApiAbstract
     /**
      * Returns the PUT response
      *
-     * @param PSX\Data\RecordInterface $record
-     * @param PSX\Api\Version $version
-     * @return array|PSX\Data\RecordInterface
+     * @param \PSX\Data\RecordInterface $record
+     * @param \PSX\Api\Version $version
+     * @return array|\PSX\Data\RecordInterface
      */
     protected function doUpdate(RecordInterface $record, Version $version)
     {
@@ -148,9 +147,9 @@ class Entity extends SchemaApiAbstract
     /**
      * Returns the DELETE response
      *
-     * @param PSX\Data\RecordInterface $record
-     * @param PSX\Api\Version $version
-     * @return array|PSX\Data\RecordInterface
+     * @param \PSX\Data\RecordInterface $record
+     * @param \PSX\Api\Version $version
+     * @return array|\PSX\Data\RecordInterface
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {

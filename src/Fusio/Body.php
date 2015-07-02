@@ -21,7 +21,6 @@
 
 namespace Fusio;
 
-use PSX\Data\Accessor;
 use PSX\Data\RecordInterface;
 use PSX\Validate;
 

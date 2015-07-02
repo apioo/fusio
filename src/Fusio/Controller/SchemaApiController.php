@@ -23,12 +23,10 @@ namespace Fusio\Controller;
 
 use Fusio\Authorization\Oauth2Filter;
 use Fusio\Context as FusioContext;
-use Fusio\Parameters;
 use Fusio\Request;
-use Fusio\Response;
 use Fusio\Schema\LazySchema;
-use PSX\Api\DocumentedInterface;
 use PSX\Api\Documentation;
+use PSX\Api\DocumentedInterface;
 use PSX\Api\Resource;
 use PSX\Api\Resource\MethodAbstract;
 use PSX\Api\Version;
@@ -53,37 +51,37 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
 
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 
     /**
      * @Inject
-     * @var Fusio\Processor
+     * @var \Fusio\Processor
      */
     protected $processor;
 
     /**
      * @Inject
-     * @var Fusio\Data\SchemaManager
+     * @var \Fusio\Data\SchemaManager
      */
     protected $apiSchemaManager;
 
     /**
      * @Inject
-     * @var Fusio\Logger
+     * @var \Fusio\Logger
      */
     protected $apiLogger;
 
     /**
      * @Inject
-     * @var Fusio\Schema\Loader
+     * @var \Fusio\Schema\Loader
      */
     protected $schemaLoader;
 
     /**
      * @Inject
-     * @var Fusio\App\Loader
+     * @var \Fusio\App\Loader
      */
     protected $appLoader;
 
@@ -93,7 +91,7 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
     protected $appId;
 
     /**
-     * @var Fusio\App
+     * @var \Fusio\App
      */
     protected $app;
 

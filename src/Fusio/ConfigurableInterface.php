@@ -21,8 +21,6 @@
 
 namespace Fusio;
 
-use Fusio\ConnectionInterface;
-
 /**
  * ConfigurableInterface
  *
@@ -44,7 +42,7 @@ interface ConfigurableInterface
      * be used. The entered values get then passed as Configuration to the
      * handle method
      *
-     * @return Fusio\Form\Container
+     * @return \Fusio\Form\Container
      */
     public function getForm();
 }

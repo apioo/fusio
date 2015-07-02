@@ -34,7 +34,7 @@ trait ProtectionTrait
 {
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 

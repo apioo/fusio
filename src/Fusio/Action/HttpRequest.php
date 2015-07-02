@@ -21,9 +21,7 @@
 
 namespace Fusio\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
-use Fusio\ConfigurationException;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
@@ -31,6 +29,7 @@ use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Response;
 use PSX\Data\Writer;
+use PSX\Http\PostRequest;
 
 /**
  * HttpRequest
@@ -43,7 +42,7 @@ class HttpRequest implements ActionInterface
 {
     /**
      * @Inject
-     * @var PSX\Http
+     * @var \PSX\Http
      */
     protected $http;
 

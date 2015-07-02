@@ -22,10 +22,10 @@
 namespace Fusio\Connection;
 
 use Fusio\ConnectionInterface;
-use Fusio\Parameters;
 use Fusio\Form;
 use Fusio\Form\Element;
-use PhpAmqpLib\Connection\AMQPConnection;
+use Fusio\Parameters;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 /**
  * RabbitMQ
@@ -42,11 +42,12 @@ class RabbitMQ implements ConnectionInterface
     }
 
     /**
-     * @return MongoDB
+     * @param \Fusio\Parameters $config
+     * @return \MongoDB
      */
     public function getConnection(Parameters $config)
     {
-        return new AMQPConnection(
+        return new AMQPStreamConnection(
             $config->get('host'),
             $config->get('port'),
             $config->get('user'),

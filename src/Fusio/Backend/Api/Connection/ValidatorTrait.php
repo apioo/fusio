@@ -21,7 +21,6 @@
 
 namespace Fusio\Backend\Api\Connection;
 
-use Fusio\Backend\Filter\Connection as Filter;
 use PSX\Filter as PSXFilter;
 use PSX\Validate;
 use PSX\Validate\Property;

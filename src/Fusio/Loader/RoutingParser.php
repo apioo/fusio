@@ -26,8 +26,6 @@ use PSX\Http\RequestInterface;
 use PSX\Loader\Context;
 use PSX\Loader\LocationFinderInterface;
 use PSX\Loader\PathMatcher;
-use PSX\Loader\RoutingCollection;
-use PSX\Loader\RoutingParserInterface;
 
 /**
  * RoutingParser

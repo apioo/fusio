@@ -25,10 +25,10 @@ use Doctrine\DBAL\Connection;
 use Fusio\Backend\Table\App;
 use Fusio\Backend\Table\App\Token as AppToken;
 use Fusio\Backend\Table\User;
-use PSX\Oauth2\Provider\GrantType\ClientCredentialsAbstract;
-use PSX\Oauth2\Provider\Credentials;
 use PSX\Oauth2\AccessToken;
 use PSX\Oauth2\Authorization\Exception\ServerErrorException;
+use PSX\Oauth2\Provider\Credentials;
+use PSX\Oauth2\Provider\GrantType\ClientCredentialsAbstract;
 
 /**
  * ClientCredentials

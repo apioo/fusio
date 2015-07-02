@@ -23,6 +23,8 @@ namespace Fusio\Backend\Api\App;
 
 use Fusio\Authorization\ProtectionTrait;
 use PSX\Controller\ApiAbstract;
+use PSX\Data\RecordInterface;
+use PSX\Http\Exception\NotFoundException;
 
 /**
  * Token
@@ -37,7 +39,7 @@ class Token extends ApiAbstract
 
     /**
      * @Inject
-     * @var PSX\Sql\TableManager
+     * @var \PSX\Sql\TableManager
      */
     protected $tableManager;
 
@@ -48,11 +50,16 @@ class Token extends ApiAbstract
 
         $app = $this->tableManager->getTable('Fusio\Backend\Table\App')->get($appId);
 
-        $this->tableManager->getTable('Fusio\Backend\Table\App\Token')->removeTokenFromApp($appId, $tokenId);
+        if ($app instanceof RecordInterface) {
+            $this->tableManager->getTable('Fusio\Backend\Table\App\Token')->removeTokenFromApp($appId, $tokenId);
 
-        $this->setBody(array(
-            'success' => true,
-            'message' => 'Removed token successful',
-        ));
+            $this->setBody(array(
+                'success' => true,
+                'message' => 'Removed token successful',
+            ));
+        } else {
+            throw new NotFoundException('Invalid app');
+        }
+
     }
 }

@@ -21,9 +21,7 @@
 
 namespace Fusio\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
-use Fusio\ConfigurationException;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
@@ -44,19 +42,19 @@ class Pipe implements ActionInterface
 {
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 
     /**
      * @Inject
-     * @var Fusio\Processor
+     * @var \Fusio\Processor
      */
     protected $processor;
 
     /**
      * @Inject
-     * @var PSX\Data\Record\ImporterManager
+     * @var \PSX\Data\Record\ImporterManager
      */
     protected $importerManager;
 

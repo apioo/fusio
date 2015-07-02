@@ -22,7 +22,6 @@
 namespace Fusio;
 
 use Doctrine\DBAL\Connection;
-use PSX\Dependency\ObjectBuilderInterface;
 
 /**
  * Processor
@@ -42,6 +41,12 @@ class Processor
         $this->factory    = $factory;
     }
 
+    /**
+     * @param integer $actionId
+     * @param \Fusio\Request $request
+     * @param \Fusio\Context $context
+     * @return \Fusio\Response
+     */
     public function execute($actionId, Request $request, Context $context)
     {
         $action = $this->connection->fetchAssoc('SELECT class, config FROM fusio_action WHERE id = :id', array('id' => $actionId));

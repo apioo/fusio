@@ -21,8 +21,6 @@
 
 namespace Fusio;
 
-use PSX\Data\RecordInterface;
-
 /**
  * ActionInterface
  *
@@ -39,10 +37,10 @@ interface ActionInterface extends ConfigurableInterface
      * is always an empty record. All actions must be placed in the Action
      * folder
      *
-     * @param Fusio\Request $request
-     * @param Fusio\Parameters $configuration
-     * @param Fusio\Context $context
-     * @return Fusio\Response
+     * @param \Fusio\Request $request
+     * @param \Fusio\Parameters $configuration
+     * @param \Fusio\Context $context
+     * @return \Fusio\Response
      */
     public function handle(Request $request, Parameters $configuration, Context $context);
 }

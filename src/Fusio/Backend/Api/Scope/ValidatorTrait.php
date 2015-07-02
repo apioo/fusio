@@ -21,7 +21,6 @@
 
 namespace Fusio\Backend\Api\Scope;
 
-use Fusio\Backend\Filter\Scope as Filter;
 use PSX\Filter as PSXFilter;
 use PSX\Validate;
 use PSX\Validate\Property;

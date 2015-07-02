@@ -2,12 +2,8 @@
 
 namespace Fusio\Backend\Api\Connection;
 
-use PSX\Http\Request;
-use PSX\Http\Response;
-use PSX\Http\Stream\TempStream;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
-use PSX\Url;
 
 class EntityTest extends ControllerDbTestCase
 {

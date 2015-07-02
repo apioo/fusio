@@ -45,13 +45,13 @@ class SqlExecute implements ActionInterface
 {
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 
     /**
      * @Inject
-     * @var Fusio\Connector
+     * @var \Fusio\Connector
      */
     protected $connector;
 
@@ -69,7 +69,7 @@ class SqlExecute implements ActionInterface
             $sql    = $configuration->get('sql');
             $sql    = self::substituteParameters($request, $sql, $params, true);
 
-            $connection->execute($sql, $params);
+            $connection->executeUpdate($sql, $params);
 
             return new Response(200, [], array(
                 'success' => true,

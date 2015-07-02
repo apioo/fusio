@@ -21,7 +21,6 @@
 
 namespace Fusio\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
 use Fusio\Context;
@@ -29,8 +28,10 @@ use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
+use Fusio\Response;
 use MongoCollection;
 use MongoDB;
+use PSX\Http\Exception\NotFoundException;
 
 /**
  * MongoFetchRow
@@ -43,15 +44,15 @@ class MongoFetchRow implements ActionInterface
 {
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 
     /**
      * @Inject
-     * @var Fusio\ConnectionFactory
+     * @var \Fusio\Connector
      */
-    protected $connectionFactory;
+    protected $connector;
 
     public function getName()
     {
@@ -60,7 +61,7 @@ class MongoFetchRow implements ActionInterface
 
     public function handle(Request $request, Parameters $configuration, Context $context)
     {
-        $connection = $this->connectionFactory->getConnection($configuration->get('connection'));
+        $connection = $this->connector->getConnection($configuration->get('connection'));
 
         if ($connection instanceof MongoDB) {
             $collection = $configuration->get('collection');
@@ -68,15 +69,15 @@ class MongoFetchRow implements ActionInterface
 
             if ($collection instanceof MongoCollection) {
                 $query  = $configuration->get('criteria');
-                $query  = !empty($query) ? Json::decode($query) : array();
+                $query  = !empty($query) ? json_decode($query) : array();
 
                 $fields = $configuration->get('projection');
-                $fields = !empty($fields) ? Json::decode($fields) : array();
+                $fields = !empty($fields) ? json_decode($fields) : array();
 
                 $result = $collection->findOne($query, $fields);
 
                 if (empty($result)) {
-                    throw new StatusCode\NotFoundException('Entry not available');
+                    throw new NotFoundException('Entry not available');
                 }
 
                 return new Response(200, [], $result);

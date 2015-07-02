@@ -44,13 +44,13 @@ class SqlFetchRow implements ActionInterface
 {
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 
     /**
      * @Inject
-     * @var Fusio\Connector
+     * @var \Fusio\Connector
      */
     protected $connector;
 

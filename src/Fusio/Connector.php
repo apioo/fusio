@@ -22,7 +22,6 @@
 namespace Fusio;
 
 use Doctrine\DBAL\Connection;
-use PSX\Dependency\ObjectBuilderInterface;
 
 /**
  * Connector
@@ -47,7 +46,7 @@ class Connector
      * configured by the user
      *
      * @param integer $connectionId
-     * @return Fusio\ConnectionInterface
+     * @return \Fusio\ConnectionInterface
      */
     public function getConnection($connectionId)
     {

@@ -38,7 +38,7 @@ class ListConnections extends ApiAbstract
 
     /**
      * @Inject
-     * @var Fusio\ConnectionParser
+     * @var \Fusio\Parser\Connection
      */
     protected $connectionParser;
 

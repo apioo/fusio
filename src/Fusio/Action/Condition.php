@@ -21,10 +21,8 @@
 
 namespace Fusio\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\App\RateLimit;
-use Fusio\ConfigurationException;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
@@ -47,19 +45,19 @@ class Condition implements ActionInterface, ParserCacheInterface
 {
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 
     /**
      * @Inject
-     * @var Fusio\Processor
+     * @var \Fusio\Processor
      */
     protected $processor;
 
     /**
      * @Inject
-     * @var PSX\Cache
+     * @var \PSX\Cache
      */
     protected $cache;
 

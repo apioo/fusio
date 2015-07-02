@@ -36,7 +36,7 @@ interface ConnectionInterface extends ConfigurableInterface
      * fulfill the task. The $config contains parameters which were set by the
      * user
      *
-     * @param array $config
+     * @param \Fusio\Parameters $config
      * @return mixed
      */
     public function getConnection(Parameters $config);

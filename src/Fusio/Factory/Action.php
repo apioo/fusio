@@ -21,7 +21,6 @@
 
 namespace Fusio\Factory;
 
-use Fusio\Factory\FactoryInterface;
 use PSX\Dependency\ObjectBuilderInterface;
 
 /**
@@ -40,6 +39,10 @@ class Action implements FactoryInterface
         $this->objectBuilder = $objectBuilder;
     }
 
+    /**
+     * @param string $className
+     * @return \Fusio\ActionInterface
+     */
     public function factory($className)
     {
         return $this->objectBuilder->getObject($className, array(), 'Fusio\ActionInterface');

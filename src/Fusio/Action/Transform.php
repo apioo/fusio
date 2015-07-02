@@ -21,9 +21,7 @@
 
 namespace Fusio\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
-use Fusio\ConfigurationException;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
@@ -41,7 +39,7 @@ class Transform implements ActionInterface
 {
     /**
      * @Inject
-     * @var Fusio\Processor
+     * @var \Fusio\Processor
      */
     protected $processor;
 
@@ -57,7 +55,7 @@ class Transform implements ActionInterface
         $data  = $patch->apply($data->getData());
         */
 
-        return $this->processor->execute($configuration->get('action'), $parameters, $request, $context);
+        //return $this->processor->execute($configuration->get('action'), $parameters, $request, $context);
     }
 
     public function getForm()

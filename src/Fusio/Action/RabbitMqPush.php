@@ -21,7 +21,6 @@
 
 namespace Fusio\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
 use Fusio\Context;
@@ -30,7 +29,7 @@ use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Response;
-use PhpAmqpLib\Connection\AMQPConnection;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use PSX\Data\Writer;
 
@@ -45,13 +44,13 @@ class RabbitMqPush implements ActionInterface
 {
     /**
      * @Inject
-     * @var Doctrine\DBAL\Connection
+     * @var \Doctrine\DBAL\Connection
      */
     protected $connection;
 
     /**
      * @Inject
-     * @var Fusio\Connector
+     * @var \Fusio\Connector
      */
     protected $connector;
 
@@ -64,7 +63,7 @@ class RabbitMqPush implements ActionInterface
     {
         $connection = $this->connector->getConnection($configuration->get('connection'));
 
-        if ($connection instanceof AMQPConnection) {
+        if ($connection instanceof AMQPStreamConnection) {
             $writer  = new Writer\Json();
             $body    = $writer->write($request->getBody());
             $message = new AMQPMessage($body, array('content_type' => $writer->getContentType(), 'delivery_mode' => 2));

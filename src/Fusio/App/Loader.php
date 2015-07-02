@@ -83,7 +83,7 @@ class Loader
 
             return $app;
         } else {
-            throw new RuntimeException('Invalid app id');
+            throw new \RuntimeException('Invalid app id');
         }
     }
 

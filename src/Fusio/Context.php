@@ -53,7 +53,7 @@ class Context
      * Returns the app which was used for this request. Can also be an anonymous
      * app if authorization is not required for the endpoint
      *
-     * @return Fusio\App
+     * @return \Fusio\App
      */
     public function getApp()
     {

@@ -24,7 +24,6 @@ namespace Fusio\Parser;
 use DirectoryIterator;
 use Fusio\ConfigurableInterface;
 use Fusio\Factory\FactoryInterface;
-use ReflectionClass;
 
 /**
  * ParserAbstract

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fusio\Backend\Api\Connection;
+namespace Fusio\Backend\Api\Schema;
 
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
@@ -14,7 +14,7 @@ class CollectionTest extends ControllerDbTestCase
 
     public function testGet()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/connection', 'GET', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/routes', 'GET', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
@@ -22,16 +22,13 @@ class CollectionTest extends ControllerDbTestCase
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
-    "totalItems": 2,
+    "totalItems": 1,
     "startIndex": 0,
     "entry": [
         {
-            "id": 2,
-            "name": "DBAL"
-        },
-        {
-            "id": 1,
-            "name": "Native-Connection"
+            "id": 34,
+            "methods": "GET",
+            "path": "\/foo"
         }
     ]
 }
@@ -43,26 +40,32 @@ JSON;
 
     public function testPost()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/connection', 'POST', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/routes', 'POST', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
-            'name'   => 'Foo',
-            'class'  => 'Fusio\Connection\DBAL',
-            'config' => [
-            	'type'     => 'pdo_mysql',
-            	'host'     => '127.0.0.1',
-            	'username' => 'root',
-            	'password' => 'foo',
-            	'database' => 'bar',
-            ],
+            'methods' => 'GET|POST|PUT|DELETE',
+            'path'    => '/foo',
+            'config'  => [[
+            	'status'  => 4,
+            	'name'    => '1',
+            	'methods' => [[
+            		'name' => 'GET',
+            	],[
+            		'name' => 'POST',
+            	],[
+            		'name' => 'PUT',
+            	],[
+            		'name' => 'DELETE',
+            	]],
+            ]],
         ]));
 
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
     "success": true,
-    "message": "Connection successful created"
+    "message": "Route successful created"
 }
 JSON;
 
@@ -71,8 +74,8 @@ JSON;
 
         // check database
         $sql = Environment::getService('connection')->createQueryBuilder()
-            ->select('id', 'name', 'class', 'config')
-            ->from('fusio_connection')
+            ->select('id', 'status', 'methods', 'path', 'controller', 'config')
+            ->from('fusio_routes')
             ->orderBy('id', 'DESC')
             ->setFirstResult(0)
             ->setMaxResults(1)
@@ -80,15 +83,17 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(3, $row['id']);
-        $this->assertEquals('Foo', $row['name']);
-        $this->assertEquals('Fusio\Connection\DBAL', $row['class']);
-        $this->assertEquals('a:5:{s:4:"type";s:9:"pdo_mysql";s:4:"host";s:9:"127.0.0.1";s:8:"username";s:4:"root";s:8:"password";s:3:"foo";s:8:"database";s:3:"bar";}', $row['config']);
+        $this->assertEquals(35, $row['id']);
+        $this->assertEquals(1, $row['status']);
+        $this->assertEquals('GET|POST|PUT|DELETE', $row['methods']);
+        $this->assertEquals('/foo', $row['path']);
+        $this->assertEquals('Fusio\Controller\SchemaApiController', $row['controller']);
+        $this->assertEquals('a:1:{i:0;C:15:"PSX\Data\Record":517:{a:2:{s:4:"name";s:6:"config";s:6:"fields";a:3:{s:6:"status";i:4;s:4:"name";s:1:"1";s:7:"methods";a:4:{i:0;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"GET";}}}i:1;C:15:"PSX\Data\Record":71:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:4:"POST";}}}i:2;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"PUT";}}}i:3;C:15:"PSX\Data\Record":73:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:6:"DELETE";}}}}}}}}', $row['config']);
     }
 
     public function testPut()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/connection', 'PUT', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/routes', 'PUT', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
@@ -102,7 +107,7 @@ JSON;
 
     public function testDelete()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/connection', 'DELETE', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/routes', 'DELETE', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
