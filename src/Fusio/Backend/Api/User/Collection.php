@@ -72,7 +72,7 @@ class Collection extends SchemaApiAbstract
 
         $resource->addMethod(Resource\Factory::getMethod('POST')
             ->setRequest($this->schemaManager->getSchema('Fusio\Backend\Schema\User\Create'))
-            ->addResponse(200, $this->schemaManager->getSchema('Fusio\Backend\Schema\User\Message'))
+            ->addResponse(201, $this->schemaManager->getSchema('Fusio\Backend\Schema\User\Message'))
         );
 
         return new Documentation\Simple($resource);

@@ -50,11 +50,11 @@ JSON;
             'name'   => 'Foo',
             'class'  => 'Fusio\Connection\DBAL',
             'config' => [
-            	'type'     => 'pdo_mysql',
-            	'host'     => '127.0.0.1',
-            	'username' => 'root',
-            	'password' => 'foo',
-            	'database' => 'bar',
+                'type'     => 'pdo_mysql',
+                'host'     => '127.0.0.1',
+                'username' => 'root',
+                'password' => 'foo',
+                'database' => 'bar',
             ],
         ]));
 

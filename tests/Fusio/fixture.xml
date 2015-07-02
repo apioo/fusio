@@ -28,7 +28,26 @@
     <fusio_scope_routes id="14" scopeId="1" routeId="14" allow="1" methods="GET" />
     <fusio_scope_routes id="15" scopeId="1" routeId="15" allow="1" methods="GET|POST|PUT|DELETE" />
     <fusio_scope_routes id="16" scopeId="1" routeId="16" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_schema id="1" name="Passthru" source="{}" cache="" />
+    <fusio_scope_routes id="17" scopeId="1" routeId="17" allow="1" methods="GET|POST|PUT|DELETE" />
+    <fusio_scope_routes id="18" scopeId="1" routeId="18" allow="1" methods="GET|POST|PUT|DELETE" />
+    <fusio_scope_routes id="19" scopeId="1" routeId="19" allow="1" methods="GET" />
+    <fusio_scope_routes id="20" scopeId="1" routeId="20" allow="1" methods="GET|POST|PUT|DELETE" />
+    <fusio_scope_routes id="21" scopeId="1" routeId="21" allow="1" methods="GET|POST|PUT|DELETE" />
+    <fusio_scope_routes id="22" scopeId="1" routeId="22" allow="1" methods="GET|POST|PUT|DELETE" />
+    <fusio_scope_routes id="23" scopeId="1" routeId="23" allow="1" methods="GET|POST|PUT|DELETE" />
+    <fusio_scope_routes id="24" scopeId="1" routeId="24" allow="1" methods="GET" />
+    <fusio_scope_routes id="25" scopeId="1" routeId="25" allow="1" methods="GET" />
+    <fusio_scope_routes id="26" scopeId="1" routeId="26" allow="1" methods="GET" />
+    <fusio_scope_routes id="27" scopeId="1" routeId="27" allow="1" methods="GET" />
+    <fusio_scope_routes id="28" scopeId="1" routeId="28" allow="1" methods="GET" />
+    <fusio_scope_routes id="29" scopeId="1" routeId="29" allow="1" methods="GET" />
+    <fusio_scope_routes id="30" scopeId="1" routeId="30" allow="1" methods="GET|POST" />
+    <fusio_scope_routes id="31" scopeId="1" routeId="31" allow="1" methods="POST" />
+    <fusio_scope_routes id="32" scopeId="1" routeId="32" allow="1" methods="GET|POST" />
+    <fusio_scope_routes id="33" scopeId="1" routeId="33" allow="1" methods="GET" />
+    <fusio_scope_routes id="34" scopeId="1" routeId="34" allow="1" methods="GET" />
+    <fusio_scope_routes id="35" scopeId="3" routeId="1" allow="1" methods="GET|POST|PUT|DELETE" />
+    <fusio_scope_routes id="36" scopeId="3" routeId="2" allow="1" methods="GET|POST|PUT|DELETE" />
     <fusio_routes id="1" status="1" methods="GET|POST|PUT|DELETE" path="/backend" controller="Fusio\Backend\Application\Index" />
     <fusio_routes id="2" status="1" methods="GET|POST|PUT|DELETE" path="/backend/action" controller="Fusio\Backend\Api\Action\Collection" />
     <fusio_routes id="3" status="1" methods="GET" path="/backend/action/list" controller="Fusio\Backend\Api\Action\ListActions::doIndex" />
@@ -74,11 +93,30 @@
     <fusio_app_scope id="3" appId="2" scopeId="4" />
     <fusio_app_scope id="4" appId="2" scopeId="5" />
     <fusio_app_token id="1" appId="1" userId="1" status="1" token="da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf" scope="backend" ip="127.0.0.1" date="2015-06-25 22:49:09" />
-    <fusio_log id="1" appId="1" routeId="1" ip="127.0.0.1" userAgent="Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36" method="GET" path="/bar" header="Authorization: 
+    <fusio_log id="1" appId="1" routeId="1" ip="127.0.0.1" userAgent="Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36" method="GET" path="/bar" header="Authorization:
 Host: 127.0.0.1
 Connection: keep-alive
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
 User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36
 Accept-Encoding: gzip, deflate, sdch
 Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4" body="foobar" date="2015-06-25 22:49:09" />
+	<fusio_schema id="1" name="Passthru" source="{}" cache="" />
+	<fusio_schema id="2" name="Foo-Schema" source="{
+    &quot;id&quot;: &quot;http://phpsx.org#&quot;,
+    &quot;title&quot;: &quot;test&quot;,
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {
+        &quot;title&quot;: {
+            &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;content&quot;: {
+            &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;date&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;format&quot;: &quot;date-time&quot;
+        }
+    }
+}
+" cache="" />
 </dataset>

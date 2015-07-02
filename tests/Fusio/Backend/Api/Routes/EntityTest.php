@@ -80,17 +80,17 @@ JSON;
             'methods' => 'GET|POST|PUT|DELETE',
             'path'    => '/foo',
             'config'  => [[
-            	'status'  => 4,
-            	'name'    => '1',
-            	'methods' => [[
-            		'name' => 'GET',
-            	],[
-            		'name' => 'POST',
-            	],[
-            		'name' => 'PUT',
-            	],[
-            		'name' => 'DELETE',
-            	]],
+                'status'  => 4,
+                'name'    => '1',
+                'methods' => [[
+                    'name' => 'GET',
+                ], [
+                    'name' => 'POST',
+                ], [
+                    'name' => 'PUT',
+                ], [
+                    'name' => 'DELETE',
+                ]],
             ]],
         ]));
 

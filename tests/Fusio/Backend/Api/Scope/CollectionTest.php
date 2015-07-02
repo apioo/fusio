@@ -1,6 +1,6 @@
 <?php
 
-namespace Fusio\Backend\Api\Routes;
+namespace Fusio\Backend\Api\Scope;
 
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
@@ -14,7 +14,7 @@ class CollectionTest extends ControllerDbTestCase
 
     public function testGet()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/routes', 'GET', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/scope', 'GET', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
@@ -22,13 +22,20 @@ class CollectionTest extends ControllerDbTestCase
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
-    "totalItems": 1,
+    "totalItems": 3,
     "startIndex": 0,
     "entry": [
         {
-            "id": 34,
-            "methods": "GET",
-            "path": "\/foo"
+            "id": 3,
+            "name": "bar"
+        },
+        {
+            "id": 2,
+            "name": "foo"
+        },
+        {
+            "id": 1,
+            "name": "backend"
         }
     ]
 }
@@ -40,32 +47,27 @@ JSON;
 
     public function testPost()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/routes', 'POST', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/scope', 'POST', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
-            'methods' => 'GET|POST|PUT|DELETE',
-            'path'    => '/foo',
-            'config'  => [[
-                'status'  => 4,
-                'name'    => '1',
-                'methods' => [[
-                    'name' => 'GET',
-                ], [
-                    'name' => 'POST',
-                ], [
-                    'name' => 'PUT',
-                ], [
-                    'name' => 'DELETE',
-                ]],
-            ]],
+            'name'   => 'test',
+            'routes' => [[
+                'routeId' => 1,
+                'allow'   => 1,
+                'methods' => 'GET|POST|PUT|DELETE',
+            ], [
+                'routeId' => 2,
+                'allow'   => 1,
+                'methods' => 'GET|POST|PUT|DELETE',
+            ]]
         ]));
 
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
     "success": true,
-    "message": "Route successful created"
+    "message": "Scope successful created"
 }
 JSON;
 
@@ -74,8 +76,8 @@ JSON;
 
         // check database
         $sql = Environment::getService('connection')->createQueryBuilder()
-            ->select('id', 'status', 'methods', 'path', 'controller', 'config')
-            ->from('fusio_routes')
+            ->select('id', 'name')
+            ->from('fusio_scope')
             ->orderBy('id', 'DESC')
             ->setFirstResult(0)
             ->setMaxResults(1)
@@ -83,17 +85,36 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(35, $row['id']);
-        $this->assertEquals(1, $row['status']);
-        $this->assertEquals('GET|POST|PUT|DELETE', $row['methods']);
-        $this->assertEquals('/foo', $row['path']);
-        $this->assertEquals('Fusio\Controller\SchemaApiController', $row['controller']);
-        $this->assertEquals('a:1:{i:0;C:15:"PSX\Data\Record":517:{a:2:{s:4:"name";s:6:"config";s:6:"fields";a:3:{s:6:"status";i:4;s:4:"name";s:1:"1";s:7:"methods";a:4:{i:0;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"GET";}}}i:1;C:15:"PSX\Data\Record":71:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:4:"POST";}}}i:2;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"PUT";}}}i:3;C:15:"PSX\Data\Record":73:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:6:"DELETE";}}}}}}}}', $row['config']);
+        $this->assertEquals(4, $row['id']);
+        $this->assertEquals('test', $row['name']);
+
+        $sql = Environment::getService('connection')->createQueryBuilder()
+            ->select('id', 'scopeId', 'routeId', 'allow', 'methods')
+            ->from('fusio_scope_routes')
+            ->where('scopeId = :scopeId')
+            ->orderBy('id', 'DESC')
+            ->getSQL();
+
+        $routes = Environment::getService('connection')->fetchAll($sql, ['scopeId' => 4]);
+
+        $this->assertEquals([[
+            'id'      => 38,
+            'scopeId' => 4,
+            'routeId' => 2,
+            'allow'   => 1,
+            'methods' => 'GET|POST|PUT|DELETE',
+        ], [
+            'id'      => 37,
+            'scopeId' => 4,
+            'routeId' => 1,
+            'allow'   => 1,
+            'methods' => 'GET|POST|PUT|DELETE',
+        ]], $routes);
     }
 
     public function testPut()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/routes', 'PUT', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/scope', 'PUT', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
@@ -107,7 +128,7 @@ JSON;
 
     public function testDelete()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/routes', 'DELETE', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/scope', 'DELETE', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([

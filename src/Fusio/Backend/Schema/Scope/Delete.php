@@ -34,9 +34,6 @@ class Delete extends SchemaAbstract
 {
     public function getDefinition()
     {
-        $schema = $this->getSchema('Fusio\Backend\Schema\Scope');
-        $schema->get('id')->setRequired(true);
-
-        return $schema;
+        return $this->getSchema('Fusio\Backend\Schema\Scope');
     }
 }
