@@ -108,7 +108,7 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
         $this->apiLogger->log(
             $this->appId,
             $this->context->get('fusio.routeId'),
-            $_SERVER['REMOTE_ADDR'],
+            isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1',
             $this->request
         );
     }

@@ -31,16 +31,15 @@ use Fusio\Request;
 use Fusio\Response;
 use MongoCollection;
 use MongoDB;
-use PSX\Http\Exception\NotFoundException;
 
 /**
- * MongoFetchRow
+ * MongoInsert
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class MongoFetchRow implements ActionInterface
+class MongoInsert implements ActionInterface
 {
     /**
      * @Inject
@@ -62,7 +61,7 @@ class MongoFetchRow implements ActionInterface
 
     public function getName()
     {
-        return 'Mongo-Fetch-Row';
+        return 'Mongo-Fetch-All';
     }
 
     public function handle(Request $request, Parameters $configuration, Context $context)
@@ -70,23 +69,19 @@ class MongoFetchRow implements ActionInterface
         $connection = $this->connector->getConnection($configuration->get('connection'));
 
         if ($connection instanceof MongoDB) {
-            $collection = $configuration->get('collection');
-            $collection = $connection->$collection;
+            $collection = $connection->selectCollection($configuration->get('collection'));
 
             if ($collection instanceof MongoCollection) {
-                $query  = $this->templateParser->parse($request, $configuration, $context, $configuration->get('criteria'));
-                $query  = !empty($query) ? json_decode($query) : array();
+                // parse json
+                $query = $this->templateParser->parse($request, $configuration, $context, $configuration->get('document'));
+                $query = !empty($query) ? json_decode($query) : array();
 
-                $fields = $configuration->get('projection');
-                $fields = !empty($fields) ? json_decode($fields) : array();
+                $collection->insert($query);
 
-                $result = $collection->findOne($query, $fields);
-
-                if (empty($result)) {
-                    throw new NotFoundException('Entry not available');
-                }
-
-                return new Response(200, [], $result);
+                return new Response(200, [], array(
+                    'success' => true,
+                    'message' => 'Execution was successful'
+                ));
             } else {
                 throw new ConfigurationException('Invalid collection');
             }
@@ -99,9 +94,8 @@ class MongoFetchRow implements ActionInterface
     {
         $form = new Form\Container();
         $form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The MongoDB connection which should be used'));
-        $form->add(new Element\Input('collection', 'Collection', 'text', 'The data gets fetched from this collection'));
-        $form->add(new Element\TextArea('criteria', 'Criteria', 'json', 'Specifies selection criteria using <a href="http://docs.mongodb.org/manual/reference/operator/">query operators</a>. To return all documents in a collection, omit this parameter or pass an empty document ({})'));
-        $form->add(new Element\TextArea('projection', 'Projection', 'json', 'Specifies the fields to return using <a href="http://docs.mongodb.org/manual/reference/operator/projection/">projection operators</a>. To return all fields in the matching document, omit this parameter.'));
+        $form->add(new Element\Input('collection', 'Collection', 'text', 'Inserts the document into this collection'));
+        $form->add(new Element\TextArea('document', 'document', 'json', 'The document containing the data'));
 
         return $form;
     }

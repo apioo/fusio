@@ -15,6 +15,7 @@ class Schema
         $actionTable->addColumn('name', 'string', array('length' => 64));
         $actionTable->addColumn('class', 'string', array('length' => 255));
         $actionTable->addColumn('config', 'text', array('notnull' => false));
+        $actionTable->addColumn('date', 'datetime');
         $actionTable->setPrimaryKey(array('id'));
         $actionTable->addUniqueIndex(array('name'));
 
@@ -65,7 +66,7 @@ class Schema
         $logTable->addColumn('method', 'string', array('length' => 16));
         $logTable->addColumn('path', 'string', array('length' => 255));
         $logTable->addColumn('header', 'text');
-        $logTable->addColumn('body', 'text');
+        $logTable->addColumn('body', 'text', array('notnull' => false));
         $logTable->addColumn('date', 'datetime');
         $logTable->setPrimaryKey(array('id'));
 

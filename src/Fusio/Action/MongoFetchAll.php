@@ -53,6 +53,12 @@ class MongoFetchAll implements ActionInterface
      */
     protected $connector;
 
+    /**
+     * @Inject
+     * @var \Fusio\Template\Parser
+     */
+    protected $templateParser;
+
     public function getName()
     {
         return 'Mongo-Fetch-All';
@@ -63,11 +69,11 @@ class MongoFetchAll implements ActionInterface
         $connection = $this->connector->getConnection($configuration->get('connection'));
 
         if ($connection instanceof MongoDB) {
-            $collection = $configuration->get('collection');
-            $collection = $connection->$collection;
+            $collection = $connection->selectCollection($configuration->get('collection'));
 
             if ($collection instanceof MongoCollection) {
-                $query  = $configuration->get('criteria');
+                // parse sql
+                $query  = $this->templateParser->parse($request, $configuration, $context, $configuration->get('criteria'));
                 $query  = !empty($query) ? json_decode($query) : array();
 
                 $fields = $configuration->get('projection');

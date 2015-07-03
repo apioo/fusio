@@ -30,8 +30,7 @@ use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Response;
-use PSX\Data\Accessor;
-use PSX\Data\RecordInterface;
+use Fusio\Template\Filter\SqlParameter;
 use PSX\Validate;
 
 /**
@@ -55,6 +54,12 @@ class SqlExecute implements ActionInterface
      */
     protected $connector;
 
+    /**
+     * @Inject
+     * @var \Fusio\Template\Parser
+     */
+    protected $templateParser;
+
     public function getName()
     {
         return 'SQL-Execute';
@@ -65,11 +70,10 @@ class SqlExecute implements ActionInterface
         $connection = $this->connector->getConnection($configuration->get('connection'));
 
         if ($connection instanceof Connection) {
-            $params = array();
-            $sql    = $configuration->get('sql');
-            $sql    = self::substituteParameters($request, $sql, $params, true);
+            // parse sql
+            $sql = $this->templateParser->parse($request, $configuration, $context, $configuration->get('sql'));
 
-            $connection->executeUpdate($sql, $params);
+            $connection->executeUpdate($sql, $this->templateParser->getSqlParameters());
 
             return new Response(200, [], array(
                 'success' => true,
@@ -84,43 +88,8 @@ class SqlExecute implements ActionInterface
     {
         $form = new Form\Container();
         $form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The SQL connection which should be used'));
-        $form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The INSERT, UPDATE or DELETE query which gets executed. Uri fragments can be used with i.e. <code>!news_id</code> and GET parameters with i.e. <code>:news_id</code>. The body data can be accessed with i.e. <code>#author.name</code>'));
+        $form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The INSERT, UPDATE or DELETE query which gets executed. It is possible to access values from the environment with i.e. <code ng-non-bindable>{{ body.get("title")|prepare }}</code>. <b>Note you must use the prepare filter for each parameter in order to generate a safe SQL query which uses prepared statments.</b>'));
 
         return $form;
-    }
-
-    public static function substituteParameters(Request $request, $sql, array &$params, $withBodyParameters = false)
-    {
-        preg_match_all('/(\#|\:|\!)([A-z0-9\-\_\/]+)/', $sql, $matches);
-
-        $types    = isset($matches[1]) ? $matches[1] : array();
-        $keys     = isset($matches[2]) ? $matches[2] : array();
-        $params   = array();
-        $accessor = new Accessor(new Validate(), $request->getBody());
-
-        foreach ($keys as $index => $key) {
-            $sql   = str_replace($types[$index] . $key, '?', $sql);
-            $value = null;
-
-            if ($types[$index] == '!') {
-                $value = $request->getUriFragment($key) ?: null;
-            } elseif ($types[$index] == ':') {
-                $value = $request->getParameter($key) ?: null;
-            } elseif ($types[$index] == '#') {
-                if ($withBodyParameters) {
-                    $value = $accessor->get($name) ?: null;
-                } else {
-                    $value = null;
-                }
-            }
-
-            if ($value instanceof RecordInterface || $value instanceof \stdClass || is_array($value)) {
-                $value = serialize($value);
-            }
-
-            $params[$index] = $value;
-        }
-
-        return $sql;
     }
 }

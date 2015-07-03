@@ -33,6 +33,10 @@ use IteratorAggregate;
  */
 class Parameters implements IteratorAggregate
 {
+    const ACTION_ID = 'action_id';
+    const ACTION_NAME = 'action_name';
+    const ACTION_LAST_MODIFIED = 'action_last_modified';
+
     protected $container;
 
     public function __construct(array $container)
@@ -48,6 +52,11 @@ class Parameters implements IteratorAggregate
     public function has($key)
     {
         return isset($this->container[$key]);
+    }
+
+    public function set($key, $value)
+    {
+        return $this->container[$key] = $value;
     }
 
     public function isEmpty()

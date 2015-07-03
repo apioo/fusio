@@ -53,6 +53,12 @@ class SqlFetchAll implements ActionInterface
      */
     protected $connector;
 
+    /**
+     * @Inject
+     * @var \Fusio\Template\Parser
+     */
+    protected $templateParser;
+
     public function getName()
     {
         return 'SQL-Fetch-All';
@@ -63,11 +69,10 @@ class SqlFetchAll implements ActionInterface
         $connection = $this->connector->getConnection($configuration->get('connection'));
 
         if ($connection instanceof Connection) {
-            $params = array();
-            $sql    = $configuration->get('sql');
-            $sql    = SqlExecute::substituteParameters($request, $sql, $params);
+            // parse sql
+            $sql = $this->templateParser->parse($request, $configuration, $context, $configuration->get('sql'));
 
-            $result = $connection->fetchAll($sql, $params);
+            $result = $connection->fetchAll($sql, $this->templateParser->getSqlParameters());
             $key    = $configuration->get('propertyName') ?: 'entry';
 
             return new Response(200, [], CurveArray::nest(array(
@@ -83,7 +88,7 @@ class SqlFetchAll implements ActionInterface
         $form = new Form\Container();
         $form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The SQL connection which should be used'));
         $form->add(new Element\Input('propertyName', 'Property name', 'text', 'The name of the property under which the result should be inserted'));
-        $form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The SELECT statment which gets executed. Uri fragments can be used with i.e. <code>!news_id</code> and GET parameters with i.e. <code>:news_id</code>'));
+        $form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The SELECT statment which gets executed. It is possible to access values from the environment with i.e. <code ng-non-bindable>{{ request.parameter("news_id")|prepare }}</code>. <b>Note you must use the prepare filter for each parameter in order to generate a safe SQL query which uses prepared statments.</b>'));
 
         return $form;
     }

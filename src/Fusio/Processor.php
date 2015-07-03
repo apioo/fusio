@@ -49,7 +49,7 @@ class Processor
      */
     public function execute($actionId, Request $request, Context $context)
     {
-        $action = $this->connection->fetchAssoc('SELECT class, config FROM fusio_action WHERE id = :id', array('id' => $actionId));
+        $action = $this->connection->fetchAssoc('SELECT id, name, class, config, date FROM fusio_action WHERE id = :id', array('id' => $actionId));
 
         if (empty($action)) {
             throw new ConfigurationException('Invalid action');
@@ -57,6 +57,11 @@ class Processor
 
         $config = !empty($action['config']) ? unserialize($action['config']) : array();
 
-        return $this->factory->factory($action['class'])->handle($request, new Parameters($config), $context);
+        $parameters = new Parameters($config);
+        $parameters->set(Parameters::ACTION_ID, $action['id']);
+        $parameters->set(Parameters::ACTION_NAME, $action['name']);
+        $parameters->set(Parameters::ACTION_LAST_MODIFIED, $action['date']);
+
+        return $this->factory->factory($action['class'])->handle($request, $parameters, $context);
     }
 }

@@ -26,7 +26,7 @@ class EntityTest extends ControllerDbTestCase
     "userAgent": "Mozilla\/5.0 (Windows NT 6.3; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/43.0.2357.130 Safari\/537.36",
     "method": "GET",
     "path": "\/bar",
-    "header": "Authorization:  Host: 127.0.0.1 Connection: keep-alive Accept: text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/webp,*\/*;q=0.8 User-Agent: Mozilla\/5.0 (Windows NT 6.3; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/43.0.2357.130 Safari\/537.36 Accept-Encoding: gzip, deflate, sdch Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4",
+    "header": "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     "body": "foobar",
     "date": "2015-06-25T22:49:09Z"
 }

@@ -19,32 +19,41 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Table;
+namespace Fusio\Template\Filter;
 
-use PSX\Sql\TableAbstract;
+use PSX\Data\RecordInterface;
 
 /**
- * Action
+ * Prepare
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Action extends TableAbstract
+class Prepare
 {
-    public function getName()
+    const FILTER_NAME = 'prepare';
+
+    protected $parameters = array();
+
+    public function __invoke($value)
     {
-        return 'fusio_action';
+        if ($value instanceof RecordInterface || $value instanceof \stdClass || is_array($value)) {
+            $value = serialize($value);
+        }
+
+        $this->parameters[] = $value;
+
+        return '?';
     }
 
-    public function getColumns()
+    public function getParameters()
     {
-        return array(
-            'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'name' => self::TYPE_VARCHAR,
-            'class' => self::TYPE_VARCHAR,
-            'config' => self::TYPE_ARRAY,
-            'date' => self::TYPE_DATETIME,
-        );
+        return $this->parameters;
+    }
+
+    public function clear()
+    {
+        $this->parameters = array();
     }
 }

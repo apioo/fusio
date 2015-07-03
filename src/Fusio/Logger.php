@@ -43,18 +43,9 @@ class Logger
 
     public function log($appId, $routeId, $ip, RequestInterface $request)
     {
-        $sql = 'INSERT INTO fusio_log
-				        SET `appId` = :appId,
-				            `routeId` = :routeId,
-				            `ip` = :ip,
-				            `userAgent` = :userAgent,
-				            `method` = :method,
-				            `path` = :path,
-				            `header` = :header,
-				            `body` = :body,
-				            `date` = NOW()';
+        $now = new \DateTime();
 
-        $this->connection->executeUpdate($sql, array(
+        $this->connection->insert('fusio_log', array(
             'appId'     => $appId,
             'routeId'   => $routeId,
             'ip'        => $ip,
@@ -63,6 +54,7 @@ class Logger
             'path'      => $request->getRequestTarget(),
             'header'    => $this->getHeadersAsString($request),
             'body'      => $this->getBodyAsString($request),
+            'date'      => $now->format('Y-m-d H:i:s'),
         ));
     }
 

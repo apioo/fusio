@@ -34,6 +34,7 @@ use Fusio\Logger;
 use Fusio\Parser;
 use Fusio\Processor;
 use Fusio\Schema;
+use Fusio\Template;
 use Monolog\Logger as SystemLogger;
 use PSX\Api;
 use PSX\Data\Importer;
@@ -201,5 +202,13 @@ class Container extends DefaultContainer
     public function getAppLoader()
     {
         return new App\Loader($this->get('connection'));
+    }
+
+    /**
+     * @return \Fusio\Template\Parser
+     */
+    public function getTemplateParser()
+    {
+        return new Template\Parser($this->get('config')->get('psx_debug'));
     }
 }

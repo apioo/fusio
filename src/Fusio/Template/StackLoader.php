@@ -19,32 +19,42 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Table;
+namespace Fusio\Template;
 
-use PSX\Sql\TableAbstract;
+use Twig_LoaderInterface;
 
 /**
- * Action
+ * StackLoader
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Action extends TableAbstract
+class StackLoader implements Twig_LoaderInterface
 {
-    public function getName()
+    protected $source;
+    protected $cacheKey;
+    protected $lastModified;
+
+    public function set($source, $cacheKey, $lastModified)
     {
-        return 'fusio_action';
+        $this->source       = $source;
+        $this->cacheKey     = $cacheKey;
+        $this->lastModified = $lastModified;
     }
 
-    public function getColumns()
+    public function getSource($name)
     {
-        return array(
-            'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'name' => self::TYPE_VARCHAR,
-            'class' => self::TYPE_VARCHAR,
-            'config' => self::TYPE_ARRAY,
-            'date' => self::TYPE_DATETIME,
-        );
+        return $this->source;
+    }
+
+    public function getCacheKey($name)
+    {
+        return $this->cacheKey;
+    }
+
+    public function isFresh($name, $time)
+    {
+        return strtotime($this->lastModified) <= $time;
     }
 }

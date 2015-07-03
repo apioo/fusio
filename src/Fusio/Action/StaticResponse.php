@@ -41,6 +41,12 @@ use PSX\Json;
  */
 class StaticResponse implements ActionInterface
 {
+    /**
+     * @Inject
+     * @var \Fusio\Template\Parser
+     */
+    protected $templateParser;
+
     public function getName()
     {
         return 'Static-Response';
@@ -48,7 +54,8 @@ class StaticResponse implements ActionInterface
 
     public function handle(Request $request, Parameters $configuration, Context $context)
     {
-        $response = $configuration->get('response');
+        // parse json
+        $response = $this->templateParser->parse($request, $configuration, $context, $configuration->get('response'));
 
         if (!empty($response)) {
             $statusCode = $configuration->get('statusCode') ?: 200;

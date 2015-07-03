@@ -19,32 +19,25 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Table;
+namespace Fusio\Template;
 
-use PSX\Sql\TableAbstract;
+use Twig_Environment;
+use Twig_LoaderInterface;
 
 /**
- * Action
+ * Extension
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Action extends TableAbstract
+class Environment extends Twig_Environment
 {
-    public function getName()
+    public function __construct(Twig_LoaderInterface $loader = null, $options = array())
     {
-        return 'fusio_action';
-    }
+        parent::__construct($loader, $options);
 
-    public function getColumns()
-    {
-        return array(
-            'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'name' => self::TYPE_VARCHAR,
-            'class' => self::TYPE_VARCHAR,
-            'config' => self::TYPE_ARRAY,
-            'date' => self::TYPE_DATETIME,
-        );
+        $this->extensions = array();
+        $this->addExtension(new Extension());
     }
 }

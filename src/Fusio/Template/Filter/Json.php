@@ -19,32 +19,37 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Table;
+namespace Fusio\Template\Filter;
 
-use PSX\Sql\TableAbstract;
+use PSX\Data\Object;
+use PSX\Data\RecordInterface;
+use PSX\Data\Writer;
 
 /**
- * Action
+ * Json
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class Action extends TableAbstract
+class Json
 {
-    public function getName()
-    {
-        return 'fusio_action';
-    }
+    const FILTER_NAME = 'json';
 
-    public function getColumns()
+    public function __invoke($value)
     {
-        return array(
-            'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'name' => self::TYPE_VARCHAR,
-            'class' => self::TYPE_VARCHAR,
-            'config' => self::TYPE_ARRAY,
-            'date' => self::TYPE_DATETIME,
-        );
+        $writer = new Writer\Json();
+
+        if (is_array($value)) {
+            $value = new Object($value);
+        } else if($value instanceof \stdClass) {
+            $value = new Object((array) $value);
+        }
+
+        if ($value instanceof RecordInterface) {
+            return $writer->write($value);
+        } else {
+            return '{}';
+        }
     }
 }

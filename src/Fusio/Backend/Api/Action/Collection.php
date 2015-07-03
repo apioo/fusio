@@ -113,6 +113,7 @@ class Collection extends SchemaApiAbstract
             'name'   => $record->getName(),
             'class'  => $record->getClass(),
             'config' => $record->getConfig()->getRecordInfo()->getData(),
+            'date'   => new \DateTime(),
         ));
 
         return array(
