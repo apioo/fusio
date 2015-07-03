@@ -46,6 +46,12 @@ class HttpRequest implements ActionInterface
      */
     protected $http;
 
+    /**
+     * @Inject
+     * @var \Fusio\Template\Parser
+     */
+    protected $templateParser;
+
     public function getName()
     {
         return 'HTTP-Request';
@@ -53,11 +59,11 @@ class HttpRequest implements ActionInterface
 
     public function handle(Request $request, Parameters $configuration, Context $context)
     {
+        // parse json
         $headers  = array('User-Agent' => 'Fusio');
-        $writer   = new Writer\Json();
-        $body     = $writer->write($request->getBody());
-        $request  = new PostRequest($configuration->get('url'), $headers, $body);
+        $body     = $this->templateParser->parse($request, $configuration, $context, $configuration->get('body'));
 
+        $request  = new PostRequest($configuration->get('url'), $headers, $body);
         $response = $this->http->request($request);
 
         if ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
@@ -66,7 +72,7 @@ class HttpRequest implements ActionInterface
                 'message' => 'Request successful'
             ]);
         } else {
-            return new Response(200, [], [
+            return new Response(500, [], [
                 'success' => false,
                 'message' => 'Request failed'
             ]);
@@ -76,7 +82,8 @@ class HttpRequest implements ActionInterface
     public function getForm()
     {
         $form = new Form\Container();
-        $form->add(new Element\Input('url', 'Url', 'text', 'Sends an HTTP POST request to the given url. The body contains the json encoded data from the request'));
+        $form->add(new Element\Input('url', 'Url', 'text', 'Sends an HTTP POST request to the given url'));
+        $form->add(new Element\TextArea('body', 'Body', 'text', 'The body for the POST request'));
 
         return $form;
     }

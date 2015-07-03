@@ -42,7 +42,7 @@ class FormTest extends ControllerDbTestCase
             "mode": "sql",
             "name": "sql",
             "title": "SQL",
-            "help": "The SELECT statment which gets executed. Uri fragments can be used with i.e. <code>!news_id<\/code> and GET parameters with i.e. <code>:news_id<\/code>"
+            "help": "The SELECT statment which gets executed. It is possible to access values from the environment with i.e. <code ng-non-bindable>{{ request.uriFragment(\"news_id\")|prepare }}<\/code>. <b>Note you must use the prepare filter for each parameter in order to generate a safe SQL query which uses prepared statments.<\/b>"
         }
     ]
 }

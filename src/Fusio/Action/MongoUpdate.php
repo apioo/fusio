@@ -33,13 +33,13 @@ use MongoCollection;
 use MongoDB;
 
 /**
- * MongoFetchAll
+ * MongoUpdate
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0
  * @link    http://fusio-project.org
  */
-class MongoFetchAll implements ActionInterface
+class MongoUpdate implements ActionInterface
 {
     /**
      * @Inject
@@ -61,7 +61,7 @@ class MongoFetchAll implements ActionInterface
 
     public function getName()
     {
-        return 'Mongo-Fetch-All';
+        return 'Mongo-Update';
     }
 
     public function handle(Request $request, Parameters $configuration, Context $context)
@@ -73,16 +73,18 @@ class MongoFetchAll implements ActionInterface
 
             if ($collection instanceof MongoCollection) {
                 // parse json
-                $query  = $this->templateParser->parse($request, $configuration, $context, $configuration->get('criteria'));
-                $query  = !empty($query) ? json_decode($query) : array();
+                $criteria = $this->templateParser->parse($request, $configuration, $context, $configuration->get('criteria'));
+                $criteria = !empty($criteria) ? json_decode($criteria) : array();
 
-                $fields = $configuration->get('projection');
-                $fields = !empty($fields) ? json_decode($fields) : array();
+                $document = $this->templateParser->parse($request, $configuration, $context, $configuration->get('document'));
+                $document = !empty($document) ? json_decode($document) : array();
 
-                $result = $collection->find($query, $fields);
-                $key    = $configuration->get('propertyName') ?: 'entry';
+                $collection->insert($criteria, $document);
 
-                return new Response(200, [], $result);
+                return new Response(200, [], array(
+                    'success' => true,
+                    'message' => 'Execution was successful'
+                ));
             } else {
                 throw new ConfigurationException('Invalid collection');
             }
@@ -95,10 +97,9 @@ class MongoFetchAll implements ActionInterface
     {
         $form = new Form\Container();
         $form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The MongoDB connection which should be used'));
-        $form->add(new Element\Input('propertyName', 'Property name', 'text', 'The name of the property under which the result should be inserted'));
-        $form->add(new Element\Input('collection', 'Collection', 'text', 'The data gets fetched from this collection'));
-        $form->add(new Element\TextArea('criteria', 'Criteria', 'json', 'Specifies selection criteria using <a href="http://docs.mongodb.org/manual/reference/operator/">query operators</a>. To return all documents in a collection, omit this parameter or pass an empty document ({})'));
-        $form->add(new Element\TextArea('projection', 'Projection', 'json', 'Specifies the fields to return using <a href="http://docs.mongodb.org/manual/reference/operator/projection/">projection operators</a>. To return all fields in the matching document, omit this parameter.'));
+        $form->add(new Element\Input('collection', 'Collection', 'text', 'Inserts the document into this collection'));
+        $form->add(new Element\TextArea('criteria', 'Criteria', 'json', 'Query criteria for the documents to update'));
+        $form->add(new Element\TextArea('document', 'Document', 'json', 'The object used to update the matched documents'));
 
         return $form;
     }

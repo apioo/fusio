@@ -51,6 +51,14 @@ class ListTest extends ControllerDbTestCase
             "class": "Fusio\\Action\\MongoFetchRow"
         },
         {
+            "name": "Mongo-Insert",
+            "class": "Fusio\\Action\\MongoInsert"
+        },
+        {
+            "name": "Mongo-Update",
+            "class": "Fusio\\Action\\MongoUpdate"
+        },
+        {
             "name": "Pipe",
             "class": "Fusio\\Action\\Pipe"
         },
@@ -69,10 +77,6 @@ class ListTest extends ControllerDbTestCase
         {
             "name": "Static-Response",
             "class": "Fusio\\Action\\StaticResponse"
-        },
-        {
-            "name": "Transform",
-            "class": "Fusio\\Action\\Transform"
         }
     ]
 }

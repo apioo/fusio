@@ -66,8 +66,8 @@ class RabbitMqPush implements ActionInterface
         if ($connection instanceof AMQPStreamConnection) {
             $writer  = new Writer\Json();
             $body    = $writer->write($request->getBody());
-            $message = new AMQPMessage($body, array('content_type' => $writer->getContentType(), 'delivery_mode' => 2));
 
+            $message = new AMQPMessage($body, array('content_type' => $writer->getContentType(), 'delivery_mode' => 2));
             $channel = $connection->channel();
             $channel->basic_publish($message, '', $configuration->get('queue'));
 

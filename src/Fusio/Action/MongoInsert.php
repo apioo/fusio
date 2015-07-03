@@ -61,7 +61,7 @@ class MongoInsert implements ActionInterface
 
     public function getName()
     {
-        return 'Mongo-Fetch-All';
+        return 'Mongo-Insert';
     }
 
     public function handle(Request $request, Parameters $configuration, Context $context)
@@ -73,10 +73,10 @@ class MongoInsert implements ActionInterface
 
             if ($collection instanceof MongoCollection) {
                 // parse json
-                $query = $this->templateParser->parse($request, $configuration, $context, $configuration->get('document'));
-                $query = !empty($query) ? json_decode($query) : array();
+                $document = $this->templateParser->parse($request, $configuration, $context, $configuration->get('document'));
+                $document = !empty($document) ? json_decode($document) : array();
 
-                $collection->insert($query);
+                $collection->insert($document);
 
                 return new Response(200, [], array(
                     'success' => true,
@@ -95,7 +95,7 @@ class MongoInsert implements ActionInterface
         $form = new Form\Container();
         $form->add(new Element\Connection('connection', 'Connection', $this->connection, 'The MongoDB connection which should be used'));
         $form->add(new Element\Input('collection', 'Collection', 'text', 'Inserts the document into this collection'));
-        $form->add(new Element\TextArea('document', 'document', 'json', 'The document containing the data'));
+        $form->add(new Element\TextArea('document', 'Document', 'json', 'The document containing the data'));
 
         return $form;
     }
