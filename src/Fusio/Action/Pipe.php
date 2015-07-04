@@ -75,7 +75,7 @@ class Pipe implements ActionInterface
         $traverser->traverse($response->getBody(), $visitor);
 
         $importer = $this->importerManager->getImporterByInstance('PSX\Data\Record\Importer\Record');
-        $body     = $importer->importer(new Record(), $visitor->getObject());
+        $body     = $importer->import(new Record(), $visitor->getObject());
 
         return $this->processor->execute($configuration->get('destination'), $request->withBody($body), $context);
     }

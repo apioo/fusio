@@ -4,7 +4,6 @@ namespace Fusio\Action;
 
 use Fusio\ActionTestCaseTrait;
 use Fusio\App;
-use Fusio\Template\Parser;
 use PSX\Test\Environment;
 
 class SqlFetchAllTest extends \PHPUnit_Extensions_Database_TestCase
