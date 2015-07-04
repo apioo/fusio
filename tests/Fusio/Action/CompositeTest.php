@@ -4,8 +4,6 @@ namespace Fusio\Action;
 
 use Fusio\ActionTestCaseTrait;
 use Fusio\App;
-use PSX\Data\Object;
-use PSX\Http\Response;
 use PSX\Test\Environment;
 
 class CompositeTest extends \PHPUnit_Extensions_Database_TestCase

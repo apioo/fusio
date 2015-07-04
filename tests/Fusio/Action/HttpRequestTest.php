@@ -6,7 +6,6 @@ use Fusio\ActionTestCaseTrait;
 use Fusio\App;
 use PSX\Data\Object;
 use PSX\Http\Response;
-use PSX\Test\Environment;
 
 class HttpRequestTest extends \PHPUnit_Framework_TestCase
 {
