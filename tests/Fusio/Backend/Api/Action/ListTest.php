@@ -57,14 +57,6 @@ class ListTest extends ControllerDbTestCase
         {
             "name": "Mongo-Update",
             "class": "Fusio\\Action\\MongoUpdate"
-        },
-        {
-            "name": "Pipe",
-            "class": "Fusio\\Action\\Pipe"
-        },
-        {
-            "name": "RabbitMQ-Push",
-            "class": "Fusio\\Action\\RabbitMqPush"
         }
     ]
 }

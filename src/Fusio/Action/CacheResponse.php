@@ -65,7 +65,7 @@ class CacheResponse implements ActionInterface
 
     public function handle(Request $request, Parameters $configuration, Context $context)
     {
-        $key  = md5('action_' . $configuration->get('action'));
+        $key  = md5($configuration->get('action'));
         $item = $this->cache->getItem($key);
 
         if (!$item->isHit()) {

@@ -4,35 +4,35 @@ namespace Fusio\Action;
 
 use Fusio\ActionTestCaseTrait;
 use Fusio\App;
+use Fusio\Parameters;
+use PSX\Cache;
+use PSX\Cache\Handler\Memory;
 use PSX\Data\Object;
+use PSX\Http\Response;
 use PSX\Test\Environment;
 
-class RabbitMqPushTest extends \PHPUnit_Framework_TestCase
+class BeanstalkPushTest extends \PHPUnit_Extensions_Database_TestCase
 {
     use ActionTestCaseTrait;
 
     public function testHandle()
     {
-        // channel
-        $channel = $this->getMock('PhpAmqpLib\Channel\AMQPChannel', ['basic_publish'], [], '', false);
-
-        $channel->expects($this->once())
-            ->method('basic_publish')
-            ->with($this->callback(function($message){
-                /** @var \PhpAmqpLib\Message\AMQPMessage $message */
-                $this->assertInstanceOf('PhpAmqpLib\Message\AMQPMessage', $message);
-                $this->assertEquals(['content_type' => 'application/json', 'delivery_mode' => 2], $message->get_properties());
-                $this->assertJsonStringEqualsJsonString('{"foo": "bar"}', $message->body);
-
-                return true;
-            }), $this->equalTo(''), $this->equalTo('foo'));
-
         // connection
-        $connection = $this->getMock('PhpAmqpLib\Connection\AMQPStreamConnection', ['channel'], [], '', false);
+        $connection = $this->getMock('Pheanstalk\Pheanstalk', ['useTube', 'put'], [], '', false);
 
         $connection->expects($this->once())
-            ->method('channel')
-            ->will($this->returnValue($channel));
+            ->method('useTube')
+            ->with($this->equalTo('foo'))
+            ->will($this->returnValue($connection));
+
+        $connection->expects($this->once())
+            ->method('put')
+            ->with($this->callback(function($body){
+                $this->assertJsonStringEqualsJsonString('{"foo": "bar"}', $body);
+
+                return true;
+            }))
+            ->will($this->returnValue($connection));
 
         // connector
         $connector = $this->getMock('Fusio\Connector', ['getConnection'], [], '', false);
@@ -42,7 +42,8 @@ class RabbitMqPushTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(1))
             ->will($this->returnValue($connection));
 
-        $action = new RabbitMqPush();
+        $action = new BeanstalkPush();
+        $action->setConnection(Environment::getService('connection'));
         $action->setConnector($connector);
 
         $parameters = $this->getParameters([
@@ -69,7 +70,7 @@ class RabbitMqPushTest extends \PHPUnit_Framework_TestCase
 
     public function testGetForm()
     {
-        $action = new RabbitMqPush();
+        $action = new BeanstalkPush();
         $action->setConnection(Environment::getService('connection'));
 
         $this->assertInstanceOf('Fusio\Form\Container', $action->getForm());

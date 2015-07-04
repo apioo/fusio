@@ -47,8 +47,11 @@ class RateLimit
         $sql = 'SELECT COUNT(id)
 				  FROM fusio_log
 				 WHERE appId = :appId
-				   AND YEAR(date) = YEAR(NOW())
-				   AND MONTH(date) = MONTH(NOW())';
+				   AND %s = %s';
+
+        $sql = sprintf($sql,
+            $this->connection->getDatabasePlatform()->getSubstringExpression($this->connection->getDatabasePlatform()->getNowExpression(), 0, 7),
+            $this->connection->getDatabasePlatform()->getSubstringExpression('date', 0, 7));
 
         return $this->connection->fetchColumn($sql, array(
             'appId' => $this->context->getApp()->getId(),
@@ -60,7 +63,11 @@ class RateLimit
         $sql = 'SELECT COUNT(id)
 				  FROM fusio_log
 				 WHERE appId = :appId
-				   AND DATE(date) = DATE(NOW())';
+				   AND %s = %s';
+
+        $sql = sprintf($sql,
+            $this->connection->getDatabasePlatform()->getSubstringExpression($this->connection->getDatabasePlatform()->getNowExpression(), 0, 10),
+            $this->connection->getDatabasePlatform()->getSubstringExpression('date', 0, 10));
 
         return $this->connection->fetchColumn($sql, array(
             'appId' => $this->context->getApp()->getId(),
@@ -73,8 +80,11 @@ class RateLimit
 				  FROM fusio_log
 				 WHERE appId = :appId
 				   AND routeId = :routeId
-				   AND YEAR(date) = YEAR(NOW())
-				   AND MONTH(date) = MONTH(NOW())';
+				   AND %s = %s';
+
+        $sql = sprintf($sql,
+            $this->connection->getDatabasePlatform()->getSubstringExpression($this->connection->getDatabasePlatform()->getNowExpression(), 0, 7),
+            $this->connection->getDatabasePlatform()->getSubstringExpression('date', 0, 7));
 
         return $this->connection->fetchColumn($sql, array(
             'appId'   => $this->context->getApp()->getId(),
@@ -88,7 +98,11 @@ class RateLimit
 				  FROM fusio_log
 				 WHERE appId = :appId
 				   AND routeId = :routeId
-				   AND DATE(date) = DATE(NOW())';
+				   AND %s = %s';
+
+        $sql = sprintf($sql,
+            $this->connection->getDatabasePlatform()->getSubstringExpression($this->connection->getDatabasePlatform()->getNowExpression(), 0, 10),
+            $this->connection->getDatabasePlatform()->getSubstringExpression('date', 0, 10));
 
         return $this->connection->fetchColumn($sql, array(
             'appId'   => $this->context->getApp()->getId(),
