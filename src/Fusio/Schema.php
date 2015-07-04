@@ -14,7 +14,7 @@ class Schema
         $actionTable->addColumn('id', 'integer', array('autoincrement' => true));
         $actionTable->addColumn('name', 'string', array('length' => 64));
         $actionTable->addColumn('class', 'string', array('length' => 255));
-        $actionTable->addColumn('config', 'text', array('notnull' => false));
+        $actionTable->addColumn('config', 'blob', array('notnull' => false));
         $actionTable->addColumn('date', 'datetime');
         $actionTable->setPrimaryKey(array('id'));
         $actionTable->addUniqueIndex(array('name'));
@@ -54,7 +54,7 @@ class Schema
         $connectionTable->addColumn('id', 'integer', array('autoincrement' => true));
         $connectionTable->addColumn('name', 'string', array('length' => 64));
         $connectionTable->addColumn('class', 'string', array('length' => 255));
-        $connectionTable->addColumn('config', 'text', array('notnull' => false));
+        $connectionTable->addColumn('config', 'blob', array('notnull' => false));
         $connectionTable->setPrimaryKey(array('id'));
 
         $logTable = $schema->createTable('fusio_log');
@@ -76,7 +76,7 @@ class Schema
         $routesTable->addColumn('methods', 'string', array('length' => 64));
         $routesTable->addColumn('path', 'string', array('length' => 255));
         $routesTable->addColumn('controller', 'string', array('length' => 255));
-        $routesTable->addColumn('config', 'text', array('notnull' => false));
+        $routesTable->addColumn('config', 'blob', array('notnull' => false));
         $routesTable->setPrimaryKey(array('id'));
 
         $schemaTable = $schema->createTable('fusio_schema');
@@ -84,7 +84,7 @@ class Schema
         $schemaTable->addColumn('name', 'string', array('length' => 64));
         $schemaTable->addColumn('propertyName', 'string', array('length' => 64, 'notnull' => false));
         $schemaTable->addColumn('source', 'text');
-        $schemaTable->addColumn('cache', 'text');
+        $schemaTable->addColumn('cache', 'blob');
         $schemaTable->setPrimaryKey(array('id'));
 
         $scopeTable = $schema->createTable('fusio_scope');

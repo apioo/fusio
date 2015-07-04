@@ -35,7 +35,7 @@ class App
     const STATUS_DEACTIVATED = 0x3;
 
     protected $anonymous;
-    protected $routeId;
+    protected $id;
     protected $userId;
     protected $status;
     protected $name;
@@ -53,14 +53,14 @@ class App
         return $this->anonymous;
     }
 
-    public function setRouteId($routeId)
+    public function setId($id)
     {
-        $this->routeId = $routeId;
+        $this->id = $id;
     }
-
-    public function getRouteId()
+    
+    public function getId()
     {
-        return $this->routeId;
+        return $this->id;
     }
 
     public function setUserId($userId)

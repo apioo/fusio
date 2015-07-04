@@ -9,7 +9,7 @@ class EntityTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return $this->createFlatXMLDataSet(__DIR__ . '/../../../fixture.xml');
+        return $this->createMySQLXMLDataSet(__DIR__ . '/../../../fixture.xml');
     }
 
     public function testGet()

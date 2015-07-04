@@ -9,7 +9,7 @@ class CollectionTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return $this->createFlatXMLDataSet(__DIR__ . '/../../../fixture.xml');
+        return $this->createMySQLXMLDataSet(__DIR__ . '/../../../fixture.xml');
     }
 
     public function testGet()
@@ -27,7 +27,7 @@ class CollectionTest extends ControllerDbTestCase
     "entry": [
         {
             "id": 34,
-            "methods": "GET",
+            "methods": "GET|POST|PUT|DELETE",
             "path": "\/foo"
         }
     ]

@@ -4,16 +4,22 @@ namespace Fusio\Backend\Api\Connection;
 
 use PSX\Test\ControllerDbTestCase;
 
-class SqlFetchAllTest extends ControllerDbTestCase
+class SqlFetchRowTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return $this->createFlatXMLDataSet(__DIR__ . '/../fixture.xml');
+        return $this->createMySQLXMLDataSet(__DIR__ . '/../fixture.xml');
     }
 
-    public function testGet()
+    public function testPost()
     {
-        $body = '{"foo": "bar"}';
+        $body = <<<'JSON'
+{
+    "title": "foo",
+    "content": "bar",
+    "date": "2015-07-04T13:03:00"
+}
+JSON;
 
         $response = $this->sendRequest('http://127.0.0.1/foo', 'POST', array(
             'User-Agent'    => 'Fusio TestCase',
@@ -22,7 +28,12 @@ class SqlFetchAllTest extends ControllerDbTestCase
 
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
-{"foo": "bar"}
+{
+    "id": "1",
+    "title": "foo",
+    "content": "bar",
+    "date": "2015-02-27 19:59:15"
+}
 JSON;
 
         $this->assertEquals(200, $response->getStatusCode(), $body);

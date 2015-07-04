@@ -24,13 +24,14 @@ namespace Fusio\Action;
 use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
+use Fusio\Connector;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Response;
-use Fusio\Template\Filter\SqlParameter;
+use Fusio\Template\Parser;
 use PSX\Validate;
 
 /**
@@ -91,5 +92,20 @@ class SqlExecute implements ActionInterface
         $form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The INSERT, UPDATE or DELETE query which gets executed. It is possible to access values from the environment with i.e. <code ng-non-bindable>{{ body.get("title")|prepare }}</code>. <b>Note you must use the prepare filter for each parameter in order to generate a safe SQL query which uses prepared statments.</b>'));
 
         return $form;
+    }
+
+    public function setConnection(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function setConnector(Connector $connector)
+    {
+        $this->connector = $connector;
+    }
+
+    public function setTemplateParser(Parser $templateParser)
+    {
+        $this->templateParser = $templateParser;
     }
 }

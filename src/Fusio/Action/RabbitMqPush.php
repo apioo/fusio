@@ -21,8 +21,10 @@
 
 namespace Fusio\Action;
 
+use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
+use Fusio\Connector;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
@@ -87,5 +89,15 @@ class RabbitMqPush implements ActionInterface
         $form->add(new Element\Input('queue', 'Queue', 'text', 'The name of the queue'));
 
         return $form;
+    }
+
+    public function setConnection(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function setConnector(Connector $connector)
+    {
+        $this->connector = $connector;
     }
 }

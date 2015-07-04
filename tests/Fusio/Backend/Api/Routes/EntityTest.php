@@ -9,7 +9,7 @@ class EntityTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return $this->createFlatXMLDataSet(__DIR__ . '/../../../fixture.xml');
+        return $this->createMySQLXMLDataSet(__DIR__ . '/../../../fixture.xml');
     }
 
     public function testGet()
@@ -23,7 +23,7 @@ class EntityTest extends ControllerDbTestCase
         $expect = <<<'JSON'
 {
     "id": 34,
-    "methods": "GET",
+    "methods": "GET|POST|PUT|DELETE",
     "path": "\/foo",
     "config": [
         {
@@ -32,14 +32,15 @@ class EntityTest extends ControllerDbTestCase
             "name": "1",
             "methods": [
                 {
-                    "active": true,
-                    "public": true,
-                    "name": "GET",
-                    "action": 19,
-                    "response": 1
+                    "name": "GET"
                 },
                 {
-                    "name": "POST"
+                    "active": true,
+                    "public": false,
+                    "name": "POST",
+                    "action": 2,
+                    "request": 2,
+                    "response": 1
                 },
                 {
                     "name": "PUT"

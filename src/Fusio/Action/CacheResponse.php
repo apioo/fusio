@@ -21,12 +21,15 @@
 
 namespace Fusio\Action;
 
+use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
+use Fusio\Processor;
 use Fusio\Request;
+use PSX\Cache;
 
 /**
  * CacheResponse
@@ -45,15 +48,15 @@ class CacheResponse implements ActionInterface
 
     /**
      * @Inject
-     * @var \PSX\Cache
-     */
-    protected $cache;
-
-    /**
-     * @Inject
      * @var \Fusio\Processor
      */
     protected $processor;
+
+    /**
+     * @Inject
+     * @var \PSX\Cache
+     */
+    protected $cache;
 
     public function getName()
     {
@@ -85,5 +88,20 @@ class CacheResponse implements ActionInterface
         $form->add(new Element\Input('expire', 'Expire', 'text', 'Number of seconds when the cache expires'));
 
         return $form;
+    }
+
+    public function setConnection(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function setProcessor(Processor $processor)
+    {
+        $this->processor = $processor;
+    }
+
+    public function setCache(Cache $cache)
+    {
+        $this->cache = $cache;
     }
 }

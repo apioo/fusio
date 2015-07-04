@@ -28,7 +28,9 @@ use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Response;
+use Fusio\Template\Parser;
 use PSX\Data\Writer;
+use PSX\Http;
 use PSX\Http\PostRequest;
 
 /**
@@ -86,5 +88,15 @@ class HttpRequest implements ActionInterface
         $form->add(new Element\TextArea('body', 'Body', 'text', 'The body for the POST request'));
 
         return $form;
+    }
+
+    public function setHttp(Http $http)
+    {
+        $this->http = $http;
+    }
+
+    public function setTemplateParser(Parser $templateParser)
+    {
+        $this->templateParser = $templateParser;
     }
 }

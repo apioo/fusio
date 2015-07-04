@@ -40,12 +40,12 @@ class Parser
     protected $loader;
     protected $twig;
 
-    public function __construct($debug)
+    public function __construct($debug, $cache = true)
     {
         $this->loader = new StackLoader();
         $this->twig   = new Environment($this->loader, [
             'debug'      => $debug,
-            'cache'      => PSX_PATH_CACHE,
+            'cache'      => $cache ? PSX_PATH_CACHE : false,
             'autoescape' => false,
         ]);
     }

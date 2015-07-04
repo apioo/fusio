@@ -21,14 +21,17 @@
 
 namespace Fusio\Action;
 
+use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
+use Fusio\Connector;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Response;
+use Fusio\Template\Parser;
 use MongoCollection;
 use MongoDB;
 
@@ -101,5 +104,20 @@ class MongoFetchAll implements ActionInterface
         $form->add(new Element\TextArea('projection', 'Projection', 'json', 'Specifies the fields to return using <a href="http://docs.mongodb.org/manual/reference/operator/projection/">projection operators</a>. To return all fields in the matching document, omit this parameter.'));
 
         return $form;
+    }
+
+    public function setConnection(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function setConnector(Connector $connector)
+    {
+        $this->connector = $connector;
+    }
+
+    public function setTemplateParser(Parser $templateParser)
+    {
+        $this->templateParser = $templateParser;
     }
 }

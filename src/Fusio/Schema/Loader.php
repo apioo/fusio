@@ -49,7 +49,7 @@ class Loader
             $cache = isset($row['cache']) ? $row['cache'] : null;
 
             if (!empty($cache)) {
-                $cache = unserialize($cache);
+                $cache = unserialize(base64_decode($cache));
 
                 if ($cache instanceof SchemaInterface) {
                     return $cache;

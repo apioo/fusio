@@ -29,6 +29,7 @@ use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Response;
+use Fusio\Template\Parser;
 use PSX\Http;
 use PSX\Json;
 
@@ -60,7 +61,7 @@ class StaticResponse implements ActionInterface
         if (!empty($response)) {
             $statusCode = $configuration->get('statusCode') ?: 200;
 
-            return new Response($statusCode, [], json_decode($response));
+            return new Response($statusCode, [], Json::decode($response, false));
         } else {
             throw new ConfigurationException('No response defined');
         }
@@ -73,5 +74,10 @@ class StaticResponse implements ActionInterface
         $form->add(new Element\TextArea('response', 'Response', 'json', 'The response in JSON format'));
 
         return $form;
+    }
+
+    public function setTemplateParser(Parser $templateParser)
+    {
+        $this->templateParser = $templateParser;
     }
 }

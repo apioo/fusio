@@ -21,14 +21,17 @@
 
 namespace Fusio\Action;
 
+use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\ConfigurationException;
+use Fusio\Connector;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Response;
+use Fusio\Template\Parser;
 use MongoCollection;
 use MongoDB;
 
@@ -98,5 +101,20 @@ class MongoInsert implements ActionInterface
         $form->add(new Element\TextArea('document', 'Document', 'json', 'The document containing the data'));
 
         return $form;
+    }
+
+    public function setConnection(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function setConnector(Connector $connector)
+    {
+        $this->connector = $connector;
+    }
+
+    public function setTemplateParser(Parser $templateParser)
+    {
+        $this->templateParser = $templateParser;
     }
 }

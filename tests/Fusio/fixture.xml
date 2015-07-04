@@ -1,115 +1,743 @@
-<?xml version="1.0" ?>
-<dataset>
-    <fusio_action id="1" name="Sql-Fetch-All" class="Fusio\Action\SqlFetchAll" config="a:2:{s:10:&quot;connection&quot;;i:1;s:3:&quot;sql&quot;;s:17:&quot;SELECT * FROM foo&quot;;}
-" date="2015-02-27 19:59:15" />
-    <fusio_action id="2" name="Sql-Fetch-Row" class="Fusio\Action\SqlFetchRow" config="a:2:{s:10:&quot;connection&quot;;i:1;s:3:&quot;sql&quot;;s:17:&quot;SELECT * FROM foo&quot;;}
-" date="2015-02-27 19:59:15" />
-    <fusio_user id="1" status="1" name="admin" password="$2y$10$XIjrxAWxA1/0sVcN9kXcfu9ev5IMWYdLxEJ.U6q12Q/Aiw2iH/qFK" date="2015-02-27 19:59:15" />
-    <fusio_user id="2" status="0" name="consumer" password="$2y$10$XIjrxAWxA1/0sVcN9kXcfu9ev5IMWYdLxEJ.U6q12Q/Aiw2iH/qFK" date="2015-02-27 19:59:15" />
-    <fusio_user id="3" status="2" name="disabled" password="$2y$10$XIjrxAWxA1/0sVcN9kXcfu9ev5IMWYdLxEJ.U6q12Q/Aiw2iH/qFK" date="2015-02-27 19:59:15" />
-    <fusio_user_scope id="1" userId="2" scopeId="1" />
-    <fusio_user_scope id="2" userId="2" scopeId="2" />
-    <fusio_scope id="1" name="backend" />
-    <fusio_scope id="2" name="foo" />
-    <fusio_scope id="3" name="bar" />
-    <fusio_scope_routes id="1" scopeId="1" routeId="1" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="2" scopeId="1" routeId="2" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="3" scopeId="1" routeId="3" allow="1" methods="GET" />
-    <fusio_scope_routes id="4" scopeId="1" routeId="4" allow="1" methods="GET" />
-    <fusio_scope_routes id="5" scopeId="1" routeId="5" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="6" scopeId="1" routeId="6" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="7" scopeId="1" routeId="7" allow="1" methods="DELETE" />
-    <fusio_scope_routes id="8" scopeId="1" routeId="8" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="9" scopeId="1" routeId="9" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="10" scopeId="1" routeId="10" allow="1" methods="GET" />
-    <fusio_scope_routes id="11" scopeId="1" routeId="11" allow="1" methods="GET" />
-    <fusio_scope_routes id="12" scopeId="1" routeId="12" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="13" scopeId="1" routeId="13" allow="1" methods="GET" />
-    <fusio_scope_routes id="14" scopeId="1" routeId="14" allow="1" methods="GET" />
-    <fusio_scope_routes id="15" scopeId="1" routeId="15" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="16" scopeId="1" routeId="16" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="17" scopeId="1" routeId="17" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="18" scopeId="1" routeId="18" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="19" scopeId="1" routeId="19" allow="1" methods="GET" />
-    <fusio_scope_routes id="20" scopeId="1" routeId="20" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="21" scopeId="1" routeId="21" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="22" scopeId="1" routeId="22" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="23" scopeId="1" routeId="23" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_scope_routes id="24" scopeId="1" routeId="24" allow="1" methods="GET" />
-    <fusio_scope_routes id="25" scopeId="1" routeId="25" allow="1" methods="GET" />
-    <fusio_scope_routes id="26" scopeId="1" routeId="26" allow="1" methods="GET" />
-    <fusio_scope_routes id="27" scopeId="1" routeId="27" allow="1" methods="GET" />
-    <fusio_scope_routes id="28" scopeId="1" routeId="28" allow="1" methods="GET" />
-    <fusio_scope_routes id="29" scopeId="1" routeId="29" allow="1" methods="GET" />
-    <fusio_scope_routes id="30" scopeId="1" routeId="30" allow="1" methods="GET|POST" />
-    <fusio_scope_routes id="31" scopeId="1" routeId="31" allow="1" methods="POST" />
-    <fusio_scope_routes id="32" scopeId="1" routeId="32" allow="1" methods="GET|POST" />
-    <fusio_scope_routes id="33" scopeId="1" routeId="33" allow="1" methods="GET" />
-    <fusio_scope_routes id="34" scopeId="3" routeId="34" allow="1" methods="GET|POST|PUT|DELETE" />
-    <fusio_routes id="1" status="1" methods="GET|POST|PUT|DELETE" path="/backend" controller="Fusio\Backend\Application\Index" />
-    <fusio_routes id="2" status="1" methods="GET|POST|PUT|DELETE" path="/backend/action" controller="Fusio\Backend\Api\Action\Collection" />
-    <fusio_routes id="3" status="1" methods="GET" path="/backend/action/list" controller="Fusio\Backend\Api\Action\ListActions::doIndex" />
-    <fusio_routes id="4" status="1" methods="GET" path="/backend/action/form" controller="Fusio\Backend\Api\Action\ListActions::doDetail" />
-    <fusio_routes id="5" status="1" methods="GET|POST|PUT|DELETE" path="/backend/action/:action_id" controller="Fusio\Backend\Api\Action\Entity" />
-    <fusio_routes id="6" status="1" methods="GET|POST|PUT|DELETE" path="/backend/app" controller="Fusio\Backend\Api\App\Collection" />
-    <fusio_routes id="7" status="1" methods="DELETE" path="/backend/app/:app_id/token/:token_id" controller="Fusio\Backend\Api\App\Token::doRemove" />
-    <fusio_routes id="8" status="1" methods="GET|POST|PUT|DELETE" path="/backend/app/:app_id" controller="Fusio\Backend\Api\App\Entity" />
-    <fusio_routes id="9" status="1" methods="GET|POST|PUT|DELETE" path="/backend/connection" controller="Fusio\Backend\Api\Connection\Collection" />
-    <fusio_routes id="10" status="1" methods="GET" path="/backend/connection/form" controller="Fusio\Backend\Api\Connection\ListConnections::doDetail" />
-    <fusio_routes id="11" status="1" methods="GET" path="/backend/connection/list" controller="Fusio\Backend\Api\Connection\ListConnections::doIndex" />
-    <fusio_routes id="12" status="1" methods="GET|POST|PUT|DELETE" path="/backend/connection/:connection_id" controller="Fusio\Backend\Api\Connection\Entity" />
-    <fusio_routes id="13" status="1" methods="GET" path="/backend/log" controller="Fusio\Backend\Api\Log\Collection" />
-    <fusio_routes id="14" status="1" methods="GET" path="/backend/log/:log_id" controller="Fusio\Backend\Api\Log\Entity" />
-    <fusio_routes id="15" status="1" methods="GET|POST|PUT|DELETE" path="/backend/routes" controller="Fusio\Backend\Api\Routes\Collection" />
-    <fusio_routes id="16" status="1" methods="GET|POST|PUT|DELETE" path="/backend/routes/:route_id" controller="Fusio\Backend\Api\Routes\Entity" />
-    <fusio_routes id="17" status="1" methods="GET|POST|PUT|DELETE" path="/backend/schema" controller="Fusio\Backend\Api\Schema\Collection" />
-    <fusio_routes id="18" status="1" methods="GET|POST|PUT|DELETE" path="/backend/schema/:schema_id" controller="Fusio\Backend\Api\Schema\Entity" />
-    <fusio_routes id="19" status="1" methods="GET" path="/backend/schema/preview/:schema_id" controller="Fusio\Backend\Api\Schema\Preview" />
-    <fusio_routes id="20" status="1" methods="GET|POST|PUT|DELETE" path="/backend/scope" controller="Fusio\Backend\Api\Scope\Collection" />
-    <fusio_routes id="21" status="1" methods="GET|POST|PUT|DELETE" path="/backend/scope/:scope_id" controller="Fusio\Backend\Api\Scope\Entity" />
-    <fusio_routes id="22" status="1" methods="GET|POST|PUT|DELETE" path="/backend/user" controller="Fusio\Backend\Api\User\Collection" />
-    <fusio_routes id="23" status="1" methods="GET|POST|PUT|DELETE" path="/backend/user/:user_id" controller="Fusio\Backend\Api\User\Entity" />
-    <fusio_routes id="24" status="1" methods="GET" path="/backend/dashboard/incoming_requests" controller="Fusio\Backend\Api\Dashboard\IncomingRequests" />
-    <fusio_routes id="25" status="1" methods="GET" path="/backend/dashboard/most_used_routes" controller="Fusio\Backend\Api\Dashboard\MostUsedRoutes" />
-    <fusio_routes id="26" status="1" methods="GET" path="/backend/dashboard/most_used_apps" controller="Fusio\Backend\Api\Dashboard\MostUsedApps" />
-    <fusio_routes id="27" status="1" methods="GET" path="/backend/dashboard/latest_requests" controller="Fusio\Backend\Api\Dashboard\LatestRequests" />
-    <fusio_routes id="28" status="1" methods="GET" path="/backend/dashboard/latest_apps" controller="Fusio\Backend\Api\Dashboard\LatestApps" />
-    <fusio_routes id="29" status="1" methods="GET" path="/backend/dashboard/latest_users" controller="Fusio\Backend\Api\Dashboard\LatestUsers" />
-    <fusio_routes id="30" status="1" methods="GET|POST" path="/backend/token" controller="Fusio\Backend\Authorization\Token" />
-    <fusio_routes id="31" status="1" methods="POST" path="/authorization/revoke" controller="Fusio\Authorization\Revoke" />
-    <fusio_routes id="32" status="1" methods="GET|POST" path="/authorization/token" controller="Fusio\Authorization\Token" />
-    <fusio_routes id="33" status="1" methods="GET" path="/authorization/whoami" controller="Fusio\Authorization\Whoami" />
-    <fusio_routes id="34" status="1" methods="GET|POST|PUT|DELETE" path="/foo" controller="Fusio\Controller\SchemaApiController" config="a:1:{i:0;C:15:&quot;PSX\Data\Record&quot;:696:{a:2:{s:4:&quot;name&quot;;s:6:&quot;config&quot;;s:6:&quot;fields&quot;;a:4:{s:6:&quot;active&quot;;b:1;s:6:&quot;status&quot;;i:4;s:4:&quot;name&quot;;s:1:&quot;1&quot;;s:7:&quot;methods&quot;;a:4:{i:0;C:15:&quot;PSX\Data\Record&quot;:141:{a:2:{s:4:&quot;name&quot;;s:6:&quot;method&quot;;s:6:&quot;fields&quot;;a:5:{s:6:&quot;active&quot;;b:0;s:6:&quot;public&quot;;b:0;s:4:&quot;name&quot;;s:3:&quot;GET&quot;;s:6:&quot;action&quot;;i:19;s:8:&quot;response&quot;;i:1;}}}i:1;C:15:&quot;PSX\Data\Record&quot;:160:{a:2:{s:4:&quot;name&quot;;s:6:&quot;method&quot;;s:6:&quot;fields&quot;;a:6:{s:6:&quot;active&quot;;b:1;s:6:&quot;public&quot;;b:1;s:4:&quot;name&quot;;s:4:&quot;POST&quot;;s:6:&quot;action&quot;;i:11;s:7:&quot;request&quot;;i:2;s:8:&quot;response&quot;;i:1;}}}i:2;C:15:&quot;PSX\Data\Record&quot;:70:{a:2:{s:4:&quot;name&quot;;s:6:&quot;method&quot;;s:6:&quot;fields&quot;;a:1:{s:4:&quot;name&quot;;s:3:&quot;PUT&quot;;}}}i:3;C:15:&quot;PSX\Data\Record&quot;:73:{a:2:{s:4:&quot;name&quot;;s:6:&quot;method&quot;;s:6:&quot;fields&quot;;a:1:{s:4:&quot;name&quot;;s:6:&quot;DELETE&quot;;}}}}}}}}" />
-    <fusio_connection id="1" name="Native-Connection" class="Fusio\Connection\Native" config="a:0:{}" />
-    <fusio_connection id="2" name="DBAL" class="Fusio\Connection\DBAL" config="a:5:{s:4:&quot;type&quot;;s:9:&quot;pdo_mysql&quot;;s:4:&quot;host&quot;;s:9:&quot;127.0.0.1&quot;;s:8:&quot;username&quot;;s:4:&quot;root&quot;;s:8:&quot;password&quot;;s:3:&quot;foo&quot;;s:8:&quot;database&quot;;s:3:&quot;bar&quot;;}" />
-    <fusio_app id="1" userId="1" status="1" name="Backend" url="http://fusio-project.org" appKey="40d05050-52df-4982-9550-09f46522b73b" appSecret="dede66744fffadc418f8aa87cb843f66004c070b200b2c224800d6d2f6b11e32" date="2015-02-15 12:44:41" />
-    <fusio_app id="2" userId="2" status="1" name="Foo-App" url="http://google.com" appKey="5347307d-d801-4075-9aaa-a21a29a448c5" appSecret="342cefac55939b31cd0a26733f9a4f061c0829ed87dae7caff50feaa55aff23d" date="2015-02-22 22:19:07" />
-    <fusio_app id="3" userId="2" status="2" name="Pending" url="http://google.com" appKey="7c14809c-544b-43bd-9002-23e1c2de6067" appSecret="bb0574181eb4a1326374779fe33e90e2c427f28ab0fc1ffd168bfd5309ee7caa" date="2015-02-22 22:19:07" />
-    <fusio_app id="4" userId="2" status="3" name="Deactivated" url="http://google.com" appKey="f46af464-f7eb-4d04-8661-13063a30826b" appSecret="17b882987298831a3af9c852f9cd0219d349ba61fcf3fc655ac0f07eece951f9" date="2015-02-22 22:19:07" />
-    <fusio_app_scope id="1" appId="2" scopeId="2" />
-    <fusio_app_scope id="2" appId="2" scopeId="3" />
-    <fusio_app_scope id="3" appId="2" scopeId="4" />
-    <fusio_app_scope id="4" appId="2" scopeId="5" />
-    <fusio_app_token id="1" appId="1" userId="1" status="1" token="da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf" scope="backend" ip="127.0.0.1" date="2015-06-25 22:49:09" />
-    <fusio_app_token id="2" appId="2" userId="2" status="1" token="b41344388feed85bc362e518387fdc8c81b896bfe5e794131e1469770571d873" scope="bar" ip="127.0.0.1" date="2015-06-25 22:49:09" />
-    <fusio_log id="1" appId="1" routeId="1" ip="127.0.0.1" userAgent="Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36" method="GET" path="/bar" header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" body="foobar" date="2015-06-25 22:49:09" />
-	<fusio_schema id="1" name="Passthru" source="{}" cache="" />
-	<fusio_schema id="2" name="Foo-Schema" source="{
-    &quot;id&quot;: &quot;http://phpsx.org#&quot;,
-    &quot;title&quot;: &quot;test&quot;,
-    &quot;type&quot;: &quot;object&quot;,
-    &quot;properties&quot;: {
-        &quot;title&quot;: {
-            &quot;type&quot;: &quot;string&quot;
+<?xml version="1.0"?>
+<mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <database name="fusio_test">
+        <table_data name="fusio_user">
+            <row>
+                <field name="id">1</field>
+                <field name="status">1</field>
+                <field name="name">admin</field>
+                <field name="password">$2y$10$XIjrxAWxA1/0sVcN9kXcfu9ev5IMWYdLxEJ.U6q12Q/Aiw2iH/qFK</field>
+                <field name="date">2015-02-27 19:59:15</field>
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="status">0</field>
+                <field name="name">consumer</field>
+                <field name="password">$2y$10$XIjrxAWxA1/0sVcN9kXcfu9ev5IMWYdLxEJ.U6q12Q/Aiw2iH/qFK</field>
+                <field name="date">2015-02-27 19:59:15</field>
+            </row>
+            <row>
+                <field name="id">3</field>
+                <field name="status">2</field>
+                <field name="name">disabled</field>
+                <field name="password">$2y$10$XIjrxAWxA1/0sVcN9kXcfu9ev5IMWYdLxEJ.U6q12Q/Aiw2iH/qFK</field>
+                <field name="date">2015-02-27 19:59:15</field>
+            </row>
+        </table_data>
+        <table_data name="fusio_action">
+            <row>
+                <field name="id">1</field>
+                <field name="name">Sql-Fetch-All</field>
+                <field name="class">Fusio\Action\SqlFetchAll</field>
+                <field name="config" xsi:type="xs:hexBinary">613A323A7B733A31303A22636F6E6E656374696F6E223B693A313B733A333A2273716C223B733A32323A2253454C454354202A2046524F4D206170705F6E657773223B7D</field>
+                <field name="date">2015-02-27 19:59:15</field>
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="name">Sql-Fetch-Row</field>
+                <field name="class">Fusio\Action\SqlFetchRow</field>
+                <field name="config" xsi:type="xs:hexBinary">613A323A7B733A31303A22636F6E6E656374696F6E223B693A313B733A333A2273716C223B733A32323A2253454C454354202A2046524F4D206170705F6E657773223B7D</field>
+                <field name="date">2015-02-27 19:59:15</field>
+            </row>
+        </table_data>
+        <table_data name="fusio_app">
+            <row>
+                <field name="id">1</field>
+                <field name="userId">1</field>
+                <field name="status">1</field>
+                <field name="name">Backend</field>
+                <field name="url">http://fusio-project.org</field>
+                <field name="appKey">40d05050-52df-4982-9550-09f46522b73b</field>
+                <field name="appSecret">dede66744fffadc418f8aa87cb843f66004c070b200b2c224800d6d2f6b11e32</field>
+                <field name="date">2015-02-15 12:44:41</field>
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="userId">2</field>
+                <field name="status">1</field>
+                <field name="name">Foo-App</field>
+                <field name="url">http://google.com</field>
+                <field name="appKey">5347307d-d801-4075-9aaa-a21a29a448c5</field>
+                <field name="appSecret">342cefac55939b31cd0a26733f9a4f061c0829ed87dae7caff50feaa55aff23d</field>
+                <field name="date">2015-02-22 22:19:07</field>
+            </row>
+            <row>
+                <field name="id">3</field>
+                <field name="userId">2</field>
+                <field name="status">2</field>
+                <field name="name">Pending</field>
+                <field name="url">http://google.com</field>
+                <field name="appKey">7c14809c-544b-43bd-9002-23e1c2de6067</field>
+                <field name="appSecret">bb0574181eb4a1326374779fe33e90e2c427f28ab0fc1ffd168bfd5309ee7caa</field>
+                <field name="date">2015-02-22 22:19:07</field>
+            </row>
+            <row>
+                <field name="id">4</field>
+                <field name="userId">2</field>
+                <field name="status">3</field>
+                <field name="name">Deactivated</field>
+                <field name="url">http://google.com</field>
+                <field name="appKey">f46af464-f7eb-4d04-8661-13063a30826b</field>
+                <field name="appSecret">17b882987298831a3af9c852f9cd0219d349ba61fcf3fc655ac0f07eece951f9</field>
+                <field name="date">2015-02-22 22:19:07</field>
+            </row>
+        </table_data>
+        <table_data name="fusio_connection">
+            <row>
+                <field name="id">1</field>
+                <field name="name">Native-Connection</field>
+                <field name="class">Fusio\Connection\Native</field>
+                <field name="config">a:0:{}</field>
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="name">DBAL</field>
+                <field name="class">Fusio\Connection\DBAL</field>
+                <field name="config">a:5:{s:4:&quot;type&quot;;s:9:&quot;pdo_mysql&quot;;s:4:&quot;host&quot;;s:9:&quot;127.0.0.1&quot;;s:8:&quot;username&quot;;s:4:&quot;root&quot;;s:8:&quot;password&quot;;s:3:&quot;foo&quot;;s:8:&quot;database&quot;;s:3:&quot;bar&quot;;}</field>
+            </row>
+        </table_data>
+        <table_data name="fusio_routes">
+            <row>
+                <field name="id">1</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend</field>
+                <field name="controller">Fusio\Backend\Application\Index</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/action</field>
+                <field name="controller">Fusio\Backend\Api\Action\Collection</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">3</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/action/list</field>
+                <field name="controller">Fusio\Backend\Api\Action\ListActions::doIndex</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">4</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/action/form</field>
+                <field name="controller">Fusio\Backend\Api\Action\ListActions::doDetail</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">5</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/action/:action_id</field>
+                <field name="controller">Fusio\Backend\Api\Action\Entity</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">6</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/app</field>
+                <field name="controller">Fusio\Backend\Api\App\Collection</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">7</field>
+                <field name="status">1</field>
+                <field name="methods">DELETE</field>
+                <field name="path">/backend/app/:app_id/token/:token_id</field>
+                <field name="controller">Fusio\Backend\Api\App\Token::doRemove</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">8</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/app/:app_id</field>
+                <field name="controller">Fusio\Backend\Api\App\Entity</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">9</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/connection</field>
+                <field name="controller">Fusio\Backend\Api\Connection\Collection</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">10</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/connection/form</field>
+                <field name="controller">Fusio\Backend\Api\Connection\ListConnections::doDetail</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">11</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/connection/list</field>
+                <field name="controller">Fusio\Backend\Api\Connection\ListConnections::doIndex</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">12</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/connection/:connection_id</field>
+                <field name="controller">Fusio\Backend\Api\Connection\Entity</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">13</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/log</field>
+                <field name="controller">Fusio\Backend\Api\Log\Collection</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">14</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/log/:log_id</field>
+                <field name="controller">Fusio\Backend\Api\Log\Entity</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">15</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/routes</field>
+                <field name="controller">Fusio\Backend\Api\Routes\Collection</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">16</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/routes/:route_id</field>
+                <field name="controller">Fusio\Backend\Api\Routes\Entity</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">17</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/schema</field>
+                <field name="controller">Fusio\Backend\Api\Schema\Collection</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">18</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/schema/:schema_id</field>
+                <field name="controller">Fusio\Backend\Api\Schema\Entity</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">19</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/schema/preview/:schema_id</field>
+                <field name="controller">Fusio\Backend\Api\Schema\Preview</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">20</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/scope</field>
+                <field name="controller">Fusio\Backend\Api\Scope\Collection</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">21</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/scope/:scope_id</field>
+                <field name="controller">Fusio\Backend\Api\Scope\Entity</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">22</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/user</field>
+                <field name="controller">Fusio\Backend\Api\User\Collection</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">23</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/backend/user/:user_id</field>
+                <field name="controller">Fusio\Backend\Api\User\Entity</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">24</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/dashboard/incoming_requests</field>
+                <field name="controller">Fusio\Backend\Api\Dashboard\IncomingRequests</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">25</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/dashboard/most_used_routes</field>
+                <field name="controller">Fusio\Backend\Api\Dashboard\MostUsedRoutes</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">26</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/dashboard/most_used_apps</field>
+                <field name="controller">Fusio\Backend\Api\Dashboard\MostUsedApps</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">27</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/dashboard/latest_requests</field>
+                <field name="controller">Fusio\Backend\Api\Dashboard\LatestRequests</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">28</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/dashboard/latest_apps</field>
+                <field name="controller">Fusio\Backend\Api\Dashboard\LatestApps</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">29</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/backend/dashboard/latest_users</field>
+                <field name="controller">Fusio\Backend\Api\Dashboard\LatestUsers</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">30</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST</field>
+                <field name="path">/backend/token</field>
+                <field name="controller">Fusio\Backend\Authorization\Token</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">31</field>
+                <field name="status">1</field>
+                <field name="methods">POST</field>
+                <field name="path">/authorization/revoke</field>
+                <field name="controller">Fusio\Authorization\Revoke</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">32</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST</field>
+                <field name="path">/authorization/token</field>
+                <field name="controller">Fusio\Authorization\Token</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">33</field>
+                <field name="status">1</field>
+                <field name="methods">GET</field>
+                <field name="path">/authorization/whoami</field>
+                <field name="controller">Fusio\Authorization\Whoami</field>
+                <field name="config" xsi:nil="true" />
+            </row>
+            <row>
+                <field name="id">34</field>
+                <field name="status">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+                <field name="path">/foo</field>
+                <field name="controller">Fusio\Controller\SchemaApiController</field>
+                <field name="config" xsi:type="xs:hexBinary">613A313A7B693A303B433A31353A225053585C446174615C5265636F7264223A3632333A7B613A323A7B733A343A226E616D65223B733A363A22636F6E666967223B733A363A226669656C6473223B613A343A7B733A363A22616374697665223B623A313B733A363A22737461747573223B693A343B733A343A226E616D65223B733A313A2231223B733A373A226D6574686F6473223B613A343A7B693A303B433A31353A225053585C446174615C5265636F7264223A37303A7B613A323A7B733A343A226E616D65223B733A363A226D6574686F64223B733A363A226669656C6473223B613A313A7B733A343A226E616D65223B733A333A22474554223B7D7D7D693A313B433A31353A225053585C446174615C5265636F7264223A3135393A7B613A323A7B733A343A226E616D65223B733A363A226D6574686F64223B733A363A226669656C6473223B613A363A7B733A363A22616374697665223B623A313B733A363A227075626C6963223B623A303B733A343A226E616D65223B733A343A22504F5354223B733A363A22616374696F6E223B693A323B733A373A2272657175657374223B693A323B733A383A22726573706F6E7365223B693A313B7D7D7D693A323B433A31353A225053585C446174615C5265636F7264223A37303A7B613A323A7B733A343A226E616D65223B733A363A226D6574686F64223B733A363A226669656C6473223B613A313A7B733A343A226E616D65223B733A333A22505554223B7D7D7D693A333B433A31353A225053585C446174615C5265636F7264223A37333A7B613A323A7B733A343A226E616D65223B733A363A226D6574686F64223B733A363A226669656C6473223B613A313A7B733A343A226E616D65223B733A363A2244454C455445223B7D7D7D7D7D7D7D7D</field>
+            </row>
+        </table_data>
+        <table_data name="fusio_log">
+            <row>
+                <field name="id">1</field>
+                <field name="appId">1</field>
+                <field name="routeId">1</field>
+                <field name="ip">127.0.0.1</field>
+                <field name="userAgent">Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36</field>
+                <field name="method">GET</field>
+                <field name="path">/bar</field>
+                <field name="header">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</field>
+                <field name="body">foobar</field>
+                <field name="date">2015-06-25 22:49:09</field>
+            </row>
+        </table_data>
+        <table_data name="fusio_schema">
+            <row>
+                <field name="id">1</field>
+                <field name="name">Passthru</field>
+                <field name="propertyName" xsi:nil="true" />
+                <field name="source">{}</field>
+                <field name="cache"></field>
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="name">Foo-Schema</field>
+                <field name="propertyName" xsi:nil="true" />
+                <field name="source"><![CDATA[
+{
+    "id": "http://phpsx.org#",
+    "title": "test",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string"
         },
-        &quot;content&quot;: {
-            &quot;type&quot;: &quot;string&quot;
+        "content": {
+            "type": "string"
         },
-        &quot;date&quot;: {
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;format&quot;: &quot;date-time&quot;
+        "date": {
+            "type": "string",
+            "format": "date-time"
         }
     }
 }
-" cache="" />
-</dataset>
+]]></field>
+                <field name="cache" xsi:type="xs:hexBinary">547A6F784E546F6955464E59584552686447466355324E6F5A573168496A6F784F6E747A4F6A45784F6949414B674277636D39775A584A3065534937547A6F7A4E6A6F6955464E59584552686447466355324E6F5A573168584642796233426C636E523558454E76625842735A5868556558426C496A6F314F6E747A4F6A457A4F6949414B674277636D39775A584A306157567A496A74684F6A4D3665334D364E546F6964476C30624755694F3038364D7A5536496C4254574678455958526858464E6A6147567459567851636D39775A584A306556785464484A70626D64556558426C496A6F344F6E747A4F6A45794F6949414B6742746157354D5A57356E644767694F303437637A6F784D6A6F6941436F4162574634544756755A33526F496A744F4F334D364D54413649674171414842686448526C636D34694F303437637A6F784E446F6941436F415A5735316257567959585270623234694F303437637A6F334F6949414B6742755957316C496A747A4F6A5536496E52706447786C496A747A4F6A45304F6949414B67426B5A584E6A636D6C7764476C7662694937546A747A4F6A45784F6949414B6742795A58463161584A6C5A434937546A747A4F6A45794F6949414B6742795A575A6C636D5675593255694F30343766584D364E7A6F69593239756447567564434937547A6F7A4E546F6955464E59584552686447466355324E6F5A573168584642796233426C636E523558464E30636D6C755A315235634755694F6A673665334D364D5449364967417141473170626B786C626D643061434937546A747A4F6A45794F6949414B6742745958684D5A57356E644767694F303437637A6F784D446F6941436F41634746306447567962694937546A747A4F6A45304F6949414B67426C626E56745A584A6864476C7662694937546A747A4F6A63364967417141473568625755694F334D364E7A6F69593239756447567564434937637A6F784E446F6941436F415A47567A59334A7063485270623234694F303437637A6F784D546F6941436F41636D567864576C795A5751694F303437637A6F784D6A6F6941436F41636D566D5A584A6C626D4E6C496A744F4F33317A4F6A5136496D5268644755694F3038364D7A6336496C4254574678455958526858464E6A6147567459567851636D39775A584A30655678455958526C56476C745A565235634755694F6A673665334D364D5449364967417141473170626B786C626D643061434937546A747A4F6A45794F6949414B6742745958684D5A57356E644767694F303437637A6F784D446F6941436F41634746306447567962694937546A747A4F6A45304F6949414B67426C626E56745A584A6864476C7662694937546A747A4F6A63364967417141473568625755694F334D364E446F695A4746305A534937637A6F784E446F6941436F415A47567A59334A7063485270623234694F303437637A6F784D546F6941436F41636D567864576C795A5751694F303437637A6F784D6A6F6941436F41636D566D5A584A6C626D4E6C496A744F4F333139637A6F334F6949414B6742755957316C496A747A4F6A5136496E526C633351694F334D364D545136496741714147526C63324E796158423061573975496A744F4F334D364D5445364967417141484A6C63585670636D566B496A744F4F334D364D5449364967417141484A6C5A6D56795A57356A5A534937546A743966513D3D</field>
+            </row>
+        </table_data>
+        <table_data name="fusio_scope">
+            <row>
+                <field name="id">1</field>
+                <field name="name">backend</field>
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="name">foo</field>
+            </row>
+            <row>
+                <field name="id">3</field>
+                <field name="name">bar</field>
+            </row>
+        </table_data>
+        <table_data name="fusio_app_scope">
+            <row>
+                <field name="id">1</field>
+                <field name="appId">1</field>
+                <field name="scopeId">1</field>
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="appId">2</field>
+                <field name="scopeId">2</field>
+            </row>
+            <row>
+                <field name="id">3</field>
+                <field name="appId">2</field>
+                <field name="scopeId">3</field>
+            </row>
+        </table_data>
+        <table_data name="fusio_app_token">
+            <row>
+                <field name="id">1</field>
+                <field name="appId">1</field>
+                <field name="userId">1</field>
+                <field name="status">1</field>
+                <field name="token">da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf</field>
+                <field name="scope">backend</field>
+                <field name="ip">127.0.0.1</field>
+                <field name="expire" xsi:nil="true" />
+                <field name="date">2015-06-25 22:49:09</field>
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="appId">2</field>
+                <field name="userId">2</field>
+                <field name="status">1</field>
+                <field name="token">b41344388feed85bc362e518387fdc8c81b896bfe5e794131e1469770571d873</field>
+                <field name="scope">bar</field>
+                <field name="ip">127.0.0.1</field>
+                <field name="expire" xsi:nil="true" />
+                <field name="date">2015-06-25 22:49:09</field>
+            </row>
+        </table_data>
+        <table_data name="fusio_scope_routes">
+            <row>
+                <field name="id">1</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">1</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">2</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">3</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">3</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">4</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">4</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">5</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">5</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">6</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">6</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">7</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">7</field>
+                <field name="allow">1</field>
+                <field name="methods">DELETE</field>
+            </row>
+            <row>
+                <field name="id">8</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">8</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">9</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">9</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">10</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">10</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">11</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">11</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">12</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">12</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">13</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">13</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">14</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">14</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">15</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">15</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">16</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">16</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">17</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">17</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">18</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">18</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">19</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">19</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">20</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">20</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">21</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">21</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">22</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">22</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">23</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">23</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+            <row>
+                <field name="id">24</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">24</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">25</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">25</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">26</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">26</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">27</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">27</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">28</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">28</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">29</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">29</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">30</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">30</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST</field>
+            </row>
+            <row>
+                <field name="id">31</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">31</field>
+                <field name="allow">1</field>
+                <field name="methods">POST</field>
+            </row>
+            <row>
+                <field name="id">32</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">32</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST</field>
+            </row>
+            <row>
+                <field name="id">33</field>
+                <field name="scopeId">1</field>
+                <field name="routeId">33</field>
+                <field name="allow">1</field>
+                <field name="methods">GET</field>
+            </row>
+            <row>
+                <field name="id">34</field>
+                <field name="scopeId">3</field>
+                <field name="routeId">34</field>
+                <field name="allow">1</field>
+                <field name="methods">GET|POST|PUT|DELETE</field>
+            </row>
+        </table_data>
+        <table_data name="fusio_user_scope">
+            <row>
+                <field name="id">1</field>
+                <field name="userId">2</field>
+                <field name="scopeId">1</field>
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="userId">2</field>
+                <field name="scopeId">2</field>
+            </row>
+        </table_data>
+        <table_data name="app_news">
+            <row>
+                <field name="id">1</field>
+                <field name="title">foo</field>
+                <field name="content">bar</field>
+                <field name="date">2015-02-27 19:59:15</field>
+            </row>
+            <row>
+                <field name="id">2</field>
+                <field name="title">bar</field>
+                <field name="content">foo</field>
+                <field name="date">2015-02-27 19:59:15</field>
+            </row>
+        </table_data>
+    </database>
+</mysqldump>

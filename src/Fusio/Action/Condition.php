@@ -21,13 +21,16 @@
 
 namespace Fusio\Action;
 
+use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\App\RateLimit;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
+use Fusio\Processor;
 use Fusio\Request;
+use PSX\Cache;
 use PSX\Data\Accessor;
 use PSX\Validate;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
@@ -109,5 +112,20 @@ class Condition implements ActionInterface, ParserCacheInterface
         $item = $this->cache->getItem(md5($key));
 
         return $item->isHit() ? $item->get() : null;
+    }
+
+    public function setConnection(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function setProcessor(Processor $processor)
+    {
+        $this->processor = $processor;
+    }
+
+    public function setCache(Cache $cache)
+    {
+        $this->cache = $cache;
     }
 }

@@ -21,14 +21,17 @@
 
 namespace Fusio\Action;
 
+use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
+use Fusio\Processor;
 use Fusio\Request;
 use PSX\Data\Record;
 use PSX\Data\Record\GraphTraverser;
+use PSX\Data\Record\ImporterManager;
 use PSX\Data\Record\Visitor\StdClassSerializeVisitor;
 
 /**
@@ -84,5 +87,20 @@ class Pipe implements ActionInterface
         $form->add(new Element\Action('destination', 'Destination', $this->connection, 'The action which receives the response from the source action and returns the response'));
 
         return $form;
+    }
+
+    public function setConnection(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function setProcessor(Processor $processor)
+    {
+        $this->processor = $processor;
+    }
+
+    public function setImporterManager(ImporterManager $importerManager)
+    {
+        $this->importerManager = $importerManager;
     }
 }

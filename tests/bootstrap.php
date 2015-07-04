@@ -5,7 +5,10 @@ $loader->add('Fusio', 'tests');
 
 PSX\Test\Environment::setup(__DIR__ . '/..', function($fromSchema){
 
-	return Fusio\Schema::getSchema();
+	$schema = Fusio\Schema::getSchema();
+    Fusio\TestSchema::appendSchema($schema);
+
+    return $schema;
 
 });
 

@@ -21,11 +21,13 @@
 
 namespace Fusio\Action;
 
+use Doctrine\DBAL\Connection;
 use Fusio\ActionInterface;
 use Fusio\Context;
 use Fusio\Form;
 use Fusio\Form\Element;
 use Fusio\Parameters;
+use Fusio\Processor;
 use Fusio\Request;
 
 /**
@@ -68,5 +70,15 @@ class Composite implements ActionInterface
         $form->add(new Element\Action('out', 'Out', $this->connection, 'The response of this action will be used as response'));
 
         return $form;
+    }
+
+    public function setConnection(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function setProcessor(Processor $processor)
+    {
+        $this->processor = $processor;
     }
 }
