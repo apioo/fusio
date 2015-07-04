@@ -65,18 +65,6 @@ class ListTest extends ControllerDbTestCase
         {
             "name": "RabbitMQ-Push",
             "class": "Fusio\\Action\\RabbitMqPush"
-        },
-        {
-            "name": "SQL-Execute",
-            "class": "Fusio\\Action\\SqlExecute"
-        },
-        {
-            "name": "SQL-Fetch-All",
-            "class": "Fusio\\Action\\SqlFetchAll"
-        },
-        {
-            "name": "Static-Response",
-            "class": "Fusio\\Action\\StaticResponse"
         }
     ]
 }

@@ -4,16 +4,15 @@ namespace Fusio;
 
 use Fusio\App;
 use Fusio\Template\Parser;
+use Psr\Http\Message\StreamInterface;
 use PSX\Data\Object;
 use PSX\Data\RecordInterface;
 use PSX\Http\Request as HttpRequest;
-use Psr\Http\Message\StreamInterface;
 use PSX\Test\Environment;
 use PSX\Uri;
 
 trait ActionTestCaseTrait
 {
-    protected static $appId = 1;
     protected static $con;
 
     protected $connection;
@@ -53,7 +52,7 @@ trait ActionTestCaseTrait
     protected function getParameters(array $parameters = array())
     {
         return new Parameters(array_merge([
-            Parameters::ACTION_ID => self::$appId++,
+            Parameters::ACTION_ID => uniqid(),
             Parameters::ACTION_NAME => 'Foo-App',
             Parameters::ACTION_LAST_MODIFIED => '2015-02-22 22:19:07',
         ], $parameters));

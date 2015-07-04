@@ -4,7 +4,6 @@ namespace Fusio\Action;
 
 use Fusio\ActionTestCaseTrait;
 use Fusio\App;
-use Fusio\Template\Parser;
 
 class StaticResponseTest extends \PHPUnit_Framework_TestCase
 {

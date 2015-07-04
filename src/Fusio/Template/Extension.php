@@ -164,9 +164,4 @@ class Extension extends Twig_Extension_Core
             ),
         );
     }
-
-    public function getName()
-    {
-        return 'fusio';
-    }
 }

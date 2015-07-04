@@ -16,7 +16,7 @@ class SqlFetchAllTest extends \PHPUnit_Extensions_Database_TestCase
         $action = new SqlFetchAll();
         $action->setConnection(Environment::getService('connection'));
         $action->setConnector(Environment::getService('connector'));
-        $action->setTemplateParser(new Parser(true, false));
+        $action->setTemplateParser($this->getTemplateParser());
 
         $parameters = $this->getParameters([
             'connection'   => 1,

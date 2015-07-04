@@ -16,14 +16,14 @@ class SqlFetchRowTest extends \PHPUnit_Extensions_Database_TestCase
         $action = new SqlFetchRow();
         $action->setConnection(Environment::getService('connection'));
         $action->setConnector(Environment::getService('connector'));
-        $action->setTemplateParser(new Parser(true, false));
+        $action->setTemplateParser($this->getTemplateParser());
 
         $parameters = $this->getParameters([
             'connection' => 1,
             'sql'        => 'SELECT * FROM app_news WHERE id = {{ request.uriFragments.get("news_id")|prepare }}',
         ]);
 
-        $response = $action->handle($this->getRequest('GET', array('news_id' => 2)), $parameters, $this->getContext());
+        $response = $action->handle($this->getRequest('GET', ['news_id' => 2]), $parameters, $this->getContext());
 
         $body = new \stdClass();
         $body->id = 2;

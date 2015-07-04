@@ -44,9 +44,11 @@ class Parser
     {
         $this->loader = new StackLoader();
         $this->twig   = new Environment($this->loader, [
-            'debug'      => $debug,
-            'cache'      => $cache ? PSX_PATH_CACHE : false,
-            'autoescape' => false,
+            'debug'            => $debug,
+            'cache'            => $cache ? PSX_PATH_CACHE : false,
+            'autoescape'       => false,
+            'auto_reload'      => true,
+            'strict_variables' => false,
         ]);
     }
 
@@ -59,11 +61,11 @@ class Parser
 
         $this->twig->getFilter(Prepare::FILTER_NAME)->getCallable()->clear();
 
-        return $this->twig->render($configuration->get(Parameters::ACTION_ID), array(
+        return $this->twig->render($configuration->get(Parameters::ACTION_ID), [
             'request' => $request,
             'context' => $context,
             'body'    => new Accessor(new Validate(), $request->getBody()),
-        ));
+        ]);
     }
 
     public function getSqlParameters()
