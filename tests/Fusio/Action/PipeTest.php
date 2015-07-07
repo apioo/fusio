@@ -25,6 +25,13 @@ use Fusio\ActionTestCaseTrait;
 use Fusio\App;
 use PSX\Test\Environment;
 
+/**
+ * PipeTest
+ *
+ * @author  Christoph Kappestein <k42b3.x@gmail.com>
+ * @license http://www.gnu.org/licenses/agpl-3.0
+ * @link    http://fusio-project.org
+ */
 class PipeTest extends \PHPUnit_Extensions_Database_TestCase
 {
     use ActionTestCaseTrait;

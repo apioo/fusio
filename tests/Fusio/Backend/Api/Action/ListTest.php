@@ -23,6 +23,13 @@ namespace Fusio\Backend\Api\Action;
 
 use PSX\Test\ControllerDbTestCase;
 
+/**
+ * ListTest
+ *
+ * @author  Christoph Kappestein <k42b3.x@gmail.com>
+ * @license http://www.gnu.org/licenses/agpl-3.0
+ * @link    http://fusio-project.org
+ */
 class ListTest extends ControllerDbTestCase
 {
     public function getDataSet()

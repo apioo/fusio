@@ -19,10 +19,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Api\Connection;
+namespace Fusio\Controller;
 
 use PSX\Test\ControllerDbTestCase;
 
+/**
+ * SqlFetchRowTest
+ *
+ * @author  Christoph Kappestein <k42b3.x@gmail.com>
+ * @license http://www.gnu.org/licenses/agpl-3.0
+ * @link    http://fusio-project.org
+ */
 class SqlFetchRowTest extends ControllerDbTestCase
 {
     public function getDataSet()

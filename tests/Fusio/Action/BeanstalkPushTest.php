@@ -27,6 +27,13 @@ use PSX\Cache;
 use PSX\Data\Object;
 use PSX\Test\Environment;
 
+/**
+ * BeanstalkPushTest
+ *
+ * @author  Christoph Kappestein <k42b3.x@gmail.com>
+ * @license http://www.gnu.org/licenses/agpl-3.0
+ * @link    http://fusio-project.org
+ */
 class BeanstalkPushTest extends \PHPUnit_Extensions_Database_TestCase
 {
     use ActionTestCaseTrait;

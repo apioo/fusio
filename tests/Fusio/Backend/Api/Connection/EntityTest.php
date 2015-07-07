@@ -24,6 +24,13 @@ namespace Fusio\Backend\Api\Connection;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 
+/**
+ * EntityTest
+ *
+ * @author  Christoph Kappestein <k42b3.x@gmail.com>
+ * @license http://www.gnu.org/licenses/agpl-3.0
+ * @link    http://fusio-project.org
+ */
 class EntityTest extends ControllerDbTestCase
 {
     public function getDataSet()

@@ -30,6 +30,13 @@ use PSX\Http\Request as HttpRequest;
 use PSX\Test\Environment;
 use PSX\Uri;
 
+/**
+ * ActionTestCaseTrait
+ *
+ * @author  Christoph Kappestein <k42b3.x@gmail.com>
+ * @license http://www.gnu.org/licenses/agpl-3.0
+ * @link    http://fusio-project.org
+ */
 trait ActionTestCaseTrait
 {
     protected static $con;

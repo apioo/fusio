@@ -23,6 +23,13 @@ namespace Fusio;
 
 use Doctrine\DBAL\Schema\Schema as DbSchema;
 
+/**
+ * TestSchema
+ *
+ * @author  Christoph Kappestein <k42b3.x@gmail.com>
+ * @license http://www.gnu.org/licenses/agpl-3.0
+ * @link    http://fusio-project.org
+ */
 class TestSchema
 {
     public static function appendSchema(DbSchema $schema)
