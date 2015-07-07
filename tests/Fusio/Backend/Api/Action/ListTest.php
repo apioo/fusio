@@ -69,20 +69,28 @@ class ListTest extends ControllerDbTestCase
             "class": "Fusio\\Action\\HttpRequest"
         },
         {
-            "name": "Mongo-Fetch-All",
-            "class": "Fusio\\Action\\MongoFetchAll"
+            "name": "Pipe",
+            "class": "Fusio\\Action\\Pipe"
         },
         {
-            "name": "Mongo-Fetch-Row",
-            "class": "Fusio\\Action\\MongoFetchRow"
+            "name": "RabbitMQ-Push",
+            "class": "Fusio\\Action\\RabbitMqPush"
         },
         {
-            "name": "Mongo-Insert",
-            "class": "Fusio\\Action\\MongoInsert"
+            "name": "SQL-Execute",
+            "class": "Fusio\\Action\\SqlExecute"
         },
         {
-            "name": "Mongo-Update",
-            "class": "Fusio\\Action\\MongoUpdate"
+            "name": "SQL-Fetch-All",
+            "class": "Fusio\\Action\\SqlFetchAll"
+        },
+        {
+            "name": "SQL-Fetch-Row",
+            "class": "Fusio\\Action\\SqlFetchRow"
+        },
+        {
+            "name": "Static-Response",
+            "class": "Fusio\\Action\\StaticResponse"
         }
     ]
 }
