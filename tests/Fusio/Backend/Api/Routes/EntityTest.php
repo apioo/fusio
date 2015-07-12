@@ -58,7 +58,9 @@ class EntityTest extends ControllerDbTestCase
             "name": "1",
             "methods": [
                 {
-                    "name": "GET"
+                    "name": "GET",
+                    "action": 2,
+                    "response": 2
                 },
                 {
                     "active": true,
