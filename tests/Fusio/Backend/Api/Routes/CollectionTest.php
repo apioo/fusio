@@ -71,7 +71,7 @@ JSON;
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
             'methods' => 'GET|POST|PUT|DELETE',
-            'path'    => '/foo',
+            'path'    => '/bar',
             'config'  => [[
                 'status'  => 4,
                 'name'    => '1',
@@ -112,7 +112,7 @@ JSON;
         $this->assertEquals(35, $row['id']);
         $this->assertEquals(1, $row['status']);
         $this->assertEquals('GET|POST|PUT|DELETE', $row['methods']);
-        $this->assertEquals('/foo', $row['path']);
+        $this->assertEquals('/bar', $row['path']);
         $this->assertEquals('Fusio\Controller\SchemaApiController', $row['controller']);
         $this->assertEquals('a:1:{i:0;C:15:"PSX\Data\Record":517:{a:2:{s:4:"name";s:6:"config";s:6:"fields";a:3:{s:6:"status";i:4;s:4:"name";s:1:"1";s:7:"methods";a:4:{i:0;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"GET";}}}i:1;C:15:"PSX\Data\Record":71:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:4:"POST";}}}i:2;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"PUT";}}}i:3;C:15:"PSX\Data\Record":73:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:6:"DELETE";}}}}}}}}', $row['config']);
     }
