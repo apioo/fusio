@@ -19,31 +19,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Schema;
-
-use PSX\Data\Schema\Property;
-use PSX\Data\SchemaAbstract;
+namespace Fusio;
 
 /**
- * User
+ * Base
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class User extends SchemaAbstract
+class Base
 {
-    public function getDefinition()
-    {
-        $sb = $this->getSchemaBuilder('user');
-        $sb->integer('id');
-        $sb->integer('status');
-        $sb->string('name')
-            ->setPattern('[A-z0-9\-\_\.]{3,32}');
-        $sb->arrayType('scopes')
-            ->setPrototype(Property::getString('name'));
-        $sb->dateTime('date');
+    const VERSION = '0.1';
 
-        return $sb->getProperty();
+    public static function getVersion()
+    {
+        return self::VERSION;
     }
 }

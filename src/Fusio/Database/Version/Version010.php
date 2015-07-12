@@ -19,22 +19,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio;
+namespace Fusio\Database\Version;
 
-use Doctrine\DBAL\Schema\Schema as DbSchema;
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Schema\Schema;
+use Fusio\Database\VersionInterface;
 
 /**
- * Schema
+ * Version010
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Schema
+class Version010 implements VersionInterface
 {
-    public static function getSchema()
+    public function getSchema()
     {
-        $schema = new DbSchema();
+        $schema = new Schema();
 
         $actionTable = $schema->createTable('fusio_action');
         $actionTable->addColumn('id', 'integer', array('autoincrement' => true));
@@ -75,6 +77,7 @@ class Schema
         $appTokenTable->addColumn('expire', 'datetime', array('notnull' => false));
         $appTokenTable->addColumn('date', 'datetime');
         $appTokenTable->setPrimaryKey(array('id'));
+        $appTokenTable->addUniqueIndex(array('token'));
 
         $connectionTable = $schema->createTable('fusio_connection');
         $connectionTable->addColumn('id', 'integer', array('autoincrement' => true));
@@ -82,6 +85,7 @@ class Schema
         $connectionTable->addColumn('class', 'string', array('length' => 255));
         $connectionTable->addColumn('config', 'blob', array('notnull' => false));
         $connectionTable->setPrimaryKey(array('id'));
+        $connectionTable->addUniqueIndex(array('name'));
 
         $logTable = $schema->createTable('fusio_log');
         $logTable->addColumn('id', 'integer', array('autoincrement' => true));
@@ -104,6 +108,7 @@ class Schema
         $routesTable->addColumn('controller', 'string', array('length' => 255));
         $routesTable->addColumn('config', 'blob', array('notnull' => false));
         $routesTable->setPrimaryKey(array('id'));
+        $routesTable->addUniqueIndex(array('path'));
 
         $schemaTable = $schema->createTable('fusio_schema');
         $schemaTable->addColumn('id', 'integer', array('autoincrement' => true));
@@ -112,19 +117,19 @@ class Schema
         $schemaTable->addColumn('source', 'text');
         $schemaTable->addColumn('cache', 'blob');
         $schemaTable->setPrimaryKey(array('id'));
+        $schemaTable->addUniqueIndex(array('name'));
 
         $scopeTable = $schema->createTable('fusio_scope');
         $scopeTable->addColumn('id', 'integer', array('autoincrement' => true));
         $scopeTable->addColumn('name', 'string', array('length' => 32));
         $scopeTable->setPrimaryKey(array('id'));
+        $scopeTable->addUniqueIndex(array('name'));
 
-        $scopeRoutesTable = $schema->createTable('fusio_scope_routes');
-        $scopeRoutesTable->addColumn('id', 'integer', array('autoincrement' => true));
-        $scopeRoutesTable->addColumn('scopeId', 'integer');
-        $scopeRoutesTable->addColumn('routeId', 'integer');
-        $scopeRoutesTable->addColumn('allow', 'smallint');
-        $scopeRoutesTable->addColumn('methods', 'string', array('length' => 64, 'notnull' => false));
-        $scopeRoutesTable->setPrimaryKey(array('id'));
+        $metaTable = $schema->createTable('fusio_meta');
+        $metaTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $metaTable->addColumn('version', 'string', array('length' => 16));
+        $metaTable->addColumn('installDate', 'datetime');
+        $metaTable->setPrimaryKey(array('id'));
 
         $userTable = $schema->createTable('fusio_user');
         $userTable->addColumn('id', 'integer', array('autoincrement' => true));
@@ -133,6 +138,15 @@ class Schema
         $userTable->addColumn('password', 'string', array('length' => 255));
         $userTable->addColumn('date', 'datetime');
         $userTable->setPrimaryKey(array('id'));
+        $userTable->addUniqueIndex(array('name'));
+
+        $scopeRoutesTable = $schema->createTable('fusio_scope_routes');
+        $scopeRoutesTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $scopeRoutesTable->addColumn('scopeId', 'integer');
+        $scopeRoutesTable->addColumn('routeId', 'integer');
+        $scopeRoutesTable->addColumn('allow', 'smallint');
+        $scopeRoutesTable->addColumn('methods', 'string', array('length' => 64, 'notnull' => false));
+        $scopeRoutesTable->setPrimaryKey(array('id'));
 
         $userScopeTable = $schema->createTable('fusio_user_scope');
         $userScopeTable->addColumn('id', 'integer', array('autoincrement' => true));
@@ -158,5 +172,9 @@ class Schema
         $userScopeTable->addForeignKeyConstraint($userTable, array('userId'), array('id'), array(), 'userScopeUserId');
 
         return $schema;
+    }
+
+    public function executeUpgrade(Connection $connection)
+    {
     }
 }

@@ -24,7 +24,9 @@ namespace Fusio\Dependency;
 use Fusio\App;
 use Fusio\Authorization as ApiAuthorization;
 use Fusio\Backend\Authorization as BackendAuthorization;
+use Fusio\Base;
 use Fusio\Connector;
+use Fusio\Console;
 use Fusio\Data\SchemaManager;
 use Fusio\Factory;
 use Fusio\Loader\DatabaseRoutes;
@@ -37,10 +39,14 @@ use Fusio\Schema;
 use Fusio\Template;
 use Monolog\Logger as SystemLogger;
 use PSX\Api;
+use PSX\Console as PSXCommand;
+use PSX\Console\Reader;
 use PSX\Data\Importer;
 use PSX\Dependency\DefaultContainer;
 use PSX\Log;
 use PSX\Oauth2\Provider\GrantTypeFactory;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command as SymfonyCommand;
 
 /**
  * Container
@@ -210,5 +216,33 @@ class Container extends DefaultContainer
     public function getTemplateParser()
     {
         return new Template\Parser($this->get('config')->get('psx_debug'));
+    }
+
+    /**
+     * @return \Symfony\Component\Console\Application
+     */
+    public function getConsole()
+    {
+        $application = new Application('fusio', Base::getVersion());
+
+        $this->appendConsoleCommands($application);
+
+        return $application;
+    }
+
+    protected function appendConsoleCommands(Application $application)
+    {
+        // psx commands
+        $application->add(new PSXCommand\ContainerCommand($this));
+        $application->add(new PSXCommand\RouteCommand($this->get('routing_parser')));
+        $application->add(new PSXCommand\ServeCommand($this->get('config'), $this->get('dispatch'), $this->get('console_reader')));
+
+        // fusio commands
+        $application->add(new Console\InstallCommand($this->get('connection')));
+        $application->add(new Console\AddUserCommand($this->get('table_manager')->getTable('Fusio\Backend\Table\User')));
+
+        // symfony commands
+        $application->add(new SymfonyCommand\HelpCommand());
+        $application->add(new SymfonyCommand\ListCommand());
     }
 }

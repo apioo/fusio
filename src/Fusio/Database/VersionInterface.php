@@ -19,31 +19,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Schema;
+namespace Fusio\Database;
 
-use PSX\Data\Schema\Property;
-use PSX\Data\SchemaAbstract;
+use Doctrine\DBAL\Connection;
 
 /**
- * User
+ * VersionInterface
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class User extends SchemaAbstract
+interface VersionInterface
 {
-    public function getDefinition()
-    {
-        $sb = $this->getSchemaBuilder('user');
-        $sb->integer('id');
-        $sb->integer('status');
-        $sb->string('name')
-            ->setPattern('[A-z0-9\-\_\.]{3,32}');
-        $sb->arrayType('scopes')
-            ->setPrototype(Property::getString('name'));
-        $sb->dateTime('date');
+    /**
+     * Returns the schema for this version
+     *
+     * @return \Doctrine\DBAL\Schema\Schema
+     */
+    public function getSchema();
 
-        return $sb->getProperty();
-    }
+    /**
+     * Executes additional queries which can update database fields after an 
+     * upgrade
+     *
+     * @param \Doctrine\DBAL\Connection $connection
+     */
+    public function executeUpgrade(Connection $connection);
 }
