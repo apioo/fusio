@@ -21,9 +21,12 @@
 
 namespace Fusio\Database\Version;
 
+use DateTime;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
 use Fusio\Database\VersionInterface;
+use PSX\OpenSsl;
+use PSX\Util\Uuid;
 
 /**
  * Version010
@@ -174,7 +177,115 @@ class Version010 implements VersionInterface
         return $schema;
     }
 
+    public function executeInstall(Connection $connection)
+    {
+        $inserts = $this->getInstallInserts();
+
+        foreach ($inserts as $tableName => $queries) {
+            foreach ($queries as $data) {
+                $connection->insert($tableName, $data);
+            }
+        }
+    }
+
     public function executeUpgrade(Connection $connection)
     {
+    }
+
+    protected function getInstallInserts()
+    {
+        $now       = new DateTime();
+        $appKey    = Uuid::pseudoRandom();
+        $appSecret = hash('sha256', OpenSsl::randomPseudoBytes(256));
+        $password  = \password_hash(sha1(mcrypt_create_iv(40)), PASSWORD_DEFAULT);
+
+        return [
+            'fusio_user' => [
+                ['status' => 1, 'name' => 'Administrator', 'password' => $password, 'date' => $now->format('Y-m-d H:i:s')],
+            ],
+            'fusio_app' => [
+                ['userId' => 1, 'status' => 1, 'name' => 'Backend', 'url' => 'http://fusio-project.org', 'appKey' => $appKey, 'appSecret' => $appSecret, 'date' => $now->format('Y-m-d H:i:s')],
+            ],
+            'fusio_connection' => [
+                ['name' => 'Native-Connection', 'class' => 'Fusio\Connection\Native']
+            ],
+            'fusio_scope' => [
+                ['name' => 'backend']
+            ],
+            'fusio_routes' => [
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend',                             'controller' => 'Fusio\Backend\Application\Index'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/action',                      'controller' => 'Fusio\Backend\Api\Action\Collection'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/action/list',                 'controller' => 'Fusio\Backend\Api\Action\ListActions::doIndex'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/action/form',                 'controller' => 'Fusio\Backend\Api\Action\ListActions::doDetail'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/action/:action_id',           'controller' => 'Fusio\Backend\Api\Action\Entity'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/app',                         'controller' => 'Fusio\Backend\Api\App\Collection'],
+                ['status' => 1, 'methods' => 'DELETE',              'path' => '/backend/app/:app_id/token/:token_id', 'controller' => 'Fusio\Backend\Api\App\Token::doRemove'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/app/:app_id',                 'controller' => 'Fusio\Backend\Api\App\Entity'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/connection',                  'controller' => 'Fusio\Backend\Api\Connection\Collection'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/connection/form',             'controller' => 'Fusio\Backend\Api\Connection\ListConnections::doDetail'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/connection/list',             'controller' => 'Fusio\Backend\Api\Connection\ListConnections::doIndex'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/connection/:connection_id',   'controller' => 'Fusio\Backend\Api\Connection\Entity'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/log',                         'controller' => 'Fusio\Backend\Api\Log\Collection'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/log/:log_id',                 'controller' => 'Fusio\Backend\Api\Log\Entity'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/routes',                      'controller' => 'Fusio\Backend\Api\Routes\Collection'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/routes/:route_id',            'controller' => 'Fusio\Backend\Api\Routes\Entity'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/schema',                      'controller' => 'Fusio\Backend\Api\Schema\Collection'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/schema/:schema_id',           'controller' => 'Fusio\Backend\Api\Schema\Entity'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/schema/preview/:schema_id',   'controller' => 'Fusio\Backend\Api\Schema\Preview'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/scope',                       'controller' => 'Fusio\Backend\Api\Scope\Collection'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/scope/:scope_id',             'controller' => 'Fusio\Backend\Api\Scope\Entity'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/user',                        'controller' => 'Fusio\Backend\Api\User\Collection'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/user/:user_id',               'controller' => 'Fusio\Backend\Api\User\Entity'],
+
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/incoming_requests', 'controller' => 'Fusio\Backend\Api\Dashboard\IncomingRequests'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/most_used_routes',  'controller' => 'Fusio\Backend\Api\Dashboard\MostUsedRoutes'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/most_used_apps',    'controller' => 'Fusio\Backend\Api\Dashboard\MostUsedApps'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/latest_requests',   'controller' => 'Fusio\Backend\Api\Dashboard\LatestRequests'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/latest_apps',       'controller' => 'Fusio\Backend\Api\Dashboard\LatestApps'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/latest_users',      'controller' => 'Fusio\Backend\Api\Dashboard\LatestUsers'],
+
+                ['status' => 1, 'methods' => 'GET|POST',            'path' => '/backend/token',                       'controller' => 'Fusio\Backend\Authorization\Token'],
+                ['status' => 1, 'methods' => 'POST',                'path' => '/authorization/revoke',                'controller' => 'Fusio\Authorization\Revoke'],
+                ['status' => 1, 'methods' => 'GET|POST',            'path' => '/authorization/token',                 'controller' => 'Fusio\Authorization\Token'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/authorization/whoami',                'controller' => 'Fusio\Authorization\Whoami'],
+            ],
+            'fusio_app_scope' => [
+                ['appId' => 1, 'scopeId' => 1]
+            ],
+            'fusio_scope_routes' => [
+                ['scopeId' => 1, 'routeId' => 1,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 2,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 3,  'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 4,  'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 5,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 6,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 7,  'allow' => 1, 'methods' => 'DELETE'],
+                ['scopeId' => 1, 'routeId' => 8,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 9,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 10, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 11, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 12, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 13, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 14, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 15, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 16, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 17, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 18, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 19, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 20, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 21, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 22, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 23, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 24, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 25, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 26, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 27, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 28, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 29, 'allow' => 1, 'methods' => 'GET'],
+            ],
+            'fusio_user_scope' => [
+                ['userId' => 1, 'scopeId' => 1]
+            ],
+        ];
     }
 }

@@ -43,23 +43,14 @@ class Installer
 
     public function install($schemaVersion)
     {
-        $version = $this->getVersion($schemaVersion);
+        $version = $this->doInstall($schemaVersion);
+
         if ($version instanceof VersionInterface) {
-            $fromSchema = $this->connection->getSchemaManager()->createSchema();
-            $toSchema   = $version->getSchema();
-            $queries    = $fromSchema->getMigrateToSql($toSchema, $this->connection->getDatabasePlatform());
+            $this->connection->beginTransaction();
 
-            foreach ($queries as $query) {
-                $this->connection->query($query);
-            }
+            $version->executeInstall($this->connection);
 
-            // insert installation entry
-            $now = new DateTime();
-
-            $this->connection->insert('fusio_meta', [
-                'version'     => Base::getVersion(),
-                'installDate' => $now->format('Y-m-d H:i:s'),
-            ]);
+            $this->connection->commit();
         }
     }
 
@@ -78,15 +69,17 @@ class Installer
 
             foreach ($upgradePath as $schemaVersion) {
                 // install version
-                $this->install($schemaVersion);
+                $version = $this->doInstall($schemaVersion);
 
-                // execute upgrade
-                $version = $this->getVersion($schemaVersion);
                 if ($version instanceof VersionInterface) {
                     // we execute the upgrade only if we are jumping to a new 
                     // version
                     if ($indexTo > $indexFrom) {
+                        $this->connection->beginTransaction();
+
                         $version->executeUpgrade($this->connection);
+
+                        $this->connection->commit();
                     }
                 }
             }
@@ -103,6 +96,36 @@ class Installer
         return [
             '0.1',
         ];
+    }
+
+    protected function doInstall($schemaVersion)
+    {
+        $version = $this->getVersion($schemaVersion);
+        if ($version instanceof VersionInterface) {
+            $fromSchema = $this->connection->getSchemaManager()->createSchema();
+            $toSchema   = $version->getSchema();
+            $queries    = $fromSchema->getMigrateToSql($toSchema, $this->connection->getDatabasePlatform());
+
+            $this->connection->beginTransaction();
+
+            foreach ($queries as $query) {
+                $this->connection->query($query);
+            }
+
+            // insert installation entry
+            $now = new DateTime();
+
+            $this->connection->insert('fusio_meta', [
+                'version'     => Base::getVersion(),
+                'installDate' => $now->format('Y-m-d H:i:s'),
+            ]);
+
+            $this->connection->commit();
+
+            return $version;
+        } else {
+            return null;
+        }
     }
 
     protected function getIndexOf($version)

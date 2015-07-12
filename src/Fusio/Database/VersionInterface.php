@@ -41,6 +41,14 @@ interface VersionInterface
 
     /**
      * Executes additional queries which can update database fields after an 
+     * install
+     *
+     * @param \Doctrine\DBAL\Connection $connection
+     */
+    public function executeInstall(Connection $connection);
+
+    /**
+     * Executes additional queries which can update database fields after an 
      * upgrade
      *
      * @param \Doctrine\DBAL\Connection $connection
