@@ -161,7 +161,7 @@ class Collection extends SchemaApiAbstract
 
     protected function insertDefaultScopes($appId, $userId)
     {
-        $scopes = $this->tableManager->getTable('Fusio\Backend\Table\Scope')->getByUser($userId);
+        $scopes = $this->tableManager->getTable('Fusio\Backend\Table\User\Scope')->getByUserId($userId);
         $table  = $this->tableManager->getTable('Fusio\Backend\Table\App\Scope');
 
         foreach ($scopes as $scope) {

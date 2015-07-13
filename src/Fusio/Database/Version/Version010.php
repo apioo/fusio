@@ -212,6 +212,9 @@ class Version010 implements VersionInterface
             'fusio_scope' => [
                 ['name' => 'backend']
             ],
+            'fusio_schema' => [
+                ['name' => 'Passthru', 'source' => '', 'cache' => '']
+            ],
             'fusio_routes' => [
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend',                             'controller' => 'Fusio\Backend\Application\Index'],
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/action',                      'controller' => 'Fusio\Backend\Api\Action\Collection'],
@@ -248,6 +251,9 @@ class Version010 implements VersionInterface
                 ['status' => 1, 'methods' => 'POST',                'path' => '/authorization/revoke',                'controller' => 'Fusio\Authorization\Revoke'],
                 ['status' => 1, 'methods' => 'GET|POST',            'path' => '/authorization/token',                 'controller' => 'Fusio\Authorization\Token'],
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/authorization/whoami',                'controller' => 'Fusio\Authorization\Whoami'],
+
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/doc',                                 'controller' => 'PSX\Controller\Tool\DocumentationController::doIndex'],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/doc/:version/*path',                  'controller' => 'PSX\Controller\Tool\DocumentationController::doDetail'],
             ],
             'fusio_app_scope' => [
                 ['appId' => 1, 'scopeId' => 1]

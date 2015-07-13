@@ -89,7 +89,7 @@ class Scope extends TableAbstract
         if (!empty($names)) {
             return $this->getAll(0, 1024, null, null, new Condition(['name', 'IN', $names]));
         } else {
-            return array();
+            return [];
         }
     }
 }
