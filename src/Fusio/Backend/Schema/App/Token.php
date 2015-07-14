@@ -39,7 +39,7 @@ class Token extends SchemaAbstract
         $sb->string('token');
         $sb->string('scope');
         $sb->string('ip');
-        $sb->integer('expire');
+        $sb->dateTime('expire');
         $sb->dateTime('date');
 
         return $sb->getProperty();

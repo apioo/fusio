@@ -21,6 +21,7 @@
 
 namespace Fusio\Backend\Table\App;
 
+use DateTime;
 use PSX\Sql\Condition;
 use PSX\Sql\TableAbstract;
 
@@ -51,17 +52,18 @@ class Token extends TableAbstract
             'token' => self::TYPE_VARCHAR,
             'scope' => self::TYPE_VARCHAR,
             'ip' => self::TYPE_VARCHAR,
-            'expire' => self::TYPE_INT,
+            'expire' => self::TYPE_DATETIME,
             'date' => self::TYPE_DATETIME,
         );
     }
 
     public function getTokensByApp($appId)
     {
+        $now = new DateTime();
         $con = new Condition();
         $con->add('appId', '=', $appId);
         $con->add('status', '=', self::STATUS_ACTIVE);
-        $con->add('expire', '>', time());
+        $con->add('expire', '>', $now->format('Y-m-d H:i:s'));
 
         return $this->getBy($con);
     }
