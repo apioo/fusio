@@ -35,7 +35,13 @@ class Path extends FilterAbstract
     public function apply($value)
     {
         if (!empty($value)) {
-            if (substr($value, 0, 1) != '/') {
+            if (substr($value, 0, 8) == '/backend') {
+                return false;
+            } elseif (substr($value, 0, 4) == '/doc') {
+                return false;
+            } elseif (substr($value, 0, 14) == '/authorization') {
+                return false;
+            } elseif (substr($value, 0, 1) != '/') {
                 return false;
             }
 

@@ -88,7 +88,7 @@ class Collection extends SchemaApiAbstract
         $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
         $condition  = new Condition(['status', '=', 1]);
         $condition->add('path', 'NOT LIKE', '/backend%');
-        $condition->add('path', 'NOT LIKE', '/documentation%');
+        $condition->add('path', 'NOT LIKE', '/doc%');
         $condition->add('path', 'NOT LIKE', '/authorization%');
 
         if (!empty($search)) {
