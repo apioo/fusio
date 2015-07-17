@@ -91,7 +91,12 @@ class Entity extends SchemaApiAbstract
         if (!empty($user)) {
             $user['scopes'] = $this->tableManager
                 ->getTable('Fusio\Backend\Table\User')
-                ->getScopeNames($userId);
+                ->getScopeNames($user['id']);
+
+            $table = $this->tableManager->getTable('Fusio\Backend\Table\App');
+            $table->setRestrictedFields(['userId', 'appSecret']);
+
+            $user['apps'] = $table->getByUserId($user['id']);
 
             return $user;
         } else {

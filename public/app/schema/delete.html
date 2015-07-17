@@ -11,7 +11,7 @@
 		<input type="hidden" ng-model="schema.id" value="{{schema.id}}" />
 		<div class="form-group">
 			<label for="name">Name:</label>
-			<input type="text" id="name" ng-model="schema.name" class="form-control">
+			<input type="text" id="name" ng-model="schema.name" ng-disabled="true" class="form-control">
 		</div>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>

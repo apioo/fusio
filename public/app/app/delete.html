@@ -10,25 +10,12 @@
 	<form name="routesDeleteForm" ng-submit="delete(app)">
 		<input type="hidden" ng-model="app.id" value="{{app.id}}" />
 		<div class="form-group">
-			<label for="status">Status:</label>
-			<select id="status" ng-model="app.status" ng-options="state.key as state.value for state in states" class="form-control" disabled="disabled">
-			</select>
-		</div>
-		<div class="form-group">
 			<label for="name">Name:</label>
-			<input type="text" id="name" ng-model="app.name" class="form-control" disabled="disabled">
-		</div>
-		<div class="form-group">
-			<label for="url">Url:</label>
-			<input type="text" id="url" ng-model="app.url" class="form-control" disabled="disabled">
+			<input type="text" id="name" ng-model="app.name" ng-disabled="true" class="form-control">
 		</div>
 		<div class="form-group">
 			<label for="appKey">App-Key:</label>
-			<input type="text" id="appKey" ng-model="app.appKey" class="form-control" disabled="disabled">
-		</div>
-		<div class="form-group">
-			<label for="appSecret">App-Secret:</label>
-			<input type="text" id="appKey" ng-model="app.appSecret" class="form-control" disabled="disabled">
+			<input type="text" id="appKey" ng-model="app.appKey" ng-disabled="true" class="form-control">
 		</div>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>

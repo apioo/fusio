@@ -6,6 +6,7 @@ var fusioApp = angular.module('fusioApp', [
 	'ui.bootstrap',
 	'ui.ace',
 	'chart.js',
+	'ng-showdown',
 	'fusioApp.app',
 	'fusioApp.connection',
 	'fusioApp.action',
@@ -43,7 +44,10 @@ fusioApp.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.interceptors.push('fusioIsAuthenticated');
 }]);
 
-fusioApp.run(function ($window, $location, $http) {
+fusioApp.config(['$showdownProvider', function($showdownProvider){
+}]);
+
+fusioApp.run(function ($rootScope, $window, $location, $http, helpLoader) {
 	var token = $window.sessionStorage.getItem('fusio_access_token');
 	if (token) {
 		$http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
@@ -52,4 +56,7 @@ fusioApp.run(function ($window, $location, $http) {
 	} else {
 		$location.path('/login');
 	}
+
+	// make help loader global available
+	$rootScope.help = helpLoader;
 });

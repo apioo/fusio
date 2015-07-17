@@ -42,6 +42,8 @@ class User extends SchemaAbstract
             ->setPattern('[A-z0-9\-\_\.]{3,32}');
         $sb->arrayType('scopes')
             ->setPrototype(Property::getString('name'));
+        $sb->arrayType('apps')
+            ->setPrototype($this->getSchema('Fusio\Backend\Schema\App'));
         $sb->dateTime('date');
 
         return $sb->getProperty();

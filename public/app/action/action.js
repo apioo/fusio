@@ -143,6 +143,12 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		$scope.response = null;
 	};
 
+	/*
+	$scope.showHelp = function(path){
+		helpLoader.showDialog(path);
+	};
+	*/
+
 	$scope.loadConfig = function(){
 		if ($scope.action.class) {
 			$http.get(fusio_url + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
