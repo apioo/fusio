@@ -1,10 +1,10 @@
 {
   "name": "fusio",
-  "version": "0.0.1",
+  "version": "0.1",
   "description": "",
   "main": "Gruntfile.js",
   "author": "Christoph Kappestein",
-  "license": "GPLv3",
+  "license": "AGPLv3",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "~0.5.0",
