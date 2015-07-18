@@ -39,7 +39,8 @@ class App extends SchemaAbstract
         $sb->integer('id');
         $sb->integer('userId');
         $sb->integer('status');
-        $sb->string('name');
+        $sb->string('name')
+            ->setPattern('[A-z0-9\-\_]{3,64}');
         $sb->string('url');
         $sb->string('appKey');
         $sb->string('appSecret');

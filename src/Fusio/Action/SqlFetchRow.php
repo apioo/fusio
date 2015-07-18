@@ -91,7 +91,7 @@ class SqlFetchRow implements ActionInterface
     {
         $form = new Form\Container();
         $form->add(new Element\Connection('connection', 'Connection', $this->connection));
-        $form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The SELECT statment which gets executed. It is possible to access values from the environment with i.e. <code ng-non-bindable>{{ request.uriFragment("news_id")|prepare }}</code>. <b>Note you must use the prepare filter for each parameter in order to generate a safe SQL query which uses prepared statments.</b>'));
+        $form->add(new Element\TextArea('sql', 'SQL', 'sql', 'The SELECT statment which gets executed. It is possible to access values from the environment with i.e. <code ng-non-bindable>{{ request.uriFragment("news_id")|prepare }}</code>. <b>Note you must use the prepare filter for each parameter in order to generate a safe SQL query which uses prepared statments.</b> Click <a ng-click="help.showDialog(\'help/template.md\')">here</a> for more informations about the template syntax.'));
 
         return $form;
     }

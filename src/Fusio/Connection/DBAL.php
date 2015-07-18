@@ -69,11 +69,11 @@ class DBAL implements ConnectionInterface
         );
 
         $form = new Form\Container();
-        $form->add(new Element\Select('type', 'Type', $types));
-        $form->add(new Element\Input('host', 'Host'));
-        $form->add(new Element\Input('username', 'Username'));
-        $form->add(new Element\Input('password', 'Password'));
-        $form->add(new Element\Input('database', 'Database'));
+        $form->add(new Element\Select('type', 'Type', $types, 'The driver which is used to connect to the database'));
+        $form->add(new Element\Input('host', 'Host', 'text', 'The IP or hostname of the database server'));
+        $form->add(new Element\Input('username', 'Username', 'text', 'The name of the database user'));
+        $form->add(new Element\Input('password', 'Password', 'text', 'The password of the database user'));
+        $form->add(new Element\Input('database', 'Database', 'text', 'The name of the database which is used upon connection'));
 
         return $form;
     }

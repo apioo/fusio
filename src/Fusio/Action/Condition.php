@@ -92,9 +92,9 @@ class Condition implements ActionInterface, ParserCacheInterface
     public function getForm()
     {
         $form = new Form\Container();
-        $form->add(new Element\Input('condition', 'Condition', 'text', 'The condition which gets evaluated. You can access  parameters from the context with i.e. <code>parameters.get("foo") == "bar"</code>. More informations about all available parameters <a ng-click="help.showDialog(\'help/action/condition.md\')">here</a>.'));
-        $form->add(new Element\Action('true', 'True', $this->connection));
-        $form->add(new Element\Action('false', 'False', $this->connection));
+        $form->add(new Element\Input('condition', 'Condition', 'text', 'The condition which gets evaluated. You can access parameters from the context with i.e. <code>parameters.get("foo") == "bar"</code>. Click <a ng-click="help.showDialog(\'help/action/condition.md\')">here</a> for more informations about the syntax.'));
+        $form->add(new Element\Action('true', 'True', $this->connection, 'Executed if the condition evaluates to true'));
+        $form->add(new Element\Action('false', 'False', $this->connection, 'Executed if the condition evaluates to false'));
 
         return $form;
     }

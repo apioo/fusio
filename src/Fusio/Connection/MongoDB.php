@@ -47,7 +47,14 @@ class MongoDB implements ConnectionInterface
      */
     public function getConnection(Parameters $config)
     {
-        $client = new MongoClient($config->get('url'));
+        $rawOptions = $config->get('options');
+        if (!empty($rawOptions)) {
+            parse_str($rawOptions, $options);
+
+            $client = new MongoClient($config->get('url'), $options);
+        } else {
+            $client = new MongoClient($config->get('url'));
+        }
 
         return $client->selectDB($config->get('database'));
     }
@@ -55,8 +62,9 @@ class MongoDB implements ConnectionInterface
     public function getForm()
     {
         $form = new Form\Container();
-        $form->add(new Element\Input('url', 'Url'));
-        $form->add(new Element\Input('database', 'Database'));
+        $form->add(new Element\Input('url', 'Url', 'text', 'The connection string for the database i.e. <code>mongodb://localhost:27017</code>. Click <a ng-click="help.showDialog(\'help/connection/mongodb.md\')">here</a> for more informations.'));
+        $form->add(new Element\Input('options', 'Options', 'text', 'Optional options for the connection. Click <a ng-click="help.showDialog(\'help/connection/mongodb.md\')">here</a> for more informations.'));
+        $form->add(new Element\Input('database', 'Database', 'text', 'The name of the database which is used upon connection'));
 
         return $form;
     }

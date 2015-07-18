@@ -85,7 +85,7 @@ class HttpRequest implements ActionInterface
     {
         $form = new Form\Container();
         $form->add(new Element\Input('url', 'Url', 'text', 'Sends an HTTP POST request to the given url'));
-        $form->add(new Element\TextArea('body', 'Body', 'text', 'The body for the POST request'));
+        $form->add(new Element\TextArea('body', 'Body', 'text', 'The body for the POST request. Inside the body it is possible to use a template syntax to add dynamic data. Click <a ng-click="help.showDialog(\'help/template.md\')">here</a> for more informations about the template syntax.'));
 
         return $form;
     }

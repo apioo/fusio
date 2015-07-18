@@ -53,7 +53,7 @@ class Beanstalk implements ConnectionInterface
     public function getForm()
     {
         $form = new Form\Container();
-        $form->add(new Element\Input('host', 'Host'));
+        $form->add(new Element\Input('host', 'Host', 'text', 'The IP or hostname of the Beanstalk server'));
 
         return $form;
     }

@@ -71,7 +71,7 @@ class StaticResponse implements ActionInterface
     {
         $form = new Form\Container();
         $form->add(new Element\Select('statusCode', 'Status-Code', Http::$codes, 'The returned status code'));
-        $form->add(new Element\TextArea('response', 'Response', 'json', 'The response in JSON format'));
+        $form->add(new Element\TextArea('response', 'Response', 'json', 'The response in JSON format. Inside the response it is possible to use a template syntax to add dynamic data. Click <a ng-click="help.showDialog(\'help/template.md\')">here</a> for more informations about the template syntax.'));
 
         return $form;
     }

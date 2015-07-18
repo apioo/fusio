@@ -36,7 +36,8 @@ class Scope extends SchemaAbstract
     {
         $sb = $this->getSchemaBuilder('scope');
         $sb->integer('id');
-        $sb->string('name');
+        $sb->string('name')
+            ->setPattern('[A-z0-9\-\_]{3,64}');
         $sb->arrayType('routes')
             ->setPrototype($this->getSchema('Fusio\Backend\Schema\Scope\Route'));
 

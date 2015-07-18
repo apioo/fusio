@@ -55,7 +55,7 @@ class DBALAdvanced implements ConnectionInterface
     public function getForm()
     {
         $form = new Form\Container();
-        $form->add(new Element\Input('url', 'Url'));
+        $form->add(new Element\Input('url', 'URL', 'text', 'Uses an specific URL which contains all database connection informations. Click <a ng-click="help.showDialog(\'help/connection/dbal_advanced.md\')">here</a> for more informations.'));
 
         return $form;
     }
