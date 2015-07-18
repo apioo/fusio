@@ -55,6 +55,29 @@ class EntityTest extends ControllerDbTestCase
         "backend",
         "foo"
     ],
+    "apps": [
+        {
+            "id": 4,
+            "status": 3,
+            "name": "Deactivated",
+            "url": "http:\/\/google.com",
+            "appKey": "f46af464-f7eb-4d04-8661-13063a30826b"
+        },
+        {
+            "id": 3,
+            "status": 2,
+            "name": "Pending",
+            "url": "http:\/\/google.com",
+            "appKey": "7c14809c-544b-43bd-9002-23e1c2de6067"
+        },
+        {
+            "id": 2,
+            "status": 1,
+            "name": "Foo-App",
+            "url": "http:\/\/google.com",
+            "appKey": "5347307d-d801-4075-9aaa-a21a29a448c5"
+        }
+    ],
     "date": "2015-02-27T19:59:15Z"
 }
 JSON;
