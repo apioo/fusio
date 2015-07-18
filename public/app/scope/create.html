@@ -10,7 +10,8 @@
 	<form name="routesCreateForm" ng-submit="create(scope)">
 		<div class="form-group">
 			<label for="name">Name:</label>
-			<input type="text" id="name" ng-model="scope.name" class="form-control">
+			<input type="text" id="name" ng-model="scope.name" aria-describedby="nameHelp" class="form-control">
+			<span class="help-block" id="nameHelp">Name of the scope must match the following regexp <code>[A-z0-9\-\_]{3,64}</code></span>
 		</div>
 		<table class="table">
 		<colgroup>

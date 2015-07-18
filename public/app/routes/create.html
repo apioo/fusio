@@ -11,7 +11,9 @@
 		<div class="form-group">
 			<label for="path">Path:</label>
 			<input type="text" id="path" ng-model="route.path" aria-describedby="pathHelp" class="form-control">
-			<span class="help-block" id="pathHelp">The path under which the endpoint is available i.e. <code>/acme/news</code>. It is possible to use variable path fragments i.e. <code>/acme/news/:news</code> or <code>/acme/archive/$year&lt;[0-9]+&gt;</code> these fragments can be used by an action</span>
+			<span class="help-block" id="pathHelp">Path of the API endpoint i.e. <code>/acme/news</code>. It is possible 
+			to use variable path fragments i.e. <code>/acme/:news</code>. Click 
+			<a ng-click="help.showDialog('help/routes.md#path')">here</a> for more informations</span>
 		</div>
 		<tabset>
 			<tab ng-repeat="version in route.config" heading="v{{version.name}}" active="version.active">
@@ -19,29 +21,30 @@
 					<label for="status">Status:</label>
 					<select class="form-control" ng-model="version.status" ng-options="status.key as status.value for status in statuuus" aria-describedby="statusHelp">
 					</select>
-					<span class="help-block" id="statusHelp">You can test the endpoint in <code>Development</code> status. Once the status is <code>Production</code> all input fields are disabled. Then it is only possible to set the status to <code>Deprecated</code> where eventually the version can be deleted</span>
+					<span class="help-block" id="statusHelp">The status of the API endpoint for this version. For more informations about the impact 
+					click <a ng-click="help.showDialog('help/routes.md#status')">here</a></span>
 				</div>
 				<tabset>
 					<tab ng-repeat="method in version.methods" heading="{{method.name}}">
 						<div class="checkbox">
 							<label><input type="checkbox" ng-model="method.active" ng-disabled="version.status == 1" aria-describedby="activeHelp"> <b>Active</b></label>
-							<span class="help-block" id="activeHelp">It is possible to use this request method on the endpoint</span>
+							<span class="help-block" id="activeHelp">Whether the request method is allowed</span>
 						</div>
 						<div class="checkbox">
 							<label><input type="checkbox" ng-model="method.public" ng-disabled="version.status == 1" aria-describedby="publicHelp"> <b>Public</b></label>
-							<span class="help-block" id="publicHelp">Endpoint can be accessed without an authorization key</span>
+							<span class="help-block" id="publicHelp">Whether the endpoint can be requested without an access token</span>
 						</div>
 						<div class="form-group">
 							<label for="status">Request:</label>
 							<select class="form-control" ng-model="method.request" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="method.name == 'GET' || version.status == 1" aria-describedby="requestHelp">
 							</select>
-							<span class="help-block" id="requestHelp">The allowed format for incoming requests. If you choose <code>Passthru</code> all incoming data is forwarded to the action</span>
+							<span class="help-block" id="requestHelp">The allowed format for incoming requests. The <code>Passthru</code> schema forwards all incoming data unfiltered to the action</span>
 						</div>
 						<div class="form-group">
 							<label for="status">Response:</label>
-							<select class="form-control" ng-model="method.response" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="version.status == 1" aria-describedby="requestHelp">
+							<select class="form-control" ng-model="method.response" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="version.status == 1" aria-describedby="responseHelp">
 							</select>
-							<span class="help-block" id="requestHelp">The allowed format for outgoing responses. If you choose <code>Passthru</code> all outgoing data is send to the client</span>
+							<span class="help-block" id="responseHelp">The allowed format for outgoing responses. The <code>Passthru</code> schema forwards all outgoing data unfiltered to the client</span>
 						</div>
 						<div class="form-group">
 							<label for="status">Action:</label>

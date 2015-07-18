@@ -20,7 +20,7 @@ var fusioApp = angular.module('fusioApp', [
 	'fusioApp.scope'
 ]);
 
-fusioApp.factory('fusioIsAuthenticated', ['$location', '$window', function($location, $window) {  
+fusioApp.factory('fusioIsAuthenticated', ['$location', '$window', '$q', function($location, $window, $q) {  
 	return {
 		responseError: function(response){
 			if (response.status == 400 && response.data.message && response.data.message.indexOf('Invalid access token') !== -1) {
@@ -28,7 +28,8 @@ fusioApp.factory('fusioIsAuthenticated', ['$location', '$window', function($loca
 
 				$location.path('/login');
 			}
-			return response;
+
+			return $q.reject(response);
 		}
 	};
 }]);

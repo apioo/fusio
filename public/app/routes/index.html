@@ -13,7 +13,10 @@
 				<input type="text" class="form-control" ng-model="search" placeholder="Search i.e. /foo/bar" />
 			</form>
 		</td>
-		<td><a class="btn btn-primary" ng-click="openCreateDialog()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
+		<td>
+			<a class="btn btn-primary" ng-click="openCreateDialog()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+			<a class="btn btn-default" ng-click="help.showDialog('help/routes.md')"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+		</td>
 	</tr>
 	</table>
 </div>

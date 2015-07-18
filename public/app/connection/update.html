@@ -11,7 +11,8 @@
 		<input type="hidden" ng-model="connection.id" value="{{connection.id}}" />
 		<div class="form-group">
 			<label for="name">Name:</label>
-			<input type="text" id="name" ng-model="connection.name" class="form-control" value="{{connection.name}}">
+			<input type="text" id="name" ng-model="connection.name" aria-describedby="nameHelp" class="form-control" value="{{connection.name}}">
+			<span class="help-block" id="nameHelp">Name of the connection must match the following regexp <code>[A-z0-9\-\_]{3,64}</code></span>
 		</div>
 		<div class="form-group">
 			<label for="class">Class:</label>
