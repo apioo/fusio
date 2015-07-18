@@ -4,12 +4,34 @@ fusioApp.factory('helpLoader', ['$http', '$showdown', '$q', '$modal', function($
  
     helper.load = function(path){
         return $q(function(resolve, reject){
-            $http.get(path).success(function(data){
-                resolve($showdown.makeHtml(data));
-            }).error(function(data){
-                reject(data);
+            $http.get(path).
+                success(function(data, status){
+                    // if the path has an fragment extract the part of the content
+                    // with the heading
+                    var parser = document.createElement('a');
+                    parser.href = path;
+
+                    if (parser.hash) {
+                        var heading = parser.hash.substr(1);
+                        var regexp = new RegExp('(^###\\s' + heading + '$\\s+([\\s\\S]*?))^###\\s', 'gmi');
+
+                        matches = regexp.exec(data);
+                        data = matches && matches.length > 0 ? matches[1] : 'Could not found chapter';
+                    }
+
+                    var html = $showdown.makeHtml(data);
+
+                    // replace {{ ... }} so that angular does not try to 
+                    // interpret these values
+                    html = html.replace(/{{/g, '{<!-- -->{');
+                    html = html.replace(/}}/g, '}<!-- -->}');
+
+                    resolve(html);
+                }).
+                error(function(data){
+                    reject('Could not find help file');
+                });
             });
-        });
     };
 
     helper.showDialog = function(path){
@@ -17,6 +39,11 @@ fusioApp.factory('helpLoader', ['$http', '$showdown', '$q', '$modal', function($
             $modal.open({
                 size: 'md',
                 template: '<div class="modal-body">' + html + '</div>'
+            });
+        }, function(html){
+            $modal.open({
+                size: 'md',
+                template: '<div class="modal-body"><div class="alert alert-info">' + html + '</div></div>'
             });
         });
     };
