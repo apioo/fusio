@@ -389,8 +389,15 @@
                 <field name="id">1</field>
                 <field name="name">Passthru</field>
                 <field name="propertyName" xsi:nil="true" />
-                <field name="source">{}</field>
-                <field name="cache"></field>
+                <field name="source">{
+    "id": "http://phpsx.org",
+    "title": "passthru",
+    "type": "object",
+    "properties": {
+    }
+}
+</field>
+                <field name="cache">C:15:"PSX\Data\Schema":162:{C:36:"PSX\Data\Schema\Property\ComplexType":112:{a:5:{s:10:"properties";a:0:{}s:4:"name";s:8:"passthru";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}}</field>
             </row>
             <row>
                 <field name="id">2</field>
