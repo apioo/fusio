@@ -62,6 +62,10 @@ class Revoke extends ApiAbstract
             // the token must be assigned to the user
             if (!empty($row) && $row['appId'] == $this->appId && $row['userId'] == $this->userId) {
                 $this->tableManager->getTable('Fusio\Backend\Table\App\Token')->removeTokenFromApp($this->appId, $row['id']);
+
+                $this->setBody(array(
+                    'success' => true
+                ));
             } else {
                 throw new StatusCode\BadRequestException('Invalid token');
             }
