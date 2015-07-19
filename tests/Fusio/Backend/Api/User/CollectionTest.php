@@ -46,9 +46,10 @@ class CollectionTest extends ControllerDbTestCase
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
 
-        $now    = date('Y-m-d\TH:i:s\Z');
         $body   = (string) $response->getBody();
-        $expect = <<<JSON
+        // replace all date values with a fix datetime
+        $body   = preg_replace('/-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?/', '2015-02-27T19:59:15Z', $body);
+        $expect = <<<'JSON'
 {
     "totalItems": 3,
     "startIndex": 0,
@@ -69,7 +70,7 @@ class CollectionTest extends ControllerDbTestCase
             "id": 1,
             "status": 1,
             "name": "Administrator",
-            "date": "{$now}"
+            "date": "2015-02-27T19:59:15Z"
         }
     ]
 }
@@ -91,6 +92,7 @@ JSON;
         ]));
 
         $body   = (string) $response->getBody();
+        // replace the dynamic password
         $body   = preg_replace('/[[:xdigit:]]{40}/', '[password]', $body);
         $expect = <<<'JSON'
 {
