@@ -21,6 +21,7 @@
 
 namespace Fusio\Backend\Api\User;
 
+use Fusio\Fixture;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 
@@ -35,7 +36,7 @@ class CollectionTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return $this->createMySQLXMLDataSet(__DIR__ . '/../../../fixture.xml');
+        return Fixture::getDataSet();
     }
 
     public function testGet()
@@ -45,8 +46,9 @@ class CollectionTest extends ControllerDbTestCase
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
 
+        $now    = date('Y-m-d\TH:i:s\Z');
         $body   = (string) $response->getBody();
-        $expect = <<<'JSON'
+        $expect = <<<JSON
 {
     "totalItems": 3,
     "startIndex": 0,
@@ -54,20 +56,20 @@ class CollectionTest extends ControllerDbTestCase
         {
             "id": 3,
             "status": 2,
-            "name": "disabled",
+            "name": "Disabled",
             "date": "2015-02-27T19:59:15Z"
         },
         {
             "id": 2,
             "status": 0,
-            "name": "consumer",
+            "name": "Consumer",
             "date": "2015-02-27T19:59:15Z"
         },
         {
             "id": 1,
             "status": 1,
-            "name": "admin",
-            "date": "2015-02-27T19:59:15Z"
+            "name": "Administrator",
+            "date": "{$now}"
         }
     ]
 }
@@ -126,13 +128,13 @@ JSON;
         $routes = Environment::getService('connection')->fetchAll($sql, ['userId' => 4]);
 
         $this->assertEquals([[
-            'id'      => 4,
-            'userId'  => 4,
-            'scopeId' => 2,
-        ], [
-            'id'      => 3,
+            'id'      => 5,
             'userId'  => 4,
             'scopeId' => 3,
+        ], [
+            'id'      => 4,
+            'userId'  => 4,
+            'scopeId' => 4,
         ]], $routes);
     }
 

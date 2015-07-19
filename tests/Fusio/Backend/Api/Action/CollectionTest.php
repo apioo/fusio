@@ -21,6 +21,7 @@
 
 namespace Fusio\Backend\Api\Action;
 
+use Fusio\Fixture;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 
@@ -35,7 +36,7 @@ class CollectionTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return $this->createMySQLXMLDataSet(__DIR__ . '/../../../fixture.xml');
+        return Fixture::getDataSet();
     }
 
     public function testGet()

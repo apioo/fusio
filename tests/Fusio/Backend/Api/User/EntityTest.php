@@ -21,6 +21,7 @@
 
 namespace Fusio\Backend\Api\User;
 
+use Fusio\Fixture;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 
@@ -35,7 +36,7 @@ class EntityTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return $this->createMySQLXMLDataSet(__DIR__ . '/../../../fixture.xml');
+        return Fixture::getDataSet();
     }
 
     public function testGet()
@@ -50,10 +51,10 @@ class EntityTest extends ControllerDbTestCase
 {
     "id": 2,
     "status": 0,
-    "name": "consumer",
+    "name": "Consumer",
     "scopes": [
         "backend",
-        "foo"
+        "authorization"
     ],
     "apps": [
         {
@@ -147,9 +148,9 @@ JSON;
         $routes = Environment::getService('connection')->fetchAll($sql, ['userId' => 3]);
 
         $this->assertEquals([[
-            'id'      => 3,
+            'id'      => 4,
             'userId'  => 3,
-            'scopeId' => 3,
+            'scopeId' => 4,
         ]], $routes);
     }
 

@@ -21,6 +21,7 @@
 
 namespace Fusio\Backend\Api\App;
 
+use Fusio\Fixture;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 
@@ -35,7 +36,7 @@ class CollectionTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return $this->createMySQLXMLDataSet(__DIR__ . '/../../../fixture.xml');
+        return Fixture::getDataSet();
     }
 
     public function testGet()
@@ -45,8 +46,11 @@ class CollectionTest extends ControllerDbTestCase
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
 
+        // we need to get the current backend app key
+        $appKey = $this->connection->fetchColumn('SELECT appKey FROM fusio_app ORDER BY id ASC LIMIT 1');
+
         $body   = (string) $response->getBody();
-        $expect = <<<'JSON'
+        $expect = <<<JSON
 {
     "totalItems": 4,
     "startIndex": 0,
@@ -77,7 +81,7 @@ class CollectionTest extends ControllerDbTestCase
             "userId": 1,
             "status": 1,
             "name": "Backend",
-            "appKey": "40d05050-52df-4982-9550-09f46522b73b"
+            "appKey": "{$appKey}"
         }
     ]
 }

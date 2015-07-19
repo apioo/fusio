@@ -21,6 +21,7 @@
 
 namespace Fusio\Backend\Api\Routes;
 
+use Fusio\Fixture;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 
@@ -35,7 +36,7 @@ class CollectionTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return $this->createMySQLXMLDataSet(__DIR__ . '/../../../fixture.xml');
+        return Fixture::getDataSet();
     }
 
     public function testGet()
@@ -52,7 +53,7 @@ class CollectionTest extends ControllerDbTestCase
     "startIndex": 0,
     "entry": [
         {
-            "id": 34,
+            "id": 36,
             "methods": "GET|POST|PUT|DELETE",
             "path": "\/foo"
         }
@@ -109,7 +110,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(35, $row['id']);
+        $this->assertEquals(37, $row['id']);
         $this->assertEquals(1, $row['status']);
         $this->assertEquals('GET|POST|PUT|DELETE', $row['methods']);
         $this->assertEquals('/bar', $row['path']);

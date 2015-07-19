@@ -21,6 +21,7 @@
 
 namespace Fusio\Backend\Api\Schema;
 
+use Fusio\Fixture;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 
@@ -35,7 +36,7 @@ class EntityTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return $this->createMySQLXMLDataSet(__DIR__ . '/../../../fixture.xml');
+        return Fixture::getDataSet();
     }
 
     public function testGet()
@@ -50,7 +51,7 @@ class EntityTest extends ControllerDbTestCase
 {
     "id": 1,
     "name": "Passthru",
-    "source": "{\n    \"id\": \"http:\/\/phpsx.org\",\n    \"title\": \"passthru\",\n    \"type\": \"object\",\n    \"properties\": {\n    }\n}\n"
+    "source": "{\"id\":\"http:\\/\\/fusio-project.org\",\"title\":\"passthru\",\"type\":\"object\",\"properties\":{}}"
 }
 JSON;
 

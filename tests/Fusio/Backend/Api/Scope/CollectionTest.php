@@ -21,6 +21,7 @@
 
 namespace Fusio\Backend\Api\Scope;
 
+use Fusio\Fixture;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 
@@ -35,7 +36,7 @@ class CollectionTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return $this->createMySQLXMLDataSet(__DIR__ . '/../../../fixture.xml');
+        return Fixture::getDataSet();
     }
 
     public function testGet()
@@ -48,16 +49,20 @@ class CollectionTest extends ControllerDbTestCase
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
-    "totalItems": 3,
+    "totalItems": 4,
     "startIndex": 0,
     "entry": [
         {
-            "id": 3,
+            "id": 4,
             "name": "bar"
         },
         {
-            "id": 2,
+            "id": 3,
             "name": "foo"
+        },
+        {
+            "id": 2,
+            "name": "authorization"
         },
         {
             "id": 1,
@@ -111,7 +116,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(4, $row['id']);
+        $this->assertEquals(5, $row['id']);
         $this->assertEquals('test', $row['name']);
 
         $sql = Environment::getService('connection')->createQueryBuilder()
@@ -121,17 +126,17 @@ JSON;
             ->orderBy('id', 'DESC')
             ->getSQL();
 
-        $routes = Environment::getService('connection')->fetchAll($sql, ['scopeId' => 4]);
+        $routes = Environment::getService('connection')->fetchAll($sql, ['scopeId' => 5]);
 
         $this->assertEquals([[
-            'id'      => 36,
-            'scopeId' => 4,
+            'id'      => 39,
+            'scopeId' => 5,
             'routeId' => 2,
             'allow'   => 1,
             'methods' => 'GET|POST|PUT|DELETE',
         ], [
-            'id'      => 35,
-            'scopeId' => 4,
+            'id'      => 38,
+            'scopeId' => 5,
             'routeId' => 1,
             'allow'   => 1,
             'methods' => 'GET|POST|PUT|DELETE',
