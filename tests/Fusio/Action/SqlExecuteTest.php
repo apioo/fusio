@@ -23,6 +23,7 @@ namespace Fusio\Action;
 
 use Fusio\ActionTestCaseTrait;
 use Fusio\App;
+use Fusio\DbTestCase;
 use PSX\Data\Object;
 use PSX\Test\Environment;
 
@@ -33,7 +34,7 @@ use PSX\Test\Environment;
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class SqlExecuteTest extends \PHPUnit_Extensions_Database_TestCase
+class SqlExecuteTest extends DbTestCase
 {
     use ActionTestCaseTrait;
 

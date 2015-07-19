@@ -39,32 +39,6 @@ use PSX\Uri;
  */
 trait ActionTestCaseTrait
 {
-    protected static $con;
-
-    protected $connection;
-
-    public function getConnection()
-    {
-        if (!Environment::hasConnection()) {
-            $this->markTestSkipped('No database connection available');
-        }
-
-        if (self::$con === null) {
-            self::$con = Environment::getService('connection');
-        }
-
-        if ($this->connection === null) {
-            $this->connection = self::$con;
-        }
-
-        return $this->createDefaultDBConnection($this->connection->getWrappedConnection(), Environment::getService('config')->get('psx_sql_db'));
-    }
-
-    public function getDataSet()
-    {
-        return $this->createMySQLXMLDataSet(__DIR__ . '/fixture.xml');
-    }
-
     protected function getRequest($method = null, array $uriFragments = array(), array $parameters = array(), array $headers = array(), RecordInterface $parsedBody = null, StreamInterface $rawBody = null)
     {
         return new Request(

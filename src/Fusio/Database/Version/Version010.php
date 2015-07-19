@@ -192,7 +192,7 @@ class Version010 implements VersionInterface
     {
     }
 
-    protected function getInstallInserts()
+    public function getInstallInserts()
     {
         $now       = new DateTime();
         $appKey    = Uuid::pseudoRandom();
@@ -217,7 +217,8 @@ class Version010 implements VersionInterface
                 ['name' => 'Native-Connection', 'class' => 'Fusio\Connection\Native']
             ],
             'fusio_scope' => [
-                ['name' => 'backend']
+                ['name' => 'backend'],
+                ['name' => 'authorization'],
             ],
             'fusio_schema' => [
                 ['name' => 'Passthru', 'source' => json_encode($passthruSource), 'cache' => 'C:15:"PSX\Data\Schema":162:{C:36:"PSX\Data\Schema\Property\ComplexType":112:{a:5:{s:10:"properties";a:0:{}s:4:"name";s:8:"passthru";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}}']
@@ -289,12 +290,22 @@ class Version010 implements VersionInterface
                 ['scopeId' => 1, 'routeId' => 21, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 22, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 23, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+
                 ['scopeId' => 1, 'routeId' => 24, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 25, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 26, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 27, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 28, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 29, 'allow' => 1, 'methods' => 'GET'],
+
+                ['scopeId' => 1, 'routeId' => 30, 'allow' => 1, 'methods' => 'GET|POST'],
+                ['scopeId' => 1, 'routeId' => 31, 'allow' => 1, 'methods' => 'POST'],
+                ['scopeId' => 1, 'routeId' => 32, 'allow' => 1, 'methods' => 'GET|POST'],
+                ['scopeId' => 1, 'routeId' => 33, 'allow' => 1, 'methods' => 'GET'],
+
+                ['scopeId' => 2, 'routeId' => 31, 'allow' => 1, 'methods' => 'POST'],
+                ['scopeId' => 2, 'routeId' => 32, 'allow' => 1, 'methods' => 'GET|POST'],
+                ['scopeId' => 2, 'routeId' => 33, 'allow' => 1, 'methods' => 'GET'],
             ],
             'fusio_user_scope' => [
                 ['userId' => 1, 'scopeId' => 1]

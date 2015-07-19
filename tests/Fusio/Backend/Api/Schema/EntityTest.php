@@ -50,7 +50,7 @@ class EntityTest extends ControllerDbTestCase
 {
     "id": 1,
     "name": "Passthru",
-    "source": "{}"
+    "source": "{\n    \"id\": \"http:\/\/phpsx.org\",\n    \"title\": \"passthru\",\n    \"type\": \"object\",\n    \"properties\": {\n    }\n}\n"
 }
 JSON;
 
