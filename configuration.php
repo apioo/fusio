@@ -48,9 +48,6 @@ return array(
 	'psx_sql_pw'              => '',
 	'psx_sql_db'              => 'fusio',
 
-	// Path to the routing file
-	'psx_routing'             => __DIR__ . '/routes',
-
 	// Path to the cache folder
 	'psx_path_cache'          => __DIR__ . '/cache',
 
