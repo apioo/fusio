@@ -1,15 +1,11 @@
 
 ## Schema
 
-some general talk about schema
+The schema defines the format of the request and response data. It uses the 
+[JsonSchema] format. Inside a schema it is possible to refer to other schema 
+definitions by using the <code>$ref</code> key and the <code>schema</code> 
+protocol i.e. <code>schema:///[schema-name]</code>. More detailed informations
+about the json schema format at the [RFC].
 
-
-### Format
-
-sdfsdfsd
-
-      <span class="help-block" id="sourceHelp">JsonSchema which describes the data format. It is possible to refer to other schema definitions using the <code>$ref</code> key and the <code>schema</code> protocol i.e. <code>schema:///[schema-name]</code>. More informations about the JsonSchema format at the <a href="http://json-schema.org/examples.html">website</a></span>
-
-
-### References
-
+[JsonSchema]: http://json-schema.org/
+[RFC]: http://tools.ietf.org/html/draft-zyp-json-schema-04
