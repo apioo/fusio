@@ -28,7 +28,7 @@ syntax.
 
 * `/file/*path`
   Variable path fragment which matches all values. I.e. `/file/foo/bar` or 
-  `/file/12` matches this routes
+  `/file/12` matches this route
 
 ### Status
 
