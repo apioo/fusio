@@ -199,6 +199,13 @@ class Version010 implements VersionInterface
         $appSecret = hash('sha256', OpenSsl::randomPseudoBytes(256));
         $password  = \password_hash(sha1(mcrypt_create_iv(40)), PASSWORD_DEFAULT);
 
+        $passthruSource = [
+            'id' => 'http://fusio-project.org',
+            'title' => 'passthru',
+            'type' => 'object',
+            'properties' => new \stdClass(),
+        ];
+
         return [
             'fusio_user' => [
                 ['status' => 1, 'name' => 'Administrator', 'password' => $password, 'date' => $now->format('Y-m-d H:i:s')],
@@ -213,7 +220,7 @@ class Version010 implements VersionInterface
                 ['name' => 'backend']
             ],
             'fusio_schema' => [
-                ['name' => 'Passthru', 'source' => '', 'cache' => '']
+                ['name' => 'Passthru', 'source' => json_encode($passthruSource), 'cache' => 'C:15:"PSX\Data\Schema":162:{C:36:"PSX\Data\Schema\Property\ComplexType":112:{a:5:{s:10:"properties";a:0:{}s:4:"name";s:8:"passthru";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}}']
             ],
             'fusio_routes' => [
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend',                             'controller' => 'Fusio\Backend\Application\Index'],
