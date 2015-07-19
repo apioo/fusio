@@ -2,7 +2,7 @@
   "name": "fusio/fusio",
   "description": "Fusio project",
   "homepage": "http://fusio-project.org",
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0",
   "authors": [
     {
       "name": "Christoph Kappestein",
