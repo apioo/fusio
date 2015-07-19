@@ -1,14 +1,50 @@
 
-<h2>Welcome,</h2>
+<div style="max-width:600px">
 
-<p>this is an PSX sample application. It should help to bootstrap a project by 
-providing all needed files and some examples. This application has an example 
-API endpoint wich showcases some features of PSX. More informations about PSX 
-at:</p>
+    <h2>Welcome,</h2>
 
-<dl>
-	<dt>Website</dt>
-	<dd><a href="http://phpsx.org">http://phpsx.org</a></dd>
-	<dt>Github</dt>
-	<dd><a href="https://github.com/k42b3/psx">https://github.com/k42b3/psx</a></dd>
-</dl>
+    <p>this API was developed with <a href="http://fusio-project.org">fusio</a>.
+    This is a quick introduction to help you get started using the API.</p>
+
+    <h3>Overview</h3>
+
+    <p>All available API endpoints are shown on the left sidebar</p>
+
+    <h3>Authentication</h3>
+
+    <p>Fusio uses <a href="https://tools.ietf.org/html/rfc6749">OAuth2</a> for 
+    authorization. In order to obtain an access token you have to send an 
+    <a href="https://tools.ietf.org/html/rfc6749#section-4.4">client credentials</a> 
+    request to the following endpoint. The app key and secret must be obtained 
+    by the API provider.</p>
+
+    <pre>POST /authorization/token</pre>
+
+    <p>To check whether the authentication was successful you can make an GET 
+    request to the endpoint.</p>
+
+    <pre>GET /authorization/whoami</pre>
+
+    <p>If the access token is no longer needed you can revoke the access by 
+    making an POST request to the endpoint.</p>
+
+    <pre>POST /authorization/revoke</pre>
+
+    <h3>Help</h3>
+
+    <p>lkjhkjh</p>
+
+    <p>this is an PSX sample application. It should help to bootstrap a project by 
+    providing all needed files and some examples. This application has an example 
+    API endpoint wich showcases some features of PSX. More informations about PSX 
+    at:</p>
+
+    <dl>
+        <dt>Website</dt>
+        <dd><a href="http://fusio-project.org">http://fusio-project.org</a></dd>
+        <dt>Github</dt>
+        <dd><a href="https://github.com/k42b3/fusio">https://github.com/k42b3/fusio</a></dd>
+    </dl>
+</div>
+
+
