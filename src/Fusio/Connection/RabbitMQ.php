@@ -62,7 +62,7 @@ class RabbitMQ implements ConnectionInterface
         $form->add(new Element\Input('host', 'Host', 'text', 'The IP or hostname of the RabbitMQ server'));
         $form->add(new Element\Input('port', 'Port', 'text', 'The port used to connect to the AMQP broker. The port default is 5672'));
         $form->add(new Element\Input('user', 'User', 'text', 'The login string used to authenticate with the AMQP broker'));
-        $form->add(new Element\Input('password', 'Password', 'text', 'The password string used to authenticate with the AMQP broker'));
+        $form->add(new Element\Input('password', 'Password', 'password', 'The password string used to authenticate with the AMQP broker'));
         $form->add(new Element\Input('vhost', 'VHost', 'text', 'The virtual host to use on the AMQP broker'));
 
         return $form;
