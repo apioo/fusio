@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="fusio" default="build" basedir=".">
+    <description>Fusio build script</description>
+
+    <property name="build" location="fusio" />
+
+    <!-- ############################# INSTALL ############################# -->
+    <!-- delete git dir -->
+    <target name="delete-git-dir">
+        <delete dir="${build}" />
+    </target>
+
+    <!-- clone the repository -->
+    <target name="git-clone">
+        <exec dir="${build}" executable="git" failonerror="true">
+            <arg line="clone https://github.com/k42b3/fusio.git ." />
+        </exec>
+    </target>
+
+    <!-- composer install -->
+    <target name="composer-install">
+        <exec dir="${build}" executable="composer.bat" failonerror="true">
+            <arg line="install" />
+        </exec>
+    </target>
+
+    <!-- bower install -->
+    <target name="bower-install">
+        <exec dir="${build}/public" executable="bower.cmd" failonerror="true">
+            <arg line="install" />
+        </exec>
+    </target>
+
+    <!-- grunt -->
+    <target name="grunt-install">
+        <exec dir="${build}/public" executable="grunt.cmd" failonerror="true">
+            <arg line="" />
+        </exec>
+    </target>
+
+    <!-- after this target we have an system with all dependencies installed and
+    all not needed files are removed -->
+    <target name="init" depends="composer-install,bower-install,grunt-install" />
+    <!--<target name="init" depends="delete-git-dir,git-clone,composer-install,bower-install,grunt-install,clean" />-->
+
+    <!-- ############################## TESTS ############################## -->
+    <!-- syntax check of all files -->
+    <target name="syntax-check">
+        <exec dir="." executable="check-syntax.bat" failonerror="true" />
+    </target>
+
+    <!-- run phpunit tests -->
+    <target name="phpunit">
+        <exec dir="${build}" executable="phpunit.bat" failonerror="true" />
+    </target>
+
+    <!-- this target runs all tests -->
+    <target name="test" depends="init,syntax-check,phpunit" />
+
+    <!-- ############################## CLEAN ############################## -->
+    <!-- removes all files wich are not needed in the release -->
+    <target name="clean">
+        <delete dir="${build}/.git" />
+        <delete dir="${build}/build" />
+        <delete dir="${build}/public/app" />
+        <delete dir="${build}/public/bower_components" />
+        <delete dir="${build}/public/css" />
+        <delete dir="${build}/public/js" />
+        <delete dir="${build}/public/node_modules" />
+        <delete dir="${build}/tests" />
+        <delete file="${build}/.travis.yml" />
+        <delete file="${build}/phpunit.xml" />
+        <delete file="${build}/public/backend_dev.htm" />
+        <delete file="${build}/public/bower.json" />
+        <delete file="${build}/public/Gruntfile.js" />
+        <delete file="${build}/public/package.json" />
+        <delete>
+            <fileset dir="${build}/cache" includes="**/*" />
+        </delete>
+    </target>
+
+    <!-- ############################## BUILD ############################## -->
+    <!-- returns the current version -->
+    <target name="get-version">
+        <exec dir="build" executable="php" failonerror="true" outputproperty="version">
+            <arg line="get-version.php" />
+        </exec>
+        <echo message="Building version ${version}" />
+    </target>
+
+    <!-- creates the archive -->
+    <target name="create-archive" depends="get-version">
+        <tar destfile="build/psx_${version}.tar" basedir="${build}" />
+        <gzip destfile="build/psx_${version}.tar.gz" src="build/psx_${version}.tar" />
+        <delete file="build/psx_${version}.tar" />
+        <zip destfile="build/psx_${version}.zip" basedir="${build}" />
+    </target>
+
+    <!-- builds the archive -->
+    <target name="build" depends="test,clean,create-archive" />
+
+</project>

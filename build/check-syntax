@@ -1,0 +1,3 @@
+#!/bin/bash
+cd fusio/src
+find . -name "*.php" -type f -exec php -l '{}' \;
