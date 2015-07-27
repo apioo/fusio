@@ -51,7 +51,7 @@ module.exports = function(grunt){
             './app/log/log.js',
             './app/user/user.js',
             './app/scope/scope.js',
-            './js/FormBuilder.js'
+            './js/FormBuilder.js',
             './js/HelpLoader.js'
           ]
         }
