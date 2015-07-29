@@ -92,7 +92,7 @@
     <!-- ############################## BUILD ############################## -->
     <!-- returns the current version -->
     <target name="get-version">
-        <exec dir="build" executable="php" failonerror="true" outputproperty="version">
+        <exec executable="php" failonerror="true" outputproperty="version">
             <arg line="get-version.php" />
         </exec>
         <echo message="Building version ${version}" />
@@ -100,10 +100,10 @@
 
     <!-- creates the archive -->
     <target name="create-archive" depends="get-version">
-        <tar destfile="build/psx_${version}.tar" basedir="${build}" />
-        <gzip destfile="build/psx_${version}.tar.gz" src="build/psx_${version}.tar" />
-        <delete file="build/psx_${version}.tar" />
-        <zip destfile="build/psx_${version}.zip" basedir="${build}" />
+        <tar destfile="build/fusio_${version}.tar" basedir="${build}" />
+        <gzip destfile="build/fusio_${version}.tar.gz" src="build/fusio_${version}.tar" />
+        <delete file="build/fusio_${version}.tar" />
+        <zip destfile="build/fusio_${version}.zip" basedir="${build}" />
     </target>
 
     <!-- builds the archive -->
