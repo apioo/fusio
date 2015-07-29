@@ -1,0 +1,61 @@
+#!/usr/bin/env php
+<?php
+/*
+ * Fusio
+ * A web-application to create dynamically RESTful APIs
+ *
+ * Copyright (C) 2015 Christoph Kappestein <k42b3.x@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+$files = array(
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../../../autoload.php',
+);
+
+$autoloadFile = null;
+
+foreach($files as $file)
+{
+    if(file_exists($file))
+    {
+        $autoloadFile = $file;
+        break;
+    }
+}
+
+if(!empty($autoloadFile))
+{
+    require_once($autoloadFile);
+
+    $containerFile = strstr($autoloadFile, 'autoload.php', true) . '../container.php';  
+
+    if(is_file($containerFile))
+    {
+        $container = require_once($containerFile);
+
+        PSX\Bootstrap::setupEnvironment($container->get('config'));
+
+        $container->get('console')->run();
+    }
+    else
+    {
+        die('Could not find container at: ' . $containerFile);
+    }
+}
+else
+{
+    die('You need to set up the project dependencies through composer');
+}
