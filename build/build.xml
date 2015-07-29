@@ -12,8 +12,8 @@
 
     <!-- clone the repository -->
     <target name="git-clone">
-        <exec dir="${build}" executable="git" failonerror="true">
-            <arg line="clone https://github.com/k42b3/fusio.git ." />
+        <exec executable="git" failonerror="true">
+            <arg line="clone https://github.com/k42b3/fusio.git ${build}" />
         </exec>
     </target>
 
@@ -33,15 +33,25 @@
 
     <!-- grunt -->
     <target name="grunt-install">
+        <exec dir="${build}/public" executable="npm.cmd" failonerror="true">
+            <arg line="install grunt" />
+        </exec>
+        <exec dir="${build}/public" executable="npm.cmd" failonerror="true">
+            <arg line="install grunt-contrib-concat" />
+        </exec>
+        <exec dir="${build}/public" executable="npm.cmd" failonerror="true">
+            <arg line="install grunt-contrib-uglify" />
+        </exec>
+        <exec dir="${build}/public" executable="npm.cmd" failonerror="true">
+            <arg line="install grunt-contrib-cssmin" />
+        </exec>
         <exec dir="${build}/public" executable="grunt.cmd" failonerror="true">
             <arg line="" />
         </exec>
     </target>
 
-    <!-- after this target we have an system with all dependencies installed and
-    all not needed files are removed -->
-    <target name="init" depends="composer-install,bower-install,grunt-install" />
-    <!--<target name="init" depends="delete-git-dir,git-clone,composer-install,bower-install,grunt-install,clean" />-->
+    <!-- after this target we have an system with all dependencies installed -->
+    <target name="init" depends="delete-git-dir,git-clone,composer-install,bower-install,grunt-install" />
 
     <!-- ############################## TESTS ############################## -->
     <!-- syntax check of all files -->
