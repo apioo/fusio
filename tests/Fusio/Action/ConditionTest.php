@@ -56,7 +56,7 @@ class ConditionTest extends DbTestCase
 
         $parameters = $this->getParameters([
             'condition' => $expression,
-            'true'      => 2,
+            'true'      => 3,
             'false'     => 0,
         ]);
 

@@ -45,8 +45,8 @@ class PipeTest extends DbTestCase
         $action->setImporterManager(Environment::getService('importer_manager'));
 
         $parameters = $this->getParameters([
-            'source'      => 2,
-            'destination' => 2,
+            'source'      => 3,
+            'destination' => 3,
         ]);
 
         $response = $action->handle($this->getRequest(), $parameters, $this->getContext());

@@ -49,7 +49,7 @@ class CacheResponseTest extends DbTestCase
         $action->setCache($cache);
 
         $parameters = $this->getParameters([
-            'action' => 2,
+            'action' => 3,
             'expire' => 3600,
         ]);
 
@@ -66,7 +66,7 @@ class CacheResponseTest extends DbTestCase
         $this->assertEquals([], $response->getHeaders());
         $this->assertEquals($body, $response->getBody());
 
-        $item = $cache->getItem(md5(2));
+        $item = $cache->getItem(md5(3));
 
         $this->assertTrue($item->isHit());
         $this->assertEquals($response, $item->get());

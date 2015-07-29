@@ -44,8 +44,8 @@ class CompositeTest extends DbTestCase
         $action->setProcessor(Environment::getService('processor'));
 
         $parameters = $this->getParameters([
-            'in'  => 2,
-            'out' => 2,
+            'in'  => 3,
+            'out' => 3,
         ]);
 
         $response = $action->handle($this->getRequest(), $parameters, $this->getContext());

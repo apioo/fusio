@@ -41,7 +41,7 @@ class EntityTest extends ControllerDbTestCase
 
     public function testGet()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/action/2', 'GET', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/action/3', 'GET', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
@@ -49,7 +49,7 @@ class EntityTest extends ControllerDbTestCase
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
-    "id": 2,
+    "id": 3,
     "name": "Sql-Fetch-Row",
     "class": "Fusio\\Action\\SqlFetchRow",
     "config": {
@@ -65,7 +65,7 @@ JSON;
 
     public function testPost()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/action/2', 'POST', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/action/3', 'POST', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
@@ -79,7 +79,7 @@ JSON;
 
     public function testPut()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/action/2', 'PUT', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/action/3', 'PUT', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
@@ -112,7 +112,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(2, $row['id']);
+        $this->assertEquals(3, $row['id']);
         $this->assertEquals('Bar', $row['name']);
         $this->assertEquals('Fusio\Action\SqlFetchRow', $row['class']);
         $this->assertEquals('a:2:{s:10:"connection";i:2;s:3:"sql";s:17:"SELECT * FROM bar";}', $row['config']);
@@ -120,7 +120,7 @@ JSON;
 
     public function testDelete()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/action/2', 'DELETE', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/action/3', 'DELETE', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
@@ -147,6 +147,6 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(1, $row['id']);
+        $this->assertEquals(2, $row['id']);
     }
 }

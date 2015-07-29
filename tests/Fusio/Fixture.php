@@ -88,7 +88,7 @@ JSON;
                 ['name' => 'DBAL', 'class' => 'Fusio\Connection\DBAL', 'config' => serialize(['type' => 'pdo_mysql', 'host' => '127.0.0.1', 'username' => 'root', 'password' => 'foo', 'database' => 'bar'])],
             ],
             'fusio_routes' => [
-                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/foo', 'controller' => 'Fusio\Controller\SchemaApiController', 'config' => 'a:1:{i:0;C:15:"PSX\Data\Record":660:{a:2:{s:4:"name";s:6:"config";s:6:"fields";a:4:{s:6:"active";b:1;s:6:"status";i:4;s:4:"name";s:1:"1";s:7:"methods";a:4:{i:0;C:15:"PSX\Data\Record":106:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:3:{s:4:"name";s:3:"GET";s:6:"action";i:2;s:8:"response";i:2;}}}i:1;C:15:"PSX\Data\Record":159:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:6:{s:6:"active";b:1;s:6:"public";b:0;s:4:"name";s:4:"POST";s:6:"action";i:2;s:7:"request";i:2;s:8:"response";i:1;}}}i:2;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"PUT";}}}i:3;C:15:"PSX\Data\Record":73:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:6:"DELETE";}}}}}}}}'],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/foo', 'controller' => 'Fusio\Controller\SchemaApiController', 'config' => 'a:1:{i:0;C:15:"PSX\Data\Record":660:{a:2:{s:4:"name";s:6:"config";s:6:"fields";a:4:{s:6:"active";b:1;s:6:"status";i:4;s:4:"name";s:1:"1";s:7:"methods";a:4:{i:0;C:15:"PSX\Data\Record":106:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:3:{s:4:"name";s:3:"GET";s:6:"action";i:3;s:8:"response";i:2;}}}i:1;C:15:"PSX\Data\Record":159:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:6:{s:6:"active";b:1;s:6:"public";b:0;s:4:"name";s:4:"POST";s:6:"action";i:3;s:7:"request";i:2;s:8:"response";i:1;}}}i:2;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"PUT";}}}i:3;C:15:"PSX\Data\Record":73:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:6:"DELETE";}}}}}}}}'],
             ],
             'fusio_log' => [
                 ['appId' => 1, 'routeId' => 1, 'ip' => '127.0.0.1', 'userAgent' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36', 'method' => 'GET', 'path' => '/bar', 'header' => 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'body' => 'foobar', 'date' => '2015-06-25 22:49:09'],
@@ -110,6 +110,7 @@ JSON;
             ],
             'fusio_scope_routes' => [
                 ['scopeId' => 4, 'routeId' => 36, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 4, 'routeId' => 37, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
             ],
             'fusio_user_scope' => [
                 ['userId' => 2, 'scopeId' => 1],

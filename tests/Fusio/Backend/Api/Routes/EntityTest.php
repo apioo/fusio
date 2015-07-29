@@ -41,7 +41,7 @@ class EntityTest extends ControllerDbTestCase
 
     public function testGet()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/routes/36', 'GET', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/routes/37', 'GET', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
@@ -49,7 +49,7 @@ class EntityTest extends ControllerDbTestCase
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
-    "id": 36,
+    "id": 37,
     "methods": "GET|POST|PUT|DELETE",
     "path": "\/foo",
     "config": [
@@ -60,14 +60,14 @@ class EntityTest extends ControllerDbTestCase
             "methods": [
                 {
                     "name": "GET",
-                    "action": 2,
+                    "action": 3,
                     "response": 2
                 },
                 {
                     "active": true,
                     "public": false,
                     "name": "POST",
-                    "action": 2,
+                    "action": 3,
                     "request": 2,
                     "response": 1
                 },
@@ -89,7 +89,7 @@ JSON;
 
     public function testPost()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/routes/36', 'POST', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/routes/37', 'POST', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
@@ -103,7 +103,7 @@ JSON;
 
     public function testPut()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/routes/36', 'PUT', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/routes/37', 'PUT', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
@@ -146,7 +146,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(36, $row['id']);
+        $this->assertEquals(37, $row['id']);
         $this->assertEquals(1, $row['status']);
         $this->assertEquals('GET|POST|PUT|DELETE', $row['methods']);
         $this->assertEquals('/foo', $row['path']);
@@ -156,7 +156,7 @@ JSON;
 
     public function testDelete()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/routes/36', 'DELETE', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/routes/37', 'DELETE', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
@@ -183,7 +183,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(36, $row['id']);
+        $this->assertEquals(37, $row['id']);
         $this->assertEquals(0, $row['status']);
     }
 }

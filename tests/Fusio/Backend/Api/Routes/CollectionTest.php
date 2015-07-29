@@ -49,13 +49,18 @@ class CollectionTest extends ControllerDbTestCase
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
-    "totalItems": 1,
+    "totalItems": 2,
     "startIndex": 0,
     "entry": [
         {
-            "id": 36,
+            "id": 37,
             "methods": "GET|POST|PUT|DELETE",
             "path": "\/foo"
+        },
+        {
+            "id": 36,
+            "methods": "GET|POST|PUT|DELETE",
+            "path": "\/"
         }
     ]
 }
@@ -110,7 +115,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(37, $row['id']);
+        $this->assertEquals(38, $row['id']);
         $this->assertEquals(1, $row['status']);
         $this->assertEquals('GET|POST|PUT|DELETE', $row['methods']);
         $this->assertEquals('/bar', $row['path']);

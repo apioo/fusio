@@ -49,16 +49,20 @@ class CollectionTest extends ControllerDbTestCase
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
-    "totalItems": 2,
+    "totalItems": 3,
     "startIndex": 0,
     "entry": [
         {
-            "id": 2,
+            "id": 3,
             "name": "Sql-Fetch-Row"
         },
         {
-            "id": 1,
+            "id": 2,
             "name": "Sql-Fetch-All"
+        },
+        {
+            "id": 1,
+            "name": "Welcome"
         }
     ]
 }
@@ -104,7 +108,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(3, $row['id']);
+        $this->assertEquals(4, $row['id']);
         $this->assertEquals('Foo', $row['name']);
         $this->assertEquals('Fusio\Action\SqlFetchRow', $row['class']);
         $this->assertEquals('a:2:{s:10:"connection";i:1;s:3:"sql";s:17:"SELECT * FROM foo";}', $row['config']);
