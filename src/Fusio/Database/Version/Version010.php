@@ -206,6 +206,18 @@ class Version010 implements VersionInterface
             'properties' => new \stdClass(),
         ];
 
+        $welcomeResponse = <<<'JSON'
+{
+    "message": "Congratulations the installation of Fusio was successful",
+    "links": [{
+        "rel": "about",
+        "name": "http://fusio-project.org"
+    }]
+}
+JSON;
+
+        $welcomeConfig = 'a:1:{i:0;C:15:"PSX\Data\Record":605:{a:2:{s:4:"name";s:6:"config";s:6:"fields";a:4:{s:6:"active";b:1;s:6:"status";i:4;s:4:"name";s:1:"1";s:7:"methods";a:4:{i:0;C:15:"PSX\Data\Record":140:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:5:{s:6:"active";b:1;s:6:"public";b:1;s:4:"name";s:3:"GET";s:6:"action";i:1;s:8:"response";i:1;}}}i:1;C:15:"PSX\Data\Record":71:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:4:"POST";}}}i:2;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"PUT";}}}i:3;C:15:"PSX\Data\Record":73:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:6:"DELETE";}}}}}}}}';
+
         return [
             'fusio_user' => [
                 ['status' => 1, 'name' => 'Administrator', 'password' => $password, 'date' => $now->format('Y-m-d H:i:s')],
@@ -219,6 +231,9 @@ class Version010 implements VersionInterface
             'fusio_scope' => [
                 ['name' => 'backend'],
                 ['name' => 'authorization'],
+            ],
+            'fusio_action' => [
+                ['name' => 'Welcome', 'class' => 'Fusio\Action\StaticResponse', 'config' => serialize(['response' => $welcomeResponse]), 'date' => $now->format('Y-m-d H:i:s')],
             ],
             'fusio_schema' => [
                 ['name' => 'Passthru', 'source' => json_encode($passthruSource), 'cache' => 'C:15:"PSX\Data\Schema":162:{C:36:"PSX\Data\Schema\Property\ComplexType":112:{a:5:{s:10:"properties";a:0:{}s:4:"name";s:8:"passthru";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}}']
@@ -262,6 +277,8 @@ class Version010 implements VersionInterface
 
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/doc',                                 'controller' => 'PSX\Controller\Tool\DocumentationController::doIndex',   'config' => null],
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/doc/:version/*path',                  'controller' => 'PSX\Controller\Tool\DocumentationController::doDetail',  'config' => null],
+
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/',                                    'controller' => 'Fusio\Controller\SchemaApiController',                   'config' => $welcomeConfig],
             ],
             'fusio_app_scope' => [
                 ['appId' => 1, 'scopeId' => 1]
