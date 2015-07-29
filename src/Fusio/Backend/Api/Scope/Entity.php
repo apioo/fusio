@@ -156,11 +156,11 @@ class Entity extends SchemaApiAbstract
         $scope   = $this->tableManager->getTable('Fusio\Backend\Table\Scope')->get($scopeId);
 
         if (!empty($scope)) {
+            $this->tableManager->getTable('Fusio\Backend\Table\Scope\Route')->deleteAllFromScope($scope['id']);
+
             $this->tableManager->getTable('Fusio\Backend\Table\Scope')->delete(array(
                 'id' => $scope['id']
             ));
-
-            $this->tableManager->getTable('Fusio\Backend\Table\Scope\Route')->deleteAllFromScope($scope['id']);
 
             return array(
                 'success' => true,
