@@ -1,7 +1,7 @@
 {
   "name": "fusio",
   "version": "0.1.0",
-  "description": "",
+  "private": true,
   "main": "Gruntfile.js",
   "author": "Christoph Kappestein",
   "license": "AGPLv3",
