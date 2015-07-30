@@ -121,6 +121,10 @@ JSON;
 
     public function testDelete()
     {
+        // delete all scope references to successful delete an scope
+        Environment::getService('connection')->executeUpdate('DELETE FROM fusio_app_scope WHERE scopeId = :scopeId', ['scopeId' => 4]);
+        Environment::getService('connection')->executeUpdate('DELETE FROM fusio_user_scope WHERE scopeId = :scopeId', ['scopeId' => 4]);
+
         $response = $this->sendRequest('http://127.0.0.1/backend/scope/4', 'DELETE', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
@@ -149,5 +153,61 @@ JSON;
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
         $this->assertEquals(3, $row['id']);
+    }
+
+    public function testDeleteAppScopeAssigned()
+    {
+        Environment::getService('connection')->executeUpdate('DELETE FROM fusio_user_scope WHERE scopeId = :scopeId', ['scopeId' => 4]);
+
+        $response = $this->sendRequest('http://127.0.0.1/backend/scope/4', 'DELETE', array(
+            'User-Agent'    => 'Fusio TestCase',
+            'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
+        ));
+
+        $body = (string) $response->getBody();
+
+        $this->assertEquals(500, $response->getStatusCode(), $body);
+        $this->assertTrue(strpos($body, 'Scope is assigned to an app') !== false, $body);
+
+        // check database
+        $sql = Environment::getService('connection')->createQueryBuilder()
+            ->select('id')
+            ->from('fusio_scope')
+            ->orderBy('id', 'DESC')
+            ->setFirstResult(0)
+            ->setMaxResults(1)
+            ->getSQL();
+
+        $row = Environment::getService('connection')->fetchAssoc($sql);
+
+        $this->assertEquals(4, $row['id']);
+    }
+
+    public function testDeleteUserScopeAssigned()
+    {
+        Environment::getService('connection')->executeUpdate('DELETE FROM fusio_app_scope WHERE scopeId = :scopeId', ['scopeId' => 4]);
+
+        $response = $this->sendRequest('http://127.0.0.1/backend/scope/4', 'DELETE', array(
+            'User-Agent'    => 'Fusio TestCase',
+            'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
+        ));
+
+        $body = (string) $response->getBody();
+
+        $this->assertEquals(500, $response->getStatusCode(), $body);
+        $this->assertTrue(strpos($body, 'Scope is assgined to an user') !== false, $body);
+
+        // check database
+        $sql = Environment::getService('connection')->createQueryBuilder()
+            ->select('id')
+            ->from('fusio_scope')
+            ->orderBy('id', 'DESC')
+            ->setFirstResult(0)
+            ->setMaxResults(1)
+            ->getSQL();
+
+        $row = Environment::getService('connection')->fetchAssoc($sql);
+
+        $this->assertEquals(4, $row['id']);
     }
 }

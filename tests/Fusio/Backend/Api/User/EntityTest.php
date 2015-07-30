@@ -53,8 +53,8 @@ class EntityTest extends ControllerDbTestCase
     "status": 0,
     "name": "Consumer",
     "scopes": [
-        "backend",
-        "authorization"
+        "foo",
+        "bar"
     ],
     "apps": [
         {

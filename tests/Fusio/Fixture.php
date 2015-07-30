@@ -113,8 +113,8 @@ JSON;
                 ['scopeId' => 4, 'routeId' => 37, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
             ],
             'fusio_user_scope' => [
-                ['userId' => 2, 'scopeId' => 1],
-                ['userId' => 2, 'scopeId' => 2],
+                ['userId' => 2, 'scopeId' => 3],
+                ['userId' => 2, 'scopeId' => 4],
             ],
             'app_news' => [
                 ['title' => 'foo', 'content' => 'bar', 'date' => '2015-02-27 19:59:15'],

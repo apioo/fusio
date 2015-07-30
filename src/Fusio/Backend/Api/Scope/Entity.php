@@ -29,6 +29,7 @@ use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Http\Exception as StatusCode;
 use PSX\Loader\Context;
+use PSX\Sql\Condition;
 
 /**
  * Entity
@@ -156,6 +157,18 @@ class Entity extends SchemaApiAbstract
         $scope   = $this->tableManager->getTable('Fusio\Backend\Table\Scope')->get($scopeId);
 
         if (!empty($scope)) {
+            // check whether the scope is used by an app or user
+            $appScopes = $this->tableManager->getTable('Fusio\Backend\Table\App\Scope')->getCount(new Condition(['scopeId', '=', $scope['id']]));
+            if ($appScopes > 0) {
+                throw new StatusCode\InternalServerErrorException('Scope is assigned to an app. Remove the scope from the app in order to delete the scope');
+            }
+
+            $userScopes = $this->tableManager->getTable('Fusio\Backend\Table\User\Scope')->getCount(new Condition(['scopeId', '=', $scope['id']]));
+            if ($userScopes > 0) {
+                throw new StatusCode\InternalServerErrorException('Scope is assgined to an user. Remove the scope from the user in order to delete the scope');
+            }
+
+            // delete all routes assigned to the scope
             $this->tableManager->getTable('Fusio\Backend\Table\Scope\Route')->deleteAllFromScope($scope['id']);
 
             $this->tableManager->getTable('Fusio\Backend\Table\Scope')->delete(array(
