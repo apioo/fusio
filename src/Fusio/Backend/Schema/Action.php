@@ -22,6 +22,7 @@
 namespace Fusio\Backend\Schema;
 
 use PSX\Data\SchemaAbstract;
+use PSX\Data\Schema\Property;
 
 /**
  * Action
@@ -34,25 +35,13 @@ class Action extends SchemaAbstract
 {
     public function getDefinition()
     {
-        $config = $this->getSchemaBuilder('config');
-        $config->string('url');
-        $config->integer('connection');
-        $config->string('sql');
-        $config->string('collection');
-        $config->string('criteria');
-        $config->string('projection');
-        $config->string('propertyName');
-        $config->string('response');
-        $config->string('condition');
-        $config->string('true');
-        $config->string('false');
-
         $sb = $this->getSchemaBuilder('action');
         $sb->integer('id');
         $sb->string('name')
             ->setPattern('[A-z0-9\-\_]{3,64}');
         $sb->string('class');
-        $sb->complexType($config->getProperty());
+        $sb->anyType('config')
+            ->setPrototype(Property::getString('value'));
 
         return $sb->getProperty();
     }

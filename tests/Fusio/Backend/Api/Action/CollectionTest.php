@@ -81,7 +81,7 @@ JSON;
             'name'   => 'Foo',
             'class'  => 'Fusio\Action\SqlFetchRow',
             'config' => [
-                'connection' => 1,
+                'connection' => '1',
                 'sql'        => 'SELECT * FROM foo'
             ],
         ]));
@@ -111,7 +111,7 @@ JSON;
         $this->assertEquals(4, $row['id']);
         $this->assertEquals('Foo', $row['name']);
         $this->assertEquals('Fusio\Action\SqlFetchRow', $row['class']);
-        $this->assertEquals('a:2:{s:10:"connection";i:1;s:3:"sql";s:17:"SELECT * FROM foo";}', $row['config']);
+        $this->assertEquals('a:2:{s:10:"connection";s:1:"1";s:3:"sql";s:17:"SELECT * FROM foo";}', $row['config']);
     }
 
     public function testPut()

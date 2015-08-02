@@ -22,6 +22,7 @@
 namespace Fusio\Backend\Schema;
 
 use PSX\Data\SchemaAbstract;
+use PSX\Data\Schema\Property;
 
 /**
  * Connection
@@ -34,20 +35,13 @@ class Connection extends SchemaAbstract
 {
     public function getDefinition()
     {
-        $config = $this->getSchemaBuilder('config');
-        $config->string('url');
-        $config->string('type');
-        $config->string('host');
-        $config->string('username');
-        $config->string('password');
-        $config->string('database');
-
         $sb = $this->getSchemaBuilder('connection');
         $sb->integer('id');
         $sb->string('name')
             ->setPattern('[A-z0-9\-\_]{3,64}');
         $sb->string('class');
-        $sb->complexType($config->getProperty());
+        $sb->anyType('config')
+            ->setPrototype(Property::getString('value'));
 
         return $sb->getProperty();
     }

@@ -53,7 +53,7 @@ class EntityTest extends ControllerDbTestCase
     "name": "Sql-Fetch-Row",
     "class": "Fusio\\Action\\SqlFetchRow",
     "config": {
-        "connection": 1,
+        "connection": "1",
         "sql": "SELECT * FROM app_news"
     }
 }
@@ -85,7 +85,7 @@ JSON;
         ), json_encode([
             'name'   => 'Bar',
             'config' => [
-                'connection' => 2,
+                'connection' => '2',
                 'sql'        => 'SELECT * FROM bar'
             ],
         ]));
@@ -115,7 +115,7 @@ JSON;
         $this->assertEquals(3, $row['id']);
         $this->assertEquals('Bar', $row['name']);
         $this->assertEquals('Fusio\Action\SqlFetchRow', $row['class']);
-        $this->assertEquals('a:2:{s:10:"connection";i:2;s:3:"sql";s:17:"SELECT * FROM bar";}', $row['config']);
+        $this->assertEquals('a:2:{s:10:"connection";s:1:"2";s:3:"sql";s:17:"SELECT * FROM bar";}', $row['config']);
     }
 
     public function testDelete()
