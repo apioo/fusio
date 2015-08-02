@@ -13,10 +13,12 @@ fusioApp.factory('helpLoader', ['$http', '$showdown', '$q', '$modal', function($
 
                     if (parser.hash) {
                         var heading = parser.hash.substr(1);
-                        var regexp = new RegExp('(^###\\s' + heading + '$\\s+([\\s\\S]*?))^###\\s', 'gmi');
+                        if (heading != '') {
+                            var regexp = new RegExp('(^###\\s' + heading + '$\\s+([\\s\\S]*?))^###\\s', 'gmi');
+                            matches = regexp.exec(data);
 
-                        matches = regexp.exec(data);
-                        data = matches && matches.length > 0 ? matches[1] : 'Could not found chapter';
+                            data = matches && matches.length > 0 ? matches[1] : 'Could not found chapter';
+                        }
                     }
 
                     var html = $showdown.makeHtml(data);
