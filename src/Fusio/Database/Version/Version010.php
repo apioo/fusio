@@ -25,6 +25,7 @@ use DateTime;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
 use Fusio\Database\VersionInterface;
+use Fusio\Schema\Parser;
 use PSX\OpenSsl;
 use PSX\Util\Uuid;
 
@@ -179,7 +180,7 @@ class Version010 implements VersionInterface
 
     public function executeInstall(Connection $connection)
     {
-        $inserts = $this->getInstallInserts();
+        $inserts = $this->getInstallInserts($connection);
 
         foreach ($inserts as $tableName => $queries) {
             foreach ($queries as $data) {
@@ -192,19 +193,28 @@ class Version010 implements VersionInterface
     {
     }
 
-    public function getInstallInserts()
+    public function getInstallInserts(Connection $connection)
     {
         $now       = new DateTime();
         $appKey    = Uuid::pseudoRandom();
         $appSecret = hash('sha256', OpenSsl::randomPseudoBytes(256));
         $password  = \password_hash(sha1(mcrypt_create_iv(40)), PASSWORD_DEFAULT);
 
-        $passthruSource = [
+        $passthruSchema = json_encode([
             'id' => 'http://fusio-project.org',
             'title' => 'passthru',
             'type' => 'object',
-            'properties' => new \stdClass(),
-        ];
+            'description' => 'No schema was specified all data will pass thru. Please contact the API provider for more informations about the data format.',
+            'properties' => [
+                'undefined' => [
+                    'type' => 'string',
+                    'description' => 'Dummy property no schema was specified',
+                ]
+            ],
+        ]);
+
+        $parser        = new Parser($connection);
+        $passthruCache = $parser->parse($passthruSchema);
 
         $welcomeResponse = <<<'JSON'
 {
@@ -236,7 +246,7 @@ JSON;
                 ['name' => 'Welcome', 'class' => 'Fusio\Action\StaticResponse', 'config' => serialize(['response' => $welcomeResponse]), 'date' => $now->format('Y-m-d H:i:s')],
             ],
             'fusio_schema' => [
-                ['name' => 'Passthru', 'source' => json_encode($passthruSource), 'cache' => 'C:15:"PSX\Data\Schema":162:{C:36:"PSX\Data\Schema\Property\ComplexType":112:{a:5:{s:10:"properties";a:0:{}s:4:"name";s:8:"passthru";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}}']
+                ['name' => 'Passthru', 'source' => $passthruSchema, 'cache' => $passthruCache]
             ],
             'fusio_routes' => [
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend',                             'controller' => 'Fusio\Backend\Application\Index',                        'config' => null],
