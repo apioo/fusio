@@ -51,5 +51,8 @@ describes each status
   Used if you dont want to support an specific version anymore. Returns an error 
   message with a `410 Gone` status code
 
-### References
+### Action
+
+The action contains the business logic of your API endpoints. It i.e. selects
+or inserts entries from an database or pushes a new entry to an message queue.
 

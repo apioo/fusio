@@ -61,14 +61,17 @@ condition.
 
 ### Examples
 
-The current app has made less then 100 requests this month
+Note while the condition is a powerful action you should consider to write a
+custom action if there are to many specific cases. In the following a few 
+examples:
 
-    rateLimit.getRequestsPerMonth() < 100
+* The current app has made less then 100 requests this month
 
-The request contains a GET parameter with <code>escalate=1</code> and the app 
-has made less then 10 requests today
+        rateLimit.getRequestsPerMonth() < 100
 
-    parameters.get('escalate') == 1 && rateLimit.getRequestsPerDay() < 10
+* The request contains a GET parameter with <code>escalate=1</code> and the app 
+  has made less then 10 requests today
 
+        parameters.get('escalate') == 1 && rateLimit.getRequestsPerDay() < 10
 
 [documentation]: http://symfony.com/doc/current/components/expression_language/introduction.html
