@@ -33,7 +33,7 @@ use PSX\Test\Environment;
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class RabbitMqPushTest extends \PHPUnit_Framework_TestCase
+class RabbitMqPushTest extends \PHPUnit_Extensions_Database_TestCase
 {
     use ActionTestCaseTrait;
 
