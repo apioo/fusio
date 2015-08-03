@@ -180,7 +180,7 @@ class Version010 implements VersionInterface
 
     public function executeInstall(Connection $connection)
     {
-        $inserts = $this->getInstallInserts($connection);
+        $inserts = $this->getInstallInserts();
 
         foreach ($inserts as $tableName => $queries) {
             foreach ($queries as $data) {
@@ -193,7 +193,7 @@ class Version010 implements VersionInterface
     {
     }
 
-    public function getInstallInserts(Connection $connection)
+    public function getInstallInserts()
     {
         $now       = new DateTime();
         $appKey    = Uuid::pseudoRandom();
@@ -213,7 +213,7 @@ class Version010 implements VersionInterface
             ],
         ]);
 
-        $parser        = new Parser($connection);
+        $parser        = new Parser();
         $passthruCache = $parser->parse($passthruSchema);
 
         $welcomeResponse = <<<'JSON'

@@ -38,7 +38,7 @@ class Parser
 {
     protected $connection;
 
-    public function __construct(Connection $connection)
+    public function __construct(Connection $connection = null)
     {
         $this->connection = $connection;
     }
@@ -52,7 +52,10 @@ class Parser
     public function parse($source)
     {
         $resolver = new RefResolver();
-        $resolver->addResolver('schema', new Resolver($this->connection));
+
+        if ($this->connection !== null) {
+            $resolver->addResolver('schema', new Resolver($this->connection));
+        }
 
         $parser = new JsonSchema(null, $resolver);
         $schema = $parser->parse($source);
