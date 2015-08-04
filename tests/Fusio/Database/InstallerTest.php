@@ -51,4 +51,51 @@ class InstallerTest extends DbTestCase
 
         $this->assertEquals(Base::getVersion(), current($path), 'The current version must be in the upgrade path');
     }
+
+    /**
+     * Run the installation script to check whether an installation works 
+     * without errors
+     */
+    public function testInstall()
+    {
+        // create a copy of the current schema
+        $sm       = $this->connection->getSchemaManager();
+        $toSchema = $sm->createSchema();
+
+        $this->removeAllTables();
+
+        // execute the installer
+        $installer = new Installer($this->connection);
+        $installer->install(Base::getVersion());
+
+        // @TODO make checks to verify that the installation works
+
+        $this->removeAllTables();
+
+        // restore the schema
+        $fromSchema = $sm->createSchema();
+        $queries    = $fromSchema->getMigrateToSql($toSchema, $this->connection->getDatabasePlatform());
+
+        foreach ($queries as $sql) {
+            $this->connection->executeUpdate($sql);
+        }
+    }
+
+    protected function removeAllTables()
+    {
+        $sm         = $this->connection->getSchemaManager();
+        $fromSchema = $sm->createSchema();
+        $toSchema   = clone $fromSchema;
+
+        foreach ($fromSchema->getTables() as $table) {
+            $toSchema->dropTable($table->getName());
+        }
+
+        $queries = $fromSchema->getMigrateToSql($toSchema, $this->connection->getDatabasePlatform());
+
+        foreach ($queries as $sql) {
+            $this->connection->executeUpdate($sql);
+        }
+    }
 }
+
