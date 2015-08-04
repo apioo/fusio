@@ -19,21 +19,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio;
+namespace Fusio\Database;
+
+use Fusio\Base;
+use Fusio\DbTestCase;
 
 /**
- * Base
+ * InstallerTest
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Base
+class InstallerTest extends DbTestCase
 {
-    const VERSION = '0.1.2';
-
-    public static function getVersion()
+    /**
+     * Checks whether we have an database version
+     */
+    public function testVersion()
     {
-        return self::VERSION;
+        $this->assertInstanceOf('Fusio\Database\VersionInterface', Installer::getVersion(Base::getVersion()), 'No database version class was provided');
+    }
+
+    /**
+     * Checks whether this version is in the upgrade path
+     */
+    public function testUpgradePath()
+    {
+        $installer = new Installer($this->connection);
+        $path      = $installer->getUpgradePath();
+
+        $this->assertEquals(Base::getVersion(), current($path), 'The current version must be in the upgrade path');
     }
 }

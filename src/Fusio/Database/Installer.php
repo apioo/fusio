@@ -94,13 +94,15 @@ class Installer
     public function getUpgradePath()
     {
         return [
+            '0.1.2',
+            '0.1.1',
             '0.1',
         ];
     }
 
     protected function doInstall($schemaVersion)
     {
-        $version = $this->getVersion($schemaVersion);
+        $version = self::getVersion($schemaVersion);
         if ($version instanceof VersionInterface) {
             $fromSchema = $this->connection->getSchemaManager()->createSchema();
             $toSchema   = $version->getSchema();
@@ -139,7 +141,7 @@ class Installer
         return null;
     }
 
-    protected function getVersion($version)
+    public static function getVersion($version)
     {
         $version   = str_pad(str_replace('.', '', $version), 3, '0');
         $className = 'Fusio\Database\Version\Version' . $version;

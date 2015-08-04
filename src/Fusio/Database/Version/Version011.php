@@ -19,21 +19,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio;
+namespace Fusio\Database\Version;
 
 /**
- * Base
+ * Version011
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Base
+class Version011 extends Version010
 {
-    const VERSION = '0.1.2';
-
-    public static function getVersion()
-    {
-        return self::VERSION;
-    }
 }
