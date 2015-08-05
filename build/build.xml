@@ -30,8 +30,11 @@
 
     <!-- bower install -->
     <target name="bower-install">
-        <exec dir="${build}/public" executable="${bower}" failonerror="true">
-            <arg line="install" />
+        <exec dir="${build}/public" executable="${npm}" failonerror="true">
+            <arg line="install bower" />
+        </exec>
+        <exec dir="${build}/public" executable="${shell}" failonerror="true">
+            <arg line="${bower} install" />
         </exec>
     </target>
 
@@ -49,8 +52,8 @@
         <exec dir="${build}/public" executable="${npm}" failonerror="true">
             <arg line="install grunt-contrib-cssmin" />
         </exec>
-        <exec dir="${build}/public" executable="${grunt}" failonerror="true">
-            <arg line="" />
+        <exec dir="${build}/public" executable="${shell}" failonerror="true">
+            <arg line="${grunt}" />
         </exec>
     </target>
 
