@@ -24,8 +24,10 @@ namespace Fusio\Schema;
 use Doctrine\DBAL\Connection;
 use PSX\Data\Schema\Parser\JsonSchema;
 use PSX\Data\Schema\Parser\JsonSchema\RefResolver;
+use PSX\Data\Schema\Property;
 use PSX\File;
 use PSX\Validate;
+use RuntimeException;
 
 /**
  * Parser
@@ -59,6 +61,10 @@ class Parser
 
         $parser = new JsonSchema(null, $resolver);
         $schema = $parser->parse($source);
+
+        if (!$schema->getDefinition() instanceof Property\ComplexType) {
+            throw new RuntimeException('Schema must be an object');
+        }
 
         return serialize($schema);
     }
