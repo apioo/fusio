@@ -66,7 +66,9 @@
     <!-- ############################## TESTS ############################## -->
     <!-- syntax check of all files -->
     <target name="syntax-check">
-        <exec executable="${check-syntax}" failonerror="true" />
+        <exec executable="${shell}" failonerror="true">
+            <arg line="${check-syntax}" />
+        </exec>
     </target>
 
     <!-- run phpunit tests -->
