@@ -2,7 +2,11 @@
 <project name="fusio" default="build" basedir=".">
     <description>Fusio build script</description>
 
-    <property name="build" location="fusio" />
+    <condition property="properties-file" value="build-win" else="build-default">
+        <os family="windows" />
+    </condition>
+
+    <property file="${properties-file}.properties" />
 
     <!-- ############################# INSTALL ############################# -->
     <!-- delete git dir -->
@@ -12,40 +16,40 @@
 
     <!-- clone the repository -->
     <target name="git-clone">
-        <exec executable="git" failonerror="true">
+        <exec executable="${git}" failonerror="true">
             <arg line="clone https://github.com/k42b3/fusio.git ${build}" />
         </exec>
     </target>
 
     <!-- composer install -->
     <target name="composer-install">
-        <exec dir="${build}" executable="composer.bat" failonerror="true">
+        <exec dir="${build}" executable="${composer}" failonerror="true" osfamily="windows">
             <arg line="install" />
         </exec>
     </target>
 
     <!-- bower install -->
     <target name="bower-install">
-        <exec dir="${build}/public" executable="bower.cmd" failonerror="true">
+        <exec dir="${build}/public" executable="${bower}" failonerror="true">
             <arg line="install" />
         </exec>
     </target>
 
     <!-- grunt -->
     <target name="grunt-install">
-        <exec dir="${build}/public" executable="npm.cmd" failonerror="true">
+        <exec dir="${build}/public" executable="${npm}" failonerror="true">
             <arg line="install grunt" />
         </exec>
-        <exec dir="${build}/public" executable="npm.cmd" failonerror="true">
+        <exec dir="${build}/public" executable="${npm}" failonerror="true">
             <arg line="install grunt-contrib-concat" />
         </exec>
-        <exec dir="${build}/public" executable="npm.cmd" failonerror="true">
+        <exec dir="${build}/public" executable="${npm}" failonerror="true">
             <arg line="install grunt-contrib-uglify" />
         </exec>
-        <exec dir="${build}/public" executable="npm.cmd" failonerror="true">
+        <exec dir="${build}/public" executable="${npm}" failonerror="true">
             <arg line="install grunt-contrib-cssmin" />
         </exec>
-        <exec dir="${build}/public" executable="grunt.cmd" failonerror="true">
+        <exec dir="${build}/public" executable="${grunt}" failonerror="true">
             <arg line="" />
         </exec>
     </target>
@@ -56,12 +60,12 @@
     <!-- ############################## TESTS ############################## -->
     <!-- syntax check of all files -->
     <target name="syntax-check">
-        <exec dir="." executable="check-syntax.bat" failonerror="true" />
+        <exec executable="${check-syntax}" failonerror="true" />
     </target>
 
     <!-- run phpunit tests -->
     <target name="phpunit">
-        <exec dir="${build}" executable="phpunit.bat" failonerror="true" />
+        <exec dir="${build}" executable="${phpunit}" failonerror="true" />
     </target>
 
     <!-- this target runs all tests -->
@@ -95,7 +99,7 @@
     <!-- ############################## BUILD ############################## -->
     <!-- returns the current version -->
     <target name="get-version">
-        <exec executable="php" failonerror="true" outputproperty="version">
+        <exec executable="${php}" failonerror="true" outputproperty="version">
             <arg line="get-version.php" />
         </exec>
         <echo message="Building version ${version}" />
@@ -111,5 +115,12 @@
 
     <!-- builds the archive -->
     <target name="build" depends="test,clean,create-archive" />
+
+    <!-- ############################## INTERNAL ########################### -->
+    <scriptdef name="propchange" language="javascript">
+        <attribute name="name" />
+        <attribute name="value" />
+        project.setProperty(attributes.get("name"), attributes.get("value"));
+    </scriptdef>
 
 </project>
