@@ -33,8 +33,8 @@
         <exec dir="${build}/public" executable="${npm}" failonerror="true">
             <arg line="install bower" />
         </exec>
-        <exec dir="${build}/public" executable="${shell}" failonerror="true">
-            <arg line="${bower} install" />
+        <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
+            <arg line="node_modules/bower/bin/bower install" />
         </exec>
     </target>
 
@@ -52,8 +52,11 @@
         <exec dir="${build}/public" executable="${npm}" failonerror="true">
             <arg line="install grunt-contrib-cssmin" />
         </exec>
-        <exec dir="${build}/public" executable="${shell}" failonerror="true">
-            <arg line="${grunt}" />
+        <exec dir="${build}/public" executable="${npm}" failonerror="true">
+            <arg line="install grunt-cli" />
+        </exec>
+        <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
+            <arg line="node_modules/grunt-cli/bin/grunt" />
         </exec>
     </target>
 
