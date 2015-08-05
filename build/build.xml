@@ -23,7 +23,7 @@
 
     <!-- composer install -->
     <target name="composer-install">
-        <exec dir="${build}" executable="${composer}" failonerror="true" osfamily="windows">
+        <exec dir="${build}" executable="${composer}" failonerror="true">
             <arg line="install" />
         </exec>
     </target>
