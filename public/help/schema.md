@@ -9,5 +9,26 @@ schema has an <code>id</code> property with an URI which is used to resolve
 schema references. More detailed informations about the json schema format at 
 the [RFC].
 
+### Example
+
+    {
+        "id": "http://acme.com/schema",
+        "type": "object",
+        "title": "schema",
+        "properties": {
+            "name": {
+                "type": "string"
+            },
+            "author": {
+                "$ref": "schema:///author"
+            },
+            "date": {
+                "type": "string",
+                "format": "date-time"
+            }
+        }
+    }
+
+
 [JsonSchema]: http://json-schema.org/
 [RFC]: http://tools.ietf.org/html/draft-zyp-json-schema-04
