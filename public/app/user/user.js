@@ -175,6 +175,11 @@ angular.module('fusioApp.user', ['ngRoute', 'ui.bootstrap'])
 	});
 
 	$scope.update = function(user){
+		// remove app data
+		if (user.apps) {
+			delete user.apps;
+		}
+
 		$http.put(fusio_url + 'backend/user/' + user.id, user)
 			.success(function(data){
 				$scope.response = data;
