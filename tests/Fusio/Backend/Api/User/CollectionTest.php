@@ -51,9 +51,15 @@ class CollectionTest extends ControllerDbTestCase
         $body   = preg_replace('/-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?/', '2015-02-27T19:59:15Z', $body);
         $expect = <<<'JSON'
 {
-    "totalItems": 3,
+    "totalItems": 4,
     "startIndex": 0,
     "entry": [
+        {
+            "id": 4,
+            "status": 1,
+            "name": "Developer",
+            "date": "2015-02-27T19:59:15Z"
+        },
         {
             "id": 3,
             "status": 2,
@@ -116,7 +122,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(4, $row['id']);
+        $this->assertEquals(5, $row['id']);
         $this->assertEquals(0, $row['status']);
         $this->assertEquals('test', $row['name']);
 
@@ -127,15 +133,15 @@ JSON;
             ->orderBy('id', 'DESC')
             ->getSQL();
 
-        $routes = Environment::getService('connection')->fetchAll($sql, ['userId' => 4]);
+        $routes = Environment::getService('connection')->fetchAll($sql, ['userId' => 5]);
 
         $this->assertEquals([[
             'id'      => 5,
-            'userId'  => 4,
+            'userId'  => 5,
             'scopeId' => 3,
         ], [
             'id'      => 4,
-            'userId'  => 4,
+            'userId'  => 5,
             'scopeId' => 4,
         ]], $routes);
     }

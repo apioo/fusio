@@ -57,6 +57,7 @@ class EntityTest extends ControllerDbTestCase
     "appKey": "5347307d-d801-4075-9aaa-a21a29a448c5",
     "appSecret": "342cefac55939b31cd0a26733f9a4f061c0829ed87dae7caff50feaa55aff23d",
     "scopes": [
+        "authorization",
         "foo",
         "bar"
     ],

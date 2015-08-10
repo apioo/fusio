@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Api\Action;
+namespace Fusio\Authorization;
 
 use Fusio\Backend\Table\App\Token;
 use Fusio\Fixture;

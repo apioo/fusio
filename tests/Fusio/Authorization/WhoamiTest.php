@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Api\Action;
+namespace Fusio\Authorization;
 
 use Fusio\Fixture;
 use PSX\Test\ControllerDbTestCase;

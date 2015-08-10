@@ -70,32 +70,21 @@ class ClientCredentials extends ClientCredentialsAbstract
             }
 
             // generate access token
+            $expires     = new \DateTime();
+            $expires->add(new \DateInterval('PT6H'));
+            $now         = new \DateTime();
             $accessToken = hash('sha256', uniqid());
 
-            $sql = 'INSERT INTO fusio_app_token
-							SET appId = :app_id,
-							    userId = :user_id,
-							    status = :status,
-							    token = :token,
-							    scope = :scope,
-							    ip = :ip,
-							    expire = :expire,
-							    date = :date';
-
-            $expires = new \DateTime();
-            $expires->add(new \DateInterval('PT6H'));
-            $now = new \DateTime();
-
-            $this->connection->executeUpdate($sql, array(
-                'app_id'  => $app['id'],
-                'user_id' => $app['userId'],
+            $this->connection->insert('fusio_app_token', [
+                'appId'  => $app['id'],
+                'userId' => $app['userId'],
                 'status'  => AppToken::STATUS_ACTIVE,
                 'token'   => $accessToken,
                 'scope'   => implode(',', $scopes),
-                'ip'      => $_SERVER['REMOTE_ADDR'],
+                'ip'      => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1',
                 'expire'  => $expires->format($this->connection->getDatabasePlatform()->getDateTimeFormatString()),
                 'date'    => $now->format($this->connection->getDatabasePlatform()->getDateTimeFormatString()),
-            ));
+            ]);
 
             $token = new AccessToken();
             $token->setAccessToken($accessToken);
