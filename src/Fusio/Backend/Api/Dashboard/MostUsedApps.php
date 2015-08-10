@@ -37,12 +37,15 @@ class MostUsedApps extends ApiAbstract
 
     public function onGet()
     {
+        $now  = $this->connection->getDatabasePlatform()->getNowExpression();
+        $past = $this->connection->getDatabasePlatform()->getDateSubMonthExpression($now, 1);
+
         $sql = '    SELECT COUNT(log.id) AS count,
 				           app.name
 				      FROM fusio_log log
 				INNER JOIN fusio_app app
 				        ON log.appId = app.id
-				     WHERE log.date > DATE_SUB(NOW(), INTERVAL 1 MONTH)
+				     WHERE log.date > ' . $past . '
 				  GROUP BY log.routeId
 				  ORDER BY count DESC
 				     LIMIT 6';
