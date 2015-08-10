@@ -26,6 +26,7 @@ use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Template\Filter\Prepare;
 use PSX\Data\Accessor;
+use PSX\DisplayException;
 use PSX\Validate;
 
 /**
@@ -61,11 +62,20 @@ class Parser
 
         $this->twig->getFilter(Prepare::FILTER_NAME)->getCallable()->clear();
 
-        return $this->twig->render($configuration->get(Parameters::ACTION_ID), [
-            'request' => $request,
-            'context' => $context,
-            'body'    => new Accessor(new Validate(), $request->getBody()),
-        ]);
+        try {
+            return $this->twig->render($configuration->get(Parameters::ACTION_ID), [
+                'request' => $request,
+                'context' => $context,
+                'body'    => new Accessor(new Validate(), $request->getBody()),
+            ]);
+        } catch (\Twig_Error_Runtime $e) {
+            // if we have an display exception throw the original exception
+            if ($e->getPrevious() instanceof DisplayException) {
+                throw $e->getPrevious();
+            } else {
+                throw $e;
+            }
+        }
     }
 
     public function getSqlParameters()
