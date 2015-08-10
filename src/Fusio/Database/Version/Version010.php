@@ -211,7 +211,7 @@ class Version010 implements VersionInterface
                     'description' => 'Dummy property no schema was specified',
                 ]
             ],
-        ]);
+        ], JSON_PRETTY_PRINT);
 
         $parser        = new Parser();
         $passthruCache = $parser->parse($passthruSchema);

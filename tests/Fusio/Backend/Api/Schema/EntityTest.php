@@ -51,7 +51,7 @@ class EntityTest extends ControllerDbTestCase
 {
     "id": 1,
     "name": "Passthru",
-    "source": "{\"id\":\"http:\\/\\/fusio-project.org\",\"title\":\"passthru\",\"type\":\"object\",\"description\":\"No schema was specified all data will pass thru. Please contact the API provider for more informations about the data format.\",\"properties\":{\"undefined\":{\"type\":\"string\",\"description\":\"Dummy property no schema was specified\"}}}"
+    "source": "{\n    \"id\": \"http:\\\/\\\/fusio-project.org\",\n    \"title\": \"passthru\",\n    \"type\": \"object\",\n    \"description\": \"No schema was specified all data will pass thru. Please contact the API provider for more informations about the data format.\",\n    \"properties\": {\n        \"undefined\": {\n            \"type\": \"string\",\n            \"description\": \"Dummy property no schema was specified\"\n        }\n    }\n}"
 }
 JSON;
 
