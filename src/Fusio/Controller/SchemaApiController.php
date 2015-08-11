@@ -47,7 +47,7 @@ use PSX\Loader\Context;
  */
 class SchemaApiController extends SchemaApiAbstract implements DocumentedInterface
 {
-    const SCHEMA_PASSTHRU = 1;
+    const SCHEMA_PASSTHRU = 'passthru';
 
     /**
      * @Inject
@@ -187,7 +187,7 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
     protected function parseRequest(MethodAbstract $method)
     {
         if ($method->hasRequest()) {
-            if ($method->getRequest() instanceof LazySchema && $method->getRequest()->getSchemaId() == self::SCHEMA_PASSTHRU) {
+            if ($method->getRequest()->getDefinition()->getName() == self::SCHEMA_PASSTHRU) {
                 return $this->import(new Record());
             } else {
                 return $this->import($method->getRequest());
@@ -209,7 +209,7 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
         if ($schema instanceof SchemaInterface) {
             $this->setResponseCode($statusCode);
 
-            if ($schema instanceof LazySchema && $schema->getSchemaId() == self::SCHEMA_PASSTHRU) {
+            if ($schema->getDefinition()->getName() == self::SCHEMA_PASSTHRU) {
                 $this->setBody($response);
             } else {
                 $this->setBody($this->schemaAssimilator->assimilate($schema, $response));
