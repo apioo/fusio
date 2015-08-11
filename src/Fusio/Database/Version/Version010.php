@@ -205,12 +205,7 @@ class Version010 implements VersionInterface
             'title' => 'passthru',
             'type' => 'object',
             'description' => 'No schema was specified all data will pass thru. Please contact the API provider for more informations about the data format.',
-            'properties' => [
-                'undefined' => [
-                    'type' => 'string',
-                    'description' => 'Dummy property no schema was specified',
-                ]
-            ],
+            'properties' => new \stdClass(),
         ], JSON_PRETTY_PRINT);
 
         $parser        = new Parser();
