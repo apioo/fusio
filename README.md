@@ -4,18 +4,21 @@ Fusio
 # About
 
 Fusio is an opensource API managment platform which helps to build and manage 
-RESTful APIs. We think that there is a huge potential in the API economy. 
-Whether you need an API to expose your business functionality or to develop 
-One-Page web applications or Mobile-Apps. Because of this we think that Fusio is 
-a great tool to simplify building such APIs. More informations on 
+RESTful APIs. It provides endpoint versioning, handling data from different data 
+sources, schema definition (JsonSchema), automatic documentation generation and
+secure authorization (OAuth2). More informations on 
 http://www.fusio-project.org/
+
+We think that there is a huge potential in the API economy. Whether you need an 
+API to expose your business functionality or to develop One-Page web 
+applications or Mobile-Apps. Because of this we think that Fusio is a great tool 
+to simplify building such APIs.
 
 # Installation
 
 To install Fusio download the latest version and place the folder into the www 
 directory of the webserver. After this Fusio can be installed in three simple 
 steps.
-
 
  * Adjust the configuration file
    Open the file `configuration.php` in the Fusio directory and change the key 
