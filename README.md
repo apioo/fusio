@@ -3,7 +3,7 @@ Fusio
 
 # About
 
-Fusio is an opensource API managment platform which helps to build and manage 
+Fusio is an open source API management platform which helps to build and manage 
 RESTful APIs. It provides endpoint versioning, handling data from different data 
 sources, schema definition (JsonSchema), automatic documentation generation and
 secure authorization (OAuth2). More informations on 
