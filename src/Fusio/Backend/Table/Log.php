@@ -52,4 +52,16 @@ class Log extends TableAbstract
             'date' => self::TYPE_DATETIME,
         );
     }
+
+    public function getErrors($logId)
+    {
+        $sql = 'SELECT message,
+                       trace,
+                       file,
+                       line
+                  FROM fusio_log_error
+                 WHERE logId = :logId';
+
+        return $this->connection->fetchAll($sql, array('logId' => $logId)) ?: array();
+    }
 }

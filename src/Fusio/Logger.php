@@ -56,6 +56,24 @@ class Logger
             'body'      => $this->getBodyAsString($request),
             'date'      => $now->format('Y-m-d H:i:s'),
         ));
+
+        return $this->connection->lastInsertId();
+    }
+
+    public function appendError($logId, \Exception $exception)
+    {
+        $previousException = $exception->getPrevious();
+        if ($previousException instanceof \Exception) {
+            $this->appendError($logId, $previousException);
+        }
+
+        $this->connection->insert('fusio_log_error', array(
+            'logId'   => $logId,
+            'message' => $exception->getMessage(),
+            'trace'   => $exception->getTraceAsString(),
+            'file'    => $exception->getFile(),
+            'line'    => $exception->getLine(),
+        ));
     }
 
     protected function getHeadersAsString(RequestInterface $request)

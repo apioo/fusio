@@ -88,12 +88,19 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('LogDetailCtrl', ['$scope', '$http', '$modalInstance', 'log', function($scope, $http, $modalInstance, log){
+.controller('LogDetailCtrl', ['$scope', '$http', '$modal', '$modalInstance', 'log', function($scope, $http, $modal, $modalInstance, log){
 
 	$scope.log = log;
 
 	$scope.close = function(){
 		$modalInstance.dismiss('cancel');
+	};
+
+	$scope.openTraceDialog = function(error){
+		$modal.open({
+			size: 'md',
+			template: '<div class="modal-body"><pre>' + error.trace + '</pre></div>'
+		});
 	};
 
 	$http.get(fusio_url + 'backend/log/' + log.id)

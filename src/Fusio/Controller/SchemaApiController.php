@@ -95,6 +95,11 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
      */
     protected $app;
 
+    /**
+     * @var integer
+     */
+    protected $logId;
+
     private $activeMethod;
 
     public function onLoad()
@@ -105,7 +110,7 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
         $this->app = $this->appLoader->getById($this->appId);
 
         // log request
-        $this->apiLogger->log(
+        $this->logId = $this->apiLogger->log(
             $this->appId,
             $this->context->get('fusio.routeId'),
             isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1',
@@ -225,23 +230,30 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
         $actionId = $this->getActiveMethod()->getAction();
 
         if ($actionId > 0) {
-            $context    = new FusioContext($this->context->get('fusio.routeId'), $this->app);
-            $request    = new Request($this->request, $this->uriFragments, $this->getParameters(), $record);
-            $response   = $this->processor->execute($actionId, $request, $context);
-            $statusCode = $response->getStatusCode();
-            $headers    = $response->getHeaders();
+            try {
+                $context    = new FusioContext($this->context->get('fusio.routeId'), $this->app);
+                $request    = new Request($this->request, $this->uriFragments, $this->getParameters(), $record);
+                $response   = $this->processor->execute($actionId, $request, $context);
+                $statusCode = $response->getStatusCode();
+                $headers    = $response->getHeaders();
 
-            if (!empty($statusCode)) {
-                $this->setResponseCode($statusCode);
-            }
-
-            if (!empty($headers)) {
-                foreach ($headers as $name => $value) {
-                    $this->setHeader($name, $value);
+                if (!empty($statusCode)) {
+                    $this->setResponseCode($statusCode);
                 }
+
+                if (!empty($headers)) {
+                    foreach ($headers as $name => $value) {
+                        $this->setHeader($name, $value);
+                    }
+                }
+
+                return $response->getBody();
+            } catch (\Exception $e) {
+                $this->apiLogger->appendError($this->logId, $e);
+
+                throw $e;
             }
 
-            return $response->getBody();
         } else {
             throw new StatusCode\ServiceUnavailableException('No action provided');
         }

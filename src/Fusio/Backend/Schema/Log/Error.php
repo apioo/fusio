@@ -19,32 +19,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Schema;
+namespace Fusio\Backend\Schema\Log;
 
 use PSX\Data\SchemaAbstract;
 
 /**
- * Log
+ * Error
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Log extends SchemaAbstract
+class Error extends SchemaAbstract
 {
     public function getDefinition()
     {
-        $sb = $this->getSchemaBuilder('log');
-        $sb->integer('id');
-        $sb->string('ip');
-        $sb->string('userAgent');
-        $sb->string('method');
-        $sb->string('path');
-        $sb->string('header');
-        $sb->string('body');
-        $sb->dateTime('date');
-        $sb->arrayType('errors')
-            ->setPrototype($this->getSchema('Fusio\Backend\Schema\Log\Error'));
+        $sb = $this->getSchemaBuilder('error');
+        $sb->string('message');
+        $sb->string('trace');
+        $sb->string('file');
+        $sb->string('line');
 
         return $sb->getProperty();
     }

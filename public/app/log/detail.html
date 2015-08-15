@@ -16,5 +16,17 @@
 		<dt ng-if="log.body">Body</dt>
 		<dd ng-if="log.body"><pre>{{log.body}}</pre></dd>
 	</dl>
+
+	<div ng-if="log.errors.length > 0">
+		<h4>Errors</h4>
+		<ul>
+			<li ng-repeat="error in log.errors">
+				<button class="btn btn-default pull-right" ng-click="openTraceDialog(error)">Show trace</button>
+				<b>{{error.message}}</b>
+				<p>in {{error.file}} on {{error.line}}</p>
+			</li>
+		</ul>
+	</div>
+
 	<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 </div>

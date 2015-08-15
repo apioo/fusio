@@ -79,6 +79,9 @@ class Entity extends SchemaApiAbstract
         $log   = $this->tableManager->getTable('Fusio\Backend\Table\Log')->get($logId);
 
         if (!empty($log)) {
+            // append errors
+            $log['errors'] = $this->tableManager->getTable('Fusio\Backend\Table\Log')->getErrors($log['id']);
+
             return $log;
         } else {
             throw new StatusCode\NotFoundException('Could not find log');
