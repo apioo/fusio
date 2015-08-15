@@ -5,7 +5,7 @@ $loader->add('Fusio', 'tests');
 
 PSX\Test\Environment::setup(__DIR__ . '/..', function($fromSchema){
 
-    $version = new Fusio\Database\Version\Version010();
+    $version = new Fusio\Database\Version\Version014();
 	$schema  = $version->getSchema();
     Fusio\TestSchema::appendSchema($schema);
 
