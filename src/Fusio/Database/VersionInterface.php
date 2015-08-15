@@ -40,7 +40,7 @@ interface VersionInterface
     public function getSchema();
 
     /**
-     * Executes additional queries which can update database fields after an 
+     * Executes additional queries which can update database fields after an
      * install
      *
      * @param \Doctrine\DBAL\Connection $connection
@@ -48,7 +48,7 @@ interface VersionInterface
     public function executeInstall(Connection $connection);
 
     /**
-     * Executes additional queries which can update database fields after an 
+     * Executes additional queries which can update database fields after an
      * upgrade
      *
      * @param \Doctrine\DBAL\Connection $connection

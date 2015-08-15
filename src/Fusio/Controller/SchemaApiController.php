@@ -253,7 +253,6 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
 
                 throw $e;
             }
-
         } else {
             throw new StatusCode\ServiceUnavailableException('No action provided');
         }

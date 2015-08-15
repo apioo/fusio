@@ -49,10 +49,10 @@ class Scope extends TableAbstract
     public function getByUser($userId)
     {
         $sql = '    SELECT scope.name
-				      FROM fusio_user_scope userScope
-				INNER JOIN fusio_scope scope
-				        ON scope.id = userScope.scopeId
-				     WHERE userScope.userId = :userId';
+                      FROM fusio_user_scope userScope
+                INNER JOIN fusio_scope scope
+                        ON scope.id = userScope.scopeId
+                     WHERE userScope.userId = :userId';
 
         $result = $this->connection->fetchAll($sql, array('userId' => $userId)) ?: array();
         $names  = array();
@@ -67,10 +67,10 @@ class Scope extends TableAbstract
     public function getByApp($appId)
     {
         $sql = '    SELECT scope.name
-				      FROM fusio_app_scope appScope
-				INNER JOIN fusio_scope scope
-				        ON scope.id = appScope.scopeId
-				     WHERE appScope.appId = :appId';
+                      FROM fusio_app_scope appScope
+                INNER JOIN fusio_scope scope
+                        ON scope.id = appScope.scopeId
+                     WHERE appScope.appId = :appId';
 
         $result = $this->connection->fetchAll($sql, array('appId' => $appId)) ?: array();
         $names  = array();

@@ -72,7 +72,7 @@ class Installer
                 $version = $this->doInstall($schemaVersion);
 
                 if ($version instanceof VersionInterface) {
-                    // we execute the upgrade only if we are jumping to a new 
+                    // we execute the upgrade only if we are jumping to a new
                     // version
                     if ($indexTo > $indexFrom) {
                         $this->connection->beginTransaction();
