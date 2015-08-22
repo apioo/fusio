@@ -5,23 +5,15 @@
 	<form name="logsSearchForm" ng-submit="doFilter(filter)">
 	<table class="table">
 	<colgroup>
-		<col width="200" />
-		<col width="200" />
 		<col width="*" />
+		<col width="50" />
 	</colgroup>
 	<tr>
 		<td>
-			<select id="class" ng-model="filter.appId" ng-click="doFilter(filter)" ng-options="app.id as app.name for app in apps" class="form-control">
-				<option value="">Every app</option>
-			</select>
-		</td>
-		<td>
-			<select id="class" ng-model="filter.routeId" ng-click="doFilter(filter)" ng-options="route.id as route.path for route in routes" class="form-control">
-				<option value="">Every route</option>
-			</select>
-		</td>
-		<td>
 			<input type="text" class="form-control" ng-model="filter.search" placeholder="Search i.e. /foo/bar" />
+		</td>
+		<td>
+			<a class="btn btn-primary" ng-click="openFilterDialog()"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></a>
 		</td>
 	</tr>
 	</table>

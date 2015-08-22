@@ -11,13 +11,24 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 
 .controller('LogCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
 
-	$scope.response = null;
-	$scope.search = '';
+    // set initial date range
+    var from = new Date();
+    from.setMonth(from.getMonth() - 1);
+    var to = new Date();
+
+    $scope.filter = {
+        from: from,
+        to: to
+    };
+
 	$scope.routes = [];
 	$scope.apps = [];
 
 	$scope.load = function(){
-		var search = encodeURIComponent($scope.search);
+        var search = '';
+        if ($scope.search) {
+            search = encodeURIComponent($scope.search);
+        }
 
 		$http.get(fusio_url + 'backend/log?search=' + search).success(function(data){
 			$scope.totalItems = data.totalItems;
@@ -36,13 +47,20 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 		});
 	};
 
-	$scope.doFilter = function(filter){
-		var query = '';
-		for (var key in filter) {
-			if (filter[key]) {
-				query+= key + '=' + encodeURIComponent(filter[key]) + '&';
-			}
-		}
+	$scope.doFilter = function(){
+        var query = '';
+        for (var key in $scope.filter) {
+            if ($scope.filter[key]) {
+                var value;
+                if ($scope.filter[key] instanceof Date) {
+                    value = $scope.filter[key].toISOString();
+                } else {
+                    value = $scope.filter[key];
+                }
+
+                query+= key + '=' + encodeURIComponent(value) + '&';
+            }
+        }
 
 		$http.get(fusio_url + 'backend/log?' + query).success(function(data){
 			$scope.totalItems = data.totalItems;
@@ -74,15 +92,24 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 		});
 	};
 
-	$http.get(fusio_url + 'backend/routes')
-		.success(function(data){
-			$scope.routes = data.entry;
-		});
+    $scope.openFilterDialog = function(){
+        var modalInstance = $modal.open({
+            size: 'lg',
+            templateUrl: 'app/statistic/filter.html',
+            controller: 'StatisticFilterCtrl',
+            resolve: {
+                filter: function(){
+                    return $scope.filter;
+                }
+            }
+        });
 
-	$http.get(fusio_url + 'backend/app')
-		.success(function(data){
-			$scope.apps = data.entry;
-		});
+        modalInstance.result.then(function(filter){
+            $scope.filter = filter;
+            $scope.doFilter();
+        }, function(){
+        });
+    };
 
 	$scope.load();
 

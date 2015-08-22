@@ -21,7 +21,7 @@
 		<h4>Errors</h4>
 		<ul>
 			<li ng-repeat="error in log.errors">
-				<button class="btn btn-default pull-right" ng-click="openTraceDialog(error)">Show trace</button>
+				<button class="btn btn-default pull-right" ng-click="openTraceDialog(error)">Trace</button>
 				<b>{{error.message}}</b>
 				<p>in {{error.file}} on {{error.line}}</p>
 			</li>

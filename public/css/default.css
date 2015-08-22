@@ -194,6 +194,11 @@ pre
 {
 }
 
+.fusio-panel .chart-container
+{
+	height:220px;
+}
+
 .fusio-login
 {
 	background-color:#021c35;
@@ -259,6 +264,11 @@ pre
 {
 	padding:6px;
 	margin-bottom:8px;
+}
+
+.fusio-statistic .chart-container
+{
+	height:400px;
 }
 
 /* general bootstrap fixes */

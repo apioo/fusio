@@ -17,7 +17,8 @@ var fusioApp = angular.module('fusioApp', [
 	'fusioApp.routes',
 	'fusioApp.schema',
 	'fusioApp.user',
-	'fusioApp.scope'
+	'fusioApp.scope',
+	'fusioApp.statistic'
 ]);
 
 fusioApp.factory('fusioIsAuthenticated', ['$location', '$window', '$q', function($location, $window, $q) {  
