@@ -38,21 +38,30 @@ use PSX\Util\Uuid;
  */
 class Version014 extends Version010
 {
-    public function getSchema()
+    public function executeUpgrade(Connection $connection)
     {
-        $schema = parent::getSchema();
+        // replace dashboard with statistic routes
+        $routes = [
+            '/backend/dashboard/incoming_requests' => [
+                'path'       => '/backend/statistic/incoming_requests',
+                'controller' => 'Fusio\Backend\Api\Statistic\IncomingRequests',
+            ],
+            '/backend/dashboard/most_used_routes' => [
+                'path'       => '/backend/statistic/most_used_routes',
+                'controller' => 'Fusio\Backend\Api\Statistic\MostUsedRoutes',
+            ],
+            '/backend/dashboard/most_used_apps' => [
+                'path'       => '/backend/statistic/most_used_apps',
+                'controller' => 'Fusio\Backend\Api\Statistic\MostUsedApps',
+            ],
+            '/backend/dashboard/latest_users' => [
+                'path'       => '/backend/statistic/errors_per_route',
+                'controller' => 'Fusio\Backend\Api\Statistic\ErrorsPerRoute',
+            ],
+        ];
 
-        $logErrorTable = $schema->createTable('fusio_log_error');
-        $logErrorTable->addColumn('id', 'integer', array('autoincrement' => true));
-        $logErrorTable->addColumn('logId', 'integer');
-        $logErrorTable->addColumn('message', 'string', array('length' => 500));
-        $logErrorTable->addColumn('trace', 'text');
-        $logErrorTable->addColumn('file', 'string', array('length' => 255));
-        $logErrorTable->addColumn('line', 'integer');
-        $logErrorTable->setPrimaryKey(array('id'));
-
-        $logErrorTable->addForeignKeyConstraint($schema->getTable('fusio_log'), array('logId'), array('id'), array(), 'logErrorLogId');
-
-        return $schema;
+        foreach ($routes as $oldRoute => $row) {
+            $this->connection->update('fusio_routes', $row, ['path' => $oldRoute]);
+        }
     }
 }

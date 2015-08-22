@@ -104,6 +104,15 @@ class Version010 implements VersionInterface
         $logTable->addColumn('date', 'datetime');
         $logTable->setPrimaryKey(array('id'));
 
+        $logErrorTable = $schema->createTable('fusio_log_error');
+        $logErrorTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $logErrorTable->addColumn('logId', 'integer');
+        $logErrorTable->addColumn('message', 'string', array('length' => 500));
+        $logErrorTable->addColumn('trace', 'text');
+        $logErrorTable->addColumn('file', 'string', array('length' => 255));
+        $logErrorTable->addColumn('line', 'integer');
+        $logErrorTable->setPrimaryKey(array('id'));
+
         $routesTable = $schema->createTable('fusio_routes');
         $routesTable->addColumn('id', 'integer', array('autoincrement' => true));
         $routesTable->addColumn('status', 'integer', array('default' => 1));
@@ -168,6 +177,8 @@ class Version010 implements VersionInterface
 
         $logTable->addForeignKeyConstraint($appTable, array('appId'), array('id'), array(), 'logAppId');
         $logTable->addForeignKeyConstraint($routesTable, array('routeId'), array('id'), array(), 'logRouteId');
+
+        $logErrorTable->addForeignKeyConstraint($logTable, array('logId'), array('id'), array(), 'logErrorLogId');
 
         $scopeRoutesTable->addForeignKeyConstraint($routesTable, array('routeId'), array('id'), array(), 'scopeRoutesRouteId');
         $scopeRoutesTable->addForeignKeyConstraint($scopeTable, array('scopeId'), array('id'), array(), 'scopeRoutesScopeId');
@@ -267,13 +278,12 @@ JSON;
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/scope/:scope_id',             'controller' => 'Fusio\Backend\Api\Scope\Entity',                         'config' => null],
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/user',                        'controller' => 'Fusio\Backend\Api\User\Collection',                      'config' => null],
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/user/:user_id',               'controller' => 'Fusio\Backend\Api\User\Entity',                          'config' => null],
-
-                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/incoming_requests', 'controller' => 'Fusio\Backend\Api\Dashboard\IncomingRequests',           'config' => null],
-                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/most_used_routes',  'controller' => 'Fusio\Backend\Api\Dashboard\MostUsedRoutes',             'config' => null],
-                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/most_used_apps',    'controller' => 'Fusio\Backend\Api\Dashboard\MostUsedApps',               'config' => null],
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/latest_requests',   'controller' => 'Fusio\Backend\Api\Dashboard\LatestRequests',             'config' => null],
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/latest_apps',       'controller' => 'Fusio\Backend\Api\Dashboard\LatestApps',                 'config' => null],
-                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/dashboard/latest_users',      'controller' => 'Fusio\Backend\Api\Dashboard\LatestUsers',                'config' => null],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/statistic/incoming_requests', 'controller' => 'Fusio\Backend\Api\Statistic\IncomingRequests',           'config' => null],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/statistic/most_used_routes',  'controller' => 'Fusio\Backend\Api\Statistic\MostUsedRoutes',             'config' => null],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/statistic/most_used_apps',    'controller' => 'Fusio\Backend\Api\Statistic\MostUsedApps',               'config' => null],
+                ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/statistic/errors_per_route',  'controller' => 'Fusio\Backend\Api\Statistic\ErrorsPerRoute',             'config' => null],
 
                 ['status' => 1, 'methods' => 'GET|POST',            'path' => '/backend/token',                       'controller' => 'Fusio\Backend\Authorization\Token',                      'config' => null],
                 ['status' => 1, 'methods' => 'POST',                'path' => '/authorization/revoke',                'controller' => 'Fusio\Authorization\Revoke',                             'config' => null],
