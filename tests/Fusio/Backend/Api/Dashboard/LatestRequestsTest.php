@@ -45,11 +45,17 @@ class LatestRequestsTest extends ControllerDbTestCase
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
 
-        $body   = (string) $response->getBody();
-        $body   = preg_replace('/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/m', '[datetime]', $body);
+        $body = (string) $response->getBody();
+        $body = preg_replace('/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/m', '[datetime]', $body);
+
         $expect = <<<JSON
 {
     "entry": [
+        {
+            "path": "\/bar",
+            "ip": "127.0.0.1",
+            "date": "[datetime]"
+        },
         {
             "path": "\/bar",
             "ip": "127.0.0.1",

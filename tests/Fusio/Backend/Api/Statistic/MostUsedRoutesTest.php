@@ -84,8 +84,45 @@ class MostUsedRoutesTest extends ControllerDbTestCase
         "[datetime]",
         "[datetime]"
     ],
-    "data": [],
-    "series": []
+    "data": [
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2
+        ]
+    ],
+    "series": [
+        "\/backend"
+    ]
 }
 JSON;
 

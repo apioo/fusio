@@ -84,8 +84,45 @@ class ErrorsPerRouteTest extends ControllerDbTestCase
         "[datetime]",
         "[datetime]"
     ],
-    "data": [],
-    "series": []
+    "data": [
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+        ]
+    ],
+    "series": [
+        "\/backend"
+    ]
 }
 JSON;
 

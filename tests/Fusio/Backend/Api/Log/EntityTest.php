@@ -45,18 +45,27 @@ class EntityTest extends ControllerDbTestCase
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
 
-        $body   = (string) $response->getBody();
-        $expect = <<<'JSON'
+        $body = (string) $response->getBody();
+        $now  = date('Y-m-d');
+
+        $expect = <<<JSON
 {
     "id": 1,
     "ip": "127.0.0.1",
     "userAgent": "Mozilla\/5.0 (Windows NT 6.3; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/43.0.2357.130 Safari\/537.36",
     "method": "GET",
     "path": "\/bar",
-    "header": "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "header": "Accept: text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/webp,*\/*;q=0.8",
     "body": "foobar",
-    "date": "2015-06-25T22:49:09Z",
-    "errors": []
+    "date": "{$now}T00:00:00Z",
+    "errors": [
+        {
+            "message": "Syntax error, malformed JSON",
+            "trace": "[trace]",
+            "file": "[file]",
+            "line": "74"
+        }
+    ]
 }
 JSON;
 

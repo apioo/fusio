@@ -119,7 +119,7 @@ class IncomingRequestsTest extends ControllerDbTestCase
             0,
             0,
             0,
-            0
+            2
         ]
     ],
     "series": [

@@ -322,7 +322,6 @@ JSON;
                 ['scopeId' => 1, 'routeId' => 21, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 22, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 23, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
-
                 ['scopeId' => 1, 'routeId' => 24, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 25, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 26, 'allow' => 1, 'methods' => 'GET'],
@@ -337,6 +336,7 @@ JSON;
 
                 ['scopeId' => 2, 'routeId' => 31, 'allow' => 1, 'methods' => 'POST'],
                 ['scopeId' => 2, 'routeId' => 32, 'allow' => 1, 'methods' => 'GET|POST'],
+
                 ['scopeId' => 2, 'routeId' => 33, 'allow' => 1, 'methods' => 'GET'],
             ],
             'fusio_user_scope' => [

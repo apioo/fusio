@@ -48,15 +48,23 @@ class CollectionTest extends ControllerDbTestCase
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
-    "totalItems": 1,
+    "totalItems": 2,
     "entry": [
+        {
+            "id": 2,
+            "ip": "127.0.0.1",
+            "userAgent": "Mozilla\/5.0 (Windows NT 6.3; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/43.0.2357.130 Safari\/537.36",
+            "method": "GET",
+            "path": "\/bar",
+            "date": "2015-08-22T00:00:00Z"
+        },
         {
             "id": 1,
             "ip": "127.0.0.1",
             "userAgent": "Mozilla\/5.0 (Windows NT 6.3; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/43.0.2357.130 Safari\/537.36",
             "method": "GET",
             "path": "\/bar",
-            "date": "2015-06-25T22:49:09Z"
+            "date": "2015-08-22T00:00:00Z"
         }
     ]
 }

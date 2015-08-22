@@ -45,8 +45,8 @@ class ConditionTest extends DbTestCase
         $action->setProcessor(Environment::getService('processor'));
         $action->setCache(Environment::getService('cache'));
 
-        $expression = 'rateLimit.getRequestsPerMonth() == 0 && ';
-        $expression.= 'rateLimit.getRequestsPerDay() == 0 && ';
+        $expression = 'rateLimit.getRequestsPerMonth() == 2 && ';
+        $expression.= 'rateLimit.getRequestsPerDay() == 2 && ';
         $expression.= 'rateLimit.getRequestsOfRoutePerMonth() == 0 && ';
         $expression.= 'rateLimit.getRequestsOfRoutePerDay() == 0 && ';
         $expression.= 'app.getName() == "Foo-App" && ';
