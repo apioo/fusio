@@ -21,19 +21,17 @@
 
 namespace Fusio\Backend\Api\Dashboard;
 
-use DateTime;
-use DateInterval;
 use Fusio\Fixture;
 use PSX\Test\ControllerDbTestCase;
 
 /**
- * IncomingRequestsTest
+ * MostUsedRoutesTest
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class IncomingRequestsTest extends ControllerDbTestCase
+class MostUsedRoutesTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
@@ -42,51 +40,52 @@ class IncomingRequestsTest extends ControllerDbTestCase
 
     public function testGet()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/dashboard/incoming_requests', 'GET', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/statistic/most_used_routes', 'GET', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
 
         $body = (string) $response->getBody();
-        $now  = new DateTime();
-
-        for ($i = 0; $i < 10; $i++) {
-            $body = str_replace($now->format('d.m'), 'xx.xx', $body);
-
-            $now->sub(new DateInterval('P1D'));
-        }
+        $body = preg_replace('/\d{4}-\d{2}-\d{2}/m', '[datetime]', $body);
 
         $expect = <<<JSON
 {
     "labels": [
-        "xx.xx",
-        "xx.xx",
-        "xx.xx",
-        "xx.xx",
-        "xx.xx",
-        "xx.xx",
-        "xx.xx",
-        "xx.xx",
-        "xx.xx",
-        "xx.xx"
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]"
     ],
-    "data": [
-        [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-        ]
-    ],
-    "series": [
-        "Requests"
-    ]
+    "data": [],
+    "series": []
 }
 JSON;
 

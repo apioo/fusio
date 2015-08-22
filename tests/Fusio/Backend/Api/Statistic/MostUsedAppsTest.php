@@ -25,13 +25,13 @@ use Fusio\Fixture;
 use PSX\Test\ControllerDbTestCase;
 
 /**
- * MostUsedRoutesTest
+ * MostUsedAppsTest
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class MostUsedRoutesTest extends ControllerDbTestCase
+class MostUsedAppsTest extends ControllerDbTestCase
 {
     public function getDataSet()
     {
@@ -40,15 +40,52 @@ class MostUsedRoutesTest extends ControllerDbTestCase
 
     public function testGet()
     {
-        $response = $this->sendRequest('http://127.0.0.1/backend/dashboard/most_used_routes', 'GET', array(
+        $response = $this->sendRequest('http://127.0.0.1/backend/statistic/most_used_apps', 'GET', array(
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
 
-        $body   = (string) $response->getBody();
+        $body = (string) $response->getBody();
+        $body = preg_replace('/\d{4}-\d{2}-\d{2}/m', '[datetime]', $body);
+
         $expect = <<<JSON
 {
-    "entry": []
+    "labels": [
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]",
+        "[datetime]"
+    ],
+    "data": [],
+    "series": []
 }
 JSON;
 

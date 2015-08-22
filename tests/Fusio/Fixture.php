@@ -22,7 +22,7 @@
 namespace Fusio;
 
 use Doctrine\DBAL\Schema\Schema as DbSchema;
-use Fusio\Database\Version\Version010;
+use Fusio\Database\Version;
 use PSX\Test\Environment;
 
 /**
@@ -42,7 +42,7 @@ class Fixture
             return self::$dataSet;
         }
 
-        $version = new Version010();
+        $version = new Version\Version010();
         $dataSet = array_merge_recursive($version->getInstallInserts(), self::getTestInserts());
 
         return self::$dataSet = new \PHPUnit_Extensions_Database_DataSet_ArrayDataSet($dataSet);
