@@ -37,11 +37,11 @@ class LatestApps extends ApiAbstract
 
     public function onGet()
     {
-        $sql = '    SELECT name,
-				           date
-				      FROM fusio_app
-				  ORDER BY date DESC
-				     LIMIT 6';
+        $sql = '  SELECT name,
+                         date
+                    FROM fusio_app
+                ORDER BY date DESC
+                   LIMIT 6';
 
         $result = $this->connection->fetchAll($sql);
 

@@ -37,12 +37,12 @@ class LatestRequests extends ApiAbstract
 
     public function onGet()
     {
-        $sql = '    SELECT path,
-				           ip,
-				           date
-				      FROM fusio_log
-				  ORDER BY date DESC
-				     LIMIT 6';
+        $sql = '  SELECT path,
+                         ip,
+                         date
+                    FROM fusio_log
+                ORDER BY date DESC
+                   LIMIT 6';
 
         $result = $this->connection->fetchAll($sql);
 

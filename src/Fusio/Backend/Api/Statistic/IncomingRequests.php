@@ -19,11 +19,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Backend\Api\Dashboard;
+namespace Fusio\Backend\Api\Statistic;
 
-use DateInterval;
-use DateTime;
 use Fusio\Authorization\ProtectionTrait;
+use Fusio\Backend\Table\Log;
 use PSX\Controller\ApiAbstract;
 
 /**
@@ -37,32 +36,42 @@ class IncomingRequests extends ApiAbstract
 {
     use ProtectionTrait;
 
-    const PAST_DAYS = 9;
-
     public function onGet()
     {
-        $past = new DateTime();
-        $past->sub(new DateInterval('P' . self::PAST_DAYS. 'D'));
+        $filter     = Log\QueryFilter::create($this->getParameters());
+        $condition  = $filter->getCondition('log');
+        $expression = $condition->getExpression($this->connection->getDatabasePlatform());
 
-        $labels = array();
-        $data   = array();
+        // build data structure
+        $fromDate = $filter->getFrom();
+        $toDate   = $filter->getTo();
+        $diff     = $toDate->getTimestamp() - $fromDate->getTimestamp();
+        $data     = [];
+        $labels   = [];
 
-        for ($i = 0; $i <= self::PAST_DAYS; $i++) {
-            $sql = 'SELECT COUNT(id) as count
-					  FROM fusio_log
-					 WHERE DATE(date) = :date';
+        while ($fromDate <= $toDate) {
+            $data[$fromDate->format('Y-m-d')] = 0;
+            $labels[] = $fromDate->format($diff < 2419200 ? 'D' : 'Y-m-d');
 
-            $count = $this->connection->fetchColumn($sql, array('date' => $past->format('Y-m-d')));
+            $fromDate->add(new \DateInterval('P1D'));
+        }
 
-            $data[]   = (int) $count;
-            $labels[] = $past->format('d.m');
+        // fill values
+        $sql = '  SELECT COUNT(log.id) AS count,
+                         DATE(log.date) AS date
+                    FROM fusio_log log
+                   WHERE ' . $expression . '
+                GROUP BY DATE(log.date)';
 
-            $past->add(new DateInterval('P1D'));
+        $result = $this->connection->fetchAll($sql, $condition->getValues());
+
+        foreach ($result as $row) {
+            $data[$row['date']] = (int) $row['count'];
         }
 
         $this->setBody(array(
             'labels' => $labels,
-            'data'   => [$data],
+            'data'   => [array_values($data)],
             'series' => ['Requests'],
         ));
     }

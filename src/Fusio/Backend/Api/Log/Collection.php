@@ -22,11 +22,13 @@
 namespace Fusio\Backend\Api\Log;
 
 use Fusio\Authorization\ProtectionTrait;
+use Fusio\Backend\Table\Log;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
+use PSX\Data\Schema\Property;
 use PSX\Filter as PSXFilter;
 use PSX\Loader\Context;
 use PSX\OpenSsl;
@@ -80,22 +82,8 @@ class Collection extends SchemaApiAbstract
     protected function doGet(Version $version)
     {
         $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: null;
-        $appId      = $this->getParameter('appId', Validate::TYPE_INTEGER) ?: null;
-        $routeId    = $this->getParameter('routeId', Validate::TYPE_INTEGER) ?: null;
-        $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-        $condition  = new Condition();
-
-        if (!empty($appId)) {
-            $condition->add('appId', '=', $appId);
-        }
-
-        if (!empty($routeId)) {
-            $condition->add('routeId', '=', $routeId);
-        }
-
-        if (!empty($search)) {
-            $condition->add('path', 'LIKE', '%' . $search . '%');
-        }
+        $filter     = Log\QueryFilter::create($this->getParameters());
+        $condition  = $filter->getCondition();
 
         $table = $this->tableManager->getTable('Fusio\Backend\Table\Log');
         $table->setRestrictedFields(['header', 'body']);
