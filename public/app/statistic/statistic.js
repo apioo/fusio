@@ -58,18 +58,6 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
         });
     };
 
-    $scope.doChangeStatistic = function(){
-        /*
-        angular.element(document.querySelector('#statisticCanvas')).remove();
-        var statisticCanvas = '<canvas id="statisticCanvas" class="chart chart-line" height="600" options="{\'responsive\':true,\'maintainAspectRatio\':false}" data="chart.data" labels="chart.labels" series="chart.series"></canvas>';
-        var t = $compile(statisticCanvas)($scope);
-console.log(t);
-        angular.element(document.querySelector('#statisticCanvasContainer')).append(t);
-        */
-
-        $scope.doFilter();
-    };
-
     $scope.openFilterDialog = function(){
         var modalInstance = $modal.open({
             size: 'lg',

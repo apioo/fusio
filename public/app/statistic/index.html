@@ -11,7 +11,7 @@
     </colgroup>
     <tr>
         <td>
-            <select id="statistic" ng-model="statistic" ng-change="doChangeStatistic()" ng-options="statistic.value as statistic.name for statistic in statistics" class="form-control">
+            <select id="statistic" ng-model="statistic" ng-change="doFilter()" ng-options="statistic.value as statistic.name for statistic in statistics" class="form-control">
             </select>
         </td>
         <td>
