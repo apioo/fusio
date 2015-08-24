@@ -46,7 +46,7 @@ class EntityTest extends ControllerDbTestCase
         ));
 
         $body = (string) $response->getBody();
-        $now  = date('Y-m-d');
+        $body = preg_replace('/\d{4}-\d{2}-\d{2}/m', '[datetime]', $body);
 
         $expect = <<<JSON
 {
@@ -57,7 +57,7 @@ class EntityTest extends ControllerDbTestCase
     "path": "\/bar",
     "header": "Accept: text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/webp,*\/*;q=0.8",
     "body": "foobar",
-    "date": "{$now}T00:00:00Z",
+    "date": "[datetime]T00:00:00Z",
     "errors": [
         {
             "message": "Syntax error, malformed JSON",

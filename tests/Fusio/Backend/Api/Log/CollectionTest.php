@@ -45,7 +45,9 @@ class CollectionTest extends ControllerDbTestCase
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
 
-        $body   = (string) $response->getBody();
+        $body = (string) $response->getBody();
+        $body = preg_replace('/\d{4}-\d{2}-\d{2}/m', '[datetime]', $body);
+
         $expect = <<<'JSON'
 {
     "totalItems": 2,
@@ -56,7 +58,7 @@ class CollectionTest extends ControllerDbTestCase
             "userAgent": "Mozilla\/5.0 (Windows NT 6.3; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/43.0.2357.130 Safari\/537.36",
             "method": "GET",
             "path": "\/bar",
-            "date": "2015-08-22T00:00:00Z"
+            "date": "[datetime]T00:00:00Z"
         },
         {
             "id": 1,
@@ -64,7 +66,7 @@ class CollectionTest extends ControllerDbTestCase
             "userAgent": "Mozilla\/5.0 (Windows NT 6.3; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/43.0.2357.130 Safari\/537.36",
             "method": "GET",
             "path": "\/bar",
-            "date": "2015-08-22T00:00:00Z"
+            "date": "[datetime]T00:00:00Z"
         }
     ]
 }
