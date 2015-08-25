@@ -41,6 +41,20 @@ class InstallerTest extends DbTestCase
         $this->assertInstanceOf('Fusio\Database\VersionInterface', Installer::getVersion(Base::getVersion()), 'No database version class was provided');
     }
 
+    public function testGetPathBetweenVersions()
+    {
+        $installer = new Installer($this->connection);
+
+        $this->assertEquals(['0.1.1'], $installer->getPathBetweenVersions('0.1', '0.1.1'));
+        $this->assertEquals(['0.1.1', '0.1.2'], $installer->getPathBetweenVersions('0.1', '0.1.2'));
+        $this->assertEquals(['0.1.3', '0.1.4'], $installer->getPathBetweenVersions('0.1.2', '0.1.4'));
+        $this->assertEquals(['0.1.1', '0.1.2', '0.1.3'], $installer->getPathBetweenVersions('0.1', '0.1.3'));
+        $this->assertEquals([], $installer->getPathBetweenVersions('0.1.3', '0.1.2'));
+        $this->assertEquals([], $installer->getPathBetweenVersions('0.1.3', '0.1.3'));
+        $this->assertEquals([], $installer->getPathBetweenVersions('0.0.1', '0.0.2'));
+        $this->assertEquals([], $installer->getPathBetweenVersions('9.0.1', '9.0.2'));
+    }
+
     /**
      * Checks whether this version is in the upgrade path
      */

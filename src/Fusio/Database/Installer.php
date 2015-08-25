@@ -56,38 +56,28 @@ class Installer
 
     public function upgrade($fromVersion, $toVersion)
     {
-        $indexFrom = $this->getIndexOf($fromVersion);
-        $indexTo   = $this->getIndexOf($toVersion);
+        $upgradePath = $this->getPathBetweenVersions($indexTo, $indexFrom);
 
-        // downgrade is not possible
-        if ($indexTo < $indexFrom) {
-            return;
-        }
+        foreach ($upgradePath as $schemaVersion) {
+            // install version
+            $version = $this->doInstall($schemaVersion);
 
-        if ($indexFrom !== null && $indexTo !== null) {
-            $upgradePath = array_slice($this->getUpgradePath(), $indexFrom, ($indexTo - $indexFrom) + 1);
+            if ($version instanceof VersionInterface) {
+                // we execute the upgrade only if we are jumping to a new
+                // version
+                if ($indexTo > $indexFrom) {
+                    $this->connection->beginTransaction();
 
-            foreach ($upgradePath as $schemaVersion) {
-                // install version
-                $version = $this->doInstall($schemaVersion);
+                    $version->executeUpgrade($this->connection);
 
-                if ($version instanceof VersionInterface) {
-                    // we execute the upgrade only if we are jumping to a new
-                    // version
-                    if ($indexTo > $indexFrom) {
-                        $this->connection->beginTransaction();
-
-                        $version->executeUpgrade($this->connection);
-
-                        $this->connection->commit();
-                    }
+                    $this->connection->commit();
                 }
             }
         }
     }
 
     /**
-     * Returns the upgrade path
+     * Returns the complete upgrade path
      *
      * @return array
      */
@@ -100,6 +90,42 @@ class Installer
             '0.1.1',
             '0.1',
         ];
+    }
+
+    /**
+     * Returns the upgrade path between two versions
+     *
+     * @param string $fromVersion
+     * @param string $toVersion
+     * @return array
+     */
+    public function getPathBetweenVersions($fromVersion, $toVersion)
+    {
+        $path      = array_reverse($this->getUpgradePath());
+        $indexFrom = $this->getIndexOf($fromVersion);
+        $indexTo   = $this->getIndexOf($toVersion);
+
+        // downgrade is not possible
+        if ($indexTo < $indexFrom) {
+            return [];
+        }
+
+        if (isset($path[$indexTo]) && isset($path[$indexFrom])) {
+            return array_slice($path, $indexFrom + 1, $indexTo - $indexFrom);
+        }
+
+        return [];
+    }
+
+    protected function getIndexOf($version)
+    {
+        $upgradePath = array_reverse($this->getUpgradePath());
+        foreach ($upgradePath as $index => $schemaVersion) {
+            if (version_compare($schemaVersion, $version, '==')) {
+                return $index;
+            }
+        }
+        return null;
     }
 
     protected function doInstall($schemaVersion)
@@ -130,17 +156,6 @@ class Installer
         } else {
             return null;
         }
-    }
-
-    protected function getIndexOf($version)
-    {
-        $upgradePath = array_reverse($this->getUpgradePath());
-        foreach ($upgradePath as $index => $schemaVersion) {
-            if (version_compare($schemaVersion, $version) === 0) {
-                return $index;
-            }
-        }
-        return null;
     }
 
     public static function getVersion($version)
