@@ -134,7 +134,7 @@ class Installer
 
     protected function getIndexOf($version)
     {
-        $upgradePath = $this->getUpgradePath();
+        $upgradePath = array_reverse($this->getUpgradePath());
         foreach ($upgradePath as $index => $schemaVersion) {
             if (version_compare($schemaVersion, $version) === 0) {
                 return $index;
