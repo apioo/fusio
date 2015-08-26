@@ -61,7 +61,7 @@ class Version014 extends Version010
         ];
 
         foreach ($routes as $oldRoute => $row) {
-            $this->connection->update('fusio_routes', $row, ['path' => $oldRoute]);
+            $connection->update('fusio_routes', $row, ['path' => $oldRoute]);
         }
     }
 }
