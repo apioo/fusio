@@ -22,6 +22,7 @@
 namespace Fusio;
 
 use Doctrine\DBAL\Connection;
+use PSX\DisplayException;
 use PSX\Http\RequestInterface;
 use PSX\Http\Stream\Util;
 
@@ -62,6 +63,10 @@ class Logger
 
     public function appendError($logId, \Exception $exception)
     {
+        if ($exception instanceof DisplayException) {
+            return;
+        }
+
         $previousException = $exception->getPrevious();
         if ($previousException instanceof \Exception) {
             $this->appendError($logId, $previousException);
