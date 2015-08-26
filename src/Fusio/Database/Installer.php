@@ -56,7 +56,9 @@ class Installer
 
     public function upgrade($fromVersion, $toVersion)
     {
-        $upgradePath = $this->getPathBetweenVersions($indexTo, $indexFrom);
+        $indexFrom   = $this->getIndexOf($fromVersion);
+        $indexTo     = $this->getIndexOf($toVersion);
+        $upgradePath = $this->getPathBetweenVersions($fromVersion, $toVersion);
 
         foreach ($upgradePath as $schemaVersion) {
             // install version

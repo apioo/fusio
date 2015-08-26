@@ -78,9 +78,34 @@ class InstallerTest extends DbTestCase
 
         $this->removeAllTables();
 
-        // execute the installer
+        // execute install
         $installer = new Installer($this->connection);
-        $installer->install(Base::getVersion());
+        $installer->install('0.1');
+
+        // @TODO make checks to verify that the installation works
+
+        $this->removeAllTables();
+
+        // restore the schema
+        $fromSchema = $sm->createSchema();
+        $queries    = $fromSchema->getMigrateToSql($toSchema, $this->connection->getDatabasePlatform());
+
+        foreach ($queries as $sql) {
+            $this->connection->executeUpdate($sql);
+        }
+    }
+
+    public function testUpgrade()
+    {
+        // create a copy of the current schema
+        $sm       = $this->connection->getSchemaManager();
+        $toSchema = $sm->createSchema();
+
+        $this->removeAllTables();
+
+        // execute upgrade
+        $installer = new Installer($this->connection);
+        $installer->upgrade('0.1', '0.1.1');
 
         // @TODO make checks to verify that the installation works
 
