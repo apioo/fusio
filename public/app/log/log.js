@@ -16,6 +16,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
     from.setMonth(from.getMonth() - 1);
     var to = new Date();
 
+    $scope.search = '';
     $scope.filter = {
         from: from,
         to: to
