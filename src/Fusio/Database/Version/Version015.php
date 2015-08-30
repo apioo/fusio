@@ -19,21 +19,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio;
+namespace Fusio\Database\Version;
+
+use DateTime;
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Schema\Schema;
+use Fusio\Database\VersionInterface;
+use Fusio\Schema\Parser;
+use PSX\OpenSsl;
+use PSX\Util\Uuid;
 
 /**
- * Base
+ * Version015
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Base
+class Version015 extends Version010
 {
-    const VERSION = '0.1.5';
-
-    public static function getVersion()
-    {
-        return self::VERSION;
-    }
 }
