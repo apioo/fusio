@@ -17,7 +17,7 @@ to simplify building such APIs.
 # Installation
 
 To install Fusio download the latest version and place the folder into the www 
-directory of the webserver. After this Fusio can be installed in three simple 
+directory of the webserver. After this Fusio can be installed in the following 
 steps.
 
  * __Adjust the configuration file__  
