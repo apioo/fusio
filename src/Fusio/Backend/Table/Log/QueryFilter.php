@@ -54,6 +54,46 @@ class QueryFilter
         return $this->to;
     }
 
+    public function getAppId()
+    {
+        return $this->appId;
+    }
+
+    public function getRouteId()
+    {
+        return $this->routeId;
+    }
+
+    public function getIp()
+    {
+        return $this->ip;
+    }
+
+    public function getUserAgent()
+    {
+        return $this->userAgent;
+    }
+
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    public function getHeader()
+    {
+        return $this->header;
+    }
+
+    public function getBody()
+    {
+        return $this->body;
+    }
+
     public function getCondition($alias = null)
     {
         $alias     = $alias !== null ? $alias . '.' : '';
@@ -121,7 +161,7 @@ class QueryFilter
         }
 
         // check if diff between from and to is larger then ca 2 months
-        if ($from->getTimestamp() - $to->getTimestamp() > 4838400) {
+        if (($to->getTimestamp() - $from->getTimestamp()) > 4838400) {
             $to = clone $from;
             $to->add(new \DateInterval('P2M'));
         }
@@ -137,7 +177,7 @@ class QueryFilter
                     $path = $part;
                 } elseif (in_array($part, ['GET', 'POST', 'PUT', 'DELETE'])) {
                     $method = $part;
-                } elseif (preg_match('/^([A-z\-]): (.*)$/')) {
+                } elseif (preg_match('/^([A-z\-]+): (.*)$/', $part)) {
                     $header = $part;
                 } else {
                     $body = $part;
