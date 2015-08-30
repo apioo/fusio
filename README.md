@@ -20,19 +20,19 @@ To install Fusio download the latest version and place the folder into the www
 directory of the webserver. After this Fusio can be installed in three simple 
 steps.
 
- * Adjust the configuration file
+ * __Adjust the configuration file__  
    Open the file `configuration.php` in the Fusio directory and change the key 
    `psx_url` to the domain pointing to the public folder. Also insert the 
    database credentials to the `psx_sql_*` keys.
- * Execute the installation command
+ * __Execute the installation command__  
    The installation script inserts the Fusio database schema into the provided 
    database. It can be executed with the following command 
    `php bin/fusio install`.
- * Create administrator user
+ * __Create administrator user__  
    After the installation is complete you have to create a new administrator 
    account. Therefor you can use the following command `php bin/fusio adduser`. 
    Choose as account type "Administrator" and save the generated password.
- * Adjust url for the backend app
+ * __Adjust url for the backend app__  
    The backend to control Fusio is based on AngularJS. The app needs to know the 
    entry point of the API. Therefor you have to edit the file 
    `public/backend.htm` and change the javascript variable `fusio_url` pointing 
