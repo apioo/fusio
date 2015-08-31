@@ -38,4 +38,14 @@ use PSX\Util\Uuid;
  */
 class Version015 extends Version010
 {
+    public function executeUpgrade(Connection $connection)
+    {
+        // insert change password route
+        $connection->insert('fusio_routes', [
+            'status'     => 1,
+            'methods'    => 'GET|POST|PUT|DELETE',
+            'path'       => '/backend/account/change_password',
+            'controller' => 'Fusio\Backend\Api\Account\ChangePassword',
+        ]);
+    }
 }

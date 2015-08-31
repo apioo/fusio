@@ -209,7 +209,7 @@ class Version010 implements VersionInterface
         $now       = new DateTime();
         $appKey    = Uuid::pseudoRandom();
         $appSecret = hash('sha256', OpenSsl::randomPseudoBytes(256));
-        $password  = \password_hash(sha1(mcrypt_create_iv(40)), PASSWORD_DEFAULT);
+        $password  = \password_hash('0a29e5bcaa810de0ca0513d9d4ab62f1860f998a', PASSWORD_DEFAULT);
 
         $passthruSchema = json_encode([
             'id' => 'http://fusio-project.org',
@@ -284,6 +284,7 @@ JSON;
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/statistic/most_used_routes',  'controller' => 'Fusio\Backend\Api\Statistic\MostUsedRoutes',             'config' => null],
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/statistic/most_used_apps',    'controller' => 'Fusio\Backend\Api\Statistic\MostUsedApps',               'config' => null],
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/statistic/errors_per_route',  'controller' => 'Fusio\Backend\Api\Statistic\ErrorsPerRoute',             'config' => null],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/account/change_password',     'controller' => 'Fusio\Backend\Api\Account\ChangePassword',               'config' => null],
 
                 ['status' => 1, 'methods' => 'GET|POST',            'path' => '/backend/token',                       'controller' => 'Fusio\Backend\Authorization\Token',                      'config' => null],
                 ['status' => 1, 'methods' => 'POST',                'path' => '/authorization/revoke',                'controller' => 'Fusio\Authorization\Revoke',                             'config' => null],
@@ -328,16 +329,16 @@ JSON;
                 ['scopeId' => 1, 'routeId' => 27, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 28, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 29, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 30, 'allow' => 1, 'methods' => 'PUT'],
 
-                ['scopeId' => 1, 'routeId' => 30, 'allow' => 1, 'methods' => 'GET|POST'],
-                ['scopeId' => 1, 'routeId' => 31, 'allow' => 1, 'methods' => 'POST'],
-                ['scopeId' => 1, 'routeId' => 32, 'allow' => 1, 'methods' => 'GET|POST'],
-                ['scopeId' => 1, 'routeId' => 33, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 31, 'allow' => 1, 'methods' => 'GET|POST'],
+                ['scopeId' => 1, 'routeId' => 32, 'allow' => 1, 'methods' => 'POST'],
+                ['scopeId' => 1, 'routeId' => 33, 'allow' => 1, 'methods' => 'GET|POST'],
+                ['scopeId' => 1, 'routeId' => 34, 'allow' => 1, 'methods' => 'GET'],
 
-                ['scopeId' => 2, 'routeId' => 31, 'allow' => 1, 'methods' => 'POST'],
-                ['scopeId' => 2, 'routeId' => 32, 'allow' => 1, 'methods' => 'GET|POST'],
-
-                ['scopeId' => 2, 'routeId' => 33, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 2, 'routeId' => 32, 'allow' => 1, 'methods' => 'POST'],
+                ['scopeId' => 2, 'routeId' => 33, 'allow' => 1, 'methods' => 'GET|POST'],
+                ['scopeId' => 2, 'routeId' => 34, 'allow' => 1, 'methods' => 'GET'],
             ],
             'fusio_user_scope' => [
                 ['userId' => 1, 'scopeId' => 1]
