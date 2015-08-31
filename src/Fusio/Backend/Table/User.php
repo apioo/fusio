@@ -69,4 +69,25 @@ class User extends TableAbstract
 
         return $names;
     }
+
+    public function changePassword($userId, $oldPassword, $newPassword)
+    {
+        $password = $this->connection->fetchColumn('SELECT password FROM fusio_user WHERE id = :id', ['id' => $userId]);
+
+        if (empty($password)) {
+            return false;
+        }
+
+        if (password_verify($oldPassword, $password)) {
+            $this->connection->update('fusio_user', [
+                'password' => \password_hash($newPassword, PASSWORD_DEFAULT),
+            ], [
+                'id' => $userId,
+            ]);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
