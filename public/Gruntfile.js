@@ -40,6 +40,7 @@ module.exports = function(grunt){
         files: {
           './dist/fusio-app.min.js': [
             './app/app.js',
+            './app/account/change_password.js',
             './app/login/login.js',
             './app/logout/logout.js',
             './app/dashboard/dashboard.js',

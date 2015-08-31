@@ -7,6 +7,7 @@ var fusioApp = angular.module('fusioApp', [
 	'ui.ace',
 	'chart.js',
 	'ng-showdown',
+	'fusioApp.account',
 	'fusioApp.app',
 	'fusioApp.connection',
 	'fusioApp.action',
