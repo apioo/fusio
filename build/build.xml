@@ -98,6 +98,7 @@
         <delete file="${build}/public/bower.json" />
         <delete file="${build}/public/Gruntfile.js" />
         <delete file="${build}/public/package.json" />
+        <delete file="${build}/public/server.php" />
         <delete file="${build}/public/dist/fusio-app.min.js" />
         <delete includeemptydirs="true">
             <fileset dir="${build}/cache" includes="*" />
