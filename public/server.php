@@ -1,0 +1,86 @@
+<?php
+/*
+ * Fusio
+ * A web-application to create dynamically RESTful APIs
+ *
+ * Copyright (C) 2015 Christoph Kappestein <k42b3.x@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// entry point for the internal php server for testing
+$fileUris = [
+    '^\/app\/',
+    '^\/bower_components\/',
+    '^\/css\/',
+    '^\/dist\/',
+    '^\/documentation\/',
+    '^\/fonts\/',
+    '^\/help\/',
+    '^\/img\/',
+    '^\/js\/',
+    '^\/backend.htm',
+];
+
+foreach ($fileUris as $regexp) {
+    if (isset($_SERVER['REQUEST_URI']) && preg_match('/' . $regexp . '/', $_SERVER['REQUEST_URI'])) {
+        return false;
+    }
+}
+
+$loader    = require(__DIR__ . '/../vendor/autoload.php');
+$container = require_once(__DIR__ . '/../container.php');
+
+PSX\Bootstrap::setupEnvironment($container->get('config'));
+
+// setup sqlite connection
+$config = new Doctrine\DBAL\Configuration();
+$params = array(
+    'path'     => PSX_PATH_CACHE . '/test.db',
+    'driver'   => 'pdo_sqlite',
+);
+
+$connection = Doctrine\DBAL\DriverManager::getConnection($params, $config);
+
+$container->set('connection', $connection);
+
+if (isset($_SERVER['argv']) && in_array('--warmup', $_SERVER['argv'])) {
+    $loader->addClassMap([
+        'Fusio\Fixture'    => __DIR__ . '/../tests/Fusio/Fixture.php',
+        'Fusio\TestSchema' => __DIR__ . '/../tests/Fusio/TestSchema.php',
+    ]);
+
+    // create schema
+    $fromSchema = $connection->getSchemaManager()->createSchema();
+    $version    = new Fusio\Database\Version\Version010();
+    $toSchema   = $version->getSchema();
+    Fusio\TestSchema::appendSchema($toSchema);
+
+    $queries = $fromSchema->getMigrateToSql($toSchema, $connection->getDatabasePlatform());
+    foreach ($queries as $query) {
+        $connection->query($query);
+    }
+
+    // insert fixtures
+    $connection = new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($container->get('connection')->getWrappedConnection());
+    PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT()->execute($connection, Fusio\Fixture::getDataSet());
+
+    echo 'Warmup successful!' . "\n";
+} else {
+    // run
+    $request  = $container->get('request_factory')->createRequest();
+    $response = $container->get('response_factory')->createResponse();
+
+    $container->get('dispatch')->route($request, $response);
+}
