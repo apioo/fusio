@@ -18,6 +18,8 @@ install:
   - npm install -g protractor
 before_script:
   - if [ $DB = 'mysql' ]; then mysql -e 'create database fusio;'; fi;
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
   - webdriver-manager update
   - webdriver-manager start &
   - cd public && php -S 127.0.0.1:8008 server.php &
@@ -25,7 +27,7 @@ before_script:
   - sleep 4
 script:
   - vendor/bin/phpunit
-  - protractor conf.js
+  - cd public && protractor conf.js
 env:
   - DB=mysql
   - DB=sqlite
