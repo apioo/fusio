@@ -23,8 +23,8 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then webdriver-manager update; fi;
-  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; webdriver-manager start &; fi;
-  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; cd public && php -S 127.0.0.1:8008 server.php &; fi;
+  - ( if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; webdriver-manager start; fi; ) &
+  - ( if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; cd public && php -S 127.0.0.1:8008 server.php; fi; ) &
   - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php public/server.php --warmup; fi;
   - sleep 4
 script:
