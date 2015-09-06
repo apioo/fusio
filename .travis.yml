@@ -27,7 +27,7 @@ before_script:
   - sleep 4
 script:
   - vendor/bin/phpunit
-  - cd public && protractor conf.js
+  - cd public/tests && protractor conf.js
 env:
   - DB=mysql
   - DB=sqlite
