@@ -44,13 +44,29 @@ $container = require_once(__DIR__ . '/../container.php');
 
 PSX\Bootstrap::setupEnvironment($container->get('config'));
 
-// setup sqlite connection
-$config = new Doctrine\DBAL\Configuration();
-$params = array(
-    'path'     => PSX_PATH_CACHE . '/test.db',
-    'driver'   => 'pdo_sqlite',
-);
+// setup connection
+$params = null;
+switch (getenv('DB')) {
+    case 'mysql':
+        $params = array(
+            'dbname'   => 'fusio_ui',
+            'user'     => 'root',
+            'password' => '',
+            'host'     => 'localhost',
+            'driver'   => 'pdo_mysql',
+        );
+        break;
 
+    default:
+    case 'sqlite':
+        $params = array(
+            'path'     => PSX_PATH_CACHE . '/fusio_ui.db',
+            'driver'   => 'pdo_sqlite',
+        );
+        break;
+}
+
+$config     = new Doctrine\DBAL\Configuration();
 $connection = Doctrine\DBAL\DriverManager::getConnection($params, $config);
 
 $container->set('connection', $connection);
