@@ -11,6 +11,9 @@ exports.config = {
     'app/user.js'
   ],
   baseUrl: 'http://127.0.0.1:8008/backend.htm',
+  capabilities: {
+    browserName: 'firefox'
+  },
   onPrepare: function() {
     // login
     browser.driver.get('http://127.0.0.1:8008/backend.htm');
