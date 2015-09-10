@@ -27,6 +27,7 @@ module.exports = function(grunt){
           './bower_components/angular-chart.js/dist/angular-chart.min.js',
           './bower_components/ng-showdown/dist/ng-showdown.min.js',
           './dist/fusio-app.min.js',
+          './dist/fusio-templates.min.js'
         ],
         dest: './dist/fusio.min.js'
       },
@@ -75,13 +76,32 @@ module.exports = function(grunt){
           ]
         }
       }
+    },
+    ngtemplates: {
+      app: {
+        src: 'app/*/*.html',
+        dest: 'dist/fusio-templates.min.js',
+        options: {
+          htmlmin: {
+            collapseBooleanAttributes: true,
+            collapseWhitespace: true,
+            removeAttributeQuotes: true,
+            removeComments: true,
+            removeEmptyAttributes: true,
+            removeRedundantAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true
+          }
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-angular-templates');
 
-  grunt.registerTask('default', ['uglify', 'concat', 'cssmin']);
+  grunt.registerTask('default', ['uglify', 'ngtemplates', 'concat', 'cssmin']);
 
 };
