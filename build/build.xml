@@ -53,6 +53,9 @@
             <arg line="install grunt-contrib-cssmin" />
         </exec>
         <exec dir="${build}/public" executable="${npm}" failonerror="true">
+            <arg line="install grunt-angular-templates" />
+        </exec>
+        <exec dir="${build}/public" executable="${npm}" failonerror="true">
             <arg line="install grunt-cli" />
         </exec>
         <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
