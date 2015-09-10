@@ -16,12 +16,21 @@ before_install:
   - if [ "$TRAVIS_PHP_VERSION" != "nightly" ] && [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then phpenv config-rm xdebug.ini; fi;
 install:
   - composer install
+  - npm install -g bower
+  - npm install -g grunt
+  - npm install -g grunt-contrib-concat
+  - npm install -g grunt-contrib-uglify
+  - npm install -g grunt-contrib-cssmin
+  - npm install -g grunt-angular-templates
+  - npm install -g grunt-cli
   - npm install -g protractor
 before_script:
   - if [ $DB = 'mysql' ]; then mysql -e 'create database fusio;'; fi;
   - if [ $DB = 'mysql' ]; then mysql -e 'create database fusio_ui;'; fi;
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then cd public && bower install; fi;
+  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then cd public && grunt; fi;
   - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then webdriver-manager update; fi;
   - ( if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then webdriver-manager start; fi; ) &
   - ( if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then cd public && php -S 127.0.0.1:8008 server.php; fi; ) &
