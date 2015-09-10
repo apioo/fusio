@@ -42,7 +42,9 @@ before_script:
   - cd ..
 script:
   - vendor/bin/phpunit
-  - ( if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then cd public/tests && protractor conf.js; fi; )
+  - cd public/tests
+  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then node ../node_modules/protractor/bin/protractor conf.js; fi;
+  - cd ../..
 env:
   - DB=mysql
   - DB=sqlite
