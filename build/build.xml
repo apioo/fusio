@@ -60,8 +60,35 @@
         </exec>
     </target>
 
+    <!-- protractor install -->
+    <target name="protractor-install">
+        <exec dir="${build}/public" executable="${npm}" failonerror="true">
+            <arg line="install protractor" />
+        </exec>
+    </target>
+
+    <!-- start webserver -->
+    <target name="start-webserver">
+        <exec dir="${build}/public" executable="${php}" failonerror="true">
+            <arg line="server.php --warmup" />
+        </exec>
+        <exec dir="${build}/public" executable="${php}" spawn="true">
+            <arg line="-S 127.0.0.1:8008 server.php" />
+        </exec>
+    </target>
+
+    <!-- start webdriver -->
+    <target name="start-webdriver">
+        <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
+            <arg line="node_modules/protractor/bin/webdriver-manager update" />
+        </exec>
+        <exec dir="${build}/public" executable="${nodejs}" spawn="true">
+            <arg line="node_modules/protractor/bin/webdriver-manager start" />
+        </exec>
+    </target>
+
     <!-- after this target we have an system with all dependencies installed -->
-    <target name="init" depends="delete-git-dir,git-clone,composer-install,bower-install,grunt-install" />
+    <target name="init" depends="delete-git-dir,git-clone,composer-install,bower-install,grunt-install,protractor-install,start-webserver,start-webdriver" />
 
     <!-- ############################## TESTS ############################## -->
     <!-- syntax check of all files -->
@@ -76,8 +103,15 @@
         <exec dir="${build}" executable="${phpunit}" failonerror="true" />
     </target>
 
+    <!-- run protractor tests -->
+    <target name="protractor">
+        <exec dir="${build}/public/tests" executable="${nodejs}" failonerror="true">
+            <arg line="../node_modules/protractor/bin/protractor conf.js " />
+        </exec>
+    </target>
+
     <!-- this target runs all tests -->
-    <target name="test" depends="init,syntax-check,phpunit" />
+    <target name="test" depends="init,syntax-check,phpunit,protractor" />
 
     <!-- ############################## CLEAN ############################## -->
     <!-- removes all files wich are not needed in the release -->
@@ -87,6 +121,7 @@
         <delete>
             <fileset dir="${build}/public/app" includes="**/*.js" />
         </delete>
+        <delete dir="${build}/public/app" />
         <delete dir="${build}/public/bower_components" />
         <delete dir="${build}/public/css" />
         <delete dir="${build}/public/js" />
@@ -100,6 +135,7 @@
         <delete file="${build}/public/package.json" />
         <delete file="${build}/public/server.php" />
         <delete file="${build}/public/dist/fusio-app.min.js" />
+        <delete file="${build}/public/dist/fusio-templates.min.js" />
         <delete includeemptydirs="true">
             <fileset dir="${build}/cache" includes="*" />
         </delete>
@@ -124,12 +160,5 @@
 
     <!-- builds the archive -->
     <target name="build" depends="test,clean,create-archive" />
-
-    <!-- ############################## INTERNAL ########################### -->
-    <scriptdef name="propchange" language="javascript">
-        <attribute name="name" />
-        <attribute name="value" />
-        project.setProperty(attributes.get("name"), attributes.get("value"));
-    </scriptdef>
 
 </project>
