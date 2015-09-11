@@ -52,17 +52,26 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
 
         $connection->expects($this->once())
             ->method('insert')
-            ->with($this->equalTo('fusio_log'), $this->equalTo([
-                'appId'     => 1,
-                'routeId'   => 1,
-                'ip'        => '127.0.0.1',
-                'userAgent' => null,
-                'method'    => null,
-                'path'      => null,
-                'header'    => 'Content-Type: application/json',
-                'body'      => null,
-                'date'      => date('Y-m-d H:i:s'),
-            ]));
+            ->with($this->equalTo('fusio_log'), $this->callback(function($args){
+                $args['date'] = substr($args['date'], 0, 16);
+
+                $expect = [
+                    'appId'     => 1,
+                    'routeId'   => 1,
+                    'ip'        => '127.0.0.1',
+                    'userAgent' => null,
+                    'method'    => null,
+                    'path'      => null,
+                    'header'    => 'Content-Type: application/json',
+                    'body'      => null,
+                    'date'      => date('Y-m-d H:i'),
+                ];
+
+                $this->assertEquals($expect, $args);
+
+                return true;
+
+            }));
 
         $connection->expects($this->once())
             ->method('lastInsertId')
