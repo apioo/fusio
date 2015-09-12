@@ -37,7 +37,7 @@ before_script:
   - cd public
   - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php server.php --warmup; fi;
   - ( if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php -S 127.0.0.1:8008 server.php; fi; ) &
-  - ( if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then node node_modules/protractor/bin/webdriver-manager start; fi; ) &
+  - ( if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then node node_modules/protractor/bin/webdriver-manager start > /dev/null 2>&1; fi; ) &
   - sleep 4
   - cd ..
 script:
