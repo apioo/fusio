@@ -10,4 +10,62 @@ describe('Schema tests', function() {
     expect(routes.get(1).getText()).toEqual('Passthru');
   });
 
+  it('Create schema', function() {
+    browser.get('#/schema');
+
+    var EC = protractor.ExpectedConditions;
+
+    $('a.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+
+    element(by.model('schema.name')).sendKeys('test-schema');
+    element(by.css('textarea.ace_text-input')).sendKeys('{ "id": "http://acme.com/schema", "type": "object", "title": "schema", "properties": { "name": { "type": "string" }, "date": { "type": "string", "format": "date-time" } } }');
+
+    $('button.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
+
+    expect($('div.alert-success > div').getText()).toEqual('Schema successful created');
+  });
+
+  it('Update schema', function() {
+    browser.get('#/schema');
+
+    var EC = protractor.ExpectedConditions;
+
+    element.all(by.css('div.fusio-options a:nth-child(1)')).first().click();
+
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+
+    expect(element(by.model('schema.name')).getAttribute('value')).toEqual('test-schema');
+
+    $('button.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.psx-complex-type')), 5000);
+
+    var properties = element.all(by.css('span.psx-property-name'));
+
+    expect(properties.get(0).getText()).toEqual('name');
+    expect(properties.get(1).getText()).toEqual('date');
+  });
+
+  it('Delete schema', function() {
+    browser.get('#/schema');
+
+    var EC = protractor.ExpectedConditions;
+
+    element.all(by.css('div.fusio-options a:nth-child(2)')).first().click();
+
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+
+    expect(element(by.model('schema.name')).getAttribute('value')).toEqual('test-schema');
+
+    $('button.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
+
+    expect($('div.alert-success > div').getText()).toEqual('Schema successful deleted');
+  });
+
 });

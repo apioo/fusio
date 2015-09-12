@@ -8,15 +8,21 @@ exports.config = {
     'app/routes.js',
     'app/schema.js',
     'app/scope.js',
+    'app/statistic.js',
     'app/user.js'
   ],
-  baseUrl: 'http://127.0.0.1:8008/backend.htm',
+  baseUrl: 'http://127.0.0.1/projects/fusio/public/backend.htm',
   capabilities: {
-    browserName: 'firefox'
+    browserName: 'chrome'
   },
+  plugins: [{
+    path: '../node_modules/protractor/plugins/console/index.js',
+    failOnWarning: true,
+    failOnError: true
+  }],
   onPrepare: function() {
     // login
-    browser.driver.get('http://127.0.0.1:8008/backend.htm');
+    browser.driver.get('http://127.0.0.1/projects/fusio/public/backend.htm');
     browser.driver.findElement(by.id('username')).sendKeys('Developer');
     browser.driver.findElement(by.id('password')).sendKeys('3632465b3b5d1b8b4b8e56f74600da00cea92baf');
     browser.driver.findElement(by.css('button[type="submit"]')).click();

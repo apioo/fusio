@@ -50,7 +50,7 @@ describe('Routes tests', function() {
 
     var EC = protractor.ExpectedConditions;
 
-    $('div.fusio-options a:nth-child(1)').click();
+    element.all(by.css('div.fusio-options a:nth-child(1)')).first().click();
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
@@ -81,7 +81,7 @@ describe('Routes tests', function() {
 
     var EC = protractor.ExpectedConditions;
 
-    $('div.fusio-options a:nth-child(2)').click();
+    element.all(by.css('div.fusio-options a:nth-child(2)')).first().click();
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
