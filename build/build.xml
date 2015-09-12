@@ -138,6 +138,7 @@
         <delete dir="${build}/public/css" />
         <delete dir="${build}/public/js" />
         <delete dir="${build}/public/node_modules" />
+        <delete dir="${build}/public/tests" />
         <delete dir="${build}/tests" />
         <delete file="${build}/.travis.yml" />
         <delete file="${build}/phpunit.xml" />
