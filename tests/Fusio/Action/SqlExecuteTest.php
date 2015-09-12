@@ -68,11 +68,13 @@ class SqlExecuteTest extends DbTestCase
 
         $row = Environment::getService('connection')->fetchAssoc('SELECT * FROM app_news ORDER BY id DESC');
 
+        $row['date'] = substr($row['date'], 0, 16);
+
         $this->assertEquals([
-            'id' => 3,
-            'title' => 'lorem',
+            'id'      => 3,
+            'title'   => 'lorem',
             'content' => 'ipsum',
-            'date' => date('Y-m-d H:i:s'),
+            'date'    => date('Y-m-d H:i'),
         ], $row);
     }
 

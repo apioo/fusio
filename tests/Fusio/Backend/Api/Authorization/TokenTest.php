@@ -53,27 +53,26 @@ class TokenTest extends ControllerDbTestCase
 
         $this->assertEquals(200, $response->getStatusCode(), $body);
 
+        $expireDate = strtotime('+1 hour');
+
         $this->arrayHasKey('access_token', $data);
         $this->arrayHasKey('token_type', $data);
         $this->assertEquals('bearer', $data['token_type']);
         $this->arrayHasKey('expires_in', $data);
-        $this->assertEquals(strtotime('+1 hour'), $data['expires_in']);
+        $this->assertEquals(date('Y-m-d H:i', $expireDate), date('Y-m-d H:i', $data['expires_in']));
         $this->arrayHasKey('scope', $data);
         $this->assertEquals('backend', $data['scope']);
 
         // check whether the token was created
         $row = $this->connection->fetchAssoc('SELECT appId, userId, status, token, scope, expire, date FROM fusio_app_token WHERE token = :token', ['token' => $data['access_token']]);
 
-        $expireDate  = strtotime('+1 hour');
-        $expireRange = [date('Y-m-d H:i:s', $expireDate - 1), date('Y-m-d H:i:s', $expireDate), date('Y-m-d H:i:s', $expireDate + 1)];
-
         $this->assertEquals(1, $row['appId']);
         $this->assertEquals(4, $row['userId']);
         $this->assertEquals(Token::STATUS_ACTIVE, $row['status']);
         $this->assertEquals($data['access_token'], $row['token']);
         $this->assertEquals('backend', $row['scope']);
-        $this->assertTrue(in_array($row['expire'], $expireRange));
-        $this->assertEquals(date('Y-m-d H:i:s'), $row['date']);
+        $this->assertEquals(date('Y-m-d H:i', $expireDate), date('Y-m-d H:i', strtotime($row['expire'])));
+        $this->assertEquals(date('Y-m-d H:i'), substr($row['date'], 0, 16));
     }
 
     /**
