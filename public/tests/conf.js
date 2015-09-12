@@ -17,7 +17,6 @@ exports.config = {
   },
   plugins: [{
     path: '../node_modules/protractor/plugins/console/index.js',
-    failOnWarning: true,
     failOnError: true
   }],
   onPrepare: function() {
