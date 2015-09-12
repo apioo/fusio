@@ -21,15 +21,11 @@
 
 // entry point for the internal php server for testing
 $fileUris = [
-    '^\/app\/',
-    '^\/bower_components\/',
-    '^\/css\/',
     '^\/dist\/',
     '^\/documentation\/',
     '^\/fonts\/',
     '^\/help\/',
     '^\/img\/',
-    '^\/js\/',
     '^\/backend.htm',
 ];
 
