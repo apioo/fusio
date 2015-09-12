@@ -1,6 +1,7 @@
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
   specs: [
+    'app/account.js',
     'app/action.js',
     'app/app.js',
     'app/connection.js',
