@@ -1,0 +1,30 @@
+
+0.1.5
+* Added javascript angular protractor e2e tests 
+* Add documentation api test case
+* Add change password panel #1
+* Fix query filter and add test case
+* Fix log pagination #8
+
+0.1.4
+* Improved installer
+* Add statistic panel to backend
+* Log errors which occur in an action and display them in the log details
+
+0.1.3
+* Redirect DisplayException if thrown in template context
+* Fix js user controller remove apps data before update
+* Extended test cases
+* Check that provided jsonschema is an object type
+* Make dashboard chart more responsive
+
+0.1.2
+* Add more test cases
+* Add database version
+
+0.1.1
+* Update help and fix help references
+* Fixed handling action and connection config parameters
+
+0.1.0
+* Initial release
