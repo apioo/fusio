@@ -15,10 +15,6 @@ exports.config = {
   capabilities: {
     browserName: 'firefox'
   },
-  plugins: [{
-    path: '../node_modules/protractor/plugins/console/index.js',
-    failOnError: true
-  }],
   onPrepare: function() {
     // login
     browser.driver.get('http://127.0.0.1:8008/backend.htm');
