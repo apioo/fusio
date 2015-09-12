@@ -75,8 +75,8 @@
         <exec dir="${build}/public" executable="${php}" failonerror="true">
             <arg line="server.php --warmup" />
         </exec>
-        <exec dir="${build}/public" executable="${php}" spawn="true">
-            <arg line="-S 127.0.0.1:8008 server.php" />
+        <exec dir="${build}/build" executable="${php}" spawn="true">
+            <arg line="service.php webserver" />
         </exec>
     </target>
 
@@ -85,8 +85,8 @@
         <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
             <arg line="node_modules/protractor/bin/webdriver-manager update" />
         </exec>
-        <exec dir="${build}/public" executable="${nodejs}" spawn="true">
-            <arg line="node_modules/protractor/bin/webdriver-manager start" />
+        <exec dir="${build}/build" executable="${php}" spawn="true">
+            <arg line="service.php webdriver" />
         </exec>
     </target>
 
@@ -117,8 +117,17 @@
     <target name="test" depends="init,syntax-check,phpunit,protractor" />
 
     <!-- ############################## CLEAN ############################## -->
+    <!-- remove the lock file so that the web and selenium server shutdown -->
+    <target name="shutdown-server">
+        <delete>
+            <fileset dir="${build}/cache" includes="*.lock"/>
+        </delete>
+        <echo message="Waiting for servers to shutdown ..." />
+        <sleep seconds="4" />
+    </target>
+
     <!-- removes all files wich are not needed in the release -->
-    <target name="clean">
+    <target name="remove-files">
         <delete dir="${build}/.git" />
         <delete dir="${build}/build" />
         <delete>
@@ -143,6 +152,9 @@
             <fileset dir="${build}/cache" includes="*" />
         </delete>
     </target>
+
+    <!-- builds the archive -->
+    <target name="clean" depends="shutdown-server,remove-files" />
 
     <!-- ############################## BUILD ############################## -->
     <!-- returns the current version -->

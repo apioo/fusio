@@ -44,9 +44,6 @@ $container = require_once(__DIR__ . '/../container.php');
 
 PSX\Bootstrap::setupEnvironment($container->get('config'));
 
-// pid file
-define('PID_FILE', PSX_PATH_CACHE . '/server.pid');
-
 // setup connection
 $params = null;
 switch (getenv('DB')) {
@@ -97,33 +94,7 @@ if (isset($_SERVER['argv']) && in_array('--warmup', $_SERVER['argv'])) {
     PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT()->execute($connection, Fusio\Fixture::getDataSet());
 
     echo 'Warmup successful' . "\n";
-} elseif (isset($_SERVER['argv']) && in_array('--stop', $_SERVER['argv'])) {
-    // shutdown
-    if (is_file(PID_FILE)) {
-        $pid = (int) file_get_contents(PID_FILE);
-        if (!empty($pid)) {
-            if (DIRECTORY_SEPARATOR === '\\') {
-                exec(sprintf('taskkill /F /T /PID %d', $pid), $output, $exitCode);
-            } else {
-                exec(sprintf('kill -9 %d', $pid), $output, $exitCode);
-            }
-
-            if ($exitCode === 0) {
-                echo 'Shutdown successful' . "\n";
-            } else {
-                echo 'Could not shutdown server' . "\n";
-                exit(1);
-            }
-        } else {
-            echo 'Invalid pid file content' . "\n";
-        }
-    } else {
-        echo 'Could not find pid file' . "\n";
-    }
 } else {
-    // write pid to file so that we can shutdown the server if needed
-    file_put_contents(PID_FILE, getmypid());
-
     // run
     $request  = $container->get('request_factory')->createRequest();
     $response = $container->get('response_factory')->createResponse();
