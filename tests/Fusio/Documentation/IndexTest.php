@@ -242,6 +242,10 @@ class IndexTest extends ControllerDbTestCase
         {
             "rel": "detail",
             "href": "http:\/\/127.0.0.1\/doc\/{version}\/{path}"
+        },
+        {
+            "rel": "api",
+            "href": "http:\/\/127.0.0.1\/"
         }
     ]
 }

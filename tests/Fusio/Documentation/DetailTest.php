@@ -46,24 +46,49 @@ class DetailTest extends ControllerDbTestCase
         ));
 
         $body   = (string) $response->getBody();
-        $expect = <<<JSON
+        $expect = <<<'JSON'
 {
-    "method": [
-        "POST"
-    ],
     "path": "\/foo",
+    "version": 1,
+    "status": 4,
+    "schema": {
+        "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+        "id": "urn:schema.phpsx.org#",
+        "type": "object",
+        "definitions": {
+            "ref1f48a85d4ba4eea96e191b48f552281e": {
+                "type": "object",
+                "title": "test",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "date": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "POST-request": {
+                "$ref": "#\/definitions\/ref1f48a85d4ba4eea96e191b48f552281e"
+            }
+        }
+    },
     "versions": [
         {
             "version": 1,
             "status": 4
         }
     ],
-    "see_others": {},
-    "resource": {
-        "version": 1,
-        "status": 4,
-        "data": {
-            "Schema": "<div class=\"psx-resource psx-api-resource-generator-html-schema\" data-status=\"4\" data-path=\"\/foo\"><h4>Schema<\/h4><div class=\"psx-resource-method\" data-method=\"POST\"><div class=\"psx-resource-data psx-resource-request\"><h5>POST Request<\/h5><div class=\"psx-resource-data-content\"><div id=\"psx-type-1f48a85d4ba4eea96e191b48f552281e\" class=\"psx-complex-type\"><h1>test<\/h1><div class=\"psx-type-description\"><\/div><table class=\"table psx-type-properties\"><colgroup><col width=\"20%\" \/><col width=\"20%\" \/><col width=\"40%\" \/><col width=\"20%\" \/><\/colgroup><thead><tr><th>Property<\/th><th>Type<\/th><th>Description<\/th><th>Constraints<\/th><\/tr><\/thead><tbody><tr><td><span class=\"psx-property-name psx-property-optional\">title<\/span><\/td><td><span class=\"psx-property-type psx-property-type-string\">String<\/span><\/td><td><span class=\"psx-property-description\"><\/span><\/td><td><\/td><\/tr><tr><td><span class=\"psx-property-name psx-property-optional\">content<\/span><\/td><td><span class=\"psx-property-type psx-property-type-string\">String<\/span><\/td><td><span class=\"psx-property-description\"><\/span><\/td><td><\/td><\/tr><tr><td><span class=\"psx-property-name psx-property-optional\">date<\/span><\/td><td><span class=\"psx-property-type psx-property-type-datetime\"><a href=\"http:\/\/tools.ietf.org\/html\/rfc3339#section-5.6\" title=\"RFC3339\">DateTime<\/a><\/span><\/td><td><span class=\"psx-property-description\"><\/span><\/td><td><\/td><\/tr><\/tbody><\/table><\/div><\/div><\/div><div class=\"psx-resource-data psx-resource-response\"><h5>POST Response - 200 OK<\/h5><div class=\"psx-resource-data-content\"><div id=\"psx-type-aeadc8d940a294aeacf0ab2d3e7e4e4b\" class=\"psx-complex-type\"><h1>passthru<\/h1><div class=\"psx-type-description\">No schema was specified all data will pass thru. Please contact the API provider for more informations about the data format.<\/div><\/div><\/div><\/div><\/div><\/div>"
+    "methods": {
+        "POST": {
+            "request": "#\/definitions\/POST-request",
+            "responses": {
+                "200": "#\/definitions\/POST-200-response"
+            }
         }
     }
 }
