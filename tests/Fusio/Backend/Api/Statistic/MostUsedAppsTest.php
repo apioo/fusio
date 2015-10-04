@@ -21,6 +21,9 @@
 
 namespace Fusio\Backend\Api\Dashboard;
 
+use DateInterval;
+use DatePeriod;
+use DateTime;
 use Fusio\Fixture;
 use PSX\Test\ControllerDbTestCase;
 
@@ -45,88 +48,26 @@ class MostUsedAppsTest extends ControllerDbTestCase
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
 
-        $body = (string) $response->getBody();
-        $body = preg_replace('/\d{4}-\d{2}-\d{2}/m', '[datetime]', $body);
+        $labels = [];
+        $data   = [];
+        $period = new DatePeriod(new DateTime('-1 month'), new DateInterval('P1D'), new DateTime('+1 day'));
 
-        $expect = <<<JSON
-{
-    "labels": [
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]",
-        "[datetime]"
-    ],
-    "data": [
-        [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            2
-        ]
-    ],
-    "series": [
-        "Foo-App"
-    ]
-}
-JSON;
+        foreach ($period as $key => $date) {
+            $labels[] = $date->format('Y-m-d');
+            $data[]   = 0;
+        }
+
+        $data[count($data) - 1] = 2;
+
+        $expect = [
+            'labels' => $labels,
+            'data'   => [$data],
+            'series' => ['Foo-App'],
+        ];
+
+        $body = (string) $response->getBody();
 
         $this->assertEquals(null, $response->getStatusCode(), $body);
-        $this->assertJsonStringEqualsJsonString($expect, $body, $body);
+        $this->assertJsonStringEqualsJsonString(json_encode($expect), $body, $body);
     }
 }
