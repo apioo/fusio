@@ -1,36 +1,66 @@
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="evid" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="evid" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="evid" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="evid" class="no-js"> <!--<![endif]-->
 <head>
-	<title>API Documentation</title>
-	<link rel="stylesheet" href="evid.min.css">
-	<link rel="stylesheet" href="app.css">
-	<script src="config.js"></script>
-	<script src="evid.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>API Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <link rel="stylesheet" href="evid.min.css">
+  <script src="evid.min.js"></script>
+  <script type="text/javascript">
+  /**
+   * Path to the PSX documentation endpoint
+   */
+  evid.value('url', '/projects/fusio/public/index.php/doc');
+
+  /**
+   * Paths which should be excluded from the documentation
+   */
+  evid.value('exclude', ['/backend/(.*)']);
+
+  /**
+   * Optional menu entries. Each menu entry must have the following format
+   * { title: 'Getting started', icon: 'home', href: 'introduction.htm' }
+   */
+  evid.value('menu', [{
+    title: 'Getting started',
+    icon: 'home',
+    href: 'getting_started.htm'
+  }]);
+  </script>
 </head>
-<body>
-
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-2 sidebar">
-			<nav class="evid-navigation">
-				<ul>
-					<li class="nav-head">Meta</li>
-					<li><a href="#getting_started" onclick="evid.loadPage('getting_started.html')">Getting started</a></li>
-					<li class="nav-head">Endpoints</li>
-				</ul>
-			</nav>
-		</div>
-		<div class="col-md-10 col-md-offset-2 content">
-			<div id="evid-content">
-				<div id="evid-resource-toolbar"></div>
-				<h3 id="evid-resource-title"></h3>
-				<div id="evid-resource-description"></div>
-				<div id="evid-resource-nav"></div>
-				<div id="evid-resource-doc" class="tab-content"></div>
-			</div>
-		</div>
-	</div>
-</div>
-
+<body layout="column" ng-controller="AppCtrl">
+  <md-toolbar class="md-toolbar-tools md-primary">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Menu" ng-click="toggleSidebar()">
+        <md-icon md-font-library="material-icons">menu</md-icon>
+      </md-button>
+      <h2>
+        <span>API Documentation</span>
+      </h2>
+    </div>
+  </md-toolbar>
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z1" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-content class="evid-menu">
+        <md-list>
+          <md-subheader class="md-primary" ng-if="menus.length > 0">Overview</md-subheader>
+          <md-list-item ng-repeat="menu in menus">
+            <md-button class="evid-menu-item" ng-href="#/page/{{ menu.title|slugify }}"><md-icon md-font-library="material-icons">{{ menu.icon }}</md-icon> {{ menu.title }}</md-button>
+          </md-list-item>
+          <md-subheader class="md-primary">Endpoints</md-subheader>
+          <md-list-item ng-repeat="route in routings | orderBy: 'path'">
+            <md-button class="evid-menu-item" ng-href="#/api{{ route.path }}"><md-icon md-font-library="material-icons">description</md-icon> {{ route.path }}</md-button>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </md-sidenav>
+    <md-content flex ng-view></md-content>
+  </section>
 </body>
 </html>

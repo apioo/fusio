@@ -1,13 +1,9 @@
 
-<div style="max-width:800px">
+<md-content flex layout-padding>
 
-    <h2>Welcome,</h2>
-
-    <p>this is a quick introduction to help you get started using the API. On 
-    the left sidebar you see all available endpoints. Each endpoint shows the
-    available request methods and the data format.</p>
-
-    <h3>Authentication</h3>
+    <p>Welcome, this is a quick introduction to help you get started using this 
+    API. On the left sidebar you see all available endpoints. Each endpoint 
+    shows the available request methods and the request/response data format.</p>
 
     <p>The API uses <a href="https://tools.ietf.org/html/rfc6749">OAuth2</a> for 
     authorization. In order to obtain an access token you have to send an 
@@ -15,18 +11,24 @@
     request to the following endpoint. The app key and secret must be obtained 
     by the API provider.</p>
 
-    <pre><code class="http">POST /authorization/token HTTP/1.1
+    <md-tabs md-dynamic-height>
+        <md-tab label="Request">
+            <md-content>
+                <div hljs no-escape>
+POST /authorization/token HTTP/1.1
 User-Agent: Awesome-App 0.1
 Content-Type: application/x-www-form-urlencoded
 Authorization: Basic YWRtaW46dGVzdDEyMw==
-Content-Length: 29
+Content-Length: 49
 
 grant_type=client_credentials&amp;scope=authorization
-</code></pre>
-
-    <p>The endpoint returns an access token if the authentication was successful</p>
-
-    <pre><code class="http">HTTP/1.1 200 OK
+</div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Response">
+            <md-content>
+                <div hljs no-escape>
+HTTP/1.1 200 OK
 X-Powered-By: psx
 Content-Length: 148
 Content-Type: application/json
@@ -36,17 +38,35 @@ Content-Type: application/json
     "token_type": "bearer",
     "expires_in": 1433961485
 }
-</code></pre>
+</div>
+            </md-content>
+        </md-tab>
+    </md-tabs>
 
-    <p>This token can only be used to access the authorization endpoints which 
+    <p>The endpoint returns an access token if the authentication was successful. 
+    This token can only be used to access the authorization endpoints which 
     give you the option to revoke the access token or get informations about
     who you are. To request other endpoints you need to specify another scope.
-    The available scopes can be obtained from the API provider.</p>
+    The available scopes can be obtained by the API provider. In the following
+    an example to check whether the authorization was successful.</p>
 
-    <pre><code class="http">POST /authorization/whoami HTTP/1.1
+    <md-tabs md-dynamic-height>
+        <md-tab label="Request">
+            <md-content>
+                <div hljs no-escape>
+GET /authorization/whoami HTTP/1.1
 User-Agent: Awesome-App 0.1
 Connection: Keep-Alive
 Authorization: Bearer 1ab55cbf3eaedd86d87547111dfe2e8d364ff9e0871b930663e28564ef031f65
+</div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Response">
+            <md-content>
+                <div hljs no-escape>
+HTTP/1.1 200 OK
+X-Powered-By: psx
+Content-Length: 65
 Content-Type: application/json
 
 {
@@ -54,22 +74,12 @@ Content-Type: application/json
     "status": "1",
     "name": "Administrator"
 }
-</code></pre>
-
-    <h3>Help</h3>
+</div>
+            </md-content>
+        </md-tab>
+    </md-tabs>
 
     <p>Please contact the API provider for more informations about the API. This
-    API was built with <a href="http://fusio-project.org">fusio</a>.</p>
-</div>
+    API was built with <a href="http://fusio-project.org">Fusio</a>.</p>
 
-
-<script type="text/javascript">
-$(document).ready(function(){
-
-    $('pre code').each(function(i, block) {
-        hljs.highlightBlock(block);
-    });
-
-});
-</script>
-
+</md-content>
