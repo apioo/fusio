@@ -41,6 +41,8 @@ class Path extends FilterAbstract
                 return false;
             } elseif (substr($value, 0, 14) == '/authorization') {
                 return false;
+            } elseif (substr($value, 0, 7) == '/export') {
+                return false;
             } elseif (substr($value, 0, 1) != '/') {
                 return false;
             }

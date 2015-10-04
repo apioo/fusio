@@ -90,6 +90,7 @@ class Collection extends SchemaApiAbstract
         $condition->add('path', 'NOT LIKE', '/backend%');
         $condition->add('path', 'NOT LIKE', '/doc%');
         $condition->add('path', 'NOT LIKE', '/authorization%');
+        $condition->add('path', 'NOT LIKE', '/export%');
 
         if (!empty($search)) {
             $condition->add('path', 'LIKE', '%' . $search . '%');

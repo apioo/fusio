@@ -90,7 +90,21 @@ class DetailTest extends ControllerDbTestCase
                 "200": "#\/definitions\/POST-200-response"
             }
         }
-    }
+    },
+    "links": [
+        {
+            "rel": "wsdl",
+            "href": "\/export\/wsdl\/1\/foo"
+        },
+        {
+            "rel": "swagger",
+            "href": "\/export\/swagger\/1\/foo"
+        },
+        {
+            "rel": "raml",
+            "href": "\/export\/raml\/1\/foo"
+        }
+    ]
 }
 JSON;
 
