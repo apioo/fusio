@@ -61,6 +61,7 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
     $scope.openFilterDialog = function(){
         var modalInstance = $modal.open({
             size: 'lg',
+            backdrop: 'static',
             templateUrl: 'app/statistic/filter.html',
             controller: 'StatisticFilterCtrl',
             resolve: {

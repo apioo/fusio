@@ -73,6 +73,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 	$scope.openDetailDialog = function(log){
 		var modalInstance = $modal.open({
 			size: 'lg',
+            backdrop: 'static',
 			templateUrl: 'app/log/detail.html',
 			controller: 'LogDetailCtrl',
 			resolve: {
@@ -96,6 +97,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
     $scope.openFilterDialog = function(){
         var modalInstance = $modal.open({
             size: 'lg',
+            backdrop: 'static',
             templateUrl: 'app/statistic/filter.html',
             controller: 'StatisticFilterCtrl',
             resolve: {
@@ -127,6 +129,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 	$scope.openTraceDialog = function(error){
 		$modal.open({
 			size: 'md',
+            backdrop: 'static',
 			template: '<div class="modal-body"><pre>' + error.trace + '</pre></div>'
 		});
 	};

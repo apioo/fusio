@@ -46,6 +46,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 	$scope.openCreateDialog = function(){
 		var modalInstance = $modal.open({
 			size: 'lg',
+			backdrop: 'static',
 			templateUrl: 'app/action/create.html',
 			controller: 'ActionCreateCtrl'
 		});
@@ -60,6 +61,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 	$scope.openUpdateDialog = function(action){
 		var modalInstance = $modal.open({
 			size: 'lg',
+			backdrop: 'static',
 			templateUrl: 'app/action/update.html',
 			controller: 'ActionUpdateCtrl',
 			resolve: {
@@ -79,6 +81,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 	$scope.openDeleteDialog = function(action){
 		var modalInstance = $modal.open({
 			size: 'lg',
+			backdrop: 'static',
 			templateUrl: 'app/action/delete.html',
 			controller: 'ActionDeleteCtrl',
 			resolve: {
