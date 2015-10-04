@@ -53,26 +53,24 @@ class SqlFetchAllTest extends DbTestCase
         $response = $action->handle($this->getRequest(), $parameters, $this->getContext());
 
         $result = [];
-        $result[] = [
+
+        $result[] = (object) [
             'id' => 2,
             'title' => 'bar',
             'content' => 'foo',
             'date' => '2015-02-27 19:59:15',
         ];
-        $result[] = [
+        $result[] = (object) [
             'id' => 1,
             'title' => 'foo',
             'content' => 'bar',
             'date' => '2015-02-27 19:59:15',
         ];
 
-        $body = new \stdClass();
-        $body->foo = $result;
-
         $this->assertInstanceOf('Fusio\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals([], $response->getHeaders());
-        $this->assertEquals($body, $response->getBody());
+        $this->assertEquals(['foo' => $result], $response->getBody());
     }
 
     public function testGetForm()
