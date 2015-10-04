@@ -23,6 +23,7 @@ namespace Fusio\Template;
 
 use Fusio\Template\Filter\Json;
 use Fusio\Template\Filter\Prepare;
+use Fusio\Template\Filter\RowExists;
 use Twig_Extension_Core;
 
 /**
@@ -87,6 +88,7 @@ class Extension extends Twig_Extension_Core
             // fusio
             new \Twig_SimpleFilter(Prepare::FILTER_NAME, new Prepare()),
             new \Twig_SimpleFilter(Json::FILTER_NAME, new Json()),
+            new \Twig_SimpleFilter(RowExists::FILTER_NAME, new RowExists()),
         );
         if (function_exists('mb_get_info')) {
             $filters[] = new \Twig_SimpleFilter('upper', 'twig_upper_filter', array('needs_environment' => true));

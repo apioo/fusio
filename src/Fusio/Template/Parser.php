@@ -25,6 +25,7 @@ use Fusio\Context;
 use Fusio\Parameters;
 use Fusio\Request;
 use Fusio\Template\Filter\Prepare;
+use Fusio\Template\Filter\RowExists;
 use PSX\Data\Accessor;
 use PSX\DisplayException;
 use PSX\Validate;
@@ -61,6 +62,7 @@ class Parser
         $this->loader->set($data, $cacheKey, $lastModified);
 
         $this->twig->getFilter(Prepare::FILTER_NAME)->getCallable()->clear();
+        $this->twig->getFilter(RowExists::FILTER_NAME)->getCallable()->setConnection($context->getConnection());
 
         try {
             return $this->twig->render($configuration->get(Parameters::ACTION_ID), [
