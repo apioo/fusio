@@ -72,16 +72,16 @@ class SqlFetchAll implements ActionInterface
 
         if ($connection instanceof Connection) {
             // parse sql
-            $sql = $this->templateParser->parse($request, $configuration, $context, $configuration->get('sql'));
+            $sql = $this->templateParser->parse($request, $configuration, $context->withConnection($connection), $configuration->get('sql'));
 
             $result = $connection->fetchAll($sql, $this->templateParser->getSqlParameters());
             $key    = $configuration->get('propertyName') ?: 'entry';
 
-            return new Response(200, [], CurveArray::nest(array(
-                $key => $result,
-            )));
+            return new Response(200, [], [
+                $key => CurveArray::nest($result),
+            ]);
         } else {
-            throw new ConfigurationException('Given connection must be an DBAL connection');
+            throw new ConfigurationException('Given connection must be a DBAL connection');
         }
     }
 

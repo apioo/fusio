@@ -73,7 +73,7 @@ class SqlFetchRow implements ActionInterface
 
         if ($connection instanceof Connection) {
             // parse sql
-            $sql = $this->templateParser->parse($request, $configuration, $context, $configuration->get('sql'));
+            $sql = $this->templateParser->parse($request, $configuration, $context->withConnection($connection), $configuration->get('sql'));
 
             $result = $connection->fetchAssoc($sql, $this->templateParser->getSqlParameters());
 

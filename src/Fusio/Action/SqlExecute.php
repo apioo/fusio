@@ -72,7 +72,7 @@ class SqlExecute implements ActionInterface
 
         if ($connection instanceof Connection) {
             // parse sql
-            $sql = $this->templateParser->parse($request, $configuration, $context, $configuration->get('sql'));
+            $sql = $this->templateParser->parse($request, $configuration, $context->withConnection($connection), $configuration->get('sql'));
 
             $connection->executeUpdate($sql, $this->templateParser->getSqlParameters());
 

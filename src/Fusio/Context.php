@@ -32,6 +32,7 @@ class Context
 {
     protected $routeId;
     protected $app;
+    protected $connection;
 
     public function __construct($routeId, App $app)
     {
@@ -58,5 +59,28 @@ class Context
     public function getApp()
     {
         return $this->app;
+    }
+
+    /**
+     * Returns the connection which is currently used by the action
+     *
+     * @return mixed
+     */
+    public function getConnection()
+    {
+        return $this->connection;
+    }
+
+    /**
+     * Sets the currently used connection
+     *
+     * @param mixed $connection
+     */
+    public function withConnection($connection)
+    {
+        $me = clone $this;
+        $me->connection = $connection;
+
+        return $me;
     }
 }
