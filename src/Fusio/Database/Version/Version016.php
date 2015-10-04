@@ -21,25 +21,13 @@
 
 namespace Fusio\Database\Version;
 
-use Doctrine\DBAL\Connection;
-
 /**
- * Version015
+ * Version016
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Version015 extends Version010
+class Version016 extends Version010
 {
-    public function executeUpgrade(Connection $connection)
-    {
-        // insert change password route
-        $connection->insert('fusio_routes', [
-            'status'     => 1,
-            'methods'    => 'GET|POST|PUT|DELETE',
-            'path'       => '/backend/account/change_password',
-            'controller' => 'Fusio\Backend\Api\Account\ChangePassword',
-        ]);
-    }
 }

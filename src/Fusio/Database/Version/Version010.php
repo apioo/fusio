@@ -26,6 +26,10 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
 use Fusio\Database\VersionInterface;
 use Fusio\Schema\Parser;
+use PSX\Data\Object;
+use PSX\Data\Schema\Builder;
+use PSX\Data\Schema\Generator\JsonSchema;
+use PSX\Data\Schema\Property;
 use PSX\OpenSsl;
 use PSX\Util\Uuid;
 
@@ -206,33 +210,16 @@ class Version010 implements VersionInterface
 
     public function getInstallInserts()
     {
+        $parser    = new Parser();
         $now       = new DateTime();
         $appKey    = Uuid::pseudoRandom();
         $appSecret = hash('sha256', OpenSsl::randomPseudoBytes(256));
         $password  = \password_hash('0a29e5bcaa810de0ca0513d9d4ab62f1860f998a', PASSWORD_DEFAULT);
 
-        $passthruSchema = json_encode([
-            'id' => 'http://fusio-project.org',
-            'title' => 'passthru',
-            'type' => 'object',
-            'description' => 'No schema was specified all data will pass thru. Please contact the API provider for more informations about the data format.',
-            'properties' => new \stdClass(),
-        ], JSON_PRETTY_PRINT);
-
-        $parser        = new Parser();
-        $passthruCache = $parser->parse($passthruSchema);
-
-        $welcomeResponse = <<<'JSON'
-{
-    "message": "Congratulations the installation of Fusio was successful",
-    "links": [{
-        "rel": "about",
-        "name": "http://fusio-project.org"
-    }]
-}
-JSON;
-
-        $welcomeConfig = 'a:1:{i:0;C:15:"PSX\Data\Record":605:{a:2:{s:4:"name";s:6:"config";s:6:"fields";a:4:{s:6:"active";b:1;s:6:"status";i:4;s:4:"name";s:1:"1";s:7:"methods";a:4:{i:0;C:15:"PSX\Data\Record":140:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:5:{s:6:"active";b:1;s:6:"public";b:1;s:4:"name";s:3:"GET";s:6:"action";i:1;s:8:"response";i:1;}}}i:1;C:15:"PSX\Data\Record":71:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:4:"POST";}}}i:2;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"PUT";}}}i:3;C:15:"PSX\Data\Record":73:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:6:"DELETE";}}}}}}}}';
+        $schema    = $this->getPassthruSchema();
+        $cache     = $parser->parse($schema);
+        $response  = $this->getWelcomeResponse();
+        $config    = $this->getWelcomeConfig();
 
         return [
             'fusio_user' => [
@@ -249,10 +236,10 @@ JSON;
                 ['name' => 'authorization'],
             ],
             'fusio_action' => [
-                ['name' => 'Welcome', 'class' => 'Fusio\Action\StaticResponse', 'config' => serialize(['response' => $welcomeResponse]), 'date' => $now->format('Y-m-d H:i:s')],
+                ['name' => 'Welcome', 'class' => 'Fusio\Action\StaticResponse', 'config' => serialize(['response' => $response]), 'date' => $now->format('Y-m-d H:i:s')],
             ],
             'fusio_schema' => [
-                ['name' => 'Passthru', 'source' => $passthruSchema, 'cache' => $passthruCache]
+                ['name' => 'Passthru', 'source' => $schema, 'cache' => $cache]
             ],
             'fusio_routes' => [
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend',                             'controller' => 'Fusio\Backend\Application\Index',                        'config' => null],
@@ -294,7 +281,7 @@ JSON;
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/doc',                                 'controller' => 'PSX\Controller\Tool\DocumentationController::doIndex',   'config' => null],
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/doc/:version/*path',                  'controller' => 'PSX\Controller\Tool\DocumentationController::doDetail',  'config' => null],
 
-                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/',                                    'controller' => 'Fusio\Controller\SchemaApiController',                   'config' => $welcomeConfig],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/',                                    'controller' => 'Fusio\Controller\SchemaApiController',                   'config' => $config],
             ],
             'fusio_app_scope' => [
                 ['appId' => 1, 'scopeId' => 1]
@@ -344,5 +331,47 @@ JSON;
                 ['userId' => 1, 'scopeId' => 1]
             ],
         ];
+    }
+
+    protected function getPassthruSchema()
+    {
+        return json_encode([
+            'id' => 'http://fusio-project.org',
+            'title' => 'passthru',
+            'type' => 'object',
+            'description' => 'No schema was specified all data will pass thru. Please contact the API provider for more informations about the data format.',
+            'properties' => new \stdClass(),
+        ], JSON_PRETTY_PRINT);
+    }
+
+    protected function getWelcomeResponse()
+    {
+        return <<<'JSON'
+{
+    "message": "Congratulations the installation of Fusio was successful",
+    "links": [{
+        "rel": "about",
+        "name": "http://fusio-project.org"
+    }]
+}
+JSON;
+    }
+
+    protected function getWelcomeConfig()
+    {
+        $config = [new Object([
+            'active' => true,
+            'status' => 4,
+            'name' => '1',
+            'methods' => [new Object([
+                'active' => true,
+                'public' => true,
+                'name' => 'GET',
+                'action' => 1,
+                'response' => 1,
+            ])],
+        ])];
+
+        return serialize($config);
     }
 }

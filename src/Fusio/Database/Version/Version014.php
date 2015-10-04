@@ -21,13 +21,7 @@
 
 namespace Fusio\Database\Version;
 
-use DateTime;
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Schema\Schema;
-use Fusio\Database\VersionInterface;
-use Fusio\Schema\Parser;
-use PSX\OpenSsl;
-use PSX\Util\Uuid;
 
 /**
  * Version014
