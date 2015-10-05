@@ -21,6 +21,8 @@
 
 namespace Fusio\Database\Version;
 
+use Doctrine\DBAL\Connection;
+
 /**
  * Version016
  *
@@ -30,4 +32,28 @@ namespace Fusio\Database\Version;
  */
 class Version016 extends Version010
 {
+    public function executeUpgrade(Connection $connection)
+    {
+        // insert export routes
+        $routes = [[
+            'status'     => 1,
+            'methods'    => 'GET',
+            'path'       => '/export/wsdl/:version/*path',
+            'controller' => 'PSX\Controller\Tool\WsdlGeneratorController',
+        ], [
+            'status'     => 1,
+            'methods'    => 'GET',
+            'path'       => '/export/raml/:version/*path',
+            'controller' => 'PSX\Controller\Tool\RamlGeneratorController',
+        ], [
+            'status'     => 1,
+            'methods'    => 'GET',
+            'path'       => '/export/swagger/:version/*path',
+            'controller' => 'PSX\Controller\Tool\SwaggerGeneratorController::doDetail',
+        ]];
+
+        foreach ($routes as $route) {
+            $connection->insert('fusio_routes', $route);
+        }
+    }
 }

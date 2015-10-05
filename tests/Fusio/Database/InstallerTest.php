@@ -95,6 +95,9 @@ class InstallerTest extends DbTestCase
         }
     }
 
+    /**
+     * Executes all executeUpgrade methods of each version
+     */
     public function testUpgrade()
     {
         // create a copy of the current schema
@@ -105,7 +108,7 @@ class InstallerTest extends DbTestCase
 
         // execute upgrade
         $installer = new Installer($this->connection);
-        $installer->upgrade('0.1', '0.1.1');
+        $installer->upgrade('0.1', Base::getVersion());
 
         // @TODO make checks to verify that the installation works
 
