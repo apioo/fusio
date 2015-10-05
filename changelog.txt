@@ -1,4 +1,10 @@
 
+0.1.6
+* Improved backend modal dialogs
+* Add export schema into different formats
+* Update API documentation viewer #10
+* Add row exists filter
+
 0.1.5
 * Added javascript angular protractor e2e tests 
 * Add documentation api test case
