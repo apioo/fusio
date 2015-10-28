@@ -55,6 +55,12 @@ class Version010 implements VersionInterface
         $actionTable->setPrimaryKey(array('id'));
         $actionTable->addUniqueIndex(array('name'));
 
+        $actionClassTable = $schema->createTable('fusio_action_class');
+        $actionClassTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $actionClassTable->addColumn('class', 'string', array('length' => 255));
+        $actionClassTable->setPrimaryKey(array('id'));
+        $actionClassTable->addUniqueIndex(array('class'));
+
         $appTable = $schema->createTable('fusio_app');
         $appTable->addColumn('id', 'integer', array('autoincrement' => true));
         $appTable->addColumn('userId', 'integer');
@@ -94,6 +100,12 @@ class Version010 implements VersionInterface
         $connectionTable->addColumn('config', 'blob', array('notnull' => false));
         $connectionTable->setPrimaryKey(array('id'));
         $connectionTable->addUniqueIndex(array('name'));
+
+        $connectionClassTable = $schema->createTable('fusio_connection_class');
+        $connectionClassTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $connectionClassTable->addColumn('class', 'string', array('length' => 255));
+        $connectionClassTable->setPrimaryKey(array('id'));
+        $connectionClassTable->addUniqueIndex(array('class'));
 
         $logTable = $schema->createTable('fusio_log');
         $logTable->addColumn('id', 'integer', array('autoincrement' => true));
@@ -135,6 +147,15 @@ class Version010 implements VersionInterface
         $schemaTable->addColumn('cache', 'blob');
         $schemaTable->setPrimaryKey(array('id'));
         $schemaTable->addUniqueIndex(array('name'));
+
+        $schemaValidatorTable = $schema->createTable('fusio_schema_validator');
+        $schemaValidatorTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $schemaValidatorTable->addColumn('schemaId', 'integer');
+        $schemaValidatorTable->addColumn('ref', 'string', array('length' => 255));
+        $schemaValidatorTable->addColumn('rule', 'text');
+        $schemaValidatorTable->addColumn('message', 'string', array('length' => 255));
+        $schemaValidatorTable->setPrimaryKey(array('id'));
+        $schemaValidatorTable->addUniqueIndex(array('schemaId', 'ref'));
 
         $scopeTable = $schema->createTable('fusio_scope');
         $scopeTable->addColumn('id', 'integer', array('autoincrement' => true));
@@ -184,6 +205,8 @@ class Version010 implements VersionInterface
 
         $logErrorTable->addForeignKeyConstraint($logTable, array('logId'), array('id'), array(), 'logErrorLogId');
 
+        $schemaValidatorTable->addForeignKeyConstraint($schemaTable, array('schemaId'), array('id'), array(), 'schemaValidatorSchemaId');
+
         $scopeRoutesTable->addForeignKeyConstraint($routesTable, array('routeId'), array('id'), array(), 'scopeRoutesRouteId');
         $scopeRoutesTable->addForeignKeyConstraint($scopeTable, array('scopeId'), array('id'), array(), 'scopeRoutesScopeId');
 
@@ -231,12 +254,33 @@ class Version010 implements VersionInterface
             'fusio_connection' => [
                 ['name' => 'Native-Connection', 'class' => 'Fusio\Connection\Native', 'config' => null]
             ],
+            'fusio_connection_class' => [
+                ['class' => 'Fusio\Connection\Beanstalk'],
+                ['class' => 'Fusio\Connection\DBAL'],
+                ['class' => 'Fusio\Connection\DBALAdvanced'],
+                ['class' => 'Fusio\Connection\MongoDB'],
+                ['class' => 'Fusio\Connection\Native'],
+                ['class' => 'Fusio\Connection\RabbitMQ'],
+            ],
             'fusio_scope' => [
                 ['name' => 'backend'],
                 ['name' => 'authorization'],
             ],
             'fusio_action' => [
                 ['name' => 'Welcome', 'class' => 'Fusio\Action\StaticResponse', 'config' => serialize(['response' => $response]), 'date' => $now->format('Y-m-d H:i:s')],
+            ],
+            'fusio_action_class' => [
+                ['class' => 'Fusio\Action\BeanstalkPush'],
+                ['class' => 'Fusio\Action\CacheResponse'],
+                ['class' => 'Fusio\Action\Composite'],
+                ['class' => 'Fusio\Action\Condition'],
+                ['class' => 'Fusio\Action\HttpRequest'],
+                ['class' => 'Fusio\Action\Pipe'],
+                ['class' => 'Fusio\Action\RabbitMqPush'],
+                ['class' => 'Fusio\Action\SqlExecute'],
+                ['class' => 'Fusio\Action\SqlFetchAll'],
+                ['class' => 'Fusio\Action\SqlFetchRow'],
+                ['class' => 'Fusio\Action\StaticResponse'],
             ],
             'fusio_schema' => [
                 ['name' => 'Passthru', 'source' => $schema, 'cache' => $cache]
