@@ -25,6 +25,7 @@ use Fusio\Authorization\Oauth2Filter;
 use Fusio\Context as FusioContext;
 use Fusio\Request;
 use Fusio\Schema\LazySchema;
+use Fusio\Validate\Validator;
 use PSX\Api\Documentation;
 use PSX\Api\DocumentedInterface;
 use PSX\Api\Resource;
@@ -86,6 +87,18 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
     protected $appLoader;
 
     /**
+     * @Inject
+     * @var \PSX\Cache\CacheItemPoolInterface
+     */
+    protected $cache;
+
+    /**
+     * @Inject
+     * @var \Fusio\Validate\ValidateServiceContainer
+     */
+    protected $validateServiceContainer;
+
+    /**
      * @var integer
      */
     protected $appId;
@@ -101,6 +114,7 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
     protected $logId;
 
     private $activeMethod;
+    private $activeValidator;
 
     public function onLoad()
     {
@@ -195,11 +209,29 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
             if ($method->getRequest()->getDefinition()->getName() == self::SCHEMA_PASSTHRU) {
                 return $this->import(new Record());
             } else {
-                return $this->import($method->getRequest());
+                $request = $method->getRequest();
+
+                // if we have a schema which comes from the database set the
+                // validator
+                if ($request instanceof LazySchema) {
+                    $this->activeValidator = new Validator(
+                        $this->connection,
+                        $request->getSchemaId(),
+                        $this->validateServiceContainer,
+                        $this->cache
+                    );
+                }
+
+                return $this->import($request);
             }
         } else {
             return new Record();
         }
+    }
+
+    protected function getImportValidator()
+    {
+        return $this->activeValidator;
     }
 
     protected function sendResponse(MethodAbstract $method, $response)
