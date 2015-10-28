@@ -21,6 +21,7 @@
 
 namespace Fusio\Parser;
 
+use Doctrine\DBAL\Connection;
 use Fusio\ConfigurableInterface;
 use Fusio\Factory\FactoryInterface;
 
@@ -34,28 +35,31 @@ use Fusio\Factory\FactoryInterface;
 abstract class ParserAbstract
 {
     protected $factory;
-    protected $classes;
+    protected $connection;
+    protected $tableName;
     protected $instanceOf;
 
-    public function __construct(FactoryInterface $factory, array $classes, $instanceOf)
+    public function __construct(FactoryInterface $factory, Connection $connection, $tableName, $instanceOf)
     {
         $this->factory    = $factory;
-        $this->classes    = $classes;
+        $this->connection = $connection;
+        $this->tableName  = $tableName;
         $this->instanceOf = $instanceOf;
     }
 
     public function getClasses()
     {
-        $result = array();
+        $classes = $this->connection->fetchAll('SELECT class FROM ' . $this->tableName);
+        $result  = array();
 
-        foreach ($this->classes as $class) {
-            $object     = $this->getClass($class);
+        foreach ($classes as $row) {
+            $object     = $this->getClass($row['class']);
             $instanceOf = $this->instanceOf;
 
             if ($object instanceof $instanceOf) {
                 $result[] = array(
                     'name'  => $object->getName(),
-                    'class' => $class,
+                    'class' => $row['class'],
                 );
             }
         }
