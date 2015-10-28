@@ -22,6 +22,7 @@
 namespace Fusio\Template\Filter;
 
 use Doctrine\DBAL\Connection;
+use Fusio\Validate\Util;
 use PSX\Data\RecordInterface;
 use PSX\Http\Exception as StatusCode;
 use RuntimeException;
@@ -41,19 +42,8 @@ class RowExists
 
     public function __invoke($value, $table, $column)
     {
-        if ($this->connection instanceof Connection) {
-            if (!preg_match('/^[A-z0-9\_]{1,64}$/', $table)) {
-                throw new RuntimeException('Table name "' . $table . '" contains invalid characters');
-            }
-
-            if (!preg_match('/^[A-z0-9\_]{1,64}$/', $column)) {
-                throw new RuntimeException('Column name "' . $column . '" contains invalid characters');
-            }
-
-            $result = $this->connection->fetchColumn('SELECT ' . $column . ' FROM ' . $table . ' WHERE ' . $column . ' = ?', [$value]);
-            if (empty($result)) {
-                throw new StatusCode\NotFoundException('Entry ' . $value . ' does not exist');
-            }
+        if (!Util::rowExists($this->connection, $table, $column, $value)) {
+            throw new StatusCode\NotFoundException('Entry ' . $value . ' does not exist');
         }
 
         return $value;
