@@ -49,7 +49,13 @@ class Processor
      */
     public function execute($actionId, Request $request, Context $context)
     {
-        $action = $this->connection->fetchAssoc('SELECT id, name, class, config, date FROM fusio_action WHERE id = :id', array('id' => $actionId));
+        if (is_numeric($actionId)) {
+            $column = 'id';
+        } else {
+            $column = 'name';
+        }
+
+        $action = $this->connection->fetchAssoc('SELECT id, name, class, config, date FROM fusio_action WHERE ' . $column . ' = :id', array('id' => $actionId));
 
         if (empty($action)) {
             throw new ConfigurationException('Invalid action');
