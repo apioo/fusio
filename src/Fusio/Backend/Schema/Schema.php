@@ -39,6 +39,8 @@ class Schema extends SchemaAbstract
         $sb->string('name')
             ->setPattern('[A-z0-9\-\_]{3,64}');
         $sb->string('source');
+        $sb->arrayType('validators')
+            ->setPrototype($this->getSchema('Fusio\Backend\Schema\Schema\Validator'));
 
         return $sb->getProperty();
     }

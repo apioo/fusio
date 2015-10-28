@@ -125,8 +125,6 @@ class Entity extends SchemaApiAbstract
         $app   = $this->tableManager->getTable('Fusio\Backend\Table\App')->get($appId);
 
         if (!empty($app)) {
-            $this->getValidator()->validate($record);
-
             $this->tableManager->getTable('Fusio\Backend\Table\App')->update(array(
                 'id'     => $app->getId(),
                 'status' => $record->getStatus(),

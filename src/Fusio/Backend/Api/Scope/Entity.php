@@ -124,8 +124,6 @@ class Entity extends SchemaApiAbstract
         $scope   = $this->tableManager->getTable('Fusio\Backend\Table\Scope')->get($scopeId);
 
         if (!empty($scope)) {
-            $this->getValidator()->validate($record);
-
             $this->tableManager->getTable('Fusio\Backend\Table\Scope')->update(array(
                 'id'   => $scope['id'],
                 'name' => $record->getName(),

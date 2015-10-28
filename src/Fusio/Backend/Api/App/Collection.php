@@ -110,8 +110,6 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $this->getValidator()->validate($record);
-
         $appKey    = Uuid::pseudoRandom();
         $appSecret = hash('sha256', OpenSsl::randomPseudoBytes(256));
 

@@ -108,8 +108,6 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $this->getValidator()->validate($record);
-
         $password = sha1(mcrypt_create_iv(40));
 
         $table = $this->tableManager->getTable('Fusio\Backend\Table\User');

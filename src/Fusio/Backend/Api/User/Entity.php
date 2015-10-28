@@ -128,8 +128,6 @@ class Entity extends SchemaApiAbstract
         $user   = $this->tableManager->getTable('Fusio\Backend\Table\User')->get($userId);
 
         if (!empty($user)) {
-            $this->getValidator()->validate($record);
-
             $this->tableManager->getTable('Fusio\Backend\Table\User')->update(array(
                 'id'     => $user['id'],
                 'status' => $record->getStatus(),

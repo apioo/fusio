@@ -119,8 +119,6 @@ class Entity extends SchemaApiAbstract
         $action   = $this->tableManager->getTable('Fusio\Backend\Table\Action')->get($actionId);
 
         if (!empty($action)) {
-            $this->getValidator()->validate($record);
-
             $this->tableManager->getTable('Fusio\Backend\Table\Action')->update(array(
                 'id'     => $action->getId(),
                 'name'   => $record->getName(),

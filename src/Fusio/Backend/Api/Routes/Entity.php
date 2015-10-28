@@ -119,8 +119,6 @@ class Entity extends SchemaApiAbstract
         $route   = $this->tableManager->getTable('Fusio\Backend\Table\Routes')->get($routeId);
 
         if (!empty($route)) {
-            $this->getValidator()->validate($record);
-
             $this->tableManager->getTable('Fusio\Backend\Table\Routes')->update(array(
                 'id'         => $route->getId(),
                 'methods'    => $record->getMethods(),

@@ -95,6 +95,9 @@ class Entity extends SchemaApiAbstract
         $schema   = $this->tableManager->getTable('Fusio\Backend\Table\Schema')->get($schemaId);
 
         if (!empty($schema)) {
+            // append validators
+            $schema['validators'] = $this->tableManager->getTable('Fusio\Backend\Table\Schema\Validator')->getRules($schema['id']);
+
             return $schema;
         } else {
             throw new StatusCode\NotFoundException('Could not find schema');
@@ -125,14 +128,27 @@ class Entity extends SchemaApiAbstract
         $schema   = $this->tableManager->getTable('Fusio\Backend\Table\Schema')->get($schemaId);
 
         if (!empty($schema)) {
-            $this->getValidator()->validate($record);
-
             $this->tableManager->getTable('Fusio\Backend\Table\Schema')->update(array(
                 'id'     => $schema['id'],
                 'name'   => $record->getName(),
                 'source' => $record->getSource(),
                 'cache'  => $this->schemaParser->parse($record->getSource(), $record->getName()),
             ));
+
+            // handle validators
+            $this->tableManager->getTable('Fusio\Backend\Table\Schema\Validator')->removeAll($schema['id']);
+
+            $validators = $record->getValidators();
+            if (count($validators) > 0) {
+                foreach ($validators as $validator) {
+                    $this->tableManager->getTable('Fusio\Backend\Table\Schema\Validator')->create([
+                        'schemaId' => $schema['id'],
+                        'ref'      => $validator['ref'],
+                        'rule'     => $validator['rule'],
+                        'message'  => $validator['message'],
+                    ]);
+                }
+            }
 
             return array(
                 'success' => true,

@@ -24,7 +24,7 @@ namespace Fusio\Backend\Api\User;
 use PSX\Filter as PSXFilter;
 use PSX\Validate;
 use PSX\Validate\Property;
-use PSX\Validate\RecordValidator;
+use PSX\Validate\Validator;
 
 /**
  * ValidatorTrait
@@ -35,14 +35,10 @@ use PSX\Validate\RecordValidator;
  */
 trait ValidatorTrait
 {
-    protected function getValidator()
+    protected function getImportValidator()
     {
-        return new RecordValidator(new Validate(), array(
+        return new Validator(array(
             new Property('id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\User')))),
-            new Property('status', Validate::TYPE_INTEGER),
-            new Property('name', Validate::TYPE_STRING),
-            new Property('scopes', Validate::TYPE_ARRAY),
-            new Property('date', Validate::TYPE_OBJECT),
         ));
     }
 }

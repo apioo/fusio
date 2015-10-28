@@ -119,8 +119,6 @@ class Entity extends SchemaApiAbstract
         $connection   = $this->tableManager->getTable('Fusio\Backend\Table\Connection')->get($connectionId);
 
         if (!empty($connection)) {
-            $this->getValidator()->validate($record);
-
             $this->tableManager->getTable('Fusio\Backend\Table\Connection')->update(array(
                 'id'     => $connection->getId(),
                 'name'   => $record->getName(),

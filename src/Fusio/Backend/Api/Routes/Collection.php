@@ -115,8 +115,6 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $this->getValidator()->validate($record);
-
         $this->tableManager->getTable('Fusio\Backend\Table\Routes')->create(array(
             'methods'    => $record->getMethods(),
             'path'       => $record->getPath(),

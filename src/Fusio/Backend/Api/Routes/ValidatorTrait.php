@@ -25,7 +25,7 @@ use Fusio\Backend\Filter\Routes as Filter;
 use PSX\Filter as PSXFilter;
 use PSX\Validate;
 use PSX\Validate\Property;
-use PSX\Validate\RecordValidator;
+use PSX\Validate\Validator;
 
 /**
  * ValidatorTrait
@@ -36,13 +36,12 @@ use PSX\Validate\RecordValidator;
  */
 trait ValidatorTrait
 {
-    protected function getValidator()
+    protected function getImportValidator()
     {
-        return new RecordValidator(new Validate(), array(
+        return new Validator(array(
             new Property('id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Routes')))),
             new Property('methods', Validate::TYPE_STRING, array(new Filter\Methods())),
             new Property('path', Validate::TYPE_STRING, array(new Filter\Path())),
-            new Property('config', Validate::TYPE_ARRAY),
         ));
     }
 }

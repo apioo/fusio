@@ -107,8 +107,6 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $this->getValidator()->validate($record);
-
         $scopeTable = $this->tableManager->getTable('Fusio\Backend\Table\Scope');
 
         $scopeTable->create(array(
