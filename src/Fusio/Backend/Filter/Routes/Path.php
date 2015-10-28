@@ -32,19 +32,39 @@ use PSX\FilterAbstract;
  */
 class Path extends FilterAbstract
 {
+    protected $errorMessage = '%s is not a valid path';
+
     public function apply($value)
     {
         if (!empty($value)) {
-            if (substr($value, 0, 8) == '/backend') {
+            if (substr($value, 0, 1) != '/') {
+                $this->errorMessage = '%s must start with a /';
                 return false;
-            } elseif (substr($value, 0, 4) == '/doc') {
+            }
+
+            $parts = explode('/', $value);
+            array_shift($parts); // the first part is always empty
+
+            if (empty($parts)) {
+                return true;
+            }
+
+            // check reserved segments
+            if (in_array($parts[0], $this->getReservedSegments())) {
+                $this->errorMessage = '%s uses a path segment which is reserved for the system';
                 return false;
-            } elseif (substr($value, 0, 14) == '/authorization') {
-                return false;
-            } elseif (substr($value, 0, 7) == '/export') {
-                return false;
-            } elseif (substr($value, 0, 1) != '/') {
-                return false;
+            }
+
+            foreach ($parts as $part) {
+                if (empty($part)) {
+                    $this->errorMessage = '%s has an empty path segment';
+                    return false;
+                }
+
+                if (!preg_match('/^[A-z0-9\-\.\_\~\!\$\&\\\'\(\)\*\+\,\;\=\:\@]+$/', $part)) {
+                    $this->errorMessage = '%s contains invalid characters inside a path segment';
+                    return false;
+                }
             }
 
             return true;
@@ -55,6 +75,11 @@ class Path extends FilterAbstract
 
     public function getErrorMessage()
     {
-        return '%s has an invalid structure';
+        return $this->errorMessage;
+    }
+
+    protected function getReservedSegments()
+    {
+        return ['backend', 'doc', 'authorization', 'export'];
     }
 }
