@@ -50,7 +50,13 @@ class Connector
      */
     public function getConnection($connectionId)
     {
-        $connection = $this->connection->fetchAssoc('SELECT class, config FROM fusio_connection WHERE id = :id', array('id' => $connectionId));
+        if (is_numeric($connectionId)) {
+            $column = 'id';
+        } else {
+            $column = 'name';
+        }
+
+        $connection = $this->connection->fetchAssoc('SELECT class, config FROM fusio_connection WHERE ' . $column . ' = :id', array('id' => $connectionId));
 
         if (empty($connection)) {
             throw new ConfigurationException('Invalid connection');
