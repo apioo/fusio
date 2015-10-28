@@ -34,17 +34,17 @@
         <div class="form-group">
             <label for="ref">Reference:</label>
             <input type="text" id="ref" ng-model="validator.ref" aria-describedby="refHelp" class="form-control">
-            <span class="help-block" id="refHelp">Reference which points to a property in the schema i.e. <code>/title</code></span>
+            <span class="help-block" id="refHelp"><a href="https://tools.ietf.org/html/rfc6901">JSON pointer</a> reference which points to a property in the schema i.e. <code>/title</code></span>
         </div>
         <div class="form-group">
             <label for="rule">Rule:</label>
             <input type="text" id="rule" ng-model="validator.rule" aria-describedby="ruleHelp" class="form-control">
-            <span class="help-block" id="ruleHelp">Validation rule.</span>
+            <span class="help-block" id="ruleHelp">The validation rule which gets evaluated. You can access different services i.e. <code>filter.alnum(value)</code>. Click <a ng-click="help.showDialog('help/schema/validator.md')">here</a> for more informations about the syntax.</span>
         </div>
         <div class="form-group">
             <label for="message">Message:</label>
             <input type="text" id="message" ng-model="validator.message" aria-describedby="messageHelp" class="form-control">
-            <span class="help-block" id="messageHelp">Message which is displayed if the validator does not succeed</span>
+            <span class="help-block" id="messageHelp">Error message which appears if the validation rule fails</span>
         </div>
 
         <button type="submit" class="btn btn-primary">Add</button>

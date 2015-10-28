@@ -35,11 +35,6 @@ class Filter
         return strlen((string) $value);
     }
 
-    public function isEmpty($value)
-    {
-        return empty($value);
-    }
-
     public function alnum($value)
     {
         return ctype_alnum($value);
