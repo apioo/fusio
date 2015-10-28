@@ -136,7 +136,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('SchemaUpdateCtrl', ['$scope', '$http', '$modalInstance', 'schema', function($scope, $http, $modalInstance, schema){
+.controller('SchemaUpdateCtrl', ['$scope', '$http', '$modalInstance', '$modal', 'schema', function($scope, $http, $modalInstance, $modal, schema){
 
 	$scope.schema = schema;
 
@@ -168,10 +168,60 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 			});
 	};
 
+	$scope.showValidators = function(schema){
+		var modalInstance = $modal.open({
+			size: 'lg',
+			backdrop: 'static',
+			templateUrl: 'app/schema/validator.html',
+			controller: 'SchemaValidatorCtrl',
+			resolve: {
+				schema: function(){
+					return schema;
+				}
+			}
+		});
+
+		modalInstance.result.then(function(validators){
+			$scope.schema.validators = validators;
+
+			$scope.update(schema);
+		}, function(){
+		});
+
+	};
+
 	$http.get(fusio_url + 'backend/schema/' + schema.id)
 		.success(function(data){
 			$scope.schema = data;
 		});
+
+}])
+
+.controller('SchemaValidatorCtrl', ['$scope', '$http', '$modalInstance', 'schema', function($scope, $http, $modalInstance, schema){
+
+	$scope.schema = schema;
+	$scope.validator = {};
+
+	if (!$scope.schema.validators || !angular.isArray($scope.schema.validators)) {
+		$scope.schema.validators = [];
+	}
+
+	$scope.create = function(validator){
+		$scope.schema.validators.push(validator);
+		$scope.validator = {};
+	};
+
+	$scope.remove = function(index){
+		$scope.schema.validators.splice(index, 1);
+	};
+
+	$scope.save = function(){
+		$modalInstance.close($scope.schema.validators);
+	};
+
+	$scope.close = function(){
+		$modalInstance.dismiss('cancel');
+	};
 
 }])
 

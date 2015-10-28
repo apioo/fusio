@@ -1,0 +1,55 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Validators</h3>
+</div>
+
+<div class="modal-body">
+    <table class="table">
+    <colgroup>
+        <col width="200" />
+        <col width="*" />
+        <col width="50" />
+    </colgroup>
+    <thead>
+    <tr>
+        <th>Reference</th>
+        <th>Rule</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(index, validator) in schema.validators">
+        <td>{{validator.ref}}</td>
+        <td><code title="Message: {{validator.message}}">{{validator.rule}}</code></td>
+        <td>
+            <div class="fusio-options">
+                <a ng-click="remove(index)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+
+    <form name="createValidatorForm" ng-submit="create(validator)">
+        <div class="form-group">
+            <label for="ref">Reference:</label>
+            <input type="text" id="ref" ng-model="validator.ref" aria-describedby="refHelp" class="form-control">
+            <span class="help-block" id="refHelp">Reference which points to a property in the schema i.e. <code>/title</code></span>
+        </div>
+        <div class="form-group">
+            <label for="rule">Rule:</label>
+            <input type="text" id="rule" ng-model="validator.rule" aria-describedby="ruleHelp" class="form-control">
+            <span class="help-block" id="ruleHelp">Validation rule.</span>
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <input type="text" id="message" ng-model="validator.message" aria-describedby="messageHelp" class="form-control">
+            <span class="help-block" id="messageHelp">Message which is displayed if the validator does not succeed</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="button" ng-click="save(schema)" class="btn btn-default">Save</button>
+        <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+    </form>
+</div>
+
