@@ -37,6 +37,7 @@ use Fusio\Parser;
 use Fusio\Processor;
 use Fusio\Schema;
 use Fusio\Template;
+use Fusio\Validate;
 use Monolog\Logger as SystemLogger;
 use PSX\Api;
 use PSX\Console as PSXCommand;
@@ -137,7 +138,8 @@ class Container extends DefaultContainer
     {
         return new Parser\Action(
             $this->get('action_factory'),
-            $this->get('config')->get('fusio_action'),
+            $this->get('connection'),
+            'fusio_action_class',
             'Fusio\ActionInterface'
         );
     }
@@ -165,7 +167,8 @@ class Container extends DefaultContainer
     {
         return new Parser\Connection(
             $this->get('connection_factory'),
-            $this->get('config')->get('fusio_connection'),
+            $this->get('connection'),
+            'fusio_connection_class',
             'Fusio\ConnectionInterface'
         );
     }
@@ -216,6 +219,18 @@ class Container extends DefaultContainer
     public function getTemplateParser()
     {
         return new Template\Parser($this->get('config')->get('psx_debug'));
+    }
+
+    /**
+     * @return \Fusio\Validate\ServiceContainer
+     */
+    public function getValidateServiceContainer()
+    {
+        $container = new Validate\ServiceContainer();
+        $container->set('database', new Validate\Service\Database($this->get('connector')));
+        $container->set('filter', new Validate\Service\Filter());
+
+        return $container;
     }
 
     /**
