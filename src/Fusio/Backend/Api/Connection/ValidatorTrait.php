@@ -38,7 +38,7 @@ trait ValidatorTrait
     protected function getImportValidator()
     {
         return new Validator(array(
-            new Property('id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Connection')))),
+            new Property('/id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Connection')))),
         ));
     }
 }

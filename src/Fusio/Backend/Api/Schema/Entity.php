@@ -139,7 +139,7 @@ class Entity extends SchemaApiAbstract
             $this->tableManager->getTable('Fusio\Backend\Table\Schema\Validator')->removeAll($schema['id']);
 
             $validators = $record->getValidators();
-            if (count($validators) > 0) {
+            if (!empty($validators)) {
                 foreach ($validators as $validator) {
                     $this->tableManager->getTable('Fusio\Backend\Table\Schema\Validator')->create([
                         'schemaId' => $schema['id'],
@@ -175,6 +175,9 @@ class Entity extends SchemaApiAbstract
             $this->tableManager->getTable('Fusio\Backend\Table\Schema')->delete(array(
                 'id' => $schema['id']
             ));
+
+            // handle validators
+            $this->tableManager->getTable('Fusio\Backend\Table\Schema\Validator')->removeAll($schema['id']);
 
             return array(
                 'success' => true,

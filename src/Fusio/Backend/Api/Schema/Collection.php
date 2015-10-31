@@ -121,6 +121,20 @@ class Collection extends SchemaApiAbstract
             'cache'  => $this->schemaParser->parse($record->getSource(), $record->getName()),
         ));
 
+        // handle validators
+        $schemaId   = $schemaTable->getLastInsertId();
+        $validators = $record->getValidators();
+        if (!empty($validators)) {
+            foreach ($validators as $validator) {
+                $this->tableManager->getTable('Fusio\Backend\Table\Schema\Validator')->create([
+                    'schemaId' => $schemaId,
+                    'ref'      => $validator['ref'],
+                    'rule'     => $validator['rule'],
+                    'message'  => $validator['message'],
+                ]);
+            }
+        }
+
         return array(
             'success' => true,
             'message' => 'Schema successful created',

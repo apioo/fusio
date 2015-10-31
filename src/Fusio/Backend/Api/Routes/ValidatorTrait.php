@@ -39,9 +39,12 @@ trait ValidatorTrait
     protected function getImportValidator()
     {
         return new Validator(array(
-            new Property('id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Routes')))),
-            new Property('methods', Validate::TYPE_STRING, array(new Filter\Methods())),
-            new Property('path', Validate::TYPE_STRING, array(new Filter\Path())),
+            new Property('/id', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Routes')))),
+            new Property('/methods', Validate::TYPE_STRING, array(new Filter\Methods())),
+            new Property('/path', Validate::TYPE_STRING, array(new Filter\Path())),
+            new Property('/config/\d+/methods/\d+/action', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Action')))),
+            new Property('/config/\d+/methods/\d+/request', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Schema')))),
+            new Property('/config/\d+/methods/\d+/response', Validate::TYPE_INTEGER, array(new PSXFilter\PrimaryKey($this->tableManager->getTable('Fusio\Backend\Table\Schema')))),
         ));
     }
 }
