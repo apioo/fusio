@@ -45,6 +45,7 @@ class Path extends FilterAbstract
             $parts = explode('/', $value);
             array_shift($parts); // the first part is always empty
 
+            // it is possible to use the root path /
             if (empty($parts)) {
                 return true;
             }
