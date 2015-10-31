@@ -255,6 +255,7 @@ class Container extends DefaultContainer
         // fusio commands
         $application->add(new Console\InstallCommand($this->get('connection')));
         $application->add(new Console\AddUserCommand($this->get('table_manager')->getTable('Fusio\Backend\Table\User')));
+        $application->add(new Console\RegisterAdapterCommand($this->get('dispatch'), $this->get('connection'), $this->get('logger')));
 
         // symfony commands
         $application->add(new SymfonyCommand\HelpCommand());
