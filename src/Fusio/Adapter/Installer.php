@@ -36,7 +36,8 @@ use ReflectionClass;
 use RuntimeException;
 
 /**
- * Installer
+ * The installer inserts only the action and connection classes through the 
+ * database connection. All other entries are inserted through the API endpoint
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
@@ -231,7 +232,11 @@ class Installer
                     break;
 
                 default:
-                    throw new \RuntimeException('Invalid type identifier "' . $type . '"');
+                    throw new RuntimeException('Invalid type identifier "' . $type . '"');
+            }
+
+            if (empty($value)) {
+                throw new RuntimeException(ucfirst($type) . ' with the id "' . $id . '" does not exist');
             }
 
             return $value;
