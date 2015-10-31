@@ -73,7 +73,7 @@ class ClientCredentials extends ClientCredentialsAbstract
             $expires     = new \DateTime();
             $expires->add(new \DateInterval('PT6H'));
             $now         = new \DateTime();
-            $accessToken = hash('sha256', uniqid());
+            $accessToken = TokenGenerator::generateToken();
 
             $this->connection->insert('fusio_app_token', [
                 'appId'  => $app['id'],

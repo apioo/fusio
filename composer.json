@@ -14,6 +14,7 @@
     "php": ">=5.3",
     "psx/psx": "1.1.x-dev",
     "ircmaxell/password-compat": "1.0.4",
+    "ircmaxell/random-lib": "1.1.0",
     "symfony/expression-language": "2.6.4",
     "pda/pheanstalk": "~3.0",
     "videlalvaro/php-amqplib": "~2.5",

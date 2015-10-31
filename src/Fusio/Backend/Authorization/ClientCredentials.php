@@ -22,6 +22,7 @@
 namespace Fusio\Backend\Authorization;
 
 use Doctrine\DBAL\Connection;
+use Fusio\Authorization\TokenGenerator;
 use Fusio\Backend\Table\App;
 use Fusio\Backend\Table\App\Token as AppToken;
 use Fusio\Backend\Table\User;
@@ -69,7 +70,7 @@ class ClientCredentials extends ClientCredentialsAbstract
                 $expires     = new \DateTime();
                 $expires->add(new \DateInterval('PT1H'));
                 $now         = new \DateTime();
-                $accessToken = hash('sha256', uniqid());
+                $accessToken = TokenGenerator::generateToken();
 
                 $this->connection->insert('fusio_app_token', [
                     'appId'  => App::BACKEND,
