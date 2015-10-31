@@ -2,33 +2,6 @@
 
 return array(
 
-	// Available action classes. The array can be extended to provide custom 
-	// implementations. Note the class must be resolvable by composer
-	'fusio_action'            => [
-		'Fusio\Action\BeanstalkPush',
-		'Fusio\Action\CacheResponse',
-		'Fusio\Action\Composite',
-		'Fusio\Action\Condition',
-		'Fusio\Action\HttpRequest',
-		'Fusio\Action\Pipe',
-		'Fusio\Action\RabbitMqPush',
-		'Fusio\Action\SqlExecute',
-		'Fusio\Action\SqlFetchAll',
-		'Fusio\Action\SqlFetchRow',
-		'Fusio\Action\StaticResponse',
-	],
-
-	// Available connection classes. The array can be extended to provide custom 
-	// implementations. Note the class must be resolvable by composer
-	'fusio_connection'        => [
-		'Fusio\Connection\Beanstalk',
-		'Fusio\Connection\DBAL',
-		'Fusio\Connection\DBALAdvanced',
-		'Fusio\Connection\MongoDB',
-		'Fusio\Connection\Native',
-		'Fusio\Connection\RabbitMQ',
-	],
-
 	// The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
 	// http://localhost.com)
 	'psx_url'                 => 'http://127.0.0.1/projects/fusio/public',
