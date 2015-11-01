@@ -135,6 +135,8 @@ class RegisterAdapterCommand extends Command
                         $this->installer->install($instructions, $basePath);
 
                         $this->connection->commit();
+
+                        $output->writeln('Registration successful');
                     } catch(\Exception $e) {
                         $this->connection->rollback();
 

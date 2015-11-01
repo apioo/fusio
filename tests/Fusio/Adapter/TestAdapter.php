@@ -19,38 +19,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Adapter\Instruction;
+namespace Fusio\Adapter;
 
-use Fusio\Adapter\InstructionAbstract;
+use Fusio\Adapter\AdapterInterface;
 
 /**
- * Route
+ * TestAdapter
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Route extends InstructionAbstract
+class TestAdapter implements AdapterInterface
 {
-    public function getName()
+    public function getDefinition()
     {
-        return 'Route';
-    }
-
-    public function getDescription()
-    {
-        $methods = isset($this->payload->methods) ? $this->payload->methods : null;
-        $path    = isset($this->payload->path)    ? $this->payload->path    : null;
-
-        return $methods . ' ' . $path;
-    }
-
-    public function setBasePath($basePath)
-    {
-        $parts = explode('/', $basePath . '/' . $this->payload->path);
-        $parts = array_filter($parts);
-
-        $this->payload->path = '/' . implode('/', $parts);
+        return __DIR__ . '/definition.json';
     }
 }
-

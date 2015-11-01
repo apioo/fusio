@@ -243,6 +243,6 @@ class Installer
 
         }, $data);
 
-        return json_decode($data, JSON_PRETTY_PRINT);
+        return json_decode($data);
     }
 }

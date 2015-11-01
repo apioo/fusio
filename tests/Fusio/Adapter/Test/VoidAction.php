@@ -19,38 +19,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Adapter\Instruction;
+namespace Fusio\Adapter\Test;
 
-use Fusio\Adapter\InstructionAbstract;
+use Fusio\ActionInterface;
+use Fusio\Context;
+use Fusio\Parameters;
+use Fusio\Request;
 
 /**
- * Route
+ * VoidAction
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Route extends InstructionAbstract
+class VoidAction implements ActionInterface
 {
     public function getName()
     {
-        return 'Route';
+        return 'Void-Action';
     }
 
-    public function getDescription()
+    public function handle(Request $request, Parameters $configuration, Context $context)
     {
-        $methods = isset($this->payload->methods) ? $this->payload->methods : null;
-        $path    = isset($this->payload->path)    ? $this->payload->path    : null;
-
-        return $methods . ' ' . $path;
     }
 
-    public function setBasePath($basePath)
+    public function getForm()
     {
-        $parts = explode('/', $basePath . '/' . $this->payload->path);
-        $parts = array_filter($parts);
-
-        $this->payload->path = '/' . implode('/', $parts);
     }
 }
-
