@@ -22,7 +22,8 @@
         "name": "Void-Action",
         "class": "Fusio\\Adapter\\Test\\VoidAction",
         "config": {
-            "foo": "bar"
+            "foo": "bar",
+            "connection": "${connection.Adapter-Connection}"
         }
     }],
     "schema": [{

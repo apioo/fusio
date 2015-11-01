@@ -21,7 +21,8 @@
 
 namespace Fusio\Console;
 
-use Fusio\DbTestCase;
+use Fusio\Fixture;
+use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Helper\HelperSet;
@@ -34,8 +35,13 @@ use Symfony\Component\Console\Tester\CommandTester;
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class RegisterAdapterCommandTest extends DbTestCase
+class RegisterAdapterCommandTest extends ControllerDbTestCase
 {
+    public function getDataSet()
+    {
+        return Fixture::getDataSet();
+    }
+
     public function testCommand()
     {
         $command = Environment::getService('console')->find('register');
@@ -106,6 +112,17 @@ JSON;
         $this->assertJsonStringEqualsJsonString($source, $schema['source']);
         $this->assertInstanceOf('PSX\Data\Schema', unserialize($schema['cache']));
 
+        // check schema validators
+        $validators = $this->connection->fetchAll('SELECT id, ref, rule, message FROM fusio_schema_validator WHERE schemaId = :schemaId', [
+            'schemaId' => $schema['id'],
+        ]);
+
+        $this->assertEquals(1, count($validators));
+        $this->assertEquals(1, $validators[0]['id']);
+        $this->assertEquals('/processId', $validators[0]['ref']);
+        $this->assertEquals('database.rowExist(1, \'fusio_log\', \'id\')', $validators[0]['rule']);
+        $this->assertEquals('Log id does not exist', $validators[0]['message']);
+
         // check action
         $action = $this->connection->fetchAssoc('SELECT id, class, config FROM fusio_action WHERE name = :name', [
             'name' => 'Void-Action',
@@ -113,7 +130,7 @@ JSON;
 
         $this->assertEquals(4, $action['id']);
         $this->assertEquals('Fusio\Adapter\Test\VoidAction', $action['class']);
-        $this->assertEquals(['foo' => 'bar'], unserialize($action['config']));
+        $this->assertEquals(['foo' => 'bar', 'connection' => '3'], unserialize($action['config']));
 
         // check routes
         $route = $this->connection->fetchAssoc('SELECT id, status, methods, controller, config FROM fusio_routes WHERE path = :path', [
