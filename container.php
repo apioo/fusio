@@ -7,7 +7,7 @@ If you want load an different configuration depending on the environment you can
 change the "config.file" parameter.
 */
 
-$container = new Fusio\Dependency\Container();
+$container = new Fusio\Impl\Dependency\Container();
 $container->setParameter('config.file', __DIR__ . '/configuration.php');
 
 return $container;
