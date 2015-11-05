@@ -59,7 +59,7 @@ describe('Action tests', function() {
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
     expect(element(by.model('action.name')).getAttribute('value')).toEqual('test-action');
-    expect(element(by.model('action.class')).getAttribute('value')).toEqual('Fusio\\Action\\StaticResponse');
+    expect(element(by.model('action.class')).getAttribute('value')).toEqual('Fusio\\Impl\\Action\\StaticResponse');
 
     browser.wait(EC.visibilityOf($('#config-statusCode')), 5000);
 
