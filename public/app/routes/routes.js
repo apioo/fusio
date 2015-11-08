@@ -9,7 +9,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	});
 }])
 
-.controller('RoutesCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
+.controller('RoutesCtrl', ['$scope', '$http', '$modal', '$routeParams', function($scope, $http, $modal){
 
 	$scope.response = null;
 	$scope.search = '';

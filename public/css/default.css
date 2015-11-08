@@ -271,6 +271,12 @@ pre
 	height:400px;
 }
 
+.fusio-route-path
+{
+	background-color:inherit;
+	color:inherit;
+}
+
 /* general bootstrap fixes */
 .form-control, .btn
 {

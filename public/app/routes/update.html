@@ -25,34 +25,34 @@
 				<tabset>
 					<tab ng-repeat="method in version.methods" heading="{{method.name}}">
 						<div class="checkbox">
-							<label><input type="checkbox" ng-model="method.active" ng-disabled="version.status == 1" aria-describedby="activeHelp"> <b>Active</b></label>
+							<label><input type="checkbox" ng-model="method.active" ng-disabled="version.status != 4" aria-describedby="activeHelp"> <b>Active</b></label>
 							<span class="help-block" id="activeHelp">Whether the request method is allowed</span>
 						</div>
 						<div class="checkbox">
-							<label><input type="checkbox" ng-model="method.public" ng-disabled="version.status == 1" aria-describedby="publicHelp"> <b>Public</b></label>
+							<label><input type="checkbox" ng-model="method.public" ng-disabled="version.status != 4" aria-describedby="publicHelp"> <b>Public</b></label>
 							<span class="help-block" id="publicHelp">Whether the endpoint can be requested without an access token</span>
 						</div>
 						<div class="form-group">
 							<label for="status">Request:</label>
-							<select class="form-control" ng-model="method.request" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="method.name == 'GET' || version.status == 1" aria-describedby="requestHelp">
+							<select class="form-control" ng-model="method.request" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="method.name == 'GET' || version.status != 4" aria-describedby="requestHelp">
 							</select>
 							<span class="help-block" id="requestHelp">The allowed format for incoming requests. The <code>Passthru</code> schema forwards all incoming data unfiltered to the action</span>
 						</div>
 						<div class="form-group">
 							<label for="status">Response:</label>
-							<select class="form-control" ng-model="method.response" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="version.status == 1" aria-describedby="responseHelp">
+							<select class="form-control" ng-model="method.response" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="version.status != 4" aria-describedby="responseHelp">
 							</select>
 							<span class="help-block" id="responseHelp">The allowed format for outgoing responses. The <code>Passthru</code> schema forwards all outgoing data unfiltered to the client</span>
 						</div>
 						<div class="form-group">
 							<label for="status">Action:</label>
-							<select class="form-control" ng-model="method.action" ng-options="action.id as action.name for action in actions" ng-disabled="version.status == 1" aria-describedby="actionHelp">
+							<select class="form-control" ng-model="method.action" ng-options="action.id as action.name for action in actions" ng-disabled="version.status != 4" aria-describedby="actionHelp">
 							</select>
 							<span class="help-block" id="actionHelp">The action which receives the request and produces an response</span>
 						</div>
 					</tab>
 				</tabset>
-				<a ng-click="removeVersion(version)" ng-disabled="version.status == 1 || route.config.length == 1" class="btn btn-default pull-right">Remove version</a>
+				<a ng-click="removeVersion(version)" ng-disabled="version.status != 4 || route.config.length == 1" class="btn btn-default pull-right">Remove version</a>
 			</tab>
 		</tabset>
 

@@ -19,7 +19,7 @@
 			<tab ng-repeat="version in route.config" heading="v{{version.name}}" active="version.active">
 				<div class="form-group">
 					<label for="status">Status:</label>
-					<select class="form-control" ng-model="version.status" ng-options="status.key as status.value for status in statuuus" aria-describedby="statusHelp">
+					<select class="form-control" ng-disabled="true" ng-model="version.status" ng-options="status.key as status.value for status in statuuus" aria-describedby="statusHelp">
 					</select>
 					<span class="help-block" id="statusHelp">The status of the API endpoint for this version. For more informations about the impact 
 					click <a ng-click="help.showDialog('help/routes.md#status')">here</a></span>
@@ -57,8 +57,6 @@
 				<a ng-click="removeVersion(version)" ng-disabled="version.status == 1 || route.config.length == 1" class="btn btn-default pull-right">Remove version</a>
 			</tab>
 		</tabset>
-
-		<a ng-click="addVersion()" class="btn btn-default">Add version</a>
 
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>

@@ -13,6 +13,12 @@
 			<label for="path">Path:</label>
 			<input type="text" id="path" ng-model="route.path" ng-disabled="true" class="form-control" value="{{route.path}}">
 		</div>
+
+		<alert type="danger">
+			<b>Note: This action will delete the selected route thus the route
+			is not available anymore. This action cannot be undone.</b>
+		</alert>
+
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 	</form>

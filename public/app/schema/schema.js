@@ -9,19 +9,32 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 	});
 }])
 
-.controller('SchemaCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
+.controller('SchemaCtrl', ['$scope', '$http', '$modal', '$routeParams', '$location', function($scope, $http, $modal, $routeParams, $location){
 
 	$scope.response = null;
 	$scope.search = '';
+	$scope.routes;
+	$scope.routeId = parseInt($routeParams.routeId);
 
 	$scope.load = function(){
 		var search = encodeURIComponent($scope.search);
+		var routeId = $scope.routeId;
 
-		$http.get(fusio_url + 'backend/schema?search=' + search).success(function(data){
+		$http.get(fusio_url + 'backend/schema?search=' + search + '&routeId=' + routeId).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.startIndex = 0;
 			$scope.schemas = data.entry;
 		});
+	};
+
+	$scope.loadRoutes = function(){
+		$http.get(fusio_url + 'backend/routes').success(function(data){
+			$scope.routes = data.entry;
+		});
+	};
+
+	$scope.changeRoute = function(){
+		$location.search('routeId', $scope.routeId);
 	};
 
 	$scope.pageChanged = function(){
@@ -36,7 +49,9 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 
 	$scope.doSearch = function(search){
 		var search = encodeURIComponent(search);
-		$http.get(fusio_url + 'backend/schema?search=' + search).success(function(data){
+		var routeId = $scope.routeId;
+
+		$http.get(fusio_url + 'backend/schema?search=' + search + '&routeId=' + routeId).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.startIndex = 0;
 			$scope.schemas = data.entry;
@@ -103,6 +118,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.load();
+	$scope.loadRoutes();
 
 }])
 
@@ -168,60 +184,10 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 			});
 	};
 
-	$scope.showValidators = function(schema){
-		var modalInstance = $modal.open({
-			size: 'lg',
-			backdrop: 'static',
-			templateUrl: 'app/schema/validator.html',
-			controller: 'SchemaValidatorCtrl',
-			resolve: {
-				schema: function(){
-					return schema;
-				}
-			}
-		});
-
-		modalInstance.result.then(function(validators){
-			$scope.schema.validators = validators;
-
-			$scope.update(schema);
-		}, function(){
-		});
-
-	};
-
 	$http.get(fusio_url + 'backend/schema/' + schema.id)
 		.success(function(data){
 			$scope.schema = data;
 		});
-
-}])
-
-.controller('SchemaValidatorCtrl', ['$scope', '$http', '$modalInstance', 'schema', function($scope, $http, $modalInstance, schema){
-
-	$scope.schema = schema;
-	$scope.validator = {};
-
-	if (!$scope.schema.validators || !angular.isArray($scope.schema.validators)) {
-		$scope.schema.validators = [];
-	}
-
-	$scope.create = function(validator){
-		$scope.schema.validators.push(validator);
-		$scope.validator = {};
-	};
-
-	$scope.remove = function(index){
-		$scope.schema.validators.splice(index, 1);
-	};
-
-	$scope.save = function(){
-		$modalInstance.close($scope.schema.validators);
-	};
-
-	$scope.close = function(){
-		$modalInstance.dismiss('cancel');
-	};
 
 }])
 

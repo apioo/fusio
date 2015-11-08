@@ -9,19 +9,32 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
   });
 }])
 
-.controller('ActionCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
+.controller('ActionCtrl', ['$scope', '$http', '$modal', '$routeParams', '$location', function($scope, $http, $modal, $routeParams, $location){
 
 	$scope.response = null;
 	$scope.search = '';
+	$scope.routes;
+	$scope.routeId = parseInt($routeParams.routeId);
 
 	$scope.load = function(){
 		var search = encodeURIComponent($scope.search);
+		var routeId = $scope.routeId;
 
-		$http.get(fusio_url + 'backend/action?search=' + search).success(function(data){
+		$http.get(fusio_url + 'backend/action?search=' + search + '&routeId=' + routeId).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.startIndex = 0;
 			$scope.actions = data.entry;
 		});
+	};
+
+	$scope.loadRoutes = function(){
+		$http.get(fusio_url + 'backend/routes').success(function(data){
+			$scope.routes = data.entry;
+		});
+	};
+
+	$scope.changeRoute = function(){
+		$location.search('routeId', $scope.routeId);
 	};
 
 	$scope.pageChanged = function(){
@@ -36,7 +49,9 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
 	$scope.doSearch = function(search){
 		var search = encodeURIComponent(search);
-		$http.get(fusio_url + 'backend/action?search=' + search).success(function(data){
+		var routeId = $scope.routeId;
+
+		$http.get(fusio_url + 'backend/action?search=' + search + '&routeId=' + routeId).success(function(data){
 			$scope.totalItems = data.totalItems;
 			$scope.startIndex = 0;
 			$scope.actions = data.entry;
@@ -103,6 +118,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 	};
 
 	$scope.load();
+	$scope.loadRoutes();
 
 }])
 
