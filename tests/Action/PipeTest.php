@@ -43,7 +43,6 @@ class PipeTest extends DbTestCase
         $action = new Pipe();
         $action->setConnection(Environment::getService('connection'));
         $action->setProcessor(Environment::getService('processor'));
-        $action->setImporterManager(Environment::getService('importer_manager'));
 
         $parameters = $this->getParameters([
             'source'      => 3,

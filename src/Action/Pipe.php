@@ -29,10 +29,7 @@ use Fusio\Engine\Form\ElementFactoryInterface;
 use Fusio\Engine\ParametersInterface;
 use Fusio\Engine\ProcessorInterface;
 use Fusio\Engine\RequestInterface;
-use PSX\Data\Record;
-use PSX\Data\Record\GraphTraverser;
-use PSX\Data\Record\ImporterManager;
-use PSX\Data\Record\Visitor\StdClassSerializeVisitor;
+use PSX\Data\Record\Normalizer;
 
 /**
  * Pipe
@@ -55,12 +52,6 @@ class Pipe implements ActionInterface
      */
     protected $processor;
 
-    /**
-     * @Inject
-     * @var \PSX\Data\Record\ImporterManager
-     */
-    protected $importerManager;
-
     public function getName()
     {
         return 'Pipe';
@@ -69,13 +60,7 @@ class Pipe implements ActionInterface
     public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
     {
         $response = $this->processor->execute($configuration->get('source'), $request, $context);
-
-        $visitor   = new StdClassSerializeVisitor();
-        $traverser = new GraphTraverser();
-        $traverser->traverse($response->getBody(), $visitor);
-
-        $importer = $this->importerManager->getImporterByInstance('PSX\Data\Record\Importer\Record');
-        $body     = $importer->import(new Record(), $visitor->getObject());
+        $body     = Normalizer::normalize($response->getBody());
 
         return $this->processor->execute($configuration->get('destination'), $request->withBody($body), $context);
     }
@@ -94,10 +79,5 @@ class Pipe implements ActionInterface
     public function setProcessor(ProcessorInterface $processor)
     {
         $this->processor = $processor;
-    }
-
-    public function setImporterManager(ImporterManager $importerManager)
-    {
-        $this->importerManager = $importerManager;
     }
 }
