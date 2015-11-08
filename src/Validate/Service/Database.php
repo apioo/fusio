@@ -51,6 +51,7 @@ class Database
             throw new RuntimeException('Column name "' . $column . '" contains invalid characters');
         }
 
+        $connection = $this->connector->getConnection($connectionId);
         if ($connection instanceof Connection) {
             $queryBuilder = $connection->createQueryBuilder();
 

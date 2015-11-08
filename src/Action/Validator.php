@@ -29,6 +29,8 @@ use Fusio\Engine\ParametersInterface;
 use Fusio\Engine\ProcessorInterface;
 use Fusio\Engine\RequestInterface;
 use Fusio\Impl\Validate\ExpressionFilter;
+use Fusio\Impl\Validate\ServiceContainer;
+use PSX\Cache;
 use PSX\Http\Exception as StatusCode;
 use PSX\Validate\Property;
 use PSX\Validate\Validator as PSXValidator;
@@ -77,13 +79,13 @@ class Validator implements ActionInterface
             // fragments
             $fragments = $request->getUriFragments();
             foreach ($fragments as $key => $value) {
-                $validator->validateProperty('/path/' . $key, $value);
+                $validator->validateProperty('/~path/' . $key, $value);
             }
 
             // parameters
             $parameters = $request->getParameters();
             foreach ($parameters as $key => $value) {
-                $validator->validateProperty('/query/' . $key, $value);
+                $validator->validateProperty('/~query/' . $key, $value);
             }
 
             // body
@@ -108,6 +110,16 @@ class Validator implements ActionInterface
     public function setProcessor(ProcessorInterface $processor)
     {
         $this->processor = $processor;
+    }
+
+    public function setCache(Cache $cache)
+    {
+        $this->cache = $cache;
+    }
+
+    public function setValidateServiceContainer(ServiceContainer $serviceContainer)
+    {
+        $this->validateServiceContainer = $serviceContainer;
     }
 
     protected function buildValidator(array $rules)
