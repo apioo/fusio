@@ -55,4 +55,12 @@ class Route extends TableAbstract
 
         $this->connection->executeQuery($sql, array('id' => $scopeId));
     }
+
+    public function deleteAllFromRoute($routeId)
+    {
+        $sql = 'DELETE FROM fusio_scope_routes
+                      WHERE routeId = :id';
+
+        $this->connection->executeQuery($sql, array('id' => $routeId));
+    }
 }

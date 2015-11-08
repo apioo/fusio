@@ -179,6 +179,9 @@ class Entity extends SchemaApiAbstract
             // unlock dependencies
             $this->routesDependencyManager->unlockExistingDependencies($route->getId());
 
+            // remove all scope routes
+            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope\Route')->deleteAllFromRoute($route->getId());
+
             // delete route
             $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes')->delete(array(
                 'id' => $route->getId(),
