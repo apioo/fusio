@@ -54,10 +54,12 @@ class CollectionTest extends ControllerDbTestCase
     "entry": [
         {
             "id": 2,
+            "status": 1,
             "name": "Foo-Schema"
         },
         {
             "id": 1,
+            "status": 1,
             "name": "Passthru"
         }
     ]

@@ -23,6 +23,7 @@ namespace Fusio\Impl\Backend\Api\App;
 
 use DateTime;
 use Fusio\Impl\Authorization\ProtectionTrait;
+use Fusio\Impl\Authorization\TokenGenerator;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -110,8 +111,8 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $appKey    = Uuid::pseudoRandom();
-        $appSecret = hash('sha256', OpenSsl::randomPseudoBytes(256));
+        $appKey    = TokenGenerator::generateAppKey();
+        $appSecret = TokenGenerator::generateAppSecret();
 
         $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App');
         $table->create(array(

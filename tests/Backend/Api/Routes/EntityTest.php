@@ -183,7 +183,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(41, $row['id']);
-        $this->assertEquals(0, $row['status']);
+        // we actually delete the route entry so the last id must be not 41
+        $this->assertEquals(40, $row['id']);
     }
 }

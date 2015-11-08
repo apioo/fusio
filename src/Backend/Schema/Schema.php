@@ -36,11 +36,10 @@ class Schema extends SchemaAbstract
     {
         $sb = $this->getSchemaBuilder('schema');
         $sb->integer('id');
+        $sb->integer('status');
         $sb->string('name')
             ->setPattern('[A-z0-9\-\_]{3,64}');
         $sb->string('source');
-        $sb->arrayType('validators')
-            ->setPrototype($this->getSchema('Fusio\Impl\Backend\Schema\Schema\Validator'));
 
         return $sb->getProperty();
     }

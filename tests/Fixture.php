@@ -77,8 +77,8 @@ JSON;
                 ['status' => 1, 'name' => 'Developer', 'password' => '$2y$10$XYDj6X1AA0GnA0pi9GMxCumlOfcFjTBE2JtxvAh2RWz/LyeGfO0P6', 'date' => '2015-02-27 19:59:15'],
             ],
             'fusio_action' => [
-                ['name' => 'Sql-Fetch-All', 'class' => 'Fusio\Impl\Action\SqlFetchAll', 'config' => serialize(['connection' => 1, 'sql' => 'SELECT * FROM app_news']), 'date' => '2015-02-27 19:59:15'],
-                ['name' => 'Sql-Fetch-Row', 'class' => 'Fusio\Impl\Action\SqlFetchRow', 'config' => serialize(['connection' => 1, 'sql' => 'SELECT * FROM app_news']), 'date' => '2015-02-27 19:59:15'],
+                ['status' => 1, 'name' => 'Sql-Fetch-All', 'class' => 'Fusio\Impl\Action\SqlFetchAll', 'config' => serialize(['connection' => 1, 'sql' => 'SELECT * FROM app_news']), 'date' => '2015-02-27 19:59:15'],
+                ['status' => 1, 'name' => 'Sql-Fetch-Row', 'class' => 'Fusio\Impl\Action\SqlFetchRow', 'config' => serialize(['connection' => 1, 'sql' => 'SELECT * FROM app_news']), 'date' => '2015-02-27 19:59:15'],
             ],
             'fusio_app' => [
                 ['userId' => 2, 'status' => 1, 'name' => 'Foo-App', 'url' => 'http://google.com', 'appKey' => '5347307d-d801-4075-9aaa-a21a29a448c5', 'appSecret' => '342cefac55939b31cd0a26733f9a4f061c0829ed87dae7caff50feaa55aff23d', 'date' => '2015-02-22 22:19:07'],
@@ -99,7 +99,7 @@ JSON;
                 ['logId' => 1, 'message' => 'Syntax error, malformed JSON', 'trace' => '[trace]', 'file' => '[file]', 'line' => 74],
             ],
             'fusio_schema' => [
-                ['name' => 'Foo-Schema', 'source' => $schemaSource, 'cache' => 'C:15:"PSX\Data\Schema":819:{C:36:"PSX\Data\Schema\Property\ComplexType":769:{a:5:{s:10:"properties";a:3:{s:5:"title";C:35:"PSX\Data\Schema\Property\StringType":158:{a:8:{s:9:"minLength";N;s:9:"maxLength";N;s:7:"pattern";N;s:11:"enumeration";N;s:4:"name";s:5:"title";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}s:7:"content";C:35:"PSX\Data\Schema\Property\StringType":160:{a:8:{s:9:"minLength";N;s:9:"maxLength";N;s:7:"pattern";N;s:11:"enumeration";N;s:4:"name";s:7:"content";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}s:4:"date";C:37:"PSX\Data\Schema\Property\DateTimeType":157:{a:8:{s:9:"minLength";N;s:9:"maxLength";N;s:7:"pattern";N;s:11:"enumeration";N;s:4:"name";s:4:"date";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}}s:4:"name";s:4:"test";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}}'],
+                ['status' => 1, 'name' => 'Foo-Schema', 'source' => $schemaSource, 'cache' => 'C:15:"PSX\Data\Schema":819:{C:36:"PSX\Data\Schema\Property\ComplexType":769:{a:5:{s:10:"properties";a:3:{s:5:"title";C:35:"PSX\Data\Schema\Property\StringType":158:{a:8:{s:9:"minLength";N;s:9:"maxLength";N;s:7:"pattern";N;s:11:"enumeration";N;s:4:"name";s:5:"title";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}s:7:"content";C:35:"PSX\Data\Schema\Property\StringType":160:{a:8:{s:9:"minLength";N;s:9:"maxLength";N;s:7:"pattern";N;s:11:"enumeration";N;s:4:"name";s:7:"content";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}s:4:"date";C:37:"PSX\Data\Schema\Property\DateTimeType":157:{a:8:{s:9:"minLength";N;s:9:"maxLength";N;s:7:"pattern";N;s:11:"enumeration";N;s:4:"name";s:4:"date";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}}s:4:"name";s:4:"test";s:11:"description";N;s:8:"required";N;s:9:"reference";N;}}}'],
             ],
             'fusio_scope' => [
                 ['name' => 'foo'],

@@ -19,45 +19,60 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table\Schema;
+namespace Fusio\Impl\Backend\Table\Routes;
 
 use PSX\Sql\TableAbstract;
 
 /**
- * Fields
+ * Action
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Fields extends TableAbstract
+class Action extends TableAbstract
 {
+    const STATUS_REQUIRED = 1;
+    const STATUS_OPTIONAL = 0;
+
     public function getName()
     {
-        return 'fusio_schema_fields';
+        return 'fusio_routes_action';
     }
 
     public function getColumns()
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'schemaId' => self::TYPE_INT,
-            'refId' => self::TYPE_INT,
-            'name' => self::TYPE_VARCHAR,
-            'type' => self::TYPE_VARCHAR,
-            'required' => self::TYPE_INT,
-            'min' => self::TYPE_INT,
-            'max' => self::TYPE_INT,
-            'pattern' => self::TYPE_VARCHAR,
-            'enumeration' => self::TYPE_VARCHAR,
+            'routeId' => self::TYPE_INT,
+            'actionId' => self::TYPE_INT,
+            'status' => self::TYPE_INT,
         );
     }
 
-    public function deleteAllFromSchema($schemaId)
+    public function deleteAllFromRoute($routeId)
     {
-        $sql = 'DELETE FROM fusio_schema_fields
-				      WHERE schemaId = :id';
+        $sql = 'DELETE FROM fusio_routes_action
+                      WHERE routeId = :id';
 
-        $this->connection->executeQuery($sql, array('id' => $schemaId));
+        $this->connection->executeQuery($sql, ['id' => $routeId]);
+    }
+
+    public function getDependingRoutePaths($actionId)
+    {
+        $sql = '    SELECT routes.path 
+                      FROM fusio_routes_action action 
+                INNER JOIN fusio_routes routes 
+                        ON routes.id = action.routeId 
+                     WHERE action.actionId = :id';
+
+        $result = $this->connection->fetchAll($sql, ['id' => $actionId]);
+        $paths  = [];
+
+        foreach ($result as $row) {
+            $paths[] = $row['path'];
+        }
+
+        return $paths;
     }
 }

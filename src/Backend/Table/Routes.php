@@ -32,6 +32,9 @@ use PSX\Sql\TableAbstract;
  */
 class Routes extends TableAbstract
 {
+    const STATUS_ACTIVE  = 1;
+    const STATUS_DELETED = 0;
+
     public function getName()
     {
         return 'fusio_routes';

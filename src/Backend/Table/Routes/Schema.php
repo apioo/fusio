@@ -19,50 +19,60 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table\Schema;
+namespace Fusio\Impl\Backend\Table\Routes;
 
 use PSX\Sql\TableAbstract;
 
 /**
- * Validator
+ * Schema
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Validator extends TableAbstract
+class Schema extends TableAbstract
 {
+    const STATUS_REQUIRED = 1;
+    const STATUS_OPTIONAL = 0;
+
     public function getName()
     {
-        return 'fusio_schema_validator';
+        return 'fusio_routes_schema';
     }
 
     public function getColumns()
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
+            'routeId' => self::TYPE_INT,
             'schemaId' => self::TYPE_INT,
-            'ref' => self::TYPE_VARCHAR,
-            'rule' => self::TYPE_VARCHAR,
-            'message' => self::TYPE_VARCHAR,
+            'status' => self::TYPE_INT,
         );
     }
 
-    public function getRules($schemaId)
+    public function deleteAllFromRoute($routeId)
     {
-        $sql = 'SELECT ref,
-                       rule,
-                       message
-                  FROM fusio_schema_validator
-                 WHERE schemaId = :schemaId';
+        $sql = 'DELETE FROM fusio_routes_schema
+                      WHERE routeId = :id';
 
-        return $this->connection->fetchAll($sql, array('schemaId' => $schemaId)) ?: array();
+        $this->connection->executeQuery($sql, ['id' => $routeId]);
     }
 
-    public function removeAll($schemaId)
+    public function getDependingRoutePaths($schemaId)
     {
-        $this->connection->executeUpdate('DELETE FROM fusio_schema_validator WHERE schemaId = :schemaId', [
-            'schemaId' => $schemaId
-        ]);
+        $sql = '    SELECT routes.path 
+                      FROM fusio_routes_schema schem 
+                INNER JOIN fusio_routes routes 
+                        ON routes.id = schem.routeId 
+                     WHERE schem.schemaId = :id';
+
+        $result = $this->connection->fetchAll($sql, ['id' => $schemaId]);
+        $paths  = [];
+
+        foreach ($result as $row) {
+            $paths[] = $row['path'];
+        }
+
+        return $paths;
     }
 }

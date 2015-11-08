@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Backend\Api\Action;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
+use Fusio\Impl\Backend\Table\Action;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -119,6 +120,8 @@ class Entity extends SchemaApiAbstract
         $action   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action')->get($actionId);
 
         if (!empty($action)) {
+            $this->checkLocked($action);
+
             $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action')->update(array(
                 'id'     => $action->getId(),
                 'name'   => $record->getName(),
@@ -149,6 +152,8 @@ class Entity extends SchemaApiAbstract
         $action   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action')->get($actionId);
 
         if (!empty($action)) {
+            $this->checkLocked($action);
+
             $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action')->delete(array(
                 'id' => $action['id']
             ));
@@ -159,6 +164,19 @@ class Entity extends SchemaApiAbstract
             );
         } else {
             throw new StatusCode\NotFoundException('Could not find action');
+        }
+    }
+
+    protected function checkLocked($action)
+    {
+        if ($action['status'] == Action::STATUS_LOCKED) {
+            $paths = $this->tableManager
+                ->getTable('Fusio\Impl\Backend\Table\Routes\Action')
+                ->getDependingRoutePaths($action['id']);
+
+            $paths = implode(', ', $paths);
+
+            throw new StatusCode\ConflictException('Action is locked because it is used by a route. Change the route status to "Development" or "Closed" to unlock the schema. The following routes reference this schema: ' . $paths);
         }
     }
 }

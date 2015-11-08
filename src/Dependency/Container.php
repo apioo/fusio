@@ -24,6 +24,7 @@ namespace Fusio\Impl\Dependency;
 use Fusio\Impl\App;
 use Fusio\Impl\Authorization as ApiAuthorization;
 use Fusio\Impl\Backend\Authorization as BackendAuthorization;
+use Fusio\Impl\Backend\Table\Routes\DependencyManager;
 use Fusio\Impl\Base;
 use Fusio\Impl\Connector;
 use Fusio\Impl\Console;
@@ -258,6 +259,20 @@ class Container extends DefaultContainer
     public function getResponse()
     {
         return new Response\Factory();
+    }
+
+    /**
+     * @return \Fusio\Impl\Backend\Table\Routes\DependencyManager
+     */
+    public function getRoutesDependencyManager()
+    {
+        return new DependencyManager(
+            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\Schema'),
+            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\Routes\Schema'),
+            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\Action'),
+            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\Routes\Action'),
+            $this->get('action_parser')
+        );
     }
 
     /**

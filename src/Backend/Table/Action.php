@@ -32,6 +32,10 @@ use PSX\Sql\TableAbstract;
  */
 class Action extends TableAbstract
 {
+    const STATUS_ACTIVE  = 1;
+    const STATUS_LOCKED  = 2;
+    const STATUS_DELETED = 0;
+
     public function getName()
     {
         return 'fusio_action';
@@ -41,6 +45,7 @@ class Action extends TableAbstract
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
+            'status' => self::TYPE_INT,
             'name' => self::TYPE_VARCHAR,
             'class' => self::TYPE_VARCHAR,
             'config' => self::TYPE_ARRAY,

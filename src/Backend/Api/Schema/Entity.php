@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Backend\Api\Schema;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
+use Fusio\Impl\Backend\Table\Schema;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -95,9 +96,6 @@ class Entity extends SchemaApiAbstract
         $schema   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema')->get($schemaId);
 
         if (!empty($schema)) {
-            // append validators
-            $schema['validators'] = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema\Validator')->getRules($schema['id']);
-
             return $schema;
         } else {
             throw new StatusCode\NotFoundException('Could not find schema');
@@ -128,27 +126,14 @@ class Entity extends SchemaApiAbstract
         $schema   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema')->get($schemaId);
 
         if (!empty($schema)) {
+            $this->checkLocked($schema);
+
             $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema')->update(array(
                 'id'     => $schema['id'],
                 'name'   => $record->getName(),
                 'source' => $record->getSource(),
                 'cache'  => $this->schemaParser->parse($record->getSource(), $record->getName()),
             ));
-
-            // handle validators
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema\Validator')->removeAll($schema['id']);
-
-            $validators = $record->getValidators();
-            if (!empty($validators)) {
-                foreach ($validators as $validator) {
-                    $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema\Validator')->create([
-                        'schemaId' => $schema['id'],
-                        'ref'      => $validator['ref'],
-                        'rule'     => $validator['rule'],
-                        'message'  => $validator['message'],
-                    ]);
-                }
-            }
 
             return array(
                 'success' => true,
@@ -172,12 +157,11 @@ class Entity extends SchemaApiAbstract
         $schema   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema')->get($schemaId);
 
         if (!empty($schema)) {
+            $this->checkLocked($schema);
+
             $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema')->delete(array(
                 'id' => $schema['id']
             ));
-
-            // handle validators
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema\Validator')->removeAll($schema['id']);
 
             return array(
                 'success' => true,
@@ -185,6 +169,19 @@ class Entity extends SchemaApiAbstract
             );
         } else {
             throw new StatusCode\NotFoundException('Could not find schema');
+        }
+    }
+
+    protected function checkLocked($schema)
+    {
+        if ($schema['status'] == Schema::STATUS_LOCKED) {
+            $paths = $this->tableManager
+                ->getTable('Fusio\Impl\Backend\Table\Routes\Schema')
+                ->getDependingRoutePaths($schema['id']);
+
+            $paths = implode(', ', $paths);
+
+            throw new StatusCode\ConflictException('Schema is locked because it is used by a route. Change the route status to "Development" or "Closed" to unlock the schema. The following routes reference this schema: ' . $paths);
         }
     }
 }

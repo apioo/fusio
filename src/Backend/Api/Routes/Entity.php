@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Backend\Api\Routes;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
+use Fusio\Impl\Backend\Table\Routes\DependencyManager;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -53,6 +54,12 @@ class Entity extends SchemaApiAbstract
      * @var \PSX\Sql\TableManager
      */
     protected $tableManager;
+
+    /**
+     * @Inject
+     * @var \Fusio\Impl\Backend\Table\Routes\DependencyManager
+     */
+    protected $routesDependencyManager;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -127,6 +134,18 @@ class Entity extends SchemaApiAbstract
                 'config'     => $record->getConfig(),
             ));
 
+            // remove all dependency links
+            $this->routesDependencyManager->removeExistingDependencyLinks($route->getId());
+
+            // unlock dependencies
+            $this->routesDependencyManager->unlockExistingDependencies($route->getId());
+
+            // insert dependency links
+            $this->routesDependencyManager->insertDependencyLinks($route->getId(), $record->getConfig());
+
+            // lock dependencies
+            $this->routesDependencyManager->lockExistingDependencies($route->getId());
+
             return array(
                 'success' => true,
                 'message' => 'Routes successful updated',
@@ -149,9 +168,20 @@ class Entity extends SchemaApiAbstract
         $route   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes')->get($routeId);
 
         if (!empty($route)) {
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes')->update(array(
-                'id'     => $route->getId(),
-                'status' => 0,
+            // check whether route has a production version
+            if ($this->hasProductionVersion($route->getConfig())) {
+                throw new StatusCode\ConflictException('It is not possible to delete a route which contains a production version');
+            }
+
+            // remove all dependency links
+            $this->routesDependencyManager->removeExistingDependencyLinks($route->getId());
+
+            // unlock dependencies
+            $this->routesDependencyManager->unlockExistingDependencies($route->getId());
+
+            // delete route
+            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes')->delete(array(
+                'id' => $route->getId(),
             ));
 
             return array(
@@ -161,5 +191,16 @@ class Entity extends SchemaApiAbstract
         } else {
             throw new StatusCode\NotFoundException('Could not find route');
         }
+    }
+
+    protected function hasProductionVersion(array $config)
+    {
+        foreach ($config as $version) {
+            if ($version->getActive() && in_array($version->getStatus(), [Resource::STATUS_ACTIVE, Resource::STATUS_DEPRECATED])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -54,14 +54,17 @@ class CollectionTest extends ControllerDbTestCase
     "entry": [
         {
             "id": 3,
+            "status": 1,
             "name": "Sql-Fetch-Row"
         },
         {
             "id": 2,
+            "status": 1,
             "name": "Sql-Fetch-All"
         },
         {
             "id": 1,
+            "status": 1,
             "name": "Welcome"
         }
     ]

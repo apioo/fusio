@@ -43,12 +43,7 @@
                     "type": "string"
                 }
             }
-        },
-        "validators": [{
-            "ref": "/processId",
-            "rule": "database.rowExist(${connection.Native-Connection}, 'fusio_log', 'id')",
-            "message": "Log id does not exist"
-        }]
+        }
     }],
     "connection": [{
         "name": "Adapter-Connection",

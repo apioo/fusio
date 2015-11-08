@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Backend\Api\Action;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
+use Fusio\Impl\Backend\Table\Action;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -86,7 +87,20 @@ class Collection extends SchemaApiAbstract
     {
         $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
         $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-        $condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
+        $routeId    = $this->getParameter('routeId', Validate::TYPE_INTEGER) ?: null;
+        $condition  = new Condition();
+
+        if (!empty($search)) {
+            $condition->like('name', '%' . $search . '%');
+        }
+
+        if (!empty($routeId)) {
+            $sql = 'SELECT actionId 
+                      FROM fusio_routes_action 
+                     WHERE routeId = ?';
+
+            $condition->raw('id IN (' . $sql . ')', [$routeId]);
+        }
 
         $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action');
         $table->setRestrictedFields(['class', 'config']);
@@ -108,6 +122,7 @@ class Collection extends SchemaApiAbstract
     protected function doCreate(RecordInterface $record, Version $version)
     {
         $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action')->create(array(
+            'status' => Action::STATUS_ACTIVE,
             'name'   => $record->getName(),
             'class'  => $record->getClass(),
             'config' => $record->getConfig()->getRecordInfo()->getData(),

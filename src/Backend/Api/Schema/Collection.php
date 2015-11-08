@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Backend\Api\Schema;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
+use Fusio\Impl\Backend\Table\Schema;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -93,7 +94,20 @@ class Collection extends SchemaApiAbstract
     {
         $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
         $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-        $condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
+        $routeId    = $this->getParameter('routeId', Validate::TYPE_INTEGER) ?: null;
+        $condition  = new Condition();
+
+        if (!empty($search)) {
+            $condition->like('name', '%' . $search . '%');
+        }
+
+        if (!empty($routeId)) {
+            $sql = 'SELECT schemaId 
+                      FROM fusio_routes_schema 
+                     WHERE routeId = ?';
+
+            $condition->raw('id IN (' . $sql . ')', [$routeId]);
+        }
 
         $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema');
         $table->setRestrictedFields(['propertyName', 'source', 'cache']);
@@ -116,24 +130,11 @@ class Collection extends SchemaApiAbstract
     {
         $schemaTable = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema');
         $schemaTable->create(array(
+            'status' => Schema::STATUS_ACTIVE,
             'name'   => $record->getName(),
             'source' => $record->getSource(),
             'cache'  => $this->schemaParser->parse($record->getSource(), $record->getName()),
         ));
-
-        // handle validators
-        $schemaId   = $schemaTable->getLastInsertId();
-        $validators = $record->getValidators();
-        if (!empty($validators)) {
-            foreach ($validators as $validator) {
-                $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema\Validator')->create([
-                    'schemaId' => $schemaId,
-                    'ref'      => $validator['ref'],
-                    'rule'     => $validator['rule'],
-                    'message'  => $validator['message'],
-                ]);
-            }
-        }
 
         return array(
             'success' => true,

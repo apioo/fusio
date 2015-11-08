@@ -93,12 +93,6 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
     protected $cache;
 
     /**
-     * @Inject
-     * @var \Fusio\Validate\ValidateServiceContainer
-     */
-    protected $validateServiceContainer;
-
-    /**
      * @var integer
      */
     protected $appId;
@@ -114,7 +108,6 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
     protected $logId;
 
     private $activeMethod;
-    private $activeValidator;
 
     public function onLoad()
     {
@@ -165,12 +158,16 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
                 if ($method->getActive()) {
                     $resourceMethod = Resource\Factory::getMethod($method->getName());
 
-                    if ($method->getRequest() > 0) {
+                    if (is_int($method->getRequest())) {
                         $resourceMethod->setRequest(new LazySchema($this->schemaLoader, $method->getRequest()));
+                    } elseif ($method->getRequest() instanceof SchemaInterface) {
+                        $resourceMethod->setRequest($method->getRequest());
                     }
 
-                    if ($method->getResponse() > 0) {
+                    if (is_int($method->getResponse())) {
                         $resourceMethod->addResponse(200, new LazySchema($this->schemaLoader, $method->getResponse()));
+                    } elseif ($method->getRequest() instanceof SchemaInterface) {
+                        $resourceMethod->addResponse(200, $method->getResponse());
                     }
 
                     $resource->addMethod($resourceMethod);
@@ -209,40 +206,11 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
             if ($method->getRequest()->getDefinition()->getName() == self::SCHEMA_PASSTHRU) {
                 return $this->import(new Record());
             } else {
-                $request = $method->getRequest();
-
-                // if we have a schema which comes from the database set the
-                // validator
-                if ($request instanceof LazySchema) {
-                    $this->activeValidator = new Validator(
-                        $this->connection,
-                        $request->getSchemaId(),
-                        $this->validateServiceContainer,
-                        $this->cache
-                    );
-
-                    // if we have a validator we check for parameter and
-                    // fragment validation rules
-                    foreach ($this->uriFragments as $name => $value) {
-                        $this->activeValidator->validateProperty('/uri/fragment/' . $name, $value);
-                    }
-
-                    $parameters = $this->getParameters();
-                    foreach ($parameters as $name => $value) {
-                        $this->activeValidator->validateProperty('/uri/parameter/' . $name, $value);
-                    }
-                }
-
-                return $this->import($request);
+                return $this->import($method->getRequest());
             }
         } else {
             return new Record();
         }
-    }
-
-    protected function getImportValidator()
-    {
-        return $this->activeValidator;
     }
 
     protected function sendResponse(MethodAbstract $method, $response)
@@ -272,7 +240,7 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
     {
         $actionId = $this->getActiveMethod()->getAction();
 
-        if ($actionId > 0) {
+        if (is_int($actionId)) {
             try {
                 $context    = new FusioContext($this->context->get('fusio.routeId'), $this->app);
                 $request    = new Request($this->request, $this->uriFragments, $this->getParameters(), $record);

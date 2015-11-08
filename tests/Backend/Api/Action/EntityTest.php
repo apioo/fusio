@@ -50,6 +50,7 @@ class EntityTest extends ControllerDbTestCase
         $expect = <<<'JSON'
 {
     "id": 3,
+    "status": 1,
     "name": "Sql-Fetch-Row",
     "class": "Fusio\\Impl\\Action\\SqlFetchRow",
     "config": {

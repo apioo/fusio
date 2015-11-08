@@ -21,8 +21,9 @@
 
 namespace Fusio\Impl\Validate\Service;
 
+use Doctrine\DBAL\Connection;
 use Fusio\Impl\Connector;
-use Fusio\Impl\Validate\Util;
+use RuntimeException;
 
 /**
  * Database
@@ -42,6 +43,29 @@ class Database
 
     public function rowExists($connectionId, $table, $column, $value)
     {
-        return Util::rowExists($this->connector->getConnection($connectionId), $table, $column, $value);
+        if (!preg_match('/^[A-z0-9\_]{1,64}$/', $table)) {
+            throw new RuntimeException('Table name "' . $table . '" contains invalid characters');
+        }
+
+        if (!preg_match('/^[A-z0-9\_]{1,64}$/', $column)) {
+            throw new RuntimeException('Column name "' . $column . '" contains invalid characters');
+        }
+
+        if ($connection instanceof Connection) {
+            $queryBuilder = $connection->createQueryBuilder();
+
+            $queryBuilder
+                ->select($connection->getDatabasePlatform()->getCountExpression($column))
+                ->from($table)
+                ->where($column . ' = ?');
+
+            $count = (int) $connection->fetchColumn($queryBuilder->getSQL(), [$value]);
+
+            return $count > 0;
+        } else {
+            // @TODO handle other connection types i.e. MongoDB
+        }
+
+        return false;
     }
 }

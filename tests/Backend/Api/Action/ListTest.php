@@ -92,6 +92,10 @@ class ListTest extends ControllerDbTestCase
         {
             "name": "Static-Response",
             "class": "Fusio\\Impl\\Action\\StaticResponse"
+        },
+        {
+            "name": "Validator",
+            "class": "Fusio\\Impl\\Action\\Validator"
         }
     ]
 }

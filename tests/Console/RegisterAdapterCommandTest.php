@@ -65,7 +65,7 @@ class RegisterAdapterCommandTest extends ControllerDbTestCase
             'class' => 'Fusio\Impl\Adapter\Test\VoidAction',
         ]);
 
-        $this->assertEquals(12, $actionId);
+        $this->assertEquals(13, $actionId);
 
         // check connection class
         $connectionId = $this->connection->fetchColumn('SELECT id FROM fusio_connection_class WHERE class = :class', [
@@ -111,17 +111,6 @@ JSON;
         $this->assertEquals(null, $schema['propertyName']);
         $this->assertJsonStringEqualsJsonString($source, $schema['source']);
         $this->assertInstanceOf('PSX\Data\Schema', unserialize($schema['cache']));
-
-        // check schema validators
-        $validators = $this->connection->fetchAll('SELECT id, ref, rule, message FROM fusio_schema_validator WHERE schemaId = :schemaId', [
-            'schemaId' => $schema['id'],
-        ]);
-
-        $this->assertEquals(1, count($validators));
-        $this->assertEquals(1, $validators[0]['id']);
-        $this->assertEquals('/processId', $validators[0]['ref']);
-        $this->assertEquals('database.rowExist(1, \'fusio_log\', \'id\')', $validators[0]['rule']);
-        $this->assertEquals('Log id does not exist', $validators[0]['message']);
 
         // check action
         $action = $this->connection->fetchAssoc('SELECT id, class, config FROM fusio_action WHERE name = :name', [

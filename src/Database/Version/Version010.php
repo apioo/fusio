@@ -24,6 +24,7 @@ namespace Fusio\Impl\Database\Version;
 use DateTime;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
+use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Database\VersionInterface;
 use Fusio\Impl\Schema\Parser;
 use PSX\Data\Object;
@@ -48,6 +49,7 @@ class Version010 implements VersionInterface
 
         $actionTable = $schema->createTable('fusio_action');
         $actionTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $actionTable->addColumn('status', 'integer');
         $actionTable->addColumn('name', 'string', array('length' => 64));
         $actionTable->addColumn('class', 'string', array('length' => 255));
         $actionTable->addColumn('config', 'blob', array('notnull' => false));
@@ -139,23 +141,31 @@ class Version010 implements VersionInterface
         $routesTable->setPrimaryKey(array('id'));
         $routesTable->addUniqueIndex(array('path'));
 
+        $routesActionTable = $schema->createTable('fusio_routes_action');
+        $routesActionTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $routesActionTable->addColumn('routeId', 'integer');
+        $routesActionTable->addColumn('actionId', 'integer');
+        $routesActionTable->addColumn('status', 'integer');
+        $routesActionTable->setPrimaryKey(array('id'));
+        $routesActionTable->addUniqueIndex(array('routeId', 'actionId'));
+
+        $routesSchemaTable = $schema->createTable('fusio_routes_schema');
+        $routesSchemaTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $routesSchemaTable->addColumn('routeId', 'integer');
+        $routesSchemaTable->addColumn('schemaId', 'integer');
+        $routesSchemaTable->addColumn('status', 'integer');
+        $routesSchemaTable->setPrimaryKey(array('id'));
+        $routesSchemaTable->addUniqueIndex(array('routeId', 'schemaId'));
+
         $schemaTable = $schema->createTable('fusio_schema');
         $schemaTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $schemaTable->addColumn('status', 'integer');
         $schemaTable->addColumn('name', 'string', array('length' => 64));
         $schemaTable->addColumn('propertyName', 'string', array('length' => 64, 'notnull' => false));
         $schemaTable->addColumn('source', 'text');
         $schemaTable->addColumn('cache', 'blob');
         $schemaTable->setPrimaryKey(array('id'));
         $schemaTable->addUniqueIndex(array('name'));
-
-        $schemaValidatorTable = $schema->createTable('fusio_schema_validator');
-        $schemaValidatorTable->addColumn('id', 'integer', array('autoincrement' => true));
-        $schemaValidatorTable->addColumn('schemaId', 'integer');
-        $schemaValidatorTable->addColumn('ref', 'string', array('length' => 255));
-        $schemaValidatorTable->addColumn('rule', 'text');
-        $schemaValidatorTable->addColumn('message', 'string', array('length' => 255));
-        $schemaValidatorTable->setPrimaryKey(array('id'));
-        $schemaValidatorTable->addUniqueIndex(array('schemaId', 'ref'));
 
         $scopeTable = $schema->createTable('fusio_scope');
         $scopeTable->addColumn('id', 'integer', array('autoincrement' => true));
@@ -205,7 +215,11 @@ class Version010 implements VersionInterface
 
         $logErrorTable->addForeignKeyConstraint($logTable, array('logId'), array('id'), array(), 'logErrorLogId');
 
-        $schemaValidatorTable->addForeignKeyConstraint($schemaTable, array('schemaId'), array('id'), array(), 'schemaValidatorSchemaId');
+        $routesActionTable->addForeignKeyConstraint($routesTable, array('routeId'), array('id'), array(), 'routesActionRouteId');
+        $routesActionTable->addForeignKeyConstraint($actionTable, array('actionId'), array('id'), array(), 'routesActionActionId');
+
+        $routesSchemaTable->addForeignKeyConstraint($routesTable, array('routeId'), array('id'), array(), 'routesSchemaRouteId');
+        $routesSchemaTable->addForeignKeyConstraint($schemaTable, array('schemaId'), array('id'), array(), 'routesSchemaSchemaId');
 
         $scopeRoutesTable->addForeignKeyConstraint($routesTable, array('routeId'), array('id'), array(), 'scopeRoutesRouteId');
         $scopeRoutesTable->addForeignKeyConstraint($scopeTable, array('scopeId'), array('id'), array(), 'scopeRoutesScopeId');
@@ -235,8 +249,8 @@ class Version010 implements VersionInterface
     {
         $parser    = new Parser();
         $now       = new DateTime();
-        $appKey    = Uuid::pseudoRandom();
-        $appSecret = hash('sha256', OpenSsl::randomPseudoBytes(256));
+        $appKey    = TokenGenerator::generateAppKey();
+        $appSecret = TokenGenerator::generateAppSecret();
         $password  = \password_hash('0a29e5bcaa810de0ca0513d9d4ab62f1860f998a', PASSWORD_DEFAULT);
 
         $schema    = $this->getPassthruSchema();
@@ -267,7 +281,7 @@ class Version010 implements VersionInterface
                 ['name' => 'authorization'],
             ],
             'fusio_action' => [
-                ['name' => 'Welcome', 'class' => 'Fusio\Impl\Action\StaticResponse', 'config' => serialize(['response' => $response]), 'date' => $now->format('Y-m-d H:i:s')],
+                ['status' => 1, 'name' => 'Welcome', 'class' => 'Fusio\Impl\Action\StaticResponse', 'config' => serialize(['response' => $response]), 'date' => $now->format('Y-m-d H:i:s')],
             ],
             'fusio_action_class' => [
                 ['class' => 'Fusio\Impl\Action\BeanstalkPush'],
@@ -281,9 +295,10 @@ class Version010 implements VersionInterface
                 ['class' => 'Fusio\Impl\Action\SqlFetchAll'],
                 ['class' => 'Fusio\Impl\Action\SqlFetchRow'],
                 ['class' => 'Fusio\Impl\Action\StaticResponse'],
+                ['class' => 'Fusio\Impl\Action\Validator'],
             ],
             'fusio_schema' => [
-                ['name' => 'Passthru', 'source' => $schema, 'cache' => $cache]
+                ['status' => 1, 'name' => 'Passthru', 'source' => $schema, 'cache' => $cache]
             ],
             'fusio_routes' => [
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend',                             'controller' => 'Fusio\Impl\Backend\Application\Index',                        'config' => null],

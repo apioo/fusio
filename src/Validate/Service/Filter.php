@@ -30,9 +30,19 @@ namespace Fusio\Impl\Validate\Service;
  */
 class Filter
 {
-    public function strlen($value)
+    public function length($value)
     {
-        return strlen((string) $value);
+        return strlen($value);
+    }
+
+    public function match($pattern, $value)
+    {
+        return preg_match($pattern, $value);
+    }
+
+    public function inArray($value, array $array)
+    {
+        return in_array($value, $array);
     }
 
     public function alnum($value)
@@ -50,6 +60,11 @@ class Filter
         return ctype_digit($value);
     }
 
+    public function xdigit($value)
+    {
+        return ctype_xdigit($value);
+    }
+
     public function email($value)
     {
         return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
@@ -63,10 +78,5 @@ class Filter
     public function url($value)
     {
         return filter_var($value, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED) !== false;
-    }
-
-    public function xdigit($value)
-    {
-        return ctype_xdigit($value);
     }
 }

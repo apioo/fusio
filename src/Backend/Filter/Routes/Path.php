@@ -46,7 +46,7 @@ class Path extends FilterAbstract
             array_shift($parts); // the first part is always empty
 
             // it is possible to use the root path /
-            if (empty($parts)) {
+            if (count($parts) == 1 && $parts[0] === '') {
                 return true;
             }
 

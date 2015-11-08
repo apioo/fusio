@@ -32,6 +32,10 @@ use PSX\Sql\TableAbstract;
  */
 class Schema extends TableAbstract
 {
+    const STATUS_ACTIVE  = 1;
+    const STATUS_LOCKED  = 2;
+    const STATUS_DELETED = 0;
+
     public function getName()
     {
         return 'fusio_schema';
@@ -41,6 +45,7 @@ class Schema extends TableAbstract
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
+            'status' => self::TYPE_INT,
             'name' => self::TYPE_VARCHAR,
             'source' => self::TYPE_TEXT,
             'cache' => self::TYPE_TEXT,

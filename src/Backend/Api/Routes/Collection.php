@@ -58,6 +58,12 @@ class Collection extends SchemaApiAbstract
     protected $tableManager;
 
     /**
+     * @Inject
+     * @var \Fusio\Impl\Backend\Table\Routes\DependencyManager
+     */
+    protected $routesDependencyManager;
+
+    /**
      * @return \PSX\Api\DocumentationInterface
      */
     public function getDocumentation()
@@ -121,6 +127,17 @@ class Collection extends SchemaApiAbstract
             'controller' => 'Fusio\Impl\Controller\SchemaApiController',
             'config'     => $record->getConfig(),
         ));
+
+        // get last insert id
+        $routeId = $this->tableManager
+            ->getTable('Fusio\Impl\Backend\Table\Routes')
+            ->getLastInsertId();
+
+        // insert dependency links
+        $this->routesDependencyManager->insertDependencyLinks($routeId, $record->getConfig());
+
+        // lock dependencies
+        $this->routesDependencyManager->lockExistingDependencies($routeId);
 
         return array(
             'success' => true,

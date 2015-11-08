@@ -21,6 +21,7 @@
 
 namespace Fusio\Impl\Authorization;
 
+use PSX\Util\Uuid;
 use RandomLib\Factory;
 
 /**
@@ -32,7 +33,39 @@ use RandomLib\Factory;
  */
 class TokenGenerator
 {
+    /**
+     * Generates the bearer authorization token
+     *
+     * @return string
+     */
     public static function generateToken()
+    {
+        $factory   = new Factory();
+        $generator = $factory->getMediumStrengthGenerator();
+
+        return implode('-', [
+            $generator->generateString(20),
+            $generator->generateString(48),
+            $generator->generateString(10)
+        ]);
+    }
+
+    /**
+     * Generates the app key
+     *
+     * @return string
+     */
+    public static function generateAppKey()
+    {
+        return Uuid::pseudoRandom();
+    }
+
+    /**
+     * Generates the app secret
+     *
+     * @return string
+     */
+    public static function generateAppSecret()
     {
         $factory   = new Factory();
         $generator = $factory->getMediumStrengthGenerator();
