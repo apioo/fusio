@@ -6,8 +6,8 @@ describe('Routes tests', function() {
 
     var routes = element.all(by.repeater('route in routes'));
     expect(routes.count()).toEqual(2);
-    expect(routes.get(0).getText()).toEqual('GET|POST|PUT|DELETE /foo');
-    expect(routes.get(1).getText()).toEqual('GET|POST|PUT|DELETE /');
+    expect(routes.get(0).getText()).toEqual('/foo');
+    expect(routes.get(1).getText()).toEqual('/');
   });
 
   it('Create route', function() {
@@ -50,7 +50,7 @@ describe('Routes tests', function() {
 
     var EC = protractor.ExpectedConditions;
 
-    element.all(by.css('div.fusio-options a:nth-child(1)')).first().click();
+    element.all(by.css('div.fusio-options a:nth-child(3)')).first().click();
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
@@ -81,7 +81,7 @@ describe('Routes tests', function() {
 
     var EC = protractor.ExpectedConditions;
 
-    element.all(by.css('div.fusio-options a:nth-child(2)')).first().click();
+    element.all(by.css('div.fusio-options a:nth-child(4)')).first().click();
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
