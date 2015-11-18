@@ -26,7 +26,7 @@ use Fusio\Impl\App;
 use Fusio\Impl\DbTestCase;
 use Fusio\Impl\Form\Builder;
 use PSX\Test\Environment;
-use PSX\Data\Object;
+use PSX\Data\Record;
 
 /**
  * ValidatorTest
@@ -59,10 +59,10 @@ YAML;
             'rules'  => $rules,
         ]);
 
-        $body = new Object([
+        $body = Record::fromArray([
             'id'     => 1,
             'title'  => 'foo',
-            'author' => new Object([
+            'author' => Record::fromArray([
                 'name' => 'bar'
             ]),
         ]);
@@ -95,10 +95,10 @@ YAML;
      */
     public function testHandleInvalidPath()
     {
-        $body = new Object([
+        $body = Record::fromArray([
             'id'     => 1,
             'title'  => 'foo',
-            'author' => new Object([
+            'author' => Record::fromArray([
                 'name' => 'bar'
             ]),
         ]);
@@ -120,10 +120,10 @@ YAML;
      */
     public function testHandleInvalidQuery()
     {
-        $body = new Object([
+        $body = Record::fromArray([
             'id'     => 1,
             'title'  => 'foo',
-            'author' => new Object([
+            'author' => Record::fromArray([
                 'name' => 'bar'
             ]),
         ]);
@@ -145,10 +145,10 @@ YAML;
      */
     public function testHandleInvalidBodyId()
     {
-        $body = new Object([
+        $body = Record::fromArray([
             'id'     => 8,
             'title'  => 'foo',
-            'author' => new Object([
+            'author' => Record::fromArray([
                 'name' => 'bar'
             ]),
         ]);
@@ -170,10 +170,10 @@ YAML;
      */
     public function testHandleInvalidBodyTitle()
     {
-        $body = new Object([
+        $body = Record::fromArray([
             'id'     => 1,
             'title'  => '!foo',
-            'author' => new Object([
+            'author' => Record::fromArray([
                 'name' => 'bar'
             ]),
         ]);
@@ -195,10 +195,10 @@ YAML;
      */
     public function testHandleInvalidBodyAuthorName()
     {
-        $body = new Object([
+        $body = Record::fromArray([
             'id'     => 1,
             'title'  => 'foo',
-            'author' => new Object([
+            'author' => Record::fromArray([
                 'name' => '!bar'
             ]),
         ]);

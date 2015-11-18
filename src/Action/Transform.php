@@ -21,7 +21,6 @@
 
 namespace Fusio\Impl\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\Engine\ActionInterface;
 use Fusio\Engine\ContextInterface;
 use Fusio\Engine\Form\BuilderInterface;
@@ -29,22 +28,32 @@ use Fusio\Engine\Form\ElementFactoryInterface;
 use Fusio\Engine\ParametersInterface;
 use Fusio\Engine\ProcessorInterface;
 use Fusio\Engine\RequestInterface;
+use Fusio\Impl\Validate\ExpressionFilter;
+use Fusio\Impl\Validate\ServiceContainer;
+use PSX\Cache;
+use PSX\Data\Record;
 use PSX\Data\Record\Transformer;
+use PSX\Http\Exception as StatusCode;
+use PSX\Json;
+use PSX\Json\Patch;
+use PSX\Validate\Property;
+use PSX\Validate\Validator as PSXValidator;
+use Symfony\Component\Yaml\Parser;
 
 /**
- * Pipe
+ * Transform
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Pipe implements ActionInterface
+class Transform implements ActionInterface
 {
     /**
      * @Inject
-     * @var \Doctrine\DBAL\Connection
+     * @var \Fusio\Template\FactoryInterface
      */
-    protected $connection;
+    protected $templateFactory;
 
     /**
      * @Inject
@@ -54,26 +63,26 @@ class Pipe implements ActionInterface
 
     public function getName()
     {
-        return 'Pipe';
+        return 'Transform';
     }
 
     public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
     {
-        $response = $this->processor->execute($configuration->get('source'), $request, $context);
-        $body     = Transformer::toRecord($response->getBody());
+        // parse json
+        $parser   = $this->templateFactory->newTextParser();
+        $response = $parser->parse($request, $context, $configuration->get('patch'));
 
-        return $this->processor->execute($configuration->get('destination'), $request->withBody($body), $context);
+        // patch
+        $patch = new Patch(Json::decode($response));
+        $body  = $patch->patch(Transformer::toStdClass($request->getBody()));
+
+        return $this->processor->execute($configuration->get('action'), $request->withBody($body), $context);
     }
 
     public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
     {
-        $builder->add($elementFactory->newAction('source', 'Source', 'Executes this action and uses the response as input for the destination action'));
-        $builder->add($elementFactory->newAction('destination', 'Destination', 'The action which receives the response from the source action and returns the response'));
-    }
-
-    public function setConnection(Connection $connection)
-    {
-        $this->connection = $connection;
+        $builder->add($elementFactory->newAction('action', 'Action', 'Action which gets executed after the transformation'));
+        $builder->add($elementFactory->newTextArea('patch', 'Patch', 'json', 'JSON Patch operations which are applied to the request body. More informations about the JSON Patch format at: https://tools.ietf.org/html/rfc6902'));
     }
 
     public function setProcessor(ProcessorInterface $processor)

@@ -35,13 +35,13 @@ use Pheanstalk\Pheanstalk;
 use PSX\Data\Writer;
 
 /**
- * BeanstalkPush
+ * MqBeanstalk
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class BeanstalkPush implements ActionInterface
+class MqBeanstalk implements ActionInterface
 {
     /**
      * @Inject
@@ -63,7 +63,7 @@ class BeanstalkPush implements ActionInterface
 
     public function getName()
     {
-        return 'Beanstalk-Push';
+        return 'MQ-Beanstalk';
     }
 
     public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)

@@ -23,69 +23,69 @@ namespace Fusio\Impl\Action;
 
 use Fusio\Impl\ActionTestCaseTrait;
 use Fusio\Impl\App;
-use Fusio\Impl\DbTestCase;
 use Fusio\Impl\Form\Builder;
-use PSX\Cache;
-use PSX\Data\Object;
+use Fusio\Impl\Action\Soap\ClientFactoryInterface;
+use PSX\Data\Record;
+use PSX\Http\Response;
 use PSX\Test\Environment;
 
 /**
- * BeanstalkPushTest
+ * SoapProxyTest
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class BeanstalkPushTest extends DbTestCase
+class SoapProxyTest extends \PHPUnit_Framework_TestCase
 {
     use ActionTestCaseTrait;
 
     public function testHandle()
     {
-        // connection
-        $connection = $this->getMock('Pheanstalk\Pheanstalk', ['useTube', 'put'], [], '', false);
+        $soapClient = $this->getMockBuilder('SoapClient')
+            ->disableOriginalConstructor()
+            ->setMethods(['__soapCall'])
+            ->getMock();
 
-        $connection->expects($this->once())
-            ->method('useTube')
-            ->with($this->equalTo('foo'))
-            ->will($this->returnValue($connection));
+        $soapClient->expects($this->once())
+            ->method('__soapCall')
+            ->with($this->equalTo('doFoo'), $this->equalTo(['foo', 'bar']))
+            ->willReturn(['bar' => 'foo']);
 
-        $connection->expects($this->once())
-            ->method('put')
-            ->with($this->callback(function ($body) {
-                $this->assertJsonStringEqualsJsonString('{"foo": "bar"}', $body);
+        $soapClientFactory = $this->getMockBuilder('Fusio\Impl\Action\Soap\ClientFactoryInterface')
+            ->setMethods(['factory'])
+            ->getMock();
 
-                return true;
-            }))
-            ->will($this->returnValue($connection));
+        $soapClientFactory->expects($this->once())
+            ->method('factory')
+            ->with($this->equalTo(null), $this->equalTo([
+                'soap_version' => 2,
+                'location'     => 'http://127.0.0.1/tests/soap.php',
+                'uri'          => 'http://phpsx.org/ns/',
+                'exceptions'   => true,
+            ]))
+            ->willReturn($soapClient);
 
-        // connector
-        $connector = $this->getMock('Fusio\Engine\ConnectorInterface', ['getConnection'], [], '', false);
-
-        $connector->expects($this->once())
-            ->method('getConnection')
-            ->with($this->equalTo(1))
-            ->will($this->returnValue($connection));
-
-        $action = new BeanstalkPush();
-        $action->setConnection(Environment::getService('connection'));
-        $action->setConnector($connector);
+        $action = new SoapProxy();
+        $action->setTemplateFactory(Environment::getService('template_factory'));
         $action->setResponse(Environment::getService('response'));
+        $action->setSoapClientFactory($soapClientFactory);
 
         $parameters = $this->getParameters([
-            'connection' => 1,
-            'queue'      => 'foo',
+            'version'   => SOAP_1_2,
+            'url'       => 'http://127.0.0.1/tests/soap.php',
+            'method'    => 'doFoo',
+            'arguments' => json_encode(['foo', 'bar']),
         ]);
 
-        $body = new Object([
+        $body = Record::fromArray([
             'foo' => 'bar'
         ]);
 
         $response = $action->handle($this->getRequest('POST', [], [], [], $body), $parameters, $this->getContext());
 
         $body = [
-            'success' => true,
-            'message' => 'Push was successful'
+            'bar' => 'foo'
         ];
 
         $this->assertInstanceOf('Fusio\Engine\ResponseInterface', $response);
@@ -94,9 +94,9 @@ class BeanstalkPushTest extends DbTestCase
         $this->assertEquals($body, $response->getBody());
     }
 
-    public function testConfigure()
+    public function testGetForm()
     {
-        $action  = new BeanstalkPush();
+        $action  = new SoapProxy();
         $builder = new Builder();
         $factory = Environment::getService('form_element_factory');
 

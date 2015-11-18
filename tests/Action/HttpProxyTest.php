@@ -23,72 +23,56 @@ namespace Fusio\Impl\Action;
 
 use Fusio\Impl\ActionTestCaseTrait;
 use Fusio\Impl\App;
-use Fusio\Impl\DbTestCase;
 use Fusio\Impl\Form\Builder;
-use PSX\Data\Object;
+use PSX\Data\Record;
+use PSX\Http\Response;
+use PSX\Http\Stream\StringStream;
 use PSX\Test\Environment;
 
 /**
- * RabbitMqPushTest
+ * HttpProxyTest
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class RabbitMqPushTest extends DbTestCase
+class HttpProxyTest extends \PHPUnit_Framework_TestCase
 {
     use ActionTestCaseTrait;
 
     public function testHandle()
     {
-        // channel
-        $channel = $this->getMock('PhpAmqpLib\Channel\AMQPChannel', ['basic_publish'], [], '', false);
+        $http = $this->getMock('PSX\Http', array('request'));
 
-        $channel->expects($this->once())
-            ->method('basic_publish')
-            ->with($this->callback(function ($message) {
-                /** @var \PhpAmqpLib\Message\AMQPMessage $message */
-                $this->assertInstanceOf('PhpAmqpLib\Message\AMQPMessage', $message);
-                $this->assertEquals(['content_type' => 'application/json', 'delivery_mode' => 2], $message->get_properties());
-                $this->assertJsonStringEqualsJsonString('{"foo": "bar"}', $message->body);
+        $http->expects($this->once())
+            ->method('request')
+            ->with($this->callback(function ($request) {
+                /** @var \PSX\Http\RequestInterface $request */
+                $this->assertInstanceOf('PSX\Http\RequestInterface', $request);
+                $this->assertJsonStringEqualsJsonString('{"foo":"bar"}', (string) $request->getBody());
 
                 return true;
-            }), $this->equalTo(''), $this->equalTo('foo'));
+            }))
+            ->will($this->returnValue(new Response(200, [], new StringStream(json_encode(['bar' => 'foo'])))));
 
-        // connection
-        $connection = $this->getMock('PhpAmqpLib\Connection\AMQPStreamConnection', ['channel'], [], '', false);
-
-        $connection->expects($this->once())
-            ->method('channel')
-            ->will($this->returnValue($channel));
-
-        // connector
-        $connector = $this->getMock('Fusio\Engine\ConnectorInterface', ['getConnection'], [], '', false);
-
-        $connector->expects($this->once())
-            ->method('getConnection')
-            ->with($this->equalTo(1))
-            ->will($this->returnValue($connection));
-
-        $action = new RabbitMqPush();
-        $action->setConnector($connector);
+        $action = new HttpProxy();
+        $action->setHttp($http);
+        $action->setTemplateFactory(Environment::getService('template_factory'));
         $action->setResponse(Environment::getService('response'));
+        $action->setExtractor(Environment::getService('extractor'));
 
         $parameters = $this->getParameters([
-            'connection' => 1,
-            'queue'      => 'foo',
+            'url'  => 'http://127.0.0.1/bar',
+            'body' => '{{ request.body|json }}',
         ]);
 
-        $body = new Object([
+        $body = Record::fromArray([
             'foo' => 'bar'
         ]);
 
         $response = $action->handle($this->getRequest('POST', [], [], [], $body), $parameters, $this->getContext());
 
-        $body = [
-            'success' => true,
-            'message' => 'Push was successful'
-        ];
+        $body = (object) ['bar' => 'foo'];
 
         $this->assertInstanceOf('Fusio\Engine\ResponseInterface', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -98,7 +82,7 @@ class RabbitMqPushTest extends DbTestCase
 
     public function testGetForm()
     {
-        $action  = new RabbitMqPush();
+        $action  = new HttpProxy();
         $builder = new Builder();
         $factory = Environment::getService('form_element_factory');
 

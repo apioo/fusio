@@ -37,13 +37,13 @@ use PhpAmqpLib\Message\AMQPMessage;
 use PSX\Data\Writer;
 
 /**
- * RabbitMqPush
+ * MqAmqp
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class RabbitMqPush implements ActionInterface
+class MqAmqp implements ActionInterface
 {
     /**
      * @Inject
@@ -65,7 +65,7 @@ class RabbitMqPush implements ActionInterface
     
     public function getName()
     {
-        return 'RabbitMQ-Push';
+        return 'MQ-Amqp';
     }
 
     public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)

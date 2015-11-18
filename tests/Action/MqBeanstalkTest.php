@@ -25,53 +25,68 @@ use Fusio\Impl\ActionTestCaseTrait;
 use Fusio\Impl\App;
 use Fusio\Impl\DbTestCase;
 use Fusio\Impl\Form\Builder;
+use PSX\Cache;
 use PSX\Data\Record;
 use PSX\Test\Environment;
 
 /**
- * ConditionTest
+ * MqBeanstalkTest
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class ConditionTest extends DbTestCase
+class MqBeanstalkTest extends DbTestCase
 {
     use ActionTestCaseTrait;
 
     public function testHandle()
     {
-        $action = new Condition();
-        $action->setConnection(Environment::getService('connection'));
-        $action->setProcessor(Environment::getService('processor'));
-        $action->setCache(Environment::getService('cache'));
+        // connection
+        $connection = $this->getMock('Pheanstalk\Pheanstalk', ['useTube', 'put'], [], '', false);
 
-        $expression = 'rateLimit.getRequestsPerMonth() == 2 && ';
-        $expression.= 'rateLimit.getRequestsPerDay() == 2 && ';
-        $expression.= 'rateLimit.getRequestsOfRoutePerMonth() == 0 && ';
-        $expression.= 'rateLimit.getRequestsOfRoutePerDay() == 0 && ';
-        $expression.= 'app.getName() == "Foo-App" && ';
-        $expression.= 'uriFragments.get("news_id") == 1 && ';
-        $expression.= 'parameters.get("count") == 4 && ';
-        $expression.= 'body.get("foo") == "bar" ';
+        $connection->expects($this->once())
+            ->method('useTube')
+            ->with($this->equalTo('foo'))
+            ->will($this->returnValue($connection));
+
+        $connection->expects($this->once())
+            ->method('put')
+            ->with($this->callback(function ($body) {
+                $this->assertJsonStringEqualsJsonString('{"foo": "bar"}', $body);
+
+                return true;
+            }))
+            ->will($this->returnValue($connection));
+
+        // connector
+        $connector = $this->getMock('Fusio\Engine\ConnectorInterface', ['getConnection'], [], '', false);
+
+        $connector->expects($this->once())
+            ->method('getConnection')
+            ->with($this->equalTo(1))
+            ->will($this->returnValue($connection));
+
+        $action = new MqBeanstalk();
+        $action->setConnection(Environment::getService('connection'));
+        $action->setConnector($connector);
+        $action->setResponse(Environment::getService('response'));
 
         $parameters = $this->getParameters([
-            'condition' => $expression,
-            'true'      => 3,
-            'false'     => 0,
+            'connection' => 1,
+            'queue'      => 'foo',
         ]);
 
         $body = Record::fromArray([
             'foo' => 'bar'
         ]);
 
-        $response = $action->handle($this->getRequest('POST', ['news_id' => 1], ['count' => 4], [], $body), $parameters, $this->getContext());
+        $response = $action->handle($this->getRequest('POST', [], [], [], $body), $parameters, $this->getContext());
 
-        $body = new \stdClass();
-        $body->id = 1;
-        $body->title = 'foo';
-        $body->content = 'bar';
-        $body->date = '2015-02-27 19:59:15';
+        $body = [
+            'success' => true,
+            'message' => 'Push was successful'
+        ];
 
         $this->assertInstanceOf('Fusio\Engine\ResponseInterface', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -79,9 +94,9 @@ class ConditionTest extends DbTestCase
         $this->assertEquals($body, $response->getBody());
     }
 
-    public function testGetForm()
+    public function testConfigure()
     {
-        $action  = new Condition();
+        $action  = new MqBeanstalk();
         $builder = new Builder();
         $factory = Environment::getService('form_element_factory');
 

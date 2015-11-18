@@ -29,49 +29,66 @@ use PSX\Data\Record;
 use PSX\Test\Environment;
 
 /**
- * ConditionTest
+ * MqAmqpTest
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class ConditionTest extends DbTestCase
+class MqAmqpTest extends DbTestCase
 {
     use ActionTestCaseTrait;
 
     public function testHandle()
     {
-        $action = new Condition();
-        $action->setConnection(Environment::getService('connection'));
-        $action->setProcessor(Environment::getService('processor'));
-        $action->setCache(Environment::getService('cache'));
+        // channel
+        $channel = $this->getMock('PhpAmqpLib\Channel\AMQPChannel', ['basic_publish'], [], '', false);
 
-        $expression = 'rateLimit.getRequestsPerMonth() == 2 && ';
-        $expression.= 'rateLimit.getRequestsPerDay() == 2 && ';
-        $expression.= 'rateLimit.getRequestsOfRoutePerMonth() == 0 && ';
-        $expression.= 'rateLimit.getRequestsOfRoutePerDay() == 0 && ';
-        $expression.= 'app.getName() == "Foo-App" && ';
-        $expression.= 'uriFragments.get("news_id") == 1 && ';
-        $expression.= 'parameters.get("count") == 4 && ';
-        $expression.= 'body.get("foo") == "bar" ';
+        $channel->expects($this->once())
+            ->method('basic_publish')
+            ->with($this->callback(function ($message) {
+                /** @var \PhpAmqpLib\Message\AMQPMessage $message */
+                $this->assertInstanceOf('PhpAmqpLib\Message\AMQPMessage', $message);
+                $this->assertEquals(['content_type' => 'application/json', 'delivery_mode' => 2], $message->get_properties());
+                $this->assertJsonStringEqualsJsonString('{"foo": "bar"}', $message->body);
+
+                return true;
+            }), $this->equalTo(''), $this->equalTo('foo'));
+
+        // connection
+        $connection = $this->getMock('PhpAmqpLib\Connection\AMQPStreamConnection', ['channel'], [], '', false);
+
+        $connection->expects($this->once())
+            ->method('channel')
+            ->will($this->returnValue($channel));
+
+        // connector
+        $connector = $this->getMock('Fusio\Engine\ConnectorInterface', ['getConnection'], [], '', false);
+
+        $connector->expects($this->once())
+            ->method('getConnection')
+            ->with($this->equalTo(1))
+            ->will($this->returnValue($connection));
+
+        $action = new MqAmqp();
+        $action->setConnector($connector);
+        $action->setResponse(Environment::getService('response'));
 
         $parameters = $this->getParameters([
-            'condition' => $expression,
-            'true'      => 3,
-            'false'     => 0,
+            'connection' => 1,
+            'queue'      => 'foo',
         ]);
 
         $body = Record::fromArray([
             'foo' => 'bar'
         ]);
 
-        $response = $action->handle($this->getRequest('POST', ['news_id' => 1], ['count' => 4], [], $body), $parameters, $this->getContext());
+        $response = $action->handle($this->getRequest('POST', [], [], [], $body), $parameters, $this->getContext());
 
-        $body = new \stdClass();
-        $body->id = 1;
-        $body->title = 'foo';
-        $body->content = 'bar';
-        $body->date = '2015-02-27 19:59:15';
+        $body = [
+            'success' => true,
+            'message' => 'Push was successful'
+        ];
 
         $this->assertInstanceOf('Fusio\Engine\ResponseInterface', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -81,7 +98,7 @@ class ConditionTest extends DbTestCase
 
     public function testGetForm()
     {
-        $action  = new Condition();
+        $action  = new MqAmqp();
         $builder = new Builder();
         $factory = Environment::getService('form_element_factory');
 

@@ -31,9 +31,10 @@ use Fusio\Engine\ResponseInterface;
 use Fusio\Engine\Response\FactoryInterface as ResponseFactoryInterface;
 use Fusio\Engine\Template\FactoryInterface;
 use Fusio\Impl\Base;
-use PSX\Data\Writer;
 use PSX\Http;
-use PSX\Http\PostRequest;
+use PSX\Http\Request;
+use PSX\Url;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * HttpRequest
@@ -69,13 +70,7 @@ class HttpRequest implements ActionInterface
 
     public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
     {
-        // parse json
-        $headers  = array('User-Agent' => 'Fusio v' . Base::getVersion());
-        $parser   = $this->templateFactory->newTextParser();
-        $body     = $parser->parse($request, $context, $configuration->get('body'));
-
-        $request  = new PostRequest($configuration->get('url'), $headers, $body);
-        $response = $this->http->request($request);
+        $response = $this->executeRequest($request, $configuration, $context);
 
         if ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
             return $this->response->build(200, [], [
@@ -92,7 +87,9 @@ class HttpRequest implements ActionInterface
 
     public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
     {
-        $builder->add($elementFactory->newInput('url', 'Url', 'text', 'Sends an HTTP POST request to the given url'));
+        $builder->add($elementFactory->newInput('url', 'Url', 'text', 'Sends a HTTP request to the given url'));
+        $builder->add($elementFactory->newSelect('method', 'Method', ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], ''));
+        $builder->add($elementFactory->newTextArea('headers', 'Headers', 'yaml', ''));
         $builder->add($elementFactory->newTextArea('body', 'Body', 'text', 'The body for the POST request. Inside the body it is possible to use a template syntax to add dynamic data. Click <a ng-click="help.showDialog(\'help/template.md\')">here</a> for more informations about the template syntax.'));
     }
 
@@ -109,5 +106,39 @@ class HttpRequest implements ActionInterface
     public function setResponse(ResponseFactoryInterface $response)
     {
         $this->response = $response;
+    }
+
+    protected function parserHeaders($headers)
+    {
+        $result  = [];
+        $yaml    = new Parser();
+        $headers = $yaml->parse($headers);
+
+        if (is_array($headers)) {
+            foreach($headers as $key => $value) {
+                if (is_string($key) && is_string($value)) {
+                    $result[$key] = $value;
+                }
+            }
+        }
+
+        // set user agent
+        $headers['User-Agent'] = 'Fusio v' . Base::getVersion();
+
+        return $result;
+    }
+
+    protected function executeRequest(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
+    {
+        // parse body
+        $parser = $this->templateFactory->newTextParser();
+        $body   = $parser->parse($request, $context, $configuration->get('body'));
+
+        // build request
+        $method   = $configuration->get('method') ?: 'POST';
+        $headers  = $this->parserHeaders($configuration->get('headers'));
+        $request  = new Request(new Url($configuration->get('url')), $method, $headers, $body);
+
+        return $this->http->request($request);
     }
 }

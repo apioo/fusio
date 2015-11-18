@@ -21,63 +21,47 @@
 
 namespace Fusio\Impl\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\Engine\ActionInterface;
 use Fusio\Engine\ContextInterface;
 use Fusio\Engine\Form\BuilderInterface;
 use Fusio\Engine\Form\ElementFactoryInterface;
 use Fusio\Engine\ParametersInterface;
-use Fusio\Engine\ProcessorInterface;
 use Fusio\Engine\RequestInterface;
-use PSX\Data\Record\Transformer;
+use Fusio\Engine\ResponseInterface;
+use Fusio\Engine\Response\FactoryInterface as ResponseFactoryInterface;
+use Fusio\Engine\Template\FactoryInterface;
+use Fusio\Impl\Base;
+use PSX\Data\Record\Normalizer;
+use PSX\Http;
+use PSX\Http\Request;
+use Symfony\Component\Yaml\Parser;
 
 /**
- * Pipe
+ * SoapProxy
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Pipe implements ActionInterface
+class SoapProxy extends SoapRequest
 {
-    /**
-     * @Inject
-     * @var \Doctrine\DBAL\Connection
-     */
-    protected $connection;
-
-    /**
-     * @Inject
-     * @var \Fusio\Engine\ProcessorInterface
-     */
-    protected $processor;
-
     public function getName()
     {
-        return 'Pipe';
+        return 'SOAP-Proxy';
     }
 
     public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
     {
-        $response = $this->processor->execute($configuration->get('source'), $request, $context);
-        $body     = Transformer::toRecord($response->getBody());
+        $response = $this->executeRequest($request, $configuration, $context);
 
-        return $this->processor->execute($configuration->get('destination'), $request->withBody($body), $context);
-    }
+        if (is_array($response) || $response instanceof \stdClass) {
+            $body = $response;
+        } elseif (is_scalar($response)) {
+            $body = ['return' => $response];
+        } else {
+            $body = [];
+        }
 
-    public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
-    {
-        $builder->add($elementFactory->newAction('source', 'Source', 'Executes this action and uses the response as input for the destination action'));
-        $builder->add($elementFactory->newAction('destination', 'Destination', 'The action which receives the response from the source action and returns the response'));
-    }
-
-    public function setConnection(Connection $connection)
-    {
-        $this->connection = $connection;
-    }
-
-    public function setProcessor(ProcessorInterface $processor)
-    {
-        $this->processor = $processor;
+        return $this->response->build(200, [], $body);
     }
 }

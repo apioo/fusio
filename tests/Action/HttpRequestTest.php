@@ -24,7 +24,7 @@ namespace Fusio\Impl\Action;
 use Fusio\Impl\ActionTestCaseTrait;
 use Fusio\Impl\App;
 use Fusio\Impl\Form\Builder;
-use PSX\Data\Object;
+use PSX\Data\Record;
 use PSX\Http\Response;
 use PSX\Test\Environment;
 
@@ -64,7 +64,7 @@ class HttpRequestTest extends \PHPUnit_Framework_TestCase
             'body' => '{{ request.body|json }}',
         ]);
 
-        $body = new Object([
+        $body = Record::fromArray([
             'foo' => 'bar'
         ]);
 

@@ -25,7 +25,7 @@ use Fusio\Impl\ActionTestCaseTrait;
 use Fusio\Impl\App;
 use Fusio\Impl\DbTestCase;
 use Fusio\Impl\Form\Builder;
-use PSX\Data\Object;
+use PSX\Data\Record;
 use PSX\Test\Environment;
 
 /**
@@ -52,7 +52,7 @@ class SqlExecuteTest extends DbTestCase
             'sql'        => 'INSERT INTO app_news (title, content, date) VALUES ({{ body.get("title")|prepare }}, {{ body.get("content")|prepare }}, {{ "now"|date("Y-m-d H:i:s")|prepare }})',
         ]);
 
-        $body = new Object([
+        $body = Record::fromArray([
             'title'   => 'lorem',
             'content' => 'ipsum'
         ]);
