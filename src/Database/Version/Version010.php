@@ -27,7 +27,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Database\VersionInterface;
 use Fusio\Impl\Schema\Parser;
-use PSX\Data\Object;
+use PSX\Data\Record;
 use PSX\Data\Schema\Builder;
 use PSX\Data\Schema\Generator\JsonSchema;
 use PSX\Data\Schema\Property;
@@ -284,17 +284,21 @@ class Version010 implements VersionInterface
                 ['status' => 1, 'name' => 'Welcome', 'class' => 'Fusio\Impl\Action\StaticResponse', 'config' => serialize(['response' => $response]), 'date' => $now->format('Y-m-d H:i:s')],
             ],
             'fusio_action_class' => [
-                ['class' => 'Fusio\Impl\Action\BeanstalkPush'],
                 ['class' => 'Fusio\Impl\Action\CacheResponse'],
                 ['class' => 'Fusio\Impl\Action\Composite'],
                 ['class' => 'Fusio\Impl\Action\Condition'],
+                ['class' => 'Fusio\Impl\Action\HttpProxy'],
                 ['class' => 'Fusio\Impl\Action\HttpRequest'],
+                ['class' => 'Fusio\Impl\Action\MqAmqp'],
+                ['class' => 'Fusio\Impl\Action\MqBeanstalk'],
                 ['class' => 'Fusio\Impl\Action\Pipe'],
-                ['class' => 'Fusio\Impl\Action\RabbitMqPush'],
+                ['class' => 'Fusio\Impl\Action\SoapProxy'],
+                ['class' => 'Fusio\Impl\Action\SoapRequest'],
                 ['class' => 'Fusio\Impl\Action\SqlExecute'],
                 ['class' => 'Fusio\Impl\Action\SqlFetchAll'],
                 ['class' => 'Fusio\Impl\Action\SqlFetchRow'],
                 ['class' => 'Fusio\Impl\Action\StaticResponse'],
+                ['class' => 'Fusio\Impl\Action\Transform'],
                 ['class' => 'Fusio\Impl\Action\Validator'],
             ],
             'fusio_schema' => [
@@ -422,11 +426,11 @@ JSON;
 
     protected function getWelcomeConfig()
     {
-        $config = [new Object([
+        $config = [Record::fromArray([
             'active' => true,
             'status' => 4,
             'name' => '1',
-            'methods' => [new Object([
+            'methods' => [Record::fromArray([
                 'active' => true,
                 'public' => true,
                 'name' => 'GET',

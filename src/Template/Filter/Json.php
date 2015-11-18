@@ -21,7 +21,7 @@
 
 namespace Fusio\Impl\Template\Filter;
 
-use PSX\Data\Object;
+use PSX\Data\Record;
 use PSX\Data\RecordInterface;
 use PSX\Data\Writer;
 
@@ -41,9 +41,9 @@ class Json
         $writer = new Writer\Json();
 
         if (is_array($value)) {
-            $value = new Object($value);
+            $value = Record::fromArray($value);
         } elseif ($value instanceof \stdClass) {
-            $value = new Object((array) $value);
+            $value = Record::fromArray((array) $value);
         }
 
         if ($value instanceof RecordInterface) {

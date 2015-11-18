@@ -50,10 +50,6 @@ class ListTest extends ControllerDbTestCase
 {
     "actions": [
         {
-            "name": "Beanstalk-Push",
-            "class": "Fusio\\Impl\\Action\\BeanstalkPush"
-        },
-        {
             "name": "Cache-Response",
             "class": "Fusio\\Impl\\Action\\CacheResponse"
         },
@@ -66,16 +62,32 @@ class ListTest extends ControllerDbTestCase
             "class": "Fusio\\Impl\\Action\\Condition"
         },
         {
+            "name": "HTTP-Proxy",
+            "class": "Fusio\\Impl\\Action\\HttpProxy"
+        },
+        {
             "name": "HTTP-Request",
             "class": "Fusio\\Impl\\Action\\HttpRequest"
+        },
+        {
+            "name": "MQ-Amqp",
+            "class": "Fusio\\Impl\\Action\\MqAmqp"
+        },
+        {
+            "name": "MQ-Beanstalk",
+            "class": "Fusio\\Impl\\Action\\MqBeanstalk"
         },
         {
             "name": "Pipe",
             "class": "Fusio\\Impl\\Action\\Pipe"
         },
         {
-            "name": "RabbitMQ-Push",
-            "class": "Fusio\\Impl\\Action\\RabbitMqPush"
+            "name": "SOAP-Proxy",
+            "class": "Fusio\\Impl\\Action\\SoapProxy"
+        },
+        {
+            "name": "SOAP-Request",
+            "class": "Fusio\\Impl\\Action\\SoapRequest"
         },
         {
             "name": "SQL-Execute",
@@ -92,6 +104,10 @@ class ListTest extends ControllerDbTestCase
         {
             "name": "Static-Response",
             "class": "Fusio\\Impl\\Action\\StaticResponse"
+        },
+        {
+            "name": "Transform",
+            "class": "Fusio\\Impl\\Action\\Transform"
         },
         {
             "name": "Validator",

@@ -25,7 +25,7 @@ use Fusio\Impl\Model\App;
 use Fusio\Impl\Model\Action;
 use Fusio\Impl\Template\Parser;
 use Psr\Http\Message\StreamInterface;
-use PSX\Data\Object;
+use PSX\Data\Record;
 use PSX\Data\RecordInterface;
 use PSX\Http\Request as HttpRequest;
 use PSX\Test\Environment;
@@ -46,7 +46,7 @@ trait ActionTestCaseTrait
             new HttpRequest(new Uri('http://127.0.0.1/foo'), $method === null ? 'GET' : $method, $headers, $rawBody),
             $uriFragments,
             $parameters,
-            $parsedBody === null ? new Object() : $parsedBody
+            $parsedBody === null ? new Record() : $parsedBody
         );
     }
 
