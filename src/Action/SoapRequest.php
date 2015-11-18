@@ -60,7 +60,6 @@ class SoapRequest implements ActionInterface
     protected $response;
 
     /**
-     * @Inject
      * @var \Fusio\Action\Soap\ClientFactoryInterface
      */
     protected $soapClientFactory;
