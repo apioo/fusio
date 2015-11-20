@@ -104,7 +104,7 @@ class Validator implements ActionInterface
     public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
     {
         $builder->add($elementFactory->newAction('action', 'Action', 'Action which gets executed if the validation was successful'));
-        $builder->add($elementFactory->newTextArea('rules', 'Rules', 'yaml', ''));
+        $builder->add($elementFactory->newTextArea('rules', 'Rules', 'yaml', 'The validation rules in YAML format. Click <a ng-click="help.showDialog(\'help/action/validator.md\')">here</a> for more informations about the format.'));
     }
 
     public function setProcessor(ProcessorInterface $processor)
