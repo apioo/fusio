@@ -28,6 +28,7 @@ use Fusio\Engine\Form\ElementFactoryInterface;
 use Fusio\Engine\ParametersInterface;
 use Fusio\Engine\ProcessorInterface;
 use Fusio\Engine\RequestInterface;
+use Fusio\Engine\Template\FactoryInterface;
 use Fusio\Impl\Validate\ExpressionFilter;
 use Fusio\Impl\Validate\ServiceContainer;
 use PSX\Cache;
@@ -51,7 +52,7 @@ class Transform implements ActionInterface
 {
     /**
      * @Inject
-     * @var \Fusio\Template\FactoryInterface
+     * @var \Fusio\Engine\Template\FactoryInterface
      */
     protected $templateFactory;
 
@@ -73,8 +74,9 @@ class Transform implements ActionInterface
         $response = $parser->parse($request, $context, $configuration->get('patch'));
 
         // patch
-        $patch = new Patch(Json::decode($response));
+        $patch = new Patch(Json::decode($response, false));
         $body  = $patch->patch(Transformer::toStdClass($request->getBody()));
+        $body  = Transformer::toRecord($body);
 
         return $this->processor->execute($configuration->get('action'), $request->withBody($body), $context);
     }
@@ -82,7 +84,12 @@ class Transform implements ActionInterface
     public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
     {
         $builder->add($elementFactory->newAction('action', 'Action', 'Action which gets executed after the transformation'));
-        $builder->add($elementFactory->newTextArea('patch', 'Patch', 'json', 'JSON Patch operations which are applied to the request body. More informations about the JSON Patch format at: https://tools.ietf.org/html/rfc6902'));
+        $builder->add($elementFactory->newTextArea('patch', 'Patch', 'json', 'JSON Patch operations which are applied to the request body. More informations about the JSON Patch format at <a href="https://tools.ietf.org/html/rfc6902">https://tools.ietf.org/html/rfc6902</a>'));
+    }
+
+    public function setTemplateFactory(FactoryInterface $templateFactory)
+    {
+        $this->templateFactory = $templateFactory;
     }
 
     public function setProcessor(ProcessorInterface $processor)
