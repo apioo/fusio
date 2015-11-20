@@ -24,6 +24,7 @@ namespace Fusio\Impl\Parser;
 use Doctrine\DBAL\Connection;
 use Fusio\Engine\ConfigurableInterface;
 use Fusio\Engine\Factory\FactoryInterface;
+use Fusio\Engine\Parser\ParserInterface;
 use Fusio\Impl\Form;
 
 /**
@@ -33,7 +34,7 @@ use Fusio\Impl\Form;
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-abstract class ParserAbstract
+abstract class ParserAbstract implements ParserInterface
 {
     protected $factory;
     protected $connection;
