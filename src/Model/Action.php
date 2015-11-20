@@ -35,6 +35,7 @@ class Action implements ActionInterface
     protected $id;
     protected $name;
     protected $class;
+    protected $config;
     protected $date;
 
     public function setId($id)
@@ -65,6 +66,16 @@ class Action implements ActionInterface
     public function getClass()
     {
         return $this->class;
+    }
+
+    public function setConfig(array $config)
+    {
+        $this->config = $config;
+    }
+    
+    public function getConfig()
+    {
+        return $this->config;
     }
 
     public function setDate($date)
