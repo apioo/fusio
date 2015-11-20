@@ -25,7 +25,9 @@ use Doctrine\DBAL\Connection;
 use Fusio\Engine\ContextInterface;
 use Fusio\Engine\ProcessorInterface;
 use Fusio\Engine\RequestInterface;
+use Fusio\Engine\Model\ActionInterface;
 use Fusio\Impl\Model\Action;
+use RuntimeException;
 
 /**
  * Processor
@@ -36,13 +38,15 @@ use Fusio\Impl\Model\Action;
  */
 class Processor implements ProcessorInterface
 {
-    protected $connection;
+    protected $stack;
     protected $factory;
 
-    public function __construct(Connection $connection, Factory\Action $factory)
+    public function __construct(Processor\RepositoryInterface $repository, Factory\Action $factory)
     {
-        $this->connection = $connection;
-        $this->factory    = $factory;
+        $this->stack   = [];
+        $this->factory = $factory;
+
+        $this->push($repository);
     }
 
     /**
@@ -53,26 +57,35 @@ class Processor implements ProcessorInterface
      */
     public function execute($actionId, RequestInterface $request, ContextInterface $context)
     {
-        if (is_numeric($actionId)) {
-            $column = 'id';
+        $repository = end($this->stack);
+        $action     = $repository->getAction($actionId);
+
+        if ($action instanceof ActionInterface) {
+            $parameters = new Parameters($action->getConfig());
+
+            return $this->factory->factory($action->getClass())->handle($request, $parameters, $context->withAction($action));
         } else {
-            $column = 'name';
+            throw new ConfigurationException('Could not found action ' . $actionId);
+        }
+    }
+
+    /**
+     * Pushes another repository to the processor stack. Through this it is 
+     * possible to provide another action source
+     *
+     * @param \Fusio\Impl\Processor\RepositoryInterface
+     */
+    public function push(Processor\RepositoryInterface $repository)
+    {
+        array_push($this->stack, $repository);
+    }
+
+    public function pop()
+    {
+        if (count($this->stack) === 1) {
+            throw new RuntimeException('One repository must be at least available');
         }
 
-        $row = $this->connection->fetchAssoc('SELECT id, name, class, config, date FROM fusio_action WHERE ' . $column . ' = :id', array('id' => $actionId));
-
-        if (empty($row)) {
-            throw new ConfigurationException('Invalid action');
-        }
-
-        $config = !empty($row['config']) ? unserialize($row['config']) : array();
-        $parameters = new Parameters($config);
-
-        $action = new Action();
-        $action->setId($row['id']);
-        $action->setName($row['name']);
-        $action->setDate($row['date']);
-
-        return $this->factory->factory($row['class'])->handle($request, $parameters, $context->withAction($action));
+        array_pop($this->stack);
     }
 }
