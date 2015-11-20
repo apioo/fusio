@@ -65,7 +65,7 @@ class RegisterAdapterCommandTest extends ControllerDbTestCase
             'class' => 'Fusio\Impl\Adapter\Test\VoidAction',
         ]);
 
-        $this->assertEquals(17, $actionId);
+        $this->assertEquals(18, $actionId);
 
         // check connection class
         $connectionId = $this->connection->fetchColumn('SELECT id FROM fusio_connection_class WHERE class = :class', [

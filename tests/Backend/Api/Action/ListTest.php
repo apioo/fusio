@@ -82,6 +82,10 @@ class ListTest extends ControllerDbTestCase
             "class": "Fusio\\Impl\\Action\\Pipe"
         },
         {
+            "name": "Processor",
+            "class": "Fusio\\Impl\\Action\\Processor"
+        },
+        {
             "name": "SOAP-Proxy",
             "class": "Fusio\\Impl\\Action\\SoapProxy"
         },
