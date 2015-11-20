@@ -64,7 +64,7 @@ class DBAL implements ConnectionInterface
             'pdo_mysql'   => 'MySQL',
             'pdo_pgsql'   => 'PostgreSQL',
             'sqlsrv'      => 'Microsoft SQL Server',
-            'oci8'        => 'Oracle Database ',
+            'oci8'        => 'Oracle Database',
             'sqlanywhere' => 'SAP Sybase SQL Anywhere',
         );
 
