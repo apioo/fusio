@@ -169,7 +169,10 @@ class Container extends DefaultContainer
      */
     public function getProcessor()
     {
-        return new Processor($this->get('connection'), $this->get('action_factory'));
+        return new Processor(
+            new Processor\DatabaseRepository($this->get('connection')), 
+            $this->get('action_factory')
+        );
     }
 
     /**
@@ -298,6 +301,12 @@ class Container extends DefaultContainer
         $application->add(new Console\InstallCommand($this->get('connection')));
         $application->add(new Console\AddUserCommand($this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\User')));
         $application->add(new Console\RegisterAdapterCommand($this->get('dispatch'), $this->get('connection'), $this->get('logger')));
+
+        $application->add(new Console\ListActionCommand($this->get('action_parser')));
+        $application->add(new Console\DetailActionCommand($this->get('action_factory'), $this->get('connection')));
+
+        $application->add(new Console\ListConnectionCommand($this->get('connection_parser')));
+        $application->add(new Console\DetailConnectionCommand($this->get('connection_factory'), $this->get('connection')));
 
         // symfony commands
         $application->add(new SymfonyCommand\HelpCommand());
