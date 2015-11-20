@@ -87,10 +87,13 @@ class HttpRequest implements ActionInterface
 
     public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
     {
+        $methods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'];
+        $methods = array_combine($methods, $methods);
+
         $builder->add($elementFactory->newInput('url', 'Url', 'text', 'Sends a HTTP request to the given url'));
-        $builder->add($elementFactory->newSelect('method', 'Method', ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], ''));
-        $builder->add($elementFactory->newTextArea('headers', 'Headers', 'yaml', ''));
-        $builder->add($elementFactory->newTextArea('body', 'Body', 'text', 'The body for the POST request. Inside the body it is possible to use a template syntax to add dynamic data. Click <a ng-click="help.showDialog(\'help/template.md\')">here</a> for more informations about the template syntax.'));
+        $builder->add($elementFactory->newSelect('method', 'Method', $methods, 'The used request method'));
+        //$builder->add($elementFactory->newTextArea('headers', 'Headers', 'yaml', 'Optional the '));
+        $builder->add($elementFactory->newTextArea('body', 'Body', 'text', 'The request body. Inside the body it is possible to use a template syntax to add dynamic data. Click <a ng-click="help.showDialog(\'help/template.md\')">here</a> for more informations about the template syntax.'));
     }
 
     public function setHttp(Http $http)

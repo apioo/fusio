@@ -86,7 +86,7 @@ class SoapRequest implements ActionInterface
 
     public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
     {
-        $builder->add($elementFactory->newSelect('version', 'Version', [SOAP_1_1 => '1.1', SOAP_1_2 => '1.2'], 'SOAP endpoint'));
+        $builder->add($elementFactory->newSelect('version', 'Version', [SOAP_1_1 => '1.1', SOAP_1_2 => '1.2'], 'SOAP version'));
         $builder->add($elementFactory->newInput('url', 'Url', 'text', 'SOAP endpoint'));
         $builder->add($elementFactory->newInput('wsdl', 'WSDL', 'text', 'Location of the WSDL specification'));
         $builder->add($elementFactory->newInput('method', 'Method', 'text', 'Name of the remote method'));
