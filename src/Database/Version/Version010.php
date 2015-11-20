@@ -292,6 +292,7 @@ class Version010 implements VersionInterface
                 ['class' => 'Fusio\Impl\Action\MqAmqp'],
                 ['class' => 'Fusio\Impl\Action\MqBeanstalk'],
                 ['class' => 'Fusio\Impl\Action\Pipe'],
+                ['class' => 'Fusio\Impl\Action\Processor'],
                 ['class' => 'Fusio\Impl\Action\SoapProxy'],
                 ['class' => 'Fusio\Impl\Action\SoapRequest'],
                 ['class' => 'Fusio\Impl\Action\SqlExecute'],
