@@ -108,7 +108,7 @@ class Processor implements ActionInterface
 
     public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
     {
-        $builder->add($elementFactory->newTextArea('process', 'Process', 'yaml', 'Executes the described process'));
+        $builder->add($elementFactory->newTextArea('process', 'Process', 'yaml', 'The process description in the YAML format. Click <a ng-click="help.showDialog(\'help/action/processor.md\')">here</a> for more informations about the format.'));
     }
 
     public function setProcessor(ProcessorInterface $processor)
