@@ -17,16 +17,9 @@ before_install:
 install:
   - composer install
   - cd public
-  - npm install bower
+  - npm install
   - node node_modules/bower/bin/bower install
-  - npm install grunt
-  - npm install grunt-contrib-concat
-  - npm install grunt-contrib-uglify
-  - npm install grunt-contrib-cssmin
-  - npm install grunt-angular-templates
-  - npm install grunt-cli
   - node node_modules/grunt-cli/bin/grunt
-  - npm install protractor
   - node node_modules/protractor/bin/webdriver-manager update
   - cd ..
 before_script:

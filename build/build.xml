@@ -28,45 +28,24 @@
         </exec>
     </target>
 
+    <!-- npm install -->
+    <target name="npm-install">
+        <exec dir="${build}/public" executable="${npm}" failonerror="true">
+            <arg line="install" />
+        </exec>
+    </target>
+
     <!-- bower install -->
     <target name="bower-install">
-        <exec dir="${build}/public" executable="${npm}" failonerror="true">
-            <arg line="install bower" />
-        </exec>
         <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
             <arg line="node_modules/bower/bin/bower install" />
         </exec>
     </target>
 
     <!-- grunt -->
-    <target name="grunt-install">
-        <exec dir="${build}/public" executable="${npm}" failonerror="true">
-            <arg line="install grunt" />
-        </exec>
-        <exec dir="${build}/public" executable="${npm}" failonerror="true">
-            <arg line="install grunt-contrib-concat" />
-        </exec>
-        <exec dir="${build}/public" executable="${npm}" failonerror="true">
-            <arg line="install grunt-contrib-uglify" />
-        </exec>
-        <exec dir="${build}/public" executable="${npm}" failonerror="true">
-            <arg line="install grunt-contrib-cssmin" />
-        </exec>
-        <exec dir="${build}/public" executable="${npm}" failonerror="true">
-            <arg line="install grunt-angular-templates" />
-        </exec>
-        <exec dir="${build}/public" executable="${npm}" failonerror="true">
-            <arg line="install grunt-cli" />
-        </exec>
+    <target name="grunt">
         <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
             <arg line="node_modules/grunt-cli/bin/grunt" />
-        </exec>
-    </target>
-
-    <!-- protractor install -->
-    <target name="protractor-install">
-        <exec dir="${build}/public" executable="${npm}" failonerror="true">
-            <arg line="install protractor" />
         </exec>
     </target>
 
@@ -91,7 +70,7 @@
     </target>
 
     <!-- after this target we have an system with all dependencies installed -->
-    <target name="init" depends="delete-git-dir,git-clone,composer-install,bower-install,grunt-install,protractor-install,start-webserver,start-webdriver" />
+    <target name="init" depends="delete-git-dir,git-clone,composer-install,npm-install,bower-install,grunt,start-webserver,start-webdriver" />
 
     <!-- ############################## TESTS ############################## -->
     <!-- syntax check of all files -->
