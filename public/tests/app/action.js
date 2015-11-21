@@ -4,11 +4,11 @@ describe('Action tests', function() {
   it('List action', function() {
     browser.get('#/action');
 
-    var routes = element.all(by.repeater('action in actions'));
-    expect(routes.count()).toEqual(3);
-    expect(routes.get(0).getText()).toEqual('Sql-Fetch-Row');
-    expect(routes.get(1).getText()).toEqual('Sql-Fetch-All');
-    expect(routes.get(2).getText()).toEqual('Welcome');
+    var actions = element.all(by.repeater('action in actions'));
+    expect(actions.count()).toEqual(3);
+    expect(actions.get(0).getText()).toEqual('Sql-Fetch-Row');
+    expect(actions.get(1).getText()).toEqual('Sql-Fetch-All');
+    expect(actions.get(2).getText()).toEqual('Welcome');
   });
 
   it('Create action', function() {
@@ -28,8 +28,8 @@ describe('Action tests', function() {
     expect(actionOptions.get(2).getText()).toEqual('Condition');
     expect(actionOptions.get(3).getText()).toEqual('HTTP-Proxy');
     expect(actionOptions.get(4).getText()).toEqual('HTTP-Request');
-    expect(actionOptions.get(5).getText()).toEqual('Mq-Amqp');
-    expect(actionOptions.get(6).getText()).toEqual('Mq-Beanstalk');
+    expect(actionOptions.get(5).getText()).toEqual('MQ-Amqp');
+    expect(actionOptions.get(6).getText()).toEqual('MQ-Beanstalk');
     expect(actionOptions.get(7).getText()).toEqual('Pipe');
     expect(actionOptions.get(8).getText()).toEqual('Processor');
     expect(actionOptions.get(9).getText()).toEqual('SOAP-Proxy');

@@ -94,6 +94,33 @@ describe('Routes tests', function() {
     expect($('div.alert-success > div').getText()).toEqual('Routes successful deleted');
   });
 
+  it('List route actions', function() {
+    browser.get('#/routes');
+
+    var EC = protractor.ExpectedConditions;
+
+    element.all(by.css('div.fusio-options a:nth-child(1)')).first().click();
+
+    var actions = element.all(by.repeater('action in actions'));
+    expect(actions.count()).toEqual(1);
+    expect(actions.get(0).getText()).toEqual('Sql-Fetch-Row');
+
+  });
+
+  it('List route schemas', function() {
+    browser.get('#/routes');
+
+    var EC = protractor.ExpectedConditions;
+
+    element.all(by.css('div.fusio-options a:nth-child(2)')).first().click();
+
+    var schemas = element.all(by.repeater('schema in schemas'));
+    expect(schemas.count()).toEqual(2);
+    expect(schemas.get(0).getText()).toEqual('Foo-Schema');
+    expect(schemas.get(1).getText()).toEqual('Passthru');
+
+  });
+
 });
 
 
