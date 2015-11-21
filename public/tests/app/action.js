@@ -23,19 +23,25 @@ describe('Action tests', function() {
     element(by.model('action.name')).sendKeys('test-action');
 
     var actionOptions = element.all(by.options('action.class as action.name for action in actions'));
-    expect(actionOptions.get(0).getText()).toEqual('Beanstalk-Push');
-    expect(actionOptions.get(1).getText()).toEqual('Cache-Response');
-    expect(actionOptions.get(2).getText()).toEqual('Composite');
-    expect(actionOptions.get(3).getText()).toEqual('Condition');
+    expect(actionOptions.get(0).getText()).toEqual('Cache-Response');
+    expect(actionOptions.get(1).getText()).toEqual('Composite');
+    expect(actionOptions.get(2).getText()).toEqual('Condition');
+    expect(actionOptions.get(3).getText()).toEqual('HTTP-Proxy');
     expect(actionOptions.get(4).getText()).toEqual('HTTP-Request');
-    expect(actionOptions.get(5).getText()).toEqual('Pipe');
-    expect(actionOptions.get(6).getText()).toEqual('RabbitMQ-Push');
-    expect(actionOptions.get(7).getText()).toEqual('SQL-Execute');
-    expect(actionOptions.get(8).getText()).toEqual('SQL-Fetch-All');
-    expect(actionOptions.get(9).getText()).toEqual('SQL-Fetch-Row');
-    expect(actionOptions.get(10).getText()).toEqual('Static-Response');
+    expect(actionOptions.get(5).getText()).toEqual('Mq-Amqp');
+    expect(actionOptions.get(6).getText()).toEqual('Mq-Beanstalk');
+    expect(actionOptions.get(7).getText()).toEqual('Pipe');
+    expect(actionOptions.get(8).getText()).toEqual('Processor');
+    expect(actionOptions.get(9).getText()).toEqual('SOAP-Proxy');
+    expect(actionOptions.get(10).getText()).toEqual('SOAP-Request');
+    expect(actionOptions.get(11).getText()).toEqual('SQL-Execute');
+    expect(actionOptions.get(12).getText()).toEqual('SQL-Fetch-All');
+    expect(actionOptions.get(13).getText()).toEqual('SQL-Fetch-Row');
+    expect(actionOptions.get(14).getText()).toEqual('Static-Response');
+    expect(actionOptions.get(15).getText()).toEqual('Transform');
+    expect(actionOptions.get(16).getText()).toEqual('Validator');
 
-    actionOptions.get(10).click();
+    actionOptions.get(14).click();
 
     browser.wait(EC.visibilityOf($('#config-statusCode')), 5000);
 
