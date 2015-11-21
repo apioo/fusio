@@ -143,8 +143,7 @@ Fusio\Impl\Action\Validator:
     "rules": |
         /news_id: database.rowExists('Native-Connection', 'fusio_user', 'id', value)
         /title: filter.alnum(value)
-    "action": 
-        transform
+    "action": transform
 
 Fusio\Impl\Action\Transform:
     "id": transform
@@ -152,8 +151,7 @@ Fusio\Impl\Action\Transform:
         [
             { "op": "add", "path": "/foo", "value": "bar" }
         ]
-    "action": 
-        title-check
+    "action": title-check
 
 Fusio\Impl\Action\Condition:
     "id": title-check
