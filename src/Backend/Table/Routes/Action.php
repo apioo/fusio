@@ -58,6 +58,14 @@ class Action extends TableAbstract
         $this->connection->executeQuery($sql, ['id' => $routeId]);
     }
 
+    public function deleteByAction($actionId)
+    {
+        $sql = 'DELETE FROM fusio_routes_action
+                      WHERE actionId = :id';
+
+        $this->connection->executeQuery($sql, ['id' => $actionId]);
+    }
+
     public function getDependingRoutePaths($actionId)
     {
         $sql = '    SELECT routes.path 

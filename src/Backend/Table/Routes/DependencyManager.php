@@ -22,9 +22,9 @@
 namespace Fusio\Impl\Backend\Table\Routes;
 
 use PSX\Api\Resource;
-use Fusio\Impl\Backend\Table\Action;
+use Fusio\Impl\Backend\Table\Action as TableAction;
 use Fusio\Impl\Backend\Table\Routes\Action as RoutesAction;
-use Fusio\Impl\Backend\Table\Schema;
+use Fusio\Impl\Backend\Table\Schema as TableSchema;
 use Fusio\Impl\Backend\Table\Routes\Schema as RoutesSchema;
 use Fusio\Impl\Backend\Table\Routes;
 use Fusio\Impl\Form;
@@ -48,7 +48,7 @@ class DependencyManager
     protected $actionLinkTable;
     protected $actionParser;
 
-    public function __construct(Schema $schemaTable, RoutesSchema $schemaLinkTable, Action $actionTable, RoutesAction $actionLinkTable, ParserAbstract $actionParser)
+    public function __construct(TableSchema $schemaTable, RoutesSchema $schemaLinkTable, TableAction $actionTable, RoutesAction $actionLinkTable, ParserAbstract $actionParser)
     {
         $this->schemaTable     = $schemaTable;
         $this->schemaLinkTable = $schemaLinkTable;

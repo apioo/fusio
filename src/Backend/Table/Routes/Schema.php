@@ -58,6 +58,14 @@ class Schema extends TableAbstract
         $this->connection->executeQuery($sql, ['id' => $routeId]);
     }
 
+    public function deleteBySchema($schemaId)
+    {
+        $sql = 'DELETE FROM fusio_routes_schema
+                      WHERE schemaId = :id';
+
+        $this->connection->executeQuery($sql, ['id' => $schemaId]);
+    }
+
     public function getDependingRoutePaths($schemaId)
     {
         $sql = '    SELECT routes.path 

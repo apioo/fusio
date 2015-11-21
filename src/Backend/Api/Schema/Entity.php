@@ -159,6 +159,9 @@ class Entity extends SchemaApiAbstract
         if (!empty($schema)) {
             $this->checkLocked($schema);
 
+            // delete route dependencies
+            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes\Schema')->deleteBySchema($schema['id']);
+
             $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema')->delete(array(
                 'id' => $schema['id']
             ));
