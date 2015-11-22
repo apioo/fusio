@@ -36,12 +36,16 @@ class Version017 extends Version010
     {
         $data = $this->getInstallInserts();
 
-        foreach ($data['fusio_connection_class'] as $row) {
-            $connection->insert('fusio_connection_class', $row);
+        if (isset($data['fusio_connection_class'])) {
+            foreach ($data['fusio_connection_class'] as $row) {
+                $connection->insert('fusio_connection_class', $row);
+            }
         }
 
-        foreach ($data['fusio_action_class'] as $row) {
-            $connection->insert('fusio_action_class', $row);
+        if (isset($data['fusio_action_class'])) {
+            foreach ($data['fusio_action_class'] as $row) {
+                $connection->insert('fusio_action_class', $row);
+            }
         }
     }
 }
