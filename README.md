@@ -41,9 +41,7 @@ steps.
 
 # Contribution
 
-For PHP code please follow the PSR-2 coding-style and add a test case for the 
-changes. If you want to develop a new complex feature please get in contact with 
-us beforehand to discuss whether it is needed or someone is already working on 
-such a topic. Then send a pull request through GitHub to the appropriated 
-branch. There we can discuss all details of the changes.
+If you have found any bugs or want to make feature requests use the bug tracker
+on GitHub. For code contributions feel free to send a pull request through 
+GitHub, there we can discuss all details of the changes.
 
