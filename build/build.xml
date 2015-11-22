@@ -133,7 +133,7 @@
         </delete>
     </target>
 
-    <!-- builds the archive -->
+    <!-- clean build -->
     <target name="clean" depends="shutdown-server,remove-files" />
 
     <!-- ############################## BUILD ############################## -->
