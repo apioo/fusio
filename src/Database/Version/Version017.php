@@ -21,6 +21,8 @@
 
 namespace Fusio\Impl\Database\Version;
 
+use Doctrine\DBAL\Connection;
+
 /**
  * Version017
  *
@@ -30,4 +32,16 @@ namespace Fusio\Impl\Database\Version;
  */
 class Version017 extends Version010
 {
+    public function executeUpgrade(Connection $connection)
+    {
+        $data = $this->getInstallInserts();
+
+        foreach ($data['fusio_connection_class'] as $row) {
+            $connection->insert('fusio_connection_class', $row);
+        }
+
+        foreach ($data['fusio_action_class'] as $row) {
+            $connection->insert('fusio_action_class', $row);
+        }
+    }
 }
