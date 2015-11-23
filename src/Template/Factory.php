@@ -41,13 +41,13 @@ class Factory implements FactoryInterface
         $this->cache = $cache;
     }
 
-    public function newSqlParser()
+    public function newSqlParser($cacheKey = null)
     {
-        return new Parser\Sql($this->debug, $this->cache);
+        return new Parser\Sql($this->debug, $this->cache, $cacheKey);
     }
 
-    public function newTextParser()
+    public function newTextParser($cacheKey = null)
     {
-        return new Parser\Text($this->debug, $this->cache);
+        return new Parser\Text($this->debug, $this->cache, $cacheKey);
     }
 }

@@ -42,8 +42,9 @@ abstract class BaseAbstract
 {
     protected $loader;
     protected $twig;
+    protected $cacheKey;
 
-    public function __construct($debug, $cache = true)
+    public function __construct($debug, $cache = true, $cacheKey = null)
     {
         $this->loader = new StackLoader();
         $this->twig   = new \Twig_Environment($this->loader, [
@@ -60,12 +61,18 @@ abstract class BaseAbstract
         }
 
         $this->twig->addExtension($this->getExtension());
+
+        $this->cacheKey = $cacheKey;
     }
 
     public function parse(Request $request, Context $context, $template)
     {
         $cacheKey     = $context->getAction()->getId();
         $lastModified = $context->getAction()->getDate();
+
+        if ($this->cacheKey !== null) {
+            $cacheKey.= '_' . $this->cacheKey;
+        }
 
         $this->loader->set($template, $cacheKey, $lastModified);
 
