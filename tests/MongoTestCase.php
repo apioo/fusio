@@ -23,6 +23,8 @@ namespace Fusio\Impl;
 
 use Doctrine\DBAL\Schema\Schema as DbSchema;
 use Fusio\Database\Version\Version010;
+use MongoDB;
+use MongoConnectionException;
 use PSX\Test\Environment;
 
 /**
@@ -34,6 +36,8 @@ use PSX\Test\Environment;
  */
 class MongoTestCase extends DbTestCase
 {
+    protected static $hasConnection = true;
+
     protected $mongodb;
     protected $collection;
 
@@ -43,9 +47,20 @@ class MongoTestCase extends DbTestCase
             $this->markTestSkipped('MongoDB extension not available');
         }
 
+        if (!self::$hasConnection) {
+            $this->markTestSkipped('MongoDB connection not available');
+        }
+
         parent::setUp();
 
-        $this->mongodb    = Environment::getService('connector')->getConnection(3);
+        try {
+            $this->mongodb = Environment::getService('connector')->getConnection(3);
+        } catch (MongoConnectionException $e) {
+            self::$hasConnection = false;
+
+            $this->markTestSkipped('MongoDB connection not available');
+        }
+
         $this->collection = $this->mongodb->createCollection('app_news');
 
         $table   = $this->getDataSet()->getTable('app_news');
@@ -65,6 +80,8 @@ class MongoTestCase extends DbTestCase
     {
         parent::tearDown();
 
-        $this->mongodb->dropCollection('app_news');
+        if (self::$hasConnection) {
+            $this->mongodb->dropCollection('app_news');
+        }
     }
 }
