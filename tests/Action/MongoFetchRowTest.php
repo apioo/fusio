@@ -23,65 +23,59 @@ namespace Fusio\Impl\Action;
 
 use Fusio\Impl\ActionTestCaseTrait;
 use Fusio\Impl\App;
-use Fusio\Impl\DbTestCase;
+use Fusio\Impl\MongoTestCase;
 use Fusio\Impl\Form\Builder;
-use PSX\Data\Record;
 use PSX\Test\Environment;
 
 /**
- * SqlExecuteTest
+ * MongoFetchRowTest
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class SqlExecuteTest extends DbTestCase
+class MongoFetchRowTest extends MongoTestCase
 {
     use ActionTestCaseTrait;
 
     public function testHandle()
     {
-        $action = new SqlExecute();
+        $action = new MongoFetchRow();
         $action->setConnection(Environment::getService('connection'));
         $action->setConnector(Environment::getService('connector'));
         $action->setTemplateFactory(Environment::getService('template_factory'));
         $action->setResponse(Environment::getService('response'));
 
         $parameters = $this->getParameters([
-            'connection' => 1,
-            'sql'        => 'INSERT INTO app_news (title, content, date) VALUES ({{ body.get("title")|prepare }}, {{ body.get("content")|prepare }}, {{ "2015-02-27 19:59:15"|prepare }})',
+            'connection'   => 3,
+            'propertyName' => 'foo',
+            'collection'   => 'app_news',
+            'criteria'     => '{"id": 2}',
+            'projection'   => '',
         ]);
 
-        $body = Record::fromArray([
-            'title'   => 'lorem',
-            'content' => 'ipsum'
-        ]);
+        $response = $action->handle($this->getRequest(), $parameters, $this->getContext());
 
-        $response = $action->handle($this->getRequest('POST', [], [], [], $body), $parameters, $this->getContext());
+        // remove mongodb ids
+        $body = $response->getBody();
+        unset($body['_id']);
 
-        $body = [];
-        $body['success'] = true;
-        $body['message'] = 'Execution was successful';
+        $result = [
+            'id' => 2,
+            'title' => 'bar',
+            'content' => 'foo',
+            'date' => '2015-02-27 19:59:15',
+        ];
 
         $this->assertInstanceOf('Fusio\Engine\ResponseInterface', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals([], $response->getHeaders());
-        $this->assertEquals($body, $response->getBody());
-
-        $row    = Environment::getService('connection')->fetchAssoc('SELECT * FROM app_news ORDER BY id DESC');
-        $expect = [
-            'id'      => 3,
-            'title'   => 'lorem',
-            'content' => 'ipsum',
-            'date'    => '2015-02-27 19:59:15',
-        ];
-
-        $this->assertEquals($expect, $row);
+        $this->assertEquals($result, $body);
     }
 
     public function testGetForm()
     {
-        $action  = new SqlExecute();
+        $action  = new MongoFetchRow();
         $builder = new Builder();
         $factory = Environment::getService('form_element_factory');
 

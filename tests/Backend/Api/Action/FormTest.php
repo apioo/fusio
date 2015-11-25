@@ -57,6 +57,10 @@ class FormTest extends ControllerDbTestCase
                     "value": "DBAL"
                 },
                 {
+                    "key": 3,
+                    "value": "MongoDB"
+                },
+                {
                     "key": 1,
                     "value": "Native-Connection"
                 }

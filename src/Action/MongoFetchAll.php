@@ -90,11 +90,32 @@ class MongoFetchAll implements ActionInterface
                 $fields = $configuration->get('projection');
                 $fields = !empty($fields) ? json_decode($fields) : array();
 
-                $result = $collection->find($query, $fields);
+                $cursor = $collection->find($query, $fields);
                 $key    = $configuration->get('propertyName') ?: 'entry';
 
+                $sort = $configuration->get('sort');
+                if (!empty($sort)) {
+                    parse_str($sort, $sortParameters);
+                    $sortParameters = array_map(function($value) {
+                        $value = (int) $value;
+                        return $value == 1 || $value == -1 ? $value : 1; 
+                    }, $sortParameters);
+
+                    $cursor->sort($sortParameters);
+                }
+
+                $limit = (int) $configuration->get('limit');
+                if ($limit > 0) {
+                    $cursor->limit($limit);
+                }
+
+                $data = array();
+                foreach ($cursor as $row) {
+                    $data[] = $row;
+                }
+
                 return $this->response->build(200, [], [
-                    $key => $result,
+                    $key => $data,
                 ]);
             } else {
                 throw new ConfigurationException('Invalid collection');
@@ -111,6 +132,8 @@ class MongoFetchAll implements ActionInterface
         $builder->add($elementFactory->newInput('collection', 'Collection', 'text', 'The data gets fetched from this collection'));
         $builder->add($elementFactory->newTextArea('criteria', 'Criteria', 'json', 'Specifies selection criteria using <a href="http://docs.mongodb.org/manual/reference/operator/">query operators</a>. To return all documents in a collection, omit this parameter or pass an empty document ({})'));
         $builder->add($elementFactory->newTextArea('projection', 'Projection', 'json', 'Specifies the fields to return using <a href="http://docs.mongodb.org/manual/reference/operator/projection/">projection operators</a>. To return all fields in the matching document, omit this parameter.'));
+        $builder->add($elementFactory->newInput('sort', 'Sort', 'text', 'Sorts the entries after a specific key. I.e. <code>title=1</code> to order after the title ascending or <code>title=-1</code> for descending'));
+        $builder->add($elementFactory->newInput('limit', 'Limit', 'text', 'Integer how many entries should be fetched'));
     }
 
     public function setConnection(Connection $connection)

@@ -65,7 +65,7 @@ class RegisterAdapterCommandTest extends ControllerDbTestCase
             'class' => 'Fusio\Impl\Adapter\Test\VoidAction',
         ]);
 
-        $this->assertEquals(18, $actionId);
+        $this->assertEquals(21, $actionId);
 
         // check connection class
         $connectionId = $this->connection->fetchColumn('SELECT id FROM fusio_connection_class WHERE class = :class', [
@@ -79,7 +79,7 @@ class RegisterAdapterCommandTest extends ControllerDbTestCase
             'name' => 'Adapter-Connection',
         ]);
 
-        $this->assertEquals(3, $connection['id']);
+        $this->assertEquals(4, $connection['id']);
         $this->assertEquals('Fusio\Impl\Adapter\Test\VoidConnection', $connection['class']);
         $this->assertEquals(['foo' => 'bar'], unserialize($connection['config']));
 
@@ -119,7 +119,7 @@ JSON;
 
         $this->assertEquals(4, $action['id']);
         $this->assertEquals('Fusio\Impl\Adapter\Test\VoidAction', $action['class']);
-        $this->assertEquals(['foo' => 'bar', 'connection' => '3'], unserialize($action['config']));
+        $this->assertEquals(['foo' => 'bar', 'connection' => '4'], unserialize($action['config']));
 
         // check routes
         $route = $this->connection->fetchAssoc('SELECT id, status, methods, controller, config FROM fusio_routes WHERE path = :path', [

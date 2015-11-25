@@ -86,7 +86,8 @@ JSON;
                 ['userId' => 2, 'status' => 3, 'name' => 'Deactivated', 'url' => 'http://google.com', 'appKey' => 'f46af464-f7eb-4d04-8661-13063a30826b', 'appSecret' => '17b882987298831a3af9c852f9cd0219d349ba61fcf3fc655ac0f07eece951f9', 'date' => '2015-02-22 22:19:07'],
             ],
             'fusio_connection' => [
-                ['name' => 'DBAL', 'class' => 'Fusio\Connection\DBAL', 'config' => serialize(['type' => 'pdo_mysql', 'host' => '127.0.0.1', 'username' => 'root', 'password' => 'foo', 'database' => 'bar'])],
+                ['name' => 'DBAL', 'class' => 'Fusio\Impl\Connection\DBAL', 'config' => serialize(['type' => 'pdo_mysql', 'host' => '127.0.0.1', 'username' => 'root', 'password' => 'foo', 'database' => 'bar'])],
+                ['name' => 'MongoDB', 'class' => 'Fusio\Impl\Connection\MongoDB', 'config' => serialize(['url' => 'mongodb://localhost:27017', 'database' => 'bar'])],
             ],
             'fusio_routes' => [
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/foo', 'controller' => 'Fusio\Impl\Controller\SchemaApiController', 'config' => 'a:1:{i:0;C:15:"PSX\Data\Record":660:{a:2:{s:4:"name";s:6:"config";s:6:"fields";a:4:{s:6:"active";b:1;s:6:"status";i:4;s:4:"name";s:1:"1";s:7:"methods";a:4:{i:0;C:15:"PSX\Data\Record":106:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:3:{s:4:"name";s:3:"GET";s:6:"action";i:3;s:8:"response";i:2;}}}i:1;C:15:"PSX\Data\Record":159:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:6:{s:6:"active";b:1;s:6:"public";b:0;s:4:"name";s:4:"POST";s:6:"action";i:3;s:7:"request";i:2;s:8:"response";i:1;}}}i:2;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"PUT";}}}i:3;C:15:"PSX\Data\Record":73:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:6:"DELETE";}}}}}}}}'],
@@ -130,8 +131,8 @@ JSON;
                 ['userId' => 2, 'scopeId' => 4],
             ],
             'app_news' => [
-                ['title' => 'foo', 'content' => 'bar', 'date' => '2015-02-27 19:59:15'],
-                ['title' => 'bar', 'content' => 'foo', 'date' => '2015-02-27 19:59:15'],
+                ['id' => 1, 'title' => 'foo', 'content' => 'bar', 'date' => '2015-02-27 19:59:15'],
+                ['id' => 2, 'title' => 'bar', 'content' => 'foo', 'date' => '2015-02-27 19:59:15'],
             ],
         ];
     }

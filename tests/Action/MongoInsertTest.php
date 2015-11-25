@@ -23,38 +23,42 @@ namespace Fusio\Impl\Action;
 
 use Fusio\Impl\ActionTestCaseTrait;
 use Fusio\Impl\App;
-use Fusio\Impl\DbTestCase;
+use Fusio\Impl\MongoTestCase;
 use Fusio\Impl\Form\Builder;
-use PSX\Data\Record;
 use PSX\Test\Environment;
+use PSX\Data\Record;
 
 /**
- * SqlExecuteTest
+ * MongoInsertTest
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class SqlExecuteTest extends DbTestCase
+class MongoInsertTest extends MongoTestCase
 {
     use ActionTestCaseTrait;
 
     public function testHandle()
     {
-        $action = new SqlExecute();
+        $action = new MongoInsert();
         $action->setConnection(Environment::getService('connection'));
         $action->setConnector(Environment::getService('connector'));
         $action->setTemplateFactory(Environment::getService('template_factory'));
         $action->setResponse(Environment::getService('response'));
 
         $parameters = $this->getParameters([
-            'connection' => 1,
-            'sql'        => 'INSERT INTO app_news (title, content, date) VALUES ({{ body.get("title")|prepare }}, {{ body.get("content")|prepare }}, {{ "2015-02-27 19:59:15"|prepare }})',
+            'connection'   => 3,
+            'propertyName' => 'foo',
+            'collection'   => 'app_news',
+            'document'     => '{{ request.body|json }}',
         ]);
 
         $body = Record::fromArray([
+            'id'      => 3,
             'title'   => 'lorem',
-            'content' => 'ipsum'
+            'content' => 'ipsum',
+            'date'    => '2015-02-27 19:59:15'
         ]);
 
         $response = $action->handle($this->getRequest('POST', [], [], [], $body), $parameters, $this->getContext());
@@ -68,7 +72,7 @@ class SqlExecuteTest extends DbTestCase
         $this->assertEquals([], $response->getHeaders());
         $this->assertEquals($body, $response->getBody());
 
-        $row    = Environment::getService('connection')->fetchAssoc('SELECT * FROM app_news ORDER BY id DESC');
+        $row    = $this->collection->findOne(['id' => 3]);
         $expect = [
             'id'      => 3,
             'title'   => 'lorem',
@@ -76,12 +80,14 @@ class SqlExecuteTest extends DbTestCase
             'date'    => '2015-02-27 19:59:15',
         ];
 
+        unset($row['_id']);
+
         $this->assertEquals($expect, $row);
     }
 
     public function testGetForm()
     {
-        $action  = new SqlExecute();
+        $action  = new MongoInsert();
         $builder = new Builder();
         $factory = Environment::getService('form_element_factory');
 

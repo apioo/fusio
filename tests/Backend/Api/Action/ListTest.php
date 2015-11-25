@@ -70,6 +70,26 @@ class ListTest extends ControllerDbTestCase
             "class": "Fusio\\Impl\\Action\\HttpRequest"
         },
         {
+            "name": "Mongo-Delete",
+            "class": "Fusio\\Impl\\Action\\MongoDelete"
+        },
+        {
+            "name": "Mongo-Fetch-All",
+            "class": "Fusio\\Impl\\Action\\MongoFetchAll"
+        },
+        {
+            "name": "Mongo-Fetch-Row",
+            "class": "Fusio\\Impl\\Action\\MongoFetchRow"
+        },
+        {
+            "name": "Mongo-Insert",
+            "class": "Fusio\\Impl\\Action\\MongoInsert"
+        },
+        {
+            "name": "Mongo-Update",
+            "class": "Fusio\\Impl\\Action\\MongoUpdate"
+        },
+        {
             "name": "MQ-Amqp",
             "class": "Fusio\\Impl\\Action\\MqAmqp"
         },
@@ -84,14 +104,6 @@ class ListTest extends ControllerDbTestCase
         {
             "name": "Processor",
             "class": "Fusio\\Impl\\Action\\Processor"
-        },
-        {
-            "name": "SOAP-Proxy",
-            "class": "Fusio\\Impl\\Action\\SoapProxy"
-        },
-        {
-            "name": "SOAP-Request",
-            "class": "Fusio\\Impl\\Action\\SoapRequest"
         },
         {
             "name": "SQL-Execute",
