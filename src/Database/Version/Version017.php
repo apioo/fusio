@@ -34,6 +34,58 @@ class Version017 extends Version010
 {
     public function executeUpgrade(Connection $connection)
     {
+        // update action class names
+        $actions = [
+            'Fusio\Action\BeanstalkPush' => 'Fusio\Impl\Action\MqBeanstalk',
+            'Fusio\Action\CacheResponse' => 'Fusio\Impl\Action\CacheResponse',
+            'Fusio\Action\Composite' => 'Fusio\Impl\Action\Composite',
+            'Fusio\Action\Condition' => 'Fusio\Impl\Action\Condition',
+            'Fusio\Action\HttpRequest' => 'Fusio\Impl\Action\HttpRequest',
+            'Fusio\Action\Pipe' => 'Fusio\Action\Pipe',
+            'Fusio\Action\RabbitMqPush' => 'Fusio\Impl\Action\MqAmqp',
+            'Fusio\Action\SqlExecute' => 'Fusio\Impl\Action\SqlExecute',
+            'Fusio\Action\SqlFetchAll' => 'Fusio\Impl\Action\SqlFetchAll',
+            'Fusio\Action\SqlFetchRow' => 'Fusio\Impl\Action\SqlFetchRow',
+            'Fusio\Action\StaticResponse' => 'Fusio\Impl\Action\StaticResponse',
+        ];
+
+        foreach ($actions as $oldClass => $newClass) {
+            $connection->executeUpdate('UPDATE fusio_action SET class = :new_class WHERE class = :old_class', [
+                'new_class' => $newClass,
+                'old_class' => $oldClass,
+            ]);
+        }
+
+        // update connection class names
+        $actions = [
+            'Fusio\Connection\Beanstalk' => 'Fusio\Impl\Connection\Beanstalk',
+            'Fusio\Connection\DBAL' => 'Fusio\Impl\Connection\DBAL',
+            'Fusio\Connection\DBALAdvanced' => 'Fusio\Impl\Connection\DBALAdvanced',
+            'Fusio\Connection\MongoDB' => 'Fusio\Impl\Connection\MongoDB',
+            'Fusio\Connection\Native' => 'Fusio\Impl\Connection\Native',
+            'Fusio\Connection\RabbitMQ' => 'Fusio\Impl\Connection\RabbitMQ',
+        ];
+
+        foreach ($actions as $oldClass => $newClass) {
+            $connection->executeUpdate('UPDATE fusio_connection SET class = :new_class WHERE class = :old_class', [
+                'new_class' => $newClass,
+                'old_class' => $oldClass,
+            ]);
+        }
+
+        // update routes class names
+        $routes = $connection->fetchAll('SELECT id, controller FROM fusio_routes');
+        foreach ($routes as $route) {
+            if (substr($route['controller'], 0, 6) == 'Fusio\\' && substr($route['controller'], 0, 11) != 'Fusio\\Impl\\') {
+                $newController = 'Fusio\\Impl\\' . substr($route['controller'], 6);
+                $connection->executeUpdate('UPDATE fusio_routes SET controller = :controller WHERE id = :id', [
+                    'controller' => $newController,
+                    'id'         => $route['id'],
+                ]);
+            }
+        }
+
+        // insert new classes table
         $data = $this->getInstallInserts();
 
         if (isset($data['fusio_connection_class'])) {
