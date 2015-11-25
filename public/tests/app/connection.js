@@ -5,9 +5,10 @@ describe('Connection tests', function() {
     browser.get('#/connection');
 
     var routes = element.all(by.repeater('connection in connections'));
-    expect(routes.count()).toEqual(2);
-    expect(routes.get(0).getText()).toEqual('DBAL');
-    expect(routes.get(1).getText()).toEqual('Native-Connection');
+    expect(routes.count()).toEqual(3);
+    expect(routes.get(0).getText()).toEqual('MongoDB');
+    expect(routes.get(1).getText()).toEqual('DBAL');
+    expect(routes.get(2).getText()).toEqual('Native-Connection');
   });
 
   it('Create connection', function() {
