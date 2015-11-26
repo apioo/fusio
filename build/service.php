@@ -28,6 +28,7 @@
  */
 
 $service = isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : null;
+$action  = isset($_SERVER['argv'][2]) ? $_SERVER['argv'][2] : null;
 
 $iniFile = DIRECTORY_SEPARATOR === '\\' ? 'build-win.properties' : 'build-default.properties';
 $config  = parse_ini_file($iniFile);
@@ -36,22 +37,25 @@ $config  = parse_ini_file($iniFile);
 // a service
 chdir(__DIR__ . '/../public');
 
-switch ($service) {
-    case 'webserver':
-        runProcess('webserver', $config['php'] . ' -S 127.0.0.1:8008 server.php');
-        break;
 
-    case 'webdriver':
-        runProcess('webdriver', $config['nodejs'] . ' node_modules/protractor/bin/webdriver-manager start');
-        break;
+$commands = [
+    'webserver' => $config['php'] . ' -S 127.0.0.1:8008 server.php',
+    'webdriver' => $config['nodejs'] . ' node_modules/protractor/bin/webdriver-manager start',
+];
 
-    default:
-        echo 'Unknown service' . "\n";
-        exit(1);
-        break;
+if (isset($commands[$service])) {
+    if ($action == 'stop') {
+        stopProcess($service);
+    } else {
+        startProcess($service, $commands[$service]);
+    }
+} else {
+    echo 'Unknown service' . "\n";
+    exit(1);
 }
 
-function runProcess($name, $cmd)
+
+function startProcess($name, $cmd)
 {
     echo 'Start ' . $name . ' (' . $cmd . ')' . "\n";
 
@@ -60,28 +64,26 @@ function runProcess($name, $cmd)
 
     $pid  = $status['pid'];
     $file = __DIR__ . '/../cache/' . $name . '.lock';
+
     file_put_contents($file, $pid);
+}
 
-    while (is_file($file)) {
-        // check whether process is running
-        $status = proc_get_status($process);
-        if (!$status['running']) {
-            break;
+function stopProcess($name)
+{
+    $file = __DIR__ . '/../cache/' . $name . '.lock';
+
+    if (is_file($file)) {
+        $pid = (int) file_get_contents($file);
+
+        if ($pid > 0) {
+            // now we kill the process
+            echo 'Try to kill process ' . $pid . "\n";
+
+            if (DIRECTORY_SEPARATOR === '\\') {
+                exec(sprintf('taskkill /F /T /PID %d', $pid), $output, $exitCode);
+            } else {
+                exec(sprintf('kill -9 %d', $pid), $output, $exitCode);
+            }
         }
-
-        // clear is file cache
-        clearstatcache(true, $file);
-
-        // wait
-        usleep(500000);
-    }
-
-    // now we kill the process
-    echo 'Try to shutdown process' . "\n";
-
-    if (DIRECTORY_SEPARATOR === '\\') {
-        exec(sprintf('taskkill /F /T /PID %d', $pid), $output, $exitCode);
-    } else {
-        exec(sprintf('kill -9 %d', $pid), $output, $exitCode);
     }
 }
