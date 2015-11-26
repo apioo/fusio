@@ -55,7 +55,7 @@
             <arg line="server.php --warmup" />
         </exec>
         <exec dir="${build}/build" executable="${php}" spawn="true">
-            <arg line="service.php webserver" />
+            <arg line="service.php webserver start" />
         </exec>
     </target>
 
@@ -65,7 +65,7 @@
             <arg line="node_modules/protractor/bin/webdriver-manager update" />
         </exec>
         <exec dir="${build}/build" executable="${php}" spawn="true">
-            <arg line="service.php webdriver" />
+            <arg line="service.php webdriver start" />
         </exec>
     </target>
 
@@ -98,11 +98,14 @@
     <!-- ############################## CLEAN ############################## -->
     <!-- remove the lock file so that the web and selenium server shutdown -->
     <target name="shutdown-server">
-        <delete>
-            <fileset dir="${build}/cache" includes="*.lock"/>
-        </delete>
         <echo message="Waiting for servers to shutdown ..." />
         <sleep seconds="4" />
+        <exec dir="${build}/build" executable="${php}">
+            <arg line="service.php webserver stop" />
+        </exec>
+        <exec dir="${build}/build" executable="${php}">
+            <arg line="service.php webdriver stop" />
+        </exec>
     </target>
 
     <!-- removes all files wich are not needed in the release -->

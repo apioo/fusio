@@ -27,4 +27,4 @@ $container     = require_once($containerFile);
 
 PSX\Bootstrap::setupEnvironment($container->get('config'));
 
-echo Fusio\Base::getVersion();
+echo Fusio\Impl\Base::getVersion();
