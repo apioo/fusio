@@ -122,45 +122,4 @@ class ErrorsPerRoute extends ApiAbstract
             'series' => array_values($series),
         ));
     }
-
-/*
-    public function onGet()
-    {
-        $filter     = Log\QueryFilter::create($this->getParameters());
-        $condition  = $filter->getCondition('log');
-        $expression = $condition->getExpression($this->connection->getDatabasePlatform());
-
-        // build data structure
-        $fromDate = $filter->getFrom();
-        $toDate   = $filter->getTo();
-        $values   = [];
-
-        while ($fromDate <= $toDate) {
-            $values[$fromDate->format('Y-m-d')] = 0;
-
-            $fromDate->add(new \DateInterval('P1D'));
-        }
-
-        // fill values
-        $sql = '    SELECT COUNT(error.id) AS count,
-                           DATE(log.date) AS date
-                      FROM fusio_log_error error
-                INNER JOIN fusio_log log
-                        ON log.id = error.logId
-                     WHERE ' . $expression . '
-                  GROUP BY DATE(log.date)';
-
-        $result = $this->connection->fetchAll($sql, $condition->getValues());
-
-        foreach ($result as $row) {
-            $values[$row['date']] = (int) $row['count'];
-        }
-
-        $this->setBody(array(
-            'labels' => array_keys($values),
-            'data'   => [array_values($values)],
-            'series' => ['Errors'],
-        ));
-    }
-    */
 }
