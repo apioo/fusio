@@ -126,7 +126,7 @@ JSON;
             'path' => '/import/void',
         ]);
 
-        $this->assertEquals(42, $route['id']);
+        $this->assertEquals(44, $route['id']);
         $this->assertEquals(1, $route['status']);
         $this->assertEquals('GET|POST|PUT|DELETE', $route['methods']);
         $this->assertEquals('Fusio\Impl\Controller\SchemaApiController', $route['controller']);

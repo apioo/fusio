@@ -8,18 +8,19 @@ var fusioApp = angular.module('fusioApp', [
 	'chart.js',
 	'ng-showdown',
 	'fusioApp.account',
+	'fusioApp.action',
 	'fusioApp.app',
 	'fusioApp.connection',
-	'fusioApp.action',
 	'fusioApp.dashboard',
+	'fusioApp.import',
 	'fusioApp.log',
 	'fusioApp.login',
 	'fusioApp.logout',
 	'fusioApp.routes',
 	'fusioApp.schema',
-	'fusioApp.user',
 	'fusioApp.scope',
-	'fusioApp.statistic'
+	'fusioApp.statistic',
+	'fusioApp.user'
 ]);
 
 fusioApp.factory('fusioIsAuthenticated', ['$location', '$window', '$q', function($location, $window, $q) {  

@@ -123,8 +123,8 @@ JSON;
                 ['appId' => 2, 'userId' => 2, 'status' => 1, 'token' => 'b41344388feed85bc362e518387fdc8c81b896bfe5e794131e1469770571d873', 'scope' => 'bar', 'ip' => '127.0.0.1', 'date' => '2015-06-25 22:49:09'],
             ],
             'fusio_scope_routes' => [
-                ['scopeId' => 4, 'routeId' => 40, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
-                ['scopeId' => 4, 'routeId' => 41, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 4, 'routeId' => 42, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 4, 'routeId' => 43, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
             ],
             'fusio_user_scope' => [
                 ['userId' => 2, 'scopeId' => 3],

@@ -206,10 +206,7 @@ class IndexTest extends ControllerDbTestCase
         {
             "path": "\/backend\/account\/change_password",
             "methods": [
-                "GET",
-                "POST",
-                "PUT",
-                "DELETE"
+                "PUT"
             ],
             "version": "*"
         },

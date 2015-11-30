@@ -31,6 +31,7 @@ use Fusio\Impl\Adapter\InstructionParser;
 use Fusio\Impl\Backend\Filter\Routes\Path as PathFilter;
 use Psr\Log\LoggerInterface;
 use PSX\Dispatch;
+use PSX\Json;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -79,7 +80,7 @@ class RegisterAdapterCommand extends Command
 
             if ($adapter instanceof AdapterInterface) {
                 // parse definition
-                $definition   = $adapter->getDefinition();
+                $definition   = Json::decode(file_get_contents($adapter->getDefinition()), false);
                 $instructions = $this->parser->parse($definition);
                 $rows         = array();
                 $hasRoutes    = false;
@@ -93,7 +94,7 @@ class RegisterAdapterCommand extends Command
                 }
 
                 // show instructions
-                $output->writeLn('Loaded definition ' . $definition);
+                $output->writeLn('Loaded definition ' . $adapter->getDefinition());
                 $output->writeLn('');
                 $output->writeLn('The adapter will install the following entries into the system.');
 

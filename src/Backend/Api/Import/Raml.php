@@ -19,21 +19,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl;
+namespace Fusio\Impl\Backend\Api\Import;
+
+use Fusio\Impl\Authorization\ProtectionTrait;
+use Fusio\Impl\Adapter\Transform\Raml as RamlTransformer;
+use PSX\Controller\ApiAbstract;
 
 /**
- * Base
+ * Raml
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Base
+class Raml extends ApiAbstract
 {
-    const VERSION = '0.1.8';
+    use ProtectionTrait;
 
-    public static function getVersion()
+    public function onPost()
     {
-        return self::VERSION;
+        $schema      = $this->getAccessor()->get('/schema');
+        $transformer = new RamlTransformer();
+
+        $this->setBody($transformer->transform($schema));
     }
 }

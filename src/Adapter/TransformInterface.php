@@ -19,21 +19,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl;
+namespace Fusio\Impl\Adapter;
 
 /**
- * Base
+ * TransformInterface
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Base
+interface TransformInterface
 {
-    const VERSION = '0.1.8';
-
-    public static function getVersion()
-    {
-        return self::VERSION;
-    }
+    /**
+     * Transforms a foreign API format into instructions. Through this it is 
+     * possible to import different API formats i.e. RAML
+     *
+     * @return array
+     */
+    public function transform($data);
 }

@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Adapter;
 
 use PSX\Json;
+use stdClass;
 
 /**
  * InstructionParser
@@ -32,52 +33,49 @@ use PSX\Json;
  */
 class InstructionParser
 {
-    public function parse($file)
+    public function parse(stdClass $definition)
     {
-        $definition   = Json::decode(file_get_contents($file), false);
         $instructions = array();
 
-        if (!empty($definition)) {
-            // get action class
-            if (isset($definition->actionClass) && is_array($definition->actionClass)) {
-                foreach ($definition->actionClass as $actionClass) {
-                    $instructions[] = new Instruction\ActionClass($actionClass);
-                }
+        // get action class
+        if (isset($definition->actionClass) && is_array($definition->actionClass)) {
+            foreach ($definition->actionClass as $actionClass) {
+                $instructions[] = new Instruction\ActionClass($actionClass);
             }
+        }
 
-            // get connection class
-            if (isset($definition->connectionClass) && is_array($definition->connectionClass)) {
-                foreach ($definition->connectionClass as $connectionClass) {
-                    $instructions[] = new Instruction\ConnectionClass($connectionClass);
-                }
+        // get connection class
+        if (isset($definition->connectionClass) && is_array($definition->connectionClass)) {
+            foreach ($definition->connectionClass as $connectionClass) {
+                $instructions[] = new Instruction\ConnectionClass($connectionClass);
             }
+        }
 
-            // get connection
-            if (isset($definition->connection) && is_array($definition->connection)) {
-                foreach ($definition->connection as $connection) {
-                    $instructions[] = new Instruction\Connection($connection);
-                }
+        // get connection
+        if (isset($definition->connection) && is_array($definition->connection)) {
+            foreach ($definition->connection as $connection) {
+                $instructions[] = new Instruction\Connection($connection);
             }
+        }
 
-            // get schema
-            if (isset($definition->schema) && is_array($definition->schema)) {
-                foreach ($definition->schema as $schema) {
-                    $instructions[] = new Instruction\Schema($schema);
-                }
+        // get schema
+        if (isset($definition->schema) && is_array($definition->schema)) {
+            foreach ($definition->schema as $schema) {
+                $instructions[] = new Instruction\Schema($schema);
             }
+        }
 
-            // get action
-            if (isset($definition->action) && is_array($definition->action)) {
-                foreach ($definition->action as $action) {
-                    $instructions[] = new Instruction\Action($action);
-                }
+        // get action
+        if (isset($definition->action) && is_array($definition->action)) {
+            foreach ($definition->action as $action) {
+                $instructions[] = new Instruction\Action($action);
             }
+        }
 
-            // get routes
-            if (isset($definition->routes) && is_array($definition->routes)) {
-                foreach ($definition->routes as $route) {
-                    $instructions[] = new Instruction\Route($route);
-                }
+        // get routes
+        if (isset($definition->routes) && is_array($definition->routes)) {
+            foreach ($definition->routes as $route) {
+                $instructions[] = new Instruction\Route($route);
             }
         }
 
