@@ -14,10 +14,11 @@
 	<script src="dist/fusio.min.js"></script>
 	<script type="text/javascript">
 	/**
-	 * The url to the fusio API endpoint. Change this to the fitting url in 
-	 * order to connect to the backend API.
+	 * Url to the fusio API endpoint. Change this to the fitting url in order to 
+	 * connect to the backend API i.e.:
+	 * http://127.0.0.1/projects/fusio/public/index.php/
 	 */
-	var fusio_url = 'http://127.0.0.1:8008/';
+	var fusio_url = guessFusioEndpointUrl();
 	</script>
 </head>
 <body class="fusio-hidden">

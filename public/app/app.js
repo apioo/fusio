@@ -64,3 +64,23 @@ fusioApp.run(function ($rootScope, $window, $location, $http, helpLoader) {
 	// make help loader global available
 	$rootScope.help = helpLoader;
 });
+
+/**
+ * Simple helper function to guess the API endpoint url
+ */
+function guessFusioEndpointUrl() {
+	var url = window.location.href;
+	var removePart = function(url, sign) {
+		var count = (url.match(/\//g) || []).length;
+		var pos = url.lastIndexOf(sign);
+		if (count > 2 && pos !== -1) {
+			return url.substring(0, pos);
+		}
+		return url;
+	}
+	var parts = ['#', '?', '/'];
+	for (var i = 0; i < parts.length; i++) {
+		url = removePart(url, parts[i]);
+	}
+	return url + '/index.php/';
+}
