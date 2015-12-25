@@ -24,6 +24,7 @@ namespace Fusio\Impl\Dependency;
 use Fusio\Impl\App;
 use Fusio\Impl\Authorization as ApiAuthorization;
 use Fusio\Impl\Backend\Authorization as BackendAuthorization;
+use Fusio\Impl\Consumer\Authorization as ConsumerAuthorization;
 use Fusio\Impl\Backend\Table\Routes\DependencyManager;
 use Fusio\Impl\Base;
 use Fusio\Impl\Connector;
@@ -68,7 +69,17 @@ class Container extends DefaultContainer
     public function getApiGrantTypeFactory()
     {
         $factory = new GrantTypeFactory();
-        $factory->add(new ApiAuthorization\ClientCredentials($this->get('connection')));
+        $factory->add(new ApiAuthorization\ClientCredentials(
+            $this->get('connection'), 
+            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\App\Scope'),
+            $this->get('config')->get('fusio_expire_app')
+        ));
+
+        $factory->add(new ApiAuthorization\AuthorizationCode(
+            $this->get('connection'), 
+            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\App\Scope'),
+            $this->get('config')->get('fusio_expire_app')
+        ));
 
         return $factory;
     }
@@ -79,7 +90,24 @@ class Container extends DefaultContainer
     public function getBackendGrantTypeFactory()
     {
         $factory = new GrantTypeFactory();
-        $factory->add(new BackendAuthorization\ClientCredentials($this->get('connection')));
+        $factory->add(new BackendAuthorization\ClientCredentials(
+            $this->get('connection'), 
+            $this->get('config')->get('fusio_expire_backend')
+        ));
+
+        return $factory;
+    }
+
+    /**
+     * @return \PSX\Oauth2\Provider\GrantTypeFactory
+     */
+    public function getConsumerGrantTypeFactory()
+    {
+        $factory = new GrantTypeFactory();
+        $factory->add(new ConsumerAuthorization\ClientCredentials(
+            $this->get('connection'), 
+            $this->get('config')->get('fusio_expire_consumer')
+        ));
 
         return $factory;
     }

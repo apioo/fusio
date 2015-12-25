@@ -51,6 +51,19 @@ class TokenGenerator
     }
 
     /**
+     * Generates the authorization code 
+     *
+     * @return string
+     */
+    public static function generateCode()
+    {
+        $factory   = new Factory();
+        $generator = $factory->getMediumStrengthGenerator();
+
+        return $generator->generateString(16);
+    }
+
+    /**
      * Generates the app key
      *
      * @return string

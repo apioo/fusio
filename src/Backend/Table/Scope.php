@@ -43,6 +43,7 @@ class Scope extends TableAbstract
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
             'name' => self::TYPE_VARCHAR,
+            'description' => self::TYPE_VARCHAR,
         );
     }
 

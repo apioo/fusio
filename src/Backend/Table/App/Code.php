@@ -19,62 +19,52 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table;
+namespace Fusio\Impl\Backend\Table\App;
 
+use Fusio\Impl\Authorization\TokenGenerator;
 use PSX\Sql\TableAbstract;
 
 /**
- * App
+ * Code
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class App extends TableAbstract
+class Code extends TableAbstract
 {
-    const STATUS_ACTIVE      = 0x1;
-    const STATUS_PENDING     = 0x2;
-    const STATUS_DEACTIVATED = 0x3;
-
-    const BACKEND  = 1;
-    const CONSUMER = 2;
-
     public function getName()
     {
-        return 'fusio_app';
+        return 'fusio_app_code';
     }
 
     public function getColumns()
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
+            'appId' => self::TYPE_INT,
             'userId' => self::TYPE_INT,
-            'status' => self::TYPE_INT,
-            'name' => self::TYPE_VARCHAR,
-            'url' => self::TYPE_VARCHAR,
-            'appKey' => self::TYPE_VARCHAR,
-            'appSecret' => self::TYPE_VARCHAR,
+            'code' => self::TYPE_VARCHAR,
+            'redirectUri' => self::TYPE_VARCHAR,
+            'scope' => self::TYPE_VARCHAR,
+            'state' => self::TYPE_VARCHAR,
             'date' => self::TYPE_DATETIME,
         );
     }
 
-    public function getAuthorizedApps($userId)
+    public function generateCode($appId, $userId, $redirectUri, array $scopes)
     {
-        $sql = '    SELECT userGrant.id, 
-                           userGrant.date AS createDate,
-                           userGrant.appId AS app_id,
-                           app.name AS app_name,
-                           app.url AS app_url
-                      FROM fusio_user_grant userGrant
-                INNER JOIN fusio_app app
-                        ON userGrant.appId = app.id
-                     WHERE userGrant.allow = 1
-                       AND userGrant.userId = :userId
-                       AND app.status = :status';
+        $code = TokenGenerator::generateCode();
 
-        return $this->connection->fetchAll($sql, [
-            'userId' => $userId,
-            'status' => self::STATUS_ACTIVE
+        $this->create([
+            'appId'       => $appId,
+            'userId'      => $userId,
+            'code'        => $code,
+            'redirectUri' => $redirectUri,
+            'scope'       => implode(',', $scopes),
+            'date'        => new \DateTime(),
         ]);
+
+        return $code;
     }
 }

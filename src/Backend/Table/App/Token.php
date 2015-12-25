@@ -81,4 +81,18 @@ class Token extends TableAbstract
             'id'     => $tokenId
         ));
     }
+
+    public function removeAllTokensFromAppAndUser($appId, $userId)
+    {
+        $sql = 'UPDATE fusio_app_token
+                   SET status = :status
+                 WHERE appId = :appId
+                   AND userId = :userId';
+
+        $this->connection->executeUpdate($sql, array(
+            'status' => self::STATUS_DELETED,
+            'appId'  => $appId,
+            'userId' => $userId
+        ));
+    }
 }

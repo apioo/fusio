@@ -19,37 +19,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Schema;
+namespace Fusio\Impl\Backend\Table\User;
 
-use PSX\Data\Schema\Property;
-use PSX\Data\SchemaAbstract;
+use PSX\Sql\TableAbstract;
 
 /**
- * App
+ * Grant
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class App extends SchemaAbstract
+class Grant extends TableAbstract
 {
-    public function getDefinition()
+    public function getName()
     {
-        $sb = $this->getSchemaBuilder('app');
-        $sb->integer('id');
-        $sb->integer('userId');
-        $sb->integer('status');
-        $sb->string('name')
-            ->setPattern('[A-z0-9\-\_]{3,64}');
-        $sb->string('url');
-        $sb->string('appKey');
-        $sb->string('appSecret');
-        $sb->dateTime('date');
-        $sb->arrayType('scopes')
-            ->setPrototype(Property::getString('name'));
-        $sb->arrayType('tokens')
-            ->setPrototype($this->getSchema('Fusio\Impl\Backend\Schema\App\Token'));
+        return 'fusio_user_grant';
+    }
 
-        return $sb->getProperty();
+    public function getColumns()
+    {
+        return array(
+            'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
+            'userId' => self::TYPE_INT,
+            'appId' => self::TYPE_INT,
+            'allow' => self::TYPE_INT,
+            'date' => self::TYPE_DATETIME,
+        );
     }
 }

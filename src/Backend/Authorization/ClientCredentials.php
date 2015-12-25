@@ -42,10 +42,12 @@ use PSX\Oauth2\Provider\GrantType\ClientCredentialsAbstract;
 class ClientCredentials extends ClientCredentialsAbstract
 {
     protected $connection;
+    protected $expireBackend;
 
-    public function __construct(Connection $connection)
+    public function __construct(Connection $connection, $expireBackend)
     {
-        $this->connection = $connection;
+        $this->connection    = $connection;
+        $this->expireBackend = $expireBackend;
     }
 
     protected function generate(Credentials $credentials, $scope)
@@ -64,17 +66,17 @@ class ClientCredentials extends ClientCredentialsAbstract
 
         if (!empty($user)) {
             if (password_verify($credentials->getClientSecret(), $user['password'])) {
-                $scopes = ['backend'];
+                $scopes = ['backend', 'authorization'];
 
                 // generate access token
                 $expires     = new \DateTime();
-                $expires->add(new \DateInterval('PT1H'));
+                $expires->add(new \DateInterval($this->expireBackend));
                 $now         = new \DateTime();
                 $accessToken = TokenGenerator::generateToken();
 
                 $this->connection->insert('fusio_app_token', [
-                    'appId'  => App::BACKEND,
-                    'userId' => $user['id'],
+                    'appId'   => App::BACKEND,
+                    'userId'  => $user['id'],
                     'status'  => AppToken::STATUS_ACTIVE,
                     'token'   => $accessToken,
                     'scope'   => implode(',', $scopes),

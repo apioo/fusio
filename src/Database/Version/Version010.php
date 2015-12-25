@@ -95,6 +95,17 @@ class Version010 implements VersionInterface
         $appTokenTable->setPrimaryKey(array('id'));
         $appTokenTable->addUniqueIndex(array('token'));
 
+        $appCodeTable = $schema->createTable('fusio_app_code');
+        $appCodeTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $appCodeTable->addColumn('appId', 'integer');
+        $appCodeTable->addColumn('userId', 'integer');
+        $appCodeTable->addColumn('code', 'string', array('length' => 255));
+        $appCodeTable->addColumn('redirectUri', 'string', array('length' => 255));
+        $appCodeTable->addColumn('scope', 'string', array('length' => 255));
+        $appCodeTable->addColumn('date', 'datetime');
+        $appCodeTable->setPrimaryKey(array('id'));
+        $appCodeTable->addUniqueIndex(array('code'));
+
         $connectionTable = $schema->createTable('fusio_connection');
         $connectionTable->addColumn('id', 'integer', array('autoincrement' => true));
         $connectionTable->addColumn('name', 'string', array('length' => 64));
@@ -170,6 +181,7 @@ class Version010 implements VersionInterface
         $scopeTable = $schema->createTable('fusio_scope');
         $scopeTable->addColumn('id', 'integer', array('autoincrement' => true));
         $scopeTable->addColumn('name', 'string', array('length' => 32));
+        $scopeTable->addColumn('description', 'string', array('length' => 255));
         $scopeTable->setPrimaryKey(array('id'));
         $scopeTable->addUniqueIndex(array('name'));
 
@@ -195,6 +207,15 @@ class Version010 implements VersionInterface
         $scopeRoutesTable->addColumn('allow', 'smallint');
         $scopeRoutesTable->addColumn('methods', 'string', array('length' => 64, 'notnull' => false));
         $scopeRoutesTable->setPrimaryKey(array('id'));
+
+        $userGrantTable = $schema->createTable('fusio_user_grant');
+        $userGrantTable->addColumn('id', 'integer', array('autoincrement' => true));
+        $userGrantTable->addColumn('userId', 'integer');
+        $userGrantTable->addColumn('appId', 'integer');
+        $userGrantTable->addColumn('allow', 'integer');
+        $userGrantTable->addColumn('date', 'datetime');
+        $userGrantTable->setPrimaryKey(array('id'));
+        $userGrantTable->addUniqueIndex(array('userId', 'appId'));
 
         $userScopeTable = $schema->createTable('fusio_user_scope');
         $userScopeTable->addColumn('id', 'integer', array('autoincrement' => true));
@@ -247,10 +268,13 @@ class Version010 implements VersionInterface
 
     public function getInstallInserts()
     {
+        $backendAppKey     = TokenGenerator::generateAppKey();
+        $backendAppSecret  = TokenGenerator::generateAppSecret();
+        $consumerAppKey    = TokenGenerator::generateAppKey();
+        $consumerAppSecret = TokenGenerator::generateAppSecret();
+
         $parser    = new Parser();
         $now       = new DateTime();
-        $appKey    = TokenGenerator::generateAppKey();
-        $appSecret = TokenGenerator::generateAppSecret();
         $password  = \password_hash('0a29e5bcaa810de0ca0513d9d4ab62f1860f998a', PASSWORD_DEFAULT);
 
         $schema    = $this->getPassthruSchema();
@@ -263,7 +287,8 @@ class Version010 implements VersionInterface
                 ['status' => 1, 'name' => 'Administrator', 'password' => $password, 'date' => $now->format('Y-m-d H:i:s')],
             ],
             'fusio_app' => [
-                ['userId' => 1, 'status' => 1, 'name' => 'Backend', 'url' => 'http://fusio-project.org', 'appKey' => $appKey, 'appSecret' => $appSecret, 'date' => $now->format('Y-m-d H:i:s')],
+                ['userId' => 1, 'status' => 1, 'name' => 'Backend',  'url' => 'http://fusio-project.org', 'appKey' => $backendAppKey, 'appSecret' => $backendAppSecret, 'date' => $now->format('Y-m-d H:i:s')],
+                ['userId' => 1, 'status' => 1, 'name' => 'Consumer', 'url' => 'http://fusio-project.org', 'appKey' => $consumerAppKey, 'appSecret' => $consumerAppSecret, 'date' => $now->format('Y-m-d H:i:s')],
             ],
             'fusio_connection' => [
                 ['name' => 'Native-Connection', 'class' => 'Fusio\Impl\Connection\Native', 'config' => null]
@@ -277,8 +302,9 @@ class Version010 implements VersionInterface
                 ['class' => 'Fusio\Impl\Connection\RabbitMQ'],
             ],
             'fusio_scope' => [
-                ['name' => 'backend'],
-                ['name' => 'authorization'],
+                ['name' => 'backend', 'description' => 'Access to the backend API'],
+                ['name' => 'consumer', 'description' => 'Consumer API endpoint'],
+                ['name' => 'authorization', 'description' => ''],
             ],
             'fusio_action' => [
                 ['status' => 1, 'name' => 'Welcome', 'class' => 'Fusio\Impl\Action\StaticResponse', 'config' => serialize(['response' => $response]), 'date' => $now->format('Y-m-d H:i:s')],
@@ -309,7 +335,6 @@ class Version010 implements VersionInterface
                 ['status' => 1, 'name' => 'Passthru', 'source' => $schema, 'cache' => $cache]
             ],
             'fusio_routes' => [
-                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend',                             'controller' => 'Fusio\Impl\Backend\Application\Index',                        'config' => null],
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/action',                      'controller' => 'Fusio\Impl\Backend\Api\Action\Collection',                    'config' => null],
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/action/list',                 'controller' => 'Fusio\Impl\Backend\Api\Action\ListActions::doIndex',          'config' => null],
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/backend/action/form',                 'controller' => 'Fusio\Impl\Backend\Api\Action\ListActions::doDetail',         'config' => null],
@@ -341,8 +366,16 @@ class Version010 implements VersionInterface
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/backend/account/change_password',     'controller' => 'Fusio\Impl\Backend\Api\Account\ChangePassword',               'config' => null],
                 ['status' => 1, 'methods' => 'POST',                'path' => '/backend/import/raml',                 'controller' => 'Fusio\Impl\Backend\Api\Import\Raml',                          'config' => null],
                 ['status' => 1, 'methods' => 'POST',                'path' => '/backend/import/process',              'controller' => 'Fusio\Impl\Backend\Api\Import\Process',                       'config' => null],
-
                 ['status' => 1, 'methods' => 'GET|POST',            'path' => '/backend/token',                       'controller' => 'Fusio\Impl\Backend\Authorization\Token',                      'config' => null],
+
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/consumer/app/developer',              'controller' => 'Fusio\Impl\Consumer\Api\App\Developer\Collection',            'config' => null],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/consumer/app/developer/:app_id',      'controller' => 'Fusio\Impl\Consumer\Api\App\Developer\Entity',                'config' => null],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/consumer/app/grant',                  'controller' => 'Fusio\Impl\Consumer\Api\App\Grant\Collection',                'config' => null],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/consumer/app/grant/:grant_id',        'controller' => 'Fusio\Impl\Consumer\Api\App\Grant\Entity',                    'config' => null],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/consumer/app/meta',                   'controller' => 'Fusio\Impl\Consumer\Api\App\Meta\Entity',                     'config' => null],
+                ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/consumer/authorize',                  'controller' => 'Fusio\Impl\Consumer\Api\Authorize\Authorize',                 'config' => null],
+                ['status' => 1, 'methods' => 'GET|POST',            'path' => '/consumer/token',                      'controller' => 'Fusio\Impl\Consumer\Authorization\Token',                     'config' => null],
+
                 ['status' => 1, 'methods' => 'POST',                'path' => '/authorization/revoke',                'controller' => 'Fusio\Impl\Authorization\Revoke',                             'config' => null],
                 ['status' => 1, 'methods' => 'GET|POST',            'path' => '/authorization/token',                 'controller' => 'Fusio\Impl\Authorization\Token',                              'config' => null],
                 ['status' => 1, 'methods' => 'GET',                 'path' => '/authorization/whoami',                'controller' => 'Fusio\Impl\Authorization\Whoami',                             'config' => null],
@@ -357,50 +390,51 @@ class Version010 implements VersionInterface
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/',                                    'controller' => 'Fusio\Impl\Controller\SchemaApiController',                   'config' => $config],
             ],
             'fusio_app_scope' => [
-                ['appId' => 1, 'scopeId' => 1]
+                ['appId' => 1, 'scopeId' => 1],
+                ['appId' => 2, 'scopeId' => 2],
             ],
             'fusio_scope_routes' => [
                 ['scopeId' => 1, 'routeId' => 1,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
-                ['scopeId' => 1, 'routeId' => 2,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 2,  'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 3,  'allow' => 1, 'methods' => 'GET'],
-                ['scopeId' => 1, 'routeId' => 4,  'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 4,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 5,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
-                ['scopeId' => 1, 'routeId' => 6,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
-                ['scopeId' => 1, 'routeId' => 7,  'allow' => 1, 'methods' => 'DELETE'],
+                ['scopeId' => 1, 'routeId' => 6,  'allow' => 1, 'methods' => 'DELETE'],
+                ['scopeId' => 1, 'routeId' => 7,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 8,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
-                ['scopeId' => 1, 'routeId' => 9,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 9,  'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 10, 'allow' => 1, 'methods' => 'GET'],
-                ['scopeId' => 1, 'routeId' => 11, 'allow' => 1, 'methods' => 'GET'],
-                ['scopeId' => 1, 'routeId' => 12, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 11, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 12, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 13, 'allow' => 1, 'methods' => 'GET'],
-                ['scopeId' => 1, 'routeId' => 14, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 14, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 15, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 16, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 17, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
-                ['scopeId' => 1, 'routeId' => 18, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
-                ['scopeId' => 1, 'routeId' => 19, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 18, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 1, 'routeId' => 19, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 20, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 21, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 22, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
-                ['scopeId' => 1, 'routeId' => 23, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 23, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 24, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 25, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 26, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 27, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 28, 'allow' => 1, 'methods' => 'GET'],
-                ['scopeId' => 1, 'routeId' => 29, 'allow' => 1, 'methods' => 'GET'],
-                ['scopeId' => 1, 'routeId' => 30, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 20, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 30, 'allow' => 1, 'methods' => 'POST'],
                 ['scopeId' => 1, 'routeId' => 31, 'allow' => 1, 'methods' => 'POST'],
-                ['scopeId' => 1, 'routeId' => 32, 'allow' => 1, 'methods' => 'POST'],
 
-                ['scopeId' => 1, 'routeId' => 33, 'allow' => 1, 'methods' => 'GET|POST'],
-                ['scopeId' => 1, 'routeId' => 34, 'allow' => 1, 'methods' => 'POST'],
-                ['scopeId' => 1, 'routeId' => 35, 'allow' => 1, 'methods' => 'GET|POST'],
-                ['scopeId' => 1, 'routeId' => 36, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 2, 'routeId' => 33, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 2, 'routeId' => 34, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 2, 'routeId' => 35, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 2, 'routeId' => 36, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 2, 'routeId' => 37, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 2, 'routeId' => 38, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
 
-                ['scopeId' => 2, 'routeId' => 37, 'allow' => 1, 'methods' => 'POST'],
-                ['scopeId' => 2, 'routeId' => 38, 'allow' => 1, 'methods' => 'GET|POST'],
-                ['scopeId' => 2, 'routeId' => 39, 'allow' => 1, 'methods' => 'GET'],
+                ['scopeId' => 3, 'routeId' => 40, 'allow' => 1, 'methods' => 'POST'],
+                ['scopeId' => 3, 'routeId' => 42, 'allow' => 1, 'methods' => 'GET'],
             ],
             'fusio_user_scope' => [
                 ['userId' => 1, 'scopeId' => 1]

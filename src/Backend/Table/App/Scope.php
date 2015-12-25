@@ -53,4 +53,58 @@ class Scope extends TableAbstract
 
         $this->connection->executeQuery($sql, array('appId' => $appId));
     }
+
+    public function getValidScopes($appId, $scope, array $exclude = array())
+    {
+        $sql = '    SELECT name
+                      FROM fusio_app_scope appScope
+                INNER JOIN fusio_scope scope
+                        ON scope.id = appScope.scopeId
+                     WHERE appScope.appId = :app';
+
+        $result = $this->connection->fetchAll($sql, array('app' => $appId));
+        $data   = array();
+        $scopes = explode(',', $scope);
+
+        foreach ($result as $availableScope) {
+            if (in_array($availableScope['name'], $scopes)) {
+                // is the scope excluded
+                if (in_array($availableScope['name'], $exclude)) {
+                    continue;
+                }
+
+                $data[] = $availableScope['name'];
+            }
+        }
+
+        return $data;
+    }
+
+    public function getDetailsByApp($appId, $scope, array $exclude = array())
+    {
+        $sql = '    SELECT scope.name,
+                           scope.description
+                      FROM fusio_app_scope appScope
+                INNER JOIN fusio_scope scope
+                        ON scope.id = appScope.scopeId
+                     WHERE appScope.appId = :appId';
+
+        $result = $this->connection->fetchAll($sql, array('appId' => $appId)) ?: array();
+        $data   = array();
+        $scopes = explode(',', $scope);
+
+        foreach ($result as $availableScope) {
+            if (in_array($availableScope['name'], $scopes)) {
+                // is the scope excluded
+                if (in_array($availableScope['name'], $exclude)) {
+                    continue;
+                }
+
+                $data[] = $availableScope;
+            }
+        }
+
+        return $data;
+    }
+
 }

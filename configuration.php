@@ -2,6 +2,14 @@
 
 return array(
 
+    // The max amount of apps a consumer can register
+    'fusio_app_per_consumer'  => 16,
+
+    // Expire times of the different tokens which can be issued
+    'fusio_expire_app'        => 'P2D',
+    'fusio_expire_backend'    => 'PT1H',
+    'fusio_expire_consumer'   => 'PT1H',
+
     // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
     // http://localhost.com)
     'psx_url'                 => 'http://127.0.0.1/projects/fusio/public',

@@ -23,60 +23,71 @@ namespace Fusio\Impl\Authorization;
 
 use Doctrine\DBAL\Connection;
 use Fusio\Impl\Backend\Table\App;
-use Fusio\Impl\Backend\Table\App\Scope;
 use Fusio\Impl\Backend\Table\App\Token as AppToken;
 use Fusio\Impl\Backend\Table\User;
 use PSX\Oauth2\AccessToken;
 use PSX\Oauth2\Authorization\Exception\ServerErrorException;
 use PSX\Oauth2\Provider\Credentials;
-use PSX\Oauth2\Provider\GrantType\ClientCredentialsAbstract;
+use PSX\Oauth2\Provider\GrantType\AuthorizationCodeAbstract;
 
 /**
- * ClientCredentials
+ * AuthorizationCode
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class ClientCredentials extends ClientCredentialsAbstract
+class AuthorizationCode extends AuthorizationCodeAbstract
 {
     protected $connection;
     protected $scope;
-    protected $expireApp;
+    protected $expireConfidential;
 
-    public function __construct(Connection $connection, Scope $scope, $expireApp)
+    public function __construct(Connection $connection, Scope $scope, $expireConfidential)
     {
-        $this->connection = $connection;
-        $this->scope      = $scope;
-        $this->expireApp  = $expireApp;
+        $this->connection         = $connection;
+        $this->scope              = $scope;
+        $this->expireConfidential = $expireConfidential;
     }
 
-    protected function generate(Credentials $credentials, $scope)
+    protected function generate(Credentials $credentials, $code, $redirectUri, $clientId)
     {
-        $sql = 'SELECT id,
-				       userId
-			      FROM fusio_app
-			     WHERE appKey = :app_key
-			       AND appSecret = :app_secret
-			       AND status = :status';
+        $sql = '    SELECT code.id,
+                           code.scope,
+                           code.date
+                      FROM fusio_app_code code
+                INNER JOIN fusio_app app
+                        ON app.id = code.appId
+                     WHERE app.appKey = :app_key
+                       AND app.appSecret = :app_secret
+                       AND app.status = :status
+                       AND code.code = :code
+                       AND code.redirectUri = :redirectUri';
 
-        $app = $this->connection->fetchAssoc($sql, array(
-            'app_key'    => $credentials->getClientId(),
-            'app_secret' => $credentials->getClientSecret(),
-            'status'     => App::STATUS_ACTIVE,
+        $code = $this->connection->fetchAssoc($sql, array(
+            'app_key'     => $credentials->getClientId(),
+            'app_secret'  => $credentials->getClientSecret(),
+            'status'      => App::STATUS_ACTIVE,
+            'code'        => $code,
+            'redirectUri' => $redirectUri,
         ));
 
-        if (!empty($app)) {
-            // validate scopes
-            $scopes = $this->scope->getValidScopes($app['id'], $scope, ['backend']);
+        $expires = new \DateTime();
+        $expires->add(new \DateInterval($this->expireConfidential));
+
+        if (!empty($code)) {
+            // @TODO check whether the code is older then 1 hour if so thow an 
+            // exception
+            // $code['date']
+
+            // scopes
+            $scopes = $this->scope->getValidScopes($app['id'], $code['scope'], ['backend']);
 
             if (empty($scopes)) {
                 throw new ServerErrorException('No valid scope given');
             }
 
             // generate access token
-            $expires     = new \DateTime();
-            $expires->add(new \DateInterval($this->expireApp));
             $now         = new \DateTime();
             $accessToken = TokenGenerator::generateToken();
 
@@ -101,31 +112,5 @@ class ClientCredentials extends ClientCredentialsAbstract
         } else {
             throw new ServerErrorException('Unknown user');
         }
-    }
-
-    protected function getValidScopes($appId, $scope)
-    {
-        $sql = '    SELECT name
-				      FROM fusio_app_scope appScope
-				INNER JOIN fusio_scope scope
-				        ON scope.id = appScope.scopeId
-				     WHERE appScope.appId = :app';
-
-        $availableScopes = $this->connection->fetchAll($sql, array('app' => $appId));
-        $reservedScopes  = ['backend'];
-        $result          = array();
-        $scopes          = explode(',', $scope);
-
-        foreach ($availableScopes as $availableScope) {
-            if (in_array($scopes, $reservedScopes)) {
-                continue;
-            }
-
-            if (in_array($availableScope['name'], $scopes)) {
-                $result[] = $availableScope['name'];
-            }
-        }
-
-        return $result;
     }
 }
