@@ -97,7 +97,6 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
     };
 
     $scope.openSchemaDialog = function(schema){
-        console.log(schema);
         var modalInstance = $modal.open({
             size: 'lg',
             backdrop: 'static',
