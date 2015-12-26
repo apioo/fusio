@@ -23,6 +23,7 @@ namespace Fusio\Impl\Authorization;
 
 use Doctrine\DBAL\Connection;
 use Fusio\Impl\Backend\Table\App;
+use Fusio\Impl\Backend\Table\App\Scope;
 use Fusio\Impl\Backend\Table\App\Token as AppToken;
 use Fusio\Impl\Backend\Table\User;
 use PSX\Oauth2\AccessToken;
@@ -53,6 +54,8 @@ class AuthorizationCode extends AuthorizationCodeAbstract
     protected function generate(Credentials $credentials, $code, $redirectUri, $clientId)
     {
         $sql = '    SELECT code.id,
+                           code.appId,
+                           code.userId,
                            code.scope,
                            code.date
                       FROM fusio_app_code code
@@ -69,7 +72,7 @@ class AuthorizationCode extends AuthorizationCodeAbstract
             'app_secret'  => $credentials->getClientSecret(),
             'status'      => App::STATUS_ACTIVE,
             'code'        => $code,
-            'redirectUri' => $redirectUri,
+            'redirectUri' => $redirectUri ?: '',
         ));
 
         $expires = new \DateTime();
@@ -81,7 +84,7 @@ class AuthorizationCode extends AuthorizationCodeAbstract
             // $code['date']
 
             // scopes
-            $scopes = $this->scope->getValidScopes($app['id'], $code['scope'], ['backend']);
+            $scopes = $this->scope->getValidScopes($code['appId'], $code['scope'], ['backend']);
 
             if (empty($scopes)) {
                 throw new ServerErrorException('No valid scope given');
@@ -92,8 +95,8 @@ class AuthorizationCode extends AuthorizationCodeAbstract
             $accessToken = TokenGenerator::generateToken();
 
             $this->connection->insert('fusio_app_token', [
-                'appId'  => $app['id'],
-                'userId' => $app['userId'],
+                'appId'  => $code['appId'],
+                'userId' => $code['userId'],
                 'status'  => AppToken::STATUS_ACTIVE,
                 'token'   => $accessToken,
                 'scope'   => implode(',', $scopes),

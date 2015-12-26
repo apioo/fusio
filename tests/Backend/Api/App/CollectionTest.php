@@ -49,39 +49,54 @@ class CollectionTest extends ControllerDbTestCase
         // we need to get the current backend app key
         $appKey = $this->connection->fetchColumn('SELECT appKey FROM fusio_app ORDER BY id ASC LIMIT 1');
 
-        $body   = (string) $response->getBody();
+        $body = (string) $response->getBody();
+        $body = preg_replace('/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z/m', '[datetime]', $body);
+        $body = preg_replace('/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/m', '[app_key]', $body);
+
         $expect = <<<JSON
 {
-    "totalItems": 4,
+    "totalItems": 5,
     "startIndex": 0,
     "entry": [
         {
-            "id": 4,
+            "id": 5,
             "userId": 2,
             "status": 3,
             "name": "Deactivated",
-            "appKey": "f46af464-f7eb-4d04-8661-13063a30826b"
+            "appKey": "[app_key]",
+            "date": "[datetime]"
+        },
+        {
+            "id": 4,
+            "userId": 2,
+            "status": 2,
+            "name": "Pending",
+            "appKey": "[app_key]",
+            "date": "[datetime]"
         },
         {
             "id": 3,
             "userId": 2,
-            "status": 2,
-            "name": "Pending",
-            "appKey": "7c14809c-544b-43bd-9002-23e1c2de6067"
+            "status": 1,
+            "name": "Foo-App",
+            "appKey": "[app_key]",
+            "date": "[datetime]"
         },
         {
             "id": 2,
-            "userId": 2,
+            "userId": 1,
             "status": 1,
-            "name": "Foo-App",
-            "appKey": "5347307d-d801-4075-9aaa-a21a29a448c5"
+            "name": "Consumer",
+            "appKey": "[app_key]",
+            "date": "[datetime]"
         },
         {
             "id": 1,
             "userId": 1,
             "status": 1,
             "name": "Backend",
-            "appKey": "{$appKey}"
+            "appKey": "[app_key]",
+            "date": "[datetime]"
         }
     ]
 }
@@ -125,7 +140,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(5, $row['id']);
+        $this->assertEquals(6, $row['id']);
         $this->assertEquals(0, $row['status']);
         $this->assertEquals(1, $row['userId']);
         $this->assertEquals('Foo', $row['name']);

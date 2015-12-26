@@ -110,7 +110,8 @@ class Collection extends SchemaApiAbstract
         $scopeTable = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope');
 
         $scopeTable->create(array(
-            'name' => $record->getName(),
+            'name'        => $record->getName(),
+            'description' => $record->getDescription(),
         ));
 
         // insert routes

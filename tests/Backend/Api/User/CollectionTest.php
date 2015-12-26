@@ -99,7 +99,7 @@ JSON;
 
         $body   = (string) $response->getBody();
         // replace the dynamic password
-        $body   = preg_replace('/[[:xdigit:]]{40}/', '[password]', $body);
+        $body   = preg_replace('/[A-z0-9\+\/]{20}/', '[password]', $body);
         $expect = <<<'JSON'
 {
     "success": true,
@@ -138,11 +138,11 @@ JSON;
         $this->assertEquals([[
             'id'      => 5,
             'userId'  => 5,
-            'scopeId' => 3,
+            'scopeId' => 4,
         ], [
             'id'      => 4,
             'userId'  => 5,
-            'scopeId' => 4,
+            'scopeId' => 5,
         ]], $routes);
     }
 

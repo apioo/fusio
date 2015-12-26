@@ -59,7 +59,7 @@ trait ActionTestCaseTrait
     {
         $app = new App();
         $app->setAnonymous(false);
-        $app->setId(2);
+        $app->setId(3);
         $app->setUserId(2);
         $app->setStatus(1);
         $app->setName('Foo-App');

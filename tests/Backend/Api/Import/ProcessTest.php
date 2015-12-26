@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Api\Dashboard;
+namespace Fusio\Impl\Backend\Api\Import;
 
 use Fusio\Impl\Fixture;
 use PSX\Test\ControllerDbTestCase;

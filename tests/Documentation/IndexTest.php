@@ -206,7 +206,70 @@ class IndexTest extends ControllerDbTestCase
         {
             "path": "\/backend\/account\/change_password",
             "methods": [
-                "PUT"
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE"
+            ],
+            "version": "*"
+        },
+        {
+            "path": "\/consumer\/app\/developer",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE"
+            ],
+            "version": "*"
+        },
+        {
+            "path": "\/consumer\/app\/developer\/:app_id",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE"
+            ],
+            "version": "*"
+        },
+        {
+            "path": "\/consumer\/app\/grant",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE"
+            ],
+            "version": "*"
+        },
+        {
+            "path": "\/consumer\/app\/grant\/:grant_id",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE"
+            ],
+            "version": "*"
+        },
+        {
+            "path": "\/consumer\/app\/meta",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE"
+            ],
+            "version": "*"
+        },
+        {
+            "path": "\/consumer\/authorize",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE"
             ],
             "version": "*"
         },

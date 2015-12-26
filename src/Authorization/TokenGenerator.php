@@ -85,4 +85,17 @@ class TokenGenerator
 
         return $generator->generateString(64);
     }
+
+    /**
+     * Generates the user password
+     *
+     * @return string
+     */
+    public static function generateUserPassword()
+    {
+        $factory   = new Factory();
+        $generator = $factory->getMediumStrengthGenerator();
+
+        return $generator->generateString(20);
+    }
 }

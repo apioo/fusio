@@ -43,11 +43,11 @@ class ChangePasswordTest extends ControllerDbTestCase
     {
         $response = $this->sendRequest('http://127.0.0.1/backend/account/change_password', 'PUT', array(
             'User-Agent'    => 'Fusio TestCase',
-            'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
+            'Authorization' => 'Bearer e4a4d21e8ca88b215572b4d8635c492d8877fd8d3de6b98ba7c08d282adfb94f'
         ), json_encode([
-            'oldPassword'    => '0a29e5bcaa810de0ca0513d9d4ab62f1860f998a',
-            'newPassword'    => '0a29e5bcaa810de0ca0513d9d4ab62f1860f998f',
-            'verifyPassword' => '0a29e5bcaa810de0ca0513d9d4ab62f1860f998f',
+            'oldPassword'    => 'qf2vX10Ec3wFZHx0K1eL',
+            'newPassword'    => 'qf2vX10Ec3wFZHx0K1eL',
+            'verifyPassword' => 'qf2vX10Ec3wFZHx0K1eL',
         ]));
 
         $body   = (string) $response->getBody();

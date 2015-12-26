@@ -56,6 +56,10 @@ class LatestAppsTest extends ControllerDbTestCase
             "date": "[datetime]"
         },
         {
+            "name": "Consumer",
+            "date": "[datetime]"
+        },
+        {
             "name": "Foo-App",
             "date": "[datetime]"
         },

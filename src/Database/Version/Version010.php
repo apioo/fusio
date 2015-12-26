@@ -272,10 +272,10 @@ class Version010 implements VersionInterface
         $backendAppSecret  = TokenGenerator::generateAppSecret();
         $consumerAppKey    = TokenGenerator::generateAppKey();
         $consumerAppSecret = TokenGenerator::generateAppSecret();
+        $password          = \password_hash(TokenGenerator::generateUserPassword(), PASSWORD_DEFAULT);
 
         $parser    = new Parser();
         $now       = new DateTime();
-        $password  = \password_hash('0a29e5bcaa810de0ca0513d9d4ab62f1860f998a', PASSWORD_DEFAULT);
 
         $schema    = $this->getPassthruSchema();
         $cache     = $parser->parse($schema);
@@ -304,7 +304,7 @@ class Version010 implements VersionInterface
             'fusio_scope' => [
                 ['name' => 'backend', 'description' => 'Access to the backend API'],
                 ['name' => 'consumer', 'description' => 'Consumer API endpoint'],
-                ['name' => 'authorization', 'description' => ''],
+                ['name' => 'authorization', 'description' => 'Authorization API endpoint'],
             ],
             'fusio_action' => [
                 ['status' => 1, 'name' => 'Welcome', 'class' => 'Fusio\Impl\Action\StaticResponse', 'config' => serialize(['response' => $response]), 'date' => $now->format('Y-m-d H:i:s')],
@@ -391,7 +391,9 @@ class Version010 implements VersionInterface
             ],
             'fusio_app_scope' => [
                 ['appId' => 1, 'scopeId' => 1],
+                ['appId' => 1, 'scopeId' => 3],
                 ['appId' => 2, 'scopeId' => 2],
+                ['appId' => 2, 'scopeId' => 3],
             ],
             'fusio_scope_routes' => [
                 ['scopeId' => 1, 'routeId' => 1,  'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
@@ -422,7 +424,7 @@ class Version010 implements VersionInterface
                 ['scopeId' => 1, 'routeId' => 26, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 27, 'allow' => 1, 'methods' => 'GET'],
                 ['scopeId' => 1, 'routeId' => 28, 'allow' => 1, 'methods' => 'GET'],
-                ['scopeId' => 1, 'routeId' => 20, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
+                ['scopeId' => 1, 'routeId' => 29, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
                 ['scopeId' => 1, 'routeId' => 30, 'allow' => 1, 'methods' => 'POST'],
                 ['scopeId' => 1, 'routeId' => 31, 'allow' => 1, 'methods' => 'POST'],
 

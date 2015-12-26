@@ -23,6 +23,7 @@ namespace Fusio\Impl\Backend\Api\User;
 
 use DateTime;
 use Fusio\Impl\Authorization\ProtectionTrait;
+use Fusio\Impl\Authorization\TokenGenerator;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -108,7 +109,7 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $password = sha1(mcrypt_create_iv(40));
+        $password = TokenGenerator::generateUserPassword();
 
         $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User');
         $table->create(array(

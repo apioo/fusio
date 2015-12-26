@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Console;
 
 use DateTime;
+use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Backend\Table\User;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -77,8 +78,7 @@ class AddUserCommand extends Command
         });
 
         $userName = $helper->ask($input, $output, $question);
-
-        $password = sha1(mcrypt_create_iv(40));
+        $password = TokenGenerator::generateUserPassword();
 
         $this->userTable->create(array(
             'status'   => $status,

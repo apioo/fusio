@@ -23,7 +23,7 @@ namespace Fusio\Impl\Authorization;
 
 use Closure;
 use Doctrine\DBAL\Connection;
-use Fusio\Impl\Backend\Table\App\Token;
+use Fusio\Impl\Backend\Table\App\Token as AppToken;
 use PSX\Dispatch\Filter\Oauth2Authentication;
 use PSX\Oauth2\Authorization\Exception\InvalidScopeException;
 
@@ -69,7 +69,7 @@ class Oauth2Filter extends Oauth2Authentication
 
         $accessToken = $this->connection->fetchAssoc($sql, array(
             'token'  => $token,
-            'status' => Token::STATUS_ACTIVE,
+            'status' => AppToken::STATUS_ACTIVE,
             'now'    => $now->format($this->connection->getDatabasePlatform()->getDateTimeFormatString()),
         ));
 

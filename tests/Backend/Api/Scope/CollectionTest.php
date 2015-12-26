@@ -49,24 +49,33 @@ class CollectionTest extends ControllerDbTestCase
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
-    "totalItems": 4,
+    "totalItems": 5,
     "startIndex": 0,
     "entry": [
         {
+            "id": 5,
+            "name": "bar",
+            "description": "Bar access"
+        },
+        {
             "id": 4,
-            "name": "bar"
+            "name": "foo",
+            "description": "Foo access"
         },
         {
             "id": 3,
-            "name": "foo"
+            "name": "authorization",
+            "description": "Authorization API endpoint"
         },
         {
             "id": 2,
-            "name": "authorization"
+            "name": "consumer",
+            "description": "Consumer API endpoint"
         },
         {
             "id": 1,
-            "name": "backend"
+            "name": "backend",
+            "description": "Access to the backend API"
         }
     ]
 }
@@ -82,7 +91,8 @@ JSON;
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ), json_encode([
-            'name'   => 'test',
+            'name'        => 'test',
+            'description' => 'Test description',
             'routes' => [[
                 'routeId' => 1,
                 'allow'   => 1,
@@ -107,7 +117,7 @@ JSON;
 
         // check database
         $sql = Environment::getService('connection')->createQueryBuilder()
-            ->select('id', 'name')
+            ->select('id', 'name', 'description')
             ->from('fusio_scope')
             ->orderBy('id', 'DESC')
             ->setFirstResult(0)
@@ -116,8 +126,9 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(5, $row['id']);
+        $this->assertEquals(6, $row['id']);
         $this->assertEquals('test', $row['name']);
+        $this->assertEquals('Test description', $row['description']);
 
         $sql = Environment::getService('connection')->createQueryBuilder()
             ->select('id', 'scopeId', 'routeId', 'allow', 'methods')
@@ -126,17 +137,17 @@ JSON;
             ->orderBy('id', 'DESC')
             ->getSQL();
 
-        $routes = Environment::getService('connection')->fetchAll($sql, ['scopeId' => 5]);
+        $routes = Environment::getService('connection')->fetchAll($sql, ['scopeId' => 6]);
 
         $this->assertEquals([[
             'id'      => 43,
-            'scopeId' => 5,
+            'scopeId' => 6,
             'routeId' => 2,
             'allow'   => 1,
             'methods' => 'GET|POST|PUT|DELETE',
         ], [
             'id'      => 42,
-            'scopeId' => 5,
+            'scopeId' => 6,
             'routeId' => 1,
             'allow'   => 1,
             'methods' => 'GET|POST|PUT|DELETE',

@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Api\Dashboard;
+namespace Fusio\Impl\Backend\Api\Statistic;
 
 use DateInterval;
 use DatePeriod;
@@ -62,7 +62,7 @@ class MostUsedRoutesTest extends ControllerDbTestCase
         $expect = [
             'labels' => $labels,
             'data'   => [$data],
-            'series' => ['/backend'],
+            'series' => ['/backend/action'],
         ];
 
         $body = (string) $response->getBody();

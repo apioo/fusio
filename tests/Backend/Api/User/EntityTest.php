@@ -46,7 +46,9 @@ class EntityTest extends ControllerDbTestCase
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
 
-        $body   = (string) $response->getBody();
+        $body = (string) $response->getBody();
+        $body = preg_replace('/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z/m', '[datetime]', $body);
+
         $expect = <<<'JSON'
 {
     "id": 2,
@@ -58,28 +60,31 @@ class EntityTest extends ControllerDbTestCase
     ],
     "apps": [
         {
-            "id": 4,
+            "id": 5,
             "status": 3,
             "name": "Deactivated",
             "url": "http:\/\/google.com",
-            "appKey": "f46af464-f7eb-4d04-8661-13063a30826b"
+            "appKey": "f46af464-f7eb-4d04-8661-13063a30826b",
+            "date": "[datetime]"
         },
         {
-            "id": 3,
+            "id": 4,
             "status": 2,
             "name": "Pending",
             "url": "http:\/\/google.com",
-            "appKey": "7c14809c-544b-43bd-9002-23e1c2de6067"
+            "appKey": "7c14809c-544b-43bd-9002-23e1c2de6067",
+            "date": "[datetime]"
         },
         {
-            "id": 2,
+            "id": 3,
             "status": 1,
             "name": "Foo-App",
             "url": "http:\/\/google.com",
-            "appKey": "5347307d-d801-4075-9aaa-a21a29a448c5"
+            "appKey": "5347307d-d801-4075-9aaa-a21a29a448c5",
+            "date": "[datetime]"
         }
     ],
-    "date": "2015-02-27T19:59:15Z"
+    "date": "[datetime]"
 }
 JSON;
 
@@ -150,7 +155,7 @@ JSON;
         $this->assertEquals([[
             'id'      => 4,
             'userId'  => 4,
-            'scopeId' => 4,
+            'scopeId' => 5,
         ]], $routes);
     }
 
