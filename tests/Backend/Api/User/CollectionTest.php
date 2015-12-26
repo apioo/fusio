@@ -97,9 +97,11 @@ JSON;
             'scopes' => ['foo', 'bar'],
         ]));
 
-        $body   = (string) $response->getBody();
-        // replace the dynamic password
-        $body   = preg_replace('/[A-z0-9\+\/]{20}/', '[password]', $body);
+        $body = (string) $response->getBody();
+        $data = json_decode($body);
+        $pw   = isset($data->password) ? $data->password : null;
+        $body = str_replace(trim(json_encode($pw), '"'), '[password]', $body);
+
         $expect = <<<'JSON'
 {
     "success": true,

@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Authorization;
+namespace Fusio\Impl\Backend\Authorization;
 
 use Fusio\Impl\Backend\Table\App\Token;
 use Fusio\Impl\Fixture;
@@ -42,10 +42,10 @@ class ClientCredentialsTest extends ControllerDbTestCase
 
     public function testPost()
     {
-        $body     = 'grant_type=client_credentials&scope=authorization,backend';
-        $response = $this->sendRequest('http://127.0.0.1/authorization/token', 'POST', [
+        $body     = 'grant_type=client_credentials&scope=authorization';
+        $response = $this->sendRequest('http://127.0.0.1/backend/token', 'POST', [
             'User-Agent'    => 'Fusio TestCase',
-            'Authorization' => 'Basic ' . base64_encode('5347307d-d801-4075-9aaa-a21a29a448c5:342cefac55939b31cd0a26733f9a4f061c0829ed87dae7caff50feaa55aff23d')
+            'Authorization' => 'Basic ' . base64_encode('Developer:qf2vX10Ec3wFZHx0K1eL')
         ], $body);
 
         $body = (string) $response->getBody();
@@ -53,7 +53,7 @@ class ClientCredentialsTest extends ControllerDbTestCase
 
         $this->assertEquals(200, $response->getStatusCode(), $body);
 
-        $expireDate = strtotime('+2 day');
+        $expireDate = strtotime('+1 hour');
 
         $this->arrayHasKey('access_token', $data);
         $this->arrayHasKey('token_type', $data);
@@ -61,29 +61,29 @@ class ClientCredentialsTest extends ControllerDbTestCase
         $this->arrayHasKey('expires_in', $data);
         $this->assertEquals(date('Y-m-d H:i', $expireDate), date('Y-m-d H:i', $data['expires_in']));
         $this->arrayHasKey('scope', $data);
-        $this->assertEquals('authorization', $data['scope']);
+        $this->assertEquals('backend,authorization', $data['scope']);
 
         // check whether the token was created
         $row = $this->connection->fetchAssoc('SELECT appId, userId, status, token, scope, expire, date FROM fusio_app_token WHERE token = :token', ['token' => $data['access_token']]);
 
-        $this->assertEquals(3, $row['appId']);
-        $this->assertEquals(2, $row['userId']);
+        $this->assertEquals(1, $row['appId']);
+        $this->assertEquals(4, $row['userId']);
         $this->assertEquals(Token::STATUS_ACTIVE, $row['status']);
         $this->assertEquals($data['access_token'], $row['token']);
-        $this->assertEquals('authorization', $row['scope']);
+        $this->assertEquals('backend,authorization', $row['scope']);
         $this->assertEquals(date('Y-m-d H:i', $expireDate), date('Y-m-d H:i', strtotime($row['expire'])));
         $this->assertEquals(date('Y-m-d H:i'), substr($row['date'], 0, 16));
     }
 
     /**
-     * A pending app can not request an API token
+     * As consumer we can not request an backend token
      */
-    public function testPostPending()
+    public function testPostConsumer()
     {
         $body     = 'grant_type=client_credentials&scope=authorization';
-        $response = $this->sendRequest('http://127.0.0.1/authorization/token', 'POST', [
+        $response = $this->sendRequest('http://127.0.0.1/backend/token', 'POST', [
             'User-Agent'    => 'Fusio TestCase',
-            'Authorization' => 'Basic ' . base64_encode('7c14809c-544b-43bd-9002-23e1c2de6067:bb0574181eb4a1326374779fe33e90e2c427f28ab0fc1ffd168bfd5309ee7caa')
+            'Authorization' => 'Basic ' . base64_encode('Consumer:qf2vX10Ec3wFZHx0K1eL')
         ], $body);
 
         $body = (string) $response->getBody();
@@ -100,14 +100,14 @@ JSON;
     }
 
     /**
-     * A pending app can not request an API token
+     * A deactivated user can not request a backend token
      */
-    public function testPostDeactivated()
+    public function testPostDisabled()
     {
         $body     = 'grant_type=client_credentials&scope=authorization';
-        $response = $this->sendRequest('http://127.0.0.1/authorization/token', 'POST', [
+        $response = $this->sendRequest('http://127.0.0.1/backend/token', 'POST', [
             'User-Agent'    => 'Fusio TestCase',
-            'Authorization' => 'Basic ' . base64_encode('f46af464-f7eb-4d04-8661-13063a30826b:17b882987298831a3af9c852f9cd0219d349ba61fcf3fc655ac0f07eece951f9')
+            'Authorization' => 'Basic ' . base64_encode('Disabled:qf2vX10Ec3wFZHx0K1eL')
         ], $body);
 
         $body = (string) $response->getBody();
