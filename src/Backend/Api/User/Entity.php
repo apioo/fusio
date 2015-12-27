@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Backend\Api\User;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
+use Fusio\Impl\Backend\Table\User;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -160,11 +161,10 @@ class Entity extends SchemaApiAbstract
         $user   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')->get($userId);
 
         if (!empty($user)) {
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')->delete(array(
-                'id' => $user['id']
+            $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')->update(array(
+                'id'     => $user['id'],
+                'status' => User::STATUS_DELETED,
             ));
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope')->deleteAllFromUser($user['id']);
 
             return array(
                 'success' => true,

@@ -21,6 +21,7 @@
 
 namespace Fusio\Impl\Backend\Api\User;
 
+use Fusio\Impl\Backend\Table\User;
 use Fusio\Impl\Fixture;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
@@ -132,7 +133,7 @@ JSON;
         $sql = Environment::getService('connection')->createQueryBuilder()
             ->select('id', 'status', 'name')
             ->from('fusio_user')
-            ->orderBy('id', 'DESC')
+            ->where('id = 4')
             ->setFirstResult(0)
             ->setMaxResults(1)
             ->getSQL();
@@ -179,15 +180,16 @@ JSON;
 
         // check database
         $sql = Environment::getService('connection')->createQueryBuilder()
-            ->select('id')
+            ->select('id', 'status')
             ->from('fusio_user')
-            ->orderBy('id', 'DESC')
+            ->where('id = 4')
             ->setFirstResult(0)
             ->setMaxResults(1)
             ->getSQL();
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(3, $row['id']);
+        $this->assertEquals(4, $row['id']);
+        $this->assertEquals(User::STATUS_DELETED, $row['status']);
     }
 }

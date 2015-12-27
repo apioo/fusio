@@ -24,6 +24,7 @@ namespace Fusio\Impl\Backend\Api\User;
 use DateTime;
 use Fusio\Impl\Authorization\ProtectionTrait;
 use Fusio\Impl\Authorization\TokenGenerator;
+use Fusio\Impl\Backend\Table\User;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -89,7 +90,12 @@ class Collection extends SchemaApiAbstract
     {
         $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
         $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-        $condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
+        $condition  = new Condition();
+        $condition->notEquals('status', User::STATUS_DELETED);
+
+        if (!empty($search)) {
+            $condition->like('name', '%' . $search . '%');
+        }
 
         $result = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition);
 

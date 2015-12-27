@@ -75,6 +75,7 @@ JSON;
                 ['status' => 0, 'name' => 'Consumer', 'password' => '$2y$10$8EZyVlUy.oNrF8NcDxY7OeTBt6.3fikdH82JlfeRhqSlXitxJMdB6', 'date' => '2015-02-27 19:59:15'],
                 ['status' => 2, 'name' => 'Disabled', 'password' => '$2y$10$8EZyVlUy.oNrF8NcDxY7OeTBt6.3fikdH82JlfeRhqSlXitxJMdB6', 'date' => '2015-02-27 19:59:15'],
                 ['status' => 1, 'name' => 'Developer', 'password' => '$2y$10$8EZyVlUy.oNrF8NcDxY7OeTBt6.3fikdH82JlfeRhqSlXitxJMdB6', 'date' => '2015-02-27 19:59:15'],
+                ['status' => 3, 'name' => 'Deleted', 'password' => '$2y$10$8EZyVlUy.oNrF8NcDxY7OeTBt6.3fikdH82JlfeRhqSlXitxJMdB6', 'date' => '2015-02-27 19:59:15'],
             ],
             'fusio_action' => [
                 ['status' => 1, 'name' => 'Sql-Fetch-All', 'class' => 'Fusio\Impl\Action\SqlFetchAll', 'config' => serialize(['connection' => 1, 'sql' => 'SELECT * FROM app_news']), 'date' => '2015-02-27 19:59:15'],

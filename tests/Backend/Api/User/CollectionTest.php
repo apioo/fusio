@@ -124,7 +124,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(5, $row['id']);
+        $this->assertEquals(6, $row['id']);
         $this->assertEquals(0, $row['status']);
         $this->assertEquals('test', $row['name']);
 
@@ -135,15 +135,15 @@ JSON;
             ->orderBy('id', 'DESC')
             ->getSQL();
 
-        $routes = Environment::getService('connection')->fetchAll($sql, ['userId' => 5]);
+        $routes = Environment::getService('connection')->fetchAll($sql, ['userId' => 6]);
 
         $this->assertEquals([[
             'id'      => 5,
-            'userId'  => 5,
+            'userId'  => 6,
             'scopeId' => 4,
         ], [
             'id'      => 4,
-            'userId'  => 5,
+            'userId'  => 6,
             'scopeId' => 5,
         ]], $routes);
     }
