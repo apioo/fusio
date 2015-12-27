@@ -84,3 +84,7 @@ function guessFusioEndpointUrl() {
 	}
 	return url + '/index.php/';
 }
+
+if (typeof fusio_url === 'undefined') {
+	var fusio_url = guessFusioEndpointUrl();
+}
