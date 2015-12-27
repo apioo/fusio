@@ -49,6 +49,7 @@ module.exports = function(grunt){
             './app/schema/schema.js',
             './app/action/action.js',
             './app/connection/connection.js',
+            './app/import/import.js',
             './app/app/app.js',
             './app/log/log.js',
             './app/user/user.js',
