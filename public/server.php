@@ -35,6 +35,11 @@ foreach ($fileUris as $regexp) {
     }
 }
 
+// strip if the requests starts with /index.php/
+if (isset($_SERVER['REQUEST_URI']) && substr($_SERVER['REQUEST_URI'], 0, 11) == '/index.php/') {
+    $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], 10);
+}
+
 $loader    = require(__DIR__ . '/../vendor/autoload.php');
 $container = require_once(__DIR__ . '/../container.php');
 
