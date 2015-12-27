@@ -23,6 +23,7 @@ describe('Scope tests', function() {
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
     element(by.model('scope.name')).sendKeys('test-scope');
+    element(by.model('scope.description')).sendKeys('Test scope');
     element.all(by.model('route.allowedMethods.get')).click();
 
     $('button.btn-primary').click();
