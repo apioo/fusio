@@ -68,8 +68,8 @@ YAML;
         ]);
 
         $request = $this->getRequest(
-            null, 
-            ['bar' => 'foo'], 
+            null,
+            ['bar' => 'foo'],
             ['foo' => 'bar'],
             [],
             $body
@@ -104,8 +104,8 @@ YAML;
         ]);
 
         $request = $this->getRequest(
-            null, 
-            ['bar' => '!foo'], 
+            null,
+            ['bar' => '!foo'],
             ['foo' => 'bar'],
             [],
             $body
@@ -129,8 +129,8 @@ YAML;
         ]);
 
         $request = $this->getRequest(
-            null, 
-            ['bar' => 'foo'], 
+            null,
+            ['bar' => 'foo'],
             ['foo' => '!bar'],
             [],
             $body
@@ -154,8 +154,8 @@ YAML;
         ]);
 
         $request = $this->getRequest(
-            null, 
-            ['bar' => 'foo'], 
+            null,
+            ['bar' => 'foo'],
             ['foo' => 'bar'],
             [],
             $body
@@ -179,8 +179,8 @@ YAML;
         ]);
 
         $request = $this->getRequest(
-            null, 
-            ['bar' => 'foo'], 
+            null,
+            ['bar' => 'foo'],
             ['foo' => 'bar'],
             [],
             $body
@@ -204,8 +204,8 @@ YAML;
         ]);
 
         $request = $this->getRequest(
-            null, 
-            ['bar' => 'foo'], 
+            null,
+            ['bar' => 'foo'],
             ['foo' => 'bar'],
             [],
             $body
@@ -236,7 +236,7 @@ YAML;
 /~query/foo: filter.alnum(value)
 /~path/bar: filter.alnum(value)
 /id: database.rowExists('Native-Connection', 'fusio_user', 'id', value)
-/title: 
+/title:
     rule: filter.alnum(value)
     message: %s contains a custom error message
 /author/name: filter.alnum(value)

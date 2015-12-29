@@ -135,8 +135,8 @@ JSON;
 title: Swagger Sample App
 version: "1.0.0"
 baseUri: "https://petstore.swagger.wordnik.com:443/api"
-schemas: 
-    - 
+schemas:
+    -
         Pet: |
             {
                 "type":"object",
@@ -185,27 +185,27 @@ schemas:
                     }
                 }
             }
-/pet/{petId}: 
+/pet/{petId}:
     displayName: Pet
-    get: 
+    get:
         description: Find pet by ID
-        responses: 
-            "200": 
+        responses:
+            "200":
                 description: Success
-                body: 
-                    application/json: 
+                body:
+                    application/json:
                         schema: Pet
-/pet: 
+/pet:
     displayName: PetList
-    post: 
+    post:
         description: Add a new pet to the store
-        body: 
-            application/json: 
+        body:
+            application/json:
                 schema: Pet
-    put: 
+    put:
         description: Update an existing pet
-        body: 
-            application/json: 
+        body:
+            application/json:
                 schema: Pet
 RAML;
     }
