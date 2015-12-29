@@ -24,7 +24,6 @@ namespace Fusio\Impl\Consumer\Authorization;
 use Doctrine\DBAL\Connection;
 use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Backend\Table\App;
-use Fusio\Impl\Backend\Table\App\Scope;
 use Fusio\Impl\Backend\Table\App\Token as AppToken;
 use Fusio\Impl\Backend\Table\User;
 use PSX\DateTime;

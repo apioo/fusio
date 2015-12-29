@@ -34,7 +34,7 @@ interface RepositoryInterface
      * Returns an action with the provided id
      *
      * @param mixed $actionId
-     * @return \Fusio\Engine\Model\Action
+     * @return \Fusio\Engine\Model\ActionInterface
      */
     public function getAction($actionId);
 }

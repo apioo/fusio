@@ -25,7 +25,6 @@ use Fusio\Impl\Authorization\Oauth2Filter;
 use Fusio\Impl\Context as FusioContext;
 use Fusio\Impl\Request;
 use Fusio\Impl\Schema\LazySchema;
-use Fusio\Impl\Validate\Validator;
 use PSX\Api\Documentation;
 use PSX\Api\DocumentedInterface;
 use PSX\Api\Resource;
@@ -64,7 +63,7 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
 
     /**
      * @Inject
-     * @var \Fusio\Data\SchemaManager
+     * @var \Fusio\Impl\Data\SchemaManager
      */
     protected $apiSchemaManager;
 
@@ -98,7 +97,7 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
     protected $appId;
 
     /**
-     * @var \Fusio\App
+     * @var \Fusio\Engine\Model\AppInterface
      */
     protected $app;
 

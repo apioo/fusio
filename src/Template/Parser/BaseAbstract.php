@@ -24,8 +24,6 @@ namespace Fusio\Impl\Template\Parser;
 use Fusio\Impl\Context;
 use Fusio\Impl\Request;
 use Fusio\Impl\Template\Extension;
-use Fusio\Impl\Template\Filter\Prepare;
-use Fusio\Impl\Template\Filter\RowExists;
 use Fusio\Impl\Template\StackLoader;
 use PSX\Data\Accessor;
 use PSX\DisplayException;

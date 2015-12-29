@@ -21,6 +21,7 @@
 
 namespace Fusio\Impl\Schema;
 
+use Fusio\Engine\Schema\LoaderInterface;
 use PSX\Data\SchemaInterface;
 
 /**
@@ -35,7 +36,7 @@ class LazySchema implements SchemaInterface
     protected $loader;
     protected $schemaId;
 
-    public function __construct(Loader $loader, $schemaId)
+    public function __construct(LoaderInterface $loader, $schemaId)
     {
         $this->loader   = $loader;
         $this->schemaId = (int) $schemaId;

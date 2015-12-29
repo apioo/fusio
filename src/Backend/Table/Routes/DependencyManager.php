@@ -21,14 +21,15 @@
 
 namespace Fusio\Impl\Backend\Table\Routes;
 
-use PSX\Api\Resource;
 use Fusio\Impl\Backend\Table\Action as TableAction;
-use Fusio\Impl\Backend\Table\Routes\Action as RoutesAction;
-use Fusio\Impl\Backend\Table\Schema as TableSchema;
-use Fusio\Impl\Backend\Table\Routes\Schema as RoutesSchema;
 use Fusio\Impl\Backend\Table\Routes;
+use Fusio\Impl\Backend\Table\Routes\Action as RoutesAction;
+use Fusio\Impl\Backend\Table\Routes\Schema as RoutesSchema;
+use Fusio\Impl\Backend\Table\Schema as TableSchema;
 use Fusio\Impl\Form;
 use Fusio\Impl\Parser\ParserAbstract;
+use PSX\Api\Resource;
+use PSX\Sql\Condition;
 
 /**
  * The dependency manager inserts all schema and action ids which are used by
@@ -85,7 +86,7 @@ class DependencyManager
             if ($count == 0) {
                 $this->schemaTable->update([
                     'id'     => $schema->getId(),
-                    'status' => Schema::STATUS_ACTIVE,
+                    'status' => TableSchema::STATUS_ACTIVE,
                 ]);
             }
         }
@@ -100,7 +101,7 @@ class DependencyManager
             if ($count == 0) {
                 $this->actionTable->update([
                     'id'     => $action->getId(),
-                    'status' => Action::STATUS_ACTIVE,
+                    'status' => TableAction::STATUS_ACTIVE,
                 ]);
             }
         }
@@ -138,8 +139,7 @@ class DependencyManager
     /**
      * Locks all required dependencies
      *
-     * @param array $schemas
-     * @param array $actions
+     * @param integer $routeId
      */
     public function lockExistingDependencies($routeId)
     {
@@ -148,7 +148,7 @@ class DependencyManager
             if ($schema->getStatus() == RoutesSchema::STATUS_REQUIRED) {
                 $this->schemaTable->update([
                     'id'     => $schema->getSchemaId(),
-                    'status' => Schema::STATUS_LOCKED,
+                    'status' => TableSchema::STATUS_LOCKED,
                 ]);
             }
         }
@@ -158,7 +158,7 @@ class DependencyManager
             if ($action->getStatus() == RoutesAction::STATUS_REQUIRED) {
                 $this->actionTable->update([
                     'id'     => $action->getActionId(),
-                    'status' => Action::STATUS_LOCKED,
+                    'status' => TableAction::STATUS_LOCKED,
                 ]);
             }
         }
@@ -167,6 +167,7 @@ class DependencyManager
     /**
      * Returns all schema ids which are required by the config
      *
+     * @param array $config
      * @return array
      */
     protected function getDependingSchemas(array $config)
@@ -217,6 +218,7 @@ class DependencyManager
      * Returns all action ids which are required by the config. Resolves also
      * action ids which depend on another action
      *
+     * @param array $config
      * @return array
      */
     protected function getDependingActions(array $config)

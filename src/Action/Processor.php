@@ -21,7 +21,6 @@
 
 namespace Fusio\Impl\Action;
 
-use Doctrine\DBAL\Connection;
 use Fusio\Engine\ActionInterface;
 use Fusio\Engine\ContextInterface;
 use Fusio\Engine\Form\BuilderInterface;
@@ -29,9 +28,9 @@ use Fusio\Engine\Form\ElementFactoryInterface;
 use Fusio\Engine\ParametersInterface;
 use Fusio\Engine\ProcessorInterface;
 use Fusio\Engine\RequestInterface;
+use Fusio\Impl\ConfigurationException;
 use Fusio\Impl\Model\Action;
 use Fusio\Impl\Processor\MemoryRepository;
-use PSX\Data\Record\Transformer;
 use Symfony\Component\Yaml\Parser;
 
 /**

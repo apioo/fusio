@@ -22,7 +22,6 @@
 namespace Fusio\Impl\Backend\Api\Routes;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
-use Fusio\Impl\Backend\Table\Routes\DependencyManager;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;

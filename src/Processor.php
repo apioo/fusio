@@ -21,12 +21,10 @@
 
 namespace Fusio\Impl;
 
-use Doctrine\DBAL\Connection;
 use Fusio\Engine\ContextInterface;
+use Fusio\Engine\Model\ActionInterface;
 use Fusio\Engine\ProcessorInterface;
 use Fusio\Engine\RequestInterface;
-use Fusio\Engine\Model\ActionInterface;
-use Fusio\Impl\Model\Action;
 use RuntimeException;
 
 /**

@@ -94,7 +94,7 @@ class Validator implements ActionInterface
             // check whether all required fields are available
             $fields = $validator->getRequiredNames();
             if (!empty($fields)) {
-                throw new StatusCode\ClientErrorException('Missing required fields: ' . implode(', ', $fields));
+                throw new StatusCode\BadRequestException('Missing required fields: ' . implode(', ', $fields));
             }
         }
 

@@ -27,7 +27,6 @@ use Fusio\Engine\Form\BuilderInterface;
 use Fusio\Engine\Form\ElementFactoryInterface;
 use Fusio\Engine\ParametersInterface;
 use Fusio\Engine\RequestInterface;
-use Fusio\Engine\ResponseInterface;
 use Fusio\Engine\Response\FactoryInterface as ResponseFactoryInterface;
 use Fusio\Engine\Template\FactoryInterface;
 use Fusio\Impl\Base;
@@ -53,13 +52,13 @@ class HttpRequest implements ActionInterface
 
     /**
      * @Inject
-     * @var \Fusio\Template\FactoryInterface
+     * @var \Fusio\Engine\Template\FactoryInterface
      */
     protected $templateFactory;
 
     /**
      * @Inject
-     * @var \Fusio\Response\FactoryInterface
+     * @var \Fusio\Engine\Response\FactoryInterface
      */
     protected $response;
 

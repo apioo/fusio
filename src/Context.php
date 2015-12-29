@@ -22,8 +22,8 @@
 namespace Fusio\Impl;
 
 use Fusio\Engine\ContextInterface;
-use Fusio\Engine\Model\AppInterface;
 use Fusio\Engine\Model\ActionInterface;
+use Fusio\Engine\Model\AppInterface;
 
 /**
  * Context
@@ -81,6 +81,7 @@ class Context implements ContextInterface
      * Creates a new context containing the given action
      *
      * @param \Fusio\Engine\Model\ActionInterface $action
+     * @return \Fusio\Engine\ContextInterface
      */
     public function withAction(ActionInterface $action)
     {
@@ -104,6 +105,7 @@ class Context implements ContextInterface
      * Creates a new context containing the given connection
      *
      * @param mixed $connection
+     * @return \Fusio\Engine\ContextInterface
      */
     public function withConnection($connection)
     {

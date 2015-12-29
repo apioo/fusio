@@ -32,11 +32,10 @@ use PSX\Api\Version;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Filter as PSXFilter;
+use PSX\Http\Exception as StatusCode;
 use PSX\Loader\Context;
 use PSX\Sql;
 use PSX\Sql\Condition;
-use PSX\Http\Exception as StatusCode;
-use PSX\Util\Uuid;
 use PSX\Validate;
 
 /**

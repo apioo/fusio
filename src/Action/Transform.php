@@ -29,17 +29,12 @@ use Fusio\Engine\ParametersInterface;
 use Fusio\Engine\ProcessorInterface;
 use Fusio\Engine\RequestInterface;
 use Fusio\Engine\Template\FactoryInterface;
-use Fusio\Impl\Validate\ExpressionFilter;
-use Fusio\Impl\Validate\ServiceContainer;
 use PSX\Cache;
 use PSX\Data\Record;
 use PSX\Data\Record\Transformer;
 use PSX\Http\Exception as StatusCode;
 use PSX\Json;
 use PSX\Json\Patch;
-use PSX\Validate\Property;
-use PSX\Validate\Validator as PSXValidator;
-use Symfony\Component\Yaml\Parser;
 
 /**
  * Transform

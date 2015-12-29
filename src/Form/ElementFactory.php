@@ -23,7 +23,6 @@ namespace Fusio\Impl\Form;
 
 use Doctrine\DBAL\Connection;
 use Fusio\Engine\Form\ElementFactoryInterface;
-use PSX\Data\RecordAbstract;
 
 /**
  * ElementFactory

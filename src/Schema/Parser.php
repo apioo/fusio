@@ -50,6 +50,7 @@ class Parser
      * presentation of the schema
      *
      * @param string $source
+     * @return string
      */
     public function parse($source)
     {

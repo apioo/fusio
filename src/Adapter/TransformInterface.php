@@ -34,6 +34,7 @@ interface TransformInterface
      * Transforms a foreign API format into instructions. Through this it is
      * possible to import different API formats i.e. RAML
      *
+     * @param string $data
      * @return array
      */
     public function transform($data);

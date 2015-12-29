@@ -27,11 +27,11 @@ use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Base;
 use Psr\Log\LoggerInterface;
 use PSX\Dispatch;
-use PSX\Json;
-use PSX\Url;
 use PSX\Http\PostRequest;
 use PSX\Http\Response;
 use PSX\Http\Stream\TempStream;
+use PSX\Json;
+use PSX\Url;
 use ReflectionClass;
 use RuntimeException;
 

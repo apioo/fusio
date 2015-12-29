@@ -55,7 +55,7 @@ class Collection extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \Fusio\Schema\Parser
+     * @var \Fusio\Engine\Schema\ParserInterface
      */
     protected $schemaParser;
 

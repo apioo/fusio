@@ -21,9 +21,7 @@
 
 namespace Fusio\Impl\Consumer\Api\App\Grant;
 
-use DateTime;
 use Fusio\Impl\Authorization\ProtectionTrait;
-use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Backend\Api\App\ValidatorTrait;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
@@ -35,7 +33,6 @@ use PSX\Loader\Context;
 use PSX\OpenSsl;
 use PSX\Sql;
 use PSX\Sql\Condition;
-use PSX\Util\Uuid;
 use PSX\Util\CurveArray;
 use PSX\Validate;
 

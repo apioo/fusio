@@ -22,7 +22,7 @@
 namespace Fusio\Impl\App;
 
 use Doctrine\DBAL\Connection;
-use Fusio\Impl\Context;
+use Fusio\Engine\ContextInterface;
 
 /**
  * RateLimit
@@ -36,7 +36,7 @@ class RateLimit
     protected $connection;
     protected $context;
 
-    public function __construct(Connection $connection, Context $context)
+    public function __construct(Connection $connection, ContextInterface $context)
     {
         $this->connection = $connection;
         $this->context    = $context;

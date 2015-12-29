@@ -22,7 +22,6 @@
 namespace Fusio\Impl\Backend\Table\Log;
 
 use PSX\Sql\Condition;
-use PSX\Sql\TableAbstract;
 
 /**
  * QueryFilter
@@ -33,15 +32,54 @@ use PSX\Sql\TableAbstract;
  */
 class QueryFilter
 {
+    /**
+     * @var \DateTime
+     */
     protected $from;
+
+    /**
+     * @var \DateTime
+     */
     protected $to;
+
+    /**
+     * @var integer
+     */
     protected $appId;
+
+    /**
+     * @var integer
+     */
     protected $routeId;
+
+    /**
+     * @var string
+     */
     protected $ip;
+
+    /**
+     * @var string
+     */
     protected $userAgent;
+
+    /**
+     * @var string
+     */
     protected $method;
+
+    /**
+     * @var string
+     */
     protected $path;
+
+    /**
+     * @var string
+     */
     protected $header;
+
+    /**
+     * @var string
+     */
     protected $body;
 
     public function getFrom()

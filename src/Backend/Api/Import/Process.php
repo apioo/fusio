@@ -21,9 +21,9 @@
 
 namespace Fusio\Impl\Backend\Api\Import;
 
-use Fusio\Impl\Authorization\ProtectionTrait;
 use Fusio\Impl\Adapter\Installer;
 use Fusio\Impl\Adapter\InstructionParser;
+use Fusio\Impl\Authorization\ProtectionTrait;
 use PSX\Controller\ApiAbstract;
 
 /**

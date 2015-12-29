@@ -23,7 +23,6 @@ namespace Fusio\Impl\Consumer\Api\Authorize;
 
 use DateTime;
 use Fusio\Impl\Authorization\ProtectionTrait;
-use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Backend\Table\App;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
@@ -37,8 +36,6 @@ use PSX\Sql;
 use PSX\Sql\Condition;
 use PSX\Uri;
 use PSX\Url;
-use PSX\Util\Uuid;
-use PSX\Util\CurveArray;
 use PSX\Validate;
 use RuntimeException;
 

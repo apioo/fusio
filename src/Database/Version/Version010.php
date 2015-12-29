@@ -28,11 +28,8 @@ use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Database\VersionInterface;
 use Fusio\Impl\Schema\Parser;
 use PSX\Data\Record;
-use PSX\Data\Schema\Builder;
-use PSX\Data\Schema\Generator\JsonSchema;
 use PSX\Data\Schema\Property;
 use PSX\OpenSsl;
-use PSX\Util\Uuid;
 
 /**
  * Version010
