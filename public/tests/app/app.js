@@ -5,12 +5,11 @@ describe('App tests', function() {
     browser.get('#/app');
 
     var routes = element.all(by.repeater('app in apps'));
-    expect(routes.count()).toEqual(5);
-    expect(routes.get(0).getText()).toMatch('Deactivated');
-    expect(routes.get(1).getText()).toMatch('Pending');
-    expect(routes.get(2).getText()).toMatch('Foo-App');
-    expect(routes.get(3).getText()).toMatch('Consumer');
-    expect(routes.get(4).getText()).toMatch('Backend');
+    expect(routes.count()).toEqual(4);
+    expect(routes.get(0).getText()).toMatch('Pending');
+    expect(routes.get(1).getText()).toMatch('Foo-App');
+    expect(routes.get(2).getText()).toMatch('Consumer');
+    expect(routes.get(3).getText()).toMatch('Backend');
   });
 
   it('Create app', function() {
