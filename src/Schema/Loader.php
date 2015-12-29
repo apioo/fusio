@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Schema;
 
 use Doctrine\DBAL\Connection;
+use Fusio\Engine\Schema\LoaderInterface;
 use PSX\Data\SchemaInterface;
 use RuntimeException;
 
@@ -32,7 +33,7 @@ use RuntimeException;
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Loader
+class Loader implements LoaderInterface
 {
     protected $connection;
 
