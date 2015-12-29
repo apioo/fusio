@@ -23,8 +23,8 @@ namespace Fusio\Impl\Authorization;
 
 use Fusio\Impl\Backend\Table\App\Token;
 use Fusio\Impl\Fixture;
-use PSX\Test\ControllerDbTestCase;
 use PSX\Json;
+use PSX\Test\ControllerDbTestCase;
 
 /**
  * AuthorizationCodeTest

@@ -23,8 +23,8 @@ namespace Fusio\Impl\Action;
 
 use Fusio\Impl\ActionTestCaseTrait;
 use Fusio\Impl\App;
-use Fusio\Impl\MongoTestCase;
 use Fusio\Impl\Form\Builder;
+use Fusio\Impl\MongoTestCase;
 use PSX\Test\Environment;
 
 /**

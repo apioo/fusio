@@ -21,8 +21,8 @@
 
 namespace Fusio\Impl\Backend\Api\App;
 
-use Fusio\Impl\Fixture;
 use Fusio\Impl\Backend\Table\App as TableApp;
+use Fusio\Impl\Fixture;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 

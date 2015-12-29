@@ -21,10 +21,9 @@
 
 namespace Fusio\Impl;
 
-use Doctrine\DBAL\Schema\Schema as DbSchema;
 use Fusio\Database\Version\Version010;
-use MongoDB;
 use MongoConnectionException;
+use MongoDB;
 use PSX\Test\Environment;
 
 /**

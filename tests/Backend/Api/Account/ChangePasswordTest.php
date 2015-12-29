@@ -23,7 +23,6 @@ namespace Fusio\Impl\Backend\Api\Account;
 
 use Fusio\Impl\Fixture;
 use PSX\Test\ControllerDbTestCase;
-use PSX\Test\Environment;
 
 /**
  * ChangePasswordTest

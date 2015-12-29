@@ -21,7 +21,6 @@
 
 namespace Fusio\Impl;
 
-use Doctrine\DBAL\Schema\Schema as DbSchema;
 use Fusio\Database\Version\Version010;
 use PSX\Test\Environment;
 

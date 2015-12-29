@@ -24,8 +24,6 @@ namespace Fusio\Impl\Console;
 use Fusio\Impl\Fixture;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
-use Symfony\Component\Console\Helper\QuestionHelper;
-use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**

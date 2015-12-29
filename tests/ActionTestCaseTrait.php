@@ -21,14 +21,13 @@
 
 namespace Fusio\Impl;
 
-use Fusio\Impl\Model\App;
 use Fusio\Impl\Model\Action;
+use Fusio\Impl\Model\App;
 use Fusio\Impl\Template\Parser;
 use Psr\Http\Message\StreamInterface;
 use PSX\Data\Record;
 use PSX\Data\RecordInterface;
 use PSX\Http\Request as HttpRequest;
-use PSX\Test\Environment;
 use PSX\Uri;
 
 /**
