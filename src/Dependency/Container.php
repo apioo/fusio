@@ -335,6 +335,8 @@ class Container extends DefaultContainer
         $application->add(new Console\ListConnectionCommand($this->get('connection_parser')));
         $application->add(new Console\DetailConnectionCommand($this->get('connection_factory'), $this->get('connection')));
 
+        $application->add(new Console\ExportSchemaCommand($this->get('connection')));
+
         // symfony commands
         $application->add(new SymfonyCommand\HelpCommand());
         $application->add(new SymfonyCommand\ListCommand());
