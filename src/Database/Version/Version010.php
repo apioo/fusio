@@ -439,7 +439,9 @@ class Version010 implements VersionInterface
                 ['scopeId' => 3, 'routeId' => 42, 'allow' => 1, 'methods' => 'GET'],
             ],
             'fusio_user_scope' => [
-                ['userId' => 1, 'scopeId' => 1]
+                ['userId' => 1, 'scopeId' => 1],
+                ['userId' => 1, 'scopeId' => 2],
+                ['userId' => 1, 'scopeId' => 3],
             ],
         ];
     }
