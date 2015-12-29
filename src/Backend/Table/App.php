@@ -35,6 +35,7 @@ class App extends TableAbstract
     const STATUS_ACTIVE      = 0x1;
     const STATUS_PENDING     = 0x2;
     const STATUS_DEACTIVATED = 0x3;
+    const STATUS_DELETED     = 0x4;
 
     const BACKEND  = 1;
     const CONSUMER = 2;
