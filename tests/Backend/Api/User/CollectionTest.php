@@ -46,9 +46,9 @@ class CollectionTest extends ControllerDbTestCase
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ));
 
-        $body   = (string) $response->getBody();
-        // replace all date values with a fix datetime
-        $body   = preg_replace('/-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?/', '2015-02-27T19:59:15Z', $body);
+        $body = (string) $response->getBody();
+        $body = preg_replace('/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z/m', '[datetime]', $body);
+
         $expect = <<<'JSON'
 {
     "totalItems": 4,
@@ -58,25 +58,25 @@ class CollectionTest extends ControllerDbTestCase
             "id": 4,
             "status": 1,
             "name": "Developer",
-            "date": "2015-02-27T19:59:15Z"
+            "date": "[datetime]"
         },
         {
             "id": 3,
             "status": 2,
             "name": "Disabled",
-            "date": "2015-02-27T19:59:15Z"
+            "date": "[datetime]"
         },
         {
             "id": 2,
             "status": 0,
             "name": "Consumer",
-            "date": "2015-02-27T19:59:15Z"
+            "date": "[datetime]"
         },
         {
             "id": 1,
             "status": 1,
             "name": "Administrator",
-            "date": "2015-02-27T19:59:15Z"
+            "date": "[datetime]"
         }
     ]
 }
