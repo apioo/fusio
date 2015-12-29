@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Backend\Api\App;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
+use Fusio\Impl\Backend\Table\App as TableApp;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -89,6 +90,10 @@ class Entity extends SchemaApiAbstract
         $app   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->get($appId);
 
         if (!empty($app)) {
+            if ($app['status'] == TableApp::STATUS_DELETED) {
+                throw new StatusCode\GoneException('App was deleted');
+            }
+
             $app['scopes'] = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')
                 ->getByApp($app['id']);
 
@@ -125,6 +130,10 @@ class Entity extends SchemaApiAbstract
         $app   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->get($appId);
 
         if (!empty($app)) {
+            if ($app['status'] == TableApp::STATUS_DELETED) {
+                throw new StatusCode\GoneException('App was deleted');
+            }
+
             $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->update(array(
                 'id'     => $app->getId(),
                 'status' => $record->getStatus(),
@@ -132,10 +141,11 @@ class Entity extends SchemaApiAbstract
                 'url'    => $record->getUrl(),
             ));
 
+            // delete existing scopes
             $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope')->deleteAllFromApp($appId);
 
+            // insert scopes
             $scopes = $record->getScopes();
-
             if (!empty($scopes) && is_array($scopes)) {
                 $this->insertScopes($appId, $scopes);
             }
@@ -162,10 +172,13 @@ class Entity extends SchemaApiAbstract
         $app   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->get($appId);
 
         if (!empty($app)) {
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope')->deleteAllFromApp($appId);
+            if ($app['status'] == TableApp::STATUS_DELETED) {
+                throw new StatusCode\GoneException('App was deleted');
+            }
 
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->delete(array(
-                'id' => $app['id']
+            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->update(array(
+                'id'     => $app['id'],
+                'status' => TableApp::STATUS_DELETED,
             ));
 
             return array(

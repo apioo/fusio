@@ -24,6 +24,7 @@ namespace Fusio\Impl\Backend\Api\App;
 use DateTime;
 use Fusio\Impl\Authorization\ProtectionTrait;
 use Fusio\Impl\Authorization\TokenGenerator;
+use Fusio\Impl\Backend\Table\App as TableApp;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -90,7 +91,13 @@ class Collection extends SchemaApiAbstract
     {
         $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
         $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-        $condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
+
+        $condition = new Condition();
+        $condition->in('status', [TableApp::STATUS_ACTIVE, TableApp::STATUS_PENDING]);
+
+        if (!empty($search)) {
+            $condition->like('name', '%' . $search . '%');
+        }
 
         $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App');
         $table->setRestrictedFields(['url', 'appSecret']);
@@ -127,8 +134,11 @@ class Collection extends SchemaApiAbstract
 
         $appId = $table->getLastInsertId();
 
-        // insert scopes to the app which are assigned to the user
-        $this->insertDefaultScopes($appId, $record->getUserId());
+        // insert scopes
+        $scopes = $record->getScopes();
+        if (!empty($scopes) && is_array($scopes)) {
+            $this->insertScopes($appId, $scopes);
+        }
 
         return array(
             'success' => true,
@@ -158,9 +168,9 @@ class Collection extends SchemaApiAbstract
     {
     }
 
-    protected function insertDefaultScopes($appId, $userId)
+    protected function insertScopes($appId, $scopes)
     {
-        $scopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope')->getByUserId($userId);
+        $scopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->getByNames($scopes);
         $table  = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope');
 
         foreach ($scopes as $scope) {
