@@ -35,6 +35,8 @@ describe('App tests', function() {
     element(by.model('app.name')).sendKeys('test-app');
     element(by.model('app.url')).sendKeys('http://foo.com');
 
+    element.all(by.model('app.scopes[$index]')).click();
+
     $('button.btn-primary').click();
 
     browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
