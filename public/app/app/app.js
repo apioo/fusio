@@ -111,7 +111,8 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 	$scope.app = {
 		status: 1,
 		name: '',
-		url: ''
+		url: '',
+		scopes: []
 	};
 
 	$scope.states = [{
@@ -158,6 +159,10 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 			}
 		});
 	};
+
+	$http.get(fusio_url + 'backend/scope?count=1024').success(function(data){
+		$scope.scopes = data.entry;
+	});
 
 }])
 

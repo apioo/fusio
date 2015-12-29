@@ -29,6 +29,22 @@
 			<input type="text" id="url" ng-model="app.url" aria-describedby="urlHelp" class="form-control">
 			<span class="help-block" id="urlHelp">Optional url of the application</span>
 		</div>
+		<tabset>
+			<tab heading="Scopes">
+				<table class="table fusio-table-tab">
+				<colgroup>
+					<col width="20" />
+					<col width="*" />
+				</colgroup>
+				<tbody>
+				<tr ng-repeat="scope in scopes">
+					<td><input type="checkbox" ng-model="app.scopes[$index]" ng-true-value="'{{scope.name}}'" ng-false-value="''" id="scope-{{scope.id}}" /></td>
+					<td><label for="scope-{{scope.id}}">{{scope.name}}</label></td>
+				</tr>
+				</tbody>
+				</table>
+			</tab>
+		</tabset>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 	</form>
