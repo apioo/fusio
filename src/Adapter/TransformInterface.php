@@ -31,7 +31,7 @@ namespace Fusio\Impl\Adapter;
 interface TransformInterface
 {
     /**
-     * Transforms a foreign API format into instructions. Through this it is 
+     * Transforms a foreign API format into instructions. Through this it is
      * possible to import different API formats i.e. RAML
      *
      * @return array

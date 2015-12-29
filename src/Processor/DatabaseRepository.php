@@ -48,12 +48,12 @@ class DatabaseRepository implements RepositoryInterface
             $column = 'name';
         }
 
-        $sql = 'SELECT id, 
-                       name, 
-                       class, 
-                       config, 
-                       date 
-                  FROM fusio_action 
+        $sql = 'SELECT id,
+                       name,
+                       class,
+                       config,
+                       date
+                  FROM fusio_action
                  WHERE ' . $column . ' = :id';
 
         $row = $this->connection->fetchAssoc($sql, array('id' => $actionId));

@@ -61,7 +61,7 @@ class App extends TableAbstract
 
     public function getAuthorizedApps($userId)
     {
-        $sql = '    SELECT userGrant.id, 
+        $sql = '    SELECT userGrant.id,
                            userGrant.date AS createDate,
                            userGrant.appId AS app_id,
                            app.name AS app_name,

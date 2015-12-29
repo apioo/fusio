@@ -102,8 +102,8 @@ class Collection extends SchemaApiAbstract
         }
 
         if (!empty($routeId)) {
-            $sql = 'SELECT schemaId 
-                      FROM fusio_routes_schema 
+            $sql = 'SELECT schemaId
+                      FROM fusio_routes_schema
                      WHERE routeId = ?';
 
             $condition->raw('id IN (' . $sql . ')', [$routeId]);

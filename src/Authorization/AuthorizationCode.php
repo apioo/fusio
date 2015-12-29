@@ -79,7 +79,7 @@ class AuthorizationCode extends AuthorizationCodeAbstract
         $expires->add(new \DateInterval($this->expireConfidential));
 
         if (!empty($code)) {
-            // @TODO check whether the code is older then 1 hour if so thow an 
+            // @TODO check whether the code is older then 1 hour if so thow an
             // exception
             // $code['date']
 

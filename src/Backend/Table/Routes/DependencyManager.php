@@ -214,7 +214,7 @@ class DependencyManager
     }
 
     /**
-     * Returns all action ids which are required by the config. Resolves also 
+     * Returns all action ids which are required by the config. Resolves also
      * action ids which depend on another action
      *
      * @return array

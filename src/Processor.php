@@ -70,7 +70,7 @@ class Processor implements ProcessorInterface
     }
 
     /**
-     * Pushes another repository to the processor stack. Through this it is 
+     * Pushes another repository to the processor stack. Through this it is
      * possible to provide another action source
      *
      * @param \Fusio\Impl\Processor\RepositoryInterface

@@ -106,5 +106,4 @@ class Scope extends TableAbstract
 
         return $data;
     }
-
 }

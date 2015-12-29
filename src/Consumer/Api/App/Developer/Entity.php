@@ -223,9 +223,9 @@ class Entity extends SchemaApiAbstract
         $userScopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope')->getByUserId($this->userId);
         $scopes     = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->getByNames($scopes);
 
-        // check that the user can assign only the scopes which are also 
+        // check that the user can assign only the scopes which are also
         // assigned to the user account
-        return array_filter($scopes, function($scope) use ($userScopes){
+        return array_filter($scopes, function ($scope) use ($userScopes) {
 
             foreach ($userScopes as $userScope) {
                 if ($userScope['id'] == $scope['id']) {

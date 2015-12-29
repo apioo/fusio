@@ -51,7 +51,7 @@ class TokenGenerator
     }
 
     /**
-     * Generates the authorization code 
+     * Generates the authorization code
      *
      * @return string
      */

@@ -96,9 +96,9 @@ class MongoFetchAll implements ActionInterface
                 $sort = $configuration->get('sort');
                 if (!empty($sort)) {
                     parse_str($sort, $sortParameters);
-                    $sortParameters = array_map(function($value) {
+                    $sortParameters = array_map(function ($value) {
                         $value = (int) $value;
-                        return $value == 1 || $value == -1 ? $value : 1; 
+                        return $value == 1 || $value == -1 ? $value : 1;
                     }, $sortParameters);
 
                     $cursor->sort($sortParameters);

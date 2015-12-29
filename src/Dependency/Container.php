@@ -70,13 +70,13 @@ class Container extends DefaultContainer
     {
         $factory = new GrantTypeFactory();
         $factory->add(new ApiAuthorization\ClientCredentials(
-            $this->get('connection'), 
+            $this->get('connection'),
             $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\App\Scope'),
             $this->get('config')->get('fusio_expire_app')
         ));
 
         $factory->add(new ApiAuthorization\AuthorizationCode(
-            $this->get('connection'), 
+            $this->get('connection'),
             $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\App\Scope'),
             $this->get('config')->get('fusio_expire_app')
         ));
@@ -91,7 +91,7 @@ class Container extends DefaultContainer
     {
         $factory = new GrantTypeFactory();
         $factory->add(new BackendAuthorization\ClientCredentials(
-            $this->get('connection'), 
+            $this->get('connection'),
             $this->get('config')->get('fusio_expire_backend')
         ));
 
@@ -105,7 +105,7 @@ class Container extends DefaultContainer
     {
         $factory = new GrantTypeFactory();
         $factory->add(new ConsumerAuthorization\ClientCredentials(
-            $this->get('connection'), 
+            $this->get('connection'),
             $this->get('config')->get('fusio_expire_consumer')
         ));
 
@@ -198,7 +198,7 @@ class Container extends DefaultContainer
     public function getProcessor()
     {
         return new Processor(
-            new Processor\DatabaseRepository($this->get('connection')), 
+            new Processor\DatabaseRepository($this->get('connection')),
             $this->get('action_factory')
         );
     }

@@ -111,10 +111,10 @@ class Authorize extends SchemaApiAbstract
         }
 
         // client id
-        $sql = 'SELECT id, 
-                       name, 
-                       url 
-                  FROM fusio_app 
+        $sql = 'SELECT id,
+                       name,
+                       url
+                  FROM fusio_app
                  WHERE appKey = :appKey
                    AND status = :status';
 
@@ -164,7 +164,7 @@ class Authorize extends SchemaApiAbstract
         $this->saveUserDecision($app['id'], $record->getAllow());
 
         if ($record->getAllow()) {
-            // @TODO if we are authenticated and the user has already approved the 
+            // @TODO if we are authenticated and the user has already approved the
             // app we can directly generate a code
 
             // generate code

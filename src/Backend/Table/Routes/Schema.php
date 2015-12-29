@@ -68,10 +68,10 @@ class Schema extends TableAbstract
 
     public function getDependingRoutePaths($schemaId)
     {
-        $sql = '    SELECT routes.path 
-                      FROM fusio_routes_schema schem 
-                INNER JOIN fusio_routes routes 
-                        ON routes.id = schem.routeId 
+        $sql = '    SELECT routes.path
+                      FROM fusio_routes_schema schem
+                INNER JOIN fusio_routes routes
+                        ON routes.id = schem.routeId
                      WHERE schem.schemaId = :id';
 
         $result = $this->connection->fetchAll($sql, ['id' => $schemaId]);

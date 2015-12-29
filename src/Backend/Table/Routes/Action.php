@@ -68,10 +68,10 @@ class Action extends TableAbstract
 
     public function getDependingRoutePaths($actionId)
     {
-        $sql = '    SELECT routes.path 
-                      FROM fusio_routes_action action 
-                INNER JOIN fusio_routes routes 
-                        ON routes.id = action.routeId 
+        $sql = '    SELECT routes.path
+                      FROM fusio_routes_action action
+                INNER JOIN fusio_routes routes
+                        ON routes.id = action.routeId
                      WHERE action.actionId = :id';
 
         $result = $this->connection->fetchAll($sql, ['id' => $actionId]);

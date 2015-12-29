@@ -118,7 +118,7 @@ class HttpRequest implements ActionInterface
         $headers = $yaml->parse($headers);
 
         if (is_array($headers)) {
-            foreach($headers as $key => $value) {
+            foreach ($headers as $key => $value) {
                 if (is_string($key) && is_string($value)) {
                     $result[$key] = $value;
                 }
