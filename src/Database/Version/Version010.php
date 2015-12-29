@@ -70,7 +70,6 @@ class Version010 implements VersionInterface
         $appTable->addColumn('appSecret', 'string', array('length' => 255));
         $appTable->addColumn('date', 'datetime');
         $appTable->setPrimaryKey(array('id'));
-        $appTable->addUniqueIndex(array('name'));
         $appTable->addUniqueIndex(array('appKey'));
 
         $appScopeTable = $schema->createTable('fusio_app_scope');
