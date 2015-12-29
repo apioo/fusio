@@ -23,6 +23,7 @@ namespace Fusio\Impl\Consumer\Api\App\Developer;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
 use Fusio\Impl\Backend\Api\App\ValidatorTrait;
+use Fusio\Impl\Backend\Table\App;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -94,6 +95,10 @@ class Entity extends SchemaApiAbstract
                 throw new StatusCode\BadRequestException('App does not belong to the user');
             }
 
+            if ($app['status'] == App::STATUS_DELETED) {
+                throw new StatusCode\GoneException('App was deleted');
+            }
+
             $app['scopes'] = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')
                 ->getByApp($app['id']);
 
@@ -134,20 +139,24 @@ class Entity extends SchemaApiAbstract
                 throw new StatusCode\BadRequestException('App does not belong to the user');
             }
 
+            if ($app['status'] == App::STATUS_DELETED) {
+                throw new StatusCode\GoneException('App was deleted');
+            }
+
+            $scopes = $this->getValidUserScopes($record->getScopes());
+            if (empty($scopes)) {
+                throw new StatusCode\BadRequestException('Provide at least one valid scope for the app');
+            }
+
             $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->update(array(
-                'id'     => $app->getId(),
-                'status' => $record->getStatus(),
-                'name'   => $record->getName(),
-                'url'    => $record->getUrl(),
+                'id'   => $app->getId(),
+                'name' => $record->getName(),
+                'url'  => $record->getUrl(),
             ));
 
             $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope')->deleteAllFromApp($appId);
 
-            $scopes = $record->getScopes();
-
-            if (!empty($scopes) && is_array($scopes)) {
-                $this->insertScopes($appId, $scopes);
-            }
+            $this->insertScopes($appId, $scopes);
 
             return array(
                 'success' => true,
@@ -175,10 +184,13 @@ class Entity extends SchemaApiAbstract
                 throw new StatusCode\BadRequestException('App does not belong to the user');
             }
 
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope')->deleteAllFromApp($appId);
+            if ($app['status'] == App::STATUS_DELETED) {
+                throw new StatusCode\GoneException('App was deleted');
+            }
 
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->delete(array(
-                'id' => $app['id']
+            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->update(array(
+                'id'     => $app['id'],
+                'status' => App::STATUS_DELETED,
             ));
 
             return array(
@@ -190,16 +202,39 @@ class Entity extends SchemaApiAbstract
         }
     }
 
-    protected function insertScopes($appId, $scopes)
+    protected function insertScopes($appId, array $scopes)
     {
-        $scopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->getByNames($scopes);
-        $table  = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope');
+        $appScope = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope');
 
         foreach ($scopes as $scope) {
-            $table->create(array(
+            $appScope->create(array(
                 'appId'   => $appId,
                 'scopeId' => $scope['id'],
             ));
         }
+    }
+
+    protected function getValidUserScopes($scopes)
+    {
+        if (empty($scopes)) {
+            return [];
+        }
+
+        $userScopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope')->getByUserId($this->userId);
+        $scopes     = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->getByNames($scopes);
+
+        // check that the user can assign only the scopes which are also 
+        // assigned to the user account
+        return array_filter($scopes, function($scope) use ($userScopes){
+
+            foreach ($userScopes as $userScope) {
+                if ($userScope['id'] == $scope['id']) {
+                    return true;
+                }
+            }
+
+            return false;
+
+        });
     }
 }

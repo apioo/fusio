@@ -124,9 +124,15 @@ class Collection extends SchemaApiAbstract
         // check limit of apps which an user can create
         $condition = new Condition();
         $condition->equals('userId', $this->userId);
+        $condition->in('status', [App::STATUS_ACTIVE, App::STATUS_PENDING, App::STATUS_DEACTIVATED]);
 
         if ($table->getCount($condition) > $this->config['fusio_app_per_consumer']) {
-            throw new StatusCode\BadRequestException('Maximal amount fo apps reached. Please delete another app in order to register a new one');
+            throw new StatusCode\BadRequestException('Maximal amount of apps reached. Please delete another app in order to register a new one');
+        }
+
+        $scopes = $this->getValidUserScopes($record->getScopes());
+        if (empty($scopes)) {
+            throw new StatusCode\BadRequestException('Provide at least one valid scope for the app');
         }
 
         $appKey    = TokenGenerator::generateAppKey();
@@ -134,7 +140,7 @@ class Collection extends SchemaApiAbstract
 
         $table->create(array(
             'userId'    => $this->userId,
-            'status'    => $record->getStatus(),
+            'status'    => $this->config['fusio_app_approval'] === false ? App::STATUS_ACTIVE : App::STATUS_PENDING,
             'name'      => $record->getName(),
             'url'       => $record->getUrl(),
             'appKey'    => $appKey,
@@ -144,8 +150,7 @@ class Collection extends SchemaApiAbstract
 
         $appId = $table->getLastInsertId();
 
-        // insert scopes to the app which are assigned to the user
-        $this->insertDefaultScopes($appId, $this->userId);
+        $this->insertScopes($appId, $scopes);
 
         return array(
             'success' => true,
@@ -175,16 +180,39 @@ class Collection extends SchemaApiAbstract
     {
     }
 
-    protected function insertDefaultScopes($appId, $userId)
+    protected function insertScopes($appId, array $scopes)
     {
-        $scopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope')->getByUserId($userId);
-        $table  = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope');
+        $appScope = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope');
 
         foreach ($scopes as $scope) {
-            $table->create(array(
+            $appScope->create(array(
                 'appId'   => $appId,
                 'scopeId' => $scope['id'],
             ));
         }
+    }
+
+    protected function getValidUserScopes($scopes)
+    {
+        if (empty($scopes)) {
+            return [];
+        }
+
+        $userScopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope')->getByUserId($this->userId);
+        $scopes     = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->getByNames($scopes);
+
+        // check that the user can assign only the scopes which are also 
+        // assigned to the user account
+        return array_filter($scopes, function($scope) use ($userScopes){
+
+            foreach ($userScopes as $userScope) {
+                if ($userScope['id'] == $scope['id']) {
+                    return true;
+                }
+            }
+
+            return false;
+
+        });
     }
 }
