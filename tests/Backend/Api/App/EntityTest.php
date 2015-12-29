@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Backend\Api\App;
 
 use Fusio\Impl\Fixture;
+use Fusio\Impl\Backend\Table\App as TableApp;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 
@@ -152,15 +153,16 @@ JSON;
 
         // check database
         $sql = Environment::getService('connection')->createQueryBuilder()
-            ->select('id')
+            ->select('id', 'status')
             ->from('fusio_app')
-            ->orderBy('id', 'DESC')
+            ->where('id = 5')
             ->setFirstResult(0)
             ->setMaxResults(1)
             ->getSQL();
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        $this->assertEquals(4, $row['id']);
+        $this->assertEquals(5, $row['id']);
+        $this->assertEquals(TableApp::STATUS_DELETED, $row['status']);
     }
 }

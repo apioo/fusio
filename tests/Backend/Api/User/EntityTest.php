@@ -154,7 +154,7 @@ JSON;
         $routes = Environment::getService('connection')->fetchAll($sql, ['userId' => 4]);
 
         $this->assertEquals([[
-            'id'      => 4,
+            'id'      => 8,
             'userId'  => 4,
             'scopeId' => 5,
         ]], $routes);

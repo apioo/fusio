@@ -55,17 +55,9 @@ class CollectionTest extends ControllerDbTestCase
 
         $expect = <<<JSON
 {
-    "totalItems": 5,
+    "totalItems": 4,
     "startIndex": 0,
     "entry": [
-        {
-            "id": 5,
-            "userId": 2,
-            "status": 3,
-            "name": "Deactivated",
-            "appKey": "[app_key]",
-            "date": "[datetime]"
-        },
         {
             "id": 4,
             "userId": 2,
@@ -116,6 +108,7 @@ JSON;
             'userId' => 1,
             'name'   => 'Foo',
             'url'    => 'http://google.com',
+            'scopes' => ['foo', 'bar']
         ]));
 
         $body   = (string) $response->getBody();
@@ -145,6 +138,10 @@ JSON;
         $this->assertEquals(1, $row['userId']);
         $this->assertEquals('Foo', $row['name']);
         $this->assertEquals('http://google.com', $row['url']);
+
+        $scopes = Environment::getService('table_manager')->getTable('Fusio\Impl\Backend\Table\Scope')->getByApp(6);
+
+        $this->assertEquals(array('bar', 'foo'), $scopes);
     }
 
     public function testPut()
