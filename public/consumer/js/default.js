@@ -105,18 +105,16 @@ function loadApps() {
         }
 
         $('#appModalLabel').html(data.name);
-        $('#appName').html(data.name);
+        $('#appTitle').html(data.name);
         $('#appCreateDate').html(createDate.toLocaleString());
         $('#appScopes').html(scopesHtml);
         $('#appKey').val(data.appKey);
         $('#appSecret').val(data.appSecret);
-
-        // @TODO show tokens and probably provide a way to remove a token
       });
 
       $('#appModal').modal({
         keyboard: false
-      })
+      });
     });
 
     // add delete button listener
@@ -158,6 +156,9 @@ function submitAccess(responseType, clientId, redirectUri, scope, state, allow) 
 
   request('POST', 'consumer/authorize', data, function(data){
     if (data.redirectUri == '' || data.redirectUri == '#') {
+      if (allow == 0) {
+        $('#appResponseCode').html('<p>The access was denied. There is nothing more todo here.</p>');
+      }
       $('#appRequestPermission').css('display', 'none');
       $('#appResponseCode').css('display', 'block');
       $('#appCode').html(data.code);
@@ -234,6 +235,20 @@ function onLoad(){
 
   $('#appDenyAccess').click(function(){
     submitAccess(responseType, clientId, redirectUri, scope, state, 0);
+  });
+
+  $('#appCreate').click(function(){
+    request('GET', 'consumer/scope', null, function(data){
+      var scopeHtml = '';
+      for (var i = 0; i < data.entry.length; i++) {
+        scopeHtml+= '<label><input type="checkbox" class="fusio-app-create-scope" value="' + data.entry[i].name + '"> ' + data.entry[i].description + '</label>';
+      }
+      $('#appCreateScopes').html(scopeHtml);
+    });
+
+    $('#appCreateModal').modal({
+      keyboard: false
+    });
   });
 }
 

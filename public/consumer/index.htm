@@ -77,7 +77,7 @@
         see the app key and secret.</div>
         <div id="developerApps"></div>
         <hr>
-        <a class="btn btn-primary fusio-btn-app-create" href="#" role="button">Create</a>
+        <a id="appCreate" class="btn btn-primary" href="#" role="button">Create</a>
       </div>
     </div>
   </div>
@@ -97,7 +97,7 @@
       <div class="modal-body">
         <dl>
           <dt>Name</dt>
-          <dd><span id="appName"></span></dd>
+          <dd><span id="appTitle"></span></dd>
           <dt>Created on</dt>
           <dd><span id="appCreateDate"></span></dd>
           <dt>Scopes</dt>
@@ -113,6 +113,32 @@
         </div>
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="appCreateModal" tabindex="-1" role="dialog" aria-labelledby="appModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="appModalLabel">Create app</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="name" class="control-label">Name:</label>
+          <input type="text" class="form-control" id="name">
+        </div>
+        <div class="form-group">
+          <label for="url" class="control-label">Url:</label>
+          <input type="url" class="form-control" id="url">
+        </div>
+        <div class="checkbox" id="appCreateScopes"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
