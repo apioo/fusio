@@ -133,8 +133,13 @@ JSON;
                 ['scopeId' => 5, 'routeId' => 49, 'allow' => 1, 'methods' => 'GET|POST|PUT|DELETE'],
             ],
             'fusio_user_scope' => [
+                ['userId' => 1, 'scopeId' => 4],
+                ['userId' => 1, 'scopeId' => 5],
                 ['userId' => 2, 'scopeId' => 4],
                 ['userId' => 2, 'scopeId' => 5],
+            ],
+            'fusio_user_grant' => [
+                ['userId' => 1, 'appId' => 1, 'allow' => 1, 'date' => '2015-02-27 19:59:15'],
             ],
             'app_news' => [
                 ['id' => 1, 'title' => 'foo', 'content' => 'bar', 'date' => '2015-02-27 19:59:15'],
