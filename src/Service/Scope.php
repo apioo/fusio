@@ -73,7 +73,7 @@ class Scope
             null,
             null,
             null,
-            $this->userScopeTable->getByUser($this->userId)
+            $this->userScopeTable->getByUser($userId)
         );
     }
 
