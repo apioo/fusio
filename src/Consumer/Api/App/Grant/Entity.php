@@ -58,7 +58,7 @@ class Entity extends SchemaApiAbstract
      * @Inject
      * @var \PSX\Sql\TableManager
      */
-    protected $tableManager;
+    protected $appGrantService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -113,17 +113,9 @@ class Entity extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-        $grantId = (int) $this->getUriFragment('grant_id');
-        $grant   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Grant')->get($grantId);
-
-        if ($grant['userId'] == $this->userId) {
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Grant')->delete($grant);
-
-            // delete tokens
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Token')
-                ->removeAllTokensFromAppAndUser($grant['appId'], $grant['userId']);
-        } else {
-            throw new StatusCode\BadRequestException('Invalid grant id');
-        }
+        $this->appGrantService->delete(
+            $this->userId,
+            (int) $this->getUriFragment('grant_id')
+        );
     }
 }

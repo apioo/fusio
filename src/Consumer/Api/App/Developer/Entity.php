@@ -52,9 +52,9 @@ class Entity extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\App\Developer
      */
-    protected $tableManager;
+    protected $appDeveloperService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -87,28 +87,10 @@ class Entity extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $appId = (int) $this->getUriFragment('app_id');
-        $app   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->get($appId);
-
-        if (!empty($app)) {
-            if ($app['userId'] != $this->userId) {
-                throw new StatusCode\BadRequestException('App does not belong to the user');
-            }
-
-            if ($app['status'] == App::STATUS_DELETED) {
-                throw new StatusCode\GoneException('App was deleted');
-            }
-
-            $app['scopes'] = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')
-                ->getByApp($app['id']);
-
-            $app['tokens'] = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Token')
-                ->getTokensByApp($app['id']);
-
-            return $app;
-        } else {
-            throw new StatusCode\NotFoundException('Could not find app');
-        }
+        return $this->appDeveloperService->get(
+            $this->userId,
+            (int) $this->getUriFragment('app_id')
+        );
     }
 
     /**
@@ -131,40 +113,18 @@ class Entity extends SchemaApiAbstract
      */
     protected function doUpdate(RecordInterface $record, Version $version)
     {
-        $appId = (int) $this->getUriFragment('app_id');
-        $app   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->get($appId);
+        $this->appDeveloperService->update(
+            $this->userId,
+            (int) $this->getUriFragment('app_id'),
+            $record->getName(),
+            $record->getUrl(),
+            $record->getScopes()
+        );
 
-        if (!empty($app)) {
-            if ($app['userId'] != $this->userId) {
-                throw new StatusCode\BadRequestException('App does not belong to the user');
-            }
-
-            if ($app['status'] == App::STATUS_DELETED) {
-                throw new StatusCode\GoneException('App was deleted');
-            }
-
-            $scopes = $this->getValidUserScopes($record->getScopes());
-            if (empty($scopes)) {
-                throw new StatusCode\BadRequestException('Provide at least one valid scope for the app');
-            }
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->update(array(
-                'id'   => $app->getId(),
-                'name' => $record->getName(),
-                'url'  => $record->getUrl(),
-            ));
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope')->deleteAllFromApp($appId);
-
-            $this->insertScopes($appId, $scopes);
-
-            return array(
-                'success' => true,
-                'message' => 'App successful updated',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find app');
-        }
+        return array(
+            'success' => true,
+            'message' => 'App successful updated',
+        );
     }
 
     /**
@@ -176,65 +136,14 @@ class Entity extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-        $appId = (int) $this->getUriFragment('app_id');
-        $app   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->get($appId);
+        $this->appDeveloperService->delete(
+            $this->userId,
+            (int) $this->getUriFragment('app_id')
+        );
 
-        if (!empty($app)) {
-            if ($app['userId'] != $this->userId) {
-                throw new StatusCode\BadRequestException('App does not belong to the user');
-            }
-
-            if ($app['status'] == App::STATUS_DELETED) {
-                throw new StatusCode\GoneException('App was deleted');
-            }
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->update(array(
-                'id'     => $app['id'],
-                'status' => App::STATUS_DELETED,
-            ));
-
-            return array(
-                'success' => true,
-                'message' => 'App successful deleted',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find app');
-        }
-    }
-
-    protected function insertScopes($appId, array $scopes)
-    {
-        $appScope = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope');
-
-        foreach ($scopes as $scope) {
-            $appScope->create(array(
-                'appId'   => $appId,
-                'scopeId' => $scope['id'],
-            ));
-        }
-    }
-
-    protected function getValidUserScopes($scopes)
-    {
-        if (empty($scopes)) {
-            return [];
-        }
-
-        $userScopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope')->getByUserId($this->userId);
-        $scopes     = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->getByNames($scopes);
-
-        // check that the user can assign only the scopes which are also
-        // assigned to the user account
-        return array_filter($scopes, function ($scope) use ($userScopes) {
-
-            foreach ($userScopes as $userScope) {
-                if ($userScope['id'] == $scope['id']) {
-                    return true;
-                }
-            }
-
-            return false;
-
-        });
+        return array(
+            'success' => true,
+            'message' => 'App successful deleted',
+        );
     }
 }

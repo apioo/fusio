@@ -36,43 +36,16 @@ class IncomingRequests extends ApiAbstract
 {
     use ProtectionTrait;
 
+    /**
+     * @Inject
+     * @var \Fusio\Impl\Service\Statistic
+     */
+    protected $statisticService;
+
     public function onGet()
     {
-        $filter     = Log\QueryFilter::create($this->getParameters());
-        $condition  = $filter->getCondition('log');
-        $expression = $condition->getExpression($this->connection->getDatabasePlatform());
-
-        // build data structure
-        $fromDate = $filter->getFrom();
-        $toDate   = $filter->getTo();
-        $diff     = $toDate->getTimestamp() - $fromDate->getTimestamp();
-        $data     = [];
-        $labels   = [];
-
-        while ($fromDate <= $toDate) {
-            $data[$fromDate->format('Y-m-d')] = 0;
-            $labels[] = $fromDate->format($diff < 2419200 ? 'D' : 'Y-m-d');
-
-            $fromDate->add(new \DateInterval('P1D'));
-        }
-
-        // fill values
-        $sql = '  SELECT COUNT(log.id) AS count,
-                         DATE(log.date) AS date
-                    FROM fusio_log log
-                   WHERE ' . $expression . '
-                GROUP BY DATE(log.date)';
-
-        $result = $this->connection->fetchAll($sql, $condition->getValues());
-
-        foreach ($result as $row) {
-            $data[$row['date']] = (int) $row['count'];
-        }
-
-        $this->setBody(array(
-            'labels' => $labels,
-            'data'   => [array_values($data)],
-            'series' => ['Requests'],
+        $this->setBody($this->statisticService->getIncomingRequests(
+            Log\QueryFilter::create($this->getParameters())
         ));
     }
 }

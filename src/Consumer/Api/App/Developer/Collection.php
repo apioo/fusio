@@ -58,9 +58,9 @@ class Collection extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\App\Developer
      */
-    protected $tableManager;
+    protected $appDeveloperService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -89,23 +89,10 @@ class Collection extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
-        $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-
-        $condition = new Condition();
-        $condition->equals('userId', $this->userId);
-        $condition->equals('status', App::STATUS_ACTIVE);
-        if (!empty($search)) {
-            $condition->like('name', '%' . $search . '%');
-        }
-
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App');
-        $table->setRestrictedFields(['url', 'appSecret']);
-
-        return array(
-            'totalItems' => $table->getCount($condition),
-            'startIndex' => $startIndex,
-            'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+        return $this->appDeveloperService->getAll(
+            $this->userId,
+            $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0,
+            $this->getParameter('search', Validate::TYPE_STRING) ?: null
         );
     }
 
@@ -118,38 +105,12 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App');
-
-        // check limit of apps which an user can create
-        $condition = new Condition();
-        $condition->equals('userId', $this->userId);
-        $condition->in('status', [App::STATUS_ACTIVE, App::STATUS_PENDING, App::STATUS_DEACTIVATED]);
-
-        if ($table->getCount($condition) > $this->config['fusio_app_per_consumer']) {
-            throw new StatusCode\BadRequestException('Maximal amount of apps reached. Please delete another app in order to register a new one');
-        }
-
-        $scopes = $this->getValidUserScopes($record->getScopes());
-        if (empty($scopes)) {
-            throw new StatusCode\BadRequestException('Provide at least one valid scope for the app');
-        }
-
-        $appKey    = TokenGenerator::generateAppKey();
-        $appSecret = TokenGenerator::generateAppSecret();
-
-        $table->create(array(
-            'userId'    => $this->userId,
-            'status'    => $this->config['fusio_app_approval'] === false ? App::STATUS_ACTIVE : App::STATUS_PENDING,
-            'name'      => $record->getName(),
-            'url'       => $record->getUrl(),
-            'appKey'    => $appKey,
-            'appSecret' => $appSecret,
-            'date'      => new DateTime(),
-        ));
-
-        $appId = $table->getLastInsertId();
-
-        $this->insertScopes($appId, $scopes);
+        $this->appDeveloperService->create(
+            $this->userId,
+            $record->getName(),
+            $record->getUrl(),
+            $record->getScopes()
+        );
 
         return array(
             'success' => true,
@@ -177,41 +138,5 @@ class Collection extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-    }
-
-    protected function insertScopes($appId, array $scopes)
-    {
-        $appScope = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope');
-
-        foreach ($scopes as $scope) {
-            $appScope->create(array(
-                'appId'   => $appId,
-                'scopeId' => $scope['id'],
-            ));
-        }
-    }
-
-    protected function getValidUserScopes($scopes)
-    {
-        if (empty($scopes)) {
-            return [];
-        }
-
-        $userScopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope')->getByUserId($this->userId);
-        $scopes     = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->getByNames($scopes);
-
-        // check that the user can assign only the scopes which are also
-        // assigned to the user account
-        return array_filter($scopes, function ($scope) use ($userScopes) {
-
-            foreach ($userScopes as $userScope) {
-                if ($userScope['id'] == $scope['id']) {
-                    return true;
-                }
-            }
-
-            return false;
-
-        });
     }
 }

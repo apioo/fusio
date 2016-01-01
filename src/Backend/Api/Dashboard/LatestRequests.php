@@ -35,19 +35,16 @@ class LatestRequests extends ApiAbstract
 {
     use ProtectionTrait;
 
+    /**
+     * @Inject
+     * @var \Fusio\Impl\Service\Dashboard
+     */
+    protected $dashboardService;
+
     public function onGet()
     {
-        $sql = '  SELECT path,
-                         ip,
-                         date
-                    FROM fusio_log
-                ORDER BY date DESC
-                   LIMIT 6';
-
-        $result = $this->connection->fetchAll($sql);
-
         $this->setBody(array(
-            'entry' => $result,
+            'entry' => $this->dashboardService->getLatestRequests(),
         ));
     }
 }

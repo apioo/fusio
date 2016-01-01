@@ -54,9 +54,9 @@ class Collection extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Scope
      */
-    protected $tableManager;
+    protected $scopeService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -85,16 +85,9 @@ class Collection extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
-        $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-        $condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
-
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope');
-
-        return array(
-            'totalItems' => $table->getCount($condition),
-            'startIndex' => $startIndex,
-            'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+        return $this->scopeService->getAll(
+            $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0,
+            $this->getParameter('search', Validate::TYPE_STRING) ?: null
         );
     }
 
@@ -107,17 +100,11 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $scopeTable = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope');
-
-        $scopeTable->create(array(
-            'name'        => $record->getName(),
-            'description' => $record->getDescription(),
-        ));
-
-        // insert routes
-        $scopeId = $scopeTable->getLastInsertId();
-
-        $this->insertRoutes($scopeId, $record->getRoutes());
+        $this->scopeService->create(
+            $record->getName(),
+            $record->getDescription(),
+            $record->getRoutes()
+        );
 
         return array(
             'success' => true,
@@ -145,23 +132,5 @@ class Collection extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-    }
-
-    protected function insertRoutes($scopeId, $routes)
-    {
-        if (!empty($routes) && is_array($routes)) {
-            foreach ($routes as $route) {
-                //$this->getFieldValidator()->validate($field);
-
-                if ($route->getAllow()) {
-                    $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope\Route')->create(array(
-                        'scopeId' => $scopeId,
-                        'routeId' => $route->getRouteId(),
-                        'allow'   => $route->getAllow() ? 1 : 0,
-                        'methods' => $route->getMethods(),
-                    ));
-                }
-            }
-        }
     }
 }

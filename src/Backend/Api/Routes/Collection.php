@@ -53,15 +53,9 @@ class Collection extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Routes
      */
-    protected $tableManager;
-
-    /**
-     * @Inject
-     * @var \Fusio\Impl\Backend\Table\Routes\DependencyManager
-     */
-    protected $routesDependencyManager;
+    protected $routesService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -90,26 +84,9 @@ class Collection extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
-        $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-        $condition  = new Condition(['status', '=', 1]);
-        $condition->add('path', 'NOT LIKE', '/backend%');
-        $condition->add('path', 'NOT LIKE', '/consumer%');
-        $condition->add('path', 'NOT LIKE', '/doc%');
-        $condition->add('path', 'NOT LIKE', '/authorization%');
-        $condition->add('path', 'NOT LIKE', '/export%');
-
-        if (!empty($search)) {
-            $condition->add('path', 'LIKE', '%' . $search . '%');
-        }
-
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes');
-        $table->setRestrictedFields(['config']);
-
-        return array(
-            'totalItems' => $table->getCount($condition),
-            'startIndex' => $startIndex,
-            'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+        return $this->routesService->getAll(
+            $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0,
+            $this->getParameter('search', Validate::TYPE_STRING) ?: null
         );
     }
 
@@ -122,23 +99,11 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes')->create(array(
-            'methods'    => $record->getMethods(),
-            'path'       => $record->getPath(),
-            'controller' => 'Fusio\Impl\Controller\SchemaApiController',
-            'config'     => $record->getConfig(),
-        ));
-
-        // get last insert id
-        $routeId = $this->tableManager
-            ->getTable('Fusio\Impl\Backend\Table\Routes')
-            ->getLastInsertId();
-
-        // insert dependency links
-        $this->routesDependencyManager->insertDependencyLinks($routeId, $record->getConfig());
-
-        // lock dependencies
-        $this->routesDependencyManager->lockExistingDependencies($routeId);
+        $this->routesService->create(
+            $record->getMethods(),
+            $record->getPath(),
+            $record->getConfig()
+        );
 
         return array(
             'success' => true,

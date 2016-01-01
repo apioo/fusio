@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Schema;
 
 use Doctrine\DBAL\Connection;
+use Fusio\Engine\Schema\ParserInterface;
 use PSX\Data\Schema\Parser\JsonSchema;
 use PSX\Data\Schema\Parser\JsonSchema\RefResolver;
 use PSX\Data\Schema\Property;
@@ -36,7 +37,7 @@ use RuntimeException;
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Parser
+class Parser implements ParserInterface
 {
     protected $connection;
 

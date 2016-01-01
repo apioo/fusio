@@ -51,9 +51,9 @@ class Entity extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\App
      */
-    protected $tableManager;
+    protected $appService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -86,24 +86,9 @@ class Entity extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $appId = (int) $this->getUriFragment('app_id');
-        $app   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->get($appId);
-
-        if (!empty($app)) {
-            if ($app['status'] == TableApp::STATUS_DELETED) {
-                throw new StatusCode\GoneException('App was deleted');
-            }
-
-            $app['scopes'] = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')
-                ->getByApp($app['id']);
-
-            $app['tokens'] = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Token')
-                ->getTokensByApp($app['id']);
-
-            return $app;
-        } else {
-            throw new StatusCode\NotFoundException('Could not find app');
-        }
+        return $this->appService->get(
+            (int) $this->getUriFragment('app_id')
+        );
     }
 
     /**
@@ -126,37 +111,18 @@ class Entity extends SchemaApiAbstract
      */
     protected function doUpdate(RecordInterface $record, Version $version)
     {
-        $appId = (int) $this->getUriFragment('app_id');
-        $app   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->get($appId);
+        $this->appService->update(
+            (int) $this->getUriFragment('app_id'),
+            $record->getStatus(),
+            $record->getName(),
+            $record->getUrl(),
+            $record->getScopes()
+        );
 
-        if (!empty($app)) {
-            if ($app['status'] == TableApp::STATUS_DELETED) {
-                throw new StatusCode\GoneException('App was deleted');
-            }
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->update(array(
-                'id'     => $app->getId(),
-                'status' => $record->getStatus(),
-                'name'   => $record->getName(),
-                'url'    => $record->getUrl(),
-            ));
-
-            // delete existing scopes
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope')->deleteAllFromApp($appId);
-
-            // insert scopes
-            $scopes = $record->getScopes();
-            if (!empty($scopes) && is_array($scopes)) {
-                $this->insertScopes($appId, $scopes);
-            }
-
-            return array(
-                'success' => true,
-                'message' => 'App successful updated',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find app');
-        }
+        return array(
+            'success' => true,
+            'message' => 'App successful updated',
+        );
     }
 
     /**
@@ -168,38 +134,13 @@ class Entity extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-        $appId = (int) $this->getUriFragment('app_id');
-        $app   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->get($appId);
+        $this->appService->delete(
+            (int) $this->getUriFragment('app_id')
+        );
 
-        if (!empty($app)) {
-            if ($app['status'] == TableApp::STATUS_DELETED) {
-                throw new StatusCode\GoneException('App was deleted');
-            }
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->update(array(
-                'id'     => $app['id'],
-                'status' => TableApp::STATUS_DELETED,
-            ));
-
-            return array(
-                'success' => true,
-                'message' => 'App successful deleted',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find app');
-        }
-    }
-
-    protected function insertScopes($appId, $scopes)
-    {
-        $scopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->getByNames($scopes);
-        $table  = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope');
-
-        foreach ($scopes as $scope) {
-            $table->create(array(
-                'appId'   => $appId,
-                'scopeId' => $scope['id'],
-            ));
-        }
+        return array(
+            'success' => true,
+            'message' => 'App successful deleted',
+        );
     }
 }

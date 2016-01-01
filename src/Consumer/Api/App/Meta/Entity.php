@@ -57,9 +57,9 @@ class Entity extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\App
      */
-    protected $tableManager;
+    protected $appService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -83,26 +83,10 @@ class Entity extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $appKey = $this->getParameter('client_id');
-        $scope  = $this->getParameter('scope');
-
-        $condition = new Condition();
-        $condition->equals('appKey', $appKey);
-        $condition->equals('status', App::STATUS_ACTIVE);
-
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App');
-        $table->setRestrictedFields(['userId', 'status', 'appKey', 'appSecret', 'date']);
-
-        $app = $table->getOneBy($condition);
-
-        if (!empty($app)) {
-            $app['scopes'] = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope')
-                ->getDetailsByApp($app['id'], $scope, ['backend']);
-
-            return $app;
-        } else {
-            throw new StatusCode\NotFoundException('Could not find app');
-        }
+        return $this->appService->getPublic(
+            $this->getParameter('client_id'),
+            $this->getParameter('scope')
+        );
     }
 
     /**

@@ -39,26 +39,20 @@ class Token extends ApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\App
      */
-    protected $tableManager;
+    protected $appService;
 
     public function doRemove()
     {
-        $appId   = $this->getUriFragment('app_id');
-        $tokenId = $this->getUriFragment('token_id');
+        $this->appService->removeToken(
+            $this->getUriFragment('app_id'),
+            $this->getUriFragment('token_id')
+        );
 
-        $app = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App')->get($appId);
-
-        if ($app instanceof RecordInterface) {
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Token')->removeTokenFromApp($appId, $tokenId);
-
-            $this->setBody(array(
-                'success' => true,
-                'message' => 'Removed token successful',
-            ));
-        } else {
-            throw new NotFoundException('Invalid app');
-        }
+        $this->setBody(array(
+            'success' => true,
+            'message' => 'Removed token successful',
+        ));
     }
 }

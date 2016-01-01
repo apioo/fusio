@@ -50,15 +50,9 @@ class Entity extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Routes
      */
-    protected $tableManager;
-
-    /**
-     * @Inject
-     * @var \Fusio\Impl\Backend\Table\Routes\DependencyManager
-     */
-    protected $routesDependencyManager;
+    protected $routesService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -91,14 +85,9 @@ class Entity extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $routeId = (int) $this->getUriFragment('route_id');
-        $route   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes')->get($routeId);
-
-        if (!empty($route)) {
-            return $route;
-        } else {
-            throw new StatusCode\NotFoundException('Could not find route');
-        }
+        return $this->routesService->get(
+            (int) $this->getUriFragment('route_id')
+        );
     }
 
     /**
@@ -121,37 +110,17 @@ class Entity extends SchemaApiAbstract
      */
     protected function doUpdate(RecordInterface $record, Version $version)
     {
-        $routeId = (int) $this->getUriFragment('route_id');
-        $route   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes')->get($routeId);
+        $this->routesService->update(
+            (int) $this->getUriFragment('route_id'),
+            $record->getMethods(),
+            $record->getPath(),
+            $record->getConfig()
+        );
 
-        if (!empty($route)) {
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes')->update(array(
-                'id'         => $route->getId(),
-                'methods'    => $record->getMethods(),
-                'path'       => $record->getPath(),
-                'controller' => 'Fusio\Impl\Controller\SchemaApiController',
-                'config'     => $record->getConfig(),
-            ));
-
-            // remove all dependency links
-            $this->routesDependencyManager->removeExistingDependencyLinks($route->getId());
-
-            // unlock dependencies
-            $this->routesDependencyManager->unlockExistingDependencies($route->getId());
-
-            // insert dependency links
-            $this->routesDependencyManager->insertDependencyLinks($route->getId(), $record->getConfig());
-
-            // lock dependencies
-            $this->routesDependencyManager->lockExistingDependencies($route->getId());
-
-            return array(
-                'success' => true,
-                'message' => 'Routes successful updated',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find route');
-        }
+        return array(
+            'success' => true,
+            'message' => 'Routes successful updated',
+        );
     }
 
     /**
@@ -163,46 +132,13 @@ class Entity extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-        $routeId = (int) $this->getUriFragment('route_id');
-        $route   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes')->get($routeId);
+        $this->routesService->delete(
+            (int) $this->getUriFragment('route_id')
+        );
 
-        if (!empty($route)) {
-            // check whether route has a production version
-            if ($this->hasProductionVersion($route->getConfig())) {
-                throw new StatusCode\ConflictException('It is not possible to delete a route which contains a production version');
-            }
-
-            // remove all dependency links
-            $this->routesDependencyManager->removeExistingDependencyLinks($route->getId());
-
-            // unlock dependencies
-            $this->routesDependencyManager->unlockExistingDependencies($route->getId());
-
-            // remove all scope routes
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope\Route')->deleteAllFromRoute($route->getId());
-
-            // delete route
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes')->delete(array(
-                'id' => $route->getId(),
-            ));
-
-            return array(
-                'success' => true,
-                'message' => 'Routes successful deleted',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find route');
-        }
-    }
-
-    protected function hasProductionVersion(array $config)
-    {
-        foreach ($config as $version) {
-            if ($version->getActive() && in_array($version->getStatus(), [Resource::STATUS_ACTIVE, Resource::STATUS_DEPRECATED])) {
-                return true;
-            }
-        }
-
-        return false;
+        return array(
+            'success' => true,
+            'message' => 'Routes successful deleted',
+        );
     }
 }

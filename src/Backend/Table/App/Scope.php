@@ -80,7 +80,7 @@ class Scope extends TableAbstract
         return $data;
     }
 
-    public function getDetailsByApp($appId, $scope, array $exclude = array())
+    public function getByApp($appId, $scope, array $exclude = array())
     {
         $sql = '    SELECT scope.name,
                            scope.description

@@ -57,9 +57,9 @@ class Collection extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\User
      */
-    protected $tableManager;
+    protected $userService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -90,20 +90,8 @@ class Collection extends SchemaApiAbstract
     {
         $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
         $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-        $condition  = new Condition();
-        $condition->notEquals('status', User::STATUS_DELETED);
 
-        if (!empty($search)) {
-            $condition->like('name', '%' . $search . '%');
-        }
-
-        $result = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition);
-
-        return array(
-            'totalItems' => $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')->getCount($condition),
-            'startIndex' => $startIndex,
-            'entry'      => $result,
-        );
+        return $this->userService->getAll($startIndex, $search);
     }
 
     /**
@@ -115,17 +103,11 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $password = TokenGenerator::generateUserPassword();
-
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User');
-        $table->create(array(
-            'status'   => $record->getStatus(),
-            'name'     => $record->getName(),
-            'password' => \password_hash($password, PASSWORD_DEFAULT),
-            'date'     => new DateTime(),
-        ));
-
-        $this->insertScopes($table->getLastInsertId(), $record->getScopes());
+        $password = $this->userService->create(
+            $record->getStatus(), 
+            $record->getName(), 
+            $record->getScopes()
+        );
 
         return array(
             'success'  => true,
@@ -154,22 +136,5 @@ class Collection extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-    }
-
-    protected function insertScopes($userId, $scopes)
-    {
-        if (!empty($scopes) && is_array($scopes)) {
-            $scopeTable = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope');
-            $scopes     = $this->tableManager
-                ->getTable('Fusio\Impl\Backend\Table\Scope')
-                ->getByNames($scopes);
-
-            foreach ($scopes as $scope) {
-                $scopeTable->create(array(
-                    'userId'  => $userId,
-                    'scopeId' => $scope['id'],
-                ));
-            }
-        }
     }
 }

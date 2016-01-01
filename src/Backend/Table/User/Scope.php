@@ -53,4 +53,16 @@ class Scope extends TableAbstract
 
         $this->connection->executeQuery($sql, array('id' => $userId));
     }
+
+    public function getByUser($userId)
+    {
+        $sql = '    SELECT scope.name,
+                           scope.description
+                      FROM fusio_user_scope userScope
+                INNER JOIN fusio_scope scope
+                        ON scope.id = userScope.scopeId
+                     WHERE userScope.userId = :userId';
+
+        return $this->connection->fetchAll($sql, array('userId' => $userId)) ?: array();
+    }
 }

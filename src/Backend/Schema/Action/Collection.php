@@ -35,7 +35,7 @@ class Collection extends SchemaAbstract
     public function getDefinition()
     {
         $sb = $this->getSchemaBuilder('collection');
-        $sb->integer('totalItems');
+        $sb->integer('totalResults');
         $sb->integer('startIndex');
         $sb->arrayType('entry')
             ->setPrototype($this->getSchema('Fusio\Impl\Backend\Schema\Action'));

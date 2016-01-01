@@ -39,26 +39,19 @@ class Preview extends ApiAbstract
 {
     use ProtectionTrait;
 
+    /**
+     * @Inject
+     * @var \Fusio\Impl\Service\Schema
+     */
+    protected $schemaService;
+
     public function onGet()
     {
-        $sql = 'SELECT schema.cache
-				  FROM fusio_schema `schema`
-				 WHERE schema.id = :id';
+        $body = $this->schemaService->getHtmlPreview(
+            (int) $this->getUriFragment('schema_id')
+        );
 
-        $row = $this->connection->fetchAssoc($sql, array('id' => $this->getUriFragment('schema_id')));
-
-        if (!empty($row)) {
-            $generator = new Generator\Html();
-            $schema    = unserialize($row['cache']);
-
-            if ($schema instanceof SchemaInterface) {
-                $this->setHeader('Content-Type', 'text/html');
-                $this->setBody($generator->generate($schema));
-            } else {
-                throw new RuntimeException('Invalid schema');
-            }
-        } else {
-            throw new StatusCode\NotFoundException('Invalid schema id');
-        }
+        $this->setHeader('Content-Type', 'text/html');
+        $this->setBody($body);
     }
 }

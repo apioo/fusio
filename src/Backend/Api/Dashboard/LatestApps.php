@@ -35,18 +35,16 @@ class LatestApps extends ApiAbstract
 {
     use ProtectionTrait;
 
+    /**
+     * @Inject
+     * @var \Fusio\Impl\Service\Dashboard
+     */
+    protected $dashboardService;
+
     public function onGet()
     {
-        $sql = '  SELECT name,
-                         date
-                    FROM fusio_app
-                ORDER BY date DESC
-                   LIMIT 6';
-
-        $result = $this->connection->fetchAll($sql);
-
         $this->setBody(array(
-            'entry' => $result,
+            'entry' => $this->dashboardService->getLatestApps(),
         ));
     }
 }

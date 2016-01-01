@@ -54,9 +54,9 @@ class Collection extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Action
      */
-    protected $tableManager;
+    protected $actionService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -85,30 +85,10 @@ class Collection extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
-        $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-        $routeId    = $this->getParameter('routeId', Validate::TYPE_INTEGER) ?: null;
-        $condition  = new Condition();
-
-        if (!empty($search)) {
-            $condition->like('name', '%' . $search . '%');
-        }
-
-        if (!empty($routeId)) {
-            $sql = 'SELECT actionId
-                      FROM fusio_routes_action
-                     WHERE routeId = ?';
-
-            $condition->raw('id IN (' . $sql . ')', [$routeId]);
-        }
-
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action');
-        $table->setRestrictedFields(['class', 'config']);
-
-        return array(
-            'totalItems' => $table->getCount($condition),
-            'startIndex' => $startIndex,
-            'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+        return $this->actionService->getAll(
+            $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0,
+            $this->getParameter('search', Validate::TYPE_STRING) ?: null,
+            $this->getParameter('routeId', Validate::TYPE_INTEGER) ?: null
         );
     }
 
@@ -121,13 +101,11 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action')->create(array(
-            'status' => Action::STATUS_ACTIVE,
-            'name'   => $record->getName(),
-            'class'  => $record->getClass(),
-            'config' => $record->getConfig()->getRecordInfo()->getData(),
-            'date'   => new \DateTime(),
-        ));
+        $this->actionService->create(
+            $record->getName(),
+            $record->getClass(),
+            $record->getConfig()->getRecordInfo()->getData()
+        );
 
         return array(
             'success' => true,

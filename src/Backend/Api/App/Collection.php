@@ -57,9 +57,9 @@ class Collection extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\App
      */
-    protected $tableManager;
+    protected $appService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -88,23 +88,9 @@ class Collection extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
-        $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-
-        $condition = new Condition();
-        $condition->in('status', [TableApp::STATUS_ACTIVE, TableApp::STATUS_PENDING]);
-
-        if (!empty($search)) {
-            $condition->like('name', '%' . $search . '%');
-        }
-
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App');
-        $table->setRestrictedFields(['url', 'appSecret']);
-
-        return array(
-            'totalItems' => $table->getCount($condition),
-            'startIndex' => $startIndex,
-            'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+        return $this->appService->getAll(
+            $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0,
+            $this->getParameter('search', Validate::TYPE_STRING) ?: null
         );
     }
 
@@ -117,27 +103,13 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $appKey    = TokenGenerator::generateAppKey();
-        $appSecret = TokenGenerator::generateAppSecret();
-
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App');
-        $table->create(array(
-            'userId'    => $record->getUserId(),
-            'status'    => $record->getStatus(),
-            'name'      => $record->getName(),
-            'url'       => $record->getUrl(),
-            'appKey'    => $appKey,
-            'appSecret' => $appSecret,
-            'date'      => new DateTime(),
-        ));
-
-        $appId = $table->getLastInsertId();
-
-        // insert scopes
-        $scopes = $record->getScopes();
-        if (!empty($scopes) && is_array($scopes)) {
-            $this->insertScopes($appId, $scopes);
-        }
+        $this->appService->create(
+            $record->getUserId(),
+            $record->getStatus(),
+            $record->getName(),
+            $record->getUrl(),
+            $record->getScopes()
+        );
 
         return array(
             'success' => true,
@@ -165,18 +137,5 @@ class Collection extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-    }
-
-    protected function insertScopes($appId, $scopes)
-    {
-        $scopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->getByNames($scopes);
-        $table  = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope');
-
-        foreach ($scopes as $scope) {
-            $table->create(array(
-                'appId'   => $appId,
-                'scopeId' => $scope['id'],
-            ));
-        }
     }
 }

@@ -53,9 +53,9 @@ class Collection extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Connection
      */
-    protected $tableManager;
+    protected $connectionService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -84,17 +84,9 @@ class Collection extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
-        $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-        $condition  = !empty($search) ? new Condition(['name', 'LIKE', '%' . $search . '%']) : null;
-
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Connection');
-        $table->setRestrictedFields(['class', 'config']);
-
-        return array(
-            'totalItems' => $table->getCount($condition),
-            'startIndex' => $startIndex,
-            'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+        return $this->connectionService->getAll(
+            $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0,
+            $this->getParameter('search', Validate::TYPE_STRING) ?: null
         );
     }
 
@@ -107,11 +99,11 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $this->tableManager->getTable('Fusio\Impl\Backend\Table\Connection')->create(array(
-            'name'   => $record->getName(),
-            'class'  => $record->getClass(),
-            'config' => $record->getConfig()->getRecordInfo()->getData(),
-        ));
+        $this->connectionService->create(
+            $record->getName(),
+            $record->getClass(),
+            $record->getConfig()->getRecordInfo()->getData()
+        );
 
         return array(
             'success' => true,

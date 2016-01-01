@@ -51,9 +51,9 @@ class Entity extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\User
      */
-    protected $tableManager;
+    protected $userService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -86,23 +86,9 @@ class Entity extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $userId = (int) $this->getUriFragment('user_id');
-        $user   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')->get($userId);
-
-        if (!empty($user)) {
-            $user['scopes'] = $this->tableManager
-                ->getTable('Fusio\Impl\Backend\Table\User')
-                ->getScopeNames($user['id']);
-
-            $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App');
-            $table->setRestrictedFields(['userId', 'appSecret']);
-
-            $user['apps'] = $table->getByUserId($user['id']);
-
-            return $user;
-        } else {
-            throw new StatusCode\NotFoundException('Could not find user');
-        }
+        return $this->userService->get(
+            (int) $this->getUriFragment('user_id')
+        );
     }
 
     /**
@@ -125,27 +111,17 @@ class Entity extends SchemaApiAbstract
      */
     protected function doUpdate(RecordInterface $record, Version $version)
     {
-        $userId = (int) $this->getUriFragment('user_id');
-        $user   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')->get($userId);
+        $this->userService->update(
+            (int) $this->getUriFragment('user_id'),
+            $record->getStatus(),
+            $record->getName(),
+            $record->getScopes()
+        );
 
-        if (!empty($user)) {
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')->update(array(
-                'id'     => $user['id'],
-                'status' => $record->getStatus(),
-                'name'   => $record->getName(),
-            ));
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope')->deleteAllFromUser($user['id']);
-
-            $this->insertScopes($user['id'], $record->getScopes());
-
-            return array(
-                'success' => true,
-                'message' => 'User successful updated',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find user');
-        }
+        return array(
+            'success' => true,
+            'message' => 'User successful updated',
+        );        
     }
 
     /**
@@ -157,38 +133,13 @@ class Entity extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-        $userId = (int) $this->getUriFragment('user_id');
-        $user   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')->get($userId);
+        $this->userService->delete(
+            (int) $this->getUriFragment('user_id')
+        );
 
-        if (!empty($user)) {
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')->update(array(
-                'id'     => $user['id'],
-                'status' => User::STATUS_DELETED,
-            ));
-
-            return array(
-                'success' => true,
-                'message' => 'User successful deleted',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find user');
-        }
-    }
-
-    protected function insertScopes($userId, $scopes)
-    {
-        if (!empty($scopes) && is_array($scopes)) {
-            $scopeTable = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope');
-            $scopes     = $this->tableManager
-                ->getTable('Fusio\Impl\Backend\Table\Scope')
-                ->getByNames($scopes);
-
-            foreach ($scopes as $scope) {
-                $scopeTable->create(array(
-                    'userId'  => $userId,
-                    'scopeId' => $scope['id'],
-                ));
-            }
-        }
+        return array(
+            'success' => true,
+            'message' => 'User successful deleted',
+        );
     }
 }

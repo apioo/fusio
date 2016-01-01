@@ -51,9 +51,9 @@ class Entity extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Scope
      */
-    protected $tableManager;
+    protected $scopeService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -86,18 +86,9 @@ class Entity extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $scopeId = (int) $this->getUriFragment('scope_id');
-        $scope   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->get($scopeId);
-
-        if (!empty($scope)) {
-            $scope['routes'] = $this->tableManager
-                ->getTable('Fusio\Impl\Backend\Table\Scope\Route')
-                ->getByScopeId($scope['id']);
-
-            return $scope;
-        } else {
-            throw new StatusCode\NotFoundException('Could not find scope');
-        }
+        return $this->scopeService->get(
+            (int) $this->getUriFragment('scope_id')
+        );
     }
 
     /**
@@ -120,26 +111,17 @@ class Entity extends SchemaApiAbstract
      */
     protected function doUpdate(RecordInterface $record, Version $version)
     {
-        $scopeId = (int) $this->getUriFragment('scope_id');
-        $scope   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->get($scopeId);
+        $this->scopeService->update(
+            (int) $this->getUriFragment('scope_id'),
+            $record->getName(),
+            $record->getDescription(),
+            $record->getRoutes()
+        );
 
-        if (!empty($scope)) {
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->update(array(
-                'id'   => $scope['id'],
-                'name' => $record->getName(),
-            ));
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope\Route')->deleteAllFromScope($record->getId());
-
-            $this->insertRoutes($record->getId(), $record->getRoutes());
-
-            return array(
-                'success' => true,
-                'message' => 'Scope successful updated',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find scope');
-        }
+        return array(
+            'success' => true,
+            'message' => 'Scope successful updated',
+        );
     }
 
     /**
@@ -151,52 +133,13 @@ class Entity extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-        $scopeId = (int) $this->getUriFragment('scope_id');
-        $scope   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->get($scopeId);
+        $this->scopeService->delete(
+            (int) $this->getUriFragment('scope_id')
+        );
 
-        if (!empty($scope)) {
-            // check whether the scope is used by an app or user
-            $appScopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope')->getCount(new Condition(['scopeId', '=', $scope['id']]));
-            if ($appScopes > 0) {
-                throw new StatusCode\InternalServerErrorException('Scope is assigned to an app. Remove the scope from the app in order to delete the scope');
-            }
-
-            $userScopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Scope')->getCount(new Condition(['scopeId', '=', $scope['id']]));
-            if ($userScopes > 0) {
-                throw new StatusCode\InternalServerErrorException('Scope is assgined to an user. Remove the scope from the user in order to delete the scope');
-            }
-
-            // delete all routes assigned to the scope
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope\Route')->deleteAllFromScope($scope['id']);
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope')->delete(array(
-                'id' => $scope['id']
-            ));
-
-            return array(
-                'success' => true,
-                'message' => 'Scope successful deleted',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find scope');
-        }
-    }
-
-    protected function insertRoutes($scopeId, $routes)
-    {
-        if (!empty($routes) && is_array($routes)) {
-            foreach ($routes as $route) {
-                //$this->getFieldValidator()->validate($field);
-
-                if ($route->getAllow()) {
-                    $this->tableManager->getTable('Fusio\Impl\Backend\Table\Scope\Route')->create(array(
-                        'scopeId' => $scopeId,
-                        'routeId' => $route->getRouteId(),
-                        'allow'   => $route->getAllow() ? 1 : 0,
-                        'methods' => $route->getMethods(),
-                    ));
-                }
-            }
-        }
+        return array(
+            'success' => true,
+            'message' => 'Scope successful deleted',
+        );
     }
 }

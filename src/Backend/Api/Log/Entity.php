@@ -49,9 +49,9 @@ class Entity extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Log
      */
-    protected $tableManager;
+    protected $logService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -75,17 +75,9 @@ class Entity extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $logId = (int) $this->getUriFragment('log_id');
-        $log   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Log')->get($logId);
-
-        if (!empty($log)) {
-            // append errors
-            $log['errors'] = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Log')->getErrors($log['id']);
-
-            return $log;
-        } else {
-            throw new StatusCode\NotFoundException('Could not find log');
-        }
+        return $this->logService->get(
+            (int) $this->getUriFragment('log_id')
+        );
     }
 
     /**

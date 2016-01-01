@@ -49,7 +49,7 @@ class CollectionTest extends ControllerDbTestCase
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
-    "totalItems": 5,
+    "totalResults": 5,
     "startIndex": 0,
     "entry": [
         {
@@ -140,13 +140,13 @@ JSON;
         $routes = Environment::getService('connection')->fetchAll($sql, ['scopeId' => 6]);
 
         $this->assertEquals([[
-            'id'      => 43,
+            'id'      => 44,
             'scopeId' => 6,
             'routeId' => 2,
             'allow'   => 1,
             'methods' => 'GET|POST|PUT|DELETE',
         ], [
-            'id'      => 42,
+            'id'      => 43,
             'scopeId' => 6,
             'routeId' => 1,
             'allow'   => 1,

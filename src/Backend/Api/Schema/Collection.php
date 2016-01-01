@@ -61,9 +61,9 @@ class Collection extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Schema
      */
-    protected $tableManager;
+    protected $schemaService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -92,30 +92,10 @@ class Collection extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0;
-        $search     = $this->getParameter('search', Validate::TYPE_STRING) ?: null;
-        $routeId    = $this->getParameter('routeId', Validate::TYPE_INTEGER) ?: null;
-        $condition  = new Condition();
-
-        if (!empty($search)) {
-            $condition->like('name', '%' . $search . '%');
-        }
-
-        if (!empty($routeId)) {
-            $sql = 'SELECT schemaId
-                      FROM fusio_routes_schema
-                     WHERE routeId = ?';
-
-            $condition->raw('id IN (' . $sql . ')', [$routeId]);
-        }
-
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema');
-        $table->setRestrictedFields(['propertyName', 'source', 'cache']);
-
-        return array(
-            'totalItems' => $table->getCount($condition),
-            'startIndex' => $startIndex,
-            'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+        return $this->schemaService->getAll(
+            $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: 0,
+            $this->getParameter('search', Validate::TYPE_STRING) ?: null,
+            $this->getParameter('routeId', Validate::TYPE_INTEGER) ?: null
         );
     }
 
@@ -128,13 +108,10 @@ class Collection extends SchemaApiAbstract
      */
     protected function doCreate(RecordInterface $record, Version $version)
     {
-        $schemaTable = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema');
-        $schemaTable->create(array(
-            'status' => Schema::STATUS_ACTIVE,
-            'name'   => $record->getName(),
-            'source' => $record->getSource(),
-            'cache'  => $this->schemaParser->parse($record->getSource(), $record->getName()),
-        ));
+        $this->schemaService->create(
+            $record->getName(),
+            $record->getSource()
+        );
 
         return array(
             'success' => true,

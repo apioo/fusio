@@ -58,7 +58,7 @@ class Collection extends SchemaApiAbstract
      * @Inject
      * @var \PSX\Sql\TableManager
      */
-    protected $tableManager;
+    protected $appGrantService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -82,11 +82,7 @@ class Collection extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App');
-
-        return array(
-            'entry' => CurveArray::nest($table->getAuthorizedApps($this->userId)),
-        );
+        return $this->appGrantService->getAll($this->userId);
     }
 
     /**

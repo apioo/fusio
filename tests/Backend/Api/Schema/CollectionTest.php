@@ -49,7 +49,7 @@ class CollectionTest extends ControllerDbTestCase
         $body   = (string) $response->getBody();
         $expect = <<<'JSON'
 {
-    "totalItems": 2,
+    "totalResults": 2,
     "startIndex": 0,
     "entry": [
         {

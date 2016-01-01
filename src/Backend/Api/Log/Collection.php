@@ -55,9 +55,9 @@ class Collection extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Log
      */
-    protected $tableManager;
+    protected $logService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -81,17 +81,9 @@ class Collection extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $startIndex = $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: null;
-        $filter     = Log\QueryFilter::create($this->getParameters());
-        $condition  = $filter->getCondition();
-
-        $table = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Log');
-        $table->setRestrictedFields(['header', 'body']);
-
-        return array(
-            'totalItems' => $table->getCount($condition),
-            'startIndex' => $startIndex,
-            'entry'      => $table->getAll($startIndex, null, 'id', Sql::SORT_DESC, $condition),
+        return $this->logService->getAll(
+            $this->getParameter('startIndex', Validate::TYPE_INTEGER) ?: null,
+            Log\QueryFilter::create($this->getParameters())
         );
     }
 

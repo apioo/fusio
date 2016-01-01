@@ -23,7 +23,10 @@ namespace Fusio\Impl\Console;
 
 use DateTime;
 use Fusio\Impl\Authorization\TokenGenerator;
+use Fusio\Impl\Backend\Table\Scope;
 use Fusio\Impl\Backend\Table\User;
+use Fusio\Impl\Backend\Table\User\Scope as UserScope;
+use Fusio\Impl\Service\User as ServiceUser;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -38,13 +41,13 @@ use Symfony\Component\Console\Question\Question;
  */
 class AddUserCommand extends Command
 {
-    protected $userTable;
+    protected $userService;
 
-    public function __construct(User $userTable)
+    public function __construct(ServiceUser $userService)
     {
         parent::__construct();
 
-        $this->userTable = $userTable;
+        $this->userService = $userService;
     }
 
     protected function configure()
@@ -56,7 +59,9 @@ class AddUserCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $helper   = $this->getHelper('question');
+        $helper = $this->getHelper('question');
+
+        // status
         $question = new Question('Choose the status for the account [0=Consumer, 1=Administrator]: ');
         $question->setValidator(function ($value) {
             if (preg_match('/^0|1$/', $value)) {
@@ -68,6 +73,7 @@ class AddUserCommand extends Command
 
         $status = $helper->ask($input, $output, $question);
 
+        // username
         $question = new Question('Enter the username of the account: ');
         $question->setValidator(function ($value) {
             if (!preg_match('/^[A-z0-9\-\_\.]{3,32}$/', $value)) {
@@ -77,17 +83,24 @@ class AddUserCommand extends Command
             return $value;
         });
 
-        $userName = $helper->ask($input, $output, $question);
-        $password = TokenGenerator::generateUserPassword();
+        $name = $helper->ask($input, $output, $question);
 
-        $this->userTable->create(array(
-            'status'   => $status,
-            'name'     => $userName,
-            'password' => \password_hash($password, PASSWORD_DEFAULT),
-            'date'     => new DateTime(),
-        ));
+        // scopes
+        $question = new Question('Enter a comma seperated list of scopes which should be assigned to the account i.e.: [consumer,authorization]: ');
+        $question->setValidator(function ($value) {
+            return $this->scopeTable->getByNames(array_map('trim', explode(',', $value)));
+        });
 
-        $output->writeln('Created user ' . $userName . ' successful');
+        $scopes = $helper->ask($input, $output, $question);
+
+        // password
+        $password = $this->userService->create(
+            $status,
+            $name,
+            $scopes
+        );
+
+        $output->writeln('Created user ' . $name . ' successful');
         $output->writeln('The following passord was assigned to the account:');
         $output->writeln($password);
     }

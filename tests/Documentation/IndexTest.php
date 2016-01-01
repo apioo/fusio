@@ -273,6 +273,16 @@ class IndexTest extends ControllerDbTestCase
             "version": "*"
         },
         {
+            "path": "\/consumer\/scope",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE"
+            ],
+            "version": "*"
+        },
+        {
             "path": "\/",
             "methods": [
                 "GET",

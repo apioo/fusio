@@ -49,9 +49,9 @@ class ChangePassword extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\User
      */
-    protected $tableManager;
+    protected $userService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -98,28 +98,18 @@ class ChangePassword extends SchemaApiAbstract
      */
     protected function doUpdate(RecordInterface $record, Version $version)
     {
-        // we can only change the password through the backend app
-        if ($this->appId != 1) {
-            throw new StatusCode\BadRequestException('Changing the password is only possible through the backend app');
-        }
+        $this->userService->changePassword(
+            $this->userId, 
+            $this->appId, 
+            $record->getOldPassword(), 
+            $record->getNewPassword(),
+            $record->getVerifyPassword()
+        );
 
-        // check verify password
-        if ($record->getNewPassword() != $record->getVerifyPassword()) {
-            throw new StatusCode\BadRequestException('New password does not match the verify password');
-        }
-
-        // change password
-        $result = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User')
-            ->changePassword($this->userId, $record->getOldPassword(), $record->getNewPassword());
-
-        if ($result) {
-            return array(
-                'success' => true,
-                'message' => 'Password successful changed',
-            );
-        } else {
-            throw new StatusCode\BadRequestException('Changing password failed');
-        }
+        return array(
+            'success' => true,
+            'message' => 'Password successful changed',
+        );
     }
 
     /**

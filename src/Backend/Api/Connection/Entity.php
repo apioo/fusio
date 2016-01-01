@@ -50,9 +50,9 @@ class Entity extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Connection
      */
-    protected $tableManager;
+    protected $connectionService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -85,14 +85,9 @@ class Entity extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $connectionId = (int) $this->getUriFragment('connection_id');
-        $connection   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Connection')->get($connectionId);
-
-        if (!empty($connection)) {
-            return $connection;
-        } else {
-            throw new StatusCode\NotFoundException('Could not find connection');
-        }
+        return $this->connectionService->get(
+            (int) $this->getUriFragment('connection_id')
+        );
     }
 
     /**
@@ -115,24 +110,17 @@ class Entity extends SchemaApiAbstract
      */
     protected function doUpdate(RecordInterface $record, Version $version)
     {
-        $connectionId = (int) $this->getUriFragment('connection_id');
-        $connection   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Connection')->get($connectionId);
+        $this->connectionService->update(
+            (int) $this->getUriFragment('connection_id'),
+            $record->getName(),
+            $record->getClass(),
+            $record->getConfig()->getRecordInfo()->getData()
+        );
 
-        if (!empty($connection)) {
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Connection')->update(array(
-                'id'     => $connection->getId(),
-                'name'   => $record->getName(),
-                'class'  => $record->getClass(),
-                'config' => $record->getConfig()->getRecordInfo()->getData(),
-            ));
-
-            return array(
-                'success' => true,
-                'message' => 'Connection successful updated',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find connection');
-        }
+        return array(
+            'success' => true,
+            'message' => 'Connection successful updated',
+        );
     }
 
     /**
@@ -144,20 +132,13 @@ class Entity extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-        $connectionId = (int) $this->getUriFragment('connection_id');
-        $connection   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Connection')->get($connectionId);
+        $this->connectionService->delete(
+            (int) $this->getUriFragment('connection_id')
+        );
 
-        if (!empty($connection)) {
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Connection')->delete(array(
-                'id' => $connection->getId()
-            ));
-
-            return array(
-                'success' => true,
-                'message' => 'Connection successful deleted',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find connection');
-        }
+        return array(
+            'success' => true,
+            'message' => 'Connection successful deleted',
+        );
     }
 }

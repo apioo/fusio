@@ -57,9 +57,9 @@ class Entity extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Schema
      */
-    protected $tableManager;
+    protected $schemaService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -92,14 +92,9 @@ class Entity extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $schemaId = (int) $this->getUriFragment('schema_id');
-        $schema   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema')->get($schemaId);
-
-        if (!empty($schema)) {
-            return $schema;
-        } else {
-            throw new StatusCode\NotFoundException('Could not find schema');
-        }
+        return $this->schemaService->get(
+            (int) $this->getUriFragment('schema_id')
+        );
     }
 
     /**
@@ -122,26 +117,16 @@ class Entity extends SchemaApiAbstract
      */
     protected function doUpdate(RecordInterface $record, Version $version)
     {
-        $schemaId = (int) $this->getUriFragment('schema_id');
-        $schema   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema')->get($schemaId);
+        $this->schemaService->update(
+            (int) $this->getUriFragment('schema_id'),
+            $record->getName(),
+            $record->getSource()
+        );
 
-        if (!empty($schema)) {
-            $this->checkLocked($schema);
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema')->update(array(
-                'id'     => $schema['id'],
-                'name'   => $record->getName(),
-                'source' => $record->getSource(),
-                'cache'  => $this->schemaParser->parse($record->getSource(), $record->getName()),
-            ));
-
-            return array(
-                'success' => true,
-                'message' => 'Schema successful updated',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find schema');
-        }
+        return array(
+            'success' => true,
+            'message' => 'Schema successful updated',
+        );
     }
 
     /**
@@ -153,38 +138,14 @@ class Entity extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-        $schemaId = (int) $this->getUriFragment('schema_id');
-        $schema   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema')->get($schemaId);
+        $this->schemaService->delete(
+            (int) $this->getUriFragment('schema_id')
+        );
 
-        if (!empty($schema)) {
-            $this->checkLocked($schema);
-
-            // delete route dependencies
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes\Schema')->deleteBySchema($schema['id']);
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Schema')->delete(array(
-                'id' => $schema['id']
-            ));
-
-            return array(
-                'success' => true,
-                'message' => 'Schema successful deleted',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find schema');
-        }
+        return array(
+            'success' => true,
+            'message' => 'Schema successful deleted',
+        );
     }
 
-    protected function checkLocked($schema)
-    {
-        if ($schema['status'] == Schema::STATUS_LOCKED) {
-            $paths = $this->tableManager
-                ->getTable('Fusio\Impl\Backend\Table\Routes\Schema')
-                ->getDependingRoutePaths($schema['id']);
-
-            $paths = implode(', ', $paths);
-
-            throw new StatusCode\ConflictException('Schema is locked because it is used by a route. Change the route status to "Development" or "Closed" to unlock the schema. The following routes reference this schema: ' . $paths);
-        }
-    }
 }

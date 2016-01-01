@@ -35,6 +35,12 @@ use PSX\Validate\Validator;
  */
 trait ValidatorTrait
 {
+    /**
+     * @Inject
+     * @var \PSX\Sql\TableManager
+     */
+    protected $tableManager;
+
     protected function getImportValidator()
     {
         return new Validator(array(

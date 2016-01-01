@@ -51,9 +51,9 @@ class Entity extends SchemaApiAbstract
 
     /**
      * @Inject
-     * @var \PSX\Sql\TableManager
+     * @var \Fusio\Impl\Service\Action
      */
-    protected $tableManager;
+    protected $actionService;
 
     /**
      * @return \PSX\Api\DocumentationInterface
@@ -86,14 +86,9 @@ class Entity extends SchemaApiAbstract
      */
     protected function doGet(Version $version)
     {
-        $actionId = (int) $this->getUriFragment('action_id');
-        $action   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action')->get($actionId);
-
-        if (!empty($action)) {
-            return $action;
-        } else {
-            throw new StatusCode\NotFoundException('Could not find action');
-        }
+        return $this->actionService->get(
+            (int) $this->getUriFragment('action_id')
+        );
     }
 
     /**
@@ -116,27 +111,17 @@ class Entity extends SchemaApiAbstract
      */
     protected function doUpdate(RecordInterface $record, Version $version)
     {
-        $actionId = (int) $this->getUriFragment('action_id');
-        $action   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action')->get($actionId);
+        $this->actionService->update(
+            (int) $this->getUriFragment('action_id'),
+            $record->getName(),
+            $record->getClass(),
+            $record->getConfig()->getRecordInfo()->getData()
+        );
 
-        if (!empty($action)) {
-            $this->checkLocked($action);
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action')->update(array(
-                'id'     => $action->getId(),
-                'name'   => $record->getName(),
-                'class'  => $record->getClass(),
-                'config' => $record->getConfig()->getRecordInfo()->getData(),
-                'date'   => new \DateTime(),
-            ));
-
-            return array(
-                'success' => true,
-                'message' => 'Action successful updated',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find action');
-        }
+        return array(
+            'success' => true,
+            'message' => 'Action successful updated',
+        );
     }
 
     /**
@@ -148,38 +133,13 @@ class Entity extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-        $actionId = (int) $this->getUriFragment('action_id');
-        $action   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action')->get($actionId);
+        $this->actionService->delete(
+            (int) $this->getUriFragment('action_id')
+        );
 
-        if (!empty($action)) {
-            $this->checkLocked($action);
-
-            // delete route dependencies
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Routes\Action')->deleteByAction($action['id']);
-
-            $this->tableManager->getTable('Fusio\Impl\Backend\Table\Action')->delete(array(
-                'id' => $action['id']
-            ));
-
-            return array(
-                'success' => true,
-                'message' => 'Action successful deleted',
-            );
-        } else {
-            throw new StatusCode\NotFoundException('Could not find action');
-        }
-    }
-
-    protected function checkLocked($action)
-    {
-        if ($action['status'] == Action::STATUS_LOCKED) {
-            $paths = $this->tableManager
-                ->getTable('Fusio\Impl\Backend\Table\Routes\Action')
-                ->getDependingRoutePaths($action['id']);
-
-            $paths = implode(', ', $paths);
-
-            throw new StatusCode\ConflictException('Action is locked because it is used by a route. Change the route status to "Development" or "Closed" to unlock the schema. The following routes reference this schema: ' . $paths);
-        }
+        return array(
+            'success' => true,
+            'message' => 'Action successful deleted',
+        );
     }
 }

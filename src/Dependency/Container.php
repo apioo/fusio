@@ -22,13 +22,10 @@
 namespace Fusio\Impl\Dependency;
 
 use Fusio\Impl\App;
-use Fusio\Impl\Authorization as ApiAuthorization;
-use Fusio\Impl\Backend\Authorization as BackendAuthorization;
 use Fusio\Impl\Backend\Table\Routes\DependencyManager;
 use Fusio\Impl\Base;
 use Fusio\Impl\Connector;
 use Fusio\Impl\Console;
-use Fusio\Impl\Consumer\Authorization as ConsumerAuthorization;
 use Fusio\Impl\Data\SchemaManager;
 use Fusio\Impl\Factory;
 use Fusio\Impl\Form;
@@ -49,7 +46,6 @@ use PSX\Console\Reader;
 use PSX\Data\Importer;
 use PSX\Dependency\DefaultContainer;
 use PSX\Log;
-use PSX\Oauth2\Provider\GrantTypeFactory;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command as SymfonyCommand;
 
@@ -62,54 +58,8 @@ use Symfony\Component\Console\Command as SymfonyCommand;
  */
 class Container extends DefaultContainer
 {
-    /**
-     * @return \PSX\Oauth2\Provider\GrantTypeFactory
-     */
-    public function getApiGrantTypeFactory()
-    {
-        $factory = new GrantTypeFactory();
-        $factory->add(new ApiAuthorization\ClientCredentials(
-            $this->get('connection'),
-            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\App\Scope'),
-            $this->get('config')->get('fusio_expire_app')
-        ));
-
-        $factory->add(new ApiAuthorization\AuthorizationCode(
-            $this->get('connection'),
-            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\App\Scope'),
-            $this->get('config')->get('fusio_expire_app')
-        ));
-
-        return $factory;
-    }
-
-    /**
-     * @return \PSX\Oauth2\Provider\GrantTypeFactory
-     */
-    public function getBackendGrantTypeFactory()
-    {
-        $factory = new GrantTypeFactory();
-        $factory->add(new BackendAuthorization\ClientCredentials(
-            $this->get('connection'),
-            $this->get('config')->get('fusio_expire_backend')
-        ));
-
-        return $factory;
-    }
-
-    /**
-     * @return \PSX\Oauth2\Provider\GrantTypeFactory
-     */
-    public function getConsumerGrantTypeFactory()
-    {
-        $factory = new GrantTypeFactory();
-        $factory->add(new ConsumerAuthorization\ClientCredentials(
-            $this->get('connection'),
-            $this->get('config')->get('fusio_expire_consumer')
-        ));
-
-        return $factory;
-    }
+    use Authorization;
+    use Service;
 
     /**
      * @return \Psr\Log\LoggerInterface
@@ -292,20 +242,6 @@ class Container extends DefaultContainer
     }
 
     /**
-     * @return \Fusio\Impl\Backend\Table\Routes\DependencyManager
-     */
-    public function getRoutesDependencyManager()
-    {
-        return new DependencyManager(
-            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\Schema'),
-            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\Routes\Schema'),
-            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\Action'),
-            $this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\Routes\Action'),
-            $this->get('action_parser')
-        );
-    }
-
-    /**
      * @return \Symfony\Component\Console\Application
      */
     public function getConsole()
@@ -326,7 +262,7 @@ class Container extends DefaultContainer
 
         // fusio commands
         $application->add(new Console\InstallCommand($this->get('connection')));
-        $application->add(new Console\AddUserCommand($this->get('table_manager')->getTable('Fusio\Impl\Backend\Table\User')));
+        $application->add(new Console\AddUserCommand($this->get('user_service')));
         $application->add(new Console\RegisterAdapterCommand($this->get('dispatch'), $this->get('connection'), $this->get('logger')));
 
         $application->add(new Console\ListActionCommand($this->get('action_parser')));

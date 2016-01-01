@@ -54,12 +54,12 @@ class EntityTest extends ControllerDbTestCase
     "description": "Bar access",
     "routes": [
         {
-            "routeId": 49,
+            "routeId": 50,
             "allow": true,
             "methods": "GET|POST|PUT|DELETE"
         },
         {
-            "routeId": 48,
+            "routeId": 49,
             "allow": true,
             "methods": "GET|POST|PUT|DELETE"
         }
@@ -167,7 +167,7 @@ JSON;
 
         $body = (string) $response->getBody();
 
-        $this->assertEquals(500, $response->getStatusCode(), $body);
+        $this->assertEquals(409, $response->getStatusCode(), $body);
         $this->assertTrue(strpos($body, 'Scope is assigned to an app') !== false, $body);
 
         // check database
@@ -195,7 +195,7 @@ JSON;
 
         $body = (string) $response->getBody();
 
-        $this->assertEquals(500, $response->getStatusCode(), $body);
+        $this->assertEquals(409, $response->getStatusCode(), $body);
         $this->assertTrue(strpos($body, 'Scope is assgined to an user') !== false, $body);
 
         // check database
