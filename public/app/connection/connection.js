@@ -18,7 +18,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 		var search = encodeURIComponent($scope.search);
 
 		$http.get(fusio_url + 'backend/connection?search=' + search).success(function(data){
-			$scope.totalItems = data.totalItems;
+			$scope.totalResults = data.totalResults;
 			$scope.startIndex = 0;
 			$scope.connections = data.entry;
 		});
@@ -29,7 +29,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 		var search = encodeURIComponent($scope.search);
 
 		$http.get(fusio_url + 'backend/connection?startIndex=' + startIndex + '&search=' + search).success(function(data){
-			$scope.totalItems = data.totalItems;
+			$scope.totalResults = data.totalResults;
 			$scope.connections = data.entry;
 		});
 	};
@@ -37,7 +37,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 	$scope.doSearch = function(search){
 		var search = encodeURIComponent(search);
 		$http.get(fusio_url + 'backend/connection?search=' + search).success(function(data){
-			$scope.totalItems = data.totalItems;
+			$scope.totalResults = data.totalResults;
 			$scope.startIndex = 0;
 			$scope.connections = data.entry;
 		});

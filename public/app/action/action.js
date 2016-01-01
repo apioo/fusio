@@ -21,7 +21,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		var routeId = $scope.routeId;
 
 		$http.get(fusio_url + 'backend/action?search=' + search + '&routeId=' + routeId).success(function(data){
-			$scope.totalItems = data.totalItems;
+			$scope.totalResults = data.totalResults;
 			$scope.startIndex = 0;
 			$scope.actions = data.entry;
 		});
@@ -42,7 +42,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		var search = encodeURIComponent($scope.search);
 
 		$http.get(fusio_url + 'backend/action?startIndex=' + startIndex + '&search=' + search).success(function(data){
-			$scope.totalItems = data.totalItems;
+			$scope.totalResults = data.totalResults;
 			$scope.actions = data.entry;
 		});
 	};
@@ -52,7 +52,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		var routeId = $scope.routeId;
 
 		$http.get(fusio_url + 'backend/action?search=' + search + '&routeId=' + routeId).success(function(data){
-			$scope.totalItems = data.totalItems;
+			$scope.totalResults = data.totalResults;
 			$scope.startIndex = 0;
 			$scope.actions = data.entry;
 		});
