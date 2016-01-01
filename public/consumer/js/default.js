@@ -52,7 +52,7 @@ function request(method, path, data, success, error) {
   });
 }
 
-function loadApps() {
+function loadAppGrant() {
   request('GET', 'consumer/app/grant', null, function(data){
     var html = '<ul>';
     for (var i = 0; i < data.entry.length; i++) {
@@ -75,7 +75,9 @@ function loadApps() {
       });
     });
   });
+}
 
+function loadAppDeveloper() {
   request('GET', 'consumer/app/developer', null, function(data){
     var html = '<ul>';
     for (var i = 0; i < data.entry.length; i++) {
@@ -101,7 +103,7 @@ function loadApps() {
         var createDate = new Date(data.date);
         var scopesHtml = '';
         for (var i = 0; i < data.scopes.length; i++) {
-          scopesHtml+= '<span class="label label-primary">' + data.scopes[i] + '</span>';
+          scopesHtml+= '<span class="label label-primary">' + data.scopes[i] + '</span> ';
         }
 
         $('#appModalLabel').html(data.name);
@@ -119,12 +121,19 @@ function loadApps() {
 
     // add delete button listener
     $('.fusio-btn-app-delete').click(function(){
-      var appId = $(this).data('app-id');
-      request('DELETE', 'consumer/app/developer/' + appId, null, function(){
-        $('button[data-app-id="' + appId + '"]').parent().parent().fadeOut();
-      });
+      if (confirm('Do you really want to delete the app?')) {
+        var appId = $(this).data('app-id');
+        request('DELETE', 'consumer/app/developer/' + appId, null, function(){
+          $('button[data-app-id="' + appId + '"]').parent().parent().fadeOut();
+        });
+      }
     });
   });
+}
+
+function loadApps() {
+  loadAppGrant();
+  loadAppDeveloper();
 }
 
 function loadAppInfo(responseType, clientId, redirectUri, scope, state) {
@@ -140,6 +149,9 @@ function loadAppInfo(responseType, clientId, redirectUri, scope, state) {
     scopesHtml+= '</ul>';
 
     $('#appRequestedScopes').html(scopesHtml);
+  }, function(){
+
+    $('#appRequestPermission').html('<div class="alert alert-warning">Provided app does not exist</div>');
   });
 
 }
@@ -165,6 +177,31 @@ function submitAccess(responseType, clientId, redirectUri, scope, state, allow) 
     } else {
       location.href = data.redirectUri;
     }
+  });
+}
+
+function createApp() {
+  var scopes = [];
+  $('.fusio-app-create-scope').each(function(){
+    if ($(this).is(':checked')) {
+      scopes.push($(this).val());
+    }
+  });
+
+  var data = {
+    name: $('#name').val(),
+    url: $('#url').val(),
+    scopes: scopes
+  };
+
+  request('POST', 'consumer/app/developer', data, function(data){
+    $('#name').val('');
+    $('#url').val('');
+    $('#appCreateModal').modal('hide');
+    loadAppDeveloper();
+  }, function(data){
+    data = data.responseJSON;
+    $('#appCreateModalError').html(data.message).fadeIn();
   });
 }
 
@@ -239,9 +276,9 @@ function onLoad(){
 
   $('#appCreate').click(function(){
     request('GET', 'consumer/scope', null, function(data){
-      var scopeHtml = '';
+      var scopeHtml = '<b>Scopes:</b>';
       for (var i = 0; i < data.entry.length; i++) {
-        scopeHtml+= '<label><input type="checkbox" class="fusio-app-create-scope" value="' + data.entry[i].name + '"> ' + data.entry[i].description + '</label>';
+        scopeHtml+= '<div class="checkbox"><label><input type="checkbox" class="fusio-app-create-scope" value="' + data.entry[i].name + '"> ' + data.entry[i].description + '</label></div>';
       }
       $('#appCreateScopes').html(scopeHtml);
     });
@@ -250,6 +287,8 @@ function onLoad(){
       keyboard: false
     });
   });
+
+  $('#appCreateModalCreate').click(createApp);
 }
 
 $(document).ready(onLoad);

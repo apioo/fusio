@@ -119,14 +119,15 @@
   </div>
 </div>
 
-<div class="modal fade" id="appCreateModal" tabindex="-1" role="dialog" aria-labelledby="appModalLabel">
+<div class="modal fade" id="appCreateModal" tabindex="-1" role="dialog" aria-labelledby="appModalAppLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="appModalLabel">Create app</h4>
+        <h4 class="modal-title" id="appModalAppLabel">Create app</h4>
       </div>
       <div class="modal-body">
+        <div id="appCreateModalError" class="alert alert-danger" style="display:none"></div>
         <div class="form-group">
           <label for="name" class="control-label">Name:</label>
           <input type="text" class="form-control" id="name">
@@ -138,7 +139,7 @@
         <div class="checkbox" id="appCreateScopes"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
+        <button type="button" id="appCreateModalCreate" class="btn btn-primary">Create</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
