@@ -88,7 +88,7 @@ class AddUserCommand extends Command
         // scopes
         $question = new Question('Enter a comma seperated list of scopes which should be assigned to the account i.e.: [consumer,authorization]: ');
         $question->setValidator(function ($value) {
-            return $this->scopeTable->getByNames(array_map('trim', explode(',', $value)));
+            return array_map('trim', explode(',', $value));
         });
 
         $scopes = $helper->ask($input, $output, $question);
