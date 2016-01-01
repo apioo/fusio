@@ -171,7 +171,7 @@ class Developer
         $scopes = array_filter($scopes, function ($scope) use ($userScopes) {
 
             foreach ($userScopes as $userScope) {
-                if ($userScope['id'] == $scope['id']) {
+                if ($userScope['scopeId'] == $scope['id']) {
                     return true;
                 }
             }
