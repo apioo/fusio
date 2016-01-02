@@ -81,7 +81,7 @@ if (isset($_SERVER['argv']) && in_array('--warmup', $_SERVER['argv'])) {
 
     // create schema
     $fromSchema = $connection->getSchemaManager()->createSchema();
-    $version    = new Fusio\Impl\Database\Version\Version010();
+    $version    = new Fusio\Impl\Database\Version\Version020();
     $toSchema   = $version->getSchema();
     Fusio\Impl\TestSchema::appendSchema($toSchema);
 
