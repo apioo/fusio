@@ -21,10 +21,10 @@
 
 namespace Fusio\Impl\Service;
 
-use Fusio\Impl\Backend\Table\App\Scope as TableAppScope;
-use Fusio\Impl\Backend\Table\Scope as TableScope;
-use Fusio\Impl\Backend\Table\Scope\Route as TableScopeRoute;
-use Fusio\Impl\Backend\Table\User\Scope as TableUserScope;
+use Fusio\Impl\Table\App\Scope as TableAppScope;
+use Fusio\Impl\Table\Scope as TableScope;
+use Fusio\Impl\Table\Scope\Route as TableScopeRoute;
+use Fusio\Impl\Table\User\Scope as TableUserScope;
 use PSX\Data\ResultSet;
 use PSX\DateTime;
 use PSX\Http\Exception as StatusCode;

@@ -19,52 +19,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table\App;
+namespace Fusio\Impl\Table;
 
-use Fusio\Impl\Authorization\TokenGenerator;
 use PSX\Sql\TableAbstract;
 
 /**
- * Code
+ * Connection
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Code extends TableAbstract
+class Connection extends TableAbstract
 {
     public function getName()
     {
-        return 'fusio_app_code';
+        return 'fusio_connection';
     }
 
     public function getColumns()
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'appId' => self::TYPE_INT,
-            'userId' => self::TYPE_INT,
-            'code' => self::TYPE_VARCHAR,
-            'redirectUri' => self::TYPE_VARCHAR,
-            'scope' => self::TYPE_VARCHAR,
-            'state' => self::TYPE_VARCHAR,
-            'date' => self::TYPE_DATETIME,
+            'name' => self::TYPE_VARCHAR,
+            'class' => self::TYPE_VARCHAR,
+            'config' => self::TYPE_ARRAY,
         );
-    }
-
-    public function generateCode($appId, $userId, $redirectUri, array $scopes)
-    {
-        $code = TokenGenerator::generateCode();
-
-        $this->create([
-            'appId'       => $appId,
-            'userId'      => $userId,
-            'code'        => $code,
-            'redirectUri' => $redirectUri,
-            'scope'       => implode(',', $scopes),
-            'date'        => new \DateTime(),
-        ]);
-
-        return $code;
     }
 }

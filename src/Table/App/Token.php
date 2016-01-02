@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table\App;
+namespace Fusio\Impl\Table\App;
 
 use DateTime;
 use PSX\Sql\Condition;

@@ -19,36 +19,52 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table;
+namespace Fusio\Impl\Table\App;
 
+use Fusio\Impl\Authorization\TokenGenerator;
 use PSX\Sql\TableAbstract;
 
 /**
- * Routes
+ * Code
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Routes extends TableAbstract
+class Code extends TableAbstract
 {
-    const STATUS_ACTIVE  = 1;
-    const STATUS_DELETED = 0;
-
     public function getName()
     {
-        return 'fusio_routes';
+        return 'fusio_app_code';
     }
 
     public function getColumns()
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'status' => self::TYPE_INT,
-            'methods' => self::TYPE_VARCHAR,
-            'path' => self::TYPE_VARCHAR,
-            'controller' => self::TYPE_VARCHAR,
-            'config' => self::TYPE_ARRAY,
+            'appId' => self::TYPE_INT,
+            'userId' => self::TYPE_INT,
+            'code' => self::TYPE_VARCHAR,
+            'redirectUri' => self::TYPE_VARCHAR,
+            'scope' => self::TYPE_VARCHAR,
+            'state' => self::TYPE_VARCHAR,
+            'date' => self::TYPE_DATETIME,
         );
+    }
+
+    public function generateCode($appId, $userId, $redirectUri, array $scopes)
+    {
+        $code = TokenGenerator::generateCode();
+
+        $this->create([
+            'appId'       => $appId,
+            'userId'      => $userId,
+            'code'        => $code,
+            'redirectUri' => $redirectUri,
+            'scope'       => implode(',', $scopes),
+            'date'        => new \DateTime(),
+        ]);
+
+        return $code;
     }
 }

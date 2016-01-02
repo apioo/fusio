@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table;
+namespace Fusio\Impl\Table;
 
 use PSX\Sql\TableAbstract;
 

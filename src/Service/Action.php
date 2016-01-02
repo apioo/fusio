@@ -21,8 +21,8 @@
 
 namespace Fusio\Impl\Service;
 
-use Fusio\Impl\Backend\Table\Action as TableAction;
-use Fusio\Impl\Backend\Table\Routes\Action as TableRoutesAction;
+use Fusio\Impl\Table\Action as TableAction;
+use Fusio\Impl\Table\Routes\Action as TableRoutesAction;
 use PSX\Data\ResultSet;
 use PSX\DateTime;
 use PSX\Http\Exception as StatusCode;

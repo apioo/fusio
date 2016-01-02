@@ -22,8 +22,8 @@
 namespace Fusio\Impl\Service;
 
 use Fusio\Engine\Schema\ParserInterface;
-use Fusio\Impl\Backend\Table\Routes\Schema as TableRoutesSchema;
-use Fusio\Impl\Backend\Table\Schema as TableSchema;
+use Fusio\Impl\Table\Routes\Schema as TableRoutesSchema;
+use Fusio\Impl\Table\Schema as TableSchema;
 use PSX\Data\ResultSet;
 use PSX\Data\Schema\Generator;
 use PSX\Data\SchemaInterface;

@@ -21,7 +21,7 @@
 
 namespace Fusio\Impl\Service;
 
-use Fusio\Impl\Backend\Table\Connection as TableConnection;
+use Fusio\Impl\Table\Connection as TableConnection;
 use PSX\Data\ResultSet;
 use PSX\DateTime;
 use PSX\Http\Exception as StatusCode;

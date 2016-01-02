@@ -21,7 +21,7 @@
 
 namespace Fusio\Impl\Consumer\Api\App\Developer;
 
-use Fusio\Impl\Backend\Table\App;
+use Fusio\Impl\Table\App;
 use Fusio\Impl\Fixture;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
@@ -130,7 +130,7 @@ JSON;
         $this->assertEquals('Bar', $row['name']);
         $this->assertEquals('http://microsoft.com', $row['url']);
 
-        $scopes = Environment::getService('table_manager')->getTable('Fusio\Impl\Backend\Table\Scope')->getByApp(2);
+        $scopes = Environment::getService('table_manager')->getTable('Fusio\Impl\Table\Scope')->getByApp(2);
 
         $this->assertEquals(array('bar', 'foo'), $scopes);
     }

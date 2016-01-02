@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table\Log;
+namespace Fusio\Impl\Table\Log;
 
 use PSX\Sql\Condition;
 

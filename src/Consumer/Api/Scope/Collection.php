@@ -23,7 +23,7 @@ namespace Fusio\Impl\Consumer\Api\Scope;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
 use Fusio\Impl\Backend\Api\App\ValidatorTrait;
-use Fusio\Impl\Backend\Table\Scope;
+use Fusio\Impl\Table\Scope;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;

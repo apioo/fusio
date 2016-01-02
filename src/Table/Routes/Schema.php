@@ -19,49 +19,68 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table;
+namespace Fusio\Impl\Table\Routes;
 
 use PSX\Sql\TableAbstract;
 
 /**
- * Log
+ * Schema
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Log extends TableAbstract
+class Schema extends TableAbstract
 {
+    const STATUS_REQUIRED = 1;
+    const STATUS_OPTIONAL = 0;
+
     public function getName()
     {
-        return 'fusio_log';
+        return 'fusio_routes_schema';
     }
 
     public function getColumns()
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'appId' => self::TYPE_INT,
             'routeId' => self::TYPE_INT,
-            'ip' => self::TYPE_VARCHAR,
-            'userAgent' => self::TYPE_VARCHAR,
-            'method' => self::TYPE_VARCHAR,
-            'path' => self::TYPE_VARCHAR,
-            'header' => self::TYPE_TEXT,
-            'body' => self::TYPE_TEXT,
-            'date' => self::TYPE_DATETIME,
+            'schemaId' => self::TYPE_INT,
+            'status' => self::TYPE_INT,
         );
     }
 
-    public function getErrors($logId)
+    public function deleteAllFromRoute($routeId)
     {
-        $sql = 'SELECT message,
-                       trace,
-                       file,
-                       line
-                  FROM fusio_log_error
-                 WHERE logId = :logId';
+        $sql = 'DELETE FROM fusio_routes_schema
+                      WHERE routeId = :id';
 
-        return $this->connection->fetchAll($sql, array('logId' => $logId)) ?: array();
+        $this->connection->executeQuery($sql, ['id' => $routeId]);
+    }
+
+    public function deleteBySchema($schemaId)
+    {
+        $sql = 'DELETE FROM fusio_routes_schema
+                      WHERE schemaId = :id';
+
+        $this->connection->executeQuery($sql, ['id' => $schemaId]);
+    }
+
+    public function getDependingRoutePaths($schemaId)
+    {
+        $sql = '    SELECT routes.path
+                      FROM fusio_routes_schema schem
+                INNER JOIN fusio_routes routes
+                        ON routes.id = schem.routeId
+                     WHERE schem.schemaId = :id';
+
+        $result = $this->connection->fetchAll($sql, ['id' => $schemaId]);
+        $paths  = [];
+
+        foreach ($result as $row) {
+            $paths[] = $row['path'];
+        }
+
+        return $paths;
     }
 }

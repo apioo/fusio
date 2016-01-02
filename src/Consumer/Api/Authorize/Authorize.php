@@ -23,7 +23,7 @@ namespace Fusio\Impl\Consumer\Api\Authorize;
 
 use DateTime;
 use Fusio\Impl\Authorization\ProtectionTrait;
-use Fusio\Impl\Backend\Table\App;
+use Fusio\Impl\Table\App;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;
@@ -150,7 +150,7 @@ class Authorize extends SchemaApiAbstract
         }
 
         // scopes
-        $scopes = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Scope')
+        $scopes = $this->tableManager->getTable('Fusio\Impl\Table\App\Scope')
             ->getValidScopes($app['id'], $scope, ['backend']);
 
         if (empty($scopes)) {
@@ -165,7 +165,7 @@ class Authorize extends SchemaApiAbstract
             // app we can directly generate a code
 
             // generate code
-            $code = $this->tableManager->getTable('Fusio\Impl\Backend\Table\App\Code')->generateCode(
+            $code = $this->tableManager->getTable('Fusio\Impl\Table\App\Code')->generateCode(
                 $app['id'],
                 $this->userId,
                 $redirectUri,
@@ -253,7 +253,7 @@ class Authorize extends SchemaApiAbstract
         $condition->equals('userId', $this->userId);
         $condition->equals('appId', $appId);
 
-        $table   = $this->tableManager->getTable('Fusio\Impl\Backend\Table\User\Grant');
+        $table   = $this->tableManager->getTable('Fusio\Impl\Table\User\Grant');
         $userApp = $table->getOneBy($condition);
 
         if (empty($userApp)) {

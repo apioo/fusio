@@ -19,31 +19,49 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table;
+namespace Fusio\Impl\Table;
 
 use PSX\Sql\TableAbstract;
 
 /**
- * Connection
+ * Log
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Connection extends TableAbstract
+class Log extends TableAbstract
 {
     public function getName()
     {
-        return 'fusio_connection';
+        return 'fusio_log';
     }
 
     public function getColumns()
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'name' => self::TYPE_VARCHAR,
-            'class' => self::TYPE_VARCHAR,
-            'config' => self::TYPE_ARRAY,
+            'appId' => self::TYPE_INT,
+            'routeId' => self::TYPE_INT,
+            'ip' => self::TYPE_VARCHAR,
+            'userAgent' => self::TYPE_VARCHAR,
+            'method' => self::TYPE_VARCHAR,
+            'path' => self::TYPE_VARCHAR,
+            'header' => self::TYPE_TEXT,
+            'body' => self::TYPE_TEXT,
+            'date' => self::TYPE_DATETIME,
         );
+    }
+
+    public function getErrors($logId)
+    {
+        $sql = 'SELECT message,
+                       trace,
+                       file,
+                       line
+                  FROM fusio_log_error
+                 WHERE logId = :logId';
+
+        return $this->connection->fetchAll($sql, array('logId' => $logId)) ?: array();
     }
 }

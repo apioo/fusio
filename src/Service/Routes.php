@@ -21,8 +21,8 @@
 
 namespace Fusio\Impl\Service;
 
-use Fusio\Impl\Backend\Table\Routes as TableRoutes;
-use Fusio\Impl\Backend\Table\Scope\Route as TableScopeRoute;
+use Fusio\Impl\Table\Routes as TableRoutes;
+use Fusio\Impl\Table\Scope\Route as TableScopeRoute;
 use Fusio\Impl\Service\Routes\DependencyManager;
 use PSX\Api\Resource;
 use PSX\Data\ResultSet;

@@ -19,76 +19,78 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table;
+namespace Fusio\Impl\Table;
 
+use PSX\Sql\Condition;
 use PSX\Sql\TableAbstract;
 
 /**
- * User
+ * Scope
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class User extends TableAbstract
+class Scope extends TableAbstract
 {
-    const STATUS_CONSUMER      = 0;
-    const STATUS_ADMINISTRATOR = 1;
-    const STATUS_DISABLED      = 2;
-    const STATUS_DELETED       = 3;
-
     public function getName()
     {
-        return 'fusio_user';
+        return 'fusio_scope';
     }
 
     public function getColumns()
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'status' => self::TYPE_INT,
             'name' => self::TYPE_VARCHAR,
-            'password' => self::TYPE_VARCHAR,
-            'date' => self::TYPE_DATETIME,
+            'description' => self::TYPE_VARCHAR,
         );
     }
 
-    public function getScopeNames($userId)
+    public function getByUser($userId)
     {
         $sql = '    SELECT scope.name
-				      FROM fusio_user_scope userScope
-				INNER JOIN fusio_scope scope
-				        ON scope.id = userScope.scopeId
-				     WHERE userScope.userId = :userId';
+                      FROM fusio_user_scope userScope
+                INNER JOIN fusio_scope scope
+                        ON scope.id = userScope.scopeId
+                     WHERE userScope.userId = :userId';
 
-        $scopes = $this->connection->fetchAll($sql, array('userId' => $userId));
+        $result = $this->connection->fetchAll($sql, array('userId' => $userId)) ?: array();
         $names  = array();
 
-        foreach ($scopes as $scope) {
-            $names[] = $scope['name'];
+        foreach ($result as $row) {
+            $names[] = $row['name'];
         }
 
         return $names;
     }
 
-    public function changePassword($userId, $oldPassword, $newPassword)
+    public function getByApp($appId)
     {
-        $password = $this->connection->fetchColumn('SELECT password FROM fusio_user WHERE id = :id', ['id' => $userId]);
+        $sql = '    SELECT scope.name
+                      FROM fusio_app_scope appScope
+                INNER JOIN fusio_scope scope
+                        ON scope.id = appScope.scopeId
+                     WHERE appScope.appId = :appId';
 
-        if (empty($password)) {
-            return false;
+        $result = $this->connection->fetchAll($sql, array('appId' => $appId)) ?: array();
+        $names  = array();
+
+        foreach ($result as $row) {
+            $names[] = $row['name'];
         }
 
-        if (password_verify($oldPassword, $password)) {
-            $this->connection->update('fusio_user', [
-                'password' => \password_hash($newPassword, PASSWORD_DEFAULT),
-            ], [
-                'id' => $userId,
-            ]);
+        return $names;
+    }
 
-            return true;
+    public function getByNames(array $names)
+    {
+        $names = array_filter($names);
+
+        if (!empty($names)) {
+            return $this->getAll(0, 1024, null, null, new Condition(['name', 'IN', $names]));
         } else {
-            return false;
+            return [];
         }
     }
 }

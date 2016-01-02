@@ -21,8 +21,8 @@
 
 namespace Fusio\Impl\Service;
 
-use Fusio\Impl\Backend\Table\Log as TableLog;
-use Fusio\Impl\Backend\Table\Log\QueryFilter;
+use Fusio\Impl\Table\Log as TableLog;
+use Fusio\Impl\Table\Log\QueryFilter;
 use PSX\Data\ResultSet;
 use PSX\DateTime;
 use PSX\Http\Exception as StatusCode;

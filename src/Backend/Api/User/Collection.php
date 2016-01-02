@@ -22,7 +22,7 @@
 namespace Fusio\Impl\Backend\Api\User;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
-use Fusio\Impl\Backend\Table\User;
+use Fusio\Impl\Table\User;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;

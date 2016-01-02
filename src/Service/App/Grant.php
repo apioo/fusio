@@ -21,9 +21,9 @@
 
 namespace Fusio\Impl\Service\App;
 
-use Fusio\Impl\Backend\Table\App as TableApp;
-use Fusio\Impl\Backend\Table\App\Token as TableAppToken;
-use Fusio\Impl\Backend\Table\User\Grant as TableUserGrant;
+use Fusio\Impl\Table\App as TableApp;
+use Fusio\Impl\Table\App\Token as TableAppToken;
+use Fusio\Impl\Table\User\Grant as TableUserGrant;
 use Fusio\Impl\Service\App as ServiceApp;
 use PSX\Data\ResultSet;
 use PSX\DateTime;

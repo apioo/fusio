@@ -23,7 +23,7 @@ namespace Fusio\Impl\Authorization;
 
 use Closure;
 use Doctrine\DBAL\Connection;
-use Fusio\Impl\Backend\Table\App\Token as AppToken;
+use Fusio\Impl\Table\App\Token as AppToken;
 use PSX\Dispatch\Filter\Oauth2Authentication;
 use PSX\Oauth2\Authorization\Exception\InvalidScopeException;
 

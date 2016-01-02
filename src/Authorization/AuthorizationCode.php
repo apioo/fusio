@@ -22,10 +22,10 @@
 namespace Fusio\Impl\Authorization;
 
 use Doctrine\DBAL\Connection;
-use Fusio\Impl\Backend\Table\App;
-use Fusio\Impl\Backend\Table\App\Scope;
-use Fusio\Impl\Backend\Table\App\Token as AppToken;
-use Fusio\Impl\Backend\Table\User;
+use Fusio\Impl\Table\App;
+use Fusio\Impl\Table\App\Scope;
+use Fusio\Impl\Table\App\Token as AppToken;
+use Fusio\Impl\Table\User;
 use PSX\Oauth2\AccessToken;
 use PSX\Oauth2\Authorization\Exception\ServerErrorException;
 use PSX\Oauth2\Provider\Credentials;

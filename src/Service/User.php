@@ -22,10 +22,10 @@
 namespace Fusio\Impl\Service;
 
 use Fusio\Impl\Authorization\TokenGenerator;
-use Fusio\Impl\Backend\Table\App as TableApp;
-use Fusio\Impl\Backend\Table\Scope as TableScope;
-use Fusio\Impl\Backend\Table\User as TableUser;
-use Fusio\Impl\Backend\Table\User\Scope as TableUserScope;
+use Fusio\Impl\Table\App as TableApp;
+use Fusio\Impl\Table\Scope as TableScope;
+use Fusio\Impl\Table\User as TableUser;
+use Fusio\Impl\Table\User\Scope as TableUserScope;
 use PSX\Data\ResultSet;
 use PSX\DateTime;
 use PSX\Http\Exception as StatusCode;

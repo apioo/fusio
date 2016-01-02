@@ -19,18 +19,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table;
+namespace Fusio\Impl\Table;
 
 use PSX\Sql\TableAbstract;
 
 /**
- * Schema
+ * Action
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Schema extends TableAbstract
+class Action extends TableAbstract
 {
     const STATUS_ACTIVE  = 1;
     const STATUS_LOCKED  = 2;
@@ -38,7 +38,7 @@ class Schema extends TableAbstract
 
     public function getName()
     {
-        return 'fusio_schema';
+        return 'fusio_action';
     }
 
     public function getColumns()
@@ -47,8 +47,9 @@ class Schema extends TableAbstract
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
             'status' => self::TYPE_INT,
             'name' => self::TYPE_VARCHAR,
-            'source' => self::TYPE_TEXT,
-            'cache' => self::TYPE_TEXT,
+            'class' => self::TYPE_VARCHAR,
+            'config' => self::TYPE_ARRAY,
+            'date' => self::TYPE_DATETIME,
         );
     }
 }

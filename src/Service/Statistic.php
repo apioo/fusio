@@ -22,7 +22,7 @@
 namespace Fusio\Impl\Service;
 
 use Doctrine\DBAL\Connection as DBALConnection;
-use Fusio\Impl\Backend\Table\Log\QueryFilter;
+use Fusio\Impl\Table\Log\QueryFilter;
 use PSX\DateTime;
 use PSX\Http\Exception as StatusCode;
 use PSX\Sql;

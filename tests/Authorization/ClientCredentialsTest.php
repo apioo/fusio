@@ -21,7 +21,7 @@
 
 namespace Fusio\Impl\Authorization;
 
-use Fusio\Impl\Backend\Table\App\Token;
+use Fusio\Impl\Table\App\Token;
 use Fusio\Impl\Fixture;
 use PSX\Json;
 use PSX\Test\ControllerDbTestCase;

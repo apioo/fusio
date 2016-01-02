@@ -139,7 +139,7 @@ JSON;
         $this->assertEquals('Foo', $row['name']);
         $this->assertEquals('http://google.com', $row['url']);
 
-        $scopes = Environment::getService('table_manager')->getTable('Fusio\Impl\Backend\Table\Scope')->getByApp(6);
+        $scopes = Environment::getService('table_manager')->getTable('Fusio\Impl\Table\Scope')->getByApp(6);
 
         $this->assertEquals(array('bar', 'foo'), $scopes);
     }

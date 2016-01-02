@@ -19,48 +19,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table\Scope;
+namespace Fusio\Impl\Table;
 
 use PSX\Sql\TableAbstract;
 
 /**
- * Route
+ * Schema
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Route extends TableAbstract
+class Schema extends TableAbstract
 {
+    const STATUS_ACTIVE  = 1;
+    const STATUS_LOCKED  = 2;
+    const STATUS_DELETED = 0;
+
     public function getName()
     {
-        return 'fusio_scope_routes';
+        return 'fusio_schema';
     }
 
     public function getColumns()
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'scopeId' => self::TYPE_INT,
-            'routeId' => self::TYPE_INT,
-            'allow' => self::TYPE_INT,
-            'methods' => self::TYPE_VARCHAR,
+            'status' => self::TYPE_INT,
+            'name' => self::TYPE_VARCHAR,
+            'source' => self::TYPE_TEXT,
+            'cache' => self::TYPE_TEXT,
         );
-    }
-
-    public function deleteAllFromScope($scopeId)
-    {
-        $sql = 'DELETE FROM fusio_scope_routes
-				      WHERE scopeId = :id';
-
-        $this->connection->executeQuery($sql, array('id' => $scopeId));
-    }
-
-    public function deleteAllFromRoute($routeId)
-    {
-        $sql = 'DELETE FROM fusio_scope_routes
-                      WHERE routeId = :id';
-
-        $this->connection->executeQuery($sql, array('id' => $routeId));
     }
 }

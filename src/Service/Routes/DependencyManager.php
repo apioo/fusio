@@ -21,11 +21,11 @@
 
 namespace Fusio\Impl\Service\Routes;
 
-use Fusio\Impl\Backend\Table\Action as TableAction;
-use Fusio\Impl\Backend\Table\Routes;
-use Fusio\Impl\Backend\Table\Routes\Action as RoutesAction;
-use Fusio\Impl\Backend\Table\Routes\Schema as RoutesSchema;
-use Fusio\Impl\Backend\Table\Schema as TableSchema;
+use Fusio\Impl\Table\Action as TableAction;
+use Fusio\Impl\Table\Routes;
+use Fusio\Impl\Table\Routes\Action as RoutesAction;
+use Fusio\Impl\Table\Routes\Schema as RoutesSchema;
+use Fusio\Impl\Table\Schema as TableSchema;
 use Fusio\Impl\Form;
 use Fusio\Impl\Parser\ParserAbstract;
 use PSX\Api\Resource;

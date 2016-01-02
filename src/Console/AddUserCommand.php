@@ -21,8 +21,8 @@
 
 namespace Fusio\Impl\Console;
 
-use Fusio\Impl\Backend\Table\Scope;
-use Fusio\Impl\Backend\Table\User;
+use Fusio\Impl\Table\Scope;
+use Fusio\Impl\Table\User;
 use Fusio\Impl\Service\User as ServiceUser;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

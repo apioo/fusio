@@ -21,7 +21,7 @@
 
 namespace Fusio\Impl\Consumer\Api\App\Meta;
 
-use Fusio\Impl\Backend\Table\App;
+use Fusio\Impl\Table\App;
 use Fusio\Impl\Fixture;
 use PSX\Test\ControllerDbTestCase;
 

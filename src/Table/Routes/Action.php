@@ -19,25 +19,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table\Routes;
+namespace Fusio\Impl\Table\Routes;
 
 use PSX\Sql\TableAbstract;
 
 /**
- * Schema
+ * Action
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Schema extends TableAbstract
+class Action extends TableAbstract
 {
     const STATUS_REQUIRED = 1;
     const STATUS_OPTIONAL = 0;
 
     public function getName()
     {
-        return 'fusio_routes_schema';
+        return 'fusio_routes_action';
     }
 
     public function getColumns()
@@ -45,36 +45,36 @@ class Schema extends TableAbstract
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
             'routeId' => self::TYPE_INT,
-            'schemaId' => self::TYPE_INT,
+            'actionId' => self::TYPE_INT,
             'status' => self::TYPE_INT,
         );
     }
 
     public function deleteAllFromRoute($routeId)
     {
-        $sql = 'DELETE FROM fusio_routes_schema
+        $sql = 'DELETE FROM fusio_routes_action
                       WHERE routeId = :id';
 
         $this->connection->executeQuery($sql, ['id' => $routeId]);
     }
 
-    public function deleteBySchema($schemaId)
+    public function deleteByAction($actionId)
     {
-        $sql = 'DELETE FROM fusio_routes_schema
-                      WHERE schemaId = :id';
+        $sql = 'DELETE FROM fusio_routes_action
+                      WHERE actionId = :id';
 
-        $this->connection->executeQuery($sql, ['id' => $schemaId]);
+        $this->connection->executeQuery($sql, ['id' => $actionId]);
     }
 
-    public function getDependingRoutePaths($schemaId)
+    public function getDependingRoutePaths($actionId)
     {
         $sql = '    SELECT routes.path
-                      FROM fusio_routes_schema schem
+                      FROM fusio_routes_action action
                 INNER JOIN fusio_routes routes
-                        ON routes.id = schem.routeId
-                     WHERE schem.schemaId = :id';
+                        ON routes.id = action.routeId
+                     WHERE action.actionId = :id';
 
-        $result = $this->connection->fetchAll($sql, ['id' => $schemaId]);
+        $result = $this->connection->fetchAll($sql, ['id' => $actionId]);
         $paths  = [];
 
         foreach ($result as $row) {

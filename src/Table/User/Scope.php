@@ -19,37 +19,50 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl\Backend\Table;
+namespace Fusio\Impl\Table\User;
 
 use PSX\Sql\TableAbstract;
 
 /**
- * Action
+ * Scope
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Action extends TableAbstract
+class Scope extends TableAbstract
 {
-    const STATUS_ACTIVE  = 1;
-    const STATUS_LOCKED  = 2;
-    const STATUS_DELETED = 0;
-
     public function getName()
     {
-        return 'fusio_action';
+        return 'fusio_user_scope';
     }
 
     public function getColumns()
     {
         return array(
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
-            'status' => self::TYPE_INT,
-            'name' => self::TYPE_VARCHAR,
-            'class' => self::TYPE_VARCHAR,
-            'config' => self::TYPE_ARRAY,
-            'date' => self::TYPE_DATETIME,
+            'userId' => self::TYPE_INT,
+            'scopeId' => self::TYPE_INT,
         );
+    }
+
+    public function deleteAllFromUser($userId)
+    {
+        $sql = 'DELETE FROM fusio_user_scope
+				      WHERE userId = :id';
+
+        $this->connection->executeQuery($sql, array('id' => $userId));
+    }
+
+    public function getByUser($userId)
+    {
+        $sql = '    SELECT scope.name,
+                           scope.description
+                      FROM fusio_user_scope userScope
+                INNER JOIN fusio_scope scope
+                        ON scope.id = userScope.scopeId
+                     WHERE userScope.userId = :userId';
+
+        return $this->connection->fetchAll($sql, array('userId' => $userId)) ?: array();
     }
 }

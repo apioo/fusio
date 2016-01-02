@@ -23,9 +23,9 @@ namespace Fusio\Impl\Backend\Authorization;
 
 use Doctrine\DBAL\Connection;
 use Fusio\Impl\Authorization\TokenGenerator;
-use Fusio\Impl\Backend\Table\App;
-use Fusio\Impl\Backend\Table\App\Token as AppToken;
-use Fusio\Impl\Backend\Table\User;
+use Fusio\Impl\Table\App;
+use Fusio\Impl\Table\App\Token as AppToken;
+use Fusio\Impl\Table\User;
 use PSX\DateTime;
 use PSX\Oauth2\AccessToken;
 use PSX\Oauth2\Authorization\Exception\ServerErrorException;
