@@ -21,11 +21,10 @@
 
 namespace Fusio\Impl\Service\App;
 
-use Fusio\Impl\Authorization\TokenGenerator;
-use Fusio\Impl\Service\App as ServiceApp;
 use Fusio\Impl\Backend\Table\App as TableApp;
 use Fusio\Impl\Backend\Table\App\Token as TableAppToken;
 use Fusio\Impl\Backend\Table\User\Grant as TableUserGrant;
+use Fusio\Impl\Service\App as ServiceApp;
 use PSX\Data\ResultSet;
 use PSX\DateTime;
 use PSX\Http\Exception as StatusCode;

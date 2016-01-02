@@ -22,7 +22,6 @@
 namespace Fusio\Impl\Dependency;
 
 use Fusio\Impl\App;
-use Fusio\Impl\Backend\Table\Routes\DependencyManager;
 use Fusio\Impl\Base;
 use Fusio\Impl\Connector;
 use Fusio\Impl\Console;

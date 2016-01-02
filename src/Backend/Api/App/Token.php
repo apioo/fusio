@@ -23,8 +23,6 @@ namespace Fusio\Impl\Backend\Api\App;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
 use PSX\Controller\ApiAbstract;
-use PSX\Data\RecordInterface;
-use PSX\Http\Exception\NotFoundException;
 
 /**
  * Token

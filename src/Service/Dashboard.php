@@ -22,9 +22,6 @@
 namespace Fusio\Impl\Service;
 
 use Doctrine\DBAL\Connection as DBALConnection;
-use Fusio\Impl\Authorization\TokenGenerator;
-use Fusio\Impl\Backend\Table\Connection as TableConnection;
-use PSX\Data\ResultSet;
 use PSX\DateTime;
 use PSX\Http\Exception as StatusCode;
 use PSX\Sql;

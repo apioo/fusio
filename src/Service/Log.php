@@ -21,7 +21,6 @@
 
 namespace Fusio\Impl\Service;
 
-use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Backend\Table\Log as TableLog;
 use Fusio\Impl\Backend\Table\Log\QueryFilter;
 use PSX\Data\ResultSet;

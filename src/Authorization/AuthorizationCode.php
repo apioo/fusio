@@ -79,9 +79,10 @@ class AuthorizationCode extends AuthorizationCodeAbstract
         $expires->add(new \DateInterval($this->expireConfidential));
 
         if (!empty($code)) {
-            // @TODO check whether the code is older then 1 hour if so thow an
-            // exception
-            // $code['date']
+            // check whether the code is older then 30 minutes
+            if (time() - strtotime($code['date']) > 60 * 30) {
+                throw new ServerErrorException('Code is expired');
+            }
 
             // scopes
             $scopes = $this->scope->getValidScopes($code['appId'], $code['scope'], ['backend']);
@@ -113,7 +114,7 @@ class AuthorizationCode extends AuthorizationCodeAbstract
 
             return $token;
         } else {
-            throw new ServerErrorException('Unknown user');
+            throw new ServerErrorException('Unknown credentials');
         }
     }
 }

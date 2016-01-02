@@ -21,7 +21,6 @@
 
 namespace Fusio\Impl\Service;
 
-use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Backend\Table\Connection as TableConnection;
 use PSX\Data\ResultSet;
 use PSX\DateTime;

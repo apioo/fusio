@@ -24,9 +24,7 @@ namespace Fusio\Impl\Backend\Api\Schema;
 use Fusio\Impl\Authorization\ProtectionTrait;
 use PSX\Controller\ApiAbstract;
 use PSX\Data\Schema\Generator;
-use PSX\Data\SchemaInterface;
 use PSX\Http\Exception as StatusCode;
-use RuntimeException;
 
 /**
  * Preview

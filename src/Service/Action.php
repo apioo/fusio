@@ -21,7 +21,6 @@
 
 namespace Fusio\Impl\Service;
 
-use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Backend\Table\Action as TableAction;
 use Fusio\Impl\Backend\Table\Routes\Action as TableRoutesAction;
 use PSX\Data\ResultSet;

@@ -21,11 +21,9 @@
 
 namespace Fusio\Impl\Service;
 
-use Fusio\Impl\Authorization\TokenGenerator;
+use Fusio\Engine\Schema\ParserInterface;
 use Fusio\Impl\Backend\Table\Routes\Schema as TableRoutesSchema;
 use Fusio\Impl\Backend\Table\Schema as TableSchema;
-use Fusio\Impl\Service\Routes\DependencyManager;
-use Fusio\Engine\Schema\ParserInterface;
 use PSX\Data\ResultSet;
 use PSX\Data\Schema\Generator;
 use PSX\Data\SchemaInterface;
@@ -158,7 +156,7 @@ class Schema
     protected function checkLocked($schema)
     {
         if ($schema['status'] == TableSchema::STATUS_LOCKED) {
-            $paths = $this->routesSchemaTable>getDependingRoutePaths($schema['id']);
+            $paths = $this->routesSchemaTable->getDependingRoutePaths($schema['id']);
 
             $paths = implode(', ', $paths);
 

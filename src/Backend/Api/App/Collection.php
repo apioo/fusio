@@ -21,9 +21,7 @@
 
 namespace Fusio\Impl\Backend\Api\App;
 
-use DateTime;
 use Fusio\Impl\Authorization\ProtectionTrait;
-use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Backend\Table\App as TableApp;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;

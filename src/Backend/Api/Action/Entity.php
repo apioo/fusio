@@ -22,7 +22,6 @@
 namespace Fusio\Impl\Backend\Api\Action;
 
 use Fusio\Impl\Authorization\ProtectionTrait;
-use Fusio\Impl\Backend\Table\Action;
 use PSX\Api\Documentation;
 use PSX\Api\Resource;
 use PSX\Api\Version;

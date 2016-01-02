@@ -21,11 +21,8 @@
 
 namespace Fusio\Impl\Console;
 
-use DateTime;
-use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Backend\Table\Scope;
 use Fusio\Impl\Backend\Table\User;
-use Fusio\Impl\Backend\Table\User\Scope as UserScope;
 use Fusio\Impl\Service\User as ServiceUser;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

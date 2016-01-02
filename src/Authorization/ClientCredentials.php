@@ -99,7 +99,7 @@ class ClientCredentials extends ClientCredentialsAbstract
 
             return $token;
         } else {
-            throw new ServerErrorException('Unknown user');
+            throw new ServerErrorException('Unknown credentials');
         }
     }
 

@@ -33,7 +33,6 @@ use PSX\Loader\Context;
 use PSX\OpenSsl;
 use PSX\Sql;
 use PSX\Sql\Condition;
-use PSX\Util\CurveArray;
 use PSX\Validate;
 
 /**
