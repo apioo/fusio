@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Loader;
 
 use Doctrine\DBAL\Connection;
+use Fusio\Impl\Table\Routes as TableRoutes;
 use PSX\Http\RequestInterface;
 use PSX\Loader\Context;
 use PSX\Loader\LocationFinderInterface;
@@ -51,12 +52,13 @@ class RoutingParser implements LocationFinderInterface
 				       controller,
 				       config
 				  FROM fusio_routes
-				 WHERE status = 1
+				 WHERE status = :status
 				   AND methods LIKE :method';
 
         $method      = $request->getMethod();
         $pathMatcher = new PathMatcher($request->getUri()->getPath());
         $result      = $this->connection->fetchAll($sql, array(
+            'status' => TableRoutes::STATUS_ACTIVE,
             'method' => '%' . $method . '%'
         ));
 

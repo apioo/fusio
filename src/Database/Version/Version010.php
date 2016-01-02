@@ -146,7 +146,6 @@ class Version010 implements VersionInterface
         $routesTable->addColumn('controller', 'string', array('length' => 255));
         $routesTable->addColumn('config', 'blob', array('notnull' => false));
         $routesTable->setPrimaryKey(array('id'));
-        $routesTable->addUniqueIndex(array('path'));
 
         $routesActionTable = $schema->createTable('fusio_routes_action');
         $routesActionTable->addColumn('id', 'integer', array('autoincrement' => true));

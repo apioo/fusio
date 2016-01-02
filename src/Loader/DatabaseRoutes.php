@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Loader;
 
 use Doctrine\DBAL\Connection;
+use Fusio\Impl\Table\Routes as TableRoutes;
 use PSX\Loader\RoutingParserInterface;
 
 /**
@@ -45,8 +46,16 @@ class DatabaseRoutes implements RoutingParserInterface
     public function getCollection()
     {
         if ($this->_collection === null) {
+            $sql = 'SELECT id, 
+                           methods, 
+                           path, 
+                           controller, 
+                           config 
+                      FROM fusio_routes 
+                     WHERE status = :status';
+
             $collection = new RoutingCollection();
-            $result     = $this->connection->fetchAll('SELECT id, methods, path, controller, config FROM fusio_routes WHERE status = 1');
+            $result     = $this->connection->fetchAll($sql, ['status' => TableRoutes::STATUS_ACTIVE]);
 
             foreach ($result as $row) {
                 $config = !empty($row['config']) ? unserialize($row['config']) : array();

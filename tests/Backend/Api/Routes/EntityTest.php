@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Backend\Api\Routes;
 
 use Fusio\Impl\Fixture;
+use Fusio\Impl\Table\Routes as TableRoutes;
 use PSX\Test\ControllerDbTestCase;
 use PSX\Test\Environment;
 
@@ -183,7 +184,7 @@ JSON;
 
         $row = Environment::getService('connection')->fetchAssoc($sql);
 
-        // we actually delete the route entry so the last id must be not 43
-        $this->assertEquals(49, $row['id']);
+        $this->assertEquals(50, $row['id']);
+        $this->assertEquals(TableRoutes::STATUS_DELETED, $row['status']);
     }
 }

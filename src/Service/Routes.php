@@ -51,15 +51,16 @@ class Routes
 
     public function getAll($startIndex = 0, $search = null)
     {
-        $condition  = new Condition(['status', '=', 1]);
-        $condition->add('path', 'NOT LIKE', '/backend%');
-        $condition->add('path', 'NOT LIKE', '/consumer%');
-        $condition->add('path', 'NOT LIKE', '/doc%');
-        $condition->add('path', 'NOT LIKE', '/authorization%');
-        $condition->add('path', 'NOT LIKE', '/export%');
+        $condition  = new Condition();
+        $condition->equals('status', TableRoutes::STATUS_ACTIVE);
+        $condition->notLike('path', '/backend%');
+        $condition->notLike('path', '/consumer%');
+        $condition->notLike('path', '/doc%');
+        $condition->notLike('path', '/authorization%');
+        $condition->notLike('path', '/export%');
 
         if (!empty($search)) {
-            $condition->add('path', 'LIKE', '%' . $search . '%');
+            $condition->like('path', '%' . $search . '%');
         }
 
         $this->routesTable->setRestrictedFields(['config']);
@@ -77,6 +78,10 @@ class Routes
         $route = $this->routesTable->get($routeId);
 
         if (!empty($route)) {
+            if ($route['status'] == TableRoutes::STATUS_DELETED) {
+                throw new StatusCode\GoneException('Route was deleted');
+            }
+
             return $route;
         } else {
             throw new StatusCode\NotFoundException('Could not find route');
@@ -107,6 +112,10 @@ class Routes
         $route = $this->routesTable->get($routeId);
 
         if (!empty($route)) {
+            if ($route['status'] == TableRoutes::STATUS_DELETED) {
+                throw new StatusCode\GoneException('Route was deleted');
+            }
+
             $this->routesTable->update(array(
                 'id'         => $route->getId(),
                 'methods'    => $methods,
@@ -136,23 +145,22 @@ class Routes
         $route = $this->routesTable->get($routeId);
 
         if (!empty($route)) {
+            if ($route['status'] == TableRoutes::STATUS_DELETED) {
+                throw new StatusCode\GoneException('Route was deleted');
+            }
+
             // check whether route has a production version
             if ($this->hasProductionVersion($route->getConfig())) {
                 throw new StatusCode\ConflictException('It is not possible to delete a route which contains a production version');
             }
 
-            // remove all dependency links
-            $this->dependencyManager->removeExistingDependencyLinks($route->getId());
-
             // unlock dependencies
             $this->dependencyManager->unlockExistingDependencies($route->getId());
 
-            // remove all scope routes
-            $this->scopeRoutesTable->deleteAllFromRoute($route->getId());
-
             // delete route
-            $this->routesTable->delete(array(
-                'id' => $route->getId(),
+            $this->routesTable->update(array(
+                'id'     => $route->getId(),
+                'status' => TableRoutes::STATUS_DELETED
             ));
         } else {
             throw new StatusCode\NotFoundException('Could not find route');
