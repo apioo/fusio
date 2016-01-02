@@ -27,10 +27,13 @@ use Fusio\Impl\Backend\Table\Schema as TableSchema;
 use Fusio\Impl\Service\Routes\DependencyManager;
 use Fusio\Engine\Schema\ParserInterface;
 use PSX\Data\ResultSet;
+use PSX\Data\Schema\Generator;
+use PSX\Data\SchemaInterface;
 use PSX\DateTime;
 use PSX\Http\Exception as StatusCode;
 use PSX\Sql;
 use PSX\Sql\Condition;
+use RuntimeException;
 
 /**
  * Schema
