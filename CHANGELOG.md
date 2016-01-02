@@ -1,5 +1,15 @@
 
-### 0.1.7 
+### 0.2.0 (2016-01-02)
+
+* Added consumer API and javascript client implementation
+* Improved code architecture
+* Added RAML import
+* Added json schema export command
+* Generate more secure tokens and passwords
+* Fixed a security issue where the installer installs a test admin account with
+  a fix username and password
+
+### 0.1.7 (2015-11-26)
 
 * Added adapter system
 * Changing a action or schema which are used by a route in production status is
