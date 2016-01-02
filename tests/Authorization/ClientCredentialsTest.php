@@ -91,7 +91,7 @@ class ClientCredentialsTest extends ControllerDbTestCase
         $expect = <<<JSON
 {
     "error": "server_error",
-    "error_description": "Unknown user"
+    "error_description": "Unknown credentials"
 }
 JSON;
 
@@ -115,7 +115,7 @@ JSON;
         $expect = <<<JSON
 {
     "error": "server_error",
-    "error_description": "Unknown user"
+    "error_description": "Unknown credentials"
 }
 JSON;
 

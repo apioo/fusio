@@ -184,12 +184,12 @@ class SchemaApiController extends SchemaApiAbstract implements DocumentedInterfa
         return $this->executeAction(new Record(), $version);
     }
 
-    protected function doCreate(RecordInterface $record, Version $version)
+    protected function doPost(RecordInterface $record, Version $version)
     {
         return $this->executeAction($record, $version);
     }
 
-    protected function doUpdate(RecordInterface $record, Version $version)
+    protected function doPut(RecordInterface $record, Version $version)
     {
         return $this->executeAction($record, $version);
     }

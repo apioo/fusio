@@ -79,37 +79,4 @@ class Entity extends SchemaApiAbstract
             (int) $this->getUriFragment('log_id')
         );
     }
-
-    /**
-     * Returns the POST response
-     *
-     * @param \PSX\Data\RecordInterface $record
-     * @param \PSX\Api\Version $version
-     * @return array|\PSX\Data\RecordInterface
-     */
-    protected function doCreate(RecordInterface $record, Version $version)
-    {
-    }
-
-    /**
-     * Returns the PUT response
-     *
-     * @param \PSX\Data\RecordInterface $record
-     * @param \PSX\Api\Version $version
-     * @return array|\PSX\Data\RecordInterface
-     */
-    protected function doUpdate(RecordInterface $record, Version $version)
-    {
-    }
-
-    /**
-     * Returns the DELETE response
-     *
-     * @param \PSX\Data\RecordInterface $record
-     * @param \PSX\Api\Version $version
-     * @return array|\PSX\Data\RecordInterface
-     */
-    protected function doDelete(RecordInterface $record, Version $version)
-    {
-    }
 }

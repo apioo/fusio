@@ -99,7 +99,7 @@ class Collection extends SchemaApiAbstract
      * @param \PSX\Api\Version $version
      * @return array|\PSX\Data\RecordInterface
      */
-    protected function doCreate(RecordInterface $record, Version $version)
+    protected function doPost(RecordInterface $record, Version $version)
     {
         $password = $this->userService->create(
             $record->getStatus(), 
@@ -112,27 +112,5 @@ class Collection extends SchemaApiAbstract
             'message'  => 'User successful created',
             'password' => $password,
         );
-    }
-
-    /**
-     * Returns the PUT response
-     *
-     * @param \PSX\Data\RecordInterface $record
-     * @param \PSX\Api\Version $version
-     * @return array|\PSX\Data\RecordInterface
-     */
-    protected function doUpdate(RecordInterface $record, Version $version)
-    {
-    }
-
-    /**
-     * Returns the DELETE response
-     *
-     * @param \PSX\Data\RecordInterface $record
-     * @param \PSX\Api\Version $version
-     * @return array|\PSX\Data\RecordInterface
-     */
-    protected function doDelete(RecordInterface $record, Version $version)
-    {
     }
 }

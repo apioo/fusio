@@ -92,24 +92,13 @@ class Entity extends SchemaApiAbstract
     }
 
     /**
-     * Returns the POST response
-     *
-     * @param \PSX\Data\RecordInterface $record
-     * @param \PSX\Api\Version $version
-     * @return array|\PSX\Data\RecordInterface
-     */
-    protected function doCreate(RecordInterface $record, Version $version)
-    {
-    }
-
-    /**
      * Returns the PUT response
      *
      * @param \PSX\Data\RecordInterface $record
      * @param \PSX\Api\Version $version
      * @return array|\PSX\Data\RecordInterface
      */
-    protected function doUpdate(RecordInterface $record, Version $version)
+    protected function doPut(RecordInterface $record, Version $version)
     {
         $this->userService->update(
             (int) $this->getUriFragment('user_id'),
