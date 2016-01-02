@@ -24,13 +24,13 @@ namespace Fusio\Impl\Database\Version;
 use Doctrine\DBAL\Connection;
 
 /**
- * Version018
+ * Version020
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Version018 extends Version010
+class Version020 extends Version010
 {
     public function executeUpgrade(Connection $connection)
     {
