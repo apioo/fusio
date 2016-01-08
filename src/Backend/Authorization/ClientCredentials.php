@@ -23,6 +23,8 @@ namespace Fusio\Impl\Backend\Authorization;
 
 use Doctrine\DBAL\Connection;
 use Fusio\Impl\Authorization\TokenGenerator;
+use Fusio\Impl\Service\App as AppService;
+use Fusio\Impl\Service\User as UserService;
 use Fusio\Impl\Table\App;
 use Fusio\Impl\Table\App\Token as AppToken;
 use Fusio\Impl\Table\User;
@@ -41,60 +43,42 @@ use PSX\Oauth2\Provider\GrantType\ClientCredentialsAbstract;
  */
 class ClientCredentials extends ClientCredentialsAbstract
 {
-    protected $connection;
+    protected $userService;
+    protected $appService;
     protected $expireBackend;
 
-    public function __construct(Connection $connection, $expireBackend)
+    public function __construct(UserService $userService, AppService $appService, $expireBackend)
     {
-        $this->connection    = $connection;
+        $this->userService   = $userService;
+        $this->appService    = $appService;
         $this->expireBackend = $expireBackend;
     }
 
     protected function generate(Credentials $credentials, $scope)
     {
-        $sql = 'SELECT id,
-				       name,
-				       password
-			      FROM fusio_user
-			     WHERE name = :name
-			       AND status = :status';
+        $userId = $this->userService->authenticateUser(
+            $credentials->getClientId(), 
+            $credentials->getClientSecret(), 
+            [User::STATUS_ADMINISTRATOR]
+        );
 
-        $user = $this->connection->fetchAssoc($sql, array(
-            'name'   => $credentials->getClientId(),
-            'status' => User::STATUS_ADMINISTRATOR,
-        ));
+        if (!empty($userId)) {
+            $scopes = ['backend', 'authorization'];
 
-        if (!empty($user)) {
-            if (password_verify($credentials->getClientSecret(), $user['password'])) {
-                $scopes = ['backend', 'authorization'];
-
-                // generate access token
-                $expires     = new \DateTime();
-                $expires->add(new \DateInterval($this->expireBackend));
-                $now         = new \DateTime();
-                $accessToken = TokenGenerator::generateToken();
-
-                $this->connection->insert('fusio_app_token', [
-                    'appId'   => App::BACKEND,
-                    'userId'  => $user['id'],
-                    'status'  => AppToken::STATUS_ACTIVE,
-                    'token'   => $accessToken,
-                    'scope'   => implode(',', $scopes),
-                    'ip'      => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1',
-                    'expire'  => $expires->format($this->connection->getDatabasePlatform()->getDateTimeFormatString()),
-                    'date'    => $now->format($this->connection->getDatabasePlatform()->getDateTimeFormatString()),
-                ]);
-
-                $token = new AccessToken();
-                $token->setAccessToken($accessToken);
-                $token->setTokenType('bearer');
-                $token->setExpiresIn($expires->getTimestamp());
-                $token->setScope(implode(',', $scopes));
-
-                return $token;
-            } else {
-                throw new ServerErrorException('Invalid password');
+            // scopes
+            $scopes = $this->userService->getValidScopes($userId, $scopes);
+            if (empty($scopes)) {
+                throw new ServerErrorException('No valid scope given');
             }
+
+            // generate access token
+            return $this->appService->generateAccessToken(
+                App::BACKEND, 
+                $userId, 
+                $scopes, 
+                isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1',
+                new \DateInterval($this->expireBackend)
+            );
         } else {
             throw new ServerErrorException('Unknown user');
         }

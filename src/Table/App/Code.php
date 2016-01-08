@@ -22,6 +22,7 @@
 namespace Fusio\Impl\Table\App;
 
 use Fusio\Impl\Authorization\TokenGenerator;
+use Fusio\Impl\Table\App;
 use PSX\Sql\TableAbstract;
 
 /**
@@ -52,19 +53,28 @@ class Code extends TableAbstract
         );
     }
 
-    public function generateCode($appId, $userId, $redirectUri, array $scopes)
+    public function getCodeByRequest($appKey, $appSecret, $code, $redirectUri)
     {
-        $code = TokenGenerator::generateCode();
+        $sql = '    SELECT code.id,
+                           code.appId,
+                           code.userId,
+                           code.scope,
+                           code.date
+                      FROM fusio_app_code code
+                INNER JOIN fusio_app app
+                        ON app.id = code.appId
+                     WHERE app.appKey = :app_key
+                       AND app.appSecret = :app_secret
+                       AND app.status = :status
+                       AND code.code = :code
+                       AND code.redirectUri = :redirectUri';
 
-        $this->create([
-            'appId'       => $appId,
-            'userId'      => $userId,
+        return $this->connection->fetchAssoc($sql, array(
+            'app_key'     => $appKey,
+            'app_secret'  => $appSecret,
+            'status'      => App::STATUS_ACTIVE,
             'code'        => $code,
-            'redirectUri' => $redirectUri,
-            'scope'       => implode(',', $scopes),
-            'date'        => new \DateTime(),
-        ]);
-
-        return $code;
+            'redirectUri' => $redirectUri ?: '',
+        ));
     }
 }

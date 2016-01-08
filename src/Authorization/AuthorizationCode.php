@@ -22,8 +22,10 @@
 namespace Fusio\Impl\Authorization;
 
 use Doctrine\DBAL\Connection;
+use Fusio\Impl\Service\App as AppService;
+use Fusio\Impl\Service\App\Code as AppCodeService;
+use Fusio\Impl\Service\Scope as ScopeService;
 use Fusio\Impl\Table\App;
-use Fusio\Impl\Table\App\Scope;
 use Fusio\Impl\Table\App\Token as AppToken;
 use Fusio\Impl\Table\User;
 use PSX\Oauth2\AccessToken;
@@ -40,79 +42,49 @@ use PSX\Oauth2\Provider\GrantType\AuthorizationCodeAbstract;
  */
 class AuthorizationCode extends AuthorizationCodeAbstract
 {
-    protected $connection;
-    protected $scope;
-    protected $expireConfidential;
+    protected $appCodeService;
+    protected $scopeService;
+    protected $appService;
+    protected $expireApp;
 
-    public function __construct(Connection $connection, Scope $scope, $expireConfidential)
+    public function __construct(AppCodeService $appCodeService, ScopeService $scopeService, AppService $appService, $expireApp)
     {
-        $this->connection         = $connection;
-        $this->scope              = $scope;
-        $this->expireConfidential = $expireConfidential;
+        $this->appCodeService = $appCodeService;
+        $this->scopeService   = $scopeService;
+        $this->appService     = $appService;
+        $this->expireApp      = $expireApp;
     }
 
     protected function generate(Credentials $credentials, $code, $redirectUri, $clientId)
     {
-        $sql = '    SELECT code.id,
-                           code.appId,
-                           code.userId,
-                           code.scope,
-                           code.date
-                      FROM fusio_app_code code
-                INNER JOIN fusio_app app
-                        ON app.id = code.appId
-                     WHERE app.appKey = :app_key
-                       AND app.appSecret = :app_secret
-                       AND app.status = :status
-                       AND code.code = :code
-                       AND code.redirectUri = :redirectUri';
-
-        $code = $this->connection->fetchAssoc($sql, array(
-            'app_key'     => $credentials->getClientId(),
-            'app_secret'  => $credentials->getClientSecret(),
-            'status'      => App::STATUS_ACTIVE,
-            'code'        => $code,
-            'redirectUri' => $redirectUri ?: '',
-        ));
-
-        $expires = new \DateTime();
-        $expires->add(new \DateInterval($this->expireConfidential));
+        $code = $this->appCodeService->getCode(
+            $credentials->getClientId(), 
+            $credentials->getClientSecret(),
+            $code,
+            $redirectUri ?: ''
+        );
 
         if (!empty($code)) {
-            // check whether the code is older then 30 minutes
+            // check whether the code is older then 30 minutes. After that we 
+            // can not exchange it for an access token
             if (time() - strtotime($code['date']) > 60 * 30) {
                 throw new ServerErrorException('Code is expired');
             }
 
             // scopes
-            $scopes = $this->scope->getValidScopes($code['appId'], $code['scope'], ['backend']);
-
+            $scopes = $this->scopeService->getValidScopes($code['appId'], $code['userId'], $code['scope'], ['backend']);
             if (empty($scopes)) {
                 throw new ServerErrorException('No valid scope given');
             }
 
             // generate access token
-            $now         = new \DateTime();
-            $accessToken = TokenGenerator::generateToken();
-
-            $this->connection->insert('fusio_app_token', [
-                'appId'  => $code['appId'],
-                'userId' => $code['userId'],
-                'status'  => AppToken::STATUS_ACTIVE,
-                'token'   => $accessToken,
-                'scope'   => implode(',', $scopes),
-                'ip'      => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1',
-                'expire'  => $expires->format($this->connection->getDatabasePlatform()->getDateTimeFormatString()),
-                'date'    => $now->format($this->connection->getDatabasePlatform()->getDateTimeFormatString()),
-            ]);
-
-            $token = new AccessToken();
-            $token->setAccessToken($accessToken);
-            $token->setTokenType('bearer');
-            $token->setExpiresIn($expires->getTimestamp());
-            $token->setScope(implode(',', $scopes));
-
-            return $token;
+            return $this->appService->generateAccessToken(
+                $code['appId'], 
+                $code['userId'], 
+                $scopes, 
+                isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1',
+                new \DateInterval($this->expireApp)
+            );
         } else {
             throw new ServerErrorException('Unknown credentials');
         }

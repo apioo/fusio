@@ -83,6 +83,16 @@ trait Service
     }
 
     /**
+     * @return \Fusio\Impl\Service\App\Code
+     */
+    public function getAppCodeService()
+    {
+        return new Impl\Service\App\Code(
+            $this->get('table_manager')->getTable('Fusio\Impl\Table\App\Code')
+        );
+    }
+
+    /**
      * @return \Fusio\Impl\Service\App\Developer
      */
     public function getAppDeveloperService()

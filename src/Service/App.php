@@ -21,6 +21,7 @@
 
 namespace Fusio\Impl\Service;
 
+use DateInterval;
 use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Table\App as TableApp;
 use Fusio\Impl\Table\App\Scope as TableAppScope;
@@ -30,6 +31,7 @@ use Fusio\Impl\Table\User\Scope as TableUserScope;
 use PSX\Data\ResultSet;
 use PSX\DateTime;
 use PSX\Http\Exception as StatusCode;
+use PSX\Oauth2\AccessToken;
 use PSX\Sql;
 use PSX\Sql\Condition;
 
@@ -113,6 +115,25 @@ class App
         }
     }
 
+    public function getByAppKey($appKey)
+    {
+        $condition = new Condition();
+        $condition->equals('appKey', $appKey);
+        $condition->equals('status', TableApp::STATUS_ACTIVE);
+
+        return $this->appTable->getOneBy($condition);
+    }
+
+    public function getByAppKeyAndSecret($appKey, $appSecret)
+    {
+        $condition = new Condition();
+        $condition->equals('appKey', $appKey);
+        $condition->equals('appSecret', $appSecret);
+        $condition->equals('status', TableApp::STATUS_ACTIVE);
+
+        return $this->appTable->getOneBy($condition);
+    }
+
     public function create($userId, $status, $name, $url, array $scopes = null)
     {
         $appKey    = TokenGenerator::generateAppKey();
@@ -187,6 +208,35 @@ class App
         } else {
             throw new StatusCode\NotFoundException('Invalid app');
         }
+    }
+
+    public function generateAccessToken($appId, $userId, array $scopes, $ip, DateInterval $expire)
+    {
+        $expires = new \DateTime();
+        $expires->add($expire);
+        $now     = new \DateTime();
+
+        // generate access token
+        $accessToken = TokenGenerator::generateToken();
+
+        $this->appTokenTable->create([
+            'appId'  => $appId,
+            'userId' => $userId,
+            'status' => TableAppToken::STATUS_ACTIVE,
+            'token'  => $accessToken,
+            'scope'  => implode(',', $scopes),
+            'ip'     => $ip,
+            'expire' => $expires->format('Y-m-d H:i:s'),
+            'date'   => $now->format('Y-m-d H:i:s'),
+        ]);
+
+        $token = new AccessToken();
+        $token->setAccessToken($accessToken);
+        $token->setTokenType('bearer');
+        $token->setExpiresIn($expires->getTimestamp());
+        $token->setScope(implode(',', $scopes));
+
+        return $token;
     }
 
     public function insertScopes($appId, $scopes)

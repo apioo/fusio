@@ -63,6 +63,24 @@ class Authorize extends SchemaApiAbstract
     protected $tableManager;
 
     /**
+     * @Inject
+     * @var \Fusio\Impl\Service\Scope
+     */
+    protected $scopeService;
+
+    /**
+     * @Inject
+     * @var \Fusio\Impl\Service\App
+     */
+    protected $appService;
+
+    /**
+     * @Inject
+     * @var \Fusio\Impl\Service\App\Code
+     */
+    protected $appCodeService;
+
+    /**
      * @return \PSX\Api\DocumentationInterface
      */
     public function getDocumentation()
@@ -103,23 +121,12 @@ class Authorize extends SchemaApiAbstract
         $state        = $record->getState();
 
         // response type
-        if ($responseType != 'code') {
+        if (!in_array($responseType, ['code', 'token'])) {
             throw new RuntimeException('Invalid response type');
         }
 
         // client id
-        $sql = 'SELECT id,
-                       name,
-                       url
-                  FROM fusio_app
-                 WHERE appKey = :appKey
-                   AND status = :status';
-
-        $app = $this->connection->fetchAssoc($sql, [
-            'appKey' => $clientId,
-            'status' => App::STATUS_ACTIVE
-        ]);
-
+        $app = $this->appService->getByAppKey($clientId);
         if (empty($app)) {
             throw new RuntimeException('Unknown client id');
         }
@@ -150,42 +157,64 @@ class Authorize extends SchemaApiAbstract
         }
 
         // scopes
-        $scopes = $this->tableManager->getTable('Fusio\Impl\Table\App\Scope')
-            ->getValidScopes($app['id'], $scope, ['backend']);
-
+        $scopes = $this->scopeService->getValidScopes($app['id'], $this->userId, $scope, ['backend']);
         if (empty($scopes)) {
             throw new RuntimeException('No valid scopes provided');
         }
 
-        // save the decision of the user
+        // save the decision of the user. We save the decision so that it is 
+        // possible for the user to revoke the access later on
         $this->saveUserDecision($app['id'], $record->getAllow());
 
         if ($record->getAllow()) {
-            // @TODO if we are authenticated and the user has already approved the
-            // app we can directly generate a code
+            if ($responseType == 'token') {
+                // probably a js app is requesting an access token
+                $accessToken = $this->appService->generateAccessToken(
+                    $app['id'], 
+                    $this->userId, 
+                    $scopes, 
+                    isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1', 
+                    new \DateInterval($this->config->get('fusio_expire_implicit'))
+                );
 
-            // generate code
-            $code = $this->tableManager->getTable('Fusio\Impl\Table\App\Code')->generateCode(
-                $app['id'],
-                $this->userId,
-                $redirectUri,
-                $scopes
-            );
+                $code = $accessToken->getAccessToken();
 
-            if ($redirectUri instanceof Uri) {
-                $parameters = array();
-                $parameters['code'] = $code;
-                $parameters['state'] = $state;
+                if ($redirectUri instanceof Uri) {
+                    $parameters  = $accessToken->getRecordInfo()->getData();
+                    $redirectUri = $redirectUri->withFragment($parameters);
+                } else {
+                    $redirectUri = '#';
+                }
 
-                $redirectUri = $redirectUri->withParameters($parameters);
+                return [
+                    'code' => $code,
+                    'redirectUri' => $redirectUri
+                ];
             } else {
-                $redirectUri = '#';
-            }
+                // generate code which can be later exchanged by the app with an
+                // access token
+                $code = $this->appCodeService->generateCode(
+                    $app['id'],
+                    $this->userId,
+                    $redirectUri,
+                    $scopes
+                );
 
-            return [
-                'code' => $code,
-                'redirectUri' => $redirectUri
-            ];
+                if ($redirectUri instanceof Uri) {
+                    $parameters = array();
+                    $parameters['code'] = $code;
+                    $parameters['state'] = $state;
+
+                    $redirectUri = $redirectUri->withParameters($parameters);
+                } else {
+                    $redirectUri = '#';
+                }
+
+                return [
+                    'code' => $code,
+                    'redirectUri' => $redirectUri
+                ];
+            }
         } else {
             // @TODO delete all previously issued tokens for this app?
 
@@ -224,27 +253,6 @@ class Authorize extends SchemaApiAbstract
      */
     protected function doDelete(RecordInterface $record, Version $version)
     {
-    }
-
-    protected function getValidScopes($appId, $scope)
-    {
-        $sql = '    SELECT name
-                      FROM fusio_app_scope appScope
-                INNER JOIN fusio_scope scope
-                        ON scope.id = appScope.scopeId
-                     WHERE appScope.appId = :appId';
-
-        $availableScopes = $this->connection->fetchAll($sql, array('appId' => $appId));
-        $result          = array();
-        $scopes          = explode(',', $scope);
-
-        foreach ($availableScopes as $availableScope) {
-            if (in_array($availableScope['name'], $scopes)) {
-                $result[] = $availableScope;
-            }
-        }
-
-        return $result;
     }
 
     protected function saveUserDecision($appId, $allow)

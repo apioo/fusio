@@ -78,4 +78,20 @@ class App extends TableAbstract
             'status' => self::STATUS_ACTIVE
         ]);
     }
+
+    public function getByAppKeyAndSecret($appKey, $appSecret)
+    {
+        $sql = 'SELECT id,
+                       userId
+                  FROM fusio_app
+                 WHERE appKey = :app_key
+                   AND appSecret = :app_secret
+                   AND status = :status';
+
+        return $this->connection->fetchAssoc($sql, array(
+            'app_key'    => $appKey,
+            'app_secret' => $appSecret,
+            'status'     => self::STATUS_ACTIVE,
+        ));
+    }
 }

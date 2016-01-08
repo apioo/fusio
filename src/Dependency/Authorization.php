@@ -41,15 +41,18 @@ trait Authorization
     public function getApiGrantTypeFactory()
     {
         $factory = new GrantTypeFactory();
-        $factory->add(new ApiAuthorization\ClientCredentials(
-            $this->get('connection'),
-            $this->get('table_manager')->getTable('Fusio\Impl\Table\App\Scope'),
+
+        $factory->add(new ApiAuthorization\Password(
+            $this->get('app_service'),
+            $this->get('scope_service'),
+            $this->get('user_service'),
             $this->get('config')->get('fusio_expire_app')
         ));
 
         $factory->add(new ApiAuthorization\AuthorizationCode(
-            $this->get('connection'),
-            $this->get('table_manager')->getTable('Fusio\Impl\Table\App\Scope'),
+            $this->get('app_code_service'),
+            $this->get('scope_service'),
+            $this->get('app_service'),
             $this->get('config')->get('fusio_expire_app')
         ));
 
@@ -63,7 +66,8 @@ trait Authorization
     {
         $factory = new GrantTypeFactory();
         $factory->add(new BackendAuthorization\ClientCredentials(
-            $this->get('connection'),
+            $this->get('user_service'),
+            $this->get('app_service'),
             $this->get('config')->get('fusio_expire_backend')
         ));
 
@@ -77,7 +81,8 @@ trait Authorization
     {
         $factory = new GrantTypeFactory();
         $factory->add(new ConsumerAuthorization\ClientCredentials(
-            $this->get('connection'),
+            $this->get('user_service'),
+            $this->get('app_service'),
             $this->get('config')->get('fusio_expire_consumer')
         ));
 

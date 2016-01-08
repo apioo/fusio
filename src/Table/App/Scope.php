@@ -54,32 +54,6 @@ class Scope extends TableAbstract
         $this->connection->executeQuery($sql, array('appId' => $appId));
     }
 
-    public function getValidScopes($appId, $scope, array $exclude = array())
-    {
-        $sql = '    SELECT name
-                      FROM fusio_app_scope appScope
-                INNER JOIN fusio_scope scope
-                        ON scope.id = appScope.scopeId
-                     WHERE appScope.appId = :app';
-
-        $result = $this->connection->fetchAll($sql, array('app' => $appId));
-        $data   = array();
-        $scopes = explode(',', $scope);
-
-        foreach ($result as $availableScope) {
-            if (in_array($availableScope['name'], $scopes)) {
-                // is the scope excluded
-                if (in_array($availableScope['name'], $exclude)) {
-                    continue;
-                }
-
-                $data[] = $availableScope['name'];
-            }
-        }
-
-        return $data;
-    }
-
     public function getByApp($appId, $scope, array $exclude = array())
     {
         $sql = '    SELECT scope.name,
@@ -101,6 +75,31 @@ class Scope extends TableAbstract
                 }
 
                 $data[] = $availableScope;
+            }
+        }
+
+        return $data;
+    }
+
+    public function getValidScopes($appId, array $scopes, array $exclude = array())
+    {
+        $sql = '    SELECT name
+                      FROM fusio_app_scope appScope
+                INNER JOIN fusio_scope scope
+                        ON scope.id = appScope.scopeId
+                     WHERE appScope.appId = :appId';
+
+        $result = $this->connection->fetchAll($sql, array('appId' => $appId));
+        $data   = array();
+
+        foreach ($result as $availableScope) {
+            if (in_array($availableScope['name'], $scopes)) {
+                // is the scope excluded
+                if (in_array($availableScope['name'], $exclude)) {
+                    continue;
+                }
+
+                $data[] = $availableScope['name'];
             }
         }
 

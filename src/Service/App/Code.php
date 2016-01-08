@@ -19,21 +19,45 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Impl;
+namespace Fusio\Impl\Service\App;
+
+use Fusio\Impl\Authorization\TokenGenerator;
+use Fusio\Impl\Table\App\Code as TableAppCode;
 
 /**
- * Base
+ * Code
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Base
+class Code
 {
-    const VERSION = '0.2.1';
+    protected $appCodeTable;
 
-    public static function getVersion()
+    public function __construct(TableAppCode $appCodeTable)
     {
-        return self::VERSION;
+        $this->appCodeTable = $appCodeTable;
+    }
+
+    public function getCode($appKey, $appSecret, $code, $redirectUri)
+    {
+        return $this->appCodeTable->getCodeByRequest($appKey, $appSecret, $code, $redirectUri);
+    }
+
+    public function generateCode($appId, $userId, $redirectUri, array $scopes)
+    {
+        $code = TokenGenerator::generateCode();
+
+        $this->appCodeTable->create([
+            'appId'       => $appId,
+            'userId'      => $userId,
+            'code'        => $code,
+            'redirectUri' => $redirectUri,
+            'scope'       => implode(',', $scopes),
+            'date'        => new \DateTime(),
+        ]);
+
+        return $code;
     }
 }

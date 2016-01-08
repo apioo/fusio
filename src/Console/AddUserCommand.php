@@ -62,7 +62,7 @@ class AddUserCommand extends Command
         $question = new Question('Choose the status for the account [0=Consumer, 1=Administrator]: ');
         $question->setValidator(function ($value) {
             if (preg_match('/^0|1$/', $value)) {
-                return $value;
+                return (int) $value;
             } else {
                 throw new \Exception('Status must be either 0 or 1');
             }
@@ -83,12 +83,11 @@ class AddUserCommand extends Command
         $name = $helper->ask($input, $output, $question);
 
         // scopes
-        $question = new Question('Enter a comma seperated list of scopes which should be assigned to the account i.e.: [consumer,authorization]: ');
-        $question->setValidator(function ($value) {
-            return array_map('trim', explode(',', $value));
-        });
-
-        $scopes = $helper->ask($input, $output, $question);
+        if ($status === 0) {
+            $scopes = ['consumer', 'authorization'];
+        } elseif ($status === 1) {
+            $scopes = ['backend', 'authorization'];
+        }
 
         // password
         $password = $this->userService->create(

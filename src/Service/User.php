@@ -87,6 +87,32 @@ class User
         }
     }
 
+    /**
+     * Authenticates a user based on the username and password. Returns the user
+     * id if the authentication was successful else null
+     *
+     * @param string $username
+     * @param string $password
+     * @param array $status
+     * @return integer|null
+     */
+    public function authenticateUser($username, $password, array $status)
+    {
+        $condition = new Condition();
+        $condition->equals('name', $username);
+        $condition->in('status', $status);
+
+        $user = $this->userTable->getOneBy($condition);
+
+        if (!empty($user)) {
+            if (password_verify($password, $user['password'])) {
+                return $user['id'];
+            }
+        }
+
+        return null;
+    }
+
     public function create($status, $name, array $scopes = null)
     {
         $password = TokenGenerator::generateUserPassword();
@@ -159,6 +185,11 @@ class User
         } else {
             throw new StatusCode\BadRequestException('Changing password failed');
         }
+    }
+
+    public function getValidScopes($userId, array $scopes, array $exclude = array())
+    {
+        return $this->userScopeTable->getValidScopes($userId, $scopes, $exclude);
     }
 
     protected function insertScopes($userId, $scopes)

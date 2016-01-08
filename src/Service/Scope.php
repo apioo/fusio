@@ -133,7 +133,7 @@ class Scope
 
             $userScopes = $this->userScopeTable->getCount(new Condition(['scopeId', '=', $scope['id']]));
             if ($userScopes > 0) {
-                throw new StatusCode\ConflictException('Scope is assgined to an user. Remove the scope from the user in order to delete the scope');
+                throw new StatusCode\ConflictException('Scope is assgined to a user. Remove the scope from the user in order to delete the scope');
             }
 
             // delete all routes assigned to the scope
@@ -145,6 +145,26 @@ class Scope
         } else {
             throw new StatusCode\NotFoundException('Could not find scope');
         }
+    }
+
+    /**
+     * Returns all scope names which are valid for the app and the user. The 
+     * scopes are a comma seperated list. All scopes which are listed in the
+     * $exclude array are excluded
+     *
+     * @param integer $appId
+     * @param integer $userId
+     * @param string $scopes
+     * @param array $exclude
+     * @return array
+     */
+    public function getValidScopes($appId, $userId, $scopes, array $exclude = array())
+    {
+        $scopes = explode(',', $scopes);
+        $scopes = $this->appScopeTable->getValidScopes($appId, $scopes, $exclude);
+        $scopes = $this->userScopeTable->getValidScopes($userId, $scopes, $exclude);
+
+        return $scopes;
     }
 
     protected function insertRoutes($scopeId, $routes)
