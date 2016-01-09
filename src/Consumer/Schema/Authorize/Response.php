@@ -34,7 +34,16 @@ class Response extends SchemaAbstract
 {
     public function getDefinition()
     {
+        $sb = $this->getSchemaBuilder('token');
+        $sb->string('access_token');
+        $sb->string('token_type');
+        $sb->string('expires_in');
+        $sb->string('scope');
+        $token = $sb->getProperty();
+
         $sb = $this->getSchemaBuilder('response');
+        $sb->string('type');
+        $sb->complexType('token', $token);
         $sb->string('code');
         $sb->string('redirectUri');
 

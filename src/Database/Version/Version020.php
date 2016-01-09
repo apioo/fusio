@@ -97,7 +97,7 @@ class Version020 implements VersionInterface
         $appCodeTable->addColumn('appId', 'integer');
         $appCodeTable->addColumn('userId', 'integer');
         $appCodeTable->addColumn('code', 'string', array('length' => 255));
-        $appCodeTable->addColumn('redirectUri', 'string', array('length' => 255));
+        $appCodeTable->addColumn('redirectUri', 'string', array('length' => 255, 'notnull' => false));
         $appCodeTable->addColumn('scope', 'string', array('length' => 255));
         $appCodeTable->addColumn('date', 'datetime');
         $appCodeTable->setPrimaryKey(array('id'));

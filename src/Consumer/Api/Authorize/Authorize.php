@@ -187,10 +187,18 @@ class Authorize extends SchemaApiAbstract
                     new \DateInterval($this->config->get('fusio_expire_implicit'))
                 );
 
-                $redirectUri = $redirectUri->withFragment(http_build_query($accessToken->getRecordInfo()->getData(), '', '&'));
+                $parameters = $accessToken->getRecordInfo()->getData();
+
+                if (!empty($state)) {
+                    $parameters['state'] = $state;
+                }
+
+                $redirectUri = $redirectUri->withFragment(http_build_query($parameters, '', '&'));
 
                 return [
-                    'redirectUri' => $redirectUri
+                    'type' => 'token',
+                    'token' => $accessToken,
+                    'redirectUri' => $redirectUri,
                 ];
             } else {
                 // generate code which can be later exchanged by the app with an
@@ -213,23 +221,33 @@ class Authorize extends SchemaApiAbstract
                 }
 
                 return [
+                    'type' => 'code',
                     'code' => $code,
-                    'redirectUri' => $redirectUri
+                    'redirectUri' => $redirectUri,
                 ];
             }
         } else {
             // @TODO delete all previously issued tokens for this app?
 
             if ($redirectUri instanceof Uri) {
-                $parameters = $redirectUri->getParameters();
+                $parameters = array();
                 $parameters['error'] = 'access_denied';
 
-                $redirectUri = $redirectUri->withParameters($parameters);
+                if (!empty($state)) {
+                    $parameters['state'] = $state;
+                }
+
+                if ($responseType == 'token') {
+                    $redirectUri = $redirectUri->withFragment(http_build_query($parameters, '', '&'));
+                } else {
+                    $redirectUri = $redirectUri->withParameters($parameters);
+                }
             } else {
                 $redirectUri = '#';
             }
 
             return [
+                'type' => 'access_denied',
                 'redirectUri' => $redirectUri
             ];
         }
