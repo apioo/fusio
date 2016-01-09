@@ -77,6 +77,7 @@ class Version020 implements VersionInterface
         $appScopeTable->addColumn('appId', 'integer');
         $appScopeTable->addColumn('scopeId', 'integer');
         $appScopeTable->setPrimaryKey(array('id'));
+        $appScopeTable->addUniqueIndex(array('appId', 'scopeId'));
 
         $appTokenTable = $schema->createTable('fusio_app_token');
         $appTokenTable->addColumn('id', 'integer', array('autoincrement' => true));
@@ -217,6 +218,7 @@ class Version020 implements VersionInterface
         $userScopeTable->addColumn('userId', 'integer');
         $userScopeTable->addColumn('scopeId', 'integer');
         $userScopeTable->setPrimaryKey(array('id'));
+        $userScopeTable->addUniqueIndex(array('userId', 'scopeId'));
 
         $appTable->addForeignKeyConstraint($userTable, array('userId'), array('id'), array(), 'appUserId');
 
