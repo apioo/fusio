@@ -149,11 +149,12 @@ function loadAppInfo(responseType, clientId, redirectUri, scope, state) {
     scopesHtml+= '</ul>';
 
     $('#appRequestedScopes').html(scopesHtml);
-  }, function(){
+  }, function(xhr){
+    var data = xhr.responseJSON;
+    var message = data.message ? data.message : 'Could not request app informations';
 
-    $('#appRequestPermission').html('<div class="alert alert-warning">Provided app does not exist</div>');
+    $('#appRequestPermission').html('<div class="alert alert-warning">' + message + '</div>');
   });
-
 }
 
 function submitAccess(responseType, clientId, redirectUri, scope, state, allow) {
@@ -177,6 +178,11 @@ function submitAccess(responseType, clientId, redirectUri, scope, state, allow) 
     } else {
       location.href = data.redirectUri;
     }
+  }, function(xhr) {
+    var data = xhr.responseJSON;
+    var message = data.message ? data.message : 'Could not submit app grant decision';
+
+    $('#appRequestPermission').html('<div class="alert alert-warning">' + message + '</div>');
   });
 }
 
@@ -246,7 +252,7 @@ function onLoad(){
     // show login form
     $('.fusio-login-container').fadeIn();
   } else {
-    if (responseType == 'code' && clientId != '') {
+    if ((responseType == 'code' || responseType == 'token') && clientId != '') {
       // authorization view
       $('.fusio-auth-container').fadeIn();
 
