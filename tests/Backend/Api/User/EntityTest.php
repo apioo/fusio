@@ -147,19 +147,18 @@ JSON;
         $this->assertEquals('bar', $row['name']);
 
         $sql = Environment::getService('connection')->createQueryBuilder()
-            ->select('id', 'userId', 'scopeId')
+            ->select('userId', 'scopeId')
             ->from('fusio_user_scope')
             ->where('userId = :userId')
             ->orderBy('id', 'DESC')
             ->getSQL();
 
-        $routes = Environment::getService('connection')->fetchAll($sql, ['userId' => 4]);
+        $scopes = Environment::getService('connection')->fetchAll($sql, ['userId' => 4]);
 
         $this->assertEquals([[
-            'id'      => 11,
             'userId'  => 4,
             'scopeId' => 5,
-        ]], $routes);
+        ]], $scopes);
     }
 
     public function testDelete()
