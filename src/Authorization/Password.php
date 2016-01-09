@@ -66,8 +66,8 @@ class Password extends PasswordAbstract
         if (!empty($app)) {
             // check user
             $userId = $this->userService->authenticateUser(
-                $credentials->getClientId(), 
-                $credentials->getClientSecret(), 
+                $username, 
+                $password, 
                 [User::STATUS_ADMINISTRATOR, User::STATUS_CONSUMER]
             );
 

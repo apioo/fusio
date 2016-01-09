@@ -85,7 +85,7 @@ JSON;
                 ['userId' => 2, 'status' => 3, 'name' => 'Deactivated', 'url' => 'http://google.com', 'appKey' => 'f46af464-f7eb-4d04-8661-13063a30826b', 'appSecret' => '17b882987298831a3af9c852f9cd0219d349ba61fcf3fc655ac0f07eece951f9', 'date' => '2015-02-22 22:19:07'],
             ],
             'fusio_app_code' => [
-                ['appId' => 3, 'userId' => 2, 'code' => 'GHMbtJi0ZuAUnp80', 'redirectUri' => '', 'scope' => 'authorization', 'date' => date('Y-m-d H:i:s')],
+                ['appId' => 3, 'userId' => 3, 'code' => 'GHMbtJi0ZuAUnp80', 'redirectUri' => '', 'scope' => 'authorization', 'date' => date('Y-m-d H:i:s')],
             ],
             'fusio_connection' => [
                 ['name' => 'DBAL', 'class' => 'Fusio\Impl\Connection\DBAL', 'config' => serialize(['type' => 'pdo_mysql', 'host' => '127.0.0.1', 'username' => 'root', 'password' => 'foo', 'database' => 'bar'])],
@@ -133,8 +133,14 @@ JSON;
             'fusio_user_scope' => [
                 ['userId' => 1, 'scopeId' => 4],
                 ['userId' => 1, 'scopeId' => 5],
+                ['userId' => 2, 'scopeId' => 2],
+                ['userId' => 2, 'scopeId' => 3],
                 ['userId' => 2, 'scopeId' => 4],
                 ['userId' => 2, 'scopeId' => 5],
+                ['userId' => 3, 'scopeId' => 3],
+                ['userId' => 4, 'scopeId' => 1],
+                ['userId' => 4, 'scopeId' => 2],
+                ['userId' => 4, 'scopeId' => 3],
             ],
             'fusio_user_grant' => [
                 ['userId' => 1, 'appId' => 1, 'allow' => 1, 'date' => '2015-02-27 19:59:15'],

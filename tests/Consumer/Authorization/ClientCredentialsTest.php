@@ -75,9 +75,6 @@ class ClientCredentialsTest extends ControllerDbTestCase
         $this->assertEquals(date('Y-m-d H:i'), substr($row['date'], 0, 16));
     }
 
-    /**
-     * As consumer we can not request an backend token
-     */
     public function testPostConsumer()
     {
         $body     = 'grant_type=client_credentials&scope=authorization';

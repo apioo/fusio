@@ -226,8 +226,8 @@ class App
             'token'  => $accessToken,
             'scope'  => implode(',', $scopes),
             'ip'     => $ip,
-            'expire' => $expires->format('Y-m-d H:i:s'),
-            'date'   => $now->format('Y-m-d H:i:s'),
+            'expire' => $expires,
+            'date'   => $now,
         ]);
 
         $token = new AccessToken();

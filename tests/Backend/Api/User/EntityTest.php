@@ -56,6 +56,8 @@ class EntityTest extends ControllerDbTestCase
     "status": 0,
     "name": "Consumer",
     "scopes": [
+        "consumer",
+        "authorization",
         "foo",
         "bar"
     ],
@@ -154,7 +156,7 @@ JSON;
         $routes = Environment::getService('connection')->fetchAll($sql, ['userId' => 4]);
 
         $this->assertEquals([[
-            'id'      => 8,
+            'id'      => 11,
             'userId'  => 4,
             'scopeId' => 5,
         ]], $routes);
