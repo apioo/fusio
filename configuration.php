@@ -9,7 +9,12 @@ return array(
     // to manually activate the app. If false the app is direct ACTIVE
     'fusio_app_approval'      => false,
 
+    // Whether the implicit flow is allowed. This is mostly needed for 
+    // javascript apps
+    'fusio_grant_implicit'    => true,
+
     // Expire times of the different tokens which can be issued
+    'fusio_expire_implicit'   => 'PT1H',
     'fusio_expire_app'        => 'P2D',
     'fusio_expire_backend'    => 'PT1H',
     'fusio_expire_consumer'   => 'PT1H',

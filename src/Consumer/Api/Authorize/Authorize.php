@@ -30,6 +30,7 @@ use PSX\Api\Version;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Filter as PSXFilter;
+use PSX\Http\Exception as StatusCode;
 use PSX\Loader\Context;
 use PSX\OpenSsl;
 use PSX\Sql;
@@ -37,7 +38,6 @@ use PSX\Sql\Condition;
 use PSX\Uri;
 use PSX\Url;
 use PSX\Validate;
-use RuntimeException;
 
 /**
  * Authorize
@@ -122,13 +122,13 @@ class Authorize extends SchemaApiAbstract
 
         // response type
         if (!in_array($responseType, ['code', 'token'])) {
-            throw new RuntimeException('Invalid response type');
+            throw new StatusCode\BadRequestException('Invalid response type');
         }
 
         // client id
         $app = $this->appService->getByAppKey($clientId);
         if (empty($app)) {
-            throw new RuntimeException('Unknown client id');
+            throw new StatusCode\BadRequestException('Unknown client id');
         }
 
         // redirect uri
@@ -136,21 +136,21 @@ class Authorize extends SchemaApiAbstract
             $redirectUri = new Uri($redirectUri);
 
             if (!$redirectUri->isAbsolute()) {
-                throw new RuntimeException('Redirect uri must be an absolute url');
+                throw new StatusCode\BadRequestException('Redirect uri must be an absolute url');
             }
 
             if (!in_array($redirectUri->getScheme(), ['http', 'https'])) {
-                throw new RuntimeException('Invalid redirect uri scheme');
+                throw new StatusCode\BadRequestException('Invalid redirect uri scheme');
             }
 
             $url = $app['url'];
             if (!empty($url)) {
                 $url = new Url($url);
                 if ($url->getHost() != $redirectUri->getHost()) {
-                    throw new RuntimeException('Redirect uri must have the same host as the app url');
+                    throw new StatusCode\BadRequestException('Redirect uri must have the same host as the app url');
                 }
             } else {
-                throw new RuntimeException('App has no url configured');
+                throw new StatusCode\BadRequestException('App has no url configured');
             }
         } else {
             $redirectUri = null;
@@ -159,7 +159,7 @@ class Authorize extends SchemaApiAbstract
         // scopes
         $scopes = $this->scopeService->getValidScopes($app['id'], $this->userId, $scope, ['backend']);
         if (empty($scopes)) {
-            throw new RuntimeException('No valid scopes provided');
+            throw new StatusCode\BadRequestException('No valid scopes provided');
         }
 
         // save the decision of the user. We save the decision so that it is 
@@ -168,7 +168,17 @@ class Authorize extends SchemaApiAbstract
 
         if ($record->getAllow()) {
             if ($responseType == 'token') {
-                // probably a js app is requesting an access token
+                // check whether implicit grant is allowed
+                if ($this->config['fusio_grant_implicit'] !== true) {
+                    throw new StatusCode\BadRequestException('Token response type is not supported');
+                }
+
+                // redirect uri is required for token types
+                if (!$redirectUri instanceof Uri) {
+                    throw new StatusCode\BadRequestException('Redirect uri is required');
+                }
+
+                // generate access token
                 $accessToken = $this->appService->generateAccessToken(
                     $app['id'], 
                     $this->userId, 
@@ -177,17 +187,9 @@ class Authorize extends SchemaApiAbstract
                     new \DateInterval($this->config->get('fusio_expire_implicit'))
                 );
 
-                $code = $accessToken->getAccessToken();
-
-                if ($redirectUri instanceof Uri) {
-                    $parameters  = $accessToken->getRecordInfo()->getData();
-                    $redirectUri = $redirectUri->withFragment($parameters);
-                } else {
-                    $redirectUri = '#';
-                }
+                $redirectUri = $redirectUri->withFragment(http_build_query($accessToken->getRecordInfo()->getData(), '', '&'));
 
                 return [
-                    'code' => $code,
                     'redirectUri' => $redirectUri
                 ];
             } else {
