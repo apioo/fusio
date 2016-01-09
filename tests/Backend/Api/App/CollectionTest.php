@@ -141,7 +141,7 @@ JSON;
 
         $scopes = Environment::getService('table_manager')->getTable('Fusio\Impl\Table\Scope')->getByApp(6);
 
-        $this->assertEquals(array('bar', 'foo'), $scopes);
+        $this->assertEquals(['foo', 'bar'], $scopes);
     }
 
     public function testPut()
