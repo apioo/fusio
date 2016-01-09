@@ -61,7 +61,8 @@ class Scope extends TableAbstract
                       FROM fusio_app_scope appScope
                 INNER JOIN fusio_scope scope
                         ON scope.id = appScope.scopeId
-                     WHERE appScope.appId = :appId';
+                     WHERE appScope.appId = :appId
+                  ORDER BY scope.id ASC';
 
         $result = $this->connection->fetchAll($sql, array('appId' => $appId)) ?: array();
         $data   = array();
@@ -83,11 +84,12 @@ class Scope extends TableAbstract
 
     public function getValidScopes($appId, array $scopes, array $exclude = array())
     {
-        $sql = '    SELECT name
+        $sql = '    SELECT scope.name
                       FROM fusio_app_scope appScope
                 INNER JOIN fusio_scope scope
                         ON scope.id = appScope.scopeId
-                     WHERE appScope.appId = :appId';
+                     WHERE appScope.appId = :appId
+                  ORDER BY scope.id ASC';
 
         $result = $this->connection->fetchAll($sql, array('appId' => $appId));
         $data   = array();
