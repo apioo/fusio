@@ -53,7 +53,8 @@ class Scope extends TableAbstract
                       FROM fusio_user_scope userScope
                 INNER JOIN fusio_scope scope
                         ON scope.id = userScope.scopeId
-                     WHERE userScope.userId = :userId';
+                     WHERE userScope.userId = :userId
+                  ORDER BY scope.id ASC';
 
         $result = $this->connection->fetchAll($sql, array('userId' => $userId)) ?: array();
         $names  = array();
@@ -71,7 +72,8 @@ class Scope extends TableAbstract
                       FROM fusio_app_scope appScope
                 INNER JOIN fusio_scope scope
                         ON scope.id = appScope.scopeId
-                     WHERE appScope.appId = :appId';
+                     WHERE appScope.appId = :appId
+                  ORDER BY scope.id ASC';
 
         $result = $this->connection->fetchAll($sql, array('appId' => $appId)) ?: array();
         $names  = array();
