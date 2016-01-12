@@ -2,9 +2,6 @@
 ## Scope
 
 A scope describes the right to access specific routes and request methods. Each
-user account has assigned a set of scopes. If an app is created the app has by 
-default the scopes which are assigned to the user of the app. For the user it is 
-then possible to request only a subset of the scopes when accessing the API.
-This has security benefits since the access token can only request specific 
-parts of the API.
-
+user account has assigned a set of allowed scopes. If a user creates an app he 
+can only assign the scopes which are available for him. In the end a user can
+only use the scopes which he has assigned.

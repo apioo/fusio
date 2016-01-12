@@ -4,10 +4,8 @@
 The schema defines the format of the request and response data. It uses the 
 [JsonSchema] format. Inside a schema it is possible to refer to other schema 
 definitions by using the <code>$ref</code> key and the <code>schema</code> 
-protocol i.e. <code>schema:///[schema-name]</code>. Note it is required that 
-schema has an <code>id</code> property with an URI which is used to resolve 
-schema references. More detailed informations about the json schema format at 
-the [RFC].
+protocol i.e. <code>schema:///[schema-name]</code>. More detailed informations 
+about the json schema format at the [RFC].
 
 ### Example
 

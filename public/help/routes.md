@@ -19,11 +19,11 @@ syntax.
   No variable path fragment only the request to `/news` matches this route
 
 * `/news/:news_id`
-  Simple variable path fragment this route matches to any value except an slash.
+  Simple variable path fragment. This route matches to any value except a slash.
   I.e. `/news/foo` or `/news/12` matches this route
 
 * `/news/$year<[0-9]+>`
-  Variable path fragment with an regular expression. I.e. only `/news/2015` 
+  Variable path fragment with a regular expression. I.e. only `/news/2015` 
   matches this route
 
 * `/file/*path`
@@ -36,23 +36,24 @@ The status affects the behaviour of the API endpoint. The following list
 describes each status
 
 * `Development`
-  Used as first status when you start develop a new API endpoint. Adds an 
+  Used as first status when you start develop a new API endpoint. Adds a 
   "Warning" header that the API is in development mode to each response.
 
 * `Production`
   Used if the API is ready for production use. In this status it is not possible 
-  to change the API.
+  to change the API. That means you can also not change any depending schema or 
+  action.
 
 * `Deprecated`
-  Used if you want to deprecate a specific version of the API. Adds an "Warning" 
+  Used if you want to deprecate a specific version of the API. Adds a "Warning" 
   header that the API is deprecated to each response.
 
 * `Closed`
-  Used if you dont want to support an specific version anymore. Returns an error 
+  Used if you dont want to support a specific version anymore. Returns an error 
   message with a `410 Gone` status code
 
 ### Action
 
 The action contains the business logic of your API endpoints. It i.e. selects
-or inserts entries from an database or pushes a new entry to an message queue.
+or inserts entries from a database or pushes a new entry to an message queue.
 
