@@ -16,7 +16,7 @@
   /**
    * Path to the PSX documentation endpoint
    */
-  evid.value('url', '/projects/fusio/public/index.php/doc');
+  evid.value('url', guessFusioEndpointUrl() + '/doc');
 
   /**
    * Paths which should be excluded from the documentation
@@ -32,6 +32,26 @@
     icon: 'home',
     href: 'getting_started.html'
   }]);
+
+  /**
+   * Simple helper function to guess the API endpoint url
+   */
+  function guessFusioEndpointUrl() {
+    var url = window.location.href;
+    var removePart = function(url, sign) {
+      var count = (url.match(/\//g) || []).length;
+      var pos = url.lastIndexOf(sign);
+      if (count > 2 && pos !== -1) {
+        return url.substring(0, pos);
+      }
+      return url;
+    }
+    var parts = ['#', '?', '/', '/'];
+    for (var i = 0; i < parts.length; i++) {
+      url = removePart(url, parts[i]);
+    }
+    return url + '/index.php/';
+  }
   </script>
 </head>
 <body layout="column" ng-controller="AppCtrl">
