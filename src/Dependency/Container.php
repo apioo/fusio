@@ -309,4 +309,19 @@ class Container extends DefaultContainer
         $application->add(new SymfonyCommand\HelpCommand());
         $application->add(new SymfonyCommand\ListCommand());
     }
+
+    protected function appendDefaultConfig()
+    {
+        return array_merge(parent::appendDefaultConfig(), array(
+            'fusio_project_key'      => '42eec18ffdbffc9fda6110dcc705d6ce',
+            'fusio_app_per_consumer' => 16,
+            'fusio_app_approval'     => false,
+            'fusio_grant_implicit'   => true,
+            'fusio_expire_implicit'  => 'PT1H',
+            'fusio_expire_app'       => 'P2D',
+            'fusio_expire_backend'   => 'PT1H',
+            'fusio_expire_consumer'  => 'PT1H',
+            'fusio_src_custom'       => __DIR__ . '/../../src-custom',
+        ));
+    }
 }

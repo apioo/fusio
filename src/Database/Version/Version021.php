@@ -27,6 +27,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Fusio\Impl\Authorization\TokenGenerator;
 use Fusio\Impl\Database\VersionInterface;
 use Fusio\Impl\Schema\Parser;
+use Fusio\Impl\Service\Connection as ConnectionService;
 use PSX\Data\Record;
 use PSX\Data\Schema\Property;
 
@@ -263,6 +264,22 @@ class Version021 implements VersionInterface
 
     public function executeUpgrade(Connection $connection)
     {
+        // encrypt connection config
+        $result = $connection->fetchAll('SELECT id, config FROM fusio_connection ORDER BY id ASC');
+        $key    = '42eec18ffdbffc9fda6110dcc705d6ce';
+
+        foreach ($result as $row) {
+            $config = $row['config'];
+            if (!empty($config)) {
+                $config = ConnectionService::encryptConfig(unserialize($config), $key);
+
+                $connection->update('fusio_connection', [
+                    'config' => $config
+                ], [
+                    'id' => $row['id']
+                ]);
+            }
+        }
     }
 
     public function getInstallInserts()
