@@ -67,7 +67,7 @@ class CacheResponseTest extends DbTestCase
         $this->assertEquals([], $response->getHeaders());
         $this->assertEquals($body, $response->getBody());
 
-        $item = $cache->getItem(md5(3));
+        $item = $cache->getItem(md5(3 . '{}{}'));
 
         $this->assertTrue($item->isHit());
         $this->assertEquals($response, $item->get());
