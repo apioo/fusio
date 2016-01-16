@@ -29,7 +29,6 @@ use Fusio\Impl\Database\VersionInterface;
 use Fusio\Impl\Schema\Parser;
 use PSX\Data\Record;
 use PSX\Data\Schema\Property;
-use PSX\OpenSsl;
 
 /**
  * Version020
