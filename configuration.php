@@ -2,6 +2,11 @@
 
 return array(
 
+    // The secret key of a project. It is recommended to change this to another
+    // random value. This is used i.e. to encrypt the connection credentials in 
+    // the database. Note you can only change the key _before_ the installation
+    'fusio_project_key'       => '42eec18ffdbffc9fda6110dcc705d6ce',
+
     // The max amount of apps a consumer can register
     'fusio_app_per_consumer'  => 16,
 

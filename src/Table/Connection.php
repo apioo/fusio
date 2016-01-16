@@ -43,7 +43,7 @@ class Connection extends TableAbstract
             'id' => self::TYPE_INT | self::AUTO_INCREMENT | self::PRIMARY_KEY,
             'name' => self::TYPE_VARCHAR,
             'class' => self::TYPE_VARCHAR,
-            'config' => self::TYPE_ARRAY,
+            'config' => self::TYPE_VARCHAR,
         );
     }
 }

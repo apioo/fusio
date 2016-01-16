@@ -56,7 +56,6 @@ class EntityTest extends ControllerDbTestCase
         "type": "pdo_mysql",
         "host": "127.0.0.1",
         "username": "root",
-        "password": "foo",
         "database": "bar"
     }
 }
@@ -92,7 +91,7 @@ JSON;
                 'type'     => 'pdo_sqlite',
                 'host'     => '192.168.2.1',
                 'username' => 'foo',
-                'password' => 'bar',
+                'password' => 'foo',
                 'database' => 'foo',
             ],
         ]));
@@ -122,7 +121,7 @@ JSON;
         $this->assertEquals(2, $row['id']);
         $this->assertEquals('Foo', $row['name']);
         $this->assertEquals('Fusio\Impl\Connection\DBAL', $row['class']);
-        $this->assertEquals('a:5:{s:4:"type";s:10:"pdo_sqlite";s:4:"host";s:11:"192.168.2.1";s:8:"username";s:3:"foo";s:8:"password";s:3:"bar";s:8:"database";s:3:"foo";}', $row['config']);
+        $this->assertEquals(217, strlen($row['config']));
     }
 
     public function testDelete()

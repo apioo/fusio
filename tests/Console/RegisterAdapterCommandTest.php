@@ -79,7 +79,7 @@ class RegisterAdapterCommandTest extends ControllerDbTestCase
 
         $this->assertEquals(4, $connection['id']);
         $this->assertEquals('Fusio\Impl\Adapter\Test\VoidConnection', $connection['class']);
-        $this->assertEquals(['foo' => 'bar'], unserialize($connection['config']));
+        $this->assertEquals(69, strlen($connection['config']));
 
         // check schema
         $schema = $this->connection->fetchAssoc('SELECT id, propertyName, source, cache FROM fusio_schema WHERE name = :name', [

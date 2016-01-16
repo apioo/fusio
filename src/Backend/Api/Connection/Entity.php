@@ -99,11 +99,18 @@ class Entity extends SchemaApiAbstract
      */
     protected function doPut(RecordInterface $record, Version $version)
     {
+        $data = $record->getConfig();
+        if ($data instanceof RecordInterface) {
+            $config = $data->getRecordInfo()->getData();
+        } else {
+            $config = null;
+        }
+
         $this->connectionService->update(
             (int) $this->getUriFragment('connection_id'),
             $record->getName(),
             $record->getClass(),
-            $record->getConfig()->getRecordInfo()->getData()
+            $config
         );
 
         return array(

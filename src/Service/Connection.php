@@ -21,10 +21,17 @@
 
 namespace Fusio\Impl\Service;
 
+use Fusio\Engine\Factory\ConnectionInterface;
+use Fusio\Engine\Parser\ParserInterface;
+use Fusio\Engine\ParametersInterface;
+use Fusio\Impl\Authorization\TokenGenerator;
+use Fusio\Impl\Form\Element;
 use Fusio\Impl\Table\Connection as TableConnection;
+use Fusio\Impl\Parameters;
 use PSX\Data\ResultSet;
 use PSX\DateTime;
 use PSX\Http\Exception as StatusCode;
+use PSX\OpenSsl;
 use PSX\Sql;
 use PSX\Sql\Condition;
 
@@ -37,11 +44,17 @@ use PSX\Sql\Condition;
  */
 class Connection
 {
-    protected $connectionTable;
+    const CIPHER_METHOD = 'AES-128-CBC';
 
-    public function __construct(TableConnection $connectionTable)
+    protected $connectionTable;
+    protected $connectionParser;
+    protected $secretKey;
+
+    public function __construct(TableConnection $connectionTable, ParserInterface $connectionParser, $secretKey)
     {
-        $this->connectionTable = $connectionTable;
+        $this->connectionTable  = $connectionTable;
+        $this->connectionParser = $connectionParser;
+        $this->secretKey        = $secretKey;
     }
 
     public function getAll($startIndex = 0, $search = null)
@@ -63,6 +76,25 @@ class Connection
         $connection = $this->connectionTable->get($connectionId);
 
         if (!empty($connection)) {
+            $config = $this->decryptConfig($connection['config']);
+
+            // remove all password fields from the config
+            if (is_array($config)) {
+                $form = $this->connectionParser->getForm($connection['class']);
+                foreach ($form as $element) {
+                    $data = $element->getRecordInfo()->getData();
+                    if ($element instanceof Element\Input && $data['type'] == 'password') {
+                        if (isset($config[$data['name']])) {
+                            unset($config[$data['name']]);
+                        }
+                    }
+                }
+            } else {
+                $config = null;
+            }
+
+            $connection['config'] = $config;
+
             return $connection;
         } else {
             throw new StatusCode\NotFoundException('Could not find connection');
@@ -74,7 +106,7 @@ class Connection
         $this->connectionTable->create(array(
             'name'   => $name,
             'class'  => $class,
-            'config' => $config,
+            'config' => $this->encryptConfig($config),
         ));
     }
 
@@ -87,7 +119,7 @@ class Connection
                 'id'     => $connection->getId(),
                 'name'   => $name,
                 'class'  => $class,
-                'config' => $config,
+                'config' => $this->encryptConfig($config),
             ));
         } else {
             throw new StatusCode\NotFoundException('Could not find connection');
@@ -104,6 +136,38 @@ class Connection
             ));
         } else {
             throw new StatusCode\NotFoundException('Could not find connection');
+        }
+    }
+
+    protected function encryptConfig($config)
+    {
+        if (empty($config)) {
+            return null;
+        }
+
+        $iv   = OpenSsl::randomPseudoBytes(16);
+        $data = serialize($config);
+        $data = OpenSsl::encrypt($data, self::CIPHER_METHOD, $this->secretKey, 0, $iv);
+
+        return base64_encode($iv) . '.' . $data;
+    }
+
+    protected function decryptConfig($data)
+    {
+        if (empty($data)) {
+            return new \stdClass();
+        }
+
+        $parts = explode('.', $data, 2);
+        if (count($parts) == 2) {
+            list($iv, $data) = $parts;
+
+            $config = OpenSsl::decrypt($data, self::CIPHER_METHOD, $this->secretKey, 0, base64_decode($iv));
+            $config = unserialize($config);
+
+            return $config;
+        } else {
+            return new \stdClass();
         }
     }
 }

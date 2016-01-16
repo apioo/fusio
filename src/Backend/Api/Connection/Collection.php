@@ -99,10 +99,17 @@ class Collection extends SchemaApiAbstract
      */
     protected function doPost(RecordInterface $record, Version $version)
     {
+        $data = $record->getConfig();
+        if ($data instanceof RecordInterface) {
+            $config = $data->getRecordInfo()->getData();
+        } else {
+            $config = null;
+        }
+
         $this->connectionService->create(
             $record->getName(),
             $record->getClass(),
-            $record->getConfig()->getRecordInfo()->getData()
+            $config
         );
 
         return array(

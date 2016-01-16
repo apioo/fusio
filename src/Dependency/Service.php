@@ -125,7 +125,9 @@ trait Service
     public function getConnectionService()
     {
         return new Impl\Service\Connection(
-            $this->get('table_manager')->getTable('Fusio\Impl\Table\Connection')
+            $this->get('table_manager')->getTable('Fusio\Impl\Table\Connection'),
+            $this->get('connection_parser'),
+            $this->get('config')->get('fusio_project_key')
         );
     }
 

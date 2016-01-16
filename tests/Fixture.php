@@ -22,6 +22,7 @@
 namespace Fusio\Impl;
 
 use Fusio\Impl\Database\Version;
+use Fusio\Impl\Service\Connection;
 
 /**
  * Fixture
@@ -88,8 +89,8 @@ JSON;
                 ['appId' => 3, 'userId' => 3, 'code' => 'GHMbtJi0ZuAUnp80', 'redirectUri' => '', 'scope' => 'authorization', 'date' => date('Y-m-d H:i:s')],
             ],
             'fusio_connection' => [
-                ['name' => 'DBAL', 'class' => 'Fusio\Impl\Connection\DBAL', 'config' => serialize(['type' => 'pdo_mysql', 'host' => '127.0.0.1', 'username' => 'root', 'password' => 'foo', 'database' => 'bar'])],
-                ['name' => 'MongoDB', 'class' => 'Fusio\Impl\Connection\MongoDB', 'config' => serialize(['url' => 'mongodb://localhost:27017', 'database' => 'bar'])],
+                ['name' => 'DBAL', 'class' => 'Fusio\Impl\Connection\DBAL', 'config' => 'gC8gwLG0bNnqXNnRKw8AaQ==.09NMz2hC+99vY6WK9xi1os8VWHTtfkjzX65Cy6uZ8sMgdMbYxkrC04PH9VYYFHWfMBq41/lTSRQjk1YvJUhzMCqWeg6BDDKpQ4PKXhSJKf8lVel3PGXDe0OH9kaAm2bmRoL5213TLkeailqqzbmuUHewWa9CRo3UAKOtKdL7anTAVW+3PASMXKtRxFJ+sT6R'],
+                ['name' => 'MongoDB', 'class' => 'Fusio\Impl\Connection\MongoDB', 'config' => 'gj1VZ1lN1aJEMMLsdglwiQ==.ub6hTzbrd9MW8taKtEC8exyr71IWlRvJC0b330c+ORea+MxnatgMjQu4phtVkzuNWUeAyj0izLKGUs+rJSkwOu7SNAL3tZ6cDWUE4IGZG84='],
             ],
             'fusio_routes' => [
                 ['status' => 1, 'methods' => 'GET|POST|PUT|DELETE', 'path' => '/foo', 'controller' => 'Fusio\Impl\Controller\SchemaApiController', 'config' => 'a:1:{i:0;C:15:"PSX\Data\Record":660:{a:2:{s:4:"name";s:6:"config";s:6:"fields";a:4:{s:6:"active";b:1;s:6:"status";i:4;s:4:"name";s:1:"1";s:7:"methods";a:4:{i:0;C:15:"PSX\Data\Record":106:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:3:{s:4:"name";s:3:"GET";s:6:"action";i:3;s:8:"response";i:2;}}}i:1;C:15:"PSX\Data\Record":159:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:6:{s:6:"active";b:1;s:6:"public";b:0;s:4:"name";s:4:"POST";s:6:"action";i:3;s:7:"request";i:2;s:8:"response";i:1;}}}i:2;C:15:"PSX\Data\Record":70:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:3:"PUT";}}}i:3;C:15:"PSX\Data\Record":73:{a:2:{s:4:"name";s:6:"method";s:6:"fields";a:1:{s:4:"name";s:6:"DELETE";}}}}}}}}'],
