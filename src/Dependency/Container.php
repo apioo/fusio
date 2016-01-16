@@ -124,11 +124,25 @@ class Container extends DefaultContainer
      */
     public function getActionParser()
     {
-        return new Parser\Action(
+        $parsers = [];
+        $parsers[] = new Parser\Database(
             $this->get('action_factory'),
             $this->get('connection'),
             'fusio_action_class',
             'Fusio\Engine\ActionInterface'
+        );
+        $parsers[] = new Parser\Directory(
+            $this->get('action_factory'),
+            $this->get('connection'),
+            $this->get('config')->get('fusio_src_custom') . '/Action',
+            'Fusio\Custom\Action',
+            'Fusio\Engine\ActionInterface'
+        );
+
+        return new Parser\Composite(
+            $this->get('action_factory'),
+            $this->get('connection'),
+            $parsers
         );
     }
 
@@ -156,11 +170,26 @@ class Container extends DefaultContainer
      */
     public function getConnectionParser()
     {
-        return new Parser\Connection(
+        $parsers = [];
+        $parsers[] = new Parser\Database(
             $this->get('connection_factory'),
             $this->get('connection'),
             'fusio_connection_class',
             'Fusio\Engine\ConnectionInterface'
+        );
+
+        $parsers[] = new Parser\Directory(
+            $this->get('action_factory'),
+            $this->get('connection'),
+            $this->get('config')->get('fusio_src_custom') . '/Connection',
+            'Fusio\Custom\Connection',
+            'Fusio\Engine\ConnectionInterface'
+        );
+
+        return new Parser\Composite(
+            $this->get('connection_factory'),
+            $this->get('connection'),
+            $parsers
         );
     }
 

@@ -27,7 +27,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Fusio\\Impl\\": "src/"
+      "Fusio\\Impl\\": "src/",
+      "Fusio\\Custom\\": "src-custom/"
     }
   }
 }

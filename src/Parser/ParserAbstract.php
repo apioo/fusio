@@ -38,40 +38,16 @@ abstract class ParserAbstract implements ParserInterface
 {
     protected $factory;
     protected $connection;
-    protected $tableName;
-    protected $instanceOf;
 
-    public function __construct(FactoryInterface $factory, Connection $connection, $tableName, $instanceOf)
+    public function __construct(FactoryInterface $factory, Connection $connection)
     {
         $this->factory    = $factory;
         $this->connection = $connection;
-        $this->tableName  = $tableName;
-        $this->instanceOf = $instanceOf;
-    }
-
-    public function getClasses()
-    {
-        $classes = $this->connection->fetchAll('SELECT class FROM ' . $this->tableName);
-        $result  = array();
-
-        foreach ($classes as $row) {
-            $object     = $this->getClass($row['class']);
-            $instanceOf = $this->instanceOf;
-
-            if ($object instanceof $instanceOf) {
-                $result[] = array(
-                    'name'  => $object->getName(),
-                    'class' => $row['class'],
-                );
-            }
-        }
-
-        return $result;
     }
 
     public function getForm($className)
     {
-        $object = $this->getClass($className);
+        $object = $this->getObject($className);
 
         if ($object instanceof ConfigurableInterface) {
             $elementFactory = new Form\ElementFactory($this->connection);
@@ -85,10 +61,14 @@ abstract class ParserAbstract implements ParserInterface
         return null;
     }
 
-    public function getClass($className)
+    protected function getObject($className)
     {
         if (empty($className) || !is_string($className)) {
             throw new \RuntimeException('Invalid class name');
+        }
+
+        if (!class_exists($className)) {
+            return null;
         }
 
         return $this->factory->factory($className);

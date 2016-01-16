@@ -21,13 +21,34 @@
 
 namespace Fusio\Impl\Parser;
 
+use Doctrine\DBAL\Connection;
+use Fusio\Engine\Factory\FactoryInterface;
+
 /**
- * Action
+ * Composite
  *
  * @author  Christoph Kappestein <k42b3.x@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
  * @link    http://fusio-project.org
  */
-class Action extends ParserAbstract
+class Composite extends ParserAbstract
 {
+    protected $parsers;
+
+    public function __construct(FactoryInterface $factory, Connection $connection, array $parsers)
+    {
+        parent::__construct($factory, $connection);
+
+        $this->parsers = $parsers;
+    }
+
+    public function getClasses()
+    {
+        $classes = array();
+        foreach ($this->parsers as $parser) {
+            $classes = array_merge($classes, $parser->getClasses());
+        }
+
+        return $classes;
+    }
 }

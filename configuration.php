@@ -19,6 +19,10 @@ return array(
     'fusio_expire_backend'    => 'PT1H',
     'fusio_expire_consumer'   => 'PT1H',
 
+    // The location of the folder for custom implementations. If you change the 
+    // folder you have also to adjust the autoload path in the composer.json
+    'fusio_src_custom'        => __DIR__ . '/src-custom',
+
     // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
     // http://localhost.com)
     'psx_url'                 => 'http://127.0.0.1/projects/fusio/public',
