@@ -76,7 +76,7 @@ class Connection
         $connection = $this->connectionTable->get($connectionId);
 
         if (!empty($connection)) {
-            $config = $this->decryptConfig($connection['config']);
+            $config = self::decryptConfig($connection['config'], $this->secretKey);
 
             // remove all password fields from the config
             if (is_array($config)) {
@@ -106,7 +106,7 @@ class Connection
         $this->connectionTable->create(array(
             'name'   => $name,
             'class'  => $class,
-            'config' => $this->encryptConfig($config),
+            'config' => self::encryptConfig($config, $this->secretKey),
         ));
     }
 
@@ -119,7 +119,7 @@ class Connection
                 'id'     => $connection->getId(),
                 'name'   => $name,
                 'class'  => $class,
-                'config' => $this->encryptConfig($config),
+                'config' => self::encryptConfig($config, $this->secretKey),
             ));
         } else {
             throw new StatusCode\NotFoundException('Could not find connection');
@@ -139,7 +139,7 @@ class Connection
         }
     }
 
-    protected function encryptConfig($config)
+    public static function encryptConfig($config, $secretKey)
     {
         if (empty($config)) {
             return null;
@@ -147,27 +147,27 @@ class Connection
 
         $iv   = OpenSsl::randomPseudoBytes(16);
         $data = serialize($config);
-        $data = OpenSsl::encrypt($data, self::CIPHER_METHOD, $this->secretKey, 0, $iv);
+        $data = OpenSsl::encrypt($data, self::CIPHER_METHOD, $secretKey, 0, $iv);
 
         return base64_encode($iv) . '.' . $data;
     }
 
-    protected function decryptConfig($data)
+    public static function decryptConfig($data, $secretKey)
     {
         if (empty($data)) {
-            return new \stdClass();
+            return [];
         }
 
         $parts = explode('.', $data, 2);
         if (count($parts) == 2) {
             list($iv, $data) = $parts;
 
-            $config = OpenSsl::decrypt($data, self::CIPHER_METHOD, $this->secretKey, 0, base64_decode($iv));
+            $config = OpenSsl::decrypt($data, self::CIPHER_METHOD, $secretKey, 0, base64_decode($iv));
             $config = unserialize($config);
 
             return $config;
         } else {
-            return new \stdClass();
+            return [];
         }
     }
 }

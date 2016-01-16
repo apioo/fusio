@@ -23,6 +23,7 @@ namespace Fusio\Impl;
 
 use Doctrine\DBAL\Connection;
 use Fusio\Engine\ConnectorInterface;
+use Fusio\Impl\Service\Connection as ConnectionService;
 
 /**
  * Connector
@@ -35,11 +36,13 @@ class Connector implements ConnectorInterface
 {
     protected $connection;
     protected $factory;
+    protected $secretKey;
 
-    public function __construct(Connection $connection, Factory\Connection $factory)
+    public function __construct(Connection $connection, Factory\Connection $factory, $secretKey)
     {
         $this->connection = $connection;
         $this->factory    = $factory;
+        $this->secretKey  = $secretKey;
     }
 
     /**
@@ -63,8 +66,9 @@ class Connector implements ConnectorInterface
             throw new ConfigurationException('Invalid connection');
         }
 
-        $config = !empty($connection['config']) ? unserialize($connection['config']) : array();
+        $config     = ConnectionService::decryptConfig($connection['config'], $this->secretKey);
+        $parameters = new Parameters($config);
 
-        return $this->factory->factory($connection['class'])->getConnection(new Parameters($config));
+        return $this->factory->factory($connection['class'])->getConnection($parameters);
     }
 }

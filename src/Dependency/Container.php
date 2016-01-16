@@ -206,7 +206,11 @@ class Container extends DefaultContainer
      */
     public function getConnector()
     {
-        return new Connector($this->get('connection'), $this->get('connection_factory'));
+        return new Connector(
+            $this->get('connection'), 
+            $this->get('connection_factory'),
+            $this->get('config')->get('fusio_project_key')
+        );
     }
 
     /**
