@@ -4,7 +4,7 @@ fusioApp.factory('formBuilder', ['$sce', '$compile', function($sce, $compile){
  
 	builder.buildHtml = function(elements, propertyName){
 		if (!elements || !angular.isArray(elements) || elements.length === 0) {
-			return '';
+			return null;
 		}
 
 		var form = '<div>';

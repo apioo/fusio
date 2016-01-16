@@ -166,12 +166,14 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		if ($scope.action.class) {
 			$http.get(fusio_url + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
 				.success(function(data){
-					var linkFn = formBuilder.buildHtml(data.element, 'action.config');
-					var el = linkFn($scope);
 					var containerEl = angular.element(document.querySelector('#config-form'));
-
 					containerEl.children().remove();
-					containerEl.append(el);
+
+					var linkFn = formBuilder.buildHtml(data.element, 'action.config');
+					if (angular.isFunction(linkFn)) {
+						var el = linkFn($scope);
+						containerEl.append(el);
+					}
 				});
 		}
 	};
@@ -208,12 +210,14 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		if ($scope.action.class) {
 			$http.get(fusio_url + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
 				.success(function(data){
-					var linkFn = formBuilder.buildHtml(data.element, 'action.config');
-					var el = linkFn($scope);
 					var containerEl = angular.element(document.querySelector('#config-form'));
-
 					containerEl.children().remove();
-					containerEl.append(el);
+
+					var linkFn = formBuilder.buildHtml(data.element, 'action.config');
+					if (angular.isFunction(linkFn)) {
+						var el = linkFn($scope);
+						containerEl.append(el);
+					}
 				});
 		}
 	};
