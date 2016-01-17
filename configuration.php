@@ -2,11 +2,6 @@
 
 return array(
 
-    // The secret key of a project. It is recommended to change this to another
-    // random value. This is used i.e. to encrypt the connection credentials in 
-    // the database. Note you can only change the key _before_ the installation
-    'fusio_project_key'       => '42eec18ffdbffc9fda6110dcc705d6ce',
-
     // The max amount of apps a consumer can register
     'fusio_app_per_consumer'  => 16,
 
@@ -27,6 +22,13 @@ return array(
     // The location of the folder for custom implementations. If you change the 
     // folder you have also to adjust the autoload path in the composer.json
     'fusio_src_custom'        => __DIR__ . '/src-custom',
+
+    // The secret key of a project. It is recommended to change this to another
+    // random value. This is used i.e. to encrypt the connection credentials in 
+    // the database. NOTE IF YOU CHANGE THE KEY FUSIO CAN NO LONGER READ ANY 
+    // DATA WHICH WAS ENCRYPTED BEFORE. BECAUSE OF THAT IT IS RECOMMENDED TO 
+    // CHANGE THE KEY ONLY BEFORE THE INSTALLATION
+    'fusio_project_key'       => '42eec18ffdbffc9fda6110dcc705d6ce',
 
     // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
     // http://localhost.com)
