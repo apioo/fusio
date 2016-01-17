@@ -36,6 +36,10 @@ steps.
 You can then login to the backend at `/backend.htm` where you can start to 
 configure the system.
 
+# Documentation
+
+The offical documentation is available at http://fusio.readthedocs.org/
+
 # Use cases
 
 Today there are many use cases where you need a great documented REST API. In 
