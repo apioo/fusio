@@ -20,28 +20,68 @@ To install Fusio download the latest version and place the folder into the www
 directory of the webserver. After this Fusio can be installed in the following 
 steps.
 
- * __Adjust the configuration file__  
-   Open the file `configuration.php` in the Fusio directory and change the key 
-   `psx_url` to the domain pointing to the public folder. Also insert the 
-   database credentials to the `psx_sql_*` keys.
- * __Execute the installation command__  
-   The installation script inserts the Fusio database schema into the provided 
-   database. It can be executed with the following command 
-   `php bin/fusio install`.
- * __Create administrator user__  
-   After the installation is complete you have to create a new administrator 
-   account. Therefor you can use the following command `php bin/fusio adduser`. 
-   Choose as account type "Administrator" and save the generated password.
- * __Adjust url for the backend app__  
-   The backend to control Fusio is based on AngularJS. The app needs to know the 
-   entry point of the API. Therefor you have to edit the file 
-   `public/backend.htm` and change the javascript variable `fusio_url` pointing 
-   to the API endpoint. After this it is possible to login to the backend at 
-   `/backend.htm`.
+* __Adjust the configuration file__  
+  Open the file `configuration.php` in the Fusio directory and change the key 
+  `psx_url` to the domain pointing to the public folder. Also insert the 
+  database credentials to the `psx_sql_*` keys.
+* __Execute the installation command__  
+  The installation script inserts the Fusio database schema into the provided 
+  database. It can be executed with the following command 
+  `php bin/fusio install`.
+* __Create administrator user__  
+  After the installation is complete you have to create a new administrator 
+  account. Therefor you can use the following command `php bin/fusio adduser`. 
+  Choose as account type "Administrator" and save the generated password.
+
+You can then login to the backend at `/backend.htm` where you can start to 
+configure the system.
+
+# Use cases
+
+Today there are many use cases where you need a great documented REST API. In 
+the following we list the most popular choices where Fusio comes in to play.
+
+## Business functionality
+
+Exposing an API of your business functionality is a great way to extend your 
+product. You enable customers to integrate it into other applications which
+gives the possibility to open up for new markets. With Fusio you can build such 
+APIs and integrate them seamlessly into your product.
+
+## Javascript applications
+
+Javascript frameworks like i.e. AngularJS or EmberJS becoming more popular. With
+Fusio you can easily build a backend for such applications. So you dont have to
+build the backend part by yourself.
+
+## Mobile apps
+
+Almost all mobile apps need some form to interact with a remote service. This is
+mostly done through REST APIs. With Fusio you can easily build such APIs which 
+then can also be used by other applications.
+
+# Reasons
+
+* __Versionable endpoints__  
+  With Fusio you can create flexible endpoints to design the API in the way you 
+  like. Each endpoint can have multiple versions with different request and 
+  response formats. This makes it easy to advance your API as it grows.
+* __Action handling__  
+  Fusio provides already many actions to handle common usecases. I.e. it is 
+  possible to execute SQL queries against a database or send data into a message 
+  queue. Also it is very easy to provide custom implementations.
+* __Schema definition__  
+  Fusio gives you the option to describe the data schema of the request and 
+  response in the flexible JsonSchema format.
+* __Automatic documentation__  
+  Fusio generates automatically a documentation of the API endpoints based on 
+  the provided schema definitions.
+* __Secure authorization__  
+  Fusio uses OAuth2 for API authorization. Each app can be limited to scopes to 
+  request only specific endpoints of the API.
 
 # Contribution
 
-If you have found any bugs or want to make feature requests use the bug tracker
-on GitHub. For code contributions feel free to send a pull request through 
-GitHub, there we can discuss all details of the changes.
-
+If you have found bugs or want to make feature requests use the bug tracker on 
+GitHub. For code contributions feel free to send a pull request through GitHub, 
+there we can discuss all details of the changes.
