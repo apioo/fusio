@@ -33,7 +33,7 @@ use PSX\Oauth2\Provider\TokenAbstract;
 class Token extends TokenAbstract
 {
     /**
-     * @Inject api_grant_type_factory
+     * @Inject("api_grant_type_factory")
      * @var \PSX\Oauth2\Provider\GrantTypeFactory
      */
     protected $grantTypeFactory;
