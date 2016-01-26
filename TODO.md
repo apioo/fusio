@@ -3,14 +3,11 @@ _which are likely to be implemented are moved to a seperate github issue_
 
 ### 0.x
 
-- [ ] JSONSchema export API which replaces the schema:// references with an API
-      endpoint url
-- [ ] At the moment the Oauth endpoint supports only "Resource Owner Password 
-      Credentials" we need also support for "Authorization Code" so that the API
-      can be used for web apps. Therefor we must provide a way for an consumer 
-      to login and grant an app authorization / manage authorized apps etc. 
-      Probably this can also be done through an API so that an API provider can 
-      provide its own UI for the user #5
+- [ ] Add option to get and use a refresh token to extend the life time of an 
+      access token
+- [ ] Consider disable request model for DELETE method since a DELETE should
+      probably not include a request body?
+- [ ] Provide actions to create an API from a file i.e. JSON, XML maybe CSV?
 - [ ] Schema if a schema name changes or it gets deleted what happens with 
       schemas which refer to the changed schema? #3
   - [ ] Since the cache includes the complete resolved schema we need to rebuild 
@@ -21,26 +18,21 @@ _which are likely to be implemented are moved to a seperate github issue_
 - [ ] Add an API console where it is possible to test the API #7
   - [ ] Use http://schemaform.io/ to build a form based on a jsonschems to 
         submit data to the endpoint
-- [ ] Add mongodb action
+        https://github.com/joshfire/jsonform
 - [ ] Add couchdb action
 - [ ] Add an action merge which combines the result of two actions into one 
       result
-- [ ] Add action "exec" which executes given PHP code
 - [ ] Evaluate V8Js and check whether we could write an action where a user can 
       write an action in javascript
 - [ ] Option to manually generate an access token
-- [ ] Encrypt credentials in connection config field
+  - [ ] Option to generate an access token for an application through the backend.
+        Maybe with an option to specify the expire time
+  - [ ] Probably add also an command to generate an access token
 - [ ] Add different roles for the backend. I.e. an admin/manager and developer.
       A developer account can only edit specific entries
   - [ ] Probably we need a interface for developers. A editor view where the
-        developer can design on the APIs where he was assigned to
+        developer can design the APIs where he was assigned to
 - [ ] Option to execute another action inside a template
-- [ ] Add general config. Probably to set the expire time of the oauth token.
-- [ ] Option to generate an access token for an application through the backend.
-      Maybe with an option to specify the expire time
-- [ ] Add schema importer i.e. swagger, raml, etc. in order to easily generate
-      the API endpoints. Probably start with swagger since its the most popular 
-  - [ ] We could use http://ngmodules.org/modules/ng-file-upload for upload
 - [ ] Optimize the way how data is organized. I.e. we could have many actions or 
       schemas, we need a way to group or categorize entries so it is easier to
       organize
@@ -62,8 +54,6 @@ _which are likely to be implemented are moved to a seperate github issue_
 - [ ] Use http://js.cytoscape.org/ to build a graph from the actions/schema
 - [ ] Add method to relogin if token expires. Probably we should save the expire
       time and make the relogin attempt based on this
-- [ ] Add support for jsonapi format http://jsonapi.org/. In some way the user
-      is responsible for the output format so we cant control this directly
 - [ ] Write backend in TypeScript JS6 support transition to Angular2
 - [ ] Add system log where every login and system change is shown
   - [ ] Add login bruteforce protection. Therefor we must log the ip of every 
@@ -74,7 +64,7 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [x] Write a processor action where a user can define multiple actions in
         a YAML format
 - [ ] Unify backend filter usage
-- [ ] Add transactions to api backend endpoints
+- [ ] Add transactions to services
 - [ ] When creating an action verify that the action works. How can we handle 
       template parameters for testing?
 - [ ] Schema definitions limitations
@@ -85,7 +75,7 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] Probably add third party java tool where it is possible to model easily 
         an schema
   - [ ] Add possibility to upload json schema or add import json schema command
-  - [ ] If an json schema has no id probably use the psx_url from the config
+  - [x] If an json schema has no id probably use the psx_url from the config
         At the moment an error occurs if no id is available. Actually we need 
         the id only if we reference other schemas to resolve the $ref path
 - [ ] We probably need an marketplace for actions where we can provide 
@@ -118,12 +108,44 @@ _which are likely to be implemented are moved to a seperate github issue_
 - [ ] Provide a video with a installation and demo about the system
 - [x] Register domain maybe fusio-api.org or fusio-project.org
 - [x] Add a online demo system
-- [ ] Add beta phase on the website. Where users can enter an email for an 
+- [/] Add beta phase on the website. Where users can enter an email for an 
       invite
 - [ ] Write manual
+- [ ] Setup discourse forum
+- [ ] Write about Fusio at 
+        http://nordicapis.com/create-with-us/
+        https://www.reddit.com/r/php
+        https://www.reddit.com/r/rest
+        http://www.sitepoint.com/
 
 ### Archive
 
+- [/] Add action "exec" which executes given PHP code
+  - [x] It is no easy possible to provide custom action
+- [/] Add general config. Probably to set the expire time of the oauth token.
+  - [x] At the moment we have all config entries in the configuration.php which
+        is sufficient
+- [x] Encrypt credentials in connection config field
+- [x] Improve cache action, consider path parameters etc.
+- [/] Add support for jsonapi format http://jsonapi.org/. In some way the user
+      is responsible for the output format so we cant control this directly
+      (We dont want to force a data format for the user. If a user wants to 
+      generate such a response format it should be no problem to generate)
+- [x] Add schema importer i.e. swagger, raml, etc. in order to easily generate
+      the API endpoints. Probably start with swagger since its the most popular 
+      (We have added a RAML importer)
+  - [/] We could use http://ngmodules.org/modules/ng-file-upload for upload
+- [x] Add mongodb action
+- [x] At the moment the Oauth endpoint supports only "Resource Owner Password 
+      Credentials" we need also support for "Authorization Code" so that the API
+      can be used for web apps. Therefor we must provide a way for an consumer 
+      to login and grant an app authorization / manage authorized apps etc. 
+      Probably this can also be done through an API so that an API provider can 
+      provide its own UI for the user #5
+- [x] JSONSchema export API which replaces the schema:// references with an API
+      endpoint url (we have now a json schema export command)
+- [x] Add RAML import. We need probably a general import field where someone can
+      upload a api sepc file (RAML) which gets then imported
 - [x] Return only actions and schema which are active or locked. Disabled edit 
       and delete button for locked actions/schema
 - [x] Add transform action to transform an incoming request into another form 
