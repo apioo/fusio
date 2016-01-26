@@ -21,7 +21,6 @@ install:
   - node node_modules/protractor/bin/webdriver-manager update
   - cd ..
 before_script:
-  - if [ $DB = 'mysql' ]; then mysql -e 'create database fusio;'; fi;
   - if [ $DB = 'mysql' ]; then mysql -e 'create database fusio_ui;'; fi;
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
@@ -32,7 +31,6 @@ before_script:
   - sleep 4
   - cd ..
 script:
-  - vendor/bin/phpunit
   - cd public/tests
   - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then node ../node_modules/protractor/bin/protractor conf.js; fi;
   - cd ../..

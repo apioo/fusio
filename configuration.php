@@ -19,10 +19,6 @@ return array(
     'fusio_expire_backend'    => 'PT1H',
     'fusio_expire_consumer'   => 'PT1H',
 
-    // The location of the folder for custom implementations. If you change the 
-    // folder you have also to adjust the autoload path in the composer.json
-    'fusio_src_custom'        => __DIR__ . '/src-custom',
-
     // The secret key of a project. It is recommended to change this to another
     // random value. This is used i.e. to encrypt the connection credentials in 
     // the database. NOTE IF YOU CHANGE THE KEY FUSIO CAN NO LONGER READ ANY 

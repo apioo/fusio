@@ -12,23 +12,11 @@
   ],
   "require": {
     "php": ">=5.3",
-    "psx/psx": "~1.2",
-    "fusio/engine": "~0.1@dev",
-    "ircmaxell/password-compat": "1.0.4",
-    "ircmaxell/random-lib": "1.1.0",
-    "symfony/expression-language": "2.6.4",
-    "pda/pheanstalk": "~3.0",
-    "videlalvaro/php-amqplib": "~2.5",
-    "twig/twig": "~1.18"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "~4.1",
-    "phpunit/dbunit": "~1.3"
+    "fusio/impl": "~0.2@dev"
   },
   "autoload": {
     "psr-4": {
-      "Fusio\\Impl\\": "src/",
-      "Fusio\\Custom\\": "src-custom/"
+      "Fusio\\Custom\\": "src/"
     }
   }
 }
