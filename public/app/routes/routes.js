@@ -178,6 +178,10 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.removeVersion = function(version){
+		if (version.status != 4 || $scope.route.config.length == 1) {
+			return;
+		}
+
 		var versions = [];
 		for (var i = 0; i < $scope.route.config.length; i++) {
 			if ($scope.route.config[i].name != version.name) {
@@ -292,6 +296,10 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.removeVersion = function(version){
+		if (version.status != 4 || $scope.route.config.length == 1) {
+			return;
+		}
+
 		var versions = [];
 		for (var i = 0; i < $scope.route.config.length; i++) {
 			if ($scope.route.config[i].name != version.name) {
