@@ -75,8 +75,8 @@ $container->set('connection', $connection);
 if (isset($_SERVER['argv']) && in_array('--warmup', $_SERVER['argv'])) {
     // warmup
     $loader->addClassMap([
-        'Fusio\Impl\Fixture'    => __DIR__ . '/../tests/Fixture.php',
-        'Fusio\Impl\TestSchema' => __DIR__ . '/../tests/TestSchema.php',
+        'Fusio\Impl\Fixture'    => __DIR__ . '/../vendor/fusio/impl/tests/Fixture.php',
+        'Fusio\Impl\TestSchema' => __DIR__ . '/../vendor/fusio/impl/tests/TestSchema.php',
     ]);
 
     // create schema
