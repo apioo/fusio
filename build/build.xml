@@ -93,7 +93,7 @@
     </target>
 
     <!-- this target runs all tests -->
-    <target name="test" depends="init,syntax-check,phpunit,protractor" />
+    <target name="test" depends="init,protractor" />
 
     <!-- ############################## CLEAN ############################## -->
     <!-- remove the lock file so that the web and selenium server shutdown -->
@@ -122,8 +122,10 @@
         <delete dir="${build}/public/node_modules" />
         <delete dir="${build}/public/tests" />
         <delete dir="${build}/tests" />
+        <delete dir="${build}/doc" />
         <delete file="${build}/.travis.yml" />
         <delete file="${build}/phpunit.xml" />
+        <delete file="${build}/TODO.md" />
         <delete file="${build}/public/backend_dev.htm" />
         <delete file="${build}/public/bower.json" />
         <delete file="${build}/public/Gruntfile.js" />
