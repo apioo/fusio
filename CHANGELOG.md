@@ -1,4 +1,16 @@
 
+### 0.2.1 (2016-01-28)
+
+* Added documentation and improved help docs
+* Moved backend code into seperate composer project
+* Encrypt connection credentials in database
+* Added a access token generation method to the app service which is used 
+  globally
+* Add support for implicit grant to simplify the use of Fusio for js 
+  applications
+* Action cache consider also uri fragments and parameters in cache key
+* Removed client credentials grant and use instead password grant
+
 ### 0.2.0 (2016-01-02)
 
 * Added consumer API and javascript client implementation
