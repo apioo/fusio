@@ -5,13 +5,6 @@ _which are likely to be implemented are moved to a seperate github issue_
 
 - [ ] Add option to get and use a refresh token to extend the life time of an 
       access token
-- [ ] Consider disable request model for DELETE method since a DELETE should
-      probably not include a request body?
-- [ ] Provide actions to create an API from a file i.e. JSON, XML maybe CSV?
-- [ ] Schema if a schema name changes or it gets deleted what happens with 
-      schemas which refer to the changed schema? #3
-  - [ ] Since the cache includes the complete resolved schema we need to rebuild 
-        the cache for all schemas which reference the changed schema
 - [ ] When creating an connection verify that the connection works #2
 - [ ] Add option to store variables with an app which can be used for conditions 
       or in an action #6
@@ -19,20 +12,17 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] Use http://schemaform.io/ to build a form based on a jsonschems to 
         submit data to the endpoint
         https://github.com/joshfire/jsonform
-- [ ] Add couchdb action
 - [ ] Add an action merge which combines the result of two actions into one 
       result
 - [ ] Evaluate V8Js and check whether we could write an action where a user can 
       write an action in javascript
-- [ ] Option to manually generate an access token
-  - [ ] Option to generate an access token for an application through the backend.
-        Maybe with an option to specify the expire time
-  - [ ] Probably add also an command to generate an access token
 - [ ] Add different roles for the backend. I.e. an admin/manager and developer.
       A developer account can only edit specific entries
   - [ ] Probably we need a interface for developers. A editor view where the
         developer can design the APIs where he was assigned to
 - [ ] Option to execute another action inside a template
+  - [ ] In general we need some kind of data templating engine where it is easy
+        to write json data and call other actions etc.
 - [ ] Optimize the way how data is organized. I.e. we could have many actions or 
       schemas, we need a way to group or categorize entries so it is easier to
       organize
@@ -50,8 +40,9 @@ _which are likely to be implemented are moved to a seperate github issue_
         rendered with javascript, java, etc. The user enters either directly
         this format with an preview or we provide some kind of UI builder which 
         is probably very difficult to build.
+  - [ ] How do we handle form submits where a access token is required at the 
+        backend?
   - [ ] We should build a javascript and java library to build these forms
-- [ ] Use http://js.cytoscape.org/ to build a graph from the actions/schema
 - [ ] Add method to relogin if token expires. Probably we should save the expire
       time and make the relogin attempt based on this
 - [ ] Write backend in TypeScript JS6 support transition to Angular2
@@ -61,6 +52,7 @@ _which are likely to be implemented are moved to a seperate github issue_
 - [ ] Add action to simplify creating more complex logic (if else, switch).
   - [ ] In long term we could build a flowchart like yahoo pipes to build the 
         actions
+  - [ ] Use http://js.cytoscape.org/ to build a graph from the actions/schema
   - [x] Write a processor action where a user can define multiple actions in
         a YAML format
 - [ ] Unify backend filter usage
@@ -71,26 +63,51 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] There is no way to add query parameters
   - [ ] At the moment we only handle the schema for an 200 return. Probably add 
         possibility to add response schema for other status codes
-- [ ] Simplifiy creating schemas
-  - [ ] Probably add third party java tool where it is possible to model easily 
-        an schema
-  - [ ] Add possibility to upload json schema or add import json schema command
+- [ ] We need to create a marketplace where all adapters are listed and where
+      developers can provide a adapter for their system
+  - [ ] The best way todo this is to parse all packages with a specific tag 
+        "fusio-adapter" from packagist add list them on fusio-project.org
+  - [ ] Extend the documentation howto write an adapter
+- [ ] Build new adapters
+  - [ ] Add SOAP action
+  - [ ] Add couchdb action
+  - [ ] Build adapters for popular systems i.e. wordpress/drupal etc.
+  - [ ] Gateways to other systems which dont have an API
+  - [ ] Gateways to complex systems i.e. sharepoint
+- [ ] Consider disable request model for DELETE method since a DELETE should
+      probably not include a request body?
+- [ ] Schema if a schema name changes or it gets deleted what happens with 
+      schemas which refer to the changed schema? #3
+  - [ ] Since the cache includes the complete resolved schema we need to rebuild 
+        the cache for all schemas which reference the changed schema
+
+### Meta
+
+- [ ] Provide a video with a installation and demo about the system
+- [x] Register domain maybe fusio-api.org or fusio-project.org
+- [x] Add a online demo system
+- [ ] ~~Add beta phase on the website. Where users can enter an email for an invite~~
+- [ ] Write manual
+- [ ] Setup discourse forum
+- [ ] For the stable release write about Fusio at 
+  - [ ] http://nordicapis.com/create-with-us/
+  - [ ] https://www.reddit.com/r/php / https://www.reddit.com/r/rest
+  - [ ] http://www.sitepoint.com/
+
+### Archive
+
+- [ ] ~~Provide actions to create an API from a file i.e. JSON, XML maybe CSV?~~
+- [x] Option to manually generate an access token
+  - [ ] ~~Option to generate an access token for an application through the backend.
+        Maybe with an option to specify the expire time~~
+  - [x] Probably add also an command to generate an access token
+- [x] Simplifiy creating schemas
+  - [ ] ~~Probably add third party java tool where it is possible to model  
+        easily an schema~~ (This should be in any case an external project)
+  - [x] Add possibility to upload json schema or add import json schema command
   - [x] If an json schema has no id probably use the psx_url from the config
         At the moment an error occurs if no id is available. Actually we need 
         the id only if we reference other schemas to resolve the $ref path
-- [ ] We probably need an marketplace for actions where we can provide 
-      connectors for different software
-  - [ ] New actions can be easily installed through composer. They must be only
-        added to the configuration.php
-  - [x] Through this we could create APIs for many server applications
-  - [ ] Gateways to other systems which dont have an API
-  - [ ] Gateways to complex systems i.e. sharepoint
-  - [x] It should be possible for an action to define the routes which are 
-        required for an action i.e. we could build a mail action and this action
-        would needs one POST endpoint (i.e. /send) where we send a mail on post. 
-        So it is not required that the endpoint is named /send but we must give
-        the user the option to install the route. Probably an action should be
-        wrapped as phar which we only have to copy to a sepcific folder
 - [x] We need an adapter system. An adapter provides all configurations which 
       you need to create a REST API from a 3rd party system. The adapter uses 
       the core actions or provides actions by itself. It can use composer to get 
@@ -100,41 +117,31 @@ _which are likely to be implemented are moved to a seperate github issue_
         system with i.e. "composer require fusio/drupal-adapter"
   - [x] The installer must ask the user for i.e. the API base path or the 
         connection which sould be used
-  - [ ] We need to create a marketplace where all adapters are listed and where
-        developers can provide adapter for their system
-
-### Meta
-
-- [ ] Provide a video with a installation and demo about the system
-- [x] Register domain maybe fusio-api.org or fusio-project.org
-- [x] Add a online demo system
-- [/] Add beta phase on the website. Where users can enter an email for an 
-      invite
-- [ ] Write manual
-- [ ] Setup discourse forum
-- [ ] Write about Fusio at 
-        http://nordicapis.com/create-with-us/
-        https://www.reddit.com/r/php
-        https://www.reddit.com/r/rest
-        http://www.sitepoint.com/
-
-### Archive
-
-- [/] Add action "exec" which executes given PHP code
-  - [x] It is no easy possible to provide custom action
-- [/] Add general config. Probably to set the expire time of the oauth token.
+- [ ] We probably need an marketplace for actions where we can provide 
+      connectors for different software
+  - [ ] New actions can be easily installed through composer. They must be only
+        added to the configuration.php
+  - [x] Through this we could create APIs for many server applications
+  - [x] It should be possible for an action to define the routes which are 
+        required for an action i.e. we could build a mail action and this action
+        would needs one POST endpoint (i.e. /send) where we send a mail on post. 
+        So it is not required that the endpoint is named /send but we must give
+        the user the option to install the route. Probably an action should be
+        wrapped as phar which we only have to copy to a sepcific folder
+- [ ] ~~Add action "exec" which executes given PHP code~~
+  - [x] It is easy possible to provide a custom action
+- [ ] ~~Add general config. Probably to set the expire time of the oauth token.~~
   - [x] At the moment we have all config entries in the configuration.php which
         is sufficient
 - [x] Encrypt credentials in connection config field
 - [x] Improve cache action, consider path parameters etc.
-- [/] Add support for jsonapi format http://jsonapi.org/. In some way the user
-      is responsible for the output format so we cant control this directly
+- [ ] ~~Add support for jsonapi format http://jsonapi.org/~~
       (We dont want to force a data format for the user. If a user wants to 
       generate such a response format it should be no problem to generate)
 - [x] Add schema importer i.e. swagger, raml, etc. in order to easily generate
       the API endpoints. Probably start with swagger since its the most popular 
       (We have added a RAML importer)
-  - [/] We could use http://ngmodules.org/modules/ng-file-upload for upload
+  - [ ] ~~We could use http://ngmodules.org/modules/ng-file-upload for upload~~
 - [x] Add mongodb action
 - [x] At the moment the Oauth endpoint supports only "Resource Owner Password 
       Credentials" we need also support for "Authorization Code" so that the API
