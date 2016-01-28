@@ -3,7 +3,7 @@ Adapter
 =======
 
 An adapter is a composer package which provides classes to extend the 
-functionality of  Fusio. Through an adapter it is i.e. possible to provide 
+functionality of Fusio. Through an adapter it is i.e. possible to provide 
 custom action/connection classes or to install predefined routes for an existing
 system. A package needs to require the ``fusio/engine`` package and must have an 
 adapter class which implements the ``Fusio\Engine\AdapterInterface`` class. This 
