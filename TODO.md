@@ -98,8 +98,8 @@ _which are likely to be implemented are moved to a seperate github issue_
 
 - [ ] ~~Provide actions to create an API from a file i.e. JSON, XML maybe CSV?~~
 - [x] Option to manually generate an access token
-  - [ ] ~~Option to generate an access token for an application through the backend.
-        Maybe with an option to specify the expire time~~
+  - [ ] ~~Option to generate an access token for an application through the 
+        backend. Maybe with an option to specify the expire time~~
   - [x] Probably add also an command to generate an access token
 - [x] Simplifiy creating schemas
   - [ ] ~~Probably add third party java tool where it is possible to model  
@@ -194,9 +194,8 @@ _which are likely to be implemented are moved to a seperate github issue_
       no schema was specified
 - [x] Return all Apps per user on user details request
 - [x] Add more hints to form inputs and link to more details help
-- [ ] Add install sample data command
-      The install command installs all needed db entries so we dont need 
-      directly the sample data
+- [x] Add install sample data command. The install command installs all needed 
+      db entries so we dont need directly the sample data
 - [x] Check delete dialogs
 - [x] Documentation viewer add error handling if API returns 500
 - [x] Add request rate limitations
