@@ -53,7 +53,6 @@ Also you should enable the module ``mod_rewrite`` so that the .htaccess file in
 the public folder is used. The htaccess contains also an important rule which 
 redirects the ``Authorization`` header to Fusio which is otherwise removed.
 
-
 Backend
 -------
 
@@ -61,3 +60,45 @@ At the endpoint ``/backend.htm`` you can login to the backend app. You should
 be able to login with the username (which you have entered for the ``adduser``
 command) and the password which was generated. 
 
+
+Updating
+--------
+
+There are two parts of Fusio which you can update. The backend system and the 
+backend app. The backend app is the AngularJS application which connects
+to the backend api and where you configure the system. The backend system 
+contains the actual backend code providing the backend API and the API which you 
+build with the system.
+
+Update backend system
+^^^^^^^^^^^^^^^^^^^^^
+
+Fusio makes heavy use of composer. Because of that you can easily upgrade a 
+Fusio system with the following composer command.
+
+.. code-block:: text
+
+    composer update fusio/impl
+
+This has also the advantage that the version constraints of installed adapters
+are checked and in case something is incompatible composer will throw an error.
+It is also possible to simply replace the vendor folder with the folder from the
+new release. In either case you have to run the following command after you have
+updated the vendor folder:
+
+.. code-block:: text
+
+    php bin/fusio install
+
+This gives Fusio the chance to adjust the database schema in case something has
+changed with a new release.
+
+Update backend app
+^^^^^^^^^^^^^^^^^^
+
+To update the backend app simply replace the following files from the new 
+release:
+
+ * public/backend.htm
+ * public/dist/fusio.min.js
+ * public/dist/fusio.min.css
