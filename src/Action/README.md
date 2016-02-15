@@ -2,7 +2,7 @@
 # Action
 
 All classes inside this folder which implement the `Fusio\Engine\ActionInterface`
-are listed in the action dropdown. In the following a simple example auf a 
+are listed in the action dropdown. In the following a simple example of a 
 custom action.
 
     <?php
@@ -34,11 +34,12 @@ custom action.
             // @TODO handle request and return response
 
             return $this->response->build(200, [], [
-                'message' => 'Hello World!',
+                'message' => $configuration->get('message'),
             ]);
         }
 
         public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
         {
+            $builder->add($elementFactory->newInput('message', 'Message', 'text', 'Message of the day'));
         }
     }

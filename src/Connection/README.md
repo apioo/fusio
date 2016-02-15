@@ -2,7 +2,7 @@
 # Connection
 
 All classes inside this folder which implement the `Fusio\Engine\ConnectionInterface`
-are listed in the connection dropdown. In the following a simple example auf a 
+are listed in the connection dropdown. In the following a simple example of a 
 custom connection.
 
     <?php
