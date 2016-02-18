@@ -14,7 +14,7 @@ command:
 
 .. code-block:: text
 
-    php bin/fusio register Acme\System\Adapter
+    php bin/fusio system:register Acme\System\Adapter
 
 In the following an example adater definition which showcases all available 
 parameters
@@ -35,9 +35,9 @@ parameters
                     "active": true,
                     "public": true,
                     "name": "GET",
-                    "action": "${action.Void-Action}",
-                    "request": "${schema.Adapter-Schema}",
-                    "response": "${schema.Passthru}"
+                    "action": "Void-Action",
+                    "request": "Adapter-Schema",
+                    "response": "Passthru"
                 }]
             }]
         }],
@@ -46,7 +46,7 @@ parameters
             "class": "Fusio\\Impl\\Adapter\\Test\\VoidAction",
             "config": {
                 "foo": "bar",
-                "connection": "${connection.Adapter-Connection}"
+                "connection": "Adapter-Connection"
             }
         }],
         "schema": [{
