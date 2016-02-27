@@ -1,4 +1,11 @@
 
+### 0.2.2 (2016-02-27)
+
+* Add system import/export command
+* Add user to context
+* Add jsonschema import and generate access token command
+* Improved services to check whether a resource already exists
+
 ### 0.2.1 (2016-01-28)
 
 * Added documentation and improved help docs
