@@ -1,8 +1,15 @@
 _Ever growing list of ideas and thoughts howto improve and extend Fusio. Topics_ 
 _which are likely to be implemented are moved to a seperate github issue_
 
+
 ### 0.x
 
+- [ ] Disable edit button of scope backend, consumer and authorization since a 
+      user would remove all assigned routes on save
+- [ ] Consumer if access was already granted dont ask the user again therefor
+      we need to
+- [ ] Add function to measure execution time of an action add also additional
+      chart to the statistics panel which shows slow actions
 - [ ] Add option to get and use a refresh token to extend the life time of an 
       access token
 - [ ] When creating an connection verify that the connection works #2
@@ -12,8 +19,6 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] Use http://schemaform.io/ to build a form based on a jsonschems to 
         submit data to the endpoint
         https://github.com/joshfire/jsonform
-- [ ] Add an action merge which combines the result of two actions into one 
-      result
 - [ ] Evaluate V8Js and check whether we could write an action where a user can 
       write an action in javascript
 - [ ] Add different roles for the backend. I.e. an admin/manager and developer.
@@ -69,8 +74,12 @@ _which are likely to be implemented are moved to a seperate github issue_
         "fusio-adapter" from packagist add list them on fusio-project.org
   - [ ] Extend the documentation howto write an adapter
 - [ ] Build new adapters
+  - [ ] Add action which builds a REST API from a table where a user only needs 
+        to provide the table name
   - [ ] Add SOAP action
   - [ ] Add couchdb action
+  - [ ] Add an action merge which combines the result of two actions into one 
+        result (This is probably already possible through the transform action)
   - [ ] Build adapters for popular systems i.e. wordpress/drupal etc.
   - [ ] Gateways to other systems which dont have an API
   - [ ] Gateways to complex systems i.e. sharepoint
