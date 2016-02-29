@@ -17,7 +17,7 @@ command:
     php bin/fusio system:register Acme\System\Adapter
 
 In the following an example adater definition which showcases all available 
-parameters
+parameters.
 
 .. code-block:: json
 
@@ -76,3 +76,10 @@ parameters
             }
         }]
     }
+
+It is also possible to generate such a definition on an existing system through 
+the ``system:export`` command.
+
+.. code-block:: text
+
+    php bin/fusio system:export > export.json
