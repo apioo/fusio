@@ -5,8 +5,9 @@ An app enables the consumer to request an access token through the app key and
 secret. With the access token it is possible to request protected API 
 endpoints. There is a default consumer implementation located at `consumer/` 
 which enables a user to manage their apps. The consumer can use any OAuth2 client 
-to request an access token. Fusio supports by default the `authorization_code` 
-and `password` grant type. More detailed informations about the [OAuth2] flow.
+to request an access token. Fusio supports by default the `authorization_code`,
+`implicit` and `password` grant type. More detailed informations about the 
+[OAuth2] flow.
 
 ### Authorization code
 
