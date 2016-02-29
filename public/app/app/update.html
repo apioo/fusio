@@ -4,9 +4,9 @@
 </div>
 
 <div class="modal-body">
-	<alert type="danger" close="closeResponse()" ng-if="response.success === false">
+	<uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
 		{{response.message}}
-	</alert>
+	</uib-alert>
 	<form name="routesUpdateForm" ng-submit="update(app)">
 		<input type="hidden" ng-model="app.id" value="{{app.id}}" />
 		<div class="form-group">
@@ -33,8 +33,8 @@
 			<label for="appSecret">App-Secret:</label>
 			<input type="text" id="appKey" ng-model="app.appSecret" class="form-control" readonly="readonly">
 		</div>
-		<tabset>
-			<tab heading="Scopes">
+		<uib-tabset>
+			<uib-tab heading="Scopes">
 				<table class="table fusio-table-tab">
 				<colgroup>
 					<col width="20" />
@@ -47,8 +47,8 @@
 				</tr>
 				</tbody>
 				</table>
-			</tab>
-			<tab heading="Tokens">
+			</uib-tab>
+			<uib-tab heading="Tokens">
 				<table class="table fusio-table-tab fusio-table-tab-token">
 				<colgroup>
 					<col width="*" />
@@ -64,8 +64,8 @@
 				</tr>
 				</tbody>
 				</table>		
-			</tab>
-		</tabset>
+			</uib-tab>
+		</uib-tabset>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 	</form>

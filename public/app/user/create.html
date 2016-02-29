@@ -4,9 +4,9 @@
 </div>
 
 <div class="modal-body">
-	<alert type="danger" close="closeResponse()" ng-if="response.success === false">
+	<uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
 		{{response.message}}
-	</alert>
+	</uib-alert>
 	<form name="usersCreateForm" ng-submit="create(user)">
 		<div class="form-group">
 			<label for="status">Status:</label>

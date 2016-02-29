@@ -27,13 +27,13 @@
 	</table>
 </div>
 
-<alert type="success" close="closeResponse()" ng-if="response.success === true">
+<uib-alert type="success" close="closeResponse()" ng-if="response.success === true">
 	{{response.message}}
-</alert>
+</uib-alert>
 
-<alert type="danger" close="closeResponse()" ng-if="response.success === false">
+<uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
 	{{response.message}}
-</alert>
+</uib-alert>
 
 <div class="fusio-grid">
 	<table class="table">
@@ -61,4 +61,4 @@
 	</table>
 </div>
 
-<pagination total-items="totalResults" items-per-page="16" ng-model="startIndex" ng-change="pageChanged()"></pagination>
+<uib-pagination total-items="totalResults" items-per-page="16" ng-model="startIndex" ng-change="pageChanged()"></uib-pagination>

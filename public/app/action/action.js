@@ -9,7 +9,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
   });
 }])
 
-.controller('ActionCtrl', ['$scope', '$http', '$modal', '$routeParams', '$location', function($scope, $http, $modal, $routeParams, $location){
+.controller('ActionCtrl', ['$scope', '$http', '$uibModal', '$routeParams', '$location', function($scope, $http, $uibModal, $routeParams, $location){
 
 	$scope.response = null;
 	$scope.search = '';
@@ -59,7 +59,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 	};
 
 	$scope.openCreateDialog = function(){
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			size: 'lg',
 			backdrop: 'static',
 			templateUrl: 'app/action/create.html',
@@ -74,7 +74,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 	};
 
 	$scope.openUpdateDialog = function(action){
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			size: 'lg',
 			backdrop: 'static',
 			templateUrl: 'app/action/update.html',
@@ -94,7 +94,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 	};
 
 	$scope.openDeleteDialog = function(action){
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			size: 'lg',
 			backdrop: 'static',
 			templateUrl: 'app/action/delete.html',
@@ -122,7 +122,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
 }])
 
-.controller('ActionCreateCtrl', ['$scope', '$http', '$modalInstance', 'formBuilder', function($scope, $http, $modalInstance, formBuilder){
+.controller('ActionCreateCtrl', ['$scope', '$http', '$uibModalInstance', 'formBuilder', function($scope, $http, $uibModalInstance, formBuilder){
 
 	$scope.action = {
 		name: "",
@@ -136,7 +136,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
-					$modalInstance.close(data);
+					$uibModalInstance.close(data);
 				}
 			})
 			.error(function(data){
@@ -155,7 +155,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 		});
 
 	$scope.close = function(){
-		$modalInstance.dismiss('cancel');
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.closeResponse = function(){
@@ -180,7 +180,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
 }])
 
-.controller('ActionUpdateCtrl', ['$scope', '$http', '$modalInstance', 'action', 'formBuilder', '$timeout', function($scope, $http, $modalInstance, action, formBuilder, $timeout){
+.controller('ActionUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'action', 'formBuilder', '$timeout', function($scope, $http, $uibModalInstance, action, formBuilder, $timeout){
 
 	$scope.action = action;
 	$scope.actions = [];
@@ -190,7 +190,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
-					$modalInstance.close(data);
+					$uibModalInstance.close(data);
 				}
 			})
 			.error(function(data){
@@ -199,7 +199,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 	};
 
 	$scope.close = function(){
-		$modalInstance.dismiss('cancel');
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.closeResponse = function(){
@@ -235,7 +235,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
 }])
 
-.controller('ActionDeleteCtrl', ['$scope', '$http', '$modalInstance', 'action', function($scope, $http, $modalInstance, action){
+.controller('ActionDeleteCtrl', ['$scope', '$http', '$uibModalInstance', 'action', function($scope, $http, $uibModalInstance, action){
 
 	$scope.action = action;
 
@@ -244,7 +244,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
-					$modalInstance.close(data);
+					$uibModalInstance.close(data);
 				}
 			})
 			.error(function(data){
@@ -253,7 +253,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 	};
 
 	$scope.close = function(){
-		$modalInstance.dismiss('cancel');
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.closeResponse = function(){

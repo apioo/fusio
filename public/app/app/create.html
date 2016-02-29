@@ -4,9 +4,9 @@
 </div>
 
 <div class="modal-body">
-	<alert type="danger" close="closeResponse()" ng-if="response.success === false">
+	<uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
 		{{response.message}}
-	</alert>
+	</uib-alert>
 	<form name="routesCreateForm" ng-submit="create(app)">
 		<div class="form-group">
 			<label for="status">Status:</label>
@@ -16,7 +16,7 @@
 		</div>
 		<div class="form-group">
 			<label for="userId">User:</label>
-			<input type="text" id="user" ng-model="selectedUser" placeholder="User-name" typeahead="user as user.name for user in getUsers($viewValue)" typeahead-on-select="app.userId = $item.id" typeahead-select-on-blur="true" typeahead-min-length="3" aria-describedby="userHelp" class="form-control">
+			<input type="text" id="user" ng-model="selectedUser" placeholder="User-name" uib-typeahead="user as user.name for user in getUsers($viewValue)" typeahead-on-select="app.userId = $item.id" typeahead-select-on-blur="true" typeahead-min-length="3" aria-describedby="userHelp" class="form-control">
 			<span class="help-block" id="userHelp">The user which is assigned to the application</span>
 		</div>
 		<div class="form-group">
@@ -29,8 +29,8 @@
 			<input type="text" id="url" ng-model="app.url" aria-describedby="urlHelp" class="form-control">
 			<span class="help-block" id="urlHelp">Optional url of the application</span>
 		</div>
-		<tabset>
-			<tab heading="Scopes">
+		<uib-tabset>
+			<uib-tab heading="Scopes">
 				<table class="table fusio-table-tab">
 				<colgroup>
 					<col width="20" />
@@ -43,8 +43,8 @@
 				</tr>
 				</tbody>
 				</table>
-			</tab>
-		</tabset>
+			</uib-tab>
+		</uib-tabset>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 	</form>

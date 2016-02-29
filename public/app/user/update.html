@@ -4,9 +4,9 @@
 </div>
 
 <div class="modal-body">
-	<alert type="danger" close="closeResponse()" ng-if="response.success === false">
+	<uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
 		{{response.message}}
-	</alert>
+	</uib-alert>
 	<form name="userUpdateForm" ng-submit="update(user)">
 		<input type="hidden" ng-model="user.id" value="{{user.id}}" />
 		<div class="form-group">
@@ -20,8 +20,8 @@
 			<input type="text" id="name" ng-model="user.name" aria-describedby="nameHelp" class="form-control">
 			<span class="help-block" id="nameHelp">Name of the user must match the following regexp <code>[A-z0-9\-\_\.]{3,32}</code></span>
 		</div>
-		<tabset>
-			<tab heading="Scopes">
+		<uib-tabset>
+			<uib-tab heading="Scopes">
 				<table class="table fusio-table-tab">
 				<colgroup>
 					<col width="20" />
@@ -34,8 +34,8 @@
 				</tr>
 				</tbody>
 				</table>
-			</tab>
-			<tab heading="Apps">
+			</uib-tab>
+			<uib-tab heading="Apps">
 				<table class="table fusio-table-tab fusio-table-tab-token">
 				<tbody>
 				<tr ng-repeat="app in user.apps">
@@ -46,8 +46,8 @@
 				</tr>
 				</tbody>
 				</table>		
-			</tab>
-		</tabset>
+			</uib-tab>
+		</uib-tabset>
 		<button type="submit" class="btn btn-primary">Save</button>
 		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 	</form>

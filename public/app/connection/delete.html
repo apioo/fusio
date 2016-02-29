@@ -4,9 +4,9 @@
 </div>
 
 <div class="modal-body">
-	<alert type="danger" close="closeResponse()" ng-if="response.success === false">
+	<uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
 		{{response.message}}
-	</alert>
+	</uib-alert>
 	<form name="routesDeleteForm" ng-submit="delete(connection)">
 		<input type="hidden" ng-model="connection.id" value="{{connection.id}}" />
 		<div class="form-group">

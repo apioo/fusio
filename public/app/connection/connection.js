@@ -9,7 +9,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 	});
 }])
 
-.controller('ConnectionCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
+.controller('ConnectionCtrl', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal){
 
 	$scope.response = null;
 	$scope.search = '';
@@ -44,7 +44,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.openCreateDialog = function(){
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			size: 'lg',
 			backdrop: 'static',
 			templateUrl: 'app/connection/create.html',
@@ -59,7 +59,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.openUpdateDialog = function(connection){
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			size: 'lg',
 			backdrop: 'static',
 			templateUrl: 'app/connection/update.html',
@@ -79,7 +79,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.openDeleteDialog = function(connection){
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			size: 'lg',
 			backdrop: 'static',
 			templateUrl: 'app/connection/delete.html',
@@ -106,7 +106,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ConnectionCreateCtrl', ['$scope', '$http', '$modalInstance', 'formBuilder', function($scope, $http, $modalInstance, formBuilder){
+.controller('ConnectionCreateCtrl', ['$scope', '$http', '$uibModalInstance', 'formBuilder', function($scope, $http, $uibModalInstance, formBuilder){
 
 	$scope.connection = {
 		name: '',
@@ -121,7 +121,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
-					$modalInstance.close(data);
+					$uibModalInstance.close(data);
 				}
 			})
 			.error(function(data){
@@ -140,7 +140,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 		});
 
 	$scope.close = function(){
-		$modalInstance.dismiss('cancel');
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.closeResponse = function(){
@@ -165,7 +165,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ConnectionUpdateCtrl', ['$scope', '$http', '$modalInstance', 'formBuilder', 'connection', function($scope, $http, $modalInstance, formBuilder, connection){
+.controller('ConnectionUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'formBuilder', 'connection', function($scope, $http, $uibModalInstance, formBuilder, connection){
 
 	if (angular.isArray(connection.config)) {
 		connection.config = {};
@@ -179,7 +179,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
-					$modalInstance.close(data);
+					$uibModalInstance.close(data);
 				}
 			})
 			.error(function(data){
@@ -188,7 +188,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.close = function(){
-		$modalInstance.dismiss('cancel');
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.closeResponse = function(){
@@ -220,7 +220,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ConnectionDeleteCtrl', ['$scope', '$http', '$modalInstance', 'connection', function($scope, $http, $modalInstance, connection){
+.controller('ConnectionDeleteCtrl', ['$scope', '$http', '$uibModalInstance', 'connection', function($scope, $http, $uibModalInstance, connection){
 
 	$scope.connection = connection;
 
@@ -229,7 +229,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
-					$modalInstance.close(data);
+					$uibModalInstance.close(data);
 				}
 			})
 			.error(function(data){
@@ -238,7 +238,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.close = function(){
-		$modalInstance.dismiss('cancel');
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.closeResponse = function(){

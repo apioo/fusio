@@ -54,15 +54,15 @@
 
 <header class="fusio-header">
 	<div class="btn-group pull-right fusio-header-profile">
-		<span class="dropdown" dropdown on-toggle="toggled(open)">
-			<a href class="dropdown-toggle" dropdown-toggle><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Administrator</a>
-			<ul class="dropdown-menu dropdown-menu-right">
-				<li><a href="#/account/change_password">Change password</a></li>
-				<li><a href="#/logout">Logout</a></li>
+		<span class="dropdown" uib-dropdown on-toggle="toggled(open)">
+			<a href uib-dropdown-toggle class="dropdown-toggle"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Administrator</a>
+			<ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-menu-right">
+				<li role="menuitem"><a href="#/account/change_password">Change password</a></li>
+				<li role="menuitem"><a href="#/logout">Logout</a></li>
 			</ul>
 		</span>
 	</div>
-	<h1>Fusio <span>(v0.1)</span></h1>
+	<h1>Fusio <span>({{version}})</span></h1>
 </header>
 
 <div class="container-fluid">

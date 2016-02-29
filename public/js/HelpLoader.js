@@ -1,5 +1,5 @@
 
-fusioApp.factory('helpLoader', ['$http', '$showdown', '$q', '$modal', function($http, $showdown, $q, $modal){
+fusioApp.factory('helpLoader', ['$http', '$showdown', '$q', '$uibModal', function($http, $showdown, $q, $uibModal){
     var helper = {};
  
     helper.load = function(path){
@@ -38,12 +38,12 @@ fusioApp.factory('helpLoader', ['$http', '$showdown', '$q', '$modal', function($
 
     helper.showDialog = function(path){
         this.load(path).then(function(html){
-            $modal.open({
+            $uibModal.open({
                 size: 'md',
                 template: '<div class="modal-body">' + html + '</div>'
             });
         }, function(html){
-            $modal.open({
+            $uibModal.open({
                 size: 'md',
                 template: '<div class="modal-body"><div class="alert alert-info">' + html + '</div></div>'
             });

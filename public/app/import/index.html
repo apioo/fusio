@@ -1,19 +1,19 @@
 
 <h1>Import</h1>
 
-<alert type="info">The importer provides a way to import route and schema 
+<uib-alert type="info">The importer provides a way to import route and schema 
 definitions. The data must be in the <a href="https://github.com/raml-org/raml-spec/blob/master/raml-0.8.md">RAML</a> 
-format.</alert>
+format.</uib-alert>
 
-<alert type="danger" ng-if="error">{{ error }}</alert>
+<uib-alert type="danger" ng-if="error">{{ error }}</uib-alert>
 
-<alert type="success" ng-if="success">You have successfully imported the provided data</alert>
+<uib-alert type="success" ng-if="success">You have successfully imported the provided data</uib-alert>
 
-<tabset>
-    <tab heading="RAML">
+<uib-tabset>
+    <uib-tab heading="RAML">
         <br>
         <div ui-ace="{mode: 'yaml'}" ng-model="source" style="height:400px"></div>
         <br>
         <a ng-click="transform(source)" class="btn btn-default">Preview</a>
-    </tab>
-</tabset>
+    </uib-tab>
+</uib-tabset>

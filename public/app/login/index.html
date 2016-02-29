@@ -5,9 +5,9 @@
 			<h1>Fusio <span>(v0.1)</span></h1>
 		</header>
 		<div class="fusio-login-panel-body">
-			<alert type="danger" ng-if="response">
+			<uib-alert type="danger" ng-if="response">
 				{{response}}
-			</alert>
+			</uib-alert>
 			<form name="loginForm" method="post" ng-submit="login(credentials)" novalidate>
 				<div class="form-group">
 					<label for="username">Username:</label>

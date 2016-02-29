@@ -9,7 +9,7 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
     });
 }])
 
-.controller('ImportCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
+.controller('ImportCtrl', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal){
 
     $scope.source;
     $scope.error;
@@ -35,7 +35,7 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
     };
 
     $scope.openPreviewDialog = function(data){
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             size: 'lg',
             backdrop: 'static',
             templateUrl: 'app/import/preview.html',
@@ -55,7 +55,7 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ImportPreviewCtrl', ['$scope', '$http', '$modalInstance', '$modal', 'data', function($scope, $http, $modalInstance, $modal, data){
+.controller('ImportPreviewCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'data', function($scope, $http, $uibModalInstance, $uibModal, data){
 
     $scope.data = data;
 
@@ -68,7 +68,7 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
                 $scope.error = null;
             }
 
-            $modalInstance.close();
+            $uibModalInstance.close();
         }).error(function(data){
             if ('success' in data && data.success === false) {
                 $scope.error = data.message;
@@ -79,7 +79,7 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
     };
 
     $scope.openRouteDialog = function(route){
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             size: 'lg',
             backdrop: 'static',
             templateUrl: 'app/import/route.html',
@@ -97,7 +97,7 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
     };
 
     $scope.openSchemaDialog = function(schema){
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             size: 'lg',
             backdrop: 'static',
             templateUrl: 'app/import/schema.html',
@@ -115,12 +115,12 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
     };
 
     $scope.close = function(){
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 
 }])
 
-.controller('ImportRouteCtrl', ['$scope', '$http', '$modalInstance', 'route', function($scope, $http, $modalInstance, route){
+.controller('ImportRouteCtrl', ['$scope', '$http', '$uibModalInstance', 'route', function($scope, $http, $uibModalInstance, route){
 
     $scope.route = route;
 
@@ -139,17 +139,17 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
     }];
 
     $scope.close = function(){
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 
 }])
 
-.controller('ImportSchemaCtrl', ['$scope', '$http', '$modalInstance', 'schema', function($scope, $http, $modalInstance, schema){
+.controller('ImportSchemaCtrl', ['$scope', '$http', '$uibModalInstance', 'schema', function($scope, $http, $uibModalInstance, schema){
 
     $scope.schema = schema;
 
     $scope.close = function(){
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 
 }]);

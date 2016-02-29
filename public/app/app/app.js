@@ -9,7 +9,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 	});
 }])
 
-.controller('AppCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
+.controller('AppCtrl', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal){
 
 	$scope.response = null;
 	$scope.search = '';
@@ -44,7 +44,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.openCreateDialog = function(){
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			size: 'lg',
 			backdrop: 'static',
 			templateUrl: 'app/app/create.html',
@@ -59,7 +59,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.openUpdateDialog = function(app){
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			size: 'lg',
 			backdrop: 'static',
 			templateUrl: 'app/app/update.html',
@@ -79,7 +79,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.openDeleteDialog = function(app){
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			size: 'lg',
 			backdrop: 'static',
 			templateUrl: 'app/app/delete.html',
@@ -106,7 +106,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('AppCreateCtrl', ['$scope', '$http', '$modalInstance', function($scope, $http, $modalInstance){
+.controller('AppCreateCtrl', ['$scope', '$http', '$uibModalInstance', function($scope, $http, $uibModalInstance){
 
 	$scope.app = {
 		status: 1,
@@ -131,7 +131,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
-					$modalInstance.close(data);
+					$uibModalInstance.close(data);
 				}
 			})
 			.error(function(data){
@@ -140,7 +140,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.close = function(){
-		$modalInstance.dismiss('cancel');
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.closeResponse = function(){
@@ -166,7 +166,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('AppUpdateCtrl', ['$scope', '$http', '$modalInstance', 'app', function($scope, $http, $modalInstance, app){
+.controller('AppUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'app', function($scope, $http, $uibModalInstance, app){
 
 	$scope.app = app;
 
@@ -196,7 +196,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
-					$modalInstance.close(data);
+					$uibModalInstance.close(data);
 				}
 			})
 			.error(function(data){
@@ -205,7 +205,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.close = function(){
-		$modalInstance.dismiss('cancel');
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.closeResponse = function(){
@@ -252,7 +252,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('AppDeleteCtrl', ['$scope', '$http', '$modalInstance', 'app', function($scope, $http, $modalInstance, app){
+.controller('AppDeleteCtrl', ['$scope', '$http', '$uibModalInstance', 'app', function($scope, $http, $uibModalInstance, app){
 
 	$scope.app = app;
 
@@ -261,7 +261,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
-					$modalInstance.close(data);
+					$uibModalInstance.close(data);
 				}
 			})
 			.error(function(data){
@@ -270,7 +270,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.close = function(){
-		$modalInstance.dismiss('cancel');
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.closeResponse = function(){

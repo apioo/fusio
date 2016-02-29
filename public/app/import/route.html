@@ -11,8 +11,8 @@
         to use variable path fragments i.e. <code>/acme/:news</code>. Click 
         <a ng-click="help.showDialog('help/routes.md#path')">here</a> for more informations</span>
     </div>
-    <tabset>
-        <tab ng-repeat="version in route.config" heading="v{{version.name}}" active="version.active">
+    <uib-tabset>
+        <uib-tab ng-repeat="version in route.config" heading="v{{version.name}}" active="version.active">
             <div class="form-group">
                 <label for="status">Status:</label>
                 <select class="form-control" ng-model="version.status" ng-options="status.key as status.value for status in statuuus" aria-describedby="statusHelp">
@@ -20,8 +20,8 @@
                 <span class="help-block" id="statusHelp">The status of the API endpoint for this version. For more informations about the impact 
                 click <a ng-click="help.showDialog('help/routes.md#status')">here</a></span>
             </div>
-            <tabset>
-                <tab ng-repeat="method in version.methods" heading="{{method.name}}">
+            <uib-tabset>
+                <uib-tab ng-repeat="method in version.methods" heading="{{method.name}}">
                     <div class="checkbox">
                         <label><input type="checkbox" ng-model="method.active" ng-disabled="version.status == 1" aria-describedby="activeHelp"> <b>Active</b></label>
                         <span class="help-block" id="activeHelp">Whether the request method is allowed</span>
@@ -45,10 +45,10 @@
                         <input type="text" class="form-control" ng-model="method.action" ng-disabled="version.status == 1" aria-describedby="actionHelp" />
                         <span class="help-block" id="actionHelp">The action which receives the request and produces a response</span>
                     </div>
-                </tab>
-            </tabset>
-        </tab>
-    </tabset>
+                </uib-tab>
+            </uib-tabset>
+        </uib-tab>
+    </uib-tabset>
 
     <button type="button" ng-click="close()" class="btn btn-default">Close</button>
 </div>

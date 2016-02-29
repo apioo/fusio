@@ -4,17 +4,17 @@
 </div>
 
 <div class="modal-body">
-	<alert type="danger" close="closeResponse()" ng-if="response.success === false">
+	<uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
 		{{response.message}}
-	</alert>
+	</uib-alert>
 	<form name="routesUpdateForm" ng-submit="update(route)">
 		<input type="hidden" ng-model="route.id" value="{{route.id}}" />
 		<div class="form-group">
 			<label for="path">Path:</label>
 			<input type="text" id="path" ng-model="route.path" ng-disabled="true" class="form-control" value="{{route.path}}">
 		</div>
-		<tabset>
-			<tab ng-repeat="version in route.config" heading="v{{version.name}}" active="version.active">
+		<uib-tabset>
+			<uib-tab ng-repeat="version in route.config" heading="v{{version.name}}" active="version.active">
 				<div class="form-group">
 					<label for="status">Status:</label>
 					<select class="form-control" ng-model="version.status" ng-options="status.key as status.value for status in statuuus" aria-describedby="statusHelp">
@@ -22,8 +22,8 @@
 					<span class="help-block" id="statusHelp">The status of the API endpoint for this version. For more informations about the impact 
 					click <a ng-click="help.showDialog('help/routes.md#status')">here</a></span>
 				</div>
-				<tabset>
-					<tab ng-repeat="method in version.methods" heading="{{method.name}}">
+				<uib-tabset>
+					<uib-tab ng-repeat="method in version.methods" heading="{{method.name}}">
 						<div class="checkbox">
 							<label><input type="checkbox" ng-model="method.active" ng-disabled="version.status != 4" aria-describedby="activeHelp"> <b>Active</b></label>
 							<span class="help-block" id="activeHelp">Whether the request method is allowed</span>
@@ -50,11 +50,11 @@
 							</select>
 							<span class="help-block" id="actionHelp">The action which receives the request and produces a response</span>
 						</div>
-					</tab>
-				</tabset>
+					</uib-tab>
+				</uib-tabset>
 				<a ng-click="removeVersion(version)" ng-disabled="version.status != 4 || route.config.length == 1" class="btn btn-default pull-right">Remove version</a>
-			</tab>
-		</tabset>
+			</uib-tab>
+		</uib-tabset>
 
 		<a ng-click="addVersion()" class="btn btn-default">Add version</a>
 

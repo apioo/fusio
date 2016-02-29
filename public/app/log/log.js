@@ -9,7 +9,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
   });
 }])
 
-.controller('LogCtrl', ['$scope', '$http', '$modal', function($scope, $http, $modal){
+.controller('LogCtrl', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal){
 
     // set initial date range
     var from = new Date();
@@ -71,7 +71,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 	};
 
 	$scope.openDetailDialog = function(log){
-		var modalInstance = $modal.open({
+		var modalInstance = $uibModal.open({
 			size: 'lg',
             backdrop: 'static',
 			templateUrl: 'app/log/detail.html',
@@ -95,7 +95,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 	};
 
     $scope.openFilterDialog = function(){
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             size: 'lg',
             backdrop: 'static',
             templateUrl: 'app/statistic/filter.html',
@@ -118,16 +118,16 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('LogDetailCtrl', ['$scope', '$http', '$modal', '$modalInstance', 'log', function($scope, $http, $modal, $modalInstance, log){
+.controller('LogDetailCtrl', ['$scope', '$http', '$uibModal', '$uibModalInstance', 'log', function($scope, $http, $uibModal, $uibModalInstance, log){
 
 	$scope.log = log;
 
 	$scope.close = function(){
-		$modalInstance.dismiss('cancel');
+		$uibModalInstance.dismiss('cancel');
 	};
 
 	$scope.openTraceDialog = function(error){
-		$modal.open({
+		$uibModal.open({
 			size: 'md',
             backdrop: 'static',
 			template: '<div class="modal-body"><pre>' + error.trace + '</pre></div>'

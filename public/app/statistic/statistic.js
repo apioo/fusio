@@ -9,7 +9,7 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
   });
 }])
 
-.controller('StatisticCtrl', ['$scope', '$http', '$modal', '$compile', function($scope, $http, $modal, $compile){
+.controller('StatisticCtrl', ['$scope', '$http', '$uibModal', '$compile', function($scope, $http, $uibModal, $compile){
 
     // set initial date range
     var from = new Date();
@@ -59,7 +59,7 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
     };
 
     $scope.openFilterDialog = function(){
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             size: 'lg',
             backdrop: 'static',
             templateUrl: 'app/statistic/filter.html',
@@ -83,16 +83,16 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
 }])
 
 
-.controller('StatisticFilterCtrl', ['$scope', '$http', '$modalInstance', 'filter', function($scope, $http, $modalInstance, filter){
+.controller('StatisticFilterCtrl', ['$scope', '$http', '$uibModalInstance', 'filter', function($scope, $http, $uibModalInstance, filter){
 
     $scope.filter = filter;
 
     $scope.doFilter = function(){
-        $modalInstance.close($scope.filter);
+        $uibModalInstance.close($scope.filter);
     };
 
     $scope.close = function(){
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 
     $http.get(fusio_url + 'backend/routes')

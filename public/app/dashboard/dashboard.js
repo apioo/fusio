@@ -9,14 +9,14 @@ angular.module('fusioApp.dashboard', ['ngRoute', 'chart.js'])
   });
 }])
 
-.controller('DashboardCtrl', ['$scope', '$http', '$modal', function ($scope, $http, $modal) {
+.controller('DashboardCtrl', ['$scope', '$http', '$uibModal', function ($scope, $http, $uibModal) {
 
     // set initial date range
-    var from = new Date();
-    from.setDate(from.getDate() - 9);
-    var to = new Date();
+    var fromDate = new Date();
+    fromDate.setDate(fromDate.getDate() - 9);
+    var toDate = new Date();
 
-    var query = '?from=' + from.toISOString() + '&to=' + to.toISOString();
+    var query = '?from=' + fromDate.toISOString() + '&to=' + toDate.toISOString();
 
 	$http.get(fusio_url + 'backend/statistic/incoming_requests' + query).success(function(data){
 		$scope.incomingRequests = data;
