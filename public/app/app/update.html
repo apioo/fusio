@@ -26,6 +26,12 @@
 			<span class="help-block" id="urlHelp">Optional url of the application</span>
 		</div>
 		<div class="form-group">
+			<label for="parameters">Parameters:</label>
+			<input type="text" id="parameters" ng-model="app.parameters" aria-describedby="parametersHelp" class="form-control">
+			<span class="help-block" id="parametersHelp">Optional parameters of the application i.e. <code>premium=1&amp;blocked=no</code>. These parameters can be
+			used inside an action to change the behaviour depending on the app.</span>
+		</div>
+		<div class="form-group">
 			<label for="appKey">App-Key:</label>
 			<input type="text" id="appKey" ng-model="app.appKey" class="form-control" readonly="readonly">
 		</div>

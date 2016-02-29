@@ -29,6 +29,12 @@
 			<input type="text" id="url" ng-model="app.url" aria-describedby="urlHelp" class="form-control">
 			<span class="help-block" id="urlHelp">Optional url of the application</span>
 		</div>
+		<div class="form-group">
+			<label for="parameters">Parameters:</label>
+			<input type="text" id="parameters" ng-model="app.parameters" aria-describedby="parametersHelp" class="form-control">
+			<span class="help-block" id="parametersHelp">Optional parameters of the application i.e. <code>premium=1&amp;blocked=no</code>. These parameters can be
+			used inside an action to change the behaviour depending on the app.</span>
+		</div>
 		<uib-tabset>
 			<uib-tab heading="Scopes">
 				<table class="table fusio-table-tab">
