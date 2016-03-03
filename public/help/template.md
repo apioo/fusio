@@ -60,7 +60,13 @@ following list contains all available parameters.
      * `scopes`  
        Returns all available scopes for the app. Note the available scopes for the
        app can differ from the scopes requested for the token
- * `body`  
+   * `user`  
+     * `id`  
+       Returns the id of the user or null
+     * `status`  
+       Returns the status of the user or null
+     * `name`  
+       Returns the name of the user or null
    * `get(path)`  
      Returns a value of the request body. This can also be a path if the data
      structure is nested i.e. `author.name`

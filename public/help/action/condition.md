@@ -22,7 +22,7 @@ condition.
      Returns the count of requests for the app and the route of the current day
  * `app`  
    * `isAnonymous()`  
-     Returns a boolean whether the request is authorized or not
+     Returns a boolean whether the app is authenticated
    * `getId()`  
      Returns the id of the app or null
    * `getUserId()`  
@@ -42,6 +42,15 @@ condition.
      app can differ from the scopes requested for the token
    * `hasScope(name)`  
      Returns whether the app has a specific token assigned
+ * `user`  
+   * `isAnonymous()`  
+     Returns a boolean whether the user is authenticated
+   * `getId()`  
+     Returns the id of the user or null
+   * `getStatus()`  
+     Returns the status of the user or null
+   * `getName()`  
+     Returns the name of the user or null
  * `routeId`  
    Returns the integer id of the used route
  * `uriFragments`  
