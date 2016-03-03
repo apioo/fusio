@@ -1,85 +1,39 @@
 
 <md-content flex layout-padding>
 
-    <p>Welcome, this is a quick introduction to help you get started using this 
+    <div class="md-body-1">
+    <p><b>Welcome</b>, this is a quick introduction to help you get started using this 
     API. On the left sidebar you see all available endpoints. Each endpoint 
     shows the available request methods and the request/response data format.</p>
 
-    <p>The API uses <a href="https://tools.ietf.org/html/rfc6749">OAuth2</a> for 
-    authorization. In order to obtain an access token you have to send an 
-    <a href="https://tools.ietf.org/html/rfc6749#section-4.4">client credentials</a> 
-    request to the following endpoint. The app key and secret must be obtained 
-    by the API provider.</p>
+    <p>Through the <a href="../consumer">consumer</a> it is possible to manage 
+    all your apps and authorizations. If you have obtained an app key and secret 
+    you have several options to obtain an access token. The API uses 
+    <a href="https://tools.ietf.org/html/rfc6749">OAuth2</a> for authorization 
+    so you can use any OAuth2 compatible library to request an access token.</p>
 
-    <md-tabs md-dynamic-height>
-        <md-tab label="Request">
-            <md-content>
-                <div hljs no-escape>
-POST /authorization/token HTTP/1.1
-User-Agent: Awesome-App 0.1
-Content-Type: application/x-www-form-urlencoded
-Authorization: Basic YWRtaW46dGVzdDEyMw==
-Content-Length: 49
+    <dl>
+        <dt><b>Authorization-Endpoint</b></dt>
+        <dd><code>/consumer</code></dd>
+        <dt><b>Token-Endpoint</b></dt>
+        <dd><code>/authorization/token</code></dd>
+    </dl>
 
-grant_type=client_credentials&amp;scope=authorization
-</div>
-            </md-content>
-        </md-tab>
-        <md-tab label="Response">
-            <md-content>
-                <div hljs no-escape>
-HTTP/1.1 200 OK
-X-Powered-By: psx
-Content-Length: 148
-Content-Type: application/json
+    <p><b>Authorization Code Grant</b><br>
+    For the authorization code you have to redirect the resource owner to the consumer endpoint: 
+    <code>/consumer/?response_type=code&amp;client_id=[app_key]&amp;redirect_uri=[url]&amp;scope=authorization</code>.
+    If the authorization was successful the user gets redirected to the <code>redirect_uri</code> of your app.
+    The <a href="https://tools.ietf.org/html/rfc6749#section-4.1.2">redirect_uri</a> contains a GET parameter <code>code</code>
+    which can be <a href="https://tools.ietf.org/html/rfc6749#section-4.1.3">exchanged</a> 
+    for an access token.</p>
 
-{
-    "access_token": "0536a0b1fc599246743649991b133eb6dd8889cba59f84d1ff1546ff9b3d8781",
-    "token_type": "bearer",
-    "expires_in": 1433961485
-}
-</div>
-            </md-content>
-        </md-tab>
-    </md-tabs>
+    <p><b>Resource Owner Password Credentials Grant</b><br>
+    Through the resource owner password credentials grant you can <a href="https://tools.ietf.org/html/rfc6749#section-4.3.2">obtain</a> 
+    an access token with your app credentials and the username/password of your 
+    account.</p>
 
-    <p>The endpoint returns an access token if the authentication was successful. 
-    This token can only be used to access the authorization endpoints which 
-    give you the option to revoke the access token or get informations about
-    who you are. To request other endpoints you need to specify another scope.
-    The available scopes can be obtained by the API provider. In the following
-    an example to check whether the authorization was successful.</p>
-
-    <md-tabs md-dynamic-height>
-        <md-tab label="Request">
-            <md-content>
-                <div hljs no-escape>
-GET /authorization/whoami HTTP/1.1
-User-Agent: Awesome-App 0.1
-Connection: Keep-Alive
-Authorization: Bearer 1ab55cbf3eaedd86d87547111dfe2e8d364ff9e0871b930663e28564ef031f65
-</div>
-            </md-content>
-        </md-tab>
-        <md-tab label="Response">
-            <md-content>
-                <div hljs no-escape>
-HTTP/1.1 200 OK
-X-Powered-By: psx
-Content-Length: 65
-Content-Type: application/json
-
-{
-    "id": "1",
-    "status": "1",
-    "name": "Administrator"
-}
-</div>
-            </md-content>
-        </md-tab>
-    </md-tabs>
-
-    <p>Please contact the API provider for more informations about the API. This
-    API was built with <a href="http://fusio-project.org">Fusio</a>.</p>
+    <p>Please contact the API provider for more informations. This API was built 
+    with <a href="http://fusio-project.org">Fusio</a>.</p>
+    </div>
 
 </md-content>
