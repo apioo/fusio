@@ -32,22 +32,26 @@ rule.
      Checks whether there is a row in the table where the column is equal to the 
      provided value
  * `filter`  
-   * `strlen(value)`  
+   * `length(value)`  
      Returns the string length of the value
+   * `match(pattern, value)`  
+     Returns whether the value matches the provided regular expression
+   * `inArray(value, array)`  
+     Returns whether the value is in the array
    * `alnum(value)`  
      Checks if all of the characters in the provided string are alphanumeric
    * `alpha(value)`  
      Checks if all of the characters in the provided string are alphabetic
    * `digit(value)`  
      Checks if all of the characters in the provided string are numerical
+   * `xdigit(value)`  
+     Checks if all of the characters in the provided string are hexadecimal digits
    * `email(value)`  
      Validates whether the value is a valid e-mail address
    * `ip(value)`  
      Validates value as IP address
    * `url(value)`  
      Validates value as URL
-   * `xdigit(value)`  
-     Checks if all of the characters in the provided string are hexadecimal 'digits'
  * `value`  
    Contains the value of the reference
 
