@@ -46,7 +46,7 @@ if(!empty($autoloadFile))
     {
         $container = require_once($containerFile);
 
-        PSX\Bootstrap::setupEnvironment($container->get('config'));
+        PSX\Framework\Bootstrap::setupEnvironment($container->get('config'));
 
         $container->get('console')->run();
     }

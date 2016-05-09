@@ -23,7 +23,7 @@ var fusioApp = angular.module('fusioApp', [
 	'fusioApp.user'
 ]);
 
-fusioApp.value('version', 'v0.2');
+fusioApp.value('version', 'v0.3');
 
 fusioApp.factory('fusioIsAuthenticated', ['$location', '$window', '$q', function($location, $window, $q) {  
 	return {

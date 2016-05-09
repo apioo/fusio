@@ -43,7 +43,7 @@ if (isset($_SERVER['REQUEST_URI']) && substr($_SERVER['REQUEST_URI'], 0, 11) == 
 $loader    = require(__DIR__ . '/../vendor/autoload.php');
 $container = require_once(__DIR__ . '/../container.php');
 
-PSX\Bootstrap::setupEnvironment($container->get('config'));
+PSX\Framework\Bootstrap::setupEnvironment($container->get('config'));
 
 // setup connection
 $params = null;

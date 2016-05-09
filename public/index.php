@@ -22,7 +22,7 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 
 $container = require_once(__DIR__ . '/../container.php');
 
-PSX\Bootstrap::setupEnvironment($container->get('config'));
+PSX\Framework\Bootstrap::setupEnvironment($container->get('config'));
 
 $request  = $container->get('request_factory')->createRequest();
 $response = $container->get('response_factory')->createResponse();
