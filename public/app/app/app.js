@@ -127,6 +127,13 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 	}];
 
 	$scope.create = function(app){
+        // remove null values from scope
+        if (app.scopes) {
+            app.scopes = app.scopes.filter(function(val){
+                return val !== null;
+            });
+        }
+
 		$http.post(fusio_url + 'backend/app', app)
 			.success(function(data){
 				$scope.response = data;
@@ -151,9 +158,11 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 		return $http.get(fusio_url + 'backend/user?search=' + encodeURIComponent(name)).then(function(response){
 			if (angular.isArray(response.data.entry)) {
 				return response.data.entry;
+                /*
 				return response.data.entry.map(function(item){
 					return item.name;
 				});
+				*/
 			} else {
 				return [];
 			}
@@ -192,7 +201,14 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 			delete app.tokens;
 		}
 
-		$http.put(fusio_url + 'backend/app/' + app.id, app)
+        // remove null values from scope
+        if (app.scopes) {
+            app.scopes = app.scopes.filter(function(val){
+                return val !== null;
+            });
+        }
+
+        $http.put(fusio_url + 'backend/app/' + app.id, app)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {

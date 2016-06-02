@@ -28,11 +28,12 @@ describe('App tests', function() {
     statusOptions.get(0).click();
 
     element(by.id('user')).sendKeys('Develop');
-    browser.wait(EC.visibilityOf($('.dropdown-menu')), 5000);
+    browser.wait(EC.visibilityOf($('.dropdown-menu li a')), 5000);
     element.all(by.css('.dropdown-menu li a')).first().click();
 
     element(by.model('app.name')).sendKeys('test-app');
     element(by.model('app.url')).sendKeys('http://foo.com');
+    element(by.model('app.parameters')).sendKeys('foo=bar&bar=1');
 
     element.all(by.model('app.scopes[$index]')).click();
 
@@ -55,6 +56,7 @@ describe('App tests', function() {
     expect(element(by.model('app.status')).getAttribute('value')).toEqual('0');
     expect(element(by.model('app.name')).getAttribute('value')).toEqual('test-app');
     expect(element(by.model('app.url')).getAttribute('value')).toEqual('http://foo.com');
+    expect(element(by.model('app.parameters')).getAttribute('value')).toEqual('foo=bar&bar=1');
 
     $('button.btn-primary').click();
 
