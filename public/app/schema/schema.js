@@ -158,10 +158,6 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 
 .controller('SchemaUpdateCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'schema', function($scope, $http, $uibModalInstance, $uibModal, schema){
 
-    if (typeof schema.source != 'string') {
-        schema.source = JSON.stringify(schema.source, null, 4);
-    }
-
 	$scope.schema = schema;
 
 	$scope.update = function(schema){
@@ -198,8 +194,12 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 
 	$http.get(fusio_url + 'backend/schema/' + schema.id)
 		.success(function(data){
+            if (typeof data.source != 'string') {
+                data.source = JSON.stringify(data.source, null, 4);
+            }
+
 			$scope.schema = data;
-		});
+        });
 
 }])
 
