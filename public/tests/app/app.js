@@ -28,8 +28,8 @@ describe('App tests', function() {
     statusOptions.get(0).click();
 
     element(by.id('user')).sendKeys('Develop');
-    browser.wait(EC.visibilityOf($('.dropdown-menu[typeahead-popup]')), 5000);
-    element.all(by.css('.dropdown-menu[typeahead-popup] li a')).first().click();
+    browser.wait(EC.visibilityOf($('.dropdown-menu')), 5000);
+    element.all(by.css('.dropdown-menu li a')).first().click();
 
     element(by.model('app.name')).sendKeys('test-app');
     element(by.model('app.url')).sendKeys('http://foo.com');
