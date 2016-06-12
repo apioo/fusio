@@ -75,8 +75,8 @@ $container->set('connection', $connection);
 if (isset($_SERVER['argv']) && in_array('--warmup', $_SERVER['argv'])) {
     // warmup
     $loader->addClassMap([
-        'Fusio\Impl\Fixture'    => __DIR__ . '/../vendor/fusio/impl/tests/Fixture.php',
-        'Fusio\Impl\TestSchema' => __DIR__ . '/../vendor/fusio/impl/tests/TestSchema.php',
+        'Fusio\Impl\Tests\Fixture'    => __DIR__ . '/../vendor/fusio/impl/tests/Fixture.php',
+        'Fusio\Impl\Tests\TestSchema' => __DIR__ . '/../vendor/fusio/impl/tests/TestSchema.php',
     ]);
 
     // create schema
@@ -92,7 +92,7 @@ if (isset($_SERVER['argv']) && in_array('--warmup', $_SERVER['argv'])) {
 
     // insert fixtures
     $connection = new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($container->get('connection')->getWrappedConnection());
-    PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT()->execute($connection, Fusio\Impl\Fixture::getDataSet());
+    PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT()->execute($connection, Fusio\Impl\Tests\Fixture::getDataSet());
 
     echo 'Warmup successful' . "\n";
 } else {
