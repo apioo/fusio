@@ -83,7 +83,7 @@ if (isset($_SERVER['argv']) && in_array('--warmup', $_SERVER['argv'])) {
     $fromSchema = $connection->getSchemaManager()->createSchema();
     $version    = new Fusio\Impl\Database\Version\Version030();
     $toSchema   = $version->getSchema();
-    Fusio\Impl\TestSchema::appendSchema($toSchema);
+    Fusio\Impl\Tests\TestSchema::appendSchema($toSchema);
 
     $queries = $fromSchema->getMigrateToSql($toSchema, $connection->getDatabasePlatform());
     foreach ($queries as $query) {
