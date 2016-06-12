@@ -109,7 +109,6 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 .controller('RoutesCreateCtrl', ['$scope', '$http', '$uibModalInstance', function($scope, $http, $uibModalInstance){
 
 	$scope.route = {
-		methods: 'GET|POST|PUT|DELETE',
 		path: '',
 		config: []
 	};
@@ -133,6 +132,13 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	}];
 
 	$scope.create = function(route){
+        // remove active key
+        for (var i = 0; i < route.config.length; i++) {
+            if (route.config[i].hasOwnProperty('active')) {
+                delete route.config[i].active;
+            }
+        }
+
 		$http.post(fusio_url + 'backend/routes', route)
 			.success(function(data){
 				$scope.response = data;
@@ -177,41 +183,25 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		$scope.route.config = versions;
 	};
 
-	$scope.removeVersion = function(version){
-		if (version.status != 4 || $scope.route.config.length == 1) {
-			return;
-		}
+    $scope.newVersion = function(){
+        var version = {
+            version: $scope.getLatestVersion() + 1,
+            active: true,
+            status: 4,
+            methods: {}
+        };
 
-		var versions = [];
-		for (var i = 0; i < $scope.route.config.length; i++) {
-			if ($scope.route.config[i].name != version.name) {
-				versions.push($scope.route.config[i]);
-			}
-		}
-		$scope.route.config = versions;
-	};
+        for (var i = 0; i < $scope.methods.length; i++) {
+            version.methods[$scope.methods[i]] = {};
+        }
 
-	$scope.newVersion = function(){
-		var version = {
-			name: "" + ($scope.getLatestVersion() + 1),
-			active: true,
-			status: 4,
-			methods: []
-		};
-
-		for(var i = 0; i < $scope.methods.length; i++) {
-			version.methods.push({
-				name: $scope.methods[i]
-			});
-		}
-
-		return version;
-	};
+        return version;
+    };
 
 	$scope.getLatestVersion = function(){
 		var version = 0;
 		for (var i = 0; i < $scope.route.config.length; i++) {
-			var ver = parseInt($scope.route.config[i].name);
+			var ver = parseInt($scope.route.config[i].version);
 			if (ver > version) {
 				version = ver;
 			}
@@ -246,6 +236,13 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	}];
 	
 	$scope.update = function(route){
+        // remove active key
+        for (var i = 0; i < route.config.length; i++) {
+            if (route.config[i].hasOwnProperty('active')) {
+                delete route.config[i].active;
+            }
+        }
+
 		$http.put(fusio_url + 'backend/routes/' + route.id, route)
 			.success(function(data){
 				$scope.response = data;
@@ -295,32 +292,16 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 		$scope.route.config = versions;
 	};
 
-	$scope.removeVersion = function(version){
-		if (version.status != 4 || $scope.route.config.length == 1) {
-			return;
-		}
-
-		var versions = [];
-		for (var i = 0; i < $scope.route.config.length; i++) {
-			if ($scope.route.config[i].name != version.name) {
-				versions.push($scope.route.config[i]);
-			}
-		}
-		$scope.route.config = versions;
-	};
-
 	$scope.newVersion = function(){
 		var version = {
-			name: "" + ($scope.getLatestVersion() + 1),
+            version: $scope.getLatestVersion() + 1,
 			active: true,
 			status: 4,
-			methods: []
+			methods: {}
 		};
 
-		for(var i = 0; i < $scope.methods.length; i++) {
-			version.methods.push({
-				name: $scope.methods[i]
-			});
+		for (var i = 0; i < $scope.methods.length; i++) {
+			version.methods[$scope.methods[i]] = {};
 		}
 
 		return version;
@@ -329,7 +310,7 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 	$scope.getLatestVersion = function(){
 		var version = 0;
 		for (var i = 0; i < $scope.route.config.length; i++) {
-			var ver = parseInt($scope.route.config[i].name);
+			var ver = parseInt($scope.route.config[i].version);
 			if (ver > version) {
 				version = ver;
 			}
