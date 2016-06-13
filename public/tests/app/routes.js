@@ -20,8 +20,8 @@ describe('Routes tests', function() {
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
     element(by.model('route.path')).sendKeys('/test');
-    element.all(by.model('method.active')).get(0).click();
-    element.all(by.model('method.public')).get(0).click();
+    element.all(by.model('config.active')).get(0).click();
+    element.all(by.model('config.public')).get(0).click();
 
     var responseOptions = element.all(by.options('schema.id as schema.name for schema in schemas'));
     expect(responseOptions.get(3).getText()).toEqual('');
@@ -55,10 +55,10 @@ describe('Routes tests', function() {
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
     expect(element(by.model('route.path')).getAttribute('value')).toEqual('/test');
-    expect(element.all(by.model('method.active')).get(0).getAttribute('value')).toEqual('on');
-    expect(element.all(by.model('method.public')).get(0).getAttribute('value')).toEqual('on');
-    expect(element.all(by.model('method.response')).get(0).getAttribute('value')).toEqual('1');
-    expect(element.all(by.model('method.action')).get(0).getAttribute('value')).toEqual('0');
+    expect(element.all(by.model('config.active')).get(0).getAttribute('value')).toEqual('on');
+    expect(element.all(by.model('config.public')).get(0).getAttribute('value')).toEqual('on');
+    expect(element.all(by.model('config.response')).get(0).getAttribute('value')).toEqual('1');
+    expect(element.all(by.model('config.action')).get(0).getAttribute('value')).toEqual('0');
 
     var responseOptions = element.all(by.options('schema.id as schema.name for schema in schemas'));
     expect(responseOptions.get(3).getText()).toEqual('Foo-Schema');
