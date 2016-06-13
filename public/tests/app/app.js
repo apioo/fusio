@@ -53,7 +53,7 @@ describe('App tests', function() {
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
-    expect(element(by.model('app.status')).getAttribute('value')).toEqual('0');
+    expect(element(by.model('app.status')).getAttribute('value')).toEqual('number:1');
     expect(element(by.model('app.name')).getAttribute('value')).toEqual('test-app');
     expect(element(by.model('app.url')).getAttribute('value')).toEqual('http://foo.com');
     expect(element(by.model('app.parameters')).getAttribute('value')).toEqual('foo=bar&bar=1');

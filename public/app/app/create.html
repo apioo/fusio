@@ -16,7 +16,7 @@
 		</div>
 		<div class="form-group">
 			<label for="user">User:</label>
-			<input type="text" id="user" ng-model="selectedUser" placeholder="User-name" uib-typeahead="user as user.name for user in getUsers($viewValue)" typeahead-on-select="app.userId = $item.id" typeahead-select-on-blur="true" typeahead-min-length="3" aria-describedby="userHelp" class="form-control">
+			<input type="text" id="user" ng-model="selectedUser" placeholder="User-name" uib-typeahead="user as user.name for user in getUsers($viewValue)" typeahead-on-select="app.userId = $item.id" typeahead-min-length="3" aria-describedby="userHelp" class="form-control">
 			<span class="help-block" id="userHelp">The user which is assigned to the application</span>
 		</div>
 		<div class="form-group">
