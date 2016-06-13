@@ -47,7 +47,7 @@ describe('User tests', function() {
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
-    expect(element(by.model('user.status')).getAttribute('value')).toEqual('1');
+    expect(element(by.model('user.status')).getAttribute('value')).toEqual('number:1');
     expect(element(by.model('user.name')).getAttribute('value')).toEqual('test-user');
 
     var scopes = element.all(by.model('user.scopes[$index]'));

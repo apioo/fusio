@@ -44,7 +44,7 @@ describe('Scope tests', function() {
 
     expect(element(by.model('scope.name')).getAttribute('value')).toEqual('test-scope');
 
-    var routes = element.all(by.model('route.allowedMethods.get'))
+    var routes = element.all(by.model('route.allowedMethods.get'));
 
     expect(routes.get(0).getAttribute('checked')).toBeTruthy();
     expect(routes.get(1).getAttribute('checked')).toBeTruthy();

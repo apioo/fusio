@@ -57,8 +57,8 @@ describe('Routes tests', function() {
     expect(element(by.model('route.path')).getAttribute('value')).toEqual('/test');
     expect(element.all(by.model('config.active')).get(0).getAttribute('value')).toEqual('on');
     expect(element.all(by.model('config.public')).get(0).getAttribute('value')).toEqual('on');
-    expect(element.all(by.model('config.response')).get(0).getAttribute('value')).toEqual('1');
-    expect(element.all(by.model('config.action')).get(0).getAttribute('value')).toEqual('0');
+    expect(element.all(by.model('config.response')).get(0).getAttribute('value')).toEqual('number:1');
+    expect(element.all(by.model('config.action')).get(0).getAttribute('value')).toEqual('number:3');
 
     var responseOptions = element.all(by.options('schema.id as schema.name for schema in schemas'));
     expect(responseOptions.get(3).getText()).toEqual('Foo-Schema');
