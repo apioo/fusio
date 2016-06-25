@@ -10,6 +10,7 @@ var fusioApp = angular.module('fusioApp', [
 	'fusioApp.account',
 	'fusioApp.action',
 	'fusioApp.app',
+	'fusioApp.config',
 	'fusioApp.connection',
 	'fusioApp.dashboard',
 	'fusioApp.import',

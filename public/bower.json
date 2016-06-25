@@ -1,7 +1,7 @@
 {
-  "name": "fusio",
+  "name": "fusio-backend",
   "description": "Fusio backend app",
-  "version": "0.1",
+  "version": "0.3",
   "homepage": "https://fusio-project.org",
   "license": "AGPLv3",
   "private": true,

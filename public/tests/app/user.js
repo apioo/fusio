@@ -29,6 +29,8 @@ describe('User tests', function() {
     statusOptions.get(1).click();
 
     element(by.model('user.name')).sendKeys('test-user');
+    element(by.model('user.email')).sendKeys('foo@bar.com');
+    element(by.model('user.password')).sendKeys('test1234!');
     element.all(by.model('user.scopes[$index]')).click();
 
     $('button.btn-primary').click();

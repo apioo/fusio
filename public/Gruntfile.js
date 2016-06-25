@@ -34,7 +34,7 @@ module.exports = function(grunt){
     },
     uglify: {
       options: {
-        banner: '/*\n fusio\n Copyright (C) 2015 Christoph Kappestein\n License: AGPLv3\n*/\n',
+        banner: '/*\n fusio\n Copyright (C) 2015-2016 Christoph Kappestein\n License: AGPLv3\n*/\n',
         mangle: false
       },
       dist: {
@@ -42,19 +42,20 @@ module.exports = function(grunt){
           './dist/fusio-app.min.js': [
             './app/app.js',
             './app/account/change_password.js',
+            './app/action/action.js',
+            './app/app/app.js',
+            './app/config/config.js',
+            './app/connection/connection.js',
+            './app/dashboard/dashboard.js',
+            './app/import/import.js',
+            './app/log/log.js',
             './app/login/login.js',
             './app/logout/logout.js',
-            './app/dashboard/dashboard.js',
             './app/routes/routes.js',
             './app/schema/schema.js',
-            './app/action/action.js',
-            './app/connection/connection.js',
-            './app/import/import.js',
-            './app/app/app.js',
-            './app/log/log.js',
-            './app/user/user.js',
             './app/scope/scope.js',
             './app/statistic/statistic.js',
+            './app/user/user.js',
             './js/FormBuilder.js',
             './js/HelpLoader.js'
           ]

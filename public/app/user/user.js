@@ -111,6 +111,7 @@ angular.module('fusioApp.user', ['ngRoute', 'ui.bootstrap'])
 	$scope.user = {
 		status: 0,
 		name: '',
+		email: '',
 		scopes: []
 	};
 
@@ -132,7 +133,21 @@ angular.module('fusioApp.user', ['ngRoute', 'ui.bootstrap'])
 	});
 
 	$scope.create = function(user){
-		$http.post(fusio_url + 'backend/user', user)
+        var data = angular.copy(user);
+
+        // remove app data
+        if (data.apps) {
+            delete data.apps;
+        }
+
+        // filter scopes
+        if (data.scopes && angular.isArray(data.scopes)) {
+            data.scopes = data.scopes.filter(function(value){
+                return value != null;
+            });
+        }
+
+		$http.post(fusio_url + 'backend/user', data)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {
@@ -178,12 +193,21 @@ angular.module('fusioApp.user', ['ngRoute', 'ui.bootstrap'])
 	});
 
 	$scope.update = function(user){
+        var data = angular.copy(user);
+
 		// remove app data
-		if (user.apps) {
-			delete user.apps;
+		if (data.apps) {
+			delete data.apps;
 		}
 
-		$http.put(fusio_url + 'backend/user/' + user.id, user)
+        // filter scopes
+        if (data.scopes && angular.isArray(data.scopes)) {
+            data.scopes = data.scopes.filter(function(value){
+                return value != null;
+            });
+        }
+
+		$http.put(fusio_url + 'backend/user/' + data.id, data)
 			.success(function(data){
 				$scope.response = data;
 				if (data.success === true) {

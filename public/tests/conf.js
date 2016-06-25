@@ -4,6 +4,7 @@ exports.config = {
     'app/account.js',
     'app/action.js',
     'app/app.js',
+    'app/config.js',
     'app/connection.js',
     'app/log.js',
     'app/routes.js',

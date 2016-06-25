@@ -19,6 +19,16 @@
 			<input type="text" id="name" ng-model="user.name" aria-describedby="nameHelp" class="form-control">
 			<span class="help-block" id="nameHelp">Name of the user must match the following regexp <code>[A-z0-9\-\_\.]{3,32}</code></span>
 		</div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" ng-model="user.email" aria-describedby="emailHelp" class="form-control">
+            <span class="help-block" id="emailHelp">Email address of the user</span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" ng-model="user.password" aria-describedby="passwordHelp" class="form-control">
+            <span class="help-block" id="passwordHelp">Password of the account</span>
+        </div>
 		<table class="table fusio-table-tab">
 		<colgroup>
 			<col width="20" />
