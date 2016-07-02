@@ -1,0 +1,47 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Update</h3>
+</div>
+
+<div class="modal-body">
+    <uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
+        {{response.message}}
+    </uib-alert>
+    <form name="tableIndexesUpdateForm" ng-submit="update(table)">
+        <table class="table">
+            <colgroup>
+                <col width="*" />
+                <col width="200" />
+                <col width="100" />
+                <col width="100" />
+                <col width="50" />
+            </colgroup>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Primary</th>
+                <th>Unqiue</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="index in table.indexes">
+                <td><input type="text" ng-model="index.name" class="form-control"></td>
+                <td><input type="text" ng-list ng-model="index.columns" class="form-control"></td>
+                <td><input type="checkbox" ng-model="index.primary"></td>
+                <td><input type="checkbox" ng-model="index.unique"></td>
+                <td>
+                    <div class="fusio-options">
+                        <a ng-click="removeIndex(index.name)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <button type="button" ng-click="addIndex()" class="btn btn-default">Add Index</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+    </form>
+</div>

@@ -1,0 +1,17 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Confirmation</h3>
+</div>
+
+<div class="modal-body">
+    <uib-alert type="danger">
+        <b>Fusio executes the following SQL queries on confirmation. Be aware 
+        that changes to the structure of the database may affect the 
+        functionality of your API.</b>
+        <ul>
+            <li ng-repeat="query in response.queries">{{query}}</li>
+        </ul>
+    </uib-alert>
+    <button type="button" ng-click="confirm()" class="btn btn-danger">Confirm</button>
+    <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+</div>

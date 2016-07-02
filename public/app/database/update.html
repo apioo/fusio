@@ -1,0 +1,58 @@
+
+<div class="modal-header">
+	<h3 class="modal-title">Update</h3>
+</div>
+
+<div class="modal-body">
+	<uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
+		{{response.message}}
+	</uib-alert>
+    <form name="tableUpdateForm" ng-submit="update(table)">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" ng-model="table.name" aria-describedby="nameHelp" readonly class="form-control">
+            <span class="help-block" id="nameHelp"></span>
+        </div>
+
+        <table class="table">
+            <colgroup>
+                <col width="*" />
+                <col width="150" />
+                <col width="100" />
+                <col width="100" />
+                <col width="150" />
+                <col width="50" />
+            </colgroup>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Length</th>
+                <th>Null</th>
+                <th>Default</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="column in table.columns">
+                <td><input type="text" ng-model="column.name" class="form-control"></td>
+                <td><select ng-model="column.type" ng-options="type as type for type in types" class="form-control"></select></td>
+                <td><input type="number" ng-model="column.length" class="form-control"></td>
+                <td><input type="checkbox" ng-model="column.null"></td>
+                <td><input type="text" ng-model="column.default" class="form-control"></td>
+                <td>
+                    <div class="fusio-options">
+                        <a ng-click="removeColumn(column.name)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <button type="button" ng-click="addColumn()" class="btn btn-default">Add column</button>
+        <button type="button" ng-click="openIndexesDialog(table)" class="btn btn-default">Indexes</button>
+        <button type="button" ng-click="openFksDialog(table)" class="btn btn-default">Foreign-Keys</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+    </form>
+</div>
