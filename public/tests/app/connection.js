@@ -57,7 +57,7 @@ describe('Connection tests', function() {
     expect($('div.alert-success > div').getText()).toEqual('Connection successful updated');
   });
 
-  it('Delete app', function() {
+  it('Delete connection', function() {
     browser.get('#/connection');
 
     var EC = protractor.ExpectedConditions;
