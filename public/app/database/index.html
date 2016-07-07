@@ -32,15 +32,15 @@
             </table>
         </div>
 
+        <uib-alert type="success" close="closeResponse()" ng-if="response.success === true">
+            {{response.message}}
+        </uib-alert>
+
+        <uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
+            {{response.message}}
+        </uib-alert>
+
         <div ng-if="table">
-            <uib-alert type="success" close="closeResponse()" ng-if="response.success === true">
-                {{response.message}}
-            </uib-alert>
-
-            <uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
-                {{response.message}}
-            </uib-alert>
-
             <div class="fusio-grid">
                 <table class="table">
                     <colgroup>

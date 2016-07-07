@@ -76,8 +76,8 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
 		modalInstance.result.then(function(response){
 			$scope.response = response;
+			$scope.table = null;
             $scope.loadTables();
-            $scope.loadTable($scope.table);
 		}, function(){
 		});
 	};
