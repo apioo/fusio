@@ -36,17 +36,17 @@ The status affects the behaviour of the API endpoint. The following list
 describes each status
 
 * `Development`
-  Used as first status when you start develop a new API endpoint. Adds a 
-  "Warning" header that the API is in development mode to each response.
+  Used as first status to develop a new API endpoint. It adds a "Warning" header 
+  to each response that the API is in development mode.
 
 * `Production`
-  Used if the API is ready for production use. In this status it is not possible 
-  to change the API. That means you can also not change any depending schema or 
-  action.
+  Used if the API is ready for production use. If the API transitions from 
+  development to production all databases settings are copied into the route. 
+  That means changing an schema or action will not change the API endpoint.
 
 * `Deprecated`
   Used if you want to deprecate a specific version of the API. Adds a "Warning" 
-  header that the API is deprecated to each response.
+  header to each response that the API is deprecated.
 
 * `Closed`
   Used if you dont want to support a specific version anymore. Returns an error 
