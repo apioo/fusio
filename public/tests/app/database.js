@@ -48,34 +48,35 @@ describe('Database tests', function() {
     var EC = protractor.ExpectedConditions;
 
     var tables = element.all(by.repeater('table in tables'));
-    tables.get(1).click().then(function(){
-        element.all(by.css('a.btn-default')).get(1).click();
+    tables.get(1).$('a').click();
+    browser.wait(EC.textToBePresentInElement($('h4'), 'foobar'), 5000);
+      
+    element.all(by.css('a.btn-default')).get(1).click();
 
-        browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
-        expect(element(by.model('table.name')).getAttribute('value')).toEqual('foobar');
+    expect(element(by.model('table.name')).getAttribute('value')).toEqual('foobar');
 
-        var columns = element.all(by.model('column.name'));
-        expect(columns.count()).toEqual(4);
-        expect(columns.get(0).getAttribute('value')).toEqual('id');
-        expect(columns.get(1).getAttribute('value')).toEqual('name');
-        expect(columns.get(2).getAttribute('value')).toEqual('content');
-        expect(columns.get(3).getAttribute('value')).toEqual('date');
+    var columns = element.all(by.model('column.name'));
+    expect(columns.count()).toEqual(4);
+    expect(columns.get(0).getAttribute('value')).toEqual('id');
+    expect(columns.get(1).getAttribute('value')).toEqual('name');
+    expect(columns.get(2).getAttribute('value')).toEqual('content');
+    expect(columns.get(3).getAttribute('value')).toEqual('date');
 
-        element.all(by.css('.fusio-options a.btn-default')).get(2).click();
+    element.all(by.css('.fusio-options a.btn-default')).get(2).click();
 
-        $('button.btn-primary').click();
+    $('button.btn-primary').click();
 
-        var queries = element.all(by.repeater('query in response.queries'));
-        expect(queries.count()).toEqual(1);
-        expect(queries.get(0).getText()).toMatch(/^ALTER TABLE foobar DROP content|CREATE TEMPORARY TABLE __temp__app_news AS SELECT id, title, date FROM app_news$/);
+    var queries = element.all(by.repeater('query in response.queries'));
+    expect(queries.count()).toEqual(1);
+    expect(queries.get(0).getText()).toMatch(/^ALTER TABLE foobar DROP content|CREATE TEMPORARY TABLE __temp__app_news AS SELECT id, title, date FROM app_news$/);
 
-        $('button.btn-danger').click();
+    $('button.btn-danger').click();
 
-        browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
+    browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
 
-        expect($('div.alert-success > div').getText()).toEqual('Table successful updated');
-    });
+    expect($('div.alert-success > div').getText()).toEqual('Table successful updated');
   });
 
   it('Table delete', function() {
@@ -84,25 +85,26 @@ describe('Database tests', function() {
     var EC = protractor.ExpectedConditions;
 
     var tables = element.all(by.repeater('table in tables'));
-    tables.get(1).click().then(function(){
-        element.all(by.css('a.btn-danger')).first().click();
+    tables.get(1).$('a').click();
+    browser.wait(EC.textToBePresentInElement($('h4'), 'foobar'), 5000);
 
-        browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+    element.all(by.css('a.btn-danger')).first().click();
 
-        expect(element(by.model('table.name')).getAttribute('value')).toEqual('foobar');
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
-        $('button.btn-primary').click();
+    expect(element(by.model('table.name')).getAttribute('value')).toEqual('foobar');
 
-        var queries = element.all(by.repeater('query in response.queries'));
-        expect(queries.count()).toEqual(1);
-        expect(queries.get(0).getText()).toEqual('DROP TABLE foobar');
+    $('button.btn-primary').click();
 
-        $('button.btn-danger').click();
+    var queries = element.all(by.repeater('query in response.queries'));
+    expect(queries.count()).toEqual(1);
+    expect(queries.get(0).getText()).toEqual('DROP TABLE foobar');
 
-        browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
+    $('button.btn-danger').click();
 
-        expect($('div.alert-success > div').getText()).toEqual('Table successful deleted');
-    });
+    browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
+
+    expect($('div.alert-success > div').getText()).toEqual('Table successful deleted');
   });
 
 });
