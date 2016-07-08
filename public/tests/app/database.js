@@ -37,14 +37,18 @@ describe('Database tests', function() {
     browser.get('#/database');
 
     var tables = element.all(by.repeater('table in tables'));
-    expect(tables.count()).toEqual(1);
-    expect(tables.get(0).getText()).toEqual('foobar');
+    expect(tables.count()).toEqual(2);
+    expect(tables.get(0).getText()).toEqual('app_news');
+    expect(tables.get(1).getText()).toEqual('foobar');
   });
 
   it('Table update', function() {
     browser.get('#/database');
 
     var EC = protractor.ExpectedConditions;
+
+    var tables = element.all(by.repeater('table in tables'));
+    tables.get(1).click();
 
     element.all(by.css('a.btn-default')).get(1).click();
 
@@ -79,6 +83,9 @@ describe('Database tests', function() {
     browser.get('#/database');
 
     var EC = protractor.ExpectedConditions;
+
+    var tables = element.all(by.repeater('table in tables'));
+    tables.get(1).click();
 
     element.all(by.css('a.btn-danger')).first().click();
 
