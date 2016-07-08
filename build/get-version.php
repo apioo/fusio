@@ -25,6 +25,6 @@ require_once($autoloadFile);
 $containerFile = strstr($autoloadFile, 'autoload.php', true) . '../container.php';
 $container     = require_once($containerFile);
 
-PSX\Bootstrap::setupEnvironment($container->get('config'));
+PSX\Framework\Bootstrap::setupEnvironment($container->get('config'));
 
 echo Fusio\Impl\Base::getVersion();
