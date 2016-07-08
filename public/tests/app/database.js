@@ -49,6 +49,7 @@ describe('Database tests', function() {
 
     var tables = element.all(by.repeater('table in tables'));
     tables.get(1).click();
+    browser.waitForAngular();
 
     element.all(by.css('a.btn-default')).get(1).click();
 
@@ -86,6 +87,7 @@ describe('Database tests', function() {
 
     var tables = element.all(by.repeater('table in tables'));
     tables.get(1).click();
+    browser.waitForAngular();
 
     element.all(by.css('a.btn-danger')).first().click();
 
