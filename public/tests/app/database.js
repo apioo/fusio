@@ -69,8 +69,7 @@ describe('Database tests', function() {
     $('button.btn-primary').click();
 
     var queries = element.all(by.repeater('query in response.queries'));
-    expect(queries.count()).toEqual(1);
-    expect(queries.get(0).getText()).toMatch(/^ALTER TABLE foobar DROP content|CREATE TEMPORARY TABLE __temp__app_news AS SELECT id, title, date FROM app_news$/);
+    expect(queries.get(0).getText()).toMatch(/^ALTER TABLE foobar DROP content|CREATE TEMPORARY TABLE __temp__foobar AS SELECT id, name, date FROM foobar$/);
 
     $('button.btn-danger').click();
 
