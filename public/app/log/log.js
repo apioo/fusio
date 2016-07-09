@@ -22,33 +22,33 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
         to: to
     };
 
-	$scope.routes = [];
-	$scope.apps = [];
+    $scope.routes = [];
+    $scope.apps = [];
 
-	$scope.load = function(){
+    $scope.load = function(){
         var search = '';
         if ($scope.search) {
             search = encodeURIComponent($scope.search);
         }
 
-		$http.get(fusio_url + 'backend/log?search=' + search).success(function(data){
-			$scope.totalResults = data.totalResults;
-			$scope.startIndex = 0;
-			$scope.logs = data.entry;
-		});
-	};
+        $http.get(fusio_url + 'backend/log?search=' + search).success(function(data){
+            $scope.totalResults = data.totalResults;
+            $scope.startIndex = 0;
+            $scope.logs = data.entry;
+        });
+    };
 
-	$scope.pageChanged = function(){
-		var startIndex = ($scope.startIndex - 1) * 16;
-		var search = encodeURIComponent($scope.search);
+    $scope.pageChanged = function(){
+        var startIndex = ($scope.startIndex - 1) * 16;
+        var search = encodeURIComponent($scope.search);
 
-		$http.get(fusio_url + 'backend/log?startIndex=' + startIndex + '&search=' + search).success(function(data){
-			$scope.totalResults = data.totalResults;
-			$scope.logs = data.entry;
-		});
-	};
+        $http.get(fusio_url + 'backend/log?startIndex=' + startIndex + '&search=' + search).success(function(data){
+            $scope.totalResults = data.totalResults;
+            $scope.logs = data.entry;
+        });
+    };
 
-	$scope.doFilter = function(){
+    $scope.doFilter = function(){
         var query = '';
         for (var key in $scope.filter) {
             if ($scope.filter[key]) {
@@ -63,36 +63,36 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
             }
         }
 
-		$http.get(fusio_url + 'backend/log?' + query).success(function(data){
-			$scope.totalResults = data.totalResults;
-			$scope.startIndex = 0;
-			$scope.logs = data.entry;
-		});
-	};
+        $http.get(fusio_url + 'backend/log?' + query).success(function(data){
+            $scope.totalResults = data.totalResults;
+            $scope.startIndex = 0;
+            $scope.logs = data.entry;
+        });
+    };
 
-	$scope.openDetailDialog = function(log){
-		var modalInstance = $uibModal.open({
-			size: 'lg',
+    $scope.openDetailDialog = function(log){
+        var modalInstance = $uibModal.open({
+            size: 'lg',
             backdrop: 'static',
-			templateUrl: 'app/log/detail.html',
-			controller: 'LogDetailCtrl',
-			resolve: {
-				log: function(){
-					return log;
-				}
-			}
-		});
+            templateUrl: 'app/log/detail.html',
+            controller: 'LogDetailCtrl',
+            resolve: {
+                log: function(){
+                    return log;
+                }
+            }
+        });
 
-		modalInstance.result.then(function(response){
-			$scope.response = response;
-			$scope.load();
+        modalInstance.result.then(function(response){
+            $scope.response = response;
+            $scope.load();
 
-			$timeout(function(){
-				$scope.response = null;
-			}, 2000);
-		}, function(){
-		});
-	};
+            $timeout(function(){
+                $scope.response = null;
+            }, 2000);
+        }, function(){
+        });
+    };
 
     $scope.openFilterDialog = function(){
         var modalInstance = $uibModal.open({
@@ -114,29 +114,29 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
         });
     };
 
-	$scope.load();
+    $scope.load();
 
 }])
 
 .controller('LogDetailCtrl', ['$scope', '$http', '$uibModal', '$uibModalInstance', 'log', function($scope, $http, $uibModal, $uibModalInstance, log){
 
-	$scope.log = log;
+    $scope.log = log;
 
-	$scope.close = function(){
-		$uibModalInstance.dismiss('cancel');
-	};
+    $scope.close = function(){
+        $uibModalInstance.dismiss('cancel');
+    };
 
-	$scope.openTraceDialog = function(error){
-		$uibModal.open({
-			size: 'md',
+    $scope.openTraceDialog = function(error){
+        $uibModal.open({
+            size: 'md',
             backdrop: 'static',
-			template: '<div class="modal-body"><pre>' + error.trace + '</pre></div>'
-		});
-	};
+            template: '<div class="modal-body"><pre>' + error.trace + '</pre></div>'
+        });
+    };
 
-	$http.get(fusio_url + 'backend/log/' + log.id)
-		.success(function(data){
-			$scope.log = data;
-		});
+    $http.get(fusio_url + 'backend/log/' + log.id)
+        .success(function(data){
+            $scope.log = data;
+        });
 
 }]);

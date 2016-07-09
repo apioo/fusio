@@ -3,88 +3,88 @@
 angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
 .config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/database', {
-		templateUrl: 'app/database/index.html',
-		controller: 'DatabaseCtrl'
-	});
+    $routeProvider.when('/database', {
+        templateUrl: 'app/database/index.html',
+        controller: 'DatabaseCtrl'
+    });
 }])
 
 .controller('DatabaseCtrl', ['$scope', '$http', '$uibModal', '$routeParams', function($scope, $http, $uibModal){
 
-	$scope.connection = 1;
-	$scope.table = null;
+    $scope.connection = 1;
+    $scope.table = null;
 
-	$scope.openCreateDialog = function(){
-		var modalInstance = $uibModal.open({
-			size: 'lg',
-			backdrop: 'static',
-			templateUrl: 'app/database/create.html',
-			controller: 'DatabaseCreateCtrl',
+    $scope.openCreateDialog = function(){
+        var modalInstance = $uibModal.open({
+            size: 'lg',
+            backdrop: 'static',
+            templateUrl: 'app/database/create.html',
+            controller: 'DatabaseCreateCtrl',
             resolve: {
                 connection: function(){
                     return $scope.connection;
                 }
             }
-		});
+        });
 
-		modalInstance.result.then(function(response){
-			$scope.response = response;
+        modalInstance.result.then(function(response){
+            $scope.response = response;
             $scope.loadTables();
-		}, function(){
-		});
-	};
+        }, function(){
+        });
+    };
 
-	$scope.openUpdateDialog = function(table){
-		var modalInstance = $uibModal.open({
-			size: 'lg',
-			backdrop: 'static',
-			templateUrl: 'app/database/update.html',
-			controller: 'DatabaseUpdateCtrl',
-			resolve: {
+    $scope.openUpdateDialog = function(table){
+        var modalInstance = $uibModal.open({
+            size: 'lg',
+            backdrop: 'static',
+            templateUrl: 'app/database/update.html',
+            controller: 'DatabaseUpdateCtrl',
+            resolve: {
                 connection: function(){
                     return $scope.connection;
                 },
                 table: function(){
                     return table;
                 }
-			}
-		});
+            }
+        });
 
-		modalInstance.result.then(function(response){
-			$scope.response = response;
+        modalInstance.result.then(function(response){
+            $scope.response = response;
             $scope.loadTables();
             $scope.loadTable($scope.table);
-		}, function(){
-		});
-	};
+        }, function(){
+        });
+    };
 
-	$scope.openDeleteDialog = function(table){
-		var modalInstance = $uibModal.open({
-			size: 'lg',
-			backdrop: 'static',
-			templateUrl: 'app/database/delete.html',
-			controller: 'DatabaseDeleteCtrl',
-			resolve: {
+    $scope.openDeleteDialog = function(table){
+        var modalInstance = $uibModal.open({
+            size: 'lg',
+            backdrop: 'static',
+            templateUrl: 'app/database/delete.html',
+            controller: 'DatabaseDeleteCtrl',
+            resolve: {
                 connection: function(){
                     return $scope.connection;
                 },
                 table: function(){
                     return table;
                 }
-			}
-		});
+            }
+        });
 
-		modalInstance.result.then(function(response){
-			$scope.response = response;
-			$scope.table = null;
+        modalInstance.result.then(function(response){
+            $scope.response = response;
+            $scope.table = null;
             $scope.loadTables();
-		}, function(){
-		});
-	};
+        }, function(){
+        });
+    };
 
-	$scope.closeResponse = function(){
-		$scope.response = null;
-	};
+    $scope.closeResponse = function(){
+        $scope.response = null;
+    };
 
     $scope.loadConnections = function(){
         $http.get(fusio_url + 'backend/connection?count=512').success(function(data){
@@ -121,16 +121,16 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
 .controller('DatabaseCreateCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'connection', function($scope, $http, $uibModalInstance, $uibModal, connection){
 
-	$scope.table = {
-		name: '',
-		columns: [],
-		indexes: [],
-		foreignKeys: []
-	};
+    $scope.table = {
+        name: '',
+        columns: [],
+        indexes: [],
+        foreignKeys: []
+    };
 
-	$scope.types = ['bigint', 'boolean', 'datetime', 'date', 'time', 'decimal', 'integer', 'smallint', 'string', 'text', 'binary', 'blob', 'float', 'guid', 'json', 'object', 'array', 'simple_array'];
+    $scope.types = ['bigint', 'boolean', 'datetime', 'date', 'time', 'decimal', 'integer', 'smallint', 'string', 'text', 'binary', 'blob', 'float', 'guid', 'json', 'object', 'array', 'simple_array'];
 
-	$scope.create = function(table){
+    $scope.create = function(table){
         // convert default null
         for (var index in table.columns) {
             if (table.columns[index].default == 'NULL') {
@@ -138,25 +138,25 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
             }
         }
 
-		$http.post(fusio_url + 'backend/database/' + connection + '/', table)
-			.success(function(data){
-				$scope.response = data;
-				if (data.success === true) {
-					$uibModalInstance.close(data);
-				}
-			})
-			.error(function(data){
-				$scope.response = data;
-			});
-	};
+        $http.post(fusio_url + 'backend/database/' + connection + '/', table)
+            .success(function(data){
+                $scope.response = data;
+                if (data.success === true) {
+                    $uibModalInstance.close(data);
+                }
+            })
+            .error(function(data){
+                $scope.response = data;
+            });
+    };
 
-	$scope.close = function(){
-		$uibModalInstance.dismiss('cancel');
-	};
+    $scope.close = function(){
+        $uibModalInstance.dismiss('cancel');
+    };
 
-	$scope.closeResponse = function(){
-		$scope.response = null;
-	};
+    $scope.closeResponse = function(){
+        $scope.response = null;
+    };
 
     $scope.openIndexesDialog = function(table){
         var modalInstance = $uibModal.open({
@@ -194,7 +194,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
         });
     };
 
-	$scope.addColumn = function(){
+    $scope.addColumn = function(){
         if (!$scope.table.columns) {
             $scope.table.columns = [];
         }
@@ -203,7 +203,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
             name: "column" + ($scope.table.columns.length + 1),
             type: "string"
         });
-	};
+    };
 
     $scope.removeColumn = function(name){
         var columns = [];
@@ -221,7 +221,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
 .controller('DatabaseUpdateCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'connection', 'table', function($scope, $http, $uibModalInstance, $uibModal, connection, table){
 
-	var tableCopy = angular.copy(table);
+    var tableCopy = angular.copy(table);
 
     // convert default null
     for (var index in tableCopy.columns) {
@@ -234,7 +234,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
     $scope.types = ['bigint', 'boolean', 'datetime', 'date', 'time', 'decimal', 'integer', 'smallint', 'string', 'text', 'binary', 'blob', 'float', 'guid', 'json', 'object', 'array', 'simple_array'];
 
-	$scope.update = function(table){
+    $scope.update = function(table){
         // convert default null
         for (var index in table.columns) {
             if (table.columns[index].default == 'NULL') {
@@ -242,9 +242,9 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
             }
         }
 
-		$http.put(fusio_url + 'backend/database/' + connection + '/' + table.name + '?preview=1', table)
-			.success(function(data){
-				if (data.success === true) {
+        $http.put(fusio_url + 'backend/database/' + connection + '/' + table.name + '?preview=1', table)
+            .success(function(data){
+                if (data.success === true) {
                     // if the preview was successful show the sql and ask for 
                     // confirmation
                     var modalInstance = $uibModal.open({
@@ -275,20 +275,20 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
                             });
                     }, function(){
                     });
-				}
-			})
-			.error(function(data){
-				$scope.response = data;
-			});
-	};
+                }
+            })
+            .error(function(data){
+                $scope.response = data;
+            });
+    };
 
-	$scope.close = function(){
-		$uibModalInstance.dismiss('cancel');
-	};
+    $scope.close = function(){
+        $uibModalInstance.dismiss('cancel');
+    };
 
-	$scope.closeResponse = function(){
-		$scope.response = null;
-	};
+    $scope.closeResponse = function(){
+        $scope.response = null;
+    };
 
     $scope.openIndexesDialog = function(table){
         var modalInstance = $uibModal.open({
@@ -351,9 +351,9 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
 .controller('DatabaseDeleteCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'connection', 'table', function($scope, $http, $uibModalInstance, $uibModal, connection, table){
 
-	$scope.table = table;
+    $scope.table = table;
 
-	$scope.delete = function(table){
+    $scope.delete = function(table){
         // preview post
         $http.delete(fusio_url + 'backend/database/' + connection + '/' + table.name + '?preview=1')
             .success(function(data){
@@ -393,15 +393,15 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
             .error(function(data){
                 $scope.response = data;
             });
-	};
+    };
 
-	$scope.close = function(){
-		$uibModalInstance.dismiss('cancel');
-	};
+    $scope.close = function(){
+        $uibModalInstance.dismiss('cancel');
+    };
 
-	$scope.closeResponse = function(){
-		$scope.response = null;
-	};
+    $scope.closeResponse = function(){
+        $scope.response = null;
+    };
 
 }])
 

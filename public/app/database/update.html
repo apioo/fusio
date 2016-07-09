@@ -1,12 +1,12 @@
 
 <div class="modal-header">
-	<h3 class="modal-title">Update</h3>
+    <h3 class="modal-title">Update</h3>
 </div>
 
 <div class="modal-body">
-	<uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
-		{{response.message}}
-	</uib-alert>
+    <uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
+        {{response.message}}
+    </uib-alert>
     <form name="tableUpdateForm" ng-submit="update(table)">
         <div class="form-group">
             <label for="name">Name:</label>

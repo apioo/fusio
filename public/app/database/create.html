@@ -1,18 +1,18 @@
 
 <div class="modal-header">
-	<h3 class="modal-title">Create</h3>
+    <h3 class="modal-title">Create</h3>
 </div>
 
 <div class="modal-body">
-	<uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
-		{{response.message}}
-	</uib-alert>
-	<form name="tableCreateForm" ng-submit="create(table)">
-		<div class="form-group">
-			<label for="name">Name:</label>
-			<input type="text" id="name" ng-model="table.name" aria-describedby="nameHelp" class="form-control">
-			<span class="help-block" id="nameHelp"></span>
-		</div>
+    <uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
+        {{response.message}}
+    </uib-alert>
+    <form name="tableCreateForm" ng-submit="create(table)">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" ng-model="table.name" aria-describedby="nameHelp" class="form-control">
+            <span class="help-block" id="nameHelp"></span>
+        </div>
 
         <table class="table">
             <colgroup>
@@ -52,7 +52,7 @@
         <button type="button" ng-click="addColumn()" class="btn btn-default">Add column</button>
         <button type="button" ng-click="openIndexesDialog(table)" class="btn btn-default">Indexes</button>
         <button type="button" ng-click="openFksDialog(table)" class="btn btn-default">Foreign-Keys</button>
-		<button type="submit" class="btn btn-primary">Save</button>
-		<button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
-	</form>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+    </form>
 </div>

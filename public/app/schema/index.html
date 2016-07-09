@@ -2,63 +2,63 @@
 <h1>Schema</h1>
 
 <div class="fusio-search">
-	<table class="table">
-	<colgroup>
-		<col width="160" />
-		<col width="*" />
-		<col width="100" />
-	</colgroup>
-	<tr>
-		<td>
+    <table class="table">
+    <colgroup>
+        <col width="160" />
+        <col width="*" />
+        <col width="100" />
+    </colgroup>
+    <tr>
+        <td>
             <select id="routes" ng-model="routeId" ng-change="changeRoute()" ng-options="route.id as route.path for route in routes" class="form-control" aria-describedby="routeHelp">
                 <option value="">Every route</option>
             </select>
-		</td>
-		<td>
-			<form name="schemasSearchForm" ng-submit="doSearch(search)">
-				<input type="text" class="form-control" ng-model="search" placeholder="Search i.e. schema-name" />
-			</form>
-		</td>
-		<td>
-			<a class="btn btn-primary" ng-click="openCreateDialog()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-			<a class="btn btn-default" ng-click="help.showDialog('help/schema.md')"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
-		</td>
-	</tr>
-	</table>
+        </td>
+        <td>
+            <form name="schemasSearchForm" ng-submit="doSearch(search)">
+                <input type="text" class="form-control" ng-model="search" placeholder="Search i.e. schema-name" />
+            </form>
+        </td>
+        <td>
+            <a class="btn btn-primary" ng-click="openCreateDialog()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+            <a class="btn btn-default" ng-click="help.showDialog('help/schema.md')"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+        </td>
+    </tr>
+    </table>
 </div>
 
 <uib-alert type="success" close="closeResponse()" ng-if="response.success === true">
-	{{response.message}}
+    {{response.message}}
 </uib-alert>
 
 <uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
-	{{response.message}}
+    {{response.message}}
 </uib-alert>
 
 <div class="fusio-grid">
-	<table class="table">
-	<colgroup>
-		<col width="*" />
-		<col width="100" />
-	</colgroup>
-	<thead>
-	<tr>
-		<th>Name</th>
-		<th></th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr ng-repeat="schema in schemas">
-		<td><span class="label label-default" ng-if="schema.status == 2">Locked</span> {{schema.name}}</td>
-		<td>
-			<div class="fusio-options">
-				<a ng-click="openUpdateDialog(schema)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
-				<a ng-click="openDeleteDialog(schema)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-			</div>
-		</td>
-	</tr>
-	</tbody>
-	</table>
+    <table class="table">
+    <colgroup>
+        <col width="*" />
+        <col width="100" />
+    </colgroup>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="schema in schemas">
+        <td><span class="label label-default" ng-if="schema.status == 2">Locked</span> {{schema.name}}</td>
+        <td>
+            <div class="fusio-options">
+                <a ng-click="openUpdateDialog(schema)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+                <a ng-click="openDeleteDialog(schema)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+    </table>
 </div>
 
 <uib-pagination total-items="totalResults" items-per-page="16" ng-model="startIndex" ng-change="pageChanged()"></uib-pagination>

@@ -2,22 +2,22 @@
 <h1>Settings</h1>
 
 <div class="fusio-search">
-	<table class="table">
-	<colgroup>
-		<col width="*" />
-		<col width="50" />
-	</colgroup>
-	<tr>
-		<td>
-			<form name="usersSearchForm" ng-submit="doSearch(search)">
-				<input type="text" class="form-control" ng-model="search" placeholder="Search i.e. config-name" />
-			</form>
-		</td>
-		<td>
-			<a class="btn btn-default" ng-click="help.showDialog('help/config.md')"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
-		</td>
-	</tr>
-	</table>
+    <table class="table">
+    <colgroup>
+        <col width="*" />
+        <col width="50" />
+    </colgroup>
+    <tr>
+        <td>
+            <form name="usersSearchForm" ng-submit="doSearch(search)">
+                <input type="text" class="form-control" ng-model="search" placeholder="Search i.e. config-name" />
+            </form>
+        </td>
+        <td>
+            <a class="btn btn-default" ng-click="help.showDialog('help/config.md')"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+        </td>
+    </tr>
+    </table>
 </div>
 
 <uib-alert type="success" close="closeResponse()" ng-if="response.success === true">
@@ -29,31 +29,31 @@
 </uib-alert>
 
 <div class="fusio-grid">
-	<table class="table">
-	<colgroup>
-		<col width="200" />
-		<col width="*" />
-		<col width="50" />
-	</colgroup>
-	<thead>
-	<tr>
-		<th>Name</th>
-		<th>Description</th>
-		<th></th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr ng-repeat="config in configs">
-		<td>{{config.name}}</td>
-		<td>{{config.description}}</td>
-		<td>
-			<div class="fusio-options">
-				<a ng-click="openUpdateDialog(config)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
-			</div>
-		</td>
-	</tr>
-	</tbody>
-	</table>
+    <table class="table">
+    <colgroup>
+        <col width="200" />
+        <col width="*" />
+        <col width="50" />
+    </colgroup>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="config in configs">
+        <td>{{config.name}}</td>
+        <td>{{config.description}}</td>
+        <td>
+            <div class="fusio-options">
+                <a ng-click="openUpdateDialog(config)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+    </table>
 </div>
 
 <uib-pagination total-items="totalResults" items-per-page="16" ng-model="startIndex" ng-change="pageChanged()"></uib-pagination>
