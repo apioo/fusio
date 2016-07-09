@@ -1,4 +1,18 @@
 
+### 0.3.0
+
+* Rewrote consumer implementation moved from jQuery to AngularJS
+* Add backend database panel to create and edit database schemas
+* Moved route configuration into a seperate table and add deploy mechanism which
+  copies all route configurations if the API status is set to production 
+* Add backend configuration
+* Add sqlbuilder action to build a response based on multiple SQL queries
+* Improved docs
+* Add user to context
+* Upgrade backend app to angular 1.5, angular-ui 1.2 and bootstrap 3.3
+* Add parameters field to app
+* Upgrade PSX to 2.0
+
 ### 0.2.2 (2016-02-27)
 
 * Add system import/export command
