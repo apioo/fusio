@@ -257,7 +257,26 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 
 	$http.get(fusio_url + 'backend/routes/' + route.id)
 		.success(function(data){
-			$scope.route = data;
+            // check and add missing methods
+            if (data.config) {
+                var config = [];
+                for (var version in data.config) {
+                    var ver = data.config[version];
+                    var methods = {};
+                    for (var i = 0; i < $scope.methods.length; i++) {
+                        if (ver.methods.hasOwnProperty($scope.methods[i])) {
+                            methods[$scope.methods[i]] = ver.methods[$scope.methods[i]];
+                        } else {
+                            methods[$scope.methods[i]] = {};
+                        }
+                    }
+                    ver.methods = methods;
+                    config.push(ver);
+                }
+                data.config = config;
+            }
+
+            $scope.route = data;
 		});
 
 	$http.get(fusio_url + 'backend/action')
