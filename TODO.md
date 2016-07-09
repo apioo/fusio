@@ -1,19 +1,62 @@
 _Ever growing list of ideas and thoughts howto improve and extend Fusio. Topics_ 
 _which are likely to be implemented are moved to a seperate github issue_
 
+### 0.3
+
+- [x] Update config help texts
+- [x] Add CORS support to backend config
+- [x] Installer handle upgrade from 0.2.x to 0.3.x
+- [x] Complete Fusio consumer Account/ChangePassword API
+- [x] Think about action to build better nested responses
+  - [ ] Option to execute another action inside a template
+  - [x] In general we need some kind of data templating engine where it is easy
+        to write json data and call other actions etc.
+- [x] Add database protractor tests
+- [x] Add transactions to services
+- [x] Disable edit button of scope backend, consumer and authorization since a 
+      user would remove all assigned routes on save #13
+
+### 0.4
+
+- [ ] Add consumer and documentation protractor tests
+- [ ] Improve cache action add option to specific get or uri parameters which
+      come into the cache key
+- [ ] Automatically add the consumer scope the to the scope list
+- [ ] Database UI add auto increment option
+- [ ] App button to regenerate app key and secret
+- [ ] Consumer if access was already granted dont ask the user again instead 
+      redirect the user directly or show the access token. We could add this 
+      logic maybe to the meta lookup response
+- [ ] Test GitHub/Google/Facebook login
+- [ ] General test build an API and use different libraries to test OAuth2 
+      interoperability
+- [ ] Option to ratelimit specific apps
+- [ ] Add forms endpoint
+      The user can select a route, request method and an input field which
+      contains the form format. Maybe based on https://github.com/joshfire/jsonform
+  - [ ] Add a html endpoint which can render a form for an API endpoint for 
+        humans to enter. This could be embeded per iframe in a website etc.
+  - [ ] We need a new point forms. There a user can create a form for a schema.
+        This form has an abstract json format which describes the look of the 
+        form (look at schemaform.io or xforms). This abstract form can be 
+        rendered in javascript, java, etc.
+  - [ ] How do we handle form submits where a access token is required at the 
+        backend (which is probably always required)?
+  - [ ] We should build different libraries (javascript, java, etc.) to build 
+        these forms
+- [ ] Add action which can build a REST API for a table
+- [ ] Import allow swagger format
 
 ### 0.x
 
-- [ ] Disable edit button of scope backend, consumer and authorization since a 
-      user would remove all assigned routes on save
-- [ ] Consumer if access was already granted dont ask the user again therefor
-      we need to
+- [ ] Add docker and vagrant box to easy test and deploy fusio
 - [ ] Add function to measure execution time of an action add also additional
-      chart to the statistics panel which shows slow actions
+      chart to the statistics panel which shows slow actions. Maybe we should
+      add a debug mode where those metrics are measured
 - [ ] Add option to get and use a refresh token to extend the life time of an 
       access token
 - [ ] When creating an connection verify that the connection works #2
-- [ ] Add option to store variables with an app which can be used for conditions 
+- [x] Add option to store variables with an app which can be used for conditions 
       or in an action #6
 - [ ] Add an API console where it is possible to test the API #7
   - [ ] Use http://schemaform.io/ to build a form based on a jsonschems to 
@@ -25,9 +68,6 @@ _which are likely to be implemented are moved to a seperate github issue_
       A developer account can only edit specific entries
   - [ ] Probably we need a interface for developers. A editor view where the
         developer can design the APIs where he was assigned to
-- [ ] Option to execute another action inside a template
-  - [ ] In general we need some kind of data templating engine where it is easy
-        to write json data and call other actions etc.
 - [ ] Optimize the way how data is organized. I.e. we could have many actions or 
       schemas, we need a way to group or categorize entries so it is easier to
       organize
@@ -35,25 +75,14 @@ _which are likely to be implemented are moved to a seperate github issue_
         action/schema with filtered route id
   - [ ] Probably use https://github.com/nickperkinslondon/angular-bootstrap-nav-tree
 - [ ] Add proper CORS handling
-- [ ] Add a html endpoint which can render a form for an API endpoint for humans
-      to enter. This could be embeded per iframe in a website etc. We could 
-      probably generate this kind of viewers also in java. Basically we have an
-      json schema and build an UI based on this data.
-  - [ ] We need a new point forms. There a user can create a form for a schema.
-        This form has an abstract json format which describes the look of the 
-        form (look at schemaform.io or xforms). This abstract form can be 
-        rendered with javascript, java, etc. The user enters either directly
-        this format with an preview or we provide some kind of UI builder which 
-        is probably very difficult to build.
-  - [ ] How do we handle form submits where a access token is required at the 
-        backend?
-  - [ ] We should build a javascript and java library to build these forms
 - [ ] Add method to relogin if token expires. Probably we should save the expire
       time and make the relogin attempt based on this
 - [ ] Write backend in TypeScript JS6 support transition to Angular2
 - [ ] Add system log where every login and system change is shown
   - [ ] Add login bruteforce protection. Therefor we must log the ip of every 
         login attempt
+  - [ ] We should add a limitation to the access token endpoint this would
+        protect also the login
 - [ ] Add action to simplify creating more complex logic (if else, switch).
   - [ ] In long term we could build a flowchart like yahoo pipes to build the 
         actions
@@ -61,7 +90,6 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [x] Write a processor action where a user can define multiple actions in
         a YAML format
 - [ ] Unify backend filter usage
-- [ ] Add transactions to services
 - [ ] When creating an action verify that the action works. How can we handle 
       template parameters for testing?
 - [ ] Schema definitions limitations
@@ -72,10 +100,12 @@ _which are likely to be implemented are moved to a seperate github issue_
       developers can provide a adapter for their system
   - [ ] The best way todo this is to parse all packages with a specific tag 
         "fusio-adapter" from packagist add list them on fusio-project.org
+        There is an API which we cna use to request specific tags
   - [ ] Extend the documentation howto write an adapter
 - [ ] Build new adapters
   - [ ] Add action which builds a REST API from a table where a user only needs 
-        to provide the table name
+        to provide the table name. The action needs two routes /table and 
+        /table/:id
   - [ ] Add SOAP action
   - [ ] Add couchdb action
   - [ ] Add an action merge which combines the result of two actions into one 
@@ -85,19 +115,22 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] Gateways to complex systems i.e. sharepoint
 - [ ] Consider disable request model for DELETE method since a DELETE should
       probably not include a request body?
-- [ ] Schema if a schema name changes or it gets deleted what happens with 
+- [x] Schema if a schema name changes or it gets deleted what happens with 
       schemas which refer to the changed schema? #3
-  - [ ] Since the cache includes the complete resolved schema we need to rebuild 
-        the cache for all schemas which reference the changed schema
+  - [x] Since the cache includes the complete resolved schema the problem occurs
+        of the user wants to save the schema which refers to an deleted schema
+
+### 1.0
 
 ### Meta
 
+- [ ] Add use case section to website
 - [ ] Provide a video with a installation and demo about the system
 - [x] Register domain maybe fusio-api.org or fusio-project.org
 - [x] Add a online demo system
 - [ ] ~~Add beta phase on the website. Where users can enter an email for an invite~~
-- [ ] Write manual
-- [ ] Setup discourse forum
+- [ ] Extend manual
+- [x] Setup discourse forum (we have a google group)
 - [ ] For the stable release write about Fusio at 
   - [ ] http://nordicapis.com/create-with-us/
   - [ ] https://www.reddit.com/r/php / https://www.reddit.com/r/rest
