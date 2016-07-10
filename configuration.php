@@ -2,13 +2,6 @@
 
 return array(
 
-    // The max amount of apps a consumer can register
-    'fusio_app_per_consumer'  => 16,
-
-    // If true the status of a new app is PENDING so that an administrator has 
-    // to manually activate the app. If false the app is direct ACTIVE
-    'fusio_app_approval'      => false,
-
     // Whether the implicit flow is allowed. This is mostly needed for 
     // javascript apps
     'fusio_grant_implicit'    => true,
@@ -55,6 +48,13 @@ return array(
 
     // Path to the library folder
     'psx_path_library'        => __DIR__ . '/src',
+
+    // Supported writers
+    'psx_supported_writer'    => [
+        \PSX\Data\Writer\Json::class,
+        \PSX\Data\Writer\Jsonp::class,
+        \PSX\Data\Writer\Jsonx::class,
+    ],
 
     // Class name of the error controller
     //'psx_error_controller'    => null,
