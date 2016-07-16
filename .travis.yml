@@ -36,3 +36,4 @@ script:
 env:
   - DB=mysql
   - DB=sqlite
+  - TRAVIS_NODE_VERSION="4"
