@@ -131,13 +131,6 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
     $scope.types = ['bigint', 'boolean', 'datetime', 'date', 'time', 'decimal', 'integer', 'smallint', 'string', 'text', 'binary', 'blob', 'float', 'guid', 'json', 'object', 'array', 'simple_array'];
 
     $scope.create = function(table){
-        // convert default null
-        for (var index in table.columns) {
-            if (table.columns[index].default == 'NULL') {
-                table.columns[index].default = null;
-            }
-        }
-
         $http.post(fusio_url + 'backend/database/' + connection + '/', table)
             .success(function(data){
                 $scope.response = data;
@@ -223,25 +216,11 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
     var tableCopy = angular.copy(table);
 
-    // convert default null
-    for (var index in tableCopy.columns) {
-        if (tableCopy.columns[index].null === true && tableCopy.columns[index].default === undefined) {
-            tableCopy.columns[index].default = 'NULL';
-        }
-    }
-
     $scope.table = tableCopy;
 
     $scope.types = ['bigint', 'boolean', 'datetime', 'date', 'time', 'decimal', 'integer', 'smallint', 'string', 'text', 'binary', 'blob', 'float', 'guid', 'json', 'object', 'array', 'simple_array'];
 
     $scope.update = function(table){
-        // convert default null
-        for (var index in table.columns) {
-            if (table.columns[index].default == 'NULL') {
-                table.columns[index].default = null;
-            }
-        }
-
         $http.put(fusio_url + 'backend/database/' + connection + '/' + table.name + '?preview=1', table)
             .success(function(data){
                 if (data.success === true) {
