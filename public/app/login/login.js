@@ -2,14 +2,14 @@
 
 angular.module('fusioApp.login', ['ngRoute'])
 
-.config(['$routeProvider', function ($routeProvider) {
+.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {
     templateUrl: 'app/login/index.html',
     controller: 'LoginCtrl'
   });
 }])
 
-.controller('LoginCtrl', ['$scope', '$http', '$location', '$window', function ($scope, $http, $location, $window) {
+.controller('LoginCtrl', ['$scope', '$http', '$location', '$window', function($scope, $http, $location, $window) {
   $scope.credentials = {
     username: '',
     password: ''
@@ -18,7 +18,7 @@ angular.module('fusioApp.login', ['ngRoute'])
   $scope.response = null;
   $scope.loading = false;
 
-  $scope.login = function (credentials) {
+  $scope.login = function(credentials) {
     $scope.loading = true;
 
     var req = {
@@ -31,7 +31,7 @@ angular.module('fusioApp.login', ['ngRoute'])
     };
 
     $http(req)
-      .success(function (data) {
+      .success(function(data) {
         $scope.loading = false;
         if (data.access_token) {
           $http.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
@@ -47,7 +47,7 @@ angular.module('fusioApp.login', ['ngRoute'])
           $scope.response = data.error_description ? data.error_description : 'Authentication failed';
         }
       })
-      .error(function (data) {
+      .error(function(data) {
         $scope.loading = false;
         $scope.response = data.error_description ? data.error_description : 'Authentication failed';
       });

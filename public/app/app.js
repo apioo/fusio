@@ -27,9 +27,9 @@ var fusioApp = angular.module('fusioApp', [
 
 fusioApp.value('version', 'v0.3');
 
-fusioApp.factory('fusioIsAuthenticated', ['$location', '$window', '$q', function ($location, $window, $q) {
+fusioApp.factory('fusioIsAuthenticated', ['$location', '$window', '$q', function($location, $window, $q) {
   return {
-    responseError: function (response) {
+    responseError: function(response) {
       if (response.status == 400 && response.data.message && response.data.message.indexOf('Invalid access token') !== -1) {
         $window.sessionStorage.removeItem('fusio_access_token');
 
@@ -41,20 +41,20 @@ fusioApp.factory('fusioIsAuthenticated', ['$location', '$window', '$q', function
   };
 }]);
 
-fusioApp.config(['$routeProvider', function ($routeProvider) {
+fusioApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({
     redirectTo: '/dashboard'
   });
 }]);
 
-fusioApp.config(['$httpProvider', function ($httpProvider) {
+fusioApp.config(['$httpProvider', function($httpProvider) {
   $httpProvider.interceptors.push('fusioIsAuthenticated');
 }]);
 
-fusioApp.config(['$showdownProvider', function ($showdownProvider) {
+fusioApp.config(['$showdownProvider', function($showdownProvider) {
 }]);
 
-fusioApp.run(function ($rootScope, $window, $location, $http, helpLoader, version) {
+fusioApp.run(function($rootScope, $window, $location, $http, helpLoader, version) {
   var token = $window.sessionStorage.getItem('fusio_access_token');
   if (token) {
     $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
@@ -76,7 +76,7 @@ fusioApp.run(function ($rootScope, $window, $location, $http, helpLoader, versio
  */
 function guessFusioEndpointUrl() {
   var url = window.location.href;
-  var removePart = function (url, sign) {
+  var removePart = function(url, sign) {
     var count = (url.match(/\//g) || []).length;
     var pos = url.lastIndexOf(sign);
     if (count > 2 && pos !== -1) {

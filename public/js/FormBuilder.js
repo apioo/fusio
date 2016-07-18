@@ -1,8 +1,9 @@
+'use strict';
 
-fusioApp.factory('formBuilder', ['$sce', '$compile', function ($sce, $compile) {
+fusioApp.factory('formBuilder', ['$sce', '$compile', function($sce, $compile) {
   var builder = {};
 
-  builder.buildHtml = function (elements, propertyName) {
+  builder.buildHtml = function(elements, propertyName) {
     if (!elements || !angular.isArray(elements) || elements.length === 0) {
       return null;
     }

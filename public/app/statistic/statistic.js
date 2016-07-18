@@ -2,14 +2,14 @@
 
 angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
 
-.config(['$routeProvider', function ($routeProvider) {
+.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/statistic', {
     templateUrl: 'app/statistic/index.html',
     controller: 'StatisticCtrl'
   });
 }])
 
-.controller('StatisticCtrl', ['$scope', '$http', '$uibModal', '$compile', function ($scope, $http, $uibModal, $compile) {
+.controller('StatisticCtrl', ['$scope', '$http', '$uibModal', '$compile', function($scope, $http, $uibModal, $compile) {
 
   // set initial date range
   var from = new Date();
@@ -37,7 +37,7 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
     value: 'errors_per_route'
   }];
 
-  $scope.doFilter = function () {
+  $scope.doFilter = function() {
     var statistic = $scope.statistic ? $scope.statistic : 'incoming_requests';
     var query = '';
     for (var key in $scope.filter) {
@@ -53,28 +53,28 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
       }
     }
 
-    $http.get(fusio_url + 'backend/statistic/' + statistic + '?' + query).success(function (data) {
+    $http.get(fusio_url + 'backend/statistic/' + statistic + '?' + query).success(function(data) {
       $scope.chart = data;
     });
   };
 
-  $scope.openFilterDialog = function () {
+  $scope.openFilterDialog = function() {
     var modalInstance = $uibModal.open({
       size: 'lg',
       backdrop: 'static',
       templateUrl: 'app/statistic/filter.html',
       controller: 'StatisticFilterCtrl',
       resolve: {
-        filter: function () {
+        filter: function() {
           return $scope.filter;
         }
       }
     });
 
-    modalInstance.result.then(function (filter) {
+    modalInstance.result.then(function(filter) {
       $scope.filter = filter;
       $scope.doFilter();
-    }, function () {
+    }, function() {
     });
   };
 
@@ -82,26 +82,25 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-
-.controller('StatisticFilterCtrl', ['$scope', '$http', '$uibModalInstance', 'filter', function ($scope, $http, $uibModalInstance, filter) {
+.controller('StatisticFilterCtrl', ['$scope', '$http', '$uibModalInstance', 'filter', function($scope, $http, $uibModalInstance, filter) {
 
   $scope.filter = filter;
 
-  $scope.doFilter = function () {
+  $scope.doFilter = function() {
     $uibModalInstance.close($scope.filter);
   };
 
-  $scope.close = function () {
+  $scope.close = function() {
     $uibModalInstance.dismiss('cancel');
   };
 
   $http.get(fusio_url + 'backend/routes')
-    .success(function (data) {
+    .success(function(data) {
       $scope.routes = data.entry;
     });
 
   $http.get(fusio_url + 'backend/app')
-    .success(function (data) {
+    .success(function(data) {
       $scope.apps = data.entry;
     });
 
