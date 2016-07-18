@@ -1,3 +1,4 @@
+'use strict';
 
 describe('Database tests', function() {
 
@@ -50,7 +51,7 @@ describe('Database tests', function() {
     var tables = element.all(by.repeater('table in tables'));
     tables.get(1).$('a').click();
     browser.wait(EC.textToBePresentInElement($('h4'), 'foobar'), 5000);
-      
+
     element.all(by.css('a.btn-default')).get(1).click();
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);

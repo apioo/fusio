@@ -1,5 +1,5 @@
 {
-  "strict": "global",
+  "strict": true,
   "node": true,
   "globals": {
     // Fusio
@@ -22,8 +22,10 @@
     "afterEach": false,
     "it": false,
     "expect": false,
+    "$": false,
 
     // Protractor
+    "protractor": false,
     "browser": false,
     "element": false,
     "by": false

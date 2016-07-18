@@ -1,3 +1,4 @@
+'use strict';
 
 describe('User tests', function() {
 

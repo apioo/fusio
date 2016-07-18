@@ -1,3 +1,4 @@
+'use strict';
 
 describe('Connection tests', function() {
 

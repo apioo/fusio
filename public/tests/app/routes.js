@@ -1,3 +1,4 @@
+'use strict';
 
 describe('Routes tests', function() {
 
