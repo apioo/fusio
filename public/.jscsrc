@@ -42,6 +42,5 @@
   "requireSpacesInForStatement": true,
   "requireSpacesInFunction": {
     "beforeOpeningCurlyBrace": true
-  },
-  "validateLineBreaks": "LF"
+  }
 }
