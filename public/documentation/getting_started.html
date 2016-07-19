@@ -2,9 +2,10 @@
 <md-content flex layout-padding>
 
     <div class="md-body-1">
-    <p><b>Welcome</b>, this is a quick introduction to help you get started using this 
-    API. On the left sidebar you see all available endpoints. Each endpoint 
-    shows the available request methods and the request/response data format.</p>
+    <p><b>Welcome</b>, this is a quick introduction to help you get started 
+    using the API. On the left sidebar you see all available endpoints. Each 
+    endpoint shows the available request methods and the request/response data 
+    format.</p>
 
     <p>Through the <a href="../consumer">consumer</a> it is possible to manage 
     all your apps and authorizations. If you have obtained an app key and secret 
@@ -20,11 +21,11 @@
     </dl>
 
     <p><b>Authorization Code Grant</b><br>
-    For the authorization code you have to redirect the resource owner to the consumer endpoint: 
-    <code>/consumer/?response_type=code&amp;client_id=[app_key]&amp;redirect_uri=[url]&amp;scope=authorization</code>.
-    If the authorization was successful the user gets redirected to the <code>redirect_uri</code> of your app.
-    The <a href="https://tools.ietf.org/html/rfc6749#section-4.1.2">redirect_uri</a> contains a GET parameter <code>code</code>
-    which can be <a href="https://tools.ietf.org/html/rfc6749#section-4.1.3">exchanged</a> 
+    For the authorization code you have to redirect the resource owner to the 
+    consumer endpoint: <code>/consumer/#/auth?response_type=code&amp;client_id=[app_key]&amp;redirect_uri=[url]&amp;scope=authorization</code>.
+    If the authorization was successful the user gets redirected to the 
+    <code>redirect_uri</code> of your app. The <a href="https://tools.ietf.org/html/rfc6749#section-4.1.2">redirect_uri</a> 
+    contains a GET parameter <code>code</code> which can be <a href="https://tools.ietf.org/html/rfc6749#section-4.1.3">exchanged</a> 
     for an access token.</p>
 
     <p><b>Resource Owner Password Credentials Grant</b><br>
