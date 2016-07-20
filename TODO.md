@@ -1,36 +1,22 @@
 _Ever growing list of ideas and thoughts howto improve and extend Fusio. Topics_ 
 _which are likely to be implemented are moved to a seperate github issue_
 
-### 0.3
-
-- [x] Update config help texts
-- [x] Add CORS support to backend config
-- [x] Installer handle upgrade from 0.2.x to 0.3.x
-- [x] Complete Fusio consumer Account/ChangePassword API
-- [x] Think about action to build better nested responses
-  - [ ] Option to execute another action inside a template
-  - [x] In general we need some kind of data templating engine where it is easy
-        to write json data and call other actions etc.
-- [x] Add database protractor tests
-- [x] Add transactions to services
-- [x] Disable edit button of scope backend, consumer and authorization since a 
-      user would remove all assigned routes on save #13
-
 ### 0.4
 
 - [ ] Add consumer and documentation protractor tests
 - [ ] Improve cache action add option to specific get or uri parameters which
       come into the cache key
-- [ ] Automatically add the consumer scope the to the scope list
-- [ ] Database UI add auto increment option
+- [ ] ~~Automatically add the consumer scope the to the scope list~~
+- [ ] Backend database UI add auto increment option
 - [ ] App button to regenerate app key and secret
 - [ ] Consumer if access was already granted dont ask the user again instead 
       redirect the user directly or show the access token. We could add this 
       logic maybe to the meta lookup response
 - [ ] Test GitHub/Google/Facebook login
-- [ ] General test build an API and use different libraries to test OAuth2 
+- [ ] General test. Build an API and use different libraries to test OAuth2 
       interoperability
-- [ ] Option to ratelimit specific apps
+- [ ] Option to ratelimit specific apps. Option to set global rate limits per
+      config?
 - [ ] Add forms endpoint
       The user can select a route, request method and an input field which
       contains the form format. Maybe based on https://github.com/joshfire/jsonform
@@ -45,7 +31,17 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] We should build different libraries (javascript, java, etc.) to build 
         these forms
 - [ ] Add action which can build a REST API for a table
+- [ ] Add failover action which executes another action in case of an error
 - [ ] Import allow swagger format
+- [ ] Adapter if we reference a connection in the definition the connection may 
+      not exist. The adapter definition should be able to reference the
+      selected database connection (we select only a connection if the adapter 
+      inserts a table) or the user must have a way to specify one
+- [ ] Template add method to access SQL vendor independent queries from a 
+      template based on the selected connection. I.e. in a SQL template you 
+      could write {{ sql.getNowExpression() }} to get for mysql i.e. NOW(). This
+      allows adapter to write independent sql. But it is also a security risk
+      if users pass in user input into the arguments
 
 ### 0.x
 
@@ -137,6 +133,21 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] http://www.sitepoint.com/
 
 ### Archive
+
+### 0.3
+
+- [x] Update config help texts
+- [x] Add CORS support to backend config
+- [x] Installer handle upgrade from 0.2.x to 0.3.x
+- [x] Complete Fusio consumer Account/ChangePassword API
+- [x] Think about action to build better nested responses
+  - [ ] ~~Option to execute another action inside a template~~
+  - [x] In general we need some kind of data templating engine where it is easy
+        to write json data and call other actions etc.
+- [x] Add database protractor tests
+- [x] Add transactions to services
+- [x] Disable edit button of scope backend, consumer and authorization since a 
+      user would remove all assigned routes on save #13
 
 - [ ] ~~Provide actions to create an API from a file i.e. JSON, XML maybe CSV?~~
 - [x] Option to manually generate an access token
