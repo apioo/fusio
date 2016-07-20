@@ -126,6 +126,8 @@
         <delete file="${build}/.travis.yml" />
         <delete file="${build}/phpunit.xml" />
         <delete file="${build}/TODO.md" />
+        <delete file="${build}/public/.jscsrc" />
+        <delete file="${build}/public/.jshintrc" />
         <delete file="${build}/public/backend_dev.htm" />
         <delete file="${build}/public/bower.json" />
         <delete file="${build}/public/Gruntfile.js" />
