@@ -11,8 +11,8 @@
     }
   ],
   "require": {
-    "php": ">=5.3",
-    "fusio/impl": "dev-master"
+    "php": ">=5.5",
+    "fusio/impl": "^0.3@dev"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.1",
