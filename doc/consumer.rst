@@ -12,7 +12,7 @@ Authorization code
 
 At first you have to redirect the client to the consumer endpoint containing
 the app key, redirect uri and the needed scopes i.e.: 
-``/consumer/?response_type=code&client_id=[key]&redirect_uri=[url]&scope=foo,bar``.
+``/consumer/#/auth?response_type=code&client_id=[key]&redirect_uri=[url]&scope=foo,bar``.
 After the user has authenticated he approves or denies the access. If he accepts
 the user gets redirected to the provided ``redirect_uri``. Note the ``redirect_uri`` 
 must have the same host as the url which was provided for the app. The callback 
@@ -24,7 +24,7 @@ Implicit
 
 Mostly used for javascript apps. Like in the authorization code flow the app
 redirects the user to the consumer endpoint i.e.:
-``/consumer/?response_type=token&client_id=[key]&redirect_uri=[url]&scope=foo,bar``
+``/consumer/#/auth?response_type=token&client_id=[key]&redirect_uri=[url]&scope=foo,bar``
 If the user has authenticated and approved the app the user gets redirected to
 the ``redirect_uri``. The callback contains the access token in the fragment 
 component. The access tokens which are issued through the implicit grant have 

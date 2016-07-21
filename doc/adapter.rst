@@ -20,30 +20,29 @@ In the following an example adater definition which showcases all available
 parameters.
 
 .. code-block:: json
-
+ 
     {
-        "actionClass": ["Fusio\\Impl\\Adapter\\Test\\VoidAction"],
-        "connectionClass": ["Fusio\\Impl\\Adapter\\Test\\VoidConnection"],
+        "actionClass": ["Fusio\\Impl\\Tests\\Adapter\\Test\\VoidAction"],
+        "connectionClass": ["Fusio\\Impl\\Tests\\Adapter\\Test\\VoidConnection"],
         "routes": [{
-            "methods": "GET|POST|PUT|DELETE",
             "path": "/void",
-            "config":[{
-                "active": true,
+            "config": [{
+                "version": 1,
                 "status": 4,
-                "name": "1",
-                "methods": [{
-                    "active": true,
-                    "public": true,
-                    "name": "GET",
-                    "action": "Void-Action",
-                    "request": "Adapter-Schema",
-                    "response": "Passthru"
-                }]
+                "methods": {
+                    "GET": {
+                        "active": true,
+                        "public": true,
+                        "action": "Void-Action",
+                        "request": "Adapter-Schema",
+                        "response": "Passthru"
+                    }
+                }
             }]
         }],
         "action": [{
             "name": "Void-Action",
-            "class": "Fusio\\Impl\\Adapter\\Test\\VoidAction",
+            "class": "Fusio\\Impl\\Tests\\Adapter\\Test\\VoidAction",
             "config": {
                 "foo": "bar",
                 "connection": "Adapter-Connection"
@@ -68,9 +67,27 @@ parameters.
                 }
             }
         }],
+        "database": [{
+            "name": "app_todo",
+            "columns": [{
+                "name": "id",
+                "type": "integer"
+            },{
+                "name": "title",
+                "type": "string"
+            },{
+                "name": "insertDate",
+                "type": "datetime"
+            }],
+            "indexes": [{
+                "name": "PRIMARY",
+                "columns": ["id"],
+                "primary": true
+            }]
+        }],
         "connection": [{
             "name": "Adapter-Connection",
-            "class": "Fusio\\Impl\\Adapter\\Test\\VoidConnection",
+            "class": "Fusio\\Impl\\Tests\\Adapter\\Test\\VoidConnection",
             "config": {
                 "foo": "bar"
             }

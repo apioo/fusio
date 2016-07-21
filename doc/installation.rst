@@ -20,10 +20,11 @@ steps.
 
   After the installation is complete you have to create a new administrator 
   account. Therefor you can use the following command ``php bin/fusio adduser``. 
-  Choose as account type "Administrator" and save the generated password.
+  Choose as account type "Administrator".
 
 You can verify the installation by visiting the ``psx_url`` with a browser. You
-should see a API response that the installation was successful.
+should see a API response that the installation was successful. The backend is
+available at ``/backend.htm``.
 
 Configure webserver
 -------------------
@@ -59,7 +60,6 @@ Backend
 At the endpoint ``/backend.htm`` you can login to the backend app. You should
 be able to login with the username (which you have entered for the ``adduser``
 command) and the password which was generated. 
-
 
 Updating
 --------

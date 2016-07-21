@@ -42,7 +42,7 @@ describes each status
 * `Production`
   Used if the API is ready for production use. If the API transitions from 
   development to production all databases settings are copied into the route. 
-  That means changing an schema or action will not change the API endpoint.
+  That means changing a schema or action will not change the API endpoint.
 
 * `Deprecated`
   Used if you want to deprecate a specific version of the API. Adds a "Warning" 
@@ -55,5 +55,5 @@ describes each status
 ### Action
 
 The action contains the business logic of your API endpoints. It i.e. selects
-or inserts entries from a database or pushes a new entry to an message queue.
+or inserts entries from a database or pushes a new entry to a message queue.
 
