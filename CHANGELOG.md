@@ -1,5 +1,10 @@
 
-### 0.3.0
+### 0.3.1 (2016-07-22)
+
+* Consumer add documentation link
+* Fix consumer navigation
+
+### 0.3.0 (2016-07-20)
 
 * Rewrote consumer implementation moved from jQuery to AngularJS
 * Add backend database panel to create and edit database schemas
