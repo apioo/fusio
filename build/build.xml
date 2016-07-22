@@ -17,7 +17,7 @@
     <!-- clone the repository -->
     <target name="git-clone">
         <exec executable="${git}" failonerror="true">
-            <arg line="clone https://github.com/k42b3/fusio.git ${build}" />
+            <arg line="clone https://github.com/apioo/fusio.git ${build}" />
         </exec>
     </target>
 
