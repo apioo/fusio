@@ -46,7 +46,8 @@
     });
 
     /**
-     * Google captcha site key for registration
+     * Google captcha site key for registration. Also you need to save the
+     * secret key in the Fusio backend configuration
      */
     fusioApp.config(['noCAPTCHAProvider', function(noCaptchaProvider) {
         noCaptchaProvider.setSiteKey('');
