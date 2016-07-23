@@ -1,4 +1,8 @@
 
+### 0.3.2 (2016-07-23)
+
+* Fix route deployment to live
+
 ### 0.3.1 (2016-07-22)
 
 * Consumer add documentation link
