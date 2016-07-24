@@ -6,7 +6,7 @@ This chapter gives a high level overview what the Fusio system provides and how
 the application is structured. Lets take a look at the components which are 
 provided by Fusio:
 
-.. image:: _static/fusio-overview.png
+.. image:: _static/overview.png
 
 Fusio API
 ---------
