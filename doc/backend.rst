@@ -32,3 +32,4 @@ backend app):
    backend/app
    backend/scope
    backend/user
+   backend/config
