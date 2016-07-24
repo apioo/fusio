@@ -9,7 +9,7 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
   });
 }])
 
-.controller('ScopeCtrl', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal) {
+.controller('ScopeCtrl', ['$scope', '$http', '$uibModal', 'fusio', function($scope, $http, $uibModal, fusio) {
 
   $scope.response = null;
   $scope.search = '';
@@ -17,7 +17,7 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
   $scope.load = function() {
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio_url + 'backend/scope?search=' + search).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/scope?search=' + search).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.startIndex = 0;
       $scope.scopes = data.entry;
@@ -28,14 +28,14 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
     var startIndex = ($scope.startIndex - 1) * 16;
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio_url + 'backend/scope?startIndex=' + startIndex + '&search=' + search).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/scope?startIndex=' + startIndex + '&search=' + search).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.scopes = data.entry;
     });
   };
 
   $scope.doSearch = function(search) {
-    $http.get(fusio_url + 'backend/scope?search=' + encodeURIComponent(search)).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/scope?search=' + encodeURIComponent(search)).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.startIndex = 0;
       $scope.scopes = data.entry;
@@ -105,7 +105,7 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ScopeCreateCtrl', ['$scope', '$http', '$uibModalInstance', function($scope, $http, $uibModalInstance) {
+.controller('ScopeCreateCtrl', ['$scope', '$http', '$uibModalInstance', 'fusio', function($scope, $http, $uibModalInstance, fusio) {
 
   $scope.scope = {
     name: ''
@@ -113,7 +113,7 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
   $scope.routes = [];
 
-  $http.get(fusio_url + 'backend/routes?count=1024').success(function(data) {
+  $http.get(fusio.baseUrl + 'backend/routes?count=1024').success(function(data) {
     $scope.routes = data.entry;
   });
 
@@ -140,7 +140,7 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
     scope.routes = routes;
 
-    $http.post(fusio_url + 'backend/scope', scope)
+    $http.post(fusio.baseUrl + 'backend/scope', scope)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -162,14 +162,14 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ScopeUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'scope', function($scope, $http, $uibModalInstance, scope) {
+.controller('ScopeUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'fusio', 'scope', function($scope, $http, $uibModalInstance, fusio, scope) {
 
   $scope.scope = scope;
 
   $scope.routes = [];
 
   $scope.loadRoutes = function() {
-    $http.get(fusio_url + 'backend/routes?count=1024').success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/routes?count=1024').success(function(data) {
       var routes = [];
       for (var i = 0; i < data.entry.length; i++) {
         var route = data.entry[i];
@@ -221,7 +221,7 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
     scope.routes = routes;
 
-    $http.put(fusio_url + 'backend/scope/' + scope.id, scope)
+    $http.put(fusio.baseUrl + 'backend/scope/' + scope.id, scope)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -241,7 +241,7 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
     $scope.response = null;
   };
 
-  $http.get(fusio_url + 'backend/scope/' + scope.id)
+  $http.get(fusio.baseUrl + 'backend/scope/' + scope.id)
     .success(function(data) {
       $scope.scope = data;
 
@@ -250,12 +250,12 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ScopeDeleteCtrl', ['$scope', '$http', '$uibModalInstance', 'scope', function($scope, $http, $uibModalInstance, scope) {
+.controller('ScopeDeleteCtrl', ['$scope', '$http', '$uibModalInstance', 'fusio', 'scope', function($scope, $http, $uibModalInstance, fusio, scope) {
 
   $scope.scope = scope;
 
   $scope.delete = function(scope) {
-    $http.delete(fusio_url + 'backend/scope/' + scope.id)
+    $http.delete(fusio.baseUrl + 'backend/scope/' + scope.id)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {

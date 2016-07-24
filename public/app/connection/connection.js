@@ -9,7 +9,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
   });
 }])
 
-.controller('ConnectionCtrl', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal) {
+.controller('ConnectionCtrl', ['$scope', '$http', '$uibModal', 'fusio', function($scope, $http, $uibModal, fusio) {
 
   $scope.response = null;
   $scope.search = '';
@@ -17,7 +17,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
   $scope.load = function() {
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio_url + 'backend/connection?search=' + search).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/connection?search=' + search).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.startIndex = 0;
       $scope.connections = data.entry;
@@ -28,14 +28,14 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
     var startIndex = ($scope.startIndex - 1) * 16;
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio_url + 'backend/connection?startIndex=' + startIndex + '&search=' + search).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/connection?startIndex=' + startIndex + '&search=' + search).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.connections = data.entry;
     });
   };
 
   $scope.doSearch = function(search) {
-    $http.get(fusio_url + 'backend/connection?search=' + encodeURIComponent(search)).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/connection?search=' + encodeURIComponent(search)).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.startIndex = 0;
       $scope.connections = data.entry;
@@ -105,7 +105,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ConnectionCreateCtrl', ['$scope', '$http', '$uibModalInstance', 'formBuilder', function($scope, $http, $uibModalInstance, formBuilder) {
+.controller('ConnectionCreateCtrl', ['$scope', '$http', '$uibModalInstance', 'fusio', 'formBuilder', function($scope, $http, $uibModalInstance, fusio, formBuilder) {
 
   $scope.connection = {
     name: '',
@@ -116,7 +116,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
   $scope.connections = [];
 
   $scope.create = function(connection) {
-    $http.post(fusio_url + 'backend/connection', connection)
+    $http.post(fusio.baseUrl + 'backend/connection', connection)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -128,7 +128,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
       });
   };
 
-  $http.get(fusio_url + 'backend/connection/list')
+  $http.get(fusio.baseUrl + 'backend/connection/list')
     .success(function(data) {
       $scope.connections = data.connections;
 
@@ -148,7 +148,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 
   $scope.loadConfig = function() {
     if ($scope.connection.class) {
-      $http.get(fusio_url + 'backend/connection/form?class=' + encodeURIComponent($scope.connection.class))
+      $http.get(fusio.baseUrl + 'backend/connection/form?class=' + encodeURIComponent($scope.connection.class))
         .success(function(data) {
           var containerEl = angular.element(document.querySelector('#config-form'));
           containerEl.children().remove();
@@ -164,7 +164,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ConnectionUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'formBuilder', 'connection', function($scope, $http, $uibModalInstance, formBuilder, connection) {
+.controller('ConnectionUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'fusio', 'formBuilder', 'connection', function($scope, $http, $uibModalInstance, fusio, formBuilder, connection) {
 
   if (angular.isArray(connection.config)) {
     connection.config = {};
@@ -174,7 +174,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
   $scope.connections = [];
 
   $scope.update = function(connection) {
-    $http.put(fusio_url + 'backend/connection/' + connection.id, connection)
+    $http.put(fusio.baseUrl + 'backend/connection/' + connection.id, connection)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -196,7 +196,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 
   $scope.loadConfig = function() {
     if ($scope.connection.class) {
-      $http.get(fusio_url + 'backend/connection/form?class=' + encodeURIComponent($scope.connection.class))
+      $http.get(fusio.baseUrl + 'backend/connection/form?class=' + encodeURIComponent($scope.connection.class))
         .success(function(data) {
           var containerEl = angular.element(document.querySelector('#config-form'));
           containerEl.children().remove();
@@ -210,7 +210,7 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
     }
   };
 
-  $http.get(fusio_url + 'backend/connection/' + connection.id)
+  $http.get(fusio.baseUrl + 'backend/connection/' + connection.id)
     .success(function(data) {
       $scope.connection = data;
 
@@ -219,12 +219,12 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ConnectionDeleteCtrl', ['$scope', '$http', '$uibModalInstance', 'connection', function($scope, $http, $uibModalInstance, connection) {
+.controller('ConnectionDeleteCtrl', ['$scope', '$http', '$uibModalInstance', 'fusio', 'connection', function($scope, $http, $uibModalInstance, fusio, connection) {
 
   $scope.connection = connection;
 
   $scope.delete = function(connection) {
-    $http.delete(fusio_url + 'backend/connection/' + connection.id)
+    $http.delete(fusio.baseUrl + 'backend/connection/' + connection.id)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {

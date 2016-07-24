@@ -9,7 +9,7 @@ angular.module('fusioApp.account', ['ngRoute'])
   });
 }])
 
-.controller('ChangePasswordCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('ChangePasswordCtrl', ['$scope', '$http', 'fusio', function($scope, $http, fusio) {
 
   $scope.account = {
     oldPassword: "",
@@ -18,7 +18,7 @@ angular.module('fusioApp.account', ['ngRoute'])
   };
 
   $scope.updatePassword = function() {
-    $http.put(fusio_url + 'backend/account/change_password', $scope.account)
+    $http.put(fusio.baseUrl + 'backend/account/change_password', $scope.account)
       .success(function(data) {
         $scope.response = data;
       })

@@ -9,7 +9,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
   });
 }])
 
-.controller('LogCtrl', ['$scope', '$http', '$uibModal', '$timeout', function($scope, $http, $uibModal, $timeout) {
+.controller('LogCtrl', ['$scope', '$http', '$uibModal', '$timeout', 'fusio', function($scope, $http, $uibModal, $timeout, fusio) {
 
   // set initial date range
   var from = new Date();
@@ -31,7 +31,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
       search = encodeURIComponent($scope.search);
     }
 
-    $http.get(fusio_url + 'backend/log?search=' + search).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/log?search=' + search).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.startIndex = 0;
       $scope.logs = data.entry;
@@ -42,7 +42,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
     var startIndex = ($scope.startIndex - 1) * 16;
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio_url + 'backend/log?startIndex=' + startIndex + '&search=' + search).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/log?startIndex=' + startIndex + '&search=' + search).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.logs = data.entry;
     });
@@ -63,7 +63,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
       }
     }
 
-    $http.get(fusio_url + 'backend/log?' + query).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/log?' + query).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.startIndex = 0;
       $scope.logs = data.entry;
@@ -118,7 +118,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('LogDetailCtrl', ['$scope', '$http', '$uibModal', '$uibModalInstance', 'log', function($scope, $http, $uibModal, $uibModalInstance, log) {
+.controller('LogDetailCtrl', ['$scope', '$http', '$uibModal', '$uibModalInstance', 'fusio', 'log', function($scope, $http, $uibModal, $uibModalInstance, fusio, log) {
 
   $scope.log = log;
 
@@ -134,7 +134,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
     });
   };
 
-  $http.get(fusio_url + 'backend/log/' + log.id)
+  $http.get(fusio.baseUrl + 'backend/log/' + log.id)
     .success(function(data) {
       $scope.log = data;
     });

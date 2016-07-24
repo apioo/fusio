@@ -27,6 +27,48 @@ var fusioApp = angular.module('fusioApp', [
 
 fusioApp.value('version', 'v0.3');
 
+fusioApp.provider('fusio', function() {
+  var baseUrl = null;
+
+  this.setBaseUrl = function(_baseUrl) {
+    baseUrl = _baseUrl;
+  };
+
+  /**
+   * Simple helper function to guess the API endpoint url
+   */
+  this.guessFusioEndpointUrl = function(urlRewrite) {
+    var url = window.location.href;
+    var removePart = function(url, sign) {
+      var count = (url.match(/\//g) || []).length;
+      var pos = url.lastIndexOf(sign);
+      if (count > 2 && pos !== -1) {
+        return url.substring(0, pos);
+      }
+      return url;
+    };
+    var parts = ['#', '?', '/'];
+    for (var i = 0; i < parts.length; i++) {
+      url = removePart(url, parts[i]);
+    }
+    return url + (urlRewrite ? '/' : '/index.php/');
+  };
+
+  this.$get = function() {
+    // BC workaround if the base url was not configured but the fusio_url is
+    // available we use it else we guess the url
+    if (baseUrl === null && typeof fusio_url !== 'undefined') {
+      baseUrl = fusio_url;
+    } else if (baseUrl === null) {
+      baseUrl = this.guessFusioEndpointUrl(false);
+    }
+
+    return {
+      baseUrl: baseUrl
+    };
+  };
+});
+
 fusioApp.factory('fusioIsAuthenticated', ['$location', '$window', '$q', function($location, $window, $q) {
   return {
     responseError: function(response) {
@@ -70,27 +112,3 @@ fusioApp.run(function($rootScope, $window, $location, $http, helpLoader, version
   // set version
   $rootScope.version = version;
 });
-
-/**
- * Simple helper function to guess the API endpoint url
- */
-function guessFusioEndpointUrl() {
-  var url = window.location.href;
-  var removePart = function(url, sign) {
-    var count = (url.match(/\//g) || []).length;
-    var pos = url.lastIndexOf(sign);
-    if (count > 2 && pos !== -1) {
-      return url.substring(0, pos);
-    }
-    return url;
-  };
-  var parts = ['#', '?', '/'];
-  for (var i = 0; i < parts.length; i++) {
-    url = removePart(url, parts[i]);
-  }
-  return url + '/index.php/';
-}
-
-if (typeof fusio_url === 'undefined') {
-  var fusio_url = guessFusioEndpointUrl();
-}

@@ -9,7 +9,7 @@ angular.module('fusioApp.logout', ['ngRoute'])
   });
 }])
 
-.controller('LogoutCtrl', ['$scope', '$http', '$location', '$window', function($scope, $http, $location, $window) {
+.controller('LogoutCtrl', ['$scope', '$http', '$location', '$window', 'fusio', function($scope, $http, $location, $window, fusio) {
 
   var removeToken = function() {
     delete $http.defaults.headers.common['Authorization'];
@@ -19,7 +19,7 @@ angular.module('fusioApp.logout', ['ngRoute'])
     $location.path('/login');
   };
 
-  $http.post(fusio_url + 'authorization/revoke', null)
+  $http.post(fusio.baseUrl + 'authorization/revoke', null)
     .success(removeToken)
     .error(removeToken);
 

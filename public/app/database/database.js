@@ -9,7 +9,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
   });
 }])
 
-.controller('DatabaseCtrl', ['$scope', '$http', '$uibModal', '$routeParams', function($scope, $http, $uibModal) {
+.controller('DatabaseCtrl', ['$scope', '$http', '$uibModal', '$routeParams', 'fusio', function($scope, $http, $uibModal, $routeParams, fusio) {
 
   $scope.connection = 1;
   $scope.table = null;
@@ -87,13 +87,13 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
   };
 
   $scope.loadConnections = function() {
-    $http.get(fusio_url + 'backend/connection?count=512').success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/connection?count=512').success(function(data) {
       $scope.connections = data.entry;
     });
   };
 
   $scope.loadTable = function(tableName) {
-    $http.get(fusio_url + 'backend/database/' + $scope.connection + '/' + tableName).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/database/' + $scope.connection + '/' + tableName).success(function(data) {
       $scope.table = data;
     });
   };
@@ -103,7 +103,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
       return;
     }
 
-    $http.get(fusio_url + 'backend/database/' + $scope.connection).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/database/' + $scope.connection).success(function(data) {
       $scope.tables = data.entry;
 
       if ($scope.table) {
@@ -119,7 +119,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('DatabaseCreateCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'connection', function($scope, $http, $uibModalInstance, $uibModal, connection) {
+.controller('DatabaseCreateCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'fusio', 'connection', function($scope, $http, $uibModalInstance, $uibModal, fusio, connection) {
 
   $scope.table = {
     name: '',
@@ -131,7 +131,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
   $scope.types = ['bigint', 'boolean', 'datetime', 'date', 'time', 'decimal', 'integer', 'smallint', 'string', 'text', 'binary', 'blob', 'float', 'guid', 'json', 'object', 'array', 'simple_array'];
 
   $scope.create = function(table) {
-    $http.post(fusio_url + 'backend/database/' + connection + '/', table)
+    $http.post(fusio.baseUrl + 'backend/database/' + connection + '/', table)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -212,7 +212,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('DatabaseUpdateCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'connection', 'table', function($scope, $http, $uibModalInstance, $uibModal, connection, table) {
+.controller('DatabaseUpdateCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'fusio', 'connection', 'table', function($scope, $http, $uibModalInstance, $uibModal, fusio, connection, table) {
 
   var tableCopy = angular.copy(table);
 
@@ -221,7 +221,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
   $scope.types = ['bigint', 'boolean', 'datetime', 'date', 'time', 'decimal', 'integer', 'smallint', 'string', 'text', 'binary', 'blob', 'float', 'guid', 'json', 'object', 'array', 'simple_array'];
 
   $scope.update = function(table) {
-    $http.put(fusio_url + 'backend/database/' + connection + '/' + table.name + '?preview=1', table)
+    $http.put(fusio.baseUrl + 'backend/database/' + connection + '/' + table.name + '?preview=1', table)
       .success(function(data) {
         if (data.success === true) {
           // if the preview was successful show the sql and ask for
@@ -242,7 +242,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
           });
 
           modalInstance.result.then(function(table) {
-            $http.put(fusio_url + 'backend/database/' + connection + '/' + table.name, table)
+            $http.put(fusio.baseUrl + 'backend/database/' + connection + '/' + table.name, table)
               .success(function(data) {
                 $scope.response = data;
                 if (data.success === true) {
@@ -328,13 +328,13 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('DatabaseDeleteCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'connection', 'table', function($scope, $http, $uibModalInstance, $uibModal, connection, table) {
+.controller('DatabaseDeleteCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'fusio', 'connection', 'table', function($scope, $http, $uibModalInstance, $uibModal, fusio, connection, table) {
 
   $scope.table = table;
 
   $scope.delete = function(table) {
     // preview post
-    $http.delete(fusio_url + 'backend/database/' + connection + '/' + table.name + '?preview=1')
+    $http.delete(fusio.baseUrl + 'backend/database/' + connection + '/' + table.name + '?preview=1')
       .success(function(data) {
         if (data.success === true) {
           // if the preview was successful show the sql and ask for
@@ -355,7 +355,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
           });
 
           modalInstance.result.then(function(table) {
-            $http.delete(fusio_url + 'backend/database/' + connection + '/' + table.name)
+            $http.delete(fusio.baseUrl + 'backend/database/' + connection + '/' + table.name)
               .success(function(data) {
                 $scope.response = data;
                 if (data.success === true) {
@@ -384,7 +384,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('DatabaseIndexesCtrl', ['$scope', '$uibModalInstance', 'table', function($scope, $uibModalInstance, table) {
+.controller('DatabaseIndexesCtrl', ['$scope', '$uibModalInstance', 'fusio', 'table', function($scope, $uibModalInstance, fusio, table) {
 
   $scope.table = table;
 
@@ -418,7 +418,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('DatabaseFksCtrl', ['$scope', '$uibModalInstance', 'table', function($scope, $uibModalInstance, table) {
+.controller('DatabaseFksCtrl', ['$scope', '$uibModalInstance', 'fusio', 'table', function($scope, $uibModalInstance, fusio, table) {
 
   $scope.table = table;
 

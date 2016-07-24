@@ -4,7 +4,6 @@
   "globals": {
     // Fusio
     "fusioApp": false,
-    "fusio_url": false,
     "document": false,
     "window": false,
 

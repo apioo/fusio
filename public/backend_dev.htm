@@ -5,95 +5,99 @@
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="fusioApp" class="no-js"> <!--<![endif]-->
 <html ng-app="fusioApp">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Fusio</title>
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
-	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
-	<link href="bower_components/angular-chart.js/dist/angular-chart.css" rel="stylesheet" media="screen">
-	<link href="css/default.css" rel="stylesheet" media="screen">
-	<script src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
-	<script src="bower_components/Chart.js/Chart.min.js"></script>
-	<script src="bower_components/showdown/dist/showdown.min.js"></script>
-	<script src="bower_components/angular/angular.js"></script>
-	<script src="bower_components/angular-route/angular-route.js"></script>
-	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-	<script src="bower_components/angular-ui-ace/ui-ace.js"></script>
-	<script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
-	<script src="bower_components/ng-showdown/dist/ng-showdown.min.js"></script>
-	<script src="app/app.js"></script>
-	<script src="app/account/change_password.js"></script>
-	<script src="app/login/login.js"></script>
-	<script src="app/logout/logout.js"></script>
-	<script src="app/dashboard/dashboard.js"></script>
-	<script src="app/database/database.js"></script>
-	<script src="app/routes/routes.js"></script>
-	<script src="app/schema/schema.js"></script>
-	<script src="app/action/action.js"></script>
-	<script src="app/config/config.js"></script>
-	<script src="app/connection/connection.js"></script>
-	<script src="app/app/app.js"></script>
-	<script src="app/log/log.js"></script>
-	<script src="app/user/user.js"></script>
-	<script src="app/scope/scope.js"></script>
-	<script src="app/statistic/statistic.js"></script>
-	<script src="app/import/import.js"></script>
-	<script src="js/FormBuilder.js"></script>
-	<script src="js/HelpLoader.js"></script>
-	<script type="text/javascript">
-	/**
-	 * Url to the fusio API endpoint. Change this to the fitting url to the 
-	 * backend API. If not provided Fusio will try to guess the correct url
-	 * I.e.: http://127.0.0.1/projects/fusio/public/index.php/
-	 */
-	//var fusio_url = guessFusioEndpointUrl();
-	</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusio</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+    <link href="bower_components/angular-chart.js/dist/angular-chart.css" rel="stylesheet" media="screen">
+    <link href="css/default.css" rel="stylesheet" media="screen">
+    <script src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+    <script src="bower_components/Chart.js/Chart.min.js"></script>
+    <script src="bower_components/showdown/dist/showdown.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-ui-ace/ui-ace.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+    <script src="bower_components/ng-showdown/dist/ng-showdown.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/account/change_password.js"></script>
+    <script src="app/login/login.js"></script>
+    <script src="app/logout/logout.js"></script>
+    <script src="app/dashboard/dashboard.js"></script>
+    <script src="app/database/database.js"></script>
+    <script src="app/routes/routes.js"></script>
+    <script src="app/schema/schema.js"></script>
+    <script src="app/action/action.js"></script>
+    <script src="app/config/config.js"></script>
+    <script src="app/connection/connection.js"></script>
+    <script src="app/app/app.js"></script>
+    <script src="app/log/log.js"></script>
+    <script src="app/user/user.js"></script>
+    <script src="app/scope/scope.js"></script>
+    <script src="app/statistic/statistic.js"></script>
+    <script src="app/import/import.js"></script>
+    <script src="js/FormBuilder.js"></script>
+    <script src="js/HelpLoader.js"></script>
+    <script type="text/javascript">
+    fusioApp.config(['fusioProvider', function(fusioProvider) {
+        /**
+         * Url to the Fusio API endpoint. Change this to the fitting url to the
+         * backend API. If not provided Fusio will try to guess the correct url
+         * I.e.: http://127.0.0.1/projects/fusio/public/index.php/
+         */
+        var fusioUrl = fusioProvider.guessFusioEndpointUrl(false);
+
+        fusioProvider.setBaseUrl(fusioUrl);
+    }]);
+    </script>
 </head>
 <body class="fusio-hidden">
 
 <header class="fusio-header">
-	<div class="btn-group pull-right fusio-header-profile">
-		<span class="dropdown" uib-dropdown on-toggle="toggled(open)">
-			<a href uib-dropdown-toggle class="dropdown-toggle"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Administrator</a>
-			<ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-menu-right">
-				<li role="menuitem"><a href="#/account/change_password">Change password</a></li>
-				<li role="menuitem"><a href="#/logout">Logout</a></li>
-			</ul>
-		</span>
-	</div>
-	<h1>Fusio <span>({{version}})</span></h1>
+    <div class="btn-group pull-right fusio-header-profile">
+        <span class="dropdown" uib-dropdown on-toggle="toggled(open)">
+            <a href uib-dropdown-toggle class="dropdown-toggle"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Administrator</a>
+            <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-menu-right">
+                <li role="menuitem"><a href="#/account/change_password">Change password</a></li>
+                <li role="menuitem"><a href="#/logout">Logout</a></li>
+            </ul>
+        </span>
+    </div>
+    <h1>Fusio <span>({{version}})</span></h1>
 </header>
 
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-1 sidebar">
-			<nav class="fusio-navigation">
-				<ul>
-					<li><a href="#/"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Dashboard</a></li>
-					<li><a href="#/routes"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Routes</a></li>
-					<li><a href="#/action"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Action</a></li>
-					<li><a href="#/schema"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Schema</a></li>
-					<li><a href="#/connection"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Connection</a></li>
-					<li><a href="#/app"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> App</a></li>
-					<li><a href="#/scope"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Scope</a></li>
-					<li><a href="#/log"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Log</a></li>
-					<li><a href="#/statistic"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistic</a></li>
-					<li><a href="#/user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User</a></li>
+    <div class="row">
+        <div class="col-md-1 sidebar">
+            <nav class="fusio-navigation">
+                <ul>
+                    <li><a href="#/"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Dashboard</a></li>
+                    <li><a href="#/routes"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Routes</a></li>
+                    <li><a href="#/action"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Action</a></li>
+                    <li><a href="#/schema"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Schema</a></li>
+                    <li><a href="#/connection"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Connection</a></li>
+                    <li><a href="#/app"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> App</a></li>
+                    <li><a href="#/scope"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Scope</a></li>
+                    <li><a href="#/log"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Log</a></li>
+                    <li><a href="#/statistic"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistic</a></li>
+                    <li><a href="#/user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User</a></li>
                     <li><a href="#/database"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> Database</a></li>
-					<li><a href="#/import"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> Import</a></li>
-					<li><a href="#/config"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="col-md-11 col-md-offset-1 content">
-			<div class="fusio-content">
-				<div ng-view></div>
-			</div>
-		</div>
-	</div>
+                    <li><a href="#/import"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> Import</a></li>
+                    <li><a href="#/config"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-11 col-md-offset-1 content">
+            <div class="fusio-content">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

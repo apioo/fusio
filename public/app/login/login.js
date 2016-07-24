@@ -9,7 +9,7 @@ angular.module('fusioApp.login', ['ngRoute'])
   });
 }])
 
-.controller('LoginCtrl', ['$scope', '$http', '$location', '$window', function($scope, $http, $location, $window) {
+.controller('LoginCtrl', ['$scope', '$http', '$location', '$window', 'fusio', function($scope, $http, $location, $window, fusio) {
   $scope.credentials = {
     username: '',
     password: ''
@@ -23,7 +23,7 @@ angular.module('fusioApp.login', ['ngRoute'])
 
     var req = {
       method: 'POST',
-      url: fusio_url + 'backend/token',
+      url: fusio.baseUrl + 'backend/token',
       headers: {
         authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
       },

@@ -9,7 +9,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
   });
 }])
 
-.controller('AppCtrl', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal) {
+.controller('AppCtrl', ['$scope', '$http', '$uibModal', 'fusio', function($scope, $http, $uibModal, fusio) {
 
   $scope.response = null;
   $scope.search = '';
@@ -17,7 +17,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
   $scope.load = function() {
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio_url + 'backend/app?search=' + search).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/app?search=' + search).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.startIndex = 0;
       $scope.apps = data.entry;
@@ -28,14 +28,14 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
     var startIndex = ($scope.startIndex - 1) * 16;
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio_url + 'backend/app?startIndex=' + startIndex + '&search=' + search).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/app?startIndex=' + startIndex + '&search=' + search).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.apps = data.entry;
     });
   };
 
   $scope.doSearch = function(search) {
-    $http.get(fusio_url + 'backend/app?search=' + encodeURIComponent(search)).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/app?search=' + encodeURIComponent(search)).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.startIndex = 0;
       $scope.apps = data.entry;
@@ -105,7 +105,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('AppCreateCtrl', ['$scope', '$http', '$uibModalInstance', function($scope, $http, $uibModalInstance) {
+.controller('AppCreateCtrl', ['$scope', '$http', '$uibModalInstance', 'fusio', function($scope, $http, $uibModalInstance, fusio) {
 
   $scope.app = {
     status: 1,
@@ -133,7 +133,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
       });
     }
 
-    $http.post(fusio_url + 'backend/app', app)
+    $http.post(fusio.baseUrl + 'backend/app', app)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -154,7 +154,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
   };
 
   $scope.getUsers = function(name) {
-    return $http.get(fusio_url + 'backend/user?search=' + encodeURIComponent(name)).then(function(response) {
+    return $http.get(fusio.baseUrl + 'backend/user?search=' + encodeURIComponent(name)).then(function(response) {
       if (angular.isArray(response.data.entry)) {
         return response.data.entry;
         /*
@@ -168,13 +168,13 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
     });
   };
 
-  $http.get(fusio_url + 'backend/scope?count=1024').success(function(data) {
+  $http.get(fusio.baseUrl + 'backend/scope?count=1024').success(function(data) {
     $scope.scopes = data.entry;
   });
 
 }])
 
-.controller('AppUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'app', function($scope, $http, $uibModalInstance, app) {
+.controller('AppUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'app', 'fusio', function($scope, $http, $uibModalInstance, app, fusio) {
 
   $scope.app = app;
 
@@ -189,7 +189,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
     value: 'Deactivated'
   }];
 
-  $http.get(fusio_url + 'backend/scope?count=1024').success(function(data) {
+  $http.get(fusio.baseUrl + 'backend/scope?count=1024').success(function(data) {
     $scope.scopes = data.entry;
 
     $scope.loadApp();
@@ -207,7 +207,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
       });
     }
 
-    $http.put(fusio_url + 'backend/app/' + app.id, app)
+    $http.put(fusio.baseUrl + 'backend/app/' + app.id, app)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -228,7 +228,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
   };
 
   $scope.loadApp = function() {
-    $http.get(fusio_url + 'backend/app/' + app.id)
+    $http.get(fusio.baseUrl + 'backend/app/' + app.id)
       .success(function(data) {
         var scopes = [];
         if (angular.isArray(data.scopes)) {
@@ -250,7 +250,7 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
   };
 
   $scope.removeToken = function(token) {
-    $http.delete(fusio_url + 'backend/app/' + app.id + '/token/' + token.id)
+    $http.delete(fusio.baseUrl + 'backend/app/' + app.id + '/token/' + token.id)
       .success(function(data) {
         if ($scope.app.tokens) {
           var tokens = [];
@@ -267,12 +267,12 @@ angular.module('fusioApp.app', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('AppDeleteCtrl', ['$scope', '$http', '$uibModalInstance', 'app', function($scope, $http, $uibModalInstance, app) {
+.controller('AppDeleteCtrl', ['$scope', '$http', '$uibModalInstance', 'app', 'fusio', function($scope, $http, $uibModalInstance, app, fusio) {
 
   $scope.app = app;
 
   $scope.delete = function(app) {
-    $http.delete(fusio_url + 'backend/app/' + app.id)
+    $http.delete(fusio.baseUrl + 'backend/app/' + app.id)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {

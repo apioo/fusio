@@ -9,14 +9,14 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
   });
 }])
 
-.controller('ImportCtrl', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal) {
+.controller('ImportCtrl', ['$scope', '$http', '$uibModal', 'fusio', function($scope, $http, $uibModal, fusio) {
 
   $scope.source = null;
   $scope.error = null;
   $scope.success = false;
 
   $scope.transform = function(source) {
-    $http.post(fusio_url + 'backend/import/raml', {schema: source}).success(function(data) {
+    $http.post(fusio.baseUrl + 'backend/import/raml', {schema: source}).success(function(data) {
       if ('success' in data && data.success === false) {
         $scope.error = data.message;
         return;
@@ -55,12 +55,12 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ImportPreviewCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'data', function($scope, $http, $uibModalInstance, $uibModal, data) {
+.controller('ImportPreviewCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'fusio', 'data', function($scope, $http, $uibModalInstance, $uibModal, fusio, data) {
 
   $scope.data = data;
 
   $scope.doProcess = function() {
-    $http.post(fusio_url + 'backend/import/process', data).success(function(data) {
+    $http.post(fusio.baseUrl + 'backend/import/process', data).success(function(data) {
       if ('success' in data && data.success === false) {
         $scope.error = data.message;
         return;
@@ -120,7 +120,7 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ImportRouteCtrl', ['$scope', '$http', '$uibModalInstance', 'route', function($scope, $http, $uibModalInstance, route) {
+.controller('ImportRouteCtrl', ['$scope', '$http', '$uibModalInstance', 'fusio', 'route', function($scope, $http, $uibModalInstance, fusio, route) {
 
   $scope.route = route;
 

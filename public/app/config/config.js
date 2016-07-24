@@ -9,7 +9,7 @@ angular.module('fusioApp.config', ['ngRoute', 'ui.bootstrap'])
   });
 }])
 
-.controller('ConfigCtrl', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal) {
+.controller('ConfigCtrl', ['$scope', '$http', '$uibModal', 'fusio', function($scope, $http, $uibModal, fusio) {
 
   $scope.response = null;
   $scope.search = '';
@@ -17,7 +17,7 @@ angular.module('fusioApp.config', ['ngRoute', 'ui.bootstrap'])
   $scope.load = function() {
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio_url + 'backend/config?search=' + search).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/config?search=' + search).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.startIndex = 0;
       $scope.configs = data.entry;
@@ -28,14 +28,14 @@ angular.module('fusioApp.config', ['ngRoute', 'ui.bootstrap'])
     var startIndex = ($scope.startIndex - 1) * 16;
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio_url + 'backend/config?startIndex=' + startIndex + '&search=' + search).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/config?startIndex=' + startIndex + '&search=' + search).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.configs = data.entry;
     });
   };
 
   $scope.doSearch = function(search) {
-    $http.get(fusio_url + 'backend/config?search=' + encodeURIComponent(search)).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/config?search=' + encodeURIComponent(search)).success(function(data) {
       $scope.totalResults = data.totalResults;
       $scope.startIndex = 0;
       $scope.configs = data.entry;
@@ -70,7 +70,7 @@ angular.module('fusioApp.config', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('ConfigUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'config', function($scope, $http, $uibModalInstance, config) {
+.controller('ConfigUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'config', 'fusio', function($scope, $http, $uibModalInstance, config, fusio) {
 
   var data = angular.copy(config);
   if (data.type == 2) {
@@ -90,7 +90,7 @@ angular.module('fusioApp.config', ['ngRoute', 'ui.bootstrap'])
       data.value = '' + data.value;
     }
 
-    $http.put(fusio_url + 'backend/config/' + data.id, data)
+    $http.put(fusio.baseUrl + 'backend/config/' + data.id, data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {

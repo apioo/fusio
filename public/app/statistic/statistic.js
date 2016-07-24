@@ -9,7 +9,7 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
   });
 }])
 
-.controller('StatisticCtrl', ['$scope', '$http', '$uibModal', '$compile', function($scope, $http, $uibModal, $compile) {
+.controller('StatisticCtrl', ['$scope', '$http', '$uibModal', '$compile', 'fusio', function($scope, $http, $uibModal, $compile, fusio) {
 
   // set initial date range
   var from = new Date();
@@ -53,7 +53,7 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
       }
     }
 
-    $http.get(fusio_url + 'backend/statistic/' + statistic + '?' + query).success(function(data) {
+    $http.get(fusio.baseUrl + 'backend/statistic/' + statistic + '?' + query).success(function(data) {
       $scope.chart = data;
     });
   };
@@ -82,7 +82,7 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
 
 }])
 
-.controller('StatisticFilterCtrl', ['$scope', '$http', '$uibModalInstance', 'filter', function($scope, $http, $uibModalInstance, filter) {
+.controller('StatisticFilterCtrl', ['$scope', '$http', '$uibModalInstance', 'fusio', 'filter', function($scope, $http, $uibModalInstance, fusio, filter) {
 
   $scope.filter = filter;
 
@@ -94,12 +94,12 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
     $uibModalInstance.dismiss('cancel');
   };
 
-  $http.get(fusio_url + 'backend/routes')
+  $http.get(fusio.baseUrl + 'backend/routes')
     .success(function(data) {
       $scope.routes = data.entry;
     });
 
-  $http.get(fusio_url + 'backend/app')
+  $http.get(fusio.baseUrl + 'backend/app')
     .success(function(data) {
       $scope.apps = data.entry;
     });
