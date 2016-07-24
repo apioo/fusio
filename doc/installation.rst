@@ -54,12 +54,25 @@ Also you should enable the module ``mod_rewrite`` so that the .htaccess file in
 the public folder is used. The htaccess contains also an important rule which 
 redirects the ``Authorization`` header to Fusio which is otherwise removed.
 
+Adjust urls
+-----------
+
+There are three javascript apps which need to connect to the Fusio backend API.
+The backend app, the consumer app and the documentation app. By default they try 
+to guess the url of the API endpoint. If a app is not working properly the 
+problem is probably that the javascript app can not correctly determine the API 
+endpoint url. In this case you have to adjust the url in the following files:
+
+* ``/public/backend.htm``
+* ``/public/consumer/index.html``
+* ``/public/documentation/index.html``
+
 Backend
 -------
 
 At the endpoint ``/backend.htm`` you can login to the backend app. You should
 be able to login with the username (which you have entered for the ``adduser``
-command) and the password which was generated. 
+command) and the password which you have used. 
 
 Updating
 --------
@@ -99,6 +112,6 @@ Update backend app
 To update the backend app simply replace the following files from the new 
 release:
 
- * public/backend.htm
- * public/dist/fusio.min.js
- * public/dist/fusio.min.css
+ * ``public/backend.htm``
+ * ``public/dist/fusio.min.js``
+ * ``public/dist/fusio.min.css``

@@ -13,6 +13,7 @@ TOC
 .. toctree::
    :maxdepth: 2
 
+   overview
    installation
    backend
    consumer

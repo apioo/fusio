@@ -6,7 +6,7 @@ This chapter contains all informations how to configure the backend. To get a
 better understanding how Fusio works lets take a look at the following flow 
 chart:
 
-.. image:: _static/fusio_flow.png
+.. image:: _static/backend_flow.png
 
 If a request arrives Fusio looks at the routes table to find the fitting route. 
 The route has all informations what request method is allowed, how the request 
@@ -20,7 +20,7 @@ protected the consumer has to authorize the request through OAuth2 therefor he
 needs a consumer key and secret which he can obtain through an app. Each app has 
 specific scopes assigned so that the app can only access the wanted parts of the 
 API. More informations about the specific areas at the following pages (these
-pages are extracted from the online help which are also available inside the 
+pages are extracted from the online help which is also available inside the 
 backend app):
 
 .. toctree::
