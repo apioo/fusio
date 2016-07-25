@@ -13,45 +13,33 @@
   <link rel="stylesheet" href="evid.min.css">
   <script src="evid.min.js"></script>
   <script type="text/javascript">
-  /**
-   * Path to the PSX documentation endpoint
-   */
-  evid.value('url', guessFusioEndpointUrl() + '/doc');
+  evid.config(function(evidProvider) {
+    /**
+     * Url to the PSX documentation endpoint
+     */
+    var url = evidProvider.guessEndpointUrl(false) + 'doc';
 
-  /**
-   * Paths which should be excluded from the documentation
-   */
-  evid.value('exclude', ['/backend/(.*)', '/consumer/(.*)']);
+    evidProvider.setUrl(url);
 
-  /**
-   * Optional menu entries. Each menu entry must have the following format
-   * { title: 'Getting started', icon: 'home', href: 'introduction.htm' }
-   */
-  evid.value('menu', [{
-    title: 'Getting started',
-    icon: 'home',
-    href: 'getting_started.html'
-  }]);
+    /**
+     * Paths which should be excluded from the documentation
+     */
+    var exclude = ['/backend/(.*)', '/consumer/(.*)'];
 
-  /**
-   * Simple helper function to guess the API endpoint url
-   */
-  function guessFusioEndpointUrl() {
-    var url = window.location.href;
-    var removePart = function(url, sign) {
-      var count = (url.match(/\//g) || []).length;
-      var pos = url.lastIndexOf(sign);
-      if (count > 2 && pos !== -1) {
-        return url.substring(0, pos);
-      }
-      return url;
-    }
-    var parts = ['#', '?', '/', '/'];
-    for (var i = 0; i < parts.length; i++) {
-      url = removePart(url, parts[i]);
-    }
-    return url + '/index.php/';
-  }
+    evidProvider.setExclude(exclude);
+
+    /**
+     * Optional menu entries. Each menu entry must have the following format
+     * { title: 'Getting started', icon: 'home', href: 'introduction.htm' }
+     */
+    var menu = [{
+      title: 'Getting started',
+      icon: 'home',
+      href: 'getting_started.html'
+    }];
+
+    evidProvider.setMenu(menu);
+  });
   </script>
 </head>
 <body layout="column" ng-controller="AppCtrl">
