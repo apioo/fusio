@@ -12,20 +12,24 @@
     <link href="fusio.min.css" rel="stylesheet" media="screen">
     <script src="fusio.min.js"></script>
     <script type="text/javascript">
-    /**
-     * Url to the fusio API endpoint. Change this to the fitting url to the
-     * backend API. If not provided Fusio will try to guess the correct url
-     * I.e.: http://127.0.0.1/projects/fusio/public/index.php/
-     */
-    var fusio_url = 'http://127.0.0.1/projects/fusio/public/index.php/';
+    fusioApp.config(function(fusioProvider) {
+        /**
+         * Url to the fusio API endpoint. Change this to the fitting url to the
+         * backend API. If not provided Fusio will try to guess the correct url
+         * I.e.: http://127.0.0.1/projects/fusio/public/index.php/
+         */
+        var fusioUrl = fusioProvider.guessFusioEndpointUrl(false);
+
+        fusioProvider.setBaseUrl(fusioUrl);
+    });
 
     /**
      * Optional you can configure additional login provider which can be used
      * by a user. Also you need to save the app secret in the Fusio backend
      * configuration
      */
-    fusioApp.config(function($authProvider) {
-        $authProvider.baseUrl = fusio_url;
+    fusioApp.config(function($authProvider, fusioProvider) {
+        $authProvider.baseUrl = fusioProvider.getBaseUrl();
         $authProvider.loginUrl = 'consumer/login';
         $authProvider.httpInterceptor = function() { return false; };
 
