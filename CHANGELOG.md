@@ -1,4 +1,17 @@
 
+### 0.3.3 (2016-07-31)
+
+* Added TryCatch action
+* SQL-Connection set utf8 charset and disable emulated prepared statements for 
+  mysql
+* Added more template filters
+* Added user object to context at the condition action
+* Improve SQL-Builder action
+* Add an option to provide examples for each API endpoint to the documentation
+* Unified url configuration for the backend, consumer and documentation app
+* Add overview doc
+* Add config help
+
 ### 0.3.2 (2016-07-23)
 
 * Fix route deployment to live
