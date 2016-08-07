@@ -31,7 +31,7 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] We should build different libraries (javascript, java, etc.) to build 
         these forms
 - [ ] Add action which can build a REST API for a table
-- [ ] Add failover action which executes another action in case of an error
+- [x] Add failover action which executes another action in case of an error
 - [ ] Import allow swagger format
 - [ ] Adapter if we reference a connection in the definition the connection may 
       not exist. The adapter definition should be able to reference the
@@ -45,6 +45,27 @@ _which are likely to be implemented are moved to a seperate github issue_
 
 ### 0.x
 
+- [ ] Probably add link to the doc to get an access token to send authenticated
+      calls to the api
+- [ ] Consumer login beside GitHub, Facebook, etc. provide a way to support 
+      other login providers i.e. (LDAP)
+- [ ] Add support for multiple other database backends. We should probably move
+      these connections into seperate adapters.
+  - [ ] CouchDB
+  - [ ] Neo4j
+  - [ ] Cassandra
+  - [ ] Elasticsearch
+- [ ] Test message queues and probably move them also to a seperate adapter
+  - [ ] RabbitMQ
+  - [ ] Beanstalkd
+- [ ] Add phpinfo action
+- [ ] Add mail action which sends a mail using the provided data
+- [ ] A option to configure a memcache server in the config
+- [ ] Schema add preview button and close window always on save
+- [ ] System export fix sort so that i.e. schemas which refer no other schema
+      are at the top 
+- [ ] Add option to test action to see the response format of the action. 
+      Probably also a way to compare the response with a schema
 - [ ] Add docker and vagrant box to easy test and deploy fusio
 - [ ] Add function to measure execution time of an action add also additional
       chart to the statistics panel which shows slow actions. Maybe we should
@@ -70,7 +91,7 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [x] Add filter action/schema by route and add link from routes to 
         action/schema with filtered route id
   - [ ] Probably use https://github.com/nickperkinslondon/angular-bootstrap-nav-tree
-- [ ] Add proper CORS handling
+- [x] Add proper CORS handling
 - [ ] Add method to relogin if token expires. Probably we should save the expire
       time and make the relogin attempt based on this
 - [ ] Write backend in TypeScript JS6 support transition to Angular2
@@ -103,7 +124,6 @@ _which are likely to be implemented are moved to a seperate github issue_
         to provide the table name. The action needs two routes /table and 
         /table/:id
   - [ ] Add SOAP action
-  - [ ] Add couchdb action
   - [ ] Add an action merge which combines the result of two actions into one 
         result (This is probably already possible through the transform action)
   - [ ] Build adapters for popular systems i.e. wordpress/drupal etc.
