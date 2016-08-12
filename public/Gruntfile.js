@@ -19,6 +19,7 @@ module.exports = function(grunt){
           './bower_components/ace-builds/src-min-noconflict/worker-json.js',
           './bower_components/Chart.js/Chart.min.js',
           './bower_components/showdown/dist/showdown.min.js',
+          './bower_components/highlightjs/highlight.pack.min.js',
           './bower_components/angular/angular.min.js',
           './bower_components/angular-route/angular-route.min.js',
           './bower_components/angular-sanitize/angular-sanitize.min.js',
@@ -26,6 +27,7 @@ module.exports = function(grunt){
           './bower_components/angular-ui-ace/ui-ace.min.js',
           './bower_components/angular-chart.js/dist/angular-chart.min.js',
           './bower_components/ng-showdown/dist/ng-showdown.min.js',
+          './bower_components/angular-highlightjs/angular-highlightjs.min.js',
           './dist/fusio-app.min.js',
           './dist/fusio-templates.min.js'
         ],
@@ -75,6 +77,7 @@ module.exports = function(grunt){
             './bower_components/bootstrap/dist/css/bootstrap.css', 
             './bower_components/bootstrap/dist/css/bootstrap-theme.css', 
             './bower_components/angular-chart.js/dist/angular-chart.css', 
+            './bower_components/highlightjs/styles/github.css', 
             './css/default.css'
           ]
         }

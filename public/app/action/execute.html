@@ -1,0 +1,36 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Execute</h3>
+</div>
+
+<div class="modal-body">
+    <form name="actionCreateForm" ng-submit="execute(action, request)">
+        <uib-accordion>
+            <div uib-accordion-group class="panel-default" is-open="requestOpen">
+                <uib-accordion-heading>Request <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': requestOpen, 'glyphicon-chevron-right': !requestOpen}"></i></uib-accordion-heading>
+                <div class="form-group">
+                    <label for="uriFragments">URI Fragments:</label>
+                    <input type="text" id="uriFragments" ng-model="request.uriFragments" aria-describedby="uriFragmentsHelp" class="form-control">
+                    <span class="help-block" id="uriFragmentsHelp"></span>
+                </div>
+                <div class="form-group">
+                    <label for="parameters">Parameters:</label>
+                    <input type="text" id="parameters" ng-model="request.parameters" aria-describedby="parametersHelp" class="form-control">
+                    <span class="help-block" id="parametersHelp"></span>
+                </div>
+                <div class="form-group">
+                    <label for="body">Body:</label>
+                    <div ui-ace="{mode: 'json'}" id="body" ng-model="request.body" aria-describedby="bodyHelp"></div>
+                    <span class="help-block" id="bodyHelp"></span>
+                </div>
+            </div>
+            <div uib-accordion-group class="panel-default" is-open="responseOpen">
+                <uib-accordion-heading>Response <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': responseOpen, 'glyphicon-chevron-right': !responseOpen}"></i></uib-accordion-heading>
+                <pre style="padding:8px;border-bottom:1px solid #aaa">Status-Code: <b>{{ response.statusCode }}</b></pre>
+                <div hljs hljs-source="response.body" hljs-language="json"></div>
+            </div>
+        </uib-accordion>
+        <button type="submit" class="btn btn-primary">Execute</button>
+        <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+    </form>
+</div>

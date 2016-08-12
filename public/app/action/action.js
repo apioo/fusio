@@ -179,7 +179,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
 }])
 
-.controller('ActionUpdateCtrl', ['$scope', '$http', '$uibModalInstance', 'action', 'formBuilder', '$timeout', 'fusio', function($scope, $http, $uibModalInstance, action, formBuilder, $timeout, fusio) {
+.controller('ActionUpdateCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'action', 'formBuilder', '$timeout', 'fusio', function($scope, $http, $uibModalInstance, $uibModal, action, formBuilder, $timeout, fusio) {
 
   $scope.action = action;
   $scope.actions = [];
@@ -221,6 +221,24 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     }
   };
 
+  $scope.execute = function(action) {
+    var modalInstance = $uibModal.open({
+      size: 'lg',
+      backdrop: 'static',
+      templateUrl: 'app/action/execute.html',
+      controller: 'ActionExecuteCtrl',
+      resolve: {
+        action: function() {
+          return action;
+        }
+      }
+    });
+
+    modalInstance.result.then(function(response) {
+    }, function() {
+    });
+  };
+
   $http.get(fusio.baseUrl + 'backend/action/' + action.id)
     .success(function(data) {
       if (angular.isArray(data.config)) {
@@ -259,5 +277,47 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     $scope.response = null;
   };
 
-}]);
+}])
 
+.controller('ActionExecuteCtrl', ['$scope', '$http', '$uibModalInstance', 'action', 'fusio', function($scope, $http, $uibModalInstance, action, fusio) {
+
+  $scope.action = action;
+  $scope.request = {
+    uriFragments: '',
+    parameters: '',
+    body: '{}'
+  };
+  $scope.response = null;
+
+  $scope.requestOpen = false;
+  $scope.responseOpen = true;
+
+  $scope.execute = function(action, request) {
+    var body = JSON.parse(request.body);
+    if (!angular.isObject(body)) {
+      body = {};
+    }
+    var data = {
+      actionId: action.id,
+      uriFragments: request.uriFragments,
+      parameters: request.parameters,
+      body: body
+    };
+
+    $http.post(fusio.baseUrl + 'backend/action/execute', data)
+      .success(function(data) {
+        $scope.response = {
+          statusCode: data.statusCode,
+          headers: data.headers,
+          body: JSON.stringify(data.body, null, 4)
+        };
+      });
+  };
+
+  $scope.close = function() {
+    $uibModalInstance.dismiss('cancel');
+  };
+
+  $scope.execute(action, $scope.request);
+
+}]);

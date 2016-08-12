@@ -12,6 +12,8 @@
     "angular-bootstrap": "^1.2",
     "angular-ui-ace": "^0.2",
     "angular-chart.js": "^0.7",
+    "angular-highlightjs": "^0.6.0",
+    "highlightjs": "^8.8.0",
     "ng-showdown": "^1.0",
     "showdown": "^1.2",
     "bootstrap": "^3.3"
