@@ -222,21 +222,30 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
   };
 
   $scope.execute = function(action) {
-    var modalInstance = $uibModal.open({
-      size: 'lg',
-      backdrop: 'static',
-      templateUrl: 'app/action/execute.html',
-      controller: 'ActionExecuteCtrl',
-      resolve: {
-        action: function() {
-          return action;
-        }
-      }
-    });
+    $http.put(fusio.baseUrl + 'backend/action/' + action.id, action)
+      .success(function(data) {
+        $scope.response = data;
+        if (data.success === true) {
+          var modalInstance = $uibModal.open({
+            size: 'lg',
+            backdrop: 'static',
+            templateUrl: 'app/action/execute.html',
+            controller: 'ActionExecuteCtrl',
+            resolve: {
+              action: function() {
+                return action;
+              }
+            }
+          });
 
-    modalInstance.result.then(function(response) {
-    }, function() {
-    });
+          modalInstance.result.then(function(response) {
+          }, function() {
+          });
+        }
+      })
+      .error(function(data) {
+        $scope.response = data;
+      });
   };
 
   $http.get(fusio.baseUrl + 'backend/action/' + action.id)

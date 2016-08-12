@@ -5,7 +5,7 @@
 
 <div class="modal-body">
     <form name="actionCreateForm" ng-submit="execute(action, request)">
-        <uib-accordion>
+        <uib-accordion close-others="false">
             <div uib-accordion-group class="panel-default" is-open="requestOpen">
                 <uib-accordion-heading>Request <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': requestOpen, 'glyphicon-chevron-right': !requestOpen}"></i></uib-accordion-heading>
                 <div class="form-group">
