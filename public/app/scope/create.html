@@ -18,34 +18,36 @@
             <input type="text" id="description" ng-model="scope.description" aria-describedby="descriptionHelp" class="form-control">
             <span class="help-block" id="descriptionHelp">Description of the scope</span>
         </div>
-        <table class="table">
-        <colgroup>
-            <col width="*" />
-            <col width="60" />
-            <col width="60" />
-            <col width="60" />
-            <col width="60" />
-            <col width="50" />
-        </colgroup>
-        <thead>
-        <tr>
-            <th>Route</th>
-            <th>GET</th>
-            <th>POST</th>
-            <th>PUT</th>
-            <th>DELETE</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="route in routes">
-            <td>{{route.path}}</td>
-            <td><input type="checkbox" ng-model="route.allowedMethods.get" value="GET" ng-disabled="route.methods.indexOf('GET') == -1" /></td>
-            <td><input type="checkbox" ng-model="route.allowedMethods.post" value="POST" ng-disabled="route.methods.indexOf('POST') == -1" /></td>
-            <td><input type="checkbox" ng-model="route.allowedMethods.put" value="PUT" ng-disabled="route.methods.indexOf('PUT') == -1" /></td>
-            <td><input type="checkbox" ng-model="route.allowedMethods.delete" value="DELETE" ng-disabled="route.methods.indexOf('DELETE') == -1" /></td>
-        </tr>
-        </tbody>
-        </table>
+        <div class="fusio-grid">
+            <table class="table">
+                <colgroup>
+                    <col width="*" />
+                    <col width="60" />
+                    <col width="60" />
+                    <col width="60" />
+                    <col width="60" />
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>Route</th>
+                    <th>GET</th>
+                    <th>POST</th>
+                    <th>PUT</th>
+                    <th>DELETE</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="route in routes">
+                    <td><code class="fusio-route-path">{{route.path}}</code></td>
+                    <td><input type="checkbox" ng-model="route.allowedMethods.get" value="GET" /></td>
+                    <td><input type="checkbox" ng-model="route.allowedMethods.post" value="POST" /></td>
+                    <td><input type="checkbox" ng-model="route.allowedMethods.put" value="PUT" /></td>
+                    <td><input type="checkbox" ng-model="route.allowedMethods.delete" value="DELETE" /></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
         <button type="submit" class="btn btn-primary">Save</button>
         <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
     </form>
