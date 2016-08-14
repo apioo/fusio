@@ -50,7 +50,7 @@ describe('Database tests', function() {
 
     var tables = element.all(by.repeater('table in tables'));
     tables.get(1).$('a').click();
-    browser.wait(EC.textToBePresentInElementValue(by.model('table.name'), 'foobar'), 5000);
+    browser.wait(EC.textToBePresentInElementValue(element(by.model('table.name')), 'foobar'), 5000);
 
     element.all(by.css('a.btn-default')).get(1).click();
 
@@ -86,7 +86,7 @@ describe('Database tests', function() {
 
     var tables = element.all(by.repeater('table in tables'));
     tables.get(1).$('a').click();
-    browser.wait(EC.textToBePresentInElement($('h4'), 'foobar'), 5000);
+    browser.wait(EC.textToBePresentInElementValue(element(by.model('table.name')), 'foobar'), 5000);
 
     element.all(by.css('a.btn-danger')).first().click();
 
