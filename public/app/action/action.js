@@ -314,10 +314,21 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
     $http.post(fusio.baseUrl + 'backend/action/execute/' + action.id, data)
       .success(function(data) {
+        // in case we have no body property we have probably a general error
+        // message in this case we simply show the complete response as body
+        var resp = {};
+        if (!data.body) {
+          resp.statusCode = 500;
+          resp.headers = {};
+          resp.body = data;
+        } else {
+          resp = data;
+        }
+
         $scope.response = {
-          statusCode: data.statusCode,
-          headers: data.headers,
-          body: JSON.stringify(data.body, null, 4)
+          statusCode: resp.statusCode,
+          headers: resp.headers,
+          body: JSON.stringify(resp.body, null, 4)
         };
       });
   };
