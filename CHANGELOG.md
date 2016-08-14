@@ -1,4 +1,10 @@
 
+### 0.3.4
+
+* Streamlined backend ui
+* Added dialog to test an action
+* Add repeat password question to adduser command
+
 ### 0.3.3 (2016-07-31)
 
 * Added TryCatch action
