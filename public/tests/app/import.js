@@ -28,7 +28,7 @@ describe('Import tests', function() {
 
     element(by.css('textarea.ace_text-input')).sendKeys(raml);
 
-    $('a.btn-default').click();
+    $('a.btn-primary').click();
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 50000);
 
