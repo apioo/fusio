@@ -2,23 +2,17 @@
 <h1>User</h1>
 
 <div class="fusio-search">
-    <table class="table">
-    <colgroup>
-        <col width="*" />
-        <col width="100" />
-    </colgroup>
-    <tr>
-        <td>
-            <form name="usersSearchForm" ng-submit="doSearch(search)">
-                <input type="text" class="form-control" ng-model="search" placeholder="Search i.e. user-name" />
-            </form>
-        </td>
-        <td>
-            <a class="btn btn-primary" ng-click="openCreateDialog()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-            <a class="btn btn-default" ng-click="help.showDialog('help/user.md')"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
-        </td>
-    </tr>
-    </table>
+    <form name="usersSearchForm" ng-submit="doSearch(search)">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="search" placeholder="Search i.e. user-name" />
+            <div class="input-group-btn">
+                <a class="btn btn-primary" ng-click="openCreateDialog()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+            </div>
+            <div class="input-group-btn">
+                <a class="btn btn-default" ng-click="help.showDialog('help/user.md')"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+            </div>
+        </div>
+    </form>
 </div>
 
 <uib-alert type="success" close="closeResponse()" ng-if="response.success === true">

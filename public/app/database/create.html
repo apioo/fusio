@@ -19,7 +19,8 @@
                 <col width="*" />
                 <col width="150" />
                 <col width="100" />
-                <col width="100" />
+                <col width="50" />
+                <col width="50" />
                 <col width="150" />
                 <col width="50" />
             </colgroup>
@@ -29,6 +30,7 @@
                 <th>Type</th>
                 <th>Length</th>
                 <th>Null</th>
+                <th>AI</th>
                 <th>Default</th>
                 <th></th>
             </tr>
@@ -39,6 +41,7 @@
                 <td><select ng-model="column.type" ng-options="type as type for type in types" class="form-control"></select></td>
                 <td><input type="number" ng-model="column.length" class="form-control"></td>
                 <td><input type="checkbox" ng-model="column.null"></td>
+                <td><input type="checkbox" ng-model="column.autoincrement"></td>
                 <td><input type="text" ng-model="column.default" class="form-control"></td>
                 <td>
                     <div class="fusio-options">

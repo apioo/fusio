@@ -102,7 +102,7 @@ fusioApp.run(function($rootScope, $window, $location, $http, helpLoader, version
   if (token) {
     $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
-    angular.element(document.querySelector('body')).removeClass('fusio-hidden');
+    $rootScope.userAuthenticated = true;
   } else {
     $location.path('/login');
   }
@@ -112,4 +112,5 @@ fusioApp.run(function($rootScope, $window, $location, $http, helpLoader, version
 
   // set version
   $rootScope.version = version;
+
 });

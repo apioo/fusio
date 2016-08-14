@@ -14,7 +14,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
   $scope.response = null;
   $scope.search = '';
   $scope.routes = [];
-  $scope.routeId = parseInt($routeParams.routeId);
+  $scope.routeId = $routeParams.routeId ? parseInt($routeParams.routeId) : null;
 
   $scope.load = function() {
     var search = encodeURIComponent($scope.search);
@@ -160,15 +160,16 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
   $scope.schema = schema;
 
   $scope.update = function(schema) {
-    if (typeof schema.source == 'string') {
-      schema.source = JSON.parse(schema.source);
+    var data = angular.copy(schema);
+    if (typeof data.source == 'string') {
+      data.source = JSON.parse(data.source);
     }
 
-    $http.put(fusio.baseUrl + 'backend/schema/' + schema.id, schema)
+    $http.put(fusio.baseUrl + 'backend/schema/' + data.id, data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
-          $scope.loadPreview(schema.id);
+          $uibModalInstance.close(data);
         }
       })
       .error(function(data) {
@@ -184,10 +185,35 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
     $scope.response = null;
   };
 
-  $scope.loadPreview = function(schemaId) {
-    $http.get(fusio.baseUrl + 'backend/schema/preview/' + schemaId)
+  $scope.preview = function(schema) {
+    var data = angular.copy(schema);
+    if (typeof data.source == 'string') {
+      data.source = JSON.parse(data.source);
+    }
+
+    $http.put(fusio.baseUrl + 'backend/schema/' + data.id, data)
       .success(function(data) {
-        $scope.preview = data;
+        $scope.response = data;
+        if (data.success === true) {
+          var modalInstance = $uibModal.open({
+            size: 'lg',
+            backdrop: 'static',
+            templateUrl: 'app/schema/preview.html',
+            controller: 'SchemaPreviewCtrl',
+            resolve: {
+              schema: function() {
+                return schema;
+              }
+            }
+          });
+
+          modalInstance.result.then(function(response) {
+          }, function() {
+          });
+        }
+      })
+      .error(function(data) {
+        $scope.response = data;
       });
   };
 
@@ -227,5 +253,24 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
     $scope.response = null;
   };
 
-}]);
+}])
 
+.controller('SchemaPreviewCtrl', ['$scope', '$http', '$uibModalInstance', 'schema', 'fusio', function($scope, $http, $uibModalInstance, schema, fusio) {
+
+  $scope.schema = schema;
+  $scope.response = null;
+
+  $scope.preview = function(schema) {
+    $http.post(fusio.baseUrl + 'backend/schema/preview/' + schema.id, null)
+      .success(function(data) {
+        $scope.response = data;
+      });
+  };
+
+  $scope.close = function() {
+    $uibModalInstance.dismiss('cancel');
+  };
+
+  $scope.preview(schema);
+
+}]);

@@ -21,10 +21,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" ng-click="preview(schema)" class="btn btn-default">Preview</button>
         <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
-
-        <hr>
-        
-        <div ng-if="preview" ng-bind-html="preview"></div>
     </form>
 </div>

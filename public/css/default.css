@@ -22,12 +22,13 @@ pre
 	background-color:#55acee;
 	background-image:url(../img/grid.png);
 	background-repeat:no-repeat;
+    background-position:bottom left;
 	width:100%;
 	top:0px;
 	left:0px;
 	height:38px;
 	position:fixed;
-	z-index:1;
+    z-index:100;
 }
 
 .fusio-header h1
@@ -142,17 +143,23 @@ pre
 
 .fusio-content > div > h1
 {
-	background-color:#222;
-	color:#fff;
+	color:#eee;
 	padding:12px 15px;
 	margin:0px -15px;
 	margin-bottom:10px;
 	border-bottom:1px solid #021c35;
 	font-size:0.9em;
+    background-color: #222;
+    background-repeat: repeat-x;
+    background-image: -webkit-linear-gradient(top,#444 0,#222 100%);
+    background-image: -o-linear-gradient(top,#444 0,#222 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#444),to(#222));
+    background-image: linear-gradient(to bottom,#444 0,#222 100%);
 }
 
 .fusio-search
 {
+    margin-bottom:20px;
 }
 
 .fusio-search .table td
@@ -162,6 +169,34 @@ pre
 
 .fusio-grid
 {
+    border:1px solid #ccc;
+}
+
+.fusio-grid > table
+{
+    margin-bottom:0;
+}
+
+.fusio-grid > table > thead > tr > th
+{
+    font-weight:bold;
+    padding: 10px 15px;
+    padding-left: 8px;
+    border-bottom: 1px solid;
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    background-repeat: repeat-x;
+    background-image: -webkit-linear-gradient(top,#f5f5f5 0,#e8e8e8 100%);
+    background-image: -o-linear-gradient(top,#f5f5f5 0,#e8e8e8 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#e8e8e8));
+    background-image: linear-gradient(to bottom,#f5f5f5 0,#e8e8e8 100%);
+}
+
+.fusio-grid > table > tbody > tr > td
+{
+    vertical-align:middle;
+    height:50px;
 }
 
 .fusio-options
@@ -205,10 +240,8 @@ pre
 	position:fixed; 
 	left:0px; 
 	top:0px;
-	z-index:2; 
 	width:100%;
 	height:100%;
-	visibility:visible;
 }
 
 .fusio-login header
@@ -216,7 +249,7 @@ pre
 	background-color:#55acee;
 	background-image:url(../img/grid.png);
 	background-repeat:no-repeat;
-	background-position:bottom;
+    background-position:bottom left;
 	width:100%;
 	top:0px;
 	left:0px;
@@ -255,11 +288,6 @@ pre
 	margin:8px;
 }
 
-.fusio-hidden
-{
-	visibility:hidden;
-}
-
 .fusio-log-entry pre
 {
 	padding:6px;
@@ -281,6 +309,11 @@ pre
 .form-control, .btn
 {
 	border-radius:0px;
+}
+
+.nav-tabs
+{
+    margin-bottom:4px;
 }
 
 .nav-tabs > li > a
@@ -318,9 +351,29 @@ pre
     border-radius:0px;
 }
 
+.pagination
+{
+    border-radius:0px;
+}
+
+.pagination > li:last-child > a, .pagination > li:last-child > span
+{
+    border-radius:0px;
+}
+
+.pagination > li:first-child > a, .pagination > li:first-child > span
+{
+    border-radius:0px;
+}
+
 .panel-group .panel
 {
     border-radius:0px;
+}
+
+.panel-heading
+{
+    font-weight:bold;
 }
 
 .ace_editor

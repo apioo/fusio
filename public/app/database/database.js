@@ -214,9 +214,7 @@ angular.module('fusioApp.database', ['ngRoute', 'ui.bootstrap'])
 
 .controller('DatabaseUpdateCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'fusio', 'connection', 'table', function($scope, $http, $uibModalInstance, $uibModal, fusio, connection, table) {
 
-  var tableCopy = angular.copy(table);
-
-  $scope.table = tableCopy;
+  $scope.table = angular.copy(table);
 
   $scope.types = ['bigint', 'boolean', 'datetime', 'date', 'time', 'decimal', 'integer', 'smallint', 'string', 'text', 'binary', 'blob', 'float', 'guid', 'json', 'object', 'array', 'simple_array'];
 

@@ -14,7 +14,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
   $scope.response = null;
   $scope.search = '';
   $scope.routes = [];
-  $scope.routeId = parseInt($routeParams.routeId);
+  $scope.routeId = $routeParams.routeId ? parseInt($routeParams.routeId) : null;
 
   $scope.load = function() {
     var search = encodeURIComponent($scope.search);
@@ -307,13 +307,12 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
       body = {};
     }
     var data = {
-      actionId: action.id,
       uriFragments: request.uriFragments,
       parameters: request.parameters,
       body: body
     };
 
-    $http.post(fusio.baseUrl + 'backend/action/execute', data)
+    $http.post(fusio.baseUrl + 'backend/action/execute/' + action.id, data)
       .success(function(data) {
         $scope.response = {
           statusCode: data.statusCode,

@@ -9,7 +9,7 @@ angular.module('fusioApp.login', ['ngRoute'])
   });
 }])
 
-.controller('LoginCtrl', ['$scope', '$http', '$location', '$window', 'fusio', function($scope, $http, $location, $window, fusio) {
+.controller('LoginCtrl', ['$scope', '$http', '$location', '$window', '$rootScope', 'fusio', function($scope, $http, $location, $window, $rootScope, fusio) {
   $scope.credentials = {
     username: '',
     password: ''
@@ -41,8 +41,7 @@ angular.module('fusioApp.login', ['ngRoute'])
 
           $location.path('/dashboard');
 
-          angular.element(document.querySelector('.fusio-login')).css('display', 'none');
-          angular.element(document.querySelector('body')).removeClass('fusio-hidden');
+          $rootScope.userAuthenticated = true;
         } else {
           $scope.response = data.error_description ? data.error_description : 'Authentication failed';
         }

@@ -59,9 +59,13 @@
     }]);
     </script>
 </head>
-<body class="fusio-hidden">
+<body>
 
-<header class="fusio-header">
+<div ng-if="!userAuthenticated">
+    <div ng-view></div>
+</div>
+
+<header class="fusio-header" ng-if="userAuthenticated">
     <div class="btn-group pull-right fusio-header-profile">
         <span class="dropdown" uib-dropdown on-toggle="toggled(open)">
             <a href uib-dropdown-toggle class="dropdown-toggle"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Administrator</a>
@@ -74,7 +78,7 @@
     <h1>Fusio <span>({{version}})</span></h1>
 </header>
 
-<div class="container-fluid">
+<div class="container-fluid" ng-if="userAuthenticated">
     <div class="row">
         <div class="col-md-1 sidebar">
             <nav class="fusio-navigation">

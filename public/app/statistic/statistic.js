@@ -58,6 +58,15 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
     });
   };
 
+  $scope.getStatisticName = function(statistic) {
+    for (var i = 0; i < $scope.statistics.length; i++) {
+      if ($scope.statistics[i].value == statistic) {
+        return $scope.statistics[i].name;
+      }
+    }
+    return null;
+  };
+
   $scope.openFilterDialog = function() {
     var modalInstance = $uibModal.open({
       size: 'lg',
