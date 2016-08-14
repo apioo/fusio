@@ -43,12 +43,9 @@ describe('Schema tests', function() {
 
     $('button.btn-primary').click();
 
-    browser.wait(EC.visibilityOf($('div.psx-complex-type')), 5000);
+    browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
 
-    var properties = element.all(by.css('span.psx-property-name'));
-
-    expect(properties.get(0).getText()).toEqual('name');
-    expect(properties.get(1).getText()).toEqual('date');
+    expect($('div.alert-success > div').getText()).toEqual('Schema successful updated');
   });
 
   it('Delete schema', function() {
