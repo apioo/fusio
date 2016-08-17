@@ -408,3 +408,23 @@ pre
 {
 	text-decoration:underline;
 }
+
+/* loading animation */
+#loading-bar-spinner
+{
+    position:relative;
+    margin-left:2px;
+    margin-top:2px;
+}
+
+#loading-bar-spinner .spinner-icon
+{
+    border-top-color:#fff;
+    border-left-color:#fff;
+}
+
+#fusioLoadingContainer
+{
+    width:38px;
+    height:38px;
+}

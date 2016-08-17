@@ -14,19 +14,22 @@
     <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
     <link href="bower_components/angular-chart.js/dist/angular-chart.css" rel="stylesheet" media="screen">
     <link href="bower_components/highlightjs/styles/github.css" rel="stylesheet" media="screen">
+    <link href="bower_components/angular-loading-bar/build/loading-bar.min.css" rel="stylesheet" media="screen">
     <link href="css/default.css" rel="stylesheet" media="screen">
     <script src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
     <script src="bower_components/Chart.js/Chart.min.js"></script>
     <script src="bower_components/showdown/dist/showdown.min.js"></script>
     <script src="bower_components/highlightjs/highlight.pack.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/angular-ui-ace/ui-ace.js"></script>
+    <script src="bower_components/angular-ui-ace/ui-ace.min.js"></script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
     <script src="bower_components/ng-showdown/dist/ng-showdown.min.js"></script>
     <script src="bower_components/angular-highlightjs/angular-highlightjs.min.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
     <script src="app/app.js"></script>
     <script src="app/account/change_password.js"></script>
     <script src="app/login/login.js"></script>
@@ -101,6 +104,7 @@
         </div>
         <div class="col-md-11 col-md-offset-1 content">
             <div class="fusio-content">
+                <div id="fusioLoadingContainer" class="pull-right"></div>
                 <div ng-view></div>
             </div>
         </div>

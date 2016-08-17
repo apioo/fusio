@@ -3,11 +3,13 @@
 var fusioApp = angular.module('fusioApp', [
   'ngRoute',
   'ngSanitize',
+  'ngAnimate',
   'ui.bootstrap',
   'ui.ace',
   'chart.js',
   'ng-showdown',
   'hljs',
+  'angular-loading-bar',
   'fusioApp.account',
   'fusioApp.action',
   'fusioApp.app',
@@ -95,6 +97,12 @@ fusioApp.config(['$httpProvider', function($httpProvider) {
 }]);
 
 fusioApp.config(['$showdownProvider', function($showdownProvider) {
+}]);
+
+fusioApp.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+  cfpLoadingBarProvider.includeBar = false;
+  cfpLoadingBarProvider.includeSpinner = true;
+  cfpLoadingBarProvider.parentSelector = '#fusioLoadingContainer';
 }]);
 
 fusioApp.run(function($rootScope, $window, $location, $http, helpLoader, version) {
