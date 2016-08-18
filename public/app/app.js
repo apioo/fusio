@@ -102,7 +102,7 @@ fusioApp.config(['$showdownProvider', function($showdownProvider) {
 fusioApp.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeBar = false;
   cfpLoadingBarProvider.includeSpinner = true;
-  cfpLoadingBarProvider.parentSelector = '#fusioLoadingContainer';
+  cfpLoadingBarProvider.parentSelector = '.fusio-loading-container';
 }]);
 
 fusioApp.run(function($rootScope, $window, $location, $http, helpLoader, version) {

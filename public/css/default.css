@@ -423,8 +423,9 @@ pre
     border-left-color:#fff;
 }
 
-#fusioLoadingContainer
+.fusio-loading-container
 {
     width:38px;
     height:38px;
+    overflow:hidden;
 }

@@ -65,6 +65,7 @@
 <body>
 
 <div ng-if="!userAuthenticated">
+    <div class="fusio-loading-container pull-right"></div>
     <div ng-view></div>
 </div>
 
@@ -104,7 +105,7 @@
         </div>
         <div class="col-md-11 col-md-offset-1 content">
             <div class="fusio-content">
-                <div id="fusioLoadingContainer" class="pull-right"></div>
+                <div class="fusio-loading-container pull-right"></div>
                 <div ng-view></div>
             </div>
         </div>
