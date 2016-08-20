@@ -2,6 +2,8 @@
 ### 0.3.4
 
 * Streamlined backend ui
+* Backend add global loading animation 
+* Fixed detail and schema export command
 * Added dialog to test an action
 * Add repeat password question to adduser command
 
