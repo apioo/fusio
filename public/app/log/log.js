@@ -122,7 +122,7 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 
   $scope.log = log;
 
-  $scope.requestOpen = true;
+  $scope.statusLineOpen = true;
   $scope.headerOpen = true;
   $scope.bodyOpen = false;
   $scope.errorsOpen = false;
