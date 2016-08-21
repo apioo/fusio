@@ -122,6 +122,11 @@ angular.module('fusioApp.log', ['ngRoute', 'ui.bootstrap'])
 
   $scope.log = log;
 
+  $scope.requestOpen = true;
+  $scope.headerOpen = true;
+  $scope.bodyOpen = false;
+  $scope.errorsOpen = false;
+
   $scope.close = function() {
     $uibModalInstance.dismiss('cancel');
   };

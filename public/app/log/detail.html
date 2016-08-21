@@ -4,29 +4,30 @@
 </div>
 
 <div class="modal-body">
-    <dl class="fusio-log-entry">
-        <dt>IP</dt>
-        <dd><pre>{{log.ip}}</pre></dd>
-        <dt>Method</dt>
-        <dd><pre>{{log.method}}</pre></dd>
-        <dt>Path</dt>
-        <dd><pre>{{log.path}}</pre></dd>
-        <dt>Header</dt>
-        <dd><pre>{{log.header}}</pre></dd>
-        <dt ng-if="log.body">Body</dt>
-        <dd ng-if="log.body"><pre>{{log.body}}</pre></dd>
-    </dl>
-
-    <div ng-if="log.errors.length > 0">
-        <h4>Errors</h4>
-        <ul>
-            <li ng-repeat="error in log.errors">
-                <button class="btn btn-default pull-right" ng-click="openTraceDialog(error)">Trace</button>
-                <b>{{error.message}}</b>
-                <p>in {{error.file}} on {{error.line}}</p>
-            </li>
-        </ul>
-    </div>
+    <uib-accordion close-others="false">
+        <div uib-accordion-group class="panel-default" is-open="requestOpen">
+            <uib-accordion-heading>Request <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': requestOpen, 'glyphicon-chevron-right': !requestOpen}"></i></uib-accordion-heading>
+            <pre style="background-color:#fff">{{log.ip}}: {{log.method}} {{log.path}}</pre>
+        </div>
+        <div uib-accordion-group class="panel-default" is-open="headerOpen">
+            <uib-accordion-heading>Header <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': headerOpen, 'glyphicon-chevron-right': !headerOpen}"></i></uib-accordion-heading>
+            <pre style="background-color:#fff">{{log.header}}</pre>
+        </div>
+        <div uib-accordion-group class="panel-default" is-open="bodyOpen" ng-if="log.body">
+            <uib-accordion-heading>Body <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': bodyOpen, 'glyphicon-chevron-right': !bodyOpen}"></i></uib-accordion-heading>
+            <pre style="background-color:#fff">{{log.body}}</pre>
+        </div>
+        <div uib-accordion-group class="panel-default" is-open="errorsOpen" ng-if="log.errors.length > 0">
+            <uib-accordion-heading>Errors <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': errorsOpen, 'glyphicon-chevron-right': !errorsOpen}"></i></uib-accordion-heading>
+            <ul>
+                <li ng-repeat="error in log.errors">
+                    <button class="btn btn-default pull-right" ng-click="openTraceDialog(error)">Trace</button>
+                    <b>{{error.message}}</b>
+                    <p>in {{error.file}} on {{error.line}}</p>
+                </li>
+            </ul>
+        </div>
+    </uib-accordion>
 
     <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 </div>
