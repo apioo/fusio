@@ -2,9 +2,11 @@
 ### 0.3.4
 
 * Streamlined backend ui
+* Improved route lookup speed 
 * Backend add global loading animation 
-* Fixed detail and schema export command
+* Fixed detail and schema import/export command
 * Added dialog to test an action
+* Database ui add auto increment option
 * Add repeat password question to adduser command
 
 ### 0.3.3 (2016-07-31)
