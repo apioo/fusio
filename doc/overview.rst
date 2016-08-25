@@ -46,7 +46,7 @@ Consumer App
 .. image:: _static/consumer.png
 
 The consumer app is used by the consumer of the API. Those are either app 
-developers which want to consumer your API or normal end users. At the consumer
+developers which want to consume your API or normal end users. At the consumer
 app the user can update basic account information and revoke the access of 
 authorized apps. The user can also create new apps. Through the created app he 
 obtains an app key and secret with that it is possible to get an access token to 
