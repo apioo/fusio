@@ -3,12 +3,26 @@ _which are likely to be implemented are moved to a seperate github issue_
 
 ### 0.4
 
+- [ ] Add OAuth2 refresh token endpoint
+  - [ ] Add method to relogin if token expires. Probably we should save the 
+        expire time and make the relogin attempt based on this
+- [ ] Add serverless action (https://azure.microsoft.com/en-us/services/functions/)
+      where you can write code in different languages which gets executed
+  - [ ] Evaluate V8Js and check whether we could write an action where a user can 
+        write an action in javascript
+  - [ ] Providing an action which executes PHP is possible but probably not an
+        option since we have no solid PHP sandbox
+- [ ] Database add data tab to browse the data of an existing table
+- [ ] Add option to disable changing the database schema through a config flag
 - [ ] Add consumer and documentation protractor tests
+- [ ] Maybe we need to handle the idle status in the backend through
+      https://github.com/HackedByChinese/ng-idle
+- [ ] Database dont show update/delete button if no table is selected
 - [ ] Improve cache action add option to specific get or uri parameters which
       come into the cache key
 - [ ] ~~Automatically add the consumer scope the to the scope list~~
-- [ ] Backend database UI add auto increment option
 - [ ] App button to regenerate app key and secret
+  - [ ] We need this option also on the consumer site
 - [ ] Consumer if access was already granted dont ask the user again instead 
       redirect the user directly or show the access token. We could add this 
       logic maybe to the meta lookup response
@@ -17,9 +31,10 @@ _which are likely to be implemented are moved to a seperate github issue_
       interoperability
 - [ ] Option to ratelimit specific apps. Option to set global rate limits per
       config?
-- [ ] Add forms endpoint
-      The user can select a route, request method and an input field which
-      contains the form format. Maybe based on https://github.com/joshfire/jsonform
+- [ ] Add forms endpoint. The user can select a route, request method and an 
+      input field which contains the form format.
+      - Maybe based on https://github.com/joshfire/jsonform
+      - http://angular-formly.com/#/
   - [ ] Add a html endpoint which can render a form for an API endpoint for 
         humans to enter. This could be embeded per iframe in a website etc.
   - [ ] We need a new point forms. There a user can create a form for a schema.
@@ -31,7 +46,6 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] We should build different libraries (javascript, java, etc.) to build 
         these forms
 - [ ] Add action which can build a REST API for a table
-- [x] Add failover action which executes another action in case of an error
 - [ ] Import allow swagger format
 - [ ] Adapter if we reference a connection in the definition the connection may 
       not exist. The adapter definition should be able to reference the
@@ -61,11 +75,8 @@ _which are likely to be implemented are moved to a seperate github issue_
 - [ ] Add phpinfo action
 - [ ] Add mail action which sends a mail using the provided data
 - [ ] A option to configure a memcache server in the config
-- [ ] Schema add preview button and close window always on save
 - [ ] System export fix sort so that i.e. schemas which refer no other schema
       are at the top 
-- [ ] Add option to test action to see the response format of the action. 
-      Probably also a way to compare the response with a schema
 - [ ] Add docker and vagrant box to easy test and deploy fusio
 - [ ] Add function to measure execution time of an action add also additional
       chart to the statistics panel which shows slow actions. Maybe we should
@@ -73,14 +84,10 @@ _which are likely to be implemented are moved to a seperate github issue_
 - [ ] Add option to get and use a refresh token to extend the life time of an 
       access token
 - [ ] When creating an connection verify that the connection works #2
-- [x] Add option to store variables with an app which can be used for conditions 
-      or in an action #6
 - [ ] Add an API console where it is possible to test the API #7
   - [ ] Use http://schemaform.io/ to build a form based on a jsonschems to 
         submit data to the endpoint
         https://github.com/joshfire/jsonform
-- [ ] Evaluate V8Js and check whether we could write an action where a user can 
-      write an action in javascript
 - [ ] Add different roles for the backend. I.e. an admin/manager and developer.
       A developer account can only edit specific entries
   - [ ] Probably we need a interface for developers. A editor view where the
@@ -91,24 +98,13 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [x] Add filter action/schema by route and add link from routes to 
         action/schema with filtered route id
   - [ ] Probably use https://github.com/nickperkinslondon/angular-bootstrap-nav-tree
-- [x] Add proper CORS handling
-- [ ] Add method to relogin if token expires. Probably we should save the expire
-      time and make the relogin attempt based on this
 - [ ] Write backend in TypeScript JS6 support transition to Angular2
 - [ ] Add system log where every login and system change is shown
   - [ ] Add login bruteforce protection. Therefor we must log the ip of every 
         login attempt
   - [ ] We should add a limitation to the access token endpoint this would
         protect also the login
-- [ ] Add action to simplify creating more complex logic (if else, switch).
-  - [ ] In long term we could build a flowchart like yahoo pipes to build the 
-        actions
-  - [ ] Use http://js.cytoscape.org/ to build a graph from the actions/schema
-  - [x] Write a processor action where a user can define multiple actions in
-        a YAML format
 - [ ] Unify backend filter usage
-- [ ] When creating an action verify that the action works. How can we handle 
-      template parameters for testing?
 - [ ] Schema definitions limitations
   - [ ] There is no way to add query parameters
   - [ ] At the moment we only handle the schema for an 200 return. Probably add 
@@ -131,10 +127,6 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] Gateways to complex systems i.e. sharepoint
 - [ ] Consider disable request model for DELETE method since a DELETE should
       probably not include a request body?
-- [x] Schema if a schema name changes or it gets deleted what happens with 
-      schemas which refer to the changed schema? #3
-  - [x] Since the cache includes the complete resolved schema the problem occurs
-        of the user wants to save the schema which refers to an deleted schema
 
 ### 1.0
 
@@ -151,10 +143,32 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] http://nordicapis.com/create-with-us/
   - [ ] https://www.reddit.com/r/php / https://www.reddit.com/r/rest
   - [ ] http://www.sitepoint.com/
+- [x] Added Fusio to https://github.com/marmelab/awesome-rest
 
 ### Archive
 
 ### 0.3
+
+- [x] Backend database UI add auto increment option
+- [x] Add failover action which executes another action in case of an error
+- [x] Schema add preview button and close window always on save
+- [x] Add option to test action to see the response format of the action. 
+      Probably also a way to compare the response with a schema
+- [x] Add option to store variables with an app which can be used for conditions 
+      or in an action #6
+- [x] Add proper CORS handling
+- [x] Schema if a schema name changes or it gets deleted what happens with 
+      schemas which refer to the changed schema? #3
+  - [x] Since the cache includes the complete resolved schema the problem occurs
+        of the user wants to save the schema which refers to an deleted schema
+- [x] When creating an action verify that the action works. How can we handle 
+      template parameters for testing? We can now test the action on update.
+- [x] Add action to simplify creating more complex logic (if else, switch).
+  - [ ] ~~ In long term we could build a flowchart like yahoo pipes to build the 
+        actions~~ For complex cases a user wants to write code
+  - [ ] ~~ Use http://js.cytoscape.org/ to build a graph from the actions/schema ~~
+  - [x] Write a processor action where a user can define multiple actions in
+        a YAML format
 
 - [x] Update config help texts
 - [x] Add CORS support to backend config
