@@ -76,7 +76,7 @@ steps.
 * __Adjust the configuration file__  
   Open the file `configuration.php` in the Fusio directory and change the key 
   `psx_url` to the domain pointing to the public folder. Also insert the 
-  database credentials to the `psx_sql_*` keys.
+  database credentials to the `psx_connection` keys.
 * __Execute the installation command__  
   The installation script inserts the Fusio database schema into the provided 
   database. It can be executed with the following command 

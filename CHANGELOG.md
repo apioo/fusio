@@ -1,5 +1,10 @@
 
-### 0.3.4
+### 0.3.5
+
+* Added developer app
+* Added SQL table action
+
+### 0.3.4 (2016-08-25)
 
 * Streamlined backend ui
 * Improved route lookup speed 
