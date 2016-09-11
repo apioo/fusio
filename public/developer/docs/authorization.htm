@@ -1,0 +1,26 @@
+
+<h2>Authorization</h2>
+
+<p>The API uses <a href="https://tools.ietf.org/html/rfc6749">OAuth2</a> for 
+authorization. To access protected parts of the API you need to obtain an access
+token. Therefor you can use the following endpoints:</p>
+
+<dl>
+    <dt>Authorization-Endpoint</dt>
+    <dd><code>/developer/auth</code></dd>
+    <dt>Token-Endpoint</dt>
+    <dd><code>/authorization/token</code></dd>
+</dl>
+
+<b>Authorization Code Grant</b>
+<p>For the authorization code you have to redirect the resource owner to the 
+consumer endpoint:<br><code>/auth?response_type=code&client_id=[app_key]&redirect_uri=[url]&scope=authorization</code>. 
+If the authorization was successful the user gets redirected to the <code>redirect_uri</code>
+of your app. The <code>redirect_uri</code> contains a GET parameter code which 
+can be exchanged for an access token at the Token-Endpoint.</p>
+
+<b>Resource Owner Password Credentials Grant</b>
+<p>Through the resource owner password credentials grant you can obtain an 
+access token with your app credentials and the username/password of your 
+account. Therefor you can send directly an request to the Token-Endpoint 
+containing the app credentials and you username and password.</p>

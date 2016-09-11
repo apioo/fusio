@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="fusioApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="fusioApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="fusioApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="fusioApp" class="no-js"> <!--<![endif]-->
+<html ng-app="fusioApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusio-Consumer</title>
+    <base href="/projects/fusio/public/developer/">
+    <link href="fusio.min.css" rel="stylesheet" media="screen">
+    <script src="fusio.min.js"></script>
+    <script type="text/javascript">
+        fusioApp.config(function(fusioProvider) {
+            /**
+             * Url to the fusio API endpoint. Change this to the fitting url to the
+             * backend API. If not provided Fusio will try to guess the correct url
+             * I.e.: http://127.0.0.1/projects/fusio/public/index.php/
+             */
+            var fusioUrl = 'http://127.0.0.1/projects/fusio/public/index.php/';
+
+            fusioProvider.setBaseUrl(fusioUrl);
+
+            /**
+             * The documentation menu
+             */
+            fusioProvider.setDocumentationMenu({
+                'Overview': {
+                    'Getting started': 'bootstrap',
+                    'Authorization': 'authorization',
+                    'Support': 'support'
+                }
+            });
+        });
+
+        /**
+         * Optional you can configure additional login provider which can be used
+         * by a user. Also you need to save the app secret in the Fusio backend
+         * configuration
+         */
+        fusioApp.config(function($authProvider, fusioProvider) {
+            $authProvider.baseUrl = fusioProvider.getBaseUrl();
+            $authProvider.loginUrl = 'consumer/login';
+            $authProvider.httpInterceptor = function() { return false; };
+
+            $authProvider.facebook({
+                url: 'consumer/provider/facebook',
+                clientId: '' // Facebook App ID
+            });
+
+            $authProvider.google({
+                url: 'consumer/provider/google',
+                clientId: '' // Google Client ID
+            });
+
+            $authProvider.github({
+                url: 'consumer/provider/github',
+                clientId: '' // GitHub Client ID
+            });
+        });
+
+        /**
+         * Google captcha site key for registration. Also you need to save the
+         * secret key in the Fusio backend configuration
+         */
+        fusioApp.config(['noCAPTCHAProvider', function(noCaptchaProvider) {
+            noCaptchaProvider.setSiteKey('');
+        }]);
+    </script>
+</head>
+<body>
+
+<header class="container-fluid fusio-header">
+    <div class="navbar-header">
+        <a href="." class="navbar-brand">Developer</a>
+    </div>
+    <nav>
+        <ul class="nav navbar-nav">
+            <li><a href="./documentation"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Documentation</a></li>
+            <li><a href="./api"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> API</a></li>
+            <li ng-if="isAuthenticated"><a href="./account"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Account</a></li>
+            <li ng-if="isAuthenticated"><a href="./logout"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> Logout</a></li>
+            <li ng-if="!isAuthenticated"><a href="./login"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Login</a></li>
+        </ul>
+        <span ng-if="isAuthenticated && userName" class="fusio-header-loggedin pull-right">Logged in as {{ userName }}</span>
+    </nav>
+</header>
+
+<div class="container-fluid fusio-main">
+    <div ng-view></div>
+</div>
+
+<footer class="container-fluid fusio-footer">
+    <span>powered by <a href="http://fusio-project.org">Fusio</a></span>
+</footer>
+
+</body>
+</html>
