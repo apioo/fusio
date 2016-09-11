@@ -37,11 +37,15 @@ return array(
     'psx_log_handler'         => 'system',
     'psx_log_uri'             => null,
 
-    // Your SQL connections
-    'psx_sql_host'            => 'localhost',
-    'psx_sql_user'            => 'root',
-    'psx_sql_pw'              => '',
-    'psx_sql_db'              => 'fusio',
+    // Database parameters which are used for the doctrine DBAL connection
+    // http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
+    'psx_connection'          => [
+        'dbname'              => 'fusio',
+        'user'                => 'root',
+        'password'            => '',
+        'host'                => 'localhost',
+        'driver'              => 'pdo_mysql',
+    ],
 
     // Path to the cache folder
     'psx_path_cache'          => __DIR__ . '/cache',
