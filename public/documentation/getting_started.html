@@ -7,9 +7,9 @@
     endpoint shows the available request methods and the request/response data 
     format.</p>
 
-    <p>Through the <a href="../consumer">consumer</a> it is possible to manage 
-    all your apps and authorizations. If you have obtained an app key and secret 
-    you have several options to obtain an access token. The API uses 
+    <p>Through the <a href="../developer">developer</a> portal it is possible to 
+    manage all your apps and authorizations. If you have obtained an app key and 
+    secret you have several options to obtain an access token. The API uses 
     <a href="https://tools.ietf.org/html/rfc6749">OAuth2</a> for authorization 
     so you can use any OAuth2 compatible library to request an access token.</p>
 
@@ -22,7 +22,7 @@
 
     <p><b>Authorization Code Grant</b><br>
     For the authorization code you have to redirect the resource owner to the 
-    consumer endpoint: <code>/consumer/#/auth?response_type=code&amp;client_id=[app_key]&amp;redirect_uri=[url]&amp;scope=authorization</code>.
+    consumer endpoint: <code>/developer/auth?response_type=code&amp;client_id=[app_key]&amp;redirect_uri=[url]&amp;scope=authorization</code>.
     If the authorization was successful the user gets redirected to the 
     <code>redirect_uri</code> of your app. The <a href="https://tools.ietf.org/html/rfc6749#section-4.1.2">redirect_uri</a> 
     contains a GET parameter <code>code</code> which can be <a href="https://tools.ietf.org/html/rfc6749#section-4.1.3">exchanged</a> 
