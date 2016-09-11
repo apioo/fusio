@@ -16,11 +16,11 @@ to manage the complete system. Because of that Fusio has some reserved paths
 which are needed by the system.
 
 * ``/backend``
-  Endpoints for the backend app
+  Endpoints for configuring the system
 * ``/consumer``
-  Endpoints for the consumer app
+  Endpoints for the consumer i.e. register new accounts or create new apps 
 * ``/doc``
-  Endpoints for the documentation app
+  Endpoints for the documentation
 * ``/authorization``
   Endpoints for the consumer to get i.e. information about the user itself and 
   to revoke an obtained access token
@@ -36,21 +36,17 @@ Backend App
 
 .. image:: _static/backend.png
 
-The backend app is the app with that you can configure the system. It gives you 
-the possibility to define the routes of your API and which actions should be 
-executed. The app is located at ``/backend.htm``.
+The backend app is the app where the administrator can configure the system. The 
+app is located at ``/backend.htm``.
 
-Consumer App
-------------
+Developer App
+-------------
 
-.. image:: _static/consumer.png
+.. image:: _static/developer.png
 
-The consumer app is used by the consumer of the API. Those are either app 
-developers which want to consume your API or normal end users. At the consumer
-app the user can update basic account information and revoke the access of 
-authorized apps. The user can also create new apps. Through the created app he 
-obtains an app key and secret with that it is possible to get an access token to 
-access protected parts of the API. The app is located at ``/consumer/``.
+The developer app is designed to quickly setup an API programm where new 
+developers can register and create/manage their apps. The app is located at 
+``/developer/``.
 
 Documentation App
 -----------------
