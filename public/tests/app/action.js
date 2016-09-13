@@ -48,7 +48,7 @@ describe('Action tests', function() {
     expect(actionOptions.get(21).getText()).toEqual('Try-Catch');
     expect(actionOptions.get(22).getText()).toEqual('Validator');
 
-    actionOptions.get(18).click();
+    actionOptions.get(19).click();
 
     browser.wait(EC.visibilityOf($('#config-statusCode')), 5000);
 
