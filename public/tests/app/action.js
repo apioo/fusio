@@ -42,6 +42,7 @@ describe('Action tests', function() {
     expect(actionOptions.get(15).getText()).toEqual('SQL-Execute');
     expect(actionOptions.get(16).getText()).toEqual('SQL-Fetch-All');
     expect(actionOptions.get(17).getText()).toEqual('SQL-Fetch-Row');
+    expect(actionOptions.get(17).getText()).toEqual('SQL-Table');
     expect(actionOptions.get(18).getText()).toEqual('Static-Response');
     expect(actionOptions.get(19).getText()).toEqual('Transform');
     expect(actionOptions.get(20).getText()).toEqual('Try-Catch');
