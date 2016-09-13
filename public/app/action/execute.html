@@ -9,6 +9,11 @@
             <div uib-accordion-group class="panel-default" is-open="requestOpen">
                 <uib-accordion-heading>Request <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': requestOpen, 'glyphicon-chevron-right': !requestOpen}"></i></uib-accordion-heading>
                 <div class="form-group">
+                    <label for="method">Method:</label>
+                    <select id="method" ng-model="request.method" ng-options="method for method in methods" aria-describedby="methodHelp" class="form-control">
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="uriFragments">URI Fragments:</label>
                     <input type="text" id="uriFragments" ng-model="request.uriFragments" aria-describedby="uriFragmentsHelp" class="form-control">
                     <span class="help-block" id="uriFragmentsHelp"></span>

@@ -291,7 +291,9 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 .controller('ActionExecuteCtrl', ['$scope', '$http', '$uibModalInstance', 'action', 'fusio', function($scope, $http, $uibModalInstance, action, fusio) {
 
   $scope.action = action;
+  $scope.methods = ['GET', 'POST', 'PUT', 'DELETE'];
   $scope.request = {
+    method: 'GET',
     uriFragments: '',
     parameters: '',
     body: '{}'
@@ -307,6 +309,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
       body = {};
     }
     var data = {
+      method: request.method,
       uriFragments: request.uriFragments,
       parameters: request.parameters,
       body: body
