@@ -1,8 +1,13 @@
 
-### 0.3.5
+### 0.3.6
 
-* Added developer app
+*
+
+### 0.3.5 (2016-09-17)
+
+* Renamed consumer app to developer and improved the app
 * Added SQL table action
+* Option to provide the request method when testing an action
 
 ### 0.3.4 (2016-08-25)
 
