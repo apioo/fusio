@@ -1,154 +1,136 @@
 
 body
 {
-	background-color:#fff;
+    background-color:#fff;
+    font-family: 'Roboto', sans-serif;
 }
 
 pre
 {
-	padding:0px;
-	margin:0px;
-	border:none;
-	border-radius:0px;
+    padding:0px;
+    margin:0px;
+    border:none;
+    border-radius:0px;
 }
 
 .container-fluid
 {
-	margin-top:38px;
+    margin-top:38px;
 }
 
 .fusio-header
 {
-	background-color:#55acee;
-	background-image:url(../img/grid.png);
-	background-repeat:no-repeat;
+    background-color:#55acee;
+    background-image:url(../img/grid.png);
+    background-repeat:no-repeat;
     background-position:bottom left;
-	width:100%;
-	top:0px;
-	left:0px;
-	height:38px;
-	position:fixed;
+    width:100%;
+    top:0px;
+    left:0px;
+    height:38px;
+    position:fixed;
     z-index:100;
 }
 
 .fusio-header h1
 {
-	color:#fff;
-	margin:0px 15px;
-	padding:5px 0px;
-	font-size:1.8em;
-	font-weight:bold;
-	text-shadow:2px 1px #444;
+    color:#fff;
+    margin:0px 15px;
+    padding:5px 0px;
+    font-size:1.8em;
+    font-weight:bold;
+    text-shadow:2px 1px #444;
+    letter-spacing:2px;
 }
 
 .fusio-header h1 > span
 {
-	vertical-align:middle;
-	color:#fff;
-	font-size:0.4em;
-	text-shadow:none;
+    vertical-align:middle;
+    color:#fff;
+    font-size:0.4em;
+    text-shadow:none;
 }
 
 .fusio-header-profile
 {
-	margin:10px 20px;
+    margin:10px 20px;
 }
 
 .fusio-header-profile a
 {
-	color:#fff;
+    color:#fff;
 }
 
 .fusio-header-profile a:hover, a:focus
 {
-	text-decoration:none;
+    text-decoration:none;
 }
 
 .fusio-header-profile a span
 {
-	margin-right:4px;
+    margin-right:4px;
 }
 
 .sidebar 
 {
-	background-color:#021c35;
-	position:fixed;
-	height:100%;
+    background-color:#021c35;
+    position:fixed;
+    height:100%;
 }
 
 @media (max-width:991px) {
-	.sidebar 
-	{
-		position:relative;
-		height:none;
-	}
+    .sidebar 
+    {
+        position:relative;
+        height:auto;
+    }
 }
 
 .content
 {
-	background-color:#fff;
+    background-color:#fff;
 }
 
 .fusio-navigation
 {
-	overflow:hidden;
 }
 
-.fusio-navigation ul
+.fusio-navigation ul > li > a,
+.fusio-navigation ul > li > a:visited
 {
-	list-style-type:none;
-	padding:0px;
-	margin:0px;
-	margin-top:6px;
-	margin-bottom:8px;
-	padding-bottom:8px;
-	border-bottom:1px solid #eee;
+    color:#fff;
+    white-space:nowrap;
+    padding-left:0;
+    background-color:#021c35;
 }
 
-.fusio-navigation ul:last-child
+.fusio-navigation ul > li > a:hover,
+.fusio-navigation ul > li > a:hover,
+.fusio-navigation ul > li > a:active
 {
-	border-bottom:none;
+    background-color:#021c35;
+    color:#55acee;
 }
 
-.fusio-navigation a
+.fusio-navigation .glyphicon
 {
-	display:block;
-	padding:8px 0px;
-	color:#fff;
-	font-family:monospace;
-	text-decoration:none;
-	white-space:nowrap;
-}
-
-.fusio-navigation a:hover
-{
-	color:#55acee;
-}
-
-.fusio-navigation .nav-head
-{
-	color:#55acee;
-	font-weight:bold;
-	font-size:0.8em;
-	padding:8px;
-	margin-bottom:4px;
-	border-bottom:1px solid #55acee;
+    margin-right:6px;
 }
 
 .fusio-content
 {
-	background-color:#fff;
-	margin-bottom:64px;
+    background-color:#fff;
+    margin-bottom:64px;
 }
 
 .fusio-content > div > h1
 {
-	color:#eee;
-	padding:12px 15px;
-	margin:0px -15px;
-	margin-bottom:10px;
-	border-bottom:1px solid #021c35;
-	font-size:0.9em;
+    color:#eee;
+    padding:12px 15px;
+    margin:0px -15px;
+    margin-bottom:10px;
+    border-bottom:1px solid #021c35;
+    font-size:1em;
     background-color: #222;
     background-repeat: repeat-x;
     background-image: -webkit-linear-gradient(top,#444 0,#222 100%);
@@ -164,7 +146,7 @@ pre
 
 .fusio-search .table td
 {
-	border-top:none;
+    border-top:none;
 }
 
 .fusio-grid
@@ -180,6 +162,7 @@ pre
 .fusio-grid > table > thead > tr > th
 {
     font-weight:bold;
+    font-size:1em;
     padding: 10px 15px;
     padding-left: 8px;
     border-bottom: 1px solid;
@@ -201,28 +184,28 @@ pre
 
 .fusio-options
 {
-	white-space:nowrap;
+    white-space:nowrap;
 }
 
 .fusio-table-tab tbody tr:first-child td
 {
-	border-top:none;
+    border-top:none;
 }
 
 .fusio-table-tab-token pre
 {
-	background-color:transparent;
+    background-color:transparent;
 }
 
 .fusio-panel
 {
-	height:300px;
-	overflow:hidden;
+    height:300px;
+    overflow:hidden;
 }
 
 .fusio-panel table tbody tr:first-child td
 {
-	border-top:none;
+    border-top:none;
 }
 
 .fusio-panel table
@@ -231,85 +214,85 @@ pre
 
 .fusio-panel .chart-container
 {
-	height:220px;
+    height:220px;
 }
 
 .fusio-login
 {
-	background-color:#021c35;
-	position:fixed; 
-	left:0px; 
-	top:0px;
-	width:100%;
-	height:100%;
+    background-color:#021c35;
+    position:fixed; 
+    left:0px; 
+    top:0px;
+    width:100%;
+    height:100%;
     z-index:101;
 }
 
 .fusio-login header
 {
-	background-color:#55acee;
-	background-image:url(../img/grid.png);
-	background-repeat:no-repeat;
+    background-color:#55acee;
+    background-image:url(../img/grid.png);
+    background-repeat:no-repeat;
     background-position:bottom left;
-	width:100%;
-	top:0px;
-	left:0px;
-	height:50px;
+    width:100%;
+    top:0px;
+    left:0px;
+    height:50px;
 }
 
 .fusio-login header h1
 {
-	color:#fff;
-	margin:0px 15px;
-	padding:10px 0px;
-	font-size:1.8em;
-	font-weight:bold;
-	text-shadow:2px 1px #444;
+    color:#fff;
+    margin:0px 15px;
+    padding:10px 0px;
+    font-size:1.8em;
+    font-weight:bold;
+    text-shadow:2px 1px #444;
 }
 
 .fusio-login header h1 > span
 {
-	vertical-align:middle;
-	color:#fff;
-	font-size:0.4em;
-	text-shadow:none;
+    vertical-align:middle;
+    color:#fff;
+    font-size:0.4em;
+    text-shadow:none;
 }
 
 .fusio-login-panel
 {
-	background-color:#fff;
-	width:400px;
-	border:1px solid #fff;
-	margin:0 auto;
-	margin-top:32px;
+    background-color:#fff;
+    width:400px;
+    border:1px solid #fff;
+    margin:0 auto;
+    margin-top:32px;
 }
 
 .fusio-login-panel-body
 {
-	margin:8px;
+    margin:8px;
 }
 
 .fusio-log-entry pre
 {
-	padding:6px;
-	margin-bottom:8px;
+    padding:6px;
+    margin-bottom:8px;
 }
 
 .fusio-statistic .chart-container
 {
-	height:400px;
+    height:400px;
 }
 
 .fusio-route-path
 {
-	background-color:inherit;
-	color:inherit;
+    background-color:inherit;
+    color:inherit;
 }
 
 /* general bootstrap fixes */
 .form-control, .btn
 {
-	border-radius:0px;
+    border-radius:0px;
 }
 
 .nav-tabs
@@ -319,32 +302,32 @@ pre
 
 .nav-tabs > li > a
 {
-	border-radius:0px;
+    border-radius:0px;
 }
 
 .nav, .pagination, .carousel, .panel-title a 
 { 
-	cursor: pointer; 
+    cursor: pointer; 
 }
 
 .dropdown-menu
 {
-	border-radius:0px;
+    border-radius:0px;
 }
 
 .modal-content
 {
-	border-radius:0px;
+    border-radius:0px;
 }
 
 .panel
 {
-	border-radius:0px;
+    border-radius:0px;
 }
 
 .alert
 {
-	border-radius:0px;
+    border-radius:0px;
 }
 
 .nav-pills > li > a
@@ -379,13 +362,13 @@ pre
 
 .ace_editor
 {
-	height:200px;
-	border:1px solid #ccc;
+    height:200px;
+    border:1px solid #ccc;
 }
 
 .dropdown-menu
 {
-	width:calc(100% - 40px);
+    width:calc(100% - 40px);
 }
 
 /* psx schema */
@@ -396,17 +379,17 @@ pre
 
 .psx-complex-type h1
 {
-	margin:0px;
-	margin-top:8px;
-	padding:6px;
-	padding-left:8px;
-	font-size:20px;
-	background-color:#eee;
+    margin:0px;
+    margin-top:8px;
+    padding:6px;
+    padding-left:8px;
+    font-size:20px;
+    background-color:#eee;
 }
 
 .psx-property-required
 {
-	text-decoration:underline;
+    text-decoration:underline;
 }
 
 /* loading animation */
