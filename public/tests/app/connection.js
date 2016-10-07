@@ -49,7 +49,7 @@ describe('Connection tests', function() {
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
     expect(element(by.model('connection.name')).getAttribute('value')).toEqual('test-connection');
-    expect(element(by.model('connection.class')).getAttribute('value')).toEqual('Fusio\\Impl\\Connection\\Native');
+    expect(element(by.model('connection.class')).getAttribute('value')).toEqual('Fusio\\Adapter\\Util\\Connection\\Native');
 
     $('button.btn-primary').click();
 
