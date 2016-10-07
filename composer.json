@@ -6,13 +6,13 @@
   "authors": [
     {
       "name": "Christoph Kappestein",
-      "email": "k42b3.x@gmail.com",
-      "homepage": "http://k42b3.com"
+      "email": "christoph.kappestein@gmail.com",
+      "homepage": "http://christoph.kappestein.com"
     }
   ],
   "require": {
     "php": ">=5.5",
-    "fusio/impl": "^0.3@dev"
+    "fusio/impl": "^0.4@dev"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.1",
