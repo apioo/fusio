@@ -6,10 +6,9 @@ describe('Connection tests', function() {
     browser.get('#/connection');
 
     var routes = element.all(by.repeater('connection in connections'));
-    expect(routes.count()).toEqual(3);
-    expect(routes.get(0).getText()).toEqual('MongoDB');
-    expect(routes.get(1).getText()).toEqual('DBAL');
-    expect(routes.get(2).getText()).toEqual('Native-Connection');
+    expect(routes.count()).toEqual(2);
+    expect(routes.get(0).getText()).toEqual('DBAL');
+    expect(routes.get(1).getText()).toEqual('Native-Connection');
   });
 
   it('Create connection', function() {
@@ -24,13 +23,10 @@ describe('Connection tests', function() {
     element(by.model('connection.name')).sendKeys('test-connection');
 
     var connectionOptions = element.all(by.options('conn.class as conn.name for conn in connections'));
-    expect(connectionOptions.get(0).getText()).toEqual('Beanstalk');
-    expect(connectionOptions.get(1).getText()).toEqual('SQL-Connection');
-    expect(connectionOptions.get(2).getText()).toEqual('SQL-Connection (advanced)');
-    expect(connectionOptions.get(3).getText()).toEqual('Mongo-DB');
-    expect(connectionOptions.get(4).getText()).toEqual('Native');
-    expect(connectionOptions.get(5).getText()).toEqual('RabbitMQ');
-    connectionOptions.get(4).click();
+    expect(connectionOptions.get(0).getText()).toEqual('SQL-Connection');
+    expect(connectionOptions.get(1).getText()).toEqual('SQL-Connection (advanced)');
+    expect(connectionOptions.get(2).getText()).toEqual('Native');
+    connectionOptions.get(2).click();
 
     $('button.btn-primary').click();
 
