@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "219cb103b8f9ffa6af0d53b997e84d94",
-    "content-hash": "1734d995b00548b02b718e62c031fc2a",
+    "hash": "a3d498a95d4789173e987d6042f4d523",
+    "content-hash": "2a550cb6fa6b4c3b4e30b1ecb401b531",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -574,22 +574,167 @@
             "time": "2015-07-22 18:31:08"
         },
         {
-            "name": "fusio/engine",
-            "version": "v0.3.0",
+            "name": "fusio/adapter-http",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "7887dbb38a1218026af1c62afa0b95d335bb79b4"
+                "url": "https://github.com/apioo/fusio-adapter-http.git",
+                "reference": "09b91802ee6d2a88306a9d8c80a96f09c9b6bd94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/7887dbb38a1218026af1c62afa0b95d335bb79b4",
-                "reference": "7887dbb38a1218026af1c62afa0b95d335bb79b4",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/09b91802ee6d2a88306a9d8c80a96f09c9b6bd94",
+                "reference": "09b91802ee6d2a88306a9d8c80a96f09c9b6bd94",
                 "shasum": ""
             },
             "require": {
+                "fusio/engine": "^0.4@dev",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fusio\\Adapter\\Http\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com"
+                }
+            ],
+            "description": "Adapter which can send and proxy HTTP messages",
+            "homepage": "http://fusio-project.org",
+            "keywords": [
+                "fusio-adapter"
+            ],
+            "time": "2016-10-06 17:19:14"
+        },
+        {
+            "name": "fusio/adapter-sql",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/fusio-adapter-sql.git",
+                "reference": "3c78025a7e32e7eac80fa65032e6b8be58c3e790"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/3c78025a7e32e7eac80fa65032e6b8be58c3e790",
+                "reference": "3c78025a7e32e7eac80fa65032e6b8be58c3e790",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^2.5",
+                "fusio/engine": "^0.4@dev",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/dbunit": "^1.3",
+                "phpunit/phpunit": "^4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fusio\\Adapter\\Sql\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com"
+                }
+            ],
+            "description": "Adapter which helps to work with relational databases",
+            "homepage": "http://fusio-project.org",
+            "keywords": [
+                "fusio-adapter"
+            ],
+            "time": "2016-10-06 15:57:49"
+        },
+        {
+            "name": "fusio/adapter-util",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/fusio-adapter-util.git",
+                "reference": "f464001d249a92bd4b0bd2e93419ca856d31f383"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/f464001d249a92bd4b0bd2e93419ca856d31f383",
+                "reference": "f464001d249a92bd4b0bd2e93419ca856d31f383",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^2.5",
+                "fusio/engine": "^0.4@dev",
+                "php": ">=5.5",
+                "symfony/expression-language": "^2.8"
+            },
+            "require-dev": {
+                "phpunit/dbunit": "^1.3",
+                "phpunit/phpunit": "^4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fusio\\Adapter\\Util\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com"
+                }
+            ],
+            "description": "Provides several utility actions",
+            "homepage": "http://fusio-project.org",
+            "keywords": [
+                "fusio-adapter"
+            ],
+            "time": "2016-10-07 08:46:27"
+        },
+        {
+            "name": "fusio/engine",
+            "version": "v0.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/fusio-engine.git",
+                "reference": "5a9ad00f81198226cd117286b898144081f6ea31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/5a9ad00f81198226cd117286b898144081f6ea31",
+                "reference": "5a9ad00f81198226cd117286b898144081f6ea31",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/annotations": "^1.2",
                 "php": ">=5.3",
-                "psx/psx": "^2.0"
+                "psx/psx": "^2.0",
+                "twig/twig": "^1.18"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.1"
             },
             "type": "library",
             "autoload": {
@@ -604,41 +749,40 @@
             "authors": [
                 {
                     "name": "Christoph Kappestein",
-                    "email": "k42b3.x@gmail.com",
-                    "homepage": "http://k42b3.com"
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com"
                 }
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2016-09-02 17:19:07"
+            "time": "2016-10-07 09:45:05"
         },
         {
             "name": "fusio/impl",
-            "version": "v0.3.9",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "99fc9a412d72431f0975efff6b88555d8971c957"
+                "reference": "71a246ca3f33a6a4da1f289177beaa668a1ad3f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/99fc9a412d72431f0975efff6b88555d8971c957",
-                "reference": "99fc9a412d72431f0975efff6b88555d8971c957",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/71a246ca3f33a6a4da1f289177beaa668a1ad3f0",
+                "reference": "71a246ca3f33a6a4da1f289177beaa668a1ad3f0",
                 "shasum": ""
             },
             "require": {
                 "firebase/php-jwt": "^3.0",
-                "fusio/engine": "^0.3@dev",
+                "fusio/adapter-http": "^0.1@dev",
+                "fusio/adapter-sql": "^0.1@dev",
+                "fusio/adapter-util": "^0.1@dev",
+                "fusio/engine": "^0.4@dev",
                 "ircmaxell/password-compat": "^1.0",
                 "ircmaxell/random-lib": "^1.1",
-                "pda/pheanstalk": "^3.0",
                 "php": ">=5.5",
-                "php-amqplib/php-amqplib": "^2.6",
                 "psx/openssl": "^1.0",
                 "psx/psx": "^2.0",
-                "swiftmailer/swiftmailer": "^5.4",
-                "symfony/expression-language": "^2.8",
-                "twig/twig": "^1.18"
+                "swiftmailer/swiftmailer": "^5.4"
             },
             "require-dev": {
                 "phpunit/dbunit": "^1.3",
@@ -657,13 +801,13 @@
             "authors": [
                 {
                     "name": "Christoph Kappestein",
-                    "email": "k42b3.x@gmail.com",
-                    "homepage": "http://k42b3.com"
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com"
                 }
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2016-09-13 19:39:41"
+            "time": "2016-10-07 10:54:48"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -1049,16 +1193,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "47b254ea51f1d6d5dc04b9b299e88346bf2369e3"
+                "reference": "4dd659edadffdc2143e4753df655d866dbfeedf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/47b254ea51f1d6d5dc04b9b299e88346bf2369e3",
-                "reference": "47b254ea51f1d6d5dc04b9b299e88346bf2369e3",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4dd659edadffdc2143e4753df655d866dbfeedf0",
+                "reference": "4dd659edadffdc2143e4753df655d866dbfeedf0",
                 "shasum": ""
             },
             "require": {
@@ -1096,127 +1240,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2016-04-19 13:41:41"
-        },
-        {
-            "name": "pda/pheanstalk",
-            "version": "v3.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pda/pheanstalk.git",
-                "reference": "430e77c551479aad0c6ada0450ee844cf656a18b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pda/pheanstalk/zipball/430e77c551479aad0c6ada0450ee844cf656a18b",
-                "reference": "430e77c551479aad0c6ada0450ee844cf656a18b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Pheanstalk\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Paul Annesley",
-                    "email": "paul@annesley.cc",
-                    "homepage": "http://paul.annesley.cc/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PHP client for beanstalkd queue",
-            "homepage": "https://github.com/pda/pheanstalk",
-            "keywords": [
-                "beanstalkd"
-            ],
-            "time": "2015-08-07 21:42:41"
-        },
-        {
-            "name": "php-amqplib/php-amqplib",
-            "version": "v2.6.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-amqplib/php-amqplib.git",
-                "reference": "fa2f0d4410a11008cb36b379177291be7ee9e4f6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/fa2f0d4410a11008cb36b379177291be7ee9e4f6",
-                "reference": "fa2f0d4410a11008cb36b379177291be7ee9e4f6",
-                "shasum": ""
-            },
-            "require": {
-                "ext-bcmath": "*",
-                "ext-mbstring": "*",
-                "php": ">=5.3.0"
-            },
-            "replace": {
-                "videlalvaro/php-amqplib": "self.version"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8",
-                "scrutinizer/ocular": "^1.1",
-                "squizlabs/php_codesniffer": "^2.5"
-            },
-            "suggest": {
-                "ext-sockets": "Use AMQPSocketConnection"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhpAmqpLib\\": "PhpAmqpLib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-2.1"
-            ],
-            "authors": [
-                {
-                    "name": "Alvaro Videla",
-                    "role": "Original Maintainer"
-                },
-                {
-                    "name": "John Kelly",
-                    "email": "johnmkelly86@gmail.com",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Raúl Araya",
-                    "email": "nubeiro@gmail.com",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Formerly videlalvaro/php-amqplib.  This library is a pure PHP implementation of the AMQP protocol. It's been tested against RabbitMQ.",
-            "homepage": "https://github.com/php-amqplib/php-amqplib/",
-            "keywords": [
-                "message",
-                "queue",
-                "rabbitmq"
-            ],
-            "time": "2016-04-11 14:30:01"
+            "time": "2016-09-16 12:04:44"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -1414,22 +1438,30 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
+                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
                 "shasum": ""
             },
+            "require": {
+                "php": ">=5.3.0"
+            },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
-                "psr-0": {
-                    "Psr\\Log\\": ""
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1443,12 +1475,13 @@
                 }
             ],
             "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
             "keywords": [
                 "log",
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2016-09-19 16:02:08"
         },
         {
             "name": "psx/api",
@@ -1657,16 +1690,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v1.0.8",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "f9d92b62510f93806af561dbf16e89d30133cb35"
+                "reference": "8d48517d3a36d906d27b7457f4deaa37df56eee0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/f9d92b62510f93806af561dbf16e89d30133cb35",
-                "reference": "f9d92b62510f93806af561dbf16e89d30133cb35",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/8d48517d3a36d906d27b7457f4deaa37df56eee0",
+                "reference": "8d48517d3a36d906d27b7457f4deaa37df56eee0",
                 "shasum": ""
             },
             "require": {
@@ -1720,7 +1753,7 @@
                 "framework",
                 "rest"
             ],
-            "time": "2016-09-10 19:18:39"
+            "time": "2016-10-05 09:13:52"
         },
         {
             "name": "psx/http",
@@ -2101,16 +2134,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "ab4e04d62907b17b3375c9d0100ab588d107982b"
+                "reference": "a708750d9b2a180cb8a67b1d981bccaf0cc04c7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/ab4e04d62907b17b3375c9d0100ab588d107982b",
-                "reference": "ab4e04d62907b17b3375c9d0100ab588d107982b",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/a708750d9b2a180cb8a67b1d981bccaf0cc04c7a",
+                "reference": "a708750d9b2a180cb8a67b1d981bccaf0cc04c7a",
                 "shasum": ""
             },
             "require": {
@@ -2155,7 +2188,7 @@
                 "schema",
                 "xsd"
             ],
-            "time": "2016-07-22 16:03:19"
+            "time": "2016-10-05 08:53:57"
         },
         {
             "name": "psx/sql",
@@ -2356,20 +2389,21 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.8.11",
+            "version": "v2.8.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "3d3e4fa5f0614c8e45220e5de80332322e33bd90"
+                "reference": "d7a5a88178f94dcc29531ea4028ea614e35452d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/3d3e4fa5f0614c8e45220e5de80332322e33bd90",
-                "reference": "3d3e4fa5f0614c8e45220e5de80332322e33bd90",
+                "url": "https://api.github.com/repos/symfony/console/zipball/d7a5a88178f94dcc29531ea4028ea614e35452d4",
+                "reference": "d7a5a88178f94dcc29531ea4028ea614e35452d4",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9",
+                "symfony/debug": "~2.7,>=2.7.2|~3.0.0",
                 "symfony/polyfill-mbstring": "~1.0"
             },
             "require-dev": {
@@ -2412,20 +2446,77 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-06 10:55:00"
+            "time": "2016-09-28 00:10:16"
         },
         {
-            "name": "symfony/dependency-injection",
-            "version": "v2.8.11",
+            "name": "symfony/debug",
+            "version": "v3.0.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "0a732a9cafc30e54077967da4d019e1d618a8cb9"
+                "url": "https://github.com/symfony/debug.git",
+                "reference": "697c527acd9ea1b2d3efac34d9806bf255278b0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/0a732a9cafc30e54077967da4d019e1d618a8cb9",
-                "reference": "0a732a9cafc30e54077967da4d019e1d618a8cb9",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/697c527acd9ea1b2d3efac34d9806bf255278b0a",
+                "reference": "697c527acd9ea1b2d3efac34d9806bf255278b0a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "psr/log": "~1.0"
+            },
+            "conflict": {
+                "symfony/http-kernel": ">=2.3,<2.3.24|~2.4.0|>=2.5,<2.5.9|>=2.6,<2.6.2"
+            },
+            "require-dev": {
+                "symfony/class-loader": "~2.8|~3.0",
+                "symfony/http-kernel": "~2.8|~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Debug\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Debug Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-07-30 07:22:48"
+        },
+        {
+            "name": "symfony/dependency-injection",
+            "version": "v2.8.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/dependency-injection.git",
+                "reference": "ee9ec9ac2b046462d341e9de7c4346142d335e75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/ee9ec9ac2b046462d341e9de7c4346142d335e75",
+                "reference": "ee9ec9ac2b046462d341e9de7c4346142d335e75",
                 "shasum": ""
             },
             "require": {
@@ -2475,11 +2566,11 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-06 23:19:39"
+            "time": "2016-09-24 09:47:20"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.11",
+            "version": "v2.8.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -2539,7 +2630,7 @@
         },
         {
             "name": "symfony/expression-language",
-            "version": "v2.8.11",
+            "version": "v2.8.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/expression-language.git",
@@ -2647,7 +2738,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.11",
+            "version": "v2.8.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -2696,16 +2787,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.24.2",
+            "version": "v1.26.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "33093f6e310e6976baeac7b14f3a6ec02f2d79b7"
+                "reference": "a09d8ee17ac1cfea29ed60c83960ad685c6a898d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/33093f6e310e6976baeac7b14f3a6ec02f2d79b7",
-                "reference": "33093f6e310e6976baeac7b14f3a6ec02f2d79b7",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a09d8ee17ac1cfea29ed60c83960ad685c6a898d",
+                "reference": "a09d8ee17ac1cfea29ed60c83960ad685c6a898d",
                 "shasum": ""
             },
             "require": {
@@ -2718,7 +2809,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.24-dev"
+                    "dev-master": "1.26-dev"
                 }
             },
             "autoload": {
@@ -2753,7 +2844,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-09-01 17:50:53"
+            "time": "2016-10-05 18:57:41"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -2863,16 +2954,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "9270140b940ff02e58ec577c237274e92cd40cdd"
+                "reference": "8331b5efe816ae05461b7ca1e721c01b46bafb3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/9270140b940ff02e58ec577c237274e92cd40cdd",
-                "reference": "9270140b940ff02e58ec577c237274e92cd40cdd",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/8331b5efe816ae05461b7ca1e721c01b46bafb3e",
+                "reference": "8331b5efe816ae05461b7ca1e721c01b46bafb3e",
                 "shasum": ""
             },
             "require": {
@@ -2904,7 +2995,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2016-06-10 09:48:41"
+            "time": "2016-09-30 07:12:33"
         },
         {
             "name": "phpdocumentor/type-resolver",
