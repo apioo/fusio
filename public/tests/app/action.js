@@ -24,31 +24,24 @@ describe('Action tests', function() {
     element(by.model('action.name')).sendKeys('test-action');
 
     var actionOptions = element.all(by.options('action.class as action.name for action in actions'));
-    expect(actionOptions.get(0).getText()).toEqual('Cache-Response');
-    expect(actionOptions.get(1).getText()).toEqual('Composite');
-    expect(actionOptions.get(2).getText()).toEqual('Condition');
-    expect(actionOptions.get(3).getText()).toEqual('HTTP-Proxy');
-    expect(actionOptions.get(4).getText()).toEqual('HTTP-Request');
-    expect(actionOptions.get(5).getText()).toEqual('Mongo-Delete');
-    expect(actionOptions.get(6).getText()).toEqual('Mongo-Fetch-All');
-    expect(actionOptions.get(7).getText()).toEqual('Mongo-Fetch-Row');
-    expect(actionOptions.get(8).getText()).toEqual('Mongo-Insert');
-    expect(actionOptions.get(9).getText()).toEqual('Mongo-Update');
-    expect(actionOptions.get(10).getText()).toEqual('MQ-Amqp');
-    expect(actionOptions.get(11).getText()).toEqual('MQ-Beanstalk');
-    expect(actionOptions.get(12).getText()).toEqual('Pipe');
-    expect(actionOptions.get(13).getText()).toEqual('Processor');
-    expect(actionOptions.get(14).getText()).toEqual('SQL-Builder');
-    expect(actionOptions.get(15).getText()).toEqual('SQL-Execute');
-    expect(actionOptions.get(16).getText()).toEqual('SQL-Fetch-All');
-    expect(actionOptions.get(17).getText()).toEqual('SQL-Fetch-Row');
-    expect(actionOptions.get(18).getText()).toEqual('SQL-Table');
-    expect(actionOptions.get(19).getText()).toEqual('Static-Response');
-    expect(actionOptions.get(20).getText()).toEqual('Transform');
-    expect(actionOptions.get(21).getText()).toEqual('Try-Catch');
-    expect(actionOptions.get(22).getText()).toEqual('Validator');
+    expect(actionOptions.get(0).getText()).toEqual('HTTP-Proxy');
+    expect(actionOptions.get(1).getText()).toEqual('HTTP-Request');
+    expect(actionOptions.get(2).getText()).toEqual('SQL-Builder');
+    expect(actionOptions.get(3).getText()).toEqual('SQL-Execute');
+    expect(actionOptions.get(4).getText()).toEqual('SQL-Fetch-All');
+    expect(actionOptions.get(5).getText()).toEqual('SQL-Fetch-Row');
+    expect(actionOptions.get(6).getText()).toEqual('SQL-Table');
+    expect(actionOptions.get(7).getText()).toEqual('Util-Cache');
+    expect(actionOptions.get(8).getText()).toEqual('Util-Composite');
+    expect(actionOptions.get(9).getText()).toEqual('Util-Condition');
+    expect(actionOptions.get(10).getText()).toEqual('Util-Pipe');
+    expect(actionOptions.get(11).getText()).toEqual('Util-Processor');
+    expect(actionOptions.get(12).getText()).toEqual('Util-Static-Response');
+    expect(actionOptions.get(13).getText()).toEqual('Util-Transform');
+    expect(actionOptions.get(14).getText()).toEqual('Util-Try-Catch');
+    expect(actionOptions.get(15).getText()).toEqual('Util-Validator');
 
-    actionOptions.get(19).click();
+    actionOptions.get(12).click();
 
     browser.wait(EC.visibilityOf($('#config-statusCode')), 5000);
 
