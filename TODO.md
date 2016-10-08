@@ -3,7 +3,18 @@ _which are likely to be implemented are moved to a seperate github issue_
 
 ### 0.4
 
-- [ ] Add OAuth2 refresh token endpoint
+- [ ] We need a new app which only handles authorization and app management 
+      especially for one page web apps
+- [ ] Database endpoint should also handle NoSQL databases
+- [ ] Build elektron app (http://electron.atom.io/) around backend
+- [ ] Add doc endpoints where a user can create tutorials which are listed on
+      the developer page
+- [ ] A tool to create a JSONSchema from a database table
+- [ ] Add option to execute bulk actions for specific records i.e.:
+  - [ ] Assign/Remove scopes from multiple apps
+  - [ ] Remove all tokens from multiple apps
+  - [ ] Assign/Remove scopes from multiple users
+- [ ] Add OAuth2 refresh token endpoint #16
   - [ ] Add method to relogin if token expires. Probably we should save the 
         expire time and make the relogin attempt based on this
 - [ ] Add serverless action (https://azure.microsoft.com/en-us/services/functions/)
@@ -12,8 +23,8 @@ _which are likely to be implemented are moved to a seperate github issue_
         write an action in javascript
   - [ ] Providing an action which executes PHP is possible but probably not an
         option since we have no solid PHP sandbox
-- [ ] Database add data tab to browse the data of an existing table
-- [ ] Add option to disable changing the database schema through a config flag
+- [ ] Database add data tab to browse the data of an existing table #17
+- [ ] Add option to disable changing the database schema through a config flag #18
 - [ ] Add consumer and documentation protractor tests
 - [ ] Maybe we need to handle the idle status in the backend through
       https://github.com/HackedByChinese/ng-idle
@@ -30,7 +41,7 @@ _which are likely to be implemented are moved to a seperate github issue_
 - [ ] General test. Build an API and use different libraries to test OAuth2 
       interoperability
 - [ ] Option to ratelimit specific apps. Option to set global rate limits per
-      config?
+      config? #19
 - [ ] Add forms endpoint. The user can select a route, request method and an 
       input field which contains the form format.
       - Maybe based on https://github.com/joshfire/jsonform
@@ -59,6 +70,7 @@ _which are likely to be implemented are moved to a seperate github issue_
 
 ### 0.x
 
+- [ ] Add SDKs which help connecting to a Fusio API
 - [ ] Probably add link to the doc to get an access token to send authenticated
       calls to the api
 - [ ] Consumer login beside GitHub, Facebook, etc. provide a way to support 
@@ -119,7 +131,8 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] Add action which builds a REST API from a table where a user only needs 
         to provide the table name. The action needs two routes /table and 
         /table/:id
-  - [ ] Add SOAP action
+  - [x] Add SOAP action
+  - [ ] Add OData action
   - [ ] Add an action merge which combines the result of two actions into one 
         result (This is probably already possible through the transform action)
   - [ ] Build adapters for popular systems i.e. wordpress/drupal etc.
@@ -132,7 +145,14 @@ _which are likely to be implemented are moved to a seperate github issue_
 
 ### Meta
 
+- [ ] Create video tutorial series
+  - [ ] Howto develop a custom action
+  - [ ] Howto setup Fusio
+  - [ ] Howto create a rest API from a SQL table
+  - [ ] Howto create a rest API from a SQL query/view
 - [ ] Add use case section to website
+- [ ] Add a training section to fusio-project.org similar to:
+      https://developer.android.com/training/basics/firstapp/creating-project.html
 - [ ] Provide a video with a installation and demo about the system
 - [x] Register domain maybe fusio-api.org or fusio-project.org
 - [x] Add a online demo system
@@ -144,6 +164,7 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] https://www.reddit.com/r/php / https://www.reddit.com/r/rest
   - [ ] http://www.sitepoint.com/
 - [x] Added Fusio to https://github.com/marmelab/awesome-rest
+- [x] Move Fusio samples to apioo org
 
 ### Archive
 
