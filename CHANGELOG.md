@@ -1,7 +1,8 @@
 
 ### 0.4.0
 
-* Extract adapter and connection implementation
+* Moved logic to the fusio engine and extracted adapter and connection 
+  implementation
 * Improved backend ui use Robot font
 
 ### 0.3.5 (2016-09-17)
