@@ -759,16 +759,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v0.4.0",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "71a246ca3f33a6a4da1f289177beaa668a1ad3f0"
+                "reference": "c8ade9db7103a99e99f831b6a7ba951f93ac4936"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/71a246ca3f33a6a4da1f289177beaa668a1ad3f0",
-                "reference": "71a246ca3f33a6a4da1f289177beaa668a1ad3f0",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/c8ade9db7103a99e99f831b6a7ba951f93ac4936",
+                "reference": "c8ade9db7103a99e99f831b6a7ba951f93ac4936",
                 "shasum": ""
             },
             "require": {
@@ -807,7 +807,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2016-10-07 10:54:48"
+            "time": "2016-10-09 09:28:42"
         },
         {
             "name": "ircmaxell/password-compat",
