@@ -6,9 +6,10 @@ describe('Rate tests', function() {
     browser.get('#/rate');
 
     var rates = element.all(by.repeater('rate in rates'));
-    expect(rates.count()).toEqual(2);
-    expect(rates.get(0).getText()).toMatch('Default-Anonymous');
-    expect(rates.get(1).getText()).toMatch('Default');
+    expect(rates.count()).toEqual(3);
+    expect(rates.get(0).getText()).toMatch('silver');
+    expect(rates.get(1).getText()).toMatch('Default-Anonymous');
+    expect(rates.get(2).getText()).toMatch('Default');
   });
 
   it('Create rate', function() {
@@ -50,9 +51,9 @@ describe('Rate tests', function() {
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
     expect(element(by.model('rate.name')).getAttribute('value')).toEqual('test-rate');
-    expect(element(by.model('rate.priority')).getAttribute('value')).toEqual('number:1024');
-    expect(element(by.model('rate.rateLimit')).getAttribute('value')).toEqual('number:60');
-    expect(element(by.model('timespan.value')).getAttribute('value')).toEqual('number:2');
+    expect(element(by.model('rate.priority')).getAttribute('value')).toEqual('1024');
+    expect(element(by.model('rate.rateLimit')).getAttribute('value')).toEqual('60');
+    expect(element(by.model('timespan.value')).getAttribute('value')).toEqual('2');
     expect(element(by.model('timespan.unit')).getAttribute('value')).toEqual('string:day');
 
     $('button.btn-primary').click();
