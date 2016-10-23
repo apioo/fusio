@@ -620,16 +620,16 @@
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v0.1.0",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
-                "reference": "3c78025a7e32e7eac80fa65032e6b8be58c3e790"
+                "reference": "2a788ca589a6f030093688475026ecc5aaa8af31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/3c78025a7e32e7eac80fa65032e6b8be58c3e790",
-                "reference": "3c78025a7e32e7eac80fa65032e6b8be58c3e790",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/2a788ca589a6f030093688475026ecc5aaa8af31",
+                "reference": "2a788ca589a6f030093688475026ecc5aaa8af31",
                 "shasum": ""
             },
             "require": {
@@ -663,7 +663,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2016-10-06 15:57:49"
+            "time": "2016-10-13 17:57:19"
         },
         {
             "name": "fusio/adapter-util",
@@ -759,16 +759,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v0.4.1",
+            "version": "v0.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "c8ade9db7103a99e99f831b6a7ba951f93ac4936"
+                "reference": "acb3adb790e138a69135920bf34e44370fabf38a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/c8ade9db7103a99e99f831b6a7ba951f93ac4936",
-                "reference": "c8ade9db7103a99e99f831b6a7ba951f93ac4936",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/acb3adb790e138a69135920bf34e44370fabf38a",
+                "reference": "acb3adb790e138a69135920bf34e44370fabf38a",
                 "shasum": ""
             },
             "require": {
@@ -807,7 +807,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2016-10-09 09:28:42"
+            "time": "2016-10-23 18:08:22"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -1438,16 +1438,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
                 "shasum": ""
             },
             "require": {
@@ -1481,7 +1481,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-09-19 16:02:08"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "psx/api",
@@ -2192,16 +2192,16 @@
         },
         {
             "name": "psx/sql",
-            "version": "v1.0.5",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-sql.git",
-                "reference": "a8b6591d5f03788df8696ccf4631a8abd9f68d7d"
+                "reference": "ab111f5646511a4480a94131704dcac71cb9b2c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-sql/zipball/a8b6591d5f03788df8696ccf4631a8abd9f68d7d",
-                "reference": "a8b6591d5f03788df8696ccf4631a8abd9f68d7d",
+                "url": "https://api.github.com/repos/apioo/psx-sql/zipball/ab111f5646511a4480a94131704dcac71cb9b2c8",
+                "reference": "ab111f5646511a4480a94131704dcac71cb9b2c8",
                 "shasum": ""
             },
             "require": {
@@ -2238,7 +2238,7 @@
             "keywords": [
                 "sql"
             ],
-            "time": "2016-07-04 19:54:09"
+            "time": "2016-10-13 17:31:45"
         },
         {
             "name": "psx/uri",
@@ -2848,16 +2848,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "1.3.6",
+            "version": "1.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "a60da179c37f2c4e44ef734d0b92824a58943f7f"
+                "reference": "969ff423d3f201da3ff718a5831bb999bb0669b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/a60da179c37f2c4e44ef734d0b92824a58943f7f",
-                "reference": "a60da179c37f2c4e44ef734d0b92824a58943f7f",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/969ff423d3f201da3ff718a5831bb999bb0669b0",
+                "reference": "969ff423d3f201da3ff718a5831bb999bb0669b0",
                 "shasum": ""
             },
             "require": {
@@ -2894,7 +2894,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2016-09-07 17:57:29"
+            "time": "2016-10-11 13:25:21"
         }
     ],
     "packages-dev": [
