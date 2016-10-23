@@ -1,0 +1,80 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Create</h3>
+</div>
+
+<div class="modal-body">
+    <uib-alert type="danger" close="closeResponse()" ng-if="response.success === false">
+        {{response.message}}
+    </uib-alert>
+    <form name="rateUpdateForm" ng-submit="update(rate)">
+        <input type="hidden" ng-model="rate.id" value="{{rate.id}}" />
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" ng-model="rate.name" aria-describedby="nameHelp" class="form-control">
+            <span class="help-block" id="nameHelp"></span>
+        </div>
+        <div class="form-group">
+            <label for="priority">Priority:</label>
+            <input type="number" id="priority" ng-model="rate.priority" aria-describedby="priorityHelp" class="form-control">
+            <span class="help-block" id="priorityHelp"></span>
+        </div>
+        <div class="form-group">
+            <label>Throughput:</label>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="number" id="value" ng-model="rate.rateLimit" min="1" aria-describedby="unitHelp" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label style="margin-top:6px;">request/s per</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="number" id="unitValue" ng-model="timespan.value" min="1" aria-describedby="unitHelp" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <select id="status" ng-model="timespan.unit" ng-options="interval.key as interval.value for interval in intervals" aria-describedby="statusHelp" class="form-control">
+                    </select>
+                </div>
+            </div>
+            <span class="help-block" id="unitHelp"></span>
+        </div>
+
+        <uib-alert type="info">The following table contains criteria which assign the incoming request to this rate. If <code>authenticated</code> is
+        yes it is possible to apply the plan only to apps which have a specific parameter.</uib-alert>
+
+        <table class="table">
+            <colgroup>
+                <col width="25%" />
+                <col width="25%" />
+                <col width="50%" />
+                <col width="50" />
+            </colgroup>
+            <tr>
+                <th>Route</th>
+                <th>Authenticated</th>
+                <th>Parameters</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="row in rate.allocation">
+                <td>
+                    <select ng-model="row.routeId" ng-options="route.id as route.path for route in routes" class="form-control">
+                    </select>
+                </td>
+                <td>
+                    <select ng-model="row.authenticated" ng-options="st.key as st.value for st in status" class="form-control">
+                    </select>
+                </td>
+                <td>
+                    <input type="text" ng-model="row.parameters" ng-disabled="row.authenticated != 1" class="form-control">
+                </td>
+                <td>
+                    <a ng-click="removeAllocation($index)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                </td>
+            </tr>
+        </table>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" ng-click="addAllocation()" class="btn btn-default">Add</button>
+        <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+    </form>
+</div>

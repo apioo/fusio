@@ -57,6 +57,7 @@ module.exports = function(grunt){
             './app/connection/connection.js',
             './app/app/app.js',
             './app/log/log.js',
+            './app/rate/rate.js',
             './app/user/user.js',
             './app/scope/scope.js',
             './app/statistic/statistic.js',

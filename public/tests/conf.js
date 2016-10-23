@@ -10,6 +10,7 @@ exports.config = {
     'app/connection.js',
     'app/database.js',
     'app/log.js',
+    'app/rate.js',
     'app/routes.js',
     'app/schema.js',
     'app/scope.js',
