@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label>Request:</label>
-                            <select class="form-control" ng-model="config.request" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="method.name == 'GET' || version.status != 4" aria-describedby="requestHelp">
+                            <select class="form-control" ng-model="config.request" ng-options="schema.id as schema.name for schema in schemas" ng-disabled="method == 'GET' || version.status != 4" aria-describedby="requestHelp">
                             </select>
                             <span class="help-block" id="requestHelp">The allowed format for incoming requests. The <code>Passthru</code> schema forwards all incoming data unfiltered to the action</span>
                         </div>
