@@ -118,6 +118,8 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
   });
 
   $scope.create = function(scope) {
+    var data = angular.copy(scope);
+
     var routes = [];
     for (var i = 0; i < $scope.routes.length; i++) {
       var methods = [];
@@ -138,9 +140,9 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
       }
     }
 
-    scope.routes = routes;
+    data.routes = routes;
 
-    $http.post(fusio.baseUrl + 'backend/scope', scope)
+    $http.post(fusio.baseUrl + 'backend/scope', data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -197,6 +199,8 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
   };
 
   $scope.update = function(scope) {
+    var data = angular.copy(scope);
+
     var routes = [];
     if ($scope.routes) {
       for (var i = 0; i < $scope.routes.length; i++) {
@@ -219,9 +223,9 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
       }
     }
 
-    scope.routes = routes;
+    data.routes = routes;
 
-    $http.put(fusio.baseUrl + 'backend/scope/' + scope.id, scope)
+    $http.put(fusio.baseUrl + 'backend/scope/' + scope.id, data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {

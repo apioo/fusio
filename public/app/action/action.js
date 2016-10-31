@@ -131,7 +131,20 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
   $scope.actions = [];
 
   $scope.create = function(action) {
-    $http.post(fusio.baseUrl + 'backend/action', action)
+    var data = angular.copy(action);
+
+    // cast every config value to string
+    if (angular.isObject(data.config)) {
+      var config = {};
+      for (var key in data.config) {
+        if (data.config.hasOwnProperty(key)) {
+          config[key] = '' + data.config[key];
+        }
+      }
+      data.config = config;
+    }
+
+    $http.post(fusio.baseUrl + 'backend/action', data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -185,7 +198,20 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
   $scope.actions = [];
 
   $scope.update = function(action) {
-    $http.put(fusio.baseUrl + 'backend/action/' + action.id, action)
+    var data = angular.copy(action);
+
+    // cast every config value to string
+    if (angular.isObject(data.config)) {
+      var config = {};
+      for (var key in data.config) {
+        if (data.config.hasOwnProperty(key)) {
+          config[key] = '' + data.config[key];
+        }
+      }
+      data.config = config;
+    }
+
+    $http.put(fusio.baseUrl + 'backend/action/' + action.id, data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {

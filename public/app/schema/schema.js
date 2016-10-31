@@ -129,11 +129,14 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
   };
 
   $scope.create = function(schema) {
-    if (typeof schema.source == 'string') {
-      schema.source = JSON.parse(schema.source);
+    var data = angular.copy(schema);
+
+    // convert string to json
+    if (angular.isString(data.source)) {
+      data.source = JSON.parse(data.source);
     }
 
-    $http.post(fusio.baseUrl + 'backend/schema', schema)
+    $http.post(fusio.baseUrl + 'backend/schema', data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -161,11 +164,13 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 
   $scope.update = function(schema) {
     var data = angular.copy(schema);
-    if (typeof data.source == 'string') {
+
+    // convert string to json
+    if (angular.isString(data.source)) {
       data.source = JSON.parse(data.source);
     }
 
-    $http.put(fusio.baseUrl + 'backend/schema/' + data.id, data)
+    $http.put(fusio.baseUrl + 'backend/schema/' + schema.id, data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -219,7 +224,7 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
 
   $http.get(fusio.baseUrl + 'backend/schema/' + schema.id)
     .success(function(data) {
-      if (typeof data.source != 'string') {
+      if (!angular.isString(data.source)) {
         data.source = JSON.stringify(data.source, null, 4);
       }
 

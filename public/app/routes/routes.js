@@ -131,14 +131,18 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
   }];
 
   $scope.create = function(route) {
+    var data = angular.copy(route);
+
     // remove active key
-    for (var i = 0; i < route.config.length; i++) {
-      if (route.config[i].hasOwnProperty('active')) {
-        delete route.config[i].active;
+    if (angular.isObject(data.config)) {
+      for (var i = 0; i < data.config.length; i++) {
+        if (data.config[i].hasOwnProperty('active')) {
+          delete data.config[i].active;
+        }
       }
     }
 
-    $http.post(fusio.baseUrl + 'backend/routes', route)
+    $http.post(fusio.baseUrl + 'backend/routes', data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -235,14 +239,18 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
   }];
 
   $scope.update = function(route) {
+    var data = angular.copy(route);
+
     // remove active key
-    for (var i = 0; i < route.config.length; i++) {
-      if (route.config[i].hasOwnProperty('active')) {
-        delete route.config[i].active;
+    if (angular.isObject(data.config)) {
+      for (var i = 0; i < data.config.length; i++) {
+        if (data.config[i].hasOwnProperty('active')) {
+          delete data.config[i].active;
+        }
       }
     }
 
-    $http.put(fusio.baseUrl + 'backend/routes/' + route.id, route)
+    $http.put(fusio.baseUrl + 'backend/routes/' + route.id, data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {

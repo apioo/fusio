@@ -116,7 +116,20 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
   $scope.connections = [];
 
   $scope.create = function(connection) {
-    $http.post(fusio.baseUrl + 'backend/connection', connection)
+    var data = angular.copy(connection);
+
+    // cast every config value to string
+    if (angular.isObject(data.config)) {
+      var config = {};
+      for (var key in data.config) {
+        if (data.config.hasOwnProperty(key)) {
+          config[key] = '' + data.config[key];
+        }
+      }
+      data.config = config;
+    }
+
+    $http.post(fusio.baseUrl + 'backend/connection', data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
@@ -174,7 +187,20 @@ angular.module('fusioApp.connection', ['ngRoute', 'ui.bootstrap'])
   $scope.connections = [];
 
   $scope.update = function(connection) {
-    $http.put(fusio.baseUrl + 'backend/connection/' + connection.id, connection)
+    var data = angular.copy(connection);
+
+    // cast every config value to string
+    if (angular.isObject(data.config)) {
+      var config = {};
+      for (var key in data.config) {
+        if (data.config.hasOwnProperty(key)) {
+          config[key] = '' + data.config[key];
+        }
+      }
+      data.config = config;
+    }
+
+    $http.put(fusio.baseUrl + 'backend/connection/' + connection.id, data)
       .success(function(data) {
         $scope.response = data;
         if (data.success === true) {
