@@ -7,17 +7,47 @@ documentation describes the Fusio specific features.
 
 ### Filter
 
-#### JSON
+#### object / json
 
-The JSON filter converts a value into a JSON presentation. It is possible to 
-convert the incoming request back into JSON i.e.
+The object filter converts a value into a JSON presentation. Through this it is 
+possible to  convert the incoming request back into JSON i.e.
 
-    {{ request.body|json }}
+    {{ request.body|object }}
 
-#### Prepare
+#### string
+
+The string filter converts a value into a JSON string presentation i.e.
+
+    {{ request.get("title")|string }}
+
+#### number
+
+The number filter converts a value into a JSON number presentation i.e.
+
+    {{ request.get("price")|number }}
+
+#### array
+
+The array filter converts a value into a JSON array presentation i.e.
+
+    {{ request.get("tags")|array }}
+
+#### boolean
+
+The boolean filter converts a value into a JSON boolean presentation i.e.
+
+    {{ request.get("deprecated")|boolean }}
+
+#### integer
+
+The integer filter converts a value into a JSON integer presentation i.e.
+
+    {{ request.get("rank")|integer }}
+
+#### prepare
 
 The prepare filter should be used to generate save SQL queries. If you have an 
-endpoint which returns informations for an specific id you could write the 
+endpoint which returns informations for a specific id you could write the 
 following safe SQL statment i.e.
 
     SELECT title, updated FROM acme_news WHERE id = {{ request.parameters.get('foo')|prepare }}
@@ -68,7 +98,7 @@ following list contains all available parameters.
      * `name`  
        Returns the name of the user or null
    * `get(path)`  
-     Returns a value of the request body. This can also be a path if the data
-     structure is nested i.e. `author.name`
+     Returns a value of the request body. This can also be a JSON path if the 
+     data structure is nested i.e. `/author/name`
 
 [documentation]: http://twig.sensiolabs.org/doc/templates.html
