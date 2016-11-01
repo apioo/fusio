@@ -51,8 +51,10 @@ Apache
     </VirtualHost>
 
 Also you should enable the module ``mod_rewrite`` so that the .htaccess file in 
-the public folder is used. The htaccess contains also an important rule which 
+the public folder is used. The htaccess contains an important rule which 
 redirects the ``Authorization`` header to Fusio which is otherwise removed.
+If the .htaccess file does not work please check whether the ``AllowOverride``
+directive is set correctly i.e. to ``All``.
 
 Adjust urls
 -----------
@@ -81,7 +83,7 @@ There are two parts of Fusio which you can update. The backend system and the
 backend app. The backend app is the AngularJS application which connects
 to the backend api and where you configure the system. The backend system 
 contains the actual backend code providing the backend API and the API which you 
-build with the system.
+have create with the system.
 
 Update backend system
 ^^^^^^^^^^^^^^^^^^^^^
