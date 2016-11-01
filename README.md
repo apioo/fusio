@@ -4,17 +4,38 @@ Fusio
 # About
 
 Fusio is an open source API management platform which helps to build and manage 
-RESTful APIs. It provides endpoint versioning, handling data from different data 
-sources, schema definition (JsonSchema), automatic documentation generation and
-secure authorization (OAuth2). More informations on 
-http://www.fusio-project.org/
+RESTful APIs. We think that there is a huge potential in the API economy. 
+Whether you need an API to expose your business functionality, build micro 
+services or to develop One-Page web applications or Mobile-Apps. Because of this 
+we think that Fusio is a great tool to simplify building such APIs.
 
-We think that there is a huge potential in the API economy. Whether you need an 
-API to expose your business functionality or to develop One-Page web 
-applications or Mobile-Apps. Because of this we think that Fusio is a great tool 
-to simplify building such APIs.
+# Features
 
-# Overview
+Fusio covers all important aspects of the API lifecycle so you can concentrate
+on building the actual business logic for your API.
+
+* Versioning  
+  It is possible to define different versions of your endpoint. A concrete 
+  version can be requested through the `Accept` header i.e. `application/vnd.acme.v1+json`
+* Documentation
+  Fusio generates automatically a documentation of the API endpoints based on 
+  the provided schema definitions.
+* Authorization
+  Fusio uses OAuth2 for API authorization. Each app can be limited to scopes to 
+  request only specific endpoints of the API.
+* Analytics
+  Fusio monitors all API activities and shows them on a dashboard so you always 
+  know what is happening with your API. 
+* Rate limiting
+  It is possible to limit the requests to a specific threshold.
+
+Fusio provides already many actions to handle common use cases. I.e. it is 
+possible to execute SQL queries against a database or send data into a message 
+queue. It is also very easy to build a customized action. Fusio provides also an 
+[adapter system](http://www.fusio-project.org/adapter) through this it is 
+possible to share those actions via composer.
+
+# System
 
 This section gives a high level overview what the Fusio system provides and how
 the application is structured. Lets take a look at the components which are 
@@ -22,14 +43,14 @@ provided by Fusio:
 
 ![Overview](https://github.com/apioo/fusio/blob/master/doc/_static/overview.png)
 
-## Fusio API
+## API
 
-If you install a Fusio system it setups the default API with that it is possible
-to manage the complete system. Because of that Fusio has some reserved paths 
-which are needed by the system.
+If you install a Fusio system it setups the default API. Through the API it is 
+possible to manage the complete system. Because of that Fusio has some reserved 
+paths which are needed by the system.
 
 * `/backend`  
-  Endpoints for configuring the system
+  Endpoints for the system configuration
 * `/consumer`  
   Endpoints for the consumer i.e. register new accounts or create new apps 
 * `/doc`  
@@ -40,26 +61,28 @@ which are needed by the system.
 * `/export`  
   Endpoints to export the documentation into other formats i.e. swagger
 
-All following apps are working with the API. Because of that it is also really 
-easy to integrate Fusio into an existing system since you can call the endpoints 
-from your application.
+# Apps
 
-## Backend App
+The following apps are working with the Fusio API. Because of that it is also 
+really easy to integrate Fusio into an existing system since you can call those 
+endpoints also from your application.
+
+## Backend
 
 ![Backend](https://github.com/apioo/fusio/blob/master/doc/_static/backend.png)
 
 The backend app is the app where the administrator can configure the system. The 
 app is located at `/backend.htm`.
 
-## Developer App
+## Developer
 
 ![Developer](https://github.com/apioo/fusio/blob/master/doc/_static/developer.png)
 
-The developer app is designed to quickly setup an API programm where new 
+The developer app is designed to quickly setup an API program where new 
 developers can register and create/manage their apps. The app is located at 
 `/developer/`.
 
-## Documentation App
+## Documentation
 
 ![Documentation](https://github.com/apioo/fusio/blob/master/doc/_static/documentation.png)
 
@@ -103,11 +126,17 @@ the following we list the most popular choices where Fusio comes in to play.
 Exposing an API of your business functionality is a great way to extend your 
 product. You enable customers to integrate it into other applications which
 gives the possibility to open up for new markets. With Fusio you can build such 
-APIs and integrate them seamlessly into your product.
+APIs and integrate them seamlessly into your product. We also see many companies
+which use the API itself as the core product.
+
+## Micro services
+
+With Fusio you can simply build small micro services which solve a specific task
+in a complex system.
 
 ## Javascript applications
 
-Javascript frameworks like i.e. AngularJS or EmberJS becoming more popular. With
+Javascript frameworks like i.e. AngularJS or EmberJS becoming the standard. With
 Fusio you can easily build a backend for such applications. So you dont have to
 build the backend part by yourself.
 
@@ -116,26 +145,6 @@ build the backend part by yourself.
 Almost all mobile apps need some form to interact with a remote service. This is
 mostly done through REST APIs. With Fusio you can easily build such APIs which 
 then can also be used by other applications.
-
-# Reasons
-
-* __Versionable endpoints__  
-  With Fusio you can create flexible endpoints to design the API in the way you 
-  like. Each endpoint can have multiple versions with different request and 
-  response formats. This makes it easy to advance your API as it grows.
-* __Action handling__  
-  Fusio provides already many actions to handle common usecases. I.e. it is 
-  possible to execute SQL queries against a database or send data into a message 
-  queue. Also it is very easy to provide custom implementations.
-* __Schema definition__  
-  Fusio gives you the option to describe the data schema of the request and 
-  response in the flexible JsonSchema format.
-* __Automatic documentation__  
-  Fusio generates automatically a documentation of the API endpoints based on 
-  the provided schema definitions.
-* __Secure authorization__  
-  Fusio uses OAuth2 for API authorization. Each app can be limited to scopes to 
-  request only specific endpoints of the API.
 
 # Contribution
 
