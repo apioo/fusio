@@ -13,7 +13,7 @@ information on http://www.fusio-project.org/
 # Features
 
 Fusio covers all important aspects of the API lifecycle so you can concentrate
-on building the actual business logic for your API.
+on building the actual business logic of your API.
 
 * __Versioning__  
   It is possible to define different versions of your endpoint. A concrete 
