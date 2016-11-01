@@ -1,4 +1,11 @@
 
+### 0.4.1
+
+* Added rate limit
+* Improved and extended console commands
+* Improved backend app
+* Added test cases
+
 ### 0.4.0 (2016-10-09)
 
 * Moved logic to the fusio engine and extracted action and connection 
