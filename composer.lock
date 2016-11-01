@@ -759,16 +759,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v0.4.2",
+            "version": "v0.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "acb3adb790e138a69135920bf34e44370fabf38a"
+                "reference": "2f7bd3a552cfea0e892154843eb7607bcd946c68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/acb3adb790e138a69135920bf34e44370fabf38a",
-                "reference": "acb3adb790e138a69135920bf34e44370fabf38a",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/2f7bd3a552cfea0e892154843eb7607bcd946c68",
+                "reference": "2f7bd3a552cfea0e892154843eb7607bcd946c68",
                 "shasum": ""
             },
             "require": {
@@ -807,7 +807,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2016-10-23 18:08:22"
+            "time": "2016-11-01 13:29:18"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -1041,16 +1041,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "1.3.1",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "705d0b4633b9c44e6253aa18306b3972282cd3a3"
+                "reference": "aa49d7e436a29eb492f7dab5a55d0d4495e2ed0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/705d0b4633b9c44e6253aa18306b3972282cd3a3",
-                "reference": "705d0b4633b9c44e6253aa18306b3972282cd3a3",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/aa49d7e436a29eb492f7dab5a55d0d4495e2ed0b",
+                "reference": "aa49d7e436a29eb492f7dab5a55d0d4495e2ed0b",
                 "shasum": ""
             },
             "require": {
@@ -1068,6 +1068,7 @@
             "require-dev": {
                 "doctrine/orm": "~2.1",
                 "doctrine/phpcr-odm": "^1.3|^2.0",
+                "ext-pdo_sqlite": "*",
                 "jackalope/jackalope-doctrine-dbal": "^1.1.5",
                 "phpunit/phpunit": "^4.8|^5.0",
                 "propel/propel1": "~1.7",
@@ -1084,7 +1085,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -1111,7 +1112,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2016-08-23 17:20:24"
+            "time": "2016-10-31 11:41:07"
         },
         {
             "name": "monolog/monolog",
@@ -1690,16 +1691,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "798a620c4ab3651b0e714e5072aba91914850396"
+                "reference": "ce625334f985f80848807bcf84b80b36a23e1531"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/798a620c4ab3651b0e714e5072aba91914850396",
-                "reference": "798a620c4ab3651b0e714e5072aba91914850396",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/ce625334f985f80848807bcf84b80b36a23e1531",
+                "reference": "ce625334f985f80848807bcf84b80b36a23e1531",
                 "shasum": ""
             },
             "require": {
@@ -1753,7 +1754,7 @@
                 "framework",
                 "rest"
             ],
-            "time": "2016-10-30 08:48:39"
+            "time": "2016-11-01 10:45:50"
         },
         {
             "name": "psx/http",
