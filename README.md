@@ -14,19 +14,19 @@ we think that Fusio is a great tool to simplify building such APIs.
 Fusio covers all important aspects of the API lifecycle so you can concentrate
 on building the actual business logic for your API.
 
-* Versioning  
+* __Versioning__  
   It is possible to define different versions of your endpoint. A concrete 
   version can be requested through the `Accept` header i.e. `application/vnd.acme.v1+json`
-* Documentation
+* __Documentation__  
   Fusio generates automatically a documentation of the API endpoints based on 
   the provided schema definitions.
-* Authorization
+* __Authorization__  
   Fusio uses OAuth2 for API authorization. Each app can be limited to scopes to 
   request only specific endpoints of the API.
-* Analytics
+* __Analytics__  
   Fusio monitors all API activities and shows them on a dashboard so you always 
   know what is happening with your API. 
-* Rate limiting
+* __Rate limiting__  
   It is possible to limit the requests to a specific threshold.
 
 Fusio provides already many actions to handle common use cases. I.e. it is 
