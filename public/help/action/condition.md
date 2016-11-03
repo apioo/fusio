@@ -10,16 +10,6 @@ for detailed informations about the syntax.
 The following list contains all available methods which can be used inside the 
 condition.
 
- * `rateLimit`  
-   * `getRequestsPerMonth()`  
-     Returns the overall count of requests for the app of the current month
-   * `getRequestsPerDay()`  
-     Returns the overall count of requests for the app of the current day
-   * `getRequestsOfRoutePerMonth()`  
-     Returns the count of requests for the app and the route of the current 
-     month
-   * `getRequestsOfRoutePerDay()`  
-     Returns the count of requests for the app and the route of the current day
  * `app`  
    * `isAnonymous()`  
      Returns a boolean whether the app is authenticated
