@@ -7,7 +7,7 @@ describe('Connection tests', function() {
 
     var routes = element.all(by.repeater('connection in connections'));
     expect(routes.count()).toEqual(1);
-    expect(routes.get(0).getText()).toEqual('DBAL');
+    expect(routes.get(0).getText()).toEqual('Native');
   });
 
   it('Create connection', function() {
@@ -24,7 +24,6 @@ describe('Connection tests', function() {
     var connectionOptions = element.all(by.options('conn.class as conn.name for conn in connections'));
     expect(connectionOptions.get(0).getText()).toEqual('SQL-Connection');
     expect(connectionOptions.get(1).getText()).toEqual('SQL-Connection (advanced)');
-    expect(connectionOptions.get(2).getText()).toEqual('DBAL');
     connectionOptions.get(1).click();
 
     browser.wait(EC.visibilityOf($('#config-url')), 5000);

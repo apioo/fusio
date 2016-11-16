@@ -24,7 +24,7 @@ describe('Action tests', function() {
     element(by.model('action.name')).sendKeys('test-action');
 
     var actionOptions = element.all(by.options('action.class as action.name for action in actions'));
-    expect(actionOptions.get(0).getText()).toEqual('Sql-Table');
+    expect(actionOptions.get(0).getText()).toEqual('SQL-Table');
     expect(actionOptions.get(1).getText()).toEqual('Util-Static-Response');
     expect(actionOptions.get(2).getText()).toEqual('V8-Processor');
 
