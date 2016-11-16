@@ -185,6 +185,7 @@ pre
 .fusio-options
 {
     white-space:nowrap;
+    text-align:right;
 }
 
 .fusio-table-tab tbody tr:first-child td
