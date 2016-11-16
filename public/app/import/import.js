@@ -15,8 +15,8 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
   $scope.error = null;
   $scope.success = false;
 
-  $scope.transform = function(source) {
-    $http.post(fusio.baseUrl + 'backend/import/raml', {schema: source}).success(function(data) {
+  $scope.transform = function(source, format) {
+    $http.post(fusio.baseUrl + 'backend/import/' + format, {schema: source}).success(function(data) {
       if ('success' in data && data.success === false) {
         $scope.error = data.message;
         return;
@@ -96,6 +96,24 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
     });
   };
 
+  $scope.openActionDialog = function(action) {
+    var modalInstance = $uibModal.open({
+      size: 'lg',
+      backdrop: 'static',
+      templateUrl: 'app/import/action.html',
+      controller: 'ImportActionCtrl',
+      resolve: {
+        action: function() {
+          return action;
+        }
+      }
+    });
+
+    modalInstance.result.then(function(response) {
+    }, function() {
+    });
+  };
+
   $scope.openSchemaDialog = function(schema) {
     var modalInstance = $uibModal.open({
       size: 'lg',
@@ -139,6 +157,22 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
   }];
 
   $scope.close = function() {
+    $uibModalInstance.dismiss('cancel');
+  };
+
+}])
+
+.controller('ImportActionCtrl', ['$scope', '$http', '$uibModalInstance', 'action', function($scope, $http, $uibModalInstance, action) {
+
+  $scope.action = angular.copy(action);
+
+  $scope.close = function() {
+    action.name = $scope.action.name;
+
+    if (angular.isObject($scope.action.config)) {
+      action.config = $scope.action.config;
+    }
+
     $uibModalInstance.dismiss('cancel');
   };
 

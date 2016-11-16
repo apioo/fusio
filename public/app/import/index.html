@@ -13,6 +13,11 @@
     <uib-tab heading="RAML">
         <div ui-ace="{mode: 'yaml'}" ng-model="source" style="height:400px"></div>
         <br>
-        <a ng-click="transform(source)" class="btn btn-primary">Preview</a>
+        <a ng-click="transform(source, 'raml')" class="btn btn-primary">Preview</a>
+    </uib-tab>
+    <uib-tab heading="Swagger">
+        <div ui-ace="{mode: 'json'}" ng-model="source" style="height:400px"></div>
+        <br>
+        <a ng-click="transform(source, 'swagger')" class="btn btn-primary">Preview</a>
     </uib-tab>
 </uib-tabset>

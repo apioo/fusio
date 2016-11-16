@@ -33,6 +33,33 @@
             </table>
         </div>
     </div>
+    <div ng-if="data.action">
+        <h4>Action</h4>
+        <div class="fusio-grid">
+            <table class="table">
+                <colgroup>
+                    <col width="*" />
+                    <col width="50" />
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="action in data.action">
+                    <td>{{action.name}}</td>
+                    <td>
+                        <div class="fusio-options">
+                            <a ng-click="openActionDialog(action)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div ng-if="data.schema">
         <h4>Schema</h4>
         <div class="fusio-grid">
