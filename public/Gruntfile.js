@@ -1,5 +1,4 @@
 module.exports = function(grunt){
-
   grunt.initConfig({
     concat: {
       options: {
@@ -7,14 +6,14 @@ module.exports = function(grunt){
         process: function(src, filepath) {
           return '// Source: ' + filepath + '\n' +
             src.replace(/\/\/# sourceMappingURL=([A-z0-9\-\.\_]+)/g, '').trim();
-        },
+        }
       },
       dist: {
         src: [
           './bower_components/ace-builds/src-min-noconflict/ace.js',
+          './bower_components/ace-builds/src-min-noconflict/mode-javascript.js',
           './bower_components/ace-builds/src-min-noconflict/mode-json.js',
           './bower_components/ace-builds/src-min-noconflict/mode-sql.js',
-          './bower_components/ace-builds/src-min-noconflict/mode-haml.js',
           './bower_components/ace-builds/src-min-noconflict/mode-xml.js',
           './bower_components/ace-builds/src-min-noconflict/worker-json.js',
           './bower_components/Chart.js/Chart.min.js',
@@ -34,7 +33,7 @@ module.exports = function(grunt){
           './dist/fusio-templates.min.js'
         ],
         dest: './dist/fusio.min.js'
-      },
+      }
     },
     uglify: {
       options: {
@@ -49,7 +48,6 @@ module.exports = function(grunt){
             './app/login/login.js',
             './app/logout/logout.js',
             './app/dashboard/dashboard.js',
-            './app/database/database.js',
             './app/routes/routes.js',
             './app/schema/schema.js',
             './app/action/action.js',

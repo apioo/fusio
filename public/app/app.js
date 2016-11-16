@@ -16,7 +16,6 @@ var fusioApp = angular.module('fusioApp', [
   'fusioApp.config',
   'fusioApp.connection',
   'fusioApp.dashboard',
-  'fusioApp.database',
   'fusioApp.import',
   'fusioApp.log',
   'fusioApp.login',
