@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a3d498a95d4789173e987d6042f4d523",
-    "content-hash": "2a550cb6fa6b4c3b4e30b1ecb401b531",
+    "content-hash": "e7dbe7b72a23bbbe93ac1ebcdd2880d1",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -73,7 +72,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2016-10-24 11:45:47"
+            "time": "2016-10-24T11:45:47+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -143,7 +142,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2016-10-29 11:16:17"
+            "time": "2016-10-29T11:16:17+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -209,7 +208,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2015-04-14 22:21:58"
+            "time": "2015-04-14T22:21:58+00:00"
         },
         {
             "name": "doctrine/common",
@@ -282,7 +281,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-12-25 13:18:31"
+            "time": "2015-12-25T13:18:31+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -353,7 +352,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2016-09-09 19:13:33"
+            "time": "2016-09-09T19:13:33+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -420,7 +419,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2015-11-06 14:35:42"
+            "time": "2015-11-06T14:35:42+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -474,7 +473,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2015-06-14 21:17:01"
+            "time": "2015-06-14T21:17:01+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -528,7 +527,7 @@
                 "lexer",
                 "parser"
             ],
-            "time": "2014-09-09 13:34:57"
+            "time": "2014-09-09T13:34:57+00:00"
         },
         {
             "name": "firebase/php-jwt",
@@ -571,70 +570,25 @@
             ],
             "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
             "homepage": "https://github.com/firebase/php-jwt",
-            "time": "2015-07-22 18:31:08"
-        },
-        {
-            "name": "fusio/adapter-http",
-            "version": "v0.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/apioo/fusio-adapter-http.git",
-                "reference": "09b91802ee6d2a88306a9d8c80a96f09c9b6bd94"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/09b91802ee6d2a88306a9d8c80a96f09c9b6bd94",
-                "reference": "09b91802ee6d2a88306a9d8c80a96f09c9b6bd94",
-                "shasum": ""
-            },
-            "require": {
-                "fusio/engine": "^0.4@dev",
-                "php": ">=5.5"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Fusio\\Adapter\\Http\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "AGPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Christoph Kappestein",
-                    "email": "christoph.kappestein@gmail.com",
-                    "homepage": "http://christoph.kappestein.com"
-                }
-            ],
-            "description": "Adapter which can send and proxy HTTP messages",
-            "homepage": "http://fusio-project.org",
-            "keywords": [
-                "fusio-adapter"
-            ],
-            "time": "2016-10-06 17:19:14"
+            "time": "2015-07-22T18:31:08+00:00"
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v0.1.1",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
-                "reference": "2a788ca589a6f030093688475026ecc5aaa8af31"
+                "reference": "9666ddc1c4d1394716e4071bdb0e67ab28c64c2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/2a788ca589a6f030093688475026ecc5aaa8af31",
-                "reference": "2a788ca589a6f030093688475026ecc5aaa8af31",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/9666ddc1c4d1394716e4071bdb0e67ab28c64c2e",
+                "reference": "9666ddc1c4d1394716e4071bdb0e67ab28c64c2e",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.5",
-                "fusio/engine": "^0.4@dev",
+                "fusio/engine": "^0.5@dev",
                 "php": ">=5.5"
             },
             "require-dev": {
@@ -663,25 +617,25 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2016-10-13 17:57:19"
+            "time": "2016-11-12T16:44:59+00:00"
         },
         {
             "name": "fusio/adapter-util",
-            "version": "v0.1.0",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-util.git",
-                "reference": "f464001d249a92bd4b0bd2e93419ca856d31f383"
+                "reference": "7dbff91f52f506cd7c8a6a063ea3a54c3cd6e620"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/f464001d249a92bd4b0bd2e93419ca856d31f383",
-                "reference": "f464001d249a92bd4b0bd2e93419ca856d31f383",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/7dbff91f52f506cd7c8a6a063ea3a54c3cd6e620",
+                "reference": "7dbff91f52f506cd7c8a6a063ea3a54c3cd6e620",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.5",
-                "fusio/engine": "^0.4@dev",
+                "fusio/engine": "^0.5@dev",
                 "php": ">=5.5",
                 "symfony/expression-language": "^2.8"
             },
@@ -711,20 +665,68 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2016-10-07 08:46:27"
+            "time": "2016-11-12T16:44:59+00:00"
         },
         {
-            "name": "fusio/engine",
-            "version": "v0.4.2",
+            "name": "fusio/adapter-v8",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "5a9ad00f81198226cd117286b898144081f6ea31"
+                "url": "https://github.com/apioo/fusio-adapter-v8.git",
+                "reference": "bfb4980f6d836bbde179ee3f1afd09007610511f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/5a9ad00f81198226cd117286b898144081f6ea31",
-                "reference": "5a9ad00f81198226cd117286b898144081f6ea31",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-v8/zipball/bfb4980f6d836bbde179ee3f1afd09007610511f",
+                "reference": "bfb4980f6d836bbde179ee3f1afd09007610511f",
+                "shasum": ""
+            },
+            "require": {
+                "fusio/engine": "^0.5@dev",
+                "php": ">=5.5",
+                "psx/v8": "^0.1@dev"
+            },
+            "require-dev": {
+                "phpunit/dbunit": "^1.3",
+                "phpunit/phpunit": "^4.1",
+                "pinepain/php-v8-stubs": "^0.1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fusio\\Adapter\\V8\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com"
+                }
+            ],
+            "description": "Write the endpoint logic in javascript using the V8 engine",
+            "homepage": "http://fusio-project.org",
+            "keywords": [
+                "fusio-adapter"
+            ],
+            "time": "2016-11-13T16:19:57+00:00"
+        },
+        {
+            "name": "fusio/engine",
+            "version": "v0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/fusio-engine.git",
+                "reference": "81dfa627c65fc26b84a12a3ba8fe1d42da53dd25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/81dfa627c65fc26b84a12a3ba8fe1d42da53dd25",
+                "reference": "81dfa627c65fc26b84a12a3ba8fe1d42da53dd25",
                 "shasum": ""
             },
             "require": {
@@ -755,28 +757,28 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2016-10-07 09:45:05"
+            "time": "2016-11-10T18:52:40+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v0.4.4",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "2f7bd3a552cfea0e892154843eb7607bcd946c68"
+                "reference": "b5991b507bb8f9b8e8b97f1952a156e3e50d2efa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/2f7bd3a552cfea0e892154843eb7607bcd946c68",
-                "reference": "2f7bd3a552cfea0e892154843eb7607bcd946c68",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/b5991b507bb8f9b8e8b97f1952a156e3e50d2efa",
+                "reference": "b5991b507bb8f9b8e8b97f1952a156e3e50d2efa",
                 "shasum": ""
             },
             "require": {
                 "firebase/php-jwt": "^3.0",
-                "fusio/adapter-http": "^0.1@dev",
-                "fusio/adapter-sql": "^0.1@dev",
-                "fusio/adapter-util": "^0.1@dev",
-                "fusio/engine": "^0.4@dev",
+                "fusio/adapter-sql": "^0.2@dev",
+                "fusio/adapter-util": "^0.2@dev",
+                "fusio/adapter-v8": "^0.2@dev",
+                "fusio/engine": "^0.5@dev",
                 "ircmaxell/password-compat": "^1.0",
                 "ircmaxell/random-lib": "^1.1",
                 "php": ">=5.5",
@@ -807,7 +809,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2016-11-01 13:29:18"
+            "time": "2016-11-13T17:03:29+00:00"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -849,7 +851,7 @@
                 "hashing",
                 "password"
             ],
-            "time": "2014-11-20 16:49:30"
+            "time": "2014-11-20T16:49:30+00:00"
         },
         {
             "name": "ircmaxell/random-lib",
@@ -904,7 +906,7 @@
                 "random-numbers",
                 "random-strings"
             ],
-            "time": "2016-09-07 15:52:06"
+            "time": "2016-09-07T15:52:06+00:00"
         },
         {
             "name": "ircmaxell/security-lib",
@@ -950,7 +952,7 @@
             ],
             "description": "A Base Security Library",
             "homepage": "https://github.com/ircmaxell/SecurityLib",
-            "time": "2015-03-20 14:31:23"
+            "time": "2015-03-20T14:31:23+00:00"
         },
         {
             "name": "jms/metadata",
@@ -1002,7 +1004,7 @@
                 "xml",
                 "yaml"
             ],
-            "time": "2014-07-12 07:13:19"
+            "time": "2014-07-12T07:13:19+00:00"
         },
         {
             "name": "jms/parser-lib",
@@ -1037,20 +1039,20 @@
                 "Apache2"
             ],
             "description": "A library for easily creating recursive-descent parsers.",
-            "time": "2012-11-18 18:08:43"
+            "time": "2012-11-18T18:08:43+00:00"
         },
         {
             "name": "jms/serializer",
-            "version": "1.4.0",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "aa49d7e436a29eb492f7dab5a55d0d4495e2ed0b"
+                "reference": "f39d8b4660d5cef43b0c3265ce642173d9b2c58b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/aa49d7e436a29eb492f7dab5a55d0d4495e2ed0b",
-                "reference": "aa49d7e436a29eb492f7dab5a55d0d4495e2ed0b",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/f39d8b4660d5cef43b0c3265ce642173d9b2c58b",
+                "reference": "f39d8b4660d5cef43b0c3265ce642173d9b2c58b",
                 "shasum": ""
             },
             "require": {
@@ -1112,7 +1114,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2016-10-31 11:41:07"
+            "time": "2016-11-13T10:20:11+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1190,7 +1192,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-07-29 03:23:52"
+            "time": "2016-07-29T03:23:52+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -1241,7 +1243,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2016-09-16 12:04:44"
+            "time": "2016-09-16T12:04:44+00:00"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -1289,7 +1291,7 @@
                 "sequence",
                 "set"
             ],
-            "time": "2015-05-17 12:39:23"
+            "time": "2015-05-17T12:39:23+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -1339,7 +1341,7 @@
                 "php",
                 "type"
             ],
-            "time": "2015-07-25 16:39:46"
+            "time": "2015-07-25T16:39:46+00:00"
         },
         {
             "name": "psr/cache",
@@ -1385,7 +1387,7 @@
                 "psr",
                 "psr-6"
             ],
-            "time": "2016-08-06 20:24:11"
+            "time": "2016-08-06T20:24:11+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1435,7 +1437,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06 14:39:51"
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "psr/log",
@@ -1482,7 +1484,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10 12:19:37"
+            "time": "2016-10-10T12:19:37+00:00"
         },
         {
             "name": "psx/api",
@@ -1537,7 +1539,7 @@
                 "swagger",
                 "wsdl"
             ],
-            "time": "2016-10-30 08:46:04"
+            "time": "2016-10-30T08:46:04+00:00"
         },
         {
             "name": "psx/cache",
@@ -1585,7 +1587,7 @@
                 "doctrine",
                 "psr-6"
             ],
-            "time": "2016-04-01 22:25:52"
+            "time": "2016-04-01T22:25:52+00:00"
         },
         {
             "name": "psx/data",
@@ -1641,7 +1643,7 @@
                 "processor",
                 "xml"
             ],
-            "time": "2016-07-10 17:10:56"
+            "time": "2016-07-10T17:10:56+00:00"
         },
         {
             "name": "psx/datetime",
@@ -1687,7 +1689,7 @@
                 "rfc3339",
                 "time"
             ],
-            "time": "2016-05-08 08:32:53"
+            "time": "2016-05-08T08:32:53+00:00"
         },
         {
             "name": "psx/framework",
@@ -1754,7 +1756,7 @@
                 "framework",
                 "rest"
             ],
-            "time": "2016-11-01 10:45:50"
+            "time": "2016-11-01T10:45:50+00:00"
         },
         {
             "name": "psx/http",
@@ -1802,7 +1804,7 @@
             "keywords": [
                 "http"
             ],
-            "time": "2016-05-08 10:48:03"
+            "time": "2016-05-08T10:48:03+00:00"
         },
         {
             "name": "psx/json",
@@ -1849,7 +1851,7 @@
                 "patch",
                 "pointer"
             ],
-            "time": "2016-07-30 14:06:07"
+            "time": "2016-07-30T14:06:07+00:00"
         },
         {
             "name": "psx/model",
@@ -1898,7 +1900,7 @@
                 "rss",
                 "swagger"
             ],
-            "time": "2016-07-10 19:34:15"
+            "time": "2016-07-10T19:34:15+00:00"
         },
         {
             "name": "psx/oauth",
@@ -1944,7 +1946,7 @@
             "keywords": [
                 "oauth"
             ],
-            "time": "2016-05-08 11:11:55"
+            "time": "2016-05-08T11:11:55+00:00"
         },
         {
             "name": "psx/oauth2",
@@ -1993,7 +1995,7 @@
             "keywords": [
                 "oauth"
             ],
-            "time": "2016-05-08 11:12:27"
+            "time": "2016-05-08T11:12:27+00:00"
         },
         {
             "name": "psx/openssl",
@@ -2037,7 +2039,7 @@
             "keywords": [
                 "openssl"
             ],
-            "time": "2016-04-01 22:25:51"
+            "time": "2016-04-01T22:25:51+00:00"
         },
         {
             "name": "psx/psx",
@@ -2083,7 +2085,7 @@
                 "framework",
                 "rest"
             ],
-            "time": "2016-09-11 08:30:17"
+            "time": "2016-09-11T08:30:17+00:00"
         },
         {
             "name": "psx/record",
@@ -2131,7 +2133,7 @@
                 "hashmap",
                 "record"
             ],
-            "time": "2016-05-08 10:33:00"
+            "time": "2016-05-08T10:33:00+00:00"
         },
         {
             "name": "psx/schema",
@@ -2189,7 +2191,7 @@
                 "schema",
                 "xsd"
             ],
-            "time": "2016-10-30 08:54:17"
+            "time": "2016-10-30T08:54:17+00:00"
         },
         {
             "name": "psx/sql",
@@ -2239,7 +2241,7 @@
             "keywords": [
                 "sql"
             ],
-            "time": "2016-10-30 08:48:15"
+            "time": "2016-10-30T08:48:15+00:00"
         },
         {
             "name": "psx/uri",
@@ -2286,7 +2288,52 @@
                 "uri",
                 "url"
             ],
-            "time": "2016-06-19 22:35:37"
+            "time": "2016-06-19T22:35:37+00:00"
+        },
+        {
+            "name": "psx/v8",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/psx-v8.git",
+                "reference": "31ebcf55312a07545c1ad121758e264c45ecc685"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/psx-v8/zipball/31ebcf55312a07545c1ad121758e264c45ecc685",
+                "reference": "31ebcf55312a07545c1ad121758e264c45ecc685",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5",
+                "pinepain/php-v8-stubs": "^0.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PSX\\V8\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com/"
+                }
+            ],
+            "description": "Helper library for the php-v8 extension",
+            "homepage": "http://phpsx.org",
+            "keywords": [
+                "v8"
+            ],
+            "time": "2016-11-13T10:18:46+00:00"
         },
         {
             "name": "psx/validate",
@@ -2333,7 +2380,7 @@
                 "filter",
                 "validation"
             ],
-            "time": "2016-05-08 10:25:56"
+            "time": "2016-05-08T10:25:56+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2386,7 +2433,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2016-07-08 11:51:25"
+            "time": "2016-07-08T11:51:25+00:00"
         },
         {
             "name": "symfony/console",
@@ -2447,7 +2494,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-10-06 01:44:51"
+            "time": "2016-10-06T01:44:51+00:00"
         },
         {
             "name": "symfony/debug",
@@ -2504,7 +2551,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-06 11:02:40"
+            "time": "2016-09-06T11:02:40+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -2564,7 +2611,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2016-10-24 15:52:44"
+            "time": "2016-10-24T15:52:44+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2624,7 +2671,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2016-10-13 06:28:43"
+            "time": "2016-10-13T06:28:43+00:00"
         },
         {
             "name": "symfony/expression-language",
@@ -2673,20 +2720,20 @@
             ],
             "description": "Symfony ExpressionLanguage Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-06 10:55:00"
+            "time": "2016-09-06T10:55:00+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "dff51f72b0706335131b00a7f49606168c582594"
+                "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/dff51f72b0706335131b00a7f49606168c582594",
-                "reference": "dff51f72b0706335131b00a7f49606168c582594",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/e79d363049d1c2128f133a2667e4f4190904f7f4",
+                "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4",
                 "shasum": ""
             },
             "require": {
@@ -2698,7 +2745,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.3-dev"
                 }
             },
             "autoload": {
@@ -2732,7 +2779,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-05-18 14:26:46"
+            "time": "2016-11-14T01:06:16+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -2781,7 +2828,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-10-24 18:41:13"
+            "time": "2016-10-24T18:41:13+00:00"
         },
         {
             "name": "twig/twig",
@@ -2842,7 +2889,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-10-25 19:17:17"
+            "time": "2016-10-25T19:17:17+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -2892,7 +2939,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2016-10-11 13:25:21"
+            "time": "2016-10-11T13:25:21+00:00"
         }
     ],
     "packages-dev": [
@@ -2948,7 +2995,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2015-12-27 11:43:31"
+            "time": "2015-12-27T11:43:31+00:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2993,7 +3040,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2016-09-30 07:12:33"
+            "time": "2016-09-30T07:12:33+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -3040,7 +3087,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-            "time": "2016-06-10 07:14:17"
+            "time": "2016-06-10T07:14:17+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -3102,7 +3149,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2016-06-07 08:13:47"
+            "time": "2016-06-07T08:13:47+00:00"
         },
         {
             "name": "phpunit/dbunit",
@@ -3161,7 +3208,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-07 04:57:38"
+            "time": "2015-08-07T04:57:38+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3223,7 +3270,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-10-06 15:47:00"
+            "time": "2015-10-06T15:47:00+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3270,7 +3317,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2015-06-21 13:08:43"
+            "time": "2015-06-21T13:08:43+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -3311,7 +3358,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2015-06-21 13:50:34"
+            "time": "2015-06-21T13:50:34+00:00"
         },
         {
             "name": "phpunit/php-timer",
@@ -3355,20 +3402,20 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2016-05-12 18:03:57"
+            "time": "2016-05-12T18:03:57+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.8",
+            "version": "1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da"
+                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
-                "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3b402f65a4cc90abf6e1104e388b896ce209631b",
+                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b",
                 "shasum": ""
             },
             "require": {
@@ -3404,20 +3451,20 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-09-15 10:49:45"
+            "time": "2016-11-15T14:06:22+00:00"
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.27",
+            "version": "4.8.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c062dddcb68e44b563f66ee319ddae2b5a322a90"
+                "reference": "558a3a0d28b4cb7e4a593a4fbd2220e787076225"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c062dddcb68e44b563f66ee319ddae2b5a322a90",
-                "reference": "c062dddcb68e44b563f66ee319ddae2b5a322a90",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/558a3a0d28b4cb7e4a593a4fbd2220e787076225",
+                "reference": "558a3a0d28b4cb7e4a593a4fbd2220e787076225",
                 "shasum": ""
             },
             "require": {
@@ -3476,7 +3523,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-07-21 06:48:14"
+            "time": "2016-11-14T06:25:28+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3532,7 +3579,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-10-02 06:51:40"
+            "time": "2015-10-02T06:51:40+00:00"
         },
         {
             "name": "sebastian/comparator",
@@ -3596,7 +3643,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2015-07-26 15:48:44"
+            "time": "2015-07-26T15:48:44+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -3648,7 +3695,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2015-12-08 07:14:41"
+            "time": "2015-12-08T07:14:41+00:00"
         },
         {
             "name": "sebastian/environment",
@@ -3698,7 +3745,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-08-18 05:49:44"
+            "time": "2016-08-18T05:49:44+00:00"
         },
         {
             "name": "sebastian/exporter",
@@ -3765,7 +3812,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2016-06-17 09:04:28"
+            "time": "2016-06-17T09:04:28+00:00"
         },
         {
             "name": "sebastian/global-state",
@@ -3816,20 +3863,20 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2015-10-12 03:26:01"
+            "time": "2015-10-12T03:26:01+00:00"
         },
         {
             "name": "sebastian/recursion-context",
-            "version": "1.0.2",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/recursion-context.git",
-                "reference": "913401df809e99e4f47b27cdd781f4a258d58791"
+                "reference": "938df7a6478e72795e5f8266cff24d06e3136f2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/913401df809e99e4f47b27cdd781f4a258d58791",
-                "reference": "913401df809e99e4f47b27cdd781f4a258d58791",
+                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/938df7a6478e72795e5f8266cff24d06e3136f2e",
+                "reference": "938df7a6478e72795e5f8266cff24d06e3136f2e",
                 "shasum": ""
             },
             "require": {
@@ -3869,7 +3916,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2015-11-11 19:50:13"
+            "time": "2016-11-15T06:55:36+00:00"
         },
         {
             "name": "sebastian/version",
@@ -3904,7 +3951,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2015-06-21 13:59:46"
+            "time": "2015-06-21T13:59:46+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -3954,7 +4001,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2016-08-09 15:02:57"
+            "time": "2016-08-09T15:02:57+00:00"
         }
     ],
     "aliases": [],
