@@ -6,9 +6,8 @@ describe('Connection tests', function() {
     browser.get('#/connection');
 
     var routes = element.all(by.repeater('connection in connections'));
-    expect(routes.count()).toEqual(2);
+    expect(routes.count()).toEqual(1);
     expect(routes.get(0).getText()).toEqual('DBAL');
-    expect(routes.get(1).getText()).toEqual('Native-Connection');
   });
 
   it('Create connection', function() {
@@ -25,8 +24,12 @@ describe('Connection tests', function() {
     var connectionOptions = element.all(by.options('conn.class as conn.name for conn in connections'));
     expect(connectionOptions.get(0).getText()).toEqual('SQL-Connection');
     expect(connectionOptions.get(1).getText()).toEqual('SQL-Connection (advanced)');
-    expect(connectionOptions.get(2).getText()).toEqual('Native');
-    connectionOptions.get(2).click();
+    expect(connectionOptions.get(2).getText()).toEqual('DBAL');
+    connectionOptions.get(1).click();
+
+    browser.wait(EC.visibilityOf($('#config-url')), 5000);
+
+    element(by.css('#config-url')).sendKeys('sqlite:///:memory:');
 
     $('button.btn-primary').click();
 
@@ -45,7 +48,7 @@ describe('Connection tests', function() {
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
     expect(element(by.model('connection.name')).getAttribute('value')).toEqual('test-connection');
-    expect(element(by.model('connection.class')).getAttribute('value')).toEqual('Fusio\\Adapter\\Util\\Connection\\Native');
+    expect(element(by.model('connection.class')).getAttribute('value')).toEqual('Fusio\\Adapter\\Sql\\Connection\\DBALAdvanced');
 
     $('button.btn-primary').click();
 

@@ -33,8 +33,8 @@ describe('Routes tests', function() {
 
     var actionOptions = element.all(by.options('action.id as action.name for action in actions'));
     expect(actionOptions.get(0).getText()).toEqual('');
-    expect(actionOptions.get(1).getText()).toEqual('Sql-Fetch-Row');
-    expect(actionOptions.get(2).getText()).toEqual('Sql-Fetch-All');
+    expect(actionOptions.get(1).getText()).toEqual('Sql-Table');
+    expect(actionOptions.get(2).getText()).toEqual('Util-Static-Response');
     expect(actionOptions.get(3).getText()).toEqual('Welcome');
 
     actionOptions.get(1).click();
@@ -66,8 +66,8 @@ describe('Routes tests', function() {
     expect(responseOptions.get(4).getText()).toEqual('Passthru');
 
     var actionOptions = element.all(by.options('action.id as action.name for action in actions'));
-    expect(actionOptions.get(0).getText()).toEqual('Sql-Fetch-Row');
-    expect(actionOptions.get(1).getText()).toEqual('Sql-Fetch-All');
+    expect(actionOptions.get(0).getText()).toEqual('Sql-Table');
+    expect(actionOptions.get(1).getText()).toEqual('Util-Static-Response');
     expect(actionOptions.get(2).getText()).toEqual('Welcome');
 
     $('button.btn-primary').click();
@@ -104,7 +104,7 @@ describe('Routes tests', function() {
 
     var actions = element.all(by.repeater('action in actions'));
     expect(actions.count()).toEqual(1);
-    expect(actions.get(0).getText()).toEqual('Sql-Fetch-Row');
+    expect(actions.get(0).getText()).toEqual('Sql-Table');
 
   });
 

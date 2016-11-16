@@ -7,8 +7,8 @@ describe('Action tests', function() {
 
     var actions = element.all(by.repeater('action in actions'));
     expect(actions.count()).toEqual(3);
-    expect(actions.get(0).getText()).toEqual('Sql-Fetch-Row');
-    expect(actions.get(1).getText()).toEqual('Sql-Fetch-All');
+    expect(actions.get(0).getText()).toEqual('Sql-Table');
+    expect(actions.get(1).getText()).toEqual('Util-Static-Response');
     expect(actions.get(2).getText()).toEqual('Welcome');
   });
 
@@ -24,24 +24,11 @@ describe('Action tests', function() {
     element(by.model('action.name')).sendKeys('test-action');
 
     var actionOptions = element.all(by.options('action.class as action.name for action in actions'));
-    expect(actionOptions.get(0).getText()).toEqual('HTTP-Proxy');
-    expect(actionOptions.get(1).getText()).toEqual('HTTP-Request');
-    expect(actionOptions.get(2).getText()).toEqual('SQL-Builder');
-    expect(actionOptions.get(3).getText()).toEqual('SQL-Execute');
-    expect(actionOptions.get(4).getText()).toEqual('SQL-Fetch-All');
-    expect(actionOptions.get(5).getText()).toEqual('SQL-Fetch-Row');
-    expect(actionOptions.get(6).getText()).toEqual('SQL-Table');
-    expect(actionOptions.get(7).getText()).toEqual('Util-Cache');
-    expect(actionOptions.get(8).getText()).toEqual('Util-Composite');
-    expect(actionOptions.get(9).getText()).toEqual('Util-Condition');
-    expect(actionOptions.get(10).getText()).toEqual('Util-Pipe');
-    expect(actionOptions.get(11).getText()).toEqual('Util-Processor');
-    expect(actionOptions.get(12).getText()).toEqual('Util-Static-Response');
-    expect(actionOptions.get(13).getText()).toEqual('Util-Transform');
-    expect(actionOptions.get(14).getText()).toEqual('Util-Try-Catch');
-    expect(actionOptions.get(15).getText()).toEqual('Util-Validator');
+    expect(actionOptions.get(0).getText()).toEqual('Sql-Table');
+    expect(actionOptions.get(1).getText()).toEqual('Util-Static-Response');
+    expect(actionOptions.get(2).getText()).toEqual('V8-Processor');
 
-    actionOptions.get(12).click();
+    actionOptions.get(1).click();
 
     browser.wait(EC.visibilityOf($('#config-statusCode')), 5000);
 
