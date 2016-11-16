@@ -29,7 +29,6 @@ backend app):
    backend/app
    backend/config
    backend/connection
-   backend/database
    backend/import
    backend/rate
    backend/routes
