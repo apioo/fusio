@@ -1,5 +1,12 @@
 
-### 0.4.1
+### 0.5.0
+
+* Added v8 processor action
+* Cleaned up engine
+* Removed database panel
+* Added swagger import
+
+### 0.4.1 (2016-11-02)
 
 * Added rate limit
 * Improved and extended console commands
