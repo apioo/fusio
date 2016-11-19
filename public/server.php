@@ -21,12 +21,9 @@
 
 // entry point for the internal php server for testing
 $fileUris = [
-    '^\/dist\/',
+    '^\/developer\/',
     '^\/documentation\/',
-    '^\/fonts\/',
-    '^\/help\/',
-    '^\/img\/',
-    '^\/backend.htm',
+    '^\/fusio\/',
 ];
 
 foreach ($fileUris as $regexp) {
