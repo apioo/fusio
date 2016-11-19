@@ -42,17 +42,9 @@ fusioApp.provider('fusio', function() {
    */
   this.guessFusioEndpointUrl = function(urlRewrite) {
     var url = window.location.href;
-    var removePart = function(url, sign) {
-      var count = (url.match(/\//g) || []).length;
-      var pos = url.lastIndexOf(sign);
-      if (count > 2 && pos !== -1) {
-        return url.substring(0, pos);
-      }
-      return url;
-    };
-    var parts = ['#', '?', '/'];
-    for (var i = 0; i < parts.length; i++) {
-      url = removePart(url, parts[i]);
+    var pos = url.lastIndexOf('/fusio');
+    if (pos !== -1) {
+      url = url.substring(0, pos);
     }
     return url + (urlRewrite ? '/' : '/index.php/');
   };
