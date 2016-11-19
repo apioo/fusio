@@ -8,7 +8,6 @@ exports.config = {
     'app/app.js',
     'app/config.js',
     'app/connection.js',
-    'app/database.js',
     'app/log.js',
     'app/rate.js',
     'app/routes.js',
@@ -18,13 +17,13 @@ exports.config = {
     'app/user.js',
     'app/import.js'
   ],
-  baseUrl: 'http://127.0.0.1:8008/backend.htm',
+  baseUrl: 'http://127.0.0.1:8008/fusio',
   capabilities: {
     browserName: 'firefox'
   },
   onPrepare: function() {
     // login
-    browser.driver.get('http://127.0.0.1:8008/backend.htm');
+    browser.driver.get('http://127.0.0.1:8008/fusio');
     browser.driver.findElement(by.id('username')).sendKeys('Developer');
     browser.driver.findElement(by.id('password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
     browser.driver.findElement(by.css('button[type="submit"]')).click();
