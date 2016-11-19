@@ -30,21 +30,21 @@
 
     <!-- npm install -->
     <target name="npm-install">
-        <exec dir="${build}/public" executable="${npm}" failonerror="true">
+        <exec dir="${build}/public/fusio" executable="${npm}" failonerror="true">
             <arg line="install" />
         </exec>
     </target>
 
     <!-- bower install -->
     <target name="bower-install">
-        <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
+        <exec dir="${build}/public/fusio" executable="${nodejs}" failonerror="true">
             <arg line="node_modules/bower/bin/bower install" />
         </exec>
     </target>
 
     <!-- grunt -->
     <target name="grunt">
-        <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
+        <exec dir="${build}/public/fusio" executable="${nodejs}" failonerror="true">
             <arg line="node_modules/grunt-cli/bin/grunt" />
         </exec>
     </target>
@@ -61,7 +61,7 @@
 
     <!-- start webdriver -->
     <target name="start-webdriver">
-        <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
+        <exec dir="${build}/public/fusio" executable="${nodejs}" failonerror="true">
             <arg line="node_modules/protractor/bin/webdriver-manager update" />
         </exec>
         <exec dir="${build}/build" executable="${php}" spawn="true">
@@ -87,7 +87,7 @@
 
     <!-- run protractor tests -->
     <target name="protractor">
-        <exec dir="${build}/public/tests" executable="${nodejs}" failonerror="true">
+        <exec dir="${build}/public/fusio/tests" executable="${nodejs}" failonerror="true">
             <arg line="../node_modules/protractor/bin/protractor conf.js " />
         </exec>
     </target>
@@ -113,28 +113,28 @@
         <delete dir="${build}/.git" />
         <delete dir="${build}/build" />
         <delete>
-            <fileset dir="${build}/public/app" includes="**/*.js" />
+            <fileset dir="${build}/public/fusio/app" includes="**/*.js" />
         </delete>
-        <delete dir="${build}/public/app" />
-        <delete dir="${build}/public/bower_components" />
-        <delete dir="${build}/public/css" />
-        <delete dir="${build}/public/js" />
-        <delete dir="${build}/public/node_modules" />
-        <delete dir="${build}/public/tests" />
+        <delete dir="${build}/public/fusio/app" />
+        <delete dir="${build}/public/fusio/bower_components" />
+        <delete dir="${build}/public/fusio/css" />
+        <delete dir="${build}/public/fusio/js" />
+        <delete dir="${build}/public/fusio/node_modules" />
+        <delete dir="${build}/public/fusio/tests" />
         <delete dir="${build}/tests" />
         <delete dir="${build}/doc" />
         <delete file="${build}/.travis.yml" />
         <delete file="${build}/phpunit.xml" />
         <delete file="${build}/TODO.md" />
-        <delete file="${build}/public/.jscsrc" />
-        <delete file="${build}/public/.jshintrc" />
-        <delete file="${build}/public/backend_dev.htm" />
-        <delete file="${build}/public/bower.json" />
-        <delete file="${build}/public/Gruntfile.js" />
-        <delete file="${build}/public/package.json" />
         <delete file="${build}/public/server.php" />
-        <delete file="${build}/public/dist/fusio-app.min.js" />
-        <delete file="${build}/public/dist/fusio-templates.min.js" />
+        <delete file="${build}/public/fusio/.jscsrc" />
+        <delete file="${build}/public/fusio/.jshintrc" />
+        <delete file="${build}/public/fusio/index_dev.htm" />
+        <delete file="${build}/public/fusio/bower.json" />
+        <delete file="${build}/public/fusio/Gruntfile.js" />
+        <delete file="${build}/public/fusio/package.json" />
+        <delete file="${build}/public/fusio/dist/fusio-app.min.js" />
+        <delete file="${build}/public/fusio/dist/fusio-templates.min.js" />
         <delete includeemptydirs="true">
             <fileset dir="${build}/cache" includes="*" />
         </delete>
