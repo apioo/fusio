@@ -40,7 +40,7 @@ chdir(__DIR__ . '/../public');
 
 $commands = [
     'webserver' => $config['php'] . ' -S 127.0.0.1:8008 server.php',
-    'webdriver' => $config['nodejs'] . ' node_modules/protractor/bin/webdriver-manager start',
+    'webdriver' => $config['nodejs'] . ' fusio/node_modules/protractor/bin/webdriver-manager start',
 ];
 
 if (isset($commands[$service])) {

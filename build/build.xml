@@ -61,8 +61,8 @@
 
     <!-- start webdriver -->
     <target name="start-webdriver">
-        <exec dir="${build}/public/fusio" executable="${nodejs}" failonerror="true">
-            <arg line="node_modules/protractor/bin/webdriver-manager update" />
+        <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
+            <arg line="fusio/node_modules/protractor/bin/webdriver-manager update" />
         </exec>
         <exec dir="${build}/build" executable="${php}" spawn="true">
             <arg line="service.php webdriver start" />
