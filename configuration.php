@@ -23,9 +23,6 @@ return array(
     // http://localhost.com)
     'psx_url'                 => 'http://127.0.0.1/projects/fusio/public',
 
-    // The input path 'index.php/' or '' if you use mod_rewrite
-    'psx_dispatch'            => 'index.php/',
-
     // The default timezone
     'psx_timezone'            => 'UTC',
 
