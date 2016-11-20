@@ -1,15 +1,23 @@
 _Ever growing list of ideas and thoughts howto improve and extend Fusio. Topics_ 
 _which are likely to be implemented are moved to a seperate github issue_
 
-### 0.4
+### 0.5
 
+- [ ] Add option to set the status of an action or connection to disabled so it 
+      can not be changed
+- [ ] Extend API controller test cases to 100%
+- [ ] Checkout whether we can use the eclipse orion file editor 
+      (https://orionhub.org) to create a action in js
+- [ ] At the moment it is possible to register the same adapter multiple times.
+      Is this ok or should we add a check which tracks installed adapters?
 - [ ] We need a new app which only handles authorization and app management 
       especially for one page web apps
-- [ ] Database endpoint should also handle NoSQL databases
 - [ ] Build elektron app (http://electron.atom.io/) around backend
 - [ ] Add doc endpoints where a user can create tutorials which are listed on
       the developer page
-- [ ] A tool to create a JSONSchema from a database table
+- [ ] Simplify creating JSONSchema schemas for the request/response
+  - [ ] A option to create a JSONSchema from a database table
+  - [ ] A option to create a JSONSchema from a JSON string (see http://jsonschema.net/#/)
 - [ ] Add option to execute bulk actions for specific records i.e.:
   - [ ] Assign/Remove scopes from multiple apps
   - [ ] Remove all tokens from multiple apps
@@ -17,21 +25,11 @@ _which are likely to be implemented are moved to a seperate github issue_
 - [ ] Add OAuth2 refresh token endpoint #16
   - [ ] Add method to relogin if token expires. Probably we should save the 
         expire time and make the relogin attempt based on this
-- [ ] Add serverless action (https://azure.microsoft.com/en-us/services/functions/)
-      where you can write code in different languages which gets executed
-  - [ ] Evaluate V8Js and check whether we could write an action where a user can 
-        write an action in javascript
-  - [ ] Providing an action which executes PHP is possible but probably not an
-        option since we have no solid PHP sandbox
-- [ ] Database add data tab to browse the data of an existing table #17
-- [ ] Add option to disable changing the database schema through a config flag #18
 - [ ] Add consumer and documentation protractor tests
 - [ ] Maybe we need to handle the idle status in the backend through
       https://github.com/HackedByChinese/ng-idle
-- [ ] Database dont show update/delete button if no table is selected
 - [ ] Improve cache action add option to specific get or uri parameters which
       come into the cache key
-- [ ] ~~Automatically add the consumer scope the to the scope list~~
 - [ ] App button to regenerate app key and secret
   - [ ] We need this option also on the consumer site
 - [ ] Consumer if access was already granted dont ask the user again instead 
@@ -40,8 +38,6 @@ _which are likely to be implemented are moved to a seperate github issue_
 - [ ] Test GitHub/Google/Facebook login
 - [ ] General test. Build an API and use different libraries to test OAuth2 
       interoperability
-- [ ] Option to ratelimit specific apps. Option to set global rate limits per
-      config? #19
 - [ ] Add forms endpoint. The user can select a route, request method and an 
       input field which contains the form format.
       - Maybe based on https://github.com/joshfire/jsonform
@@ -53,20 +49,10 @@ _which are likely to be implemented are moved to a seperate github issue_
         form (look at schemaform.io or xforms). This abstract form can be 
         rendered in javascript, java, etc.
   - [ ] How do we handle form submits where a access token is required at the 
-        backend (which is probably always required)?
+        backend (which is probably always required)? Maybe we should assume that
+        the app which embeds the form provides an access token to it.
   - [ ] We should build different libraries (javascript, java, etc.) to build 
         these forms
-- [ ] Add action which can build a REST API for a table
-- [ ] Import allow swagger format
-- [ ] Adapter if we reference a connection in the definition the connection may 
-      not exist. The adapter definition should be able to reference the
-      selected database connection (we select only a connection if the adapter 
-      inserts a table) or the user must have a way to specify one
-- [ ] Template add method to access SQL vendor independent queries from a 
-      template based on the selected connection. I.e. in a SQL template you 
-      could write {{ sql.getNowExpression() }} to get for mysql i.e. NOW(). This
-      allows adapter to write independent sql. But it is also a security risk
-      if users pass in user input into the arguments
 
 ### 0.x
 
@@ -123,7 +109,7 @@ _which are likely to be implemented are moved to a seperate github issue_
         possibility to add response schema for other status codes
 - [ ] We need to create a marketplace where all adapters are listed and where
       developers can provide a adapter for their system
-  - [ ] The best way todo this is to parse all packages with a specific tag 
+  - [x] The best way todo this is to parse all packages with a specific tag 
         "fusio-adapter" from packagist add list them on fusio-project.org
         There is an API which we cna use to request specific tags
   - [ ] Extend the documentation howto write an adapter
@@ -145,11 +131,19 @@ _which are likely to be implemented are moved to a seperate github issue_
 
 ### Meta
 
-- [ ] Create video tutorial series
+- [ ] Update Fusio tutorial videos to showcase different topics
+  - [ ] Create API from SQL table
+  - [ ] Create API from complex SQL query
+  - [ ] Insert entry into a SQL table
+  - [ ] Create API with MongoDB
+  - [ ] Insert entry into a MongoDB
+  - [ ] Push entry into a RabbitMQ
+  - [ ] Push entry into Beanstalk
+  - [ ] Javascript app request protected endpoints
   - [ ] Howto develop a custom action
   - [ ] Howto setup Fusio
-  - [ ] Howto create a rest API from a SQL table
-  - [ ] Howto create a rest API from a SQL query/view
+  - [ ] Howto cache response of a slow action
+  - [ ] Create API based on API spec swagger/RAML
 - [ ] Add use case section to website
 - [ ] Add a training section to fusio-project.org similar to:
       https://developer.android.com/training/basics/firstapp/creating-project.html
@@ -168,7 +162,47 @@ _which are likely to be implemented are moved to a seperate github issue_
 
 ### Archive
 
-### 0.3
+- [x] Add action which can build a REST API for a table
+- [x] Import allow swagger format (probably wait for swagger v3?)
+- [ ] ~~Adapter if we reference a connection in the definition the connection may 
+      not exist. The adapter definition should be able to reference the
+      selected database connection (we select only a connection if the adapter 
+      inserts a table) or the user must have a way to specify one~~
+- [ ] ~~Template add method to access SQL vendor independent queries from a 
+      template based on the selected connection. I.e. in a SQL template you 
+      could write {{ sql.getNowExpression() }} to get for mysql i.e. NOW(). This
+      allows adapter to write independent sql. But it is also a security risk
+      if users pass in user input into the arguments~~
+- [ ] ~~Database dont show update/delete button if no table is selected~~
+- [ ] ~~Automatically add the consumer scope the to the scope list~~
+- [x] Option to ratelimit specific apps. Option to set global rate limits per
+      config? #19
+- [ ] ~~Database add data tab to browse the data of an existing table #17~~
+- [ ] ~~Add option to disable changing the database schema through a config flag #18~~
+- [x] Add serverless action (https://azure.microsoft.com/en-us/services/functions/)
+      where you can write code in different languages which gets executed
+  - [x] Evaluate V8Js and check whether we could write an action where a user can 
+        write an action in javascript
+  - [ ] ~~Providing an action which executes PHP is possible but probably not an
+        option since we have no solid PHP sandbox~~ (also it is simple possible
+        to write a custom action)
+- [ ] ~~Database endpoint should also handle NoSQL databases~~
+- [ ] ~~Probably we need a new panel "Plugins" where a user can register new
+      adapter through composer~~
+- [x] Moved the backend app into the fusio/ folder thus we free up some paths 
+      for the API to use
+- [x] Remove template from engine
+- [x] Remove all actions except for (V8Processor)
+  - [x] Because of that we dont need the http and util adapter
+  - [x] All other adapter provide only the connection
+  - [x] The import and default values use the util response action this is not
+        possible anymore (maybe we let the static response action but remove the 
+        template part)
+- [x] The customer has now two options to implement the backend logic either
+  - [x] Use the v8 processor
+  - [x] Or build a native php action
+- [x] We remove the database endpoint and panel
+- [x] Add Swagger import support
 
 - [x] Backend database UI add auto increment option
 - [x] Add failover action which executes another action in case of an error
