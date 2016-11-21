@@ -73,7 +73,7 @@ endpoints also from your application.
 ![Backend](https://github.com/apioo/fusio/blob/master/doc/_static/backend.png)
 
 The backend app is the app where the administrator can configure the system. The 
-app is located at `/backend.htm`.
+app is located at `/fusio/`.
 
 ## Developer
 
