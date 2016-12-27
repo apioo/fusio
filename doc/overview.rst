@@ -90,7 +90,7 @@ Backend
 .. image:: _static/backend.png
 
 The backend app is the app where the administrator can configure the system. The 
-app is located at ``/backend.htm``.
+app is located at ``/fusio/``.
 
 Developer
 ^^^^^^^^^

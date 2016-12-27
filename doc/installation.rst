@@ -24,7 +24,7 @@ steps.
 
 You can verify the installation by visiting the ``psx_url`` with a browser. You
 should see a API response that the installation was successful. The backend is
-available at ``/backend.htm``.
+available at ``/fusio/``.
 
 Configure webserver
 -------------------
@@ -35,8 +35,7 @@ the configuration of the url i.e.:
 
 .. code-block:: text
 
-    'psx_url'      => 'http://api.acme.com',
-    'psx_dispatch' => '',
+    'psx_url' => 'http://api.acme.com',
 
 Apache
 ^^^^^^
@@ -65,14 +64,14 @@ to guess the url of the API endpoint. If a app is not working properly the
 problem is probably that the javascript app can not correctly determine the API 
 endpoint url. In this case you have to adjust the url in the following files:
 
-* ``/public/backend.htm``
+* ``/public/fusio/index.htm``
 * ``/public/consumer/index.html``
 * ``/public/documentation/index.html``
 
 Backend
 -------
 
-At the endpoint ``/backend.htm`` you can login to the backend app. You should
+At the endpoint ``/fusio/`` you can login to the backend app. You should
 be able to login with the username (which you have entered for the ``adduser``
 command) and the password which you have used. 
 
@@ -114,6 +113,4 @@ Update backend app
 To update the backend app simply replace the following files from the new 
 release:
 
- * ``public/backend.htm``
- * ``public/dist/fusio.min.js``
- * ``public/dist/fusio.min.css``
+ * ``public/fusio``
