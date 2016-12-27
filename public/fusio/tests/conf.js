@@ -23,13 +23,14 @@ exports.config = {
   },
   onPrepare: function() {
     // login
-    browser.driver.get('http://127.0.0.1:8008/fusio/index.htm');
+    browser.driver.get('http://127.0.0.1:8008/fusio/index.htm#/login');
     browser.driver.findElement(by.id('username')).sendKeys('Developer');
     browser.driver.findElement(by.id('password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
     browser.driver.findElement(by.css('button[type="submit"]')).click();
 
     return browser.driver.wait(function() {
       return browser.driver.getCurrentUrl().then(function(url) {
+        console.log(url);
         return /#\/dashboard/.test(url);
       });
     }, 10000);
