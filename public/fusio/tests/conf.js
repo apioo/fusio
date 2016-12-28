@@ -31,6 +31,7 @@ exports.config = {
 
     return browser.driver.wait(function() {
       return browser.driver.getCurrentUrl().then(function(url) {
+        console.log(url);
         return /#\/dashboard/.test(url);
       });
     }, 10000);
