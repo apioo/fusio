@@ -28,14 +28,17 @@ exports.config = {
 
     element(by.model('credentials.username')).sendKeys('Developer');
     element(by.model('credentials.password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
-    element(by.css('button[type=submit]')).click().then(function(){
-      console.log('Button clicked');
-    });
+
+    var EC = protractor.ExpectedConditions;
+    var submitButton = element(by.css('button[type=submit]'));
+
+    browser.wait(EC.elementToBeClickable(submitButton), 5000);
+    submitButton.click();
 
     element(by.css('body')).getAttribute('innerHTML').then(function(value){
       console.log(value);
     });
-    
+
     return browser.driver.wait(function() {
       return browser.driver.getCurrentUrl().then(function(url) {
         console.log(url);
