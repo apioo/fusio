@@ -19,7 +19,8 @@ exports.config = {
   ],
   baseUrl: 'http://127.0.0.1:8008/fusio/index.htm',
   capabilities: {
-    browserName: 'firefox'
+    browserName: 'firefox',
+    version: '47'
   },
   onPrepare: function() {
     // login
@@ -27,8 +28,14 @@ exports.config = {
 
     element(by.model('credentials.username')).sendKeys('Developer');
     element(by.model('credentials.password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
-    element(by.css('button[type=submit]')).click();
+    element(by.css('button[type=submit]')).click().then(function(){
+      console.log('Button clicked');
+    });
 
+    element(by.css('body')).getAttribute('innerHTML').then(function(value){
+      console.log(value);
+    });
+    
     return browser.driver.wait(function() {
       return browser.driver.getCurrentUrl().then(function(url) {
         console.log(url);
