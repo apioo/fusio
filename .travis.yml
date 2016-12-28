@@ -24,8 +24,8 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - cd public
   - php server.php --warmup
-  - php -S 127.0.0.1:8008 server.php &
-  - node fusio/node_modules/protractor/bin/webdriver-manager start > /dev/null 2>&1 &
+  - (php -S 127.0.0.1:8008 server.php) &
+  - (node fusio/node_modules/protractor/bin/webdriver-manager start > /dev/null 2>&1) &
   - sleep 8
   - cd ..
 script:
