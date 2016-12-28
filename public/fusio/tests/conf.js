@@ -31,18 +31,22 @@ exports.config = {
     var EC = protractor.ExpectedConditions;
     var submitButton = element(by.css('button[type=submit]'));
 
-    browser.wait(EC.elementToBeClickable(submitButton), 5000);
-    submitButton.click();
+    return browser.wait(EC.elementToBeClickable(submitButton), 5000).then(function(){
 
-    element(by.css('body')).getAttribute('innerHTML').then(function(value){
-      console.log(value);
-    });
+      submitButton.click();
 
-    return browser.driver.wait(function() {
-      return browser.driver.getCurrentUrl().then(function(url) {
-        console.log(url);
-        return /#\/dashboard/.test(url);
+      element(by.css('body')).getAttribute('innerHTML').then(function(value){
+        console.log(value);
       });
-    }, 10000);
+
+      return browser.driver.wait(function() {
+        return browser.driver.getCurrentUrl().then(function(url) {
+          console.log(url);
+          return /#\/dashboard/.test(url);
+        });
+      }, 10000);
+
+      
+    });
   }
 };
