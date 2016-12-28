@@ -19,7 +19,10 @@ exports.config = {
   ],
   baseUrl: 'http://127.0.0.1:8008/fusio/index.htm',
   capabilities: {
-    browserName: 'firefox'
+    browserName: 'chrome',
+    chromeOptions: {
+      args: ['--no-sandbox']
+    }
   },
   onPrepare: function() {
     // login
