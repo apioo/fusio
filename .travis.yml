@@ -6,7 +6,7 @@ php:
 sudo: required
 dist: trusty
 addons:
-  firefox: "49.0"
+  firefox: "47.0"
 services:
   - mysql
   - memcached
