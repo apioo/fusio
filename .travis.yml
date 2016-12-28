@@ -35,5 +35,3 @@ script:
 env:
   - DB=mysql
   - DB=sqlite
-addons:
-  firefox: "47.0"
