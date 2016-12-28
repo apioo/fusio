@@ -25,7 +25,7 @@ before_script:
   - cd public
   - php server.php --warmup
   - (php -S 127.0.0.1:8008 server.php) &
-  - (node fusio/node_modules/protractor/bin/webdriver-manager start > /dev/null 2>&1) &
+  - (node fusio/node_modules/protractor/bin/webdriver-manager start) &
   - sleep 8
   - cd ..
 script:
