@@ -3,16 +3,12 @@ php:
   - 5.6
   - 7.0
   - 7.1
+sudo: required
+dist: trusty
 services:
   - mysql
   - memcached
   - mongodb
-apt:
-  sources:
-    - google-chrome
-  packages:
-    - google-chrome-stable
-    - google-chrome-beta
 before_install:
   - phpenv config-add tests/config.ini
   - phpenv config-rm xdebug.ini
