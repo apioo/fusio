@@ -24,10 +24,9 @@ exports.config = {
   onPrepare: function() {
     // login
     browser.driver.get('http://127.0.0.1:8008/fusio/index.htm#/login');
-
-    element(by.model('credentials.username')).sendKeys('Developer');
-    element(by.model('credentials.password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
-    element(by.css('button[type="submit"]')).click();
+    browser.driver.findElement(by.id('username')).sendKeys('Developer');
+    browser.driver.findElement(by.id('password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
+    browser.driver.findElement(by.css('button[type="submit"]')).click();
 
     return browser.driver.wait(function() {
       return browser.driver.getCurrentUrl().then(function(url) {
