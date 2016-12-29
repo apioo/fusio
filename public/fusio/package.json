@@ -15,6 +15,7 @@
     "grunt-contrib-uglify": "^2.0.0",
     "jscs": "^3.0.7",
     "jshint": "^2.9.2",
-    "protractor": "^4.0.0"
+    "protractor": "^4.0.0",
+    "protractor-console-plugin": "^0.1.1"
   }
 }
