@@ -24,6 +24,11 @@ exports.config = {
   onPrepare: function() {
     // login
     browser.driver.get('http://127.0.0.1:8008/fusio/index.htm#/login');
+
+    browser.wait(function(){
+      return browser.driver.findElement(by.id('username')).isPresent();
+    }, 5000);
+
     browser.driver.findElement(by.id('username')).sendKeys('Developer');
     browser.driver.findElement(by.id('password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
     browser.driver.findElement(by.css('button[type="submit"]')).click();
