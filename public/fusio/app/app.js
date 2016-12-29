@@ -91,10 +91,6 @@ fusioApp.config(['$httpProvider', function($httpProvider) {
 fusioApp.config(['$showdownProvider', function($showdownProvider) {
 }]);
 
-fusioApp.config(['$locationProvider', function($locationProvider) {
-  $locationProvider.html5Mode(false).hashPrefix('');
-}]);
-
 fusioApp.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeBar = false;
   cfpLoadingBarProvider.includeSpinner = true;

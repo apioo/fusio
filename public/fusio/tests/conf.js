@@ -19,33 +19,20 @@ exports.config = {
   ],
   baseUrl: 'http://127.0.0.1:8008/fusio/index.htm',
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'firefox'
   },
   onPrepare: function() {
     // login
-    var EC = protractor.ExpectedConditions;
+    browser.driver.get('http://127.0.0.1:8008/fusio/index.htm#/login');
 
-    browser.driver.get('http://127.0.0.1:8008/fusio/index.htm');
-
-    browser.wait(EC.visibilityOf(element(by.id('loginUsername'))), 5000);
-
-    element(by.id('loginUsername')).sendKeys('Developer');
-    element(by.id('loginPassword')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
-
-    browser.wait(EC.elementToBeClickable(element(by.id('loginButton'))), 5000);
-
-    element(by.id('loginButton')).click();
+    element(by.model('credentials.username')).sendKeys('Developer');
+    element(by.model('credentials.password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
+    element(by.css('button[type="submit"]')).click();
 
     return browser.driver.wait(function() {
       return browser.driver.getCurrentUrl().then(function(url) {
         return /#\/dashboard/.test(url);
       });
     }, 10000);
-  },
-  plugins: [{
-    package: 'protractor-console-plugin',
-    failOnWarning: false,
-    failOnError: true,
-    logWarnings: true
-  }]
+  }
 };
