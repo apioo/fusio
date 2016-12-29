@@ -24,15 +24,21 @@ exports.config = {
   onPrepare: function() {
     // login
     browser.driver.get('http://127.0.0.1:8008/fusio/index.htm#/login');
-    browser.driver.sleep(2000);
-    browser.driver.findElement(by.id('username')).sendKeys('Developer');
-    browser.driver.findElement(by.id('password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
-    browser.driver.findElement(by.css('button[type="submit"]')).click();
 
-    return browser.driver.wait(function() {
-      return browser.driver.getCurrentUrl().then(function(url) {
-        return /#\/dashboard/.test(url);
-      });
-    }, 10000);
+    var usernameInput = browser.driver.findElement(by.id('username'));
+    var passwordInput = browser.driver.findElement(by.id('password'));
+    var submitButton = browser.driver.findElement(by.css('button[type="submit"]'));
+
+    return usernameInput.isPresent().then(function(){
+      usernameInput.sendKeys('Developer');
+      passwordInput.sendKeys('qf2vX10Ec3wFZHx0K1eL');
+      submitButton.click();
+
+      return browser.driver.wait(function() {
+        return browser.driver.getCurrentUrl().then(function(url) {
+          return /#\/dashboard/.test(url);
+        });
+      }, 10000);
+    });
   }
 };
