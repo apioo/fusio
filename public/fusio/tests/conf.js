@@ -41,5 +41,11 @@ exports.config = {
         return /#\/dashboard/.test(url);
       });
     }, 10000);
-  }
+  },
+  plugins: [{
+    package: 'protractor-console-plugin',
+    failOnWarning: false,
+    failOnError: true,
+    logWarnings: true
+  }]
 };
