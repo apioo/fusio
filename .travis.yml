@@ -15,6 +15,11 @@ before_install:
 install:
   - composer install
   - cd public/fusio
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $NODE_VERSION
+  - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+  - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+  - sudo apt-get update -q
+  - sudo apt-get install -q google-chrome-stable
   - npm install
   - node node_modules/bower/bin/bower install
   - node node_modules/grunt-cli/bin/grunt
@@ -35,5 +40,8 @@ script:
   - node ../node_modules/protractor/bin/protractor conf.js
   - cd ../../..
 env:
-  - DB=mysql
-  - DB=sqlite
+  global:
+    - NODE_VERSION="4.5"
+  matrix:
+    - DB=mysql 
+    - DB=sqlite
