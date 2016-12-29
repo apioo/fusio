@@ -10,14 +10,14 @@
             </uib-alert>
             <form name="loginForm" method="post" ng-submit="login(credentials)" novalidate>
                 <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" ng-model="credentials.username" class="form-control">
+                    <label for="loginUsername">Username:</label>
+                    <input type="text" id="loginUsername" ng-model="credentials.username" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" ng-model="credentials.password" class="form-control">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" ng-model="credentials.password" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-default">Login</button>
+                <button id="loginButton" type="submit" class="btn btn-default">Login</button>
             </form>
         </div>
     </div>

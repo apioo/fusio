@@ -23,30 +23,23 @@ exports.config = {
   },
   onPrepare: function() {
     // login
-    browser.driver.get('http://127.0.0.1:8008/fusio/index.htm#/login');
-
-    element(by.model('credentials.username')).sendKeys('Developer');
-    element(by.model('credentials.password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
-
     var EC = protractor.ExpectedConditions;
-    var submitButton = element(by.css('button[type=submit]'));
 
-    return browser.wait(EC.elementToBeClickable(submitButton), 5000).then(function(){
+    browser.driver.get('http://127.0.0.1:8008/fusio/index.htm');
 
-      submitButton.click();
+    browser.wait(EC.visibilityOf(element(by.id('loginUsername'))), 5000);
 
-      element(by.css('body')).getAttribute('innerHTML').then(function(value){
-        console.log(value);
+    element(by.id('loginUsername')).sendKeys('Developer');
+    element(by.id('loginPassword')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
+
+    browser.wait(EC.elementToBeClickable(element(by.id('loginButton'))), 5000);
+
+    element(by.id('loginButton')).click();
+
+    return browser.driver.wait(function() {
+      return browser.driver.getCurrentUrl().then(function(url) {
+        return /#\/dashboard/.test(url);
       });
-
-      return browser.driver.wait(function() {
-        return browser.driver.getCurrentUrl().then(function(url) {
-          console.log(url);
-          return /#\/dashboard/.test(url);
-        });
-      }, 10000);
-
-      
-    });
+    }, 10000);
   }
 };
