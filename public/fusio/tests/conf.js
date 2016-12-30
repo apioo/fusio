@@ -27,8 +27,14 @@ exports.config = {
 
     console.log('28');
 
-    return browser.driver.sleep(2000).then(function(){
+    return browser.driver.sleep(4000).then(function(){
       console.log('31');
+      browser.driver.findElement(by.css('body')).then(function(el){
+        el.getAttribute('innerHTML').then(function(value){
+          console.log(value);
+        });
+      });
+
       browser.driver.findElement(by.id('username')).sendKeys('Developer');
       browser.driver.findElement(by.id('password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
       browser.driver.findElement(by.css('button[type="submit"]')).click();
