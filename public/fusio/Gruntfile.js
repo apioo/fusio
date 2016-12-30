@@ -16,7 +16,7 @@ module.exports = function(grunt){
           './bower_components/ace-builds/src-min-noconflict/mode-sql.js',
           './bower_components/ace-builds/src-min-noconflict/mode-xml.js',
           './bower_components/ace-builds/src-min-noconflict/worker-json.js',
-          './bower_components/Chart.js/Chart.min.js',
+          './bower_components/chart.js/dist/Chart.min.js',
           './bower_components/showdown/dist/showdown.min.js',
           './bower_components/highlightjs/highlight.pack.min.js',
           './bower_components/angular/angular.min.js',

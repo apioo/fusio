@@ -213,7 +213,7 @@ pre
 {
 }
 
-.fusio-panel .chart-container
+.fusio-panel .chart
 {
     height:220px;
 }
@@ -279,7 +279,7 @@ pre
     margin-bottom:8px;
 }
 
-.fusio-statistic .chart-container
+.fusio-statistic .chart
 {
     height:400px;
 }

@@ -16,6 +16,7 @@
     "angular-highlightjs": "~0.6.2",
     "angular-loading-bar": "~0.9.0",
     "highlightjs": "^8.8",
+    "chart.js": "^2.0",
     "ng-showdown": "^1.0",
     "showdown": "^1.2",
     "bootstrap": "^3.3"
