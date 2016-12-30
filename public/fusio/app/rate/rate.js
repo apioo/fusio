@@ -18,7 +18,8 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
     var search = encodeURIComponent($scope.search);
 
     $http.get(fusio.baseUrl + 'backend/rate?search=' + search)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.startIndex = 0;
         $scope.rates = data.entry;
@@ -30,7 +31,8 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
     var search = encodeURIComponent($scope.search);
 
     $http.get(fusio.baseUrl + 'backend/rate?startIndex=' + startIndex + '&search=' + search)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.rates = data.entry;
       });
@@ -38,7 +40,8 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
 
   $scope.doSearch = function(search) {
     $http.get(fusio.baseUrl + 'backend/rate?search=' + encodeURIComponent(search))
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.startIndex = 0;
         $scope.rates = data.entry;
@@ -165,14 +168,15 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
     data.allocation = $scope.removeNullValuesFromAllocation(rate.allocation);
 
     $http.post(fusio.baseUrl + 'backend/rate', data)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 
@@ -185,29 +189,33 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
   };
 
   $scope.getRoutes = function() {
-    $http.get(fusio.baseUrl + 'backend/routes').then(function(response) {
-      if (angular.isArray(response.data.entry)) {
-        var routes = response.data.entry;
-        routes.unshift({
-          id: null,
-          path: 'Every route'
-        });
-        $scope.routes = routes;
-      }
-    });
+    $http.get(fusio.baseUrl + 'backend/routes')
+      .then(function(response) {
+        var data = response.data;
+        if (angular.isArray(data.entry)) {
+          var routes = data.entry;
+          routes.unshift({
+            id: null,
+            path: 'Every route'
+          });
+          $scope.routes = routes;
+        }
+      });
   };
 
   $scope.getApps = function() {
-    $http.get(fusio.baseUrl + 'backend/app').then(function(response) {
-      if (angular.isArray(response.data.entry)) {
-        var apps = response.data.entry;
-        apps.unshift({
-          id: null,
-          name: 'Every app'
-        });
-        $scope.apps = apps;
-      }
-    });
+    $http.get(fusio.baseUrl + 'backend/app')
+      .then(function(response) {
+        var data = response.data;
+        if (angular.isArray(data.entry)) {
+          var apps = data.entry;
+          apps.unshift({
+            id: null,
+            name: 'Every app'
+          });
+          $scope.apps = apps;
+        }
+      });
   };
 
   $scope.addAllocation = function() {
@@ -308,19 +316,21 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
     data.allocation = $scope.removeNullValuesFromAllocation(rate.allocation);
 
     $http.put(fusio.baseUrl + 'backend/rate/' + rate.id, data)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 
   $http.get(fusio.baseUrl + 'backend/rate/' + rate.id)
-    .then(function(data) {
+    .then(function(response) {
+      var data = response.data;
       $scope.parseTimespan(data.timespan);
       data.allocation = $scope.addNullValuesToAllocation(data.allocation);
       $scope.rate = data;
@@ -335,29 +345,33 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
   };
 
   $scope.getRoutes = function() {
-    $http.get(fusio.baseUrl + 'backend/routes').then(function(response) {
-      if (angular.isArray(response.data.entry)) {
-        var routes = response.data.entry;
-        routes.unshift({
-          id: null,
-          path: 'Every route'
-        });
-        $scope.routes = routes;
-      }
-    });
+    $http.get(fusio.baseUrl + 'backend/routes')
+      .then(function(response) {
+        var data = response.data;
+        if (angular.isArray(data.entry)) {
+          var routes = data.entry;
+          routes.unshift({
+            id: null,
+            path: 'Every route'
+          });
+          $scope.routes = routes;
+        }
+      });
   };
 
   $scope.getApps = function() {
-    $http.get(fusio.baseUrl + 'backend/app').then(function(response) {
-      if (angular.isArray(response.data.entry)) {
-        var apps = response.data.entry;
-        apps.unshift({
-          id: null,
-          name: 'Every app'
-        });
-        $scope.apps = apps;
-      }
-    });
+    $http.get(fusio.baseUrl + 'backend/app')
+      .then(function(response) {
+        var data = response.data;
+        if (angular.isArray(data.entry)) {
+          var apps = data.entry;
+          apps.unshift({
+            id: null,
+            name: 'Every app'
+          });
+          $scope.apps = apps;
+        }
+      });
   };
 
   $scope.addAllocation = function() {
@@ -465,14 +479,15 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
 
   $scope.delete = function(rate) {
     $http.delete(fusio.baseUrl + 'backend/rate/' + rate.id)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 

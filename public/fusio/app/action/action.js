@@ -21,7 +21,8 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     var routeId = $scope.routeId;
 
     $http.get(fusio.baseUrl + 'backend/action?search=' + search + '&routeId=' + routeId)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.startIndex = 0;
         $scope.actions = data.entry;
@@ -30,7 +31,8 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
   $scope.loadRoutes = function() {
     $http.get(fusio.baseUrl + 'backend/routes')
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.routes = data.entry;
       });
   };
@@ -44,7 +46,8 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     var search = encodeURIComponent($scope.search);
 
     $http.get(fusio.baseUrl + 'backend/action?startIndex=' + startIndex + '&search=' + search)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.actions = data.entry;
       });
@@ -54,7 +57,8 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     var routeId = $scope.routeId;
 
     $http.get(fusio.baseUrl + 'backend/action?search=' + encodeURIComponent(search) + '&routeId=' + routeId)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.startIndex = 0;
         $scope.actions = data.entry;
@@ -149,19 +153,21 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     }
 
     $http.post(fusio.baseUrl + 'backend/action', data)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 
   $http.get(fusio.baseUrl + 'backend/action/list')
-    .then(function(data) {
+    .then(function(response) {
+      var data = response.data;
       $scope.actions = data.actions;
 
       if (data.actions[0]) {
@@ -181,7 +187,8 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
   $scope.loadConfig = function() {
     if ($scope.action.class) {
       $http.get(fusio.baseUrl + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
-        .then(function(data) {
+        .then(function(response) {
+          var data = response.data;
           var containerEl = angular.element(document.querySelector('#config-form'));
           containerEl.children().remove();
 
@@ -216,14 +223,15 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     }
 
     $http.put(fusio.baseUrl + 'backend/action/' + action.id, data)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 
@@ -238,7 +246,8 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
   $scope.loadConfig = function() {
     if ($scope.action.class) {
       $http.get(fusio.baseUrl + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
-        .then(function(data) {
+        .then(function(response) {
+          var data = response.data;
           var containerEl = angular.element(document.querySelector('#config-form'));
           containerEl.children().remove();
 
@@ -253,7 +262,8 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
   $scope.execute = function(action) {
     $http.put(fusio.baseUrl + 'backend/action/' + action.id, action)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           var modalInstance = $uibModal.open({
@@ -273,13 +283,14 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
           });
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 
   $http.get(fusio.baseUrl + 'backend/action/' + action.id)
-    .then(function(data) {
+    .then(function(response) {
+      var data = response.data;
       if (angular.isArray(data.config)) {
         data.config = {};
       }
@@ -297,14 +308,15 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
   $scope.delete = function(action) {
     $http.delete(fusio.baseUrl + 'backend/action/' + action.id)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 
@@ -346,7 +358,8 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     };
 
     $http.post(fusio.baseUrl + 'backend/action/execute/' + action.id, data)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         // in case we have no body property we have probably a general error
         // message in this case we simply show the complete response as body
         var resp = {};

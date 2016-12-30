@@ -18,7 +18,8 @@ angular.module('fusioApp.config', ['ngRoute', 'ui.bootstrap'])
     var search = encodeURIComponent($scope.search);
 
     $http.get(fusio.baseUrl + 'backend/config?search=' + search)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.startIndex = 0;
         $scope.configs = data.entry;
@@ -30,7 +31,8 @@ angular.module('fusioApp.config', ['ngRoute', 'ui.bootstrap'])
     var search = encodeURIComponent($scope.search);
 
     $http.get(fusio.baseUrl + 'backend/config?startIndex=' + startIndex + '&search=' + search)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.configs = data.entry;
       });
@@ -38,7 +40,8 @@ angular.module('fusioApp.config', ['ngRoute', 'ui.bootstrap'])
 
   $scope.doSearch = function(search) {
     $http.get(fusio.baseUrl + 'backend/config?search=' + encodeURIComponent(search))
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.startIndex = 0;
         $scope.configs = data.entry;
@@ -94,14 +97,15 @@ angular.module('fusioApp.config', ['ngRoute', 'ui.bootstrap'])
     }
 
     $http.put(fusio.baseUrl + 'backend/config/' + data.id, data)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 

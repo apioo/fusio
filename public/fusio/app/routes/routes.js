@@ -18,7 +18,8 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
     var search = encodeURIComponent($scope.search);
 
     $http.get(fusio.baseUrl + 'backend/routes?search=' + search)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.startIndex = 0;
         $scope.routes = data.entry;
@@ -30,7 +31,8 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
     var search = encodeURIComponent($scope.search);
 
     $http.get(fusio.baseUrl + 'backend/routes?startIndex=' + startIndex + '&search=' + search)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.routes = data.entry;
       });
@@ -38,7 +40,8 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 
   $scope.doSearch = function(search) {
     $http.get(fusio.baseUrl + 'backend/routes?search=' + encodeURIComponent(search))
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.startIndex = 0;
         $scope.routes = data.entry;
@@ -146,25 +149,26 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
     }
 
     $http.post(fusio.baseUrl + 'backend/routes', data)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 
   $http.get(fusio.baseUrl + 'backend/action')
-    .then(function(data) {
-      $scope.actions = data.entry;
+    .then(function(response) {
+      $scope.actions = response.data.entry;
     });
 
   $http.get(fusio.baseUrl + 'backend/schema')
-    .then(function(data) {
-      $scope.schemas = data.entry;
+    .then(function(response) {
+      $scope.schemas = response.data.entry;
     });
 
   $scope.close = function() {
@@ -254,19 +258,21 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
     }
 
     $http.put(fusio.baseUrl + 'backend/routes/' + route.id, data)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 
   $http.get(fusio.baseUrl + 'backend/routes/' + route.id)
-    .then(function(data) {
+    .then(function(response) {
+      var data = response.data;
       // check and add missing methods
       if (data.config) {
         var config = [];
@@ -290,13 +296,13 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
     });
 
   $http.get(fusio.baseUrl + 'backend/action')
-    .then(function(data) {
-      $scope.actions = data.entry;
+    .then(function(response) {
+      $scope.actions = response.data.entry;
     });
 
   $http.get(fusio.baseUrl + 'backend/schema')
-    .then(function(data) {
-      $scope.schemas = data.entry;
+    .then(function(response) {
+      $scope.schemas = response.data.entry;
     });
 
   $scope.close = function() {
@@ -355,14 +361,15 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 
   $scope.delete = function(route) {
     $http.delete(fusio.baseUrl + 'backend/routes/' + route.id)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 

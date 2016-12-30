@@ -11,7 +11,7 @@ angular.module('fusioApp.logout', ['ngRoute'])
 
 .controller('LogoutCtrl', ['$scope', '$http', '$location', '$window', '$rootScope', 'fusio', function($scope, $http, $location, $window, $rootScope, fusio) {
 
-  var removeToken = function() {
+  var removeToken = function(response) {
     delete $http.defaults.headers.common['Authorization'];
 
     $window.sessionStorage.removeItem('fusio_access_token');

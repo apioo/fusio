@@ -31,7 +31,8 @@ angular.module('fusioApp.login', ['ngRoute'])
     };
 
     $http(req)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.loading = false;
         if (data.access_token) {
           $http.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
@@ -46,7 +47,8 @@ angular.module('fusioApp.login', ['ngRoute'])
           $scope.response = data.error_description ? data.error_description : 'Authentication failed';
         }
       })
-      .catch(function(data) {
+      .catch(function(response) {
+        var data = response.data;
         $scope.loading = false;
         $scope.response = data.error_description ? data.error_description : 'Authentication failed';
       });

@@ -19,11 +19,11 @@ angular.module('fusioApp.account', ['ngRoute'])
 
   $scope.updatePassword = function() {
     $http.put(fusio.baseUrl + 'backend/account/change_password', $scope.account)
-      .then(function(data) {
-        $scope.response = data;
+      .then(function(response) {
+        $scope.response = response.data;
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 

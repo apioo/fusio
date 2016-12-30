@@ -17,7 +17,8 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
 
   $scope.transform = function(source, format) {
     $http.post(fusio.baseUrl + 'backend/import/' + format, {schema: source})
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         if ('success' in data && data.success === false) {
           $scope.error = data.message;
           return;
@@ -27,7 +28,8 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
   
         $scope.openPreviewDialog(data);
       })
-      .catch(function(data) {
+      .catch(function(response) {
+        var data = response.data;
         if ('success' in data && data.success === false) {
           $scope.error = data.message;
         } else {
@@ -63,7 +65,8 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
 
   $scope.doProcess = function() {
     $http.post(fusio.baseUrl + 'backend/import/process', data)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         if ('success' in data && data.success === false) {
           $scope.error = data.message;
           return;
@@ -73,7 +76,8 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
   
         $uibModalInstance.close();
       })
-      .catch(function(data) {
+      .catch(function(response) {
+        var data = response.data;
         if ('success' in data && data.success === false) {
           $scope.error = data.message;
         } else {

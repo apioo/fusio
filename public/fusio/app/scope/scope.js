@@ -18,7 +18,8 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
     var search = encodeURIComponent($scope.search);
 
     $http.get(fusio.baseUrl + 'backend/scope?search=' + search)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.startIndex = 0;
         $scope.scopes = data.entry;
@@ -30,7 +31,8 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
     var search = encodeURIComponent($scope.search);
 
     $http.get(fusio.baseUrl + 'backend/scope?startIndex=' + startIndex + '&search=' + search)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.scopes = data.entry;
       });
@@ -38,7 +40,8 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
   $scope.doSearch = function(search) {
     $http.get(fusio.baseUrl + 'backend/scope?search=' + encodeURIComponent(search))
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.totalResults = data.totalResults;
         $scope.startIndex = 0;
         $scope.scopes = data.entry;
@@ -117,8 +120,8 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
   $scope.routes = [];
 
   $http.get(fusio.baseUrl + 'backend/routes?count=1024')
-    .then(function(data) {
-      $scope.routes = data.entry;
+    .then(function(response) {
+      $scope.routes = response.data.entry;
     });
 
   $scope.create = function(scope) {
@@ -147,14 +150,15 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
     data.routes = routes;
 
     $http.post(fusio.baseUrl + 'backend/scope', data)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 
@@ -176,7 +180,8 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
   $scope.loadRoutes = function() {
     $http.get(fusio.baseUrl + 'backend/routes?count=1024')
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         var routes = [];
         for (var i = 0; i < data.entry.length; i++) {
           var route = data.entry[i];
@@ -231,14 +236,15 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
     data.routes = routes;
 
     $http.put(fusio.baseUrl + 'backend/scope/' + scope.id, data)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 
@@ -251,8 +257,8 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
   };
 
   $http.get(fusio.baseUrl + 'backend/scope/' + scope.id)
-    .then(function(data) {
-      $scope.scope = data;
+    .then(function(response) {
+      $scope.scope = response.data;
 
       $scope.loadRoutes();
     });
@@ -265,14 +271,15 @@ angular.module('fusioApp.scope', ['ngRoute', 'ui.bootstrap'])
 
   $scope.delete = function(scope) {
     $http.delete(fusio.baseUrl + 'backend/scope/' + scope.id)
-      .then(function(data) {
+      .then(function(response) {
+        var data = response.data;
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .catch(function(data) {
-        $scope.response = data;
+      .catch(function(response) {
+        $scope.response = response.data;
       });
   };
 

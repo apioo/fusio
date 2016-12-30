@@ -54,8 +54,8 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
     }
 
     $http.get(fusio.baseUrl + 'backend/statistic/' + statistic + '?' + query)
-      .then(function(data) {
-        $scope.chart = data;
+      .then(function(response) {
+        $scope.chart = response.data;
       });
   };
 
@@ -105,13 +105,13 @@ angular.module('fusioApp.statistic', ['ngRoute', 'ui.bootstrap'])
   };
 
   $http.get(fusio.baseUrl + 'backend/routes')
-    .then(function(data) {
-      $scope.routes = data.entry;
+    .then(function(response) {
+      $scope.routes = response.data.entry;
     });
 
   $http.get(fusio.baseUrl + 'backend/app')
-    .then(function(data) {
-      $scope.apps = data.entry;
+    .then(function(response) {
+      $scope.apps = response.data.entry;
     });
 
 }]);

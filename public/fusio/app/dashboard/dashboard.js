@@ -19,33 +19,33 @@ angular.module('fusioApp.dashboard', ['ngRoute', 'chart.js'])
   var query = '?from=' + fromDate.toISOString() + '&to=' + toDate.toISOString();
 
   $http.get(fusio.baseUrl + 'backend/statistic/incoming_requests' + query)
-    .then(function(data) {
-      $scope.incomingRequests = data;
+    .then(function(response) {
+      $scope.incomingRequests = response.data;
     });
 
   $http.get(fusio.baseUrl + 'backend/statistic/most_used_routes' + query)
-    .then(function(data) {
-      $scope.mostUsedRoutes = data;
+    .then(function(response) {
+      $scope.mostUsedRoutes = response.data;
     });
 
   $http.get(fusio.baseUrl + 'backend/statistic/most_used_apps' + query)
-    .then(function(data) {
-      $scope.mostUsedApps = data;
+    .then(function(response) {
+      $scope.mostUsedApps = response.data;
     });
 
   $http.get(fusio.baseUrl + 'backend/dashboard/latest_requests')
-    .then(function(data) {
-      $scope.latestRequests = data.entry;
+    .then(function(response) {
+      $scope.latestRequests = response.data.entry;
     });
 
   $http.get(fusio.baseUrl + 'backend/dashboard/latest_apps')
-    .then(function(data) {
-      $scope.latestApps = data.entry;
+    .then(function(response) {
+      $scope.latestApps = response.data.entry;
     });
 
   $http.get(fusio.baseUrl + 'backend/statistic/errors_per_route' + query)
-    .then(function(data) {
-      $scope.errorsPerRoute = data;
+    .then(function(response) {
+      $scope.errorsPerRoute = response.data;
     });
 
 }]);
