@@ -16,22 +16,24 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
   $scope.success = false;
 
   $scope.transform = function(source, format) {
-    $http.post(fusio.baseUrl + 'backend/import/' + format, {schema: source}).success(function(data) {
-      if ('success' in data && data.success === false) {
-        $scope.error = data.message;
-        return;
-      } else {
-        $scope.error = null;
-      }
-
-      $scope.openPreviewDialog(data);
-    }).error(function(data) {
-      if ('success' in data && data.success === false) {
-        $scope.error = data.message;
-      } else {
-        $scope.error = 'An unknown error occured';
-      }
-    });
+    $http.post(fusio.baseUrl + 'backend/import/' + format, {schema: source})
+      .then(function(data) {
+        if ('success' in data && data.success === false) {
+          $scope.error = data.message;
+          return;
+        } else {
+          $scope.error = null;
+        }
+  
+        $scope.openPreviewDialog(data);
+      })
+      .catch(function(data) {
+        if ('success' in data && data.success === false) {
+          $scope.error = data.message;
+        } else {
+          $scope.error = 'An unknown error occured';
+        }
+      });
   };
 
   $scope.openPreviewDialog = function(data) {
@@ -60,22 +62,24 @@ angular.module('fusioApp.import', ['ngRoute', 'ui.bootstrap'])
   $scope.data = data;
 
   $scope.doProcess = function() {
-    $http.post(fusio.baseUrl + 'backend/import/process', data).success(function(data) {
-      if ('success' in data && data.success === false) {
-        $scope.error = data.message;
-        return;
-      } else {
-        $scope.error = null;
-      }
-
-      $uibModalInstance.close();
-    }).error(function(data) {
-      if ('success' in data && data.success === false) {
-        $scope.error = data.message;
-      } else {
-        $scope.error = 'An unknown error occured';
-      }
-    });
+    $http.post(fusio.baseUrl + 'backend/import/process', data)
+      .then(function(data) {
+        if ('success' in data && data.success === false) {
+          $scope.error = data.message;
+          return;
+        } else {
+          $scope.error = null;
+        }
+  
+        $uibModalInstance.close();
+      })
+      .catch(function(data) {
+        if ('success' in data && data.success === false) {
+          $scope.error = data.message;
+        } else {
+          $scope.error = 'An unknown error occured';
+        }
+      });
   };
 
   $scope.openRouteDialog = function(route) {

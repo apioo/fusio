@@ -17,29 +17,32 @@ angular.module('fusioApp.config', ['ngRoute', 'ui.bootstrap'])
   $scope.load = function() {
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio.baseUrl + 'backend/config?search=' + search).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.startIndex = 0;
-      $scope.configs = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/config?search=' + search)
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.startIndex = 0;
+        $scope.configs = data.entry;
+      });
   };
 
   $scope.pageChanged = function() {
     var startIndex = ($scope.startIndex - 1) * 16;
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio.baseUrl + 'backend/config?startIndex=' + startIndex + '&search=' + search).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.configs = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/config?startIndex=' + startIndex + '&search=' + search)
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.configs = data.entry;
+      });
   };
 
   $scope.doSearch = function(search) {
-    $http.get(fusio.baseUrl + 'backend/config?search=' + encodeURIComponent(search)).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.startIndex = 0;
-      $scope.configs = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/config?search=' + encodeURIComponent(search))
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.startIndex = 0;
+        $scope.configs = data.entry;
+      });
   };
 
   $scope.openUpdateDialog = function(config) {
@@ -91,13 +94,13 @@ angular.module('fusioApp.config', ['ngRoute', 'ui.bootstrap'])
     }
 
     $http.put(fusio.baseUrl + 'backend/config/' + data.id, data)
-      .success(function(data) {
+      .then(function(data) {
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .error(function(data) {
+      .catch(function(data) {
         $scope.response = data;
       });
   };

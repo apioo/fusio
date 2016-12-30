@@ -22,7 +22,7 @@ angular.module('fusioApp.logout', ['ngRoute'])
   };
 
   $http.post(fusio.baseUrl + 'authorization/revoke', null)
-    .success(removeToken)
-    .error(removeToken);
+    .then(removeToken)
+    .catch(removeToken);
 
 }]);

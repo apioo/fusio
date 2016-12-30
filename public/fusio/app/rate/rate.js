@@ -17,29 +17,32 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
   $scope.load = function() {
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio.baseUrl + 'backend/rate?search=' + search).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.startIndex = 0;
-      $scope.rates = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/rate?search=' + search)
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.startIndex = 0;
+        $scope.rates = data.entry;
+      });
   };
 
   $scope.pageChanged = function() {
     var startIndex = ($scope.startIndex - 1) * 16;
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio.baseUrl + 'backend/rate?startIndex=' + startIndex + '&search=' + search).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.rates = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/rate?startIndex=' + startIndex + '&search=' + search)
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.rates = data.entry;
+      });
   };
 
   $scope.doSearch = function(search) {
-    $http.get(fusio.baseUrl + 'backend/rate?search=' + encodeURIComponent(search)).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.startIndex = 0;
-      $scope.rates = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/rate?search=' + encodeURIComponent(search))
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.startIndex = 0;
+        $scope.rates = data.entry;
+      });
   };
 
   $scope.openCreateDialog = function() {
@@ -162,13 +165,13 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
     data.allocation = $scope.removeNullValuesFromAllocation(rate.allocation);
 
     $http.post(fusio.baseUrl + 'backend/rate', data)
-      .success(function(data) {
+      .then(function(data) {
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .error(function(data) {
+      .catch(function(data) {
         $scope.response = data;
       });
   };
@@ -305,19 +308,19 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
     data.allocation = $scope.removeNullValuesFromAllocation(rate.allocation);
 
     $http.put(fusio.baseUrl + 'backend/rate/' + rate.id, data)
-      .success(function(data) {
+      .then(function(data) {
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .error(function(data) {
+      .catch(function(data) {
         $scope.response = data;
       });
   };
 
   $http.get(fusio.baseUrl + 'backend/rate/' + rate.id)
-    .success(function(data) {
+    .then(function(data) {
       $scope.parseTimespan(data.timespan);
       data.allocation = $scope.addNullValuesToAllocation(data.allocation);
       $scope.rate = data;
@@ -462,13 +465,13 @@ angular.module('fusioApp.rate', ['ngRoute', 'ui.bootstrap'])
 
   $scope.delete = function(rate) {
     $http.delete(fusio.baseUrl + 'backend/rate/' + rate.id)
-      .success(function(data) {
+      .then(function(data) {
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .error(function(data) {
+      .catch(function(data) {
         $scope.response = data;
       });
   };

@@ -17,29 +17,32 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
   $scope.load = function() {
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio.baseUrl + 'backend/routes?search=' + search).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.startIndex = 0;
-      $scope.routes = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/routes?search=' + search)
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.startIndex = 0;
+        $scope.routes = data.entry;
+      });
   };
 
   $scope.pageChanged = function() {
     var startIndex = ($scope.startIndex - 1) * 16;
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio.baseUrl + 'backend/routes?startIndex=' + startIndex + '&search=' + search).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.routes = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/routes?startIndex=' + startIndex + '&search=' + search)
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.routes = data.entry;
+      });
   };
 
   $scope.doSearch = function(search) {
-    $http.get(fusio.baseUrl + 'backend/routes?search=' + encodeURIComponent(search)).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.startIndex = 0;
-      $scope.routes = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/routes?search=' + encodeURIComponent(search))
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.startIndex = 0;
+        $scope.routes = data.entry;
+      });
   };
 
   $scope.openCreateDialog = function() {
@@ -143,24 +146,24 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
     }
 
     $http.post(fusio.baseUrl + 'backend/routes', data)
-      .success(function(data) {
+      .then(function(data) {
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .error(function(data) {
+      .catch(function(data) {
         $scope.response = data;
       });
   };
 
   $http.get(fusio.baseUrl + 'backend/action')
-    .success(function(data) {
+    .then(function(data) {
       $scope.actions = data.entry;
     });
 
   $http.get(fusio.baseUrl + 'backend/schema')
-    .success(function(data) {
+    .then(function(data) {
       $scope.schemas = data.entry;
     });
 
@@ -251,19 +254,19 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
     }
 
     $http.put(fusio.baseUrl + 'backend/routes/' + route.id, data)
-      .success(function(data) {
+      .then(function(data) {
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .error(function(data) {
+      .catch(function(data) {
         $scope.response = data;
       });
   };
 
   $http.get(fusio.baseUrl + 'backend/routes/' + route.id)
-    .success(function(data) {
+    .then(function(data) {
       // check and add missing methods
       if (data.config) {
         var config = [];
@@ -287,12 +290,12 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
     });
 
   $http.get(fusio.baseUrl + 'backend/action')
-    .success(function(data) {
+    .then(function(data) {
       $scope.actions = data.entry;
     });
 
   $http.get(fusio.baseUrl + 'backend/schema')
-    .success(function(data) {
+    .then(function(data) {
       $scope.schemas = data.entry;
     });
 
@@ -352,13 +355,13 @@ angular.module('fusioApp.routes', ['ngRoute', 'ui.bootstrap'])
 
   $scope.delete = function(route) {
     $http.delete(fusio.baseUrl + 'backend/routes/' + route.id)
-      .success(function(data) {
+      .then(function(data) {
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .error(function(data) {
+      .catch(function(data) {
         $scope.response = data;
       });
   };

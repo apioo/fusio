@@ -20,17 +20,19 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     var search = encodeURIComponent($scope.search);
     var routeId = $scope.routeId;
 
-    $http.get(fusio.baseUrl + 'backend/action?search=' + search + '&routeId=' + routeId).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.startIndex = 0;
-      $scope.actions = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/action?search=' + search + '&routeId=' + routeId)
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.startIndex = 0;
+        $scope.actions = data.entry;
+      });
   };
 
   $scope.loadRoutes = function() {
-    $http.get(fusio.baseUrl + 'backend/routes').success(function(data) {
-      $scope.routes = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/routes')
+      .then(function(data) {
+        $scope.routes = data.entry;
+      });
   };
 
   $scope.changeRoute = function() {
@@ -41,20 +43,22 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     var startIndex = ($scope.startIndex - 1) * 16;
     var search = encodeURIComponent($scope.search);
 
-    $http.get(fusio.baseUrl + 'backend/action?startIndex=' + startIndex + '&search=' + search).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.actions = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/action?startIndex=' + startIndex + '&search=' + search)
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.actions = data.entry;
+      });
   };
 
   $scope.doSearch = function(search) {
     var routeId = $scope.routeId;
 
-    $http.get(fusio.baseUrl + 'backend/action?search=' + encodeURIComponent(search) + '&routeId=' + routeId).success(function(data) {
-      $scope.totalResults = data.totalResults;
-      $scope.startIndex = 0;
-      $scope.actions = data.entry;
-    });
+    $http.get(fusio.baseUrl + 'backend/action?search=' + encodeURIComponent(search) + '&routeId=' + routeId)
+      .then(function(data) {
+        $scope.totalResults = data.totalResults;
+        $scope.startIndex = 0;
+        $scope.actions = data.entry;
+      });
   };
 
   $scope.openCreateDialog = function() {
@@ -145,19 +149,19 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     }
 
     $http.post(fusio.baseUrl + 'backend/action', data)
-      .success(function(data) {
+      .then(function(data) {
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .error(function(data) {
+      .catch(function(data) {
         $scope.response = data;
       });
   };
 
   $http.get(fusio.baseUrl + 'backend/action/list')
-    .success(function(data) {
+    .then(function(data) {
       $scope.actions = data.actions;
 
       if (data.actions[0]) {
@@ -177,7 +181,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
   $scope.loadConfig = function() {
     if ($scope.action.class) {
       $http.get(fusio.baseUrl + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
-        .success(function(data) {
+        .then(function(data) {
           var containerEl = angular.element(document.querySelector('#config-form'));
           containerEl.children().remove();
 
@@ -212,13 +216,13 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     }
 
     $http.put(fusio.baseUrl + 'backend/action/' + action.id, data)
-      .success(function(data) {
+      .then(function(data) {
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .error(function(data) {
+      .catch(function(data) {
         $scope.response = data;
       });
   };
@@ -234,7 +238,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
   $scope.loadConfig = function() {
     if ($scope.action.class) {
       $http.get(fusio.baseUrl + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
-        .success(function(data) {
+        .then(function(data) {
           var containerEl = angular.element(document.querySelector('#config-form'));
           containerEl.children().remove();
 
@@ -249,7 +253,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
   $scope.execute = function(action) {
     $http.put(fusio.baseUrl + 'backend/action/' + action.id, action)
-      .success(function(data) {
+      .then(function(data) {
         $scope.response = data;
         if (data.success === true) {
           var modalInstance = $uibModal.open({
@@ -269,13 +273,13 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
           });
         }
       })
-      .error(function(data) {
+      .catch(function(data) {
         $scope.response = data;
       });
   };
 
   $http.get(fusio.baseUrl + 'backend/action/' + action.id)
-    .success(function(data) {
+    .then(function(data) {
       if (angular.isArray(data.config)) {
         data.config = {};
       }
@@ -293,13 +297,13 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
   $scope.delete = function(action) {
     $http.delete(fusio.baseUrl + 'backend/action/' + action.id)
-      .success(function(data) {
+      .then(function(data) {
         $scope.response = data;
         if (data.success === true) {
           $uibModalInstance.close(data);
         }
       })
-      .error(function(data) {
+      .catch(function(data) {
         $scope.response = data;
       });
   };
@@ -342,7 +346,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     };
 
     $http.post(fusio.baseUrl + 'backend/action/execute/' + action.id, data)
-      .success(function(data) {
+      .then(function(data) {
         // in case we have no body property we have probably a general error
         // message in this case we simply show the complete response as body
         var resp = {};
