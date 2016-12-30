@@ -1,5 +1,11 @@
 
-### 0.5.0
+### 0.6.0
+
+* Use chartjs 2.0
+* Use psx 3.0 components
+* Moved backend app to fusio/ folder to use less potential API paths
+
+### 0.5.0 (2016-11-17)
 
 * Added v8 processor action
 * Cleaned up engine
