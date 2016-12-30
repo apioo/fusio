@@ -25,14 +25,17 @@ exports.config = {
     // login
     browser.driver.get('http://127.0.0.1:8008/fusio/index.htm#/login');
 
-    var usernameInput = browser.driver.findElement(by.id('username'));
-    var passwordInput = browser.driver.findElement(by.id('password'));
-    var submitButton = browser.driver.findElement(by.css('button[type="submit"]'));
+    element(by.id('username')).getAttribute('innerHTML').then(function(value){
+      console.log(value);
+    });
 
-    return usernameInput.isPresent().then(function(){
-      usernameInput.sendKeys('Developer');
-      passwordInput.sendKeys('qf2vX10Ec3wFZHx0K1eL');
-      submitButton.click();
+    console.log('32');
+
+    return browser.driver.sleep(2000).then(function(){
+      console.log('35');
+      browser.driver.findElement(by.id('username')).sendKeys('Developer');
+      browser.driver.findElement(by.id('password')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
+      browser.driver.findElement(by.css('button[type="submit"]')).click();
 
       return browser.driver.wait(function() {
         return browser.driver.getCurrentUrl().then(function(url) {
