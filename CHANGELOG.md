@@ -1,5 +1,11 @@
 
-### 0.6.0
+### 0.6.1
+
+* Update json schema preview style
+* Add system status check command
+* Removed randomlib and use random_bytes to generate token
+
+### 0.6.0 (2017-01-01)
 
 * Use chartjs 2.0
 * Use psx 3.0 components
