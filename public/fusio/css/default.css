@@ -463,3 +463,8 @@ pre
     height:38px;
     overflow:hidden;
 }
+
+tags-input .tags
+{
+    border-radius:0;
+}

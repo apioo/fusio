@@ -30,6 +30,7 @@ module.exports = function(grunt){
           './bower_components/ng-showdown/dist/ng-showdown.min.js',
           './bower_components/angular-highlightjs/angular-highlightjs.min.js',
           './bower_components/angular-loading-bar/build/loading-bar.min.js',
+          './js/ng-tags-input/ng-tags-input.min.js',
           './dist/fusio-app.min.js',
           './dist/fusio-templates.min.js'
         ],
@@ -81,6 +82,8 @@ module.exports = function(grunt){
             './bower_components/angular-chart.js/dist/angular-chart.css',
             './bower_components/highlightjs/styles/github.css',
             './bower_components/angular-loading-bar/build/loading-bar.min.css',
+            './css/ng-tags-input/ng-tags-input.min.css',
+            './css/ng-tags-input/ng-tags-input.bootstrap.min.css',
             './css/default.css'
           ]
         }

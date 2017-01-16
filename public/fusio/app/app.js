@@ -4,6 +4,7 @@ var fusioApp = angular.module('fusioApp', [
   'ngRoute',
   'ngSanitize',
   'ngAnimate',
+  'ngTagsInput',
   'ui.bootstrap',
   'ui.ace',
   'chart.js',

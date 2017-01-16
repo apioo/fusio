@@ -27,7 +27,7 @@ fusioApp.factory('formBuilder', ['$sce', '$compile', function($sce, $compile) {
         form += '<div ui-ace="{mode: \'' + el.mode + '\'}" ng-model="' + propertyName + '.' + el.name + '" id="config-' + el.name + '" aria-describedby="' + helpId + '"></div>';
       } else if (el.element == 'http://fusio-project.org/ns/2015/form/input') {
         form += '<label for="config-' + el.name + '">' + el.title + ':</label>';
-        form += '<input type="' + el.type + '" name="config-' + el.name + '" id="config-' + el.name + '" ng-model="' + propertyName + '.' + el.name + '" value="' + (el.value ? el.value : '') + '" aria-describedby="' + helpId + '" class="form-control" />';
+        form += '<input type="' + el.type + '" name="config-' + el.name + '" id="config-' + el.name + '" ng-model="' + propertyName + '.' + el.name + '" aria-describedby="' + helpId + '" class="form-control" />';
       } else if (el.element == 'http://fusio-project.org/ns/2015/form/select') {
         form += '<label for="config-' + el.name + '">' + el.title + ':</label>';
         form += '<select name="config-' + el.name + '" id="config-' + el.name + '" ng-model="' + propertyName + '.' + el.name + '" aria-describedby="' + helpId + '" class="form-control">';
@@ -38,9 +38,12 @@ fusioApp.factory('formBuilder', ['$sce', '$compile', function($sce, $compile) {
           }
         }
         form += '</select>';
+      } else if (el.element == 'http://fusio-project.org/ns/2015/form/tag') {
+        form += '<label for="config-' + el.name + '">' + el.title + ':</label>';
+        form += '<tags-input ng-model="' + propertyName + '.' + el.name + '" placeholder="Add a ' + el.title + '"></tags-input>';
       } else {
         form += '<label for="config-' + el.name + '">' + el.title + ':</label>';
-        form += '<input type="text" name="config-' + el.name + '" id="config-' + el.name + '" ng-model="' + propertyName + '.' + el.name + '" value="' + (el.value ? el.value : '') + '" aria-describedby="' + helpId + '" class="form-control" />';
+        form += '<input type="text" name="config-' + el.name + '" id="config-' + el.name + '" ng-model="' + propertyName + '.' + el.name + '" aria-describedby="' + helpId + '" class="form-control" />';
       }
 
       if (el.help) {
@@ -52,6 +55,82 @@ fusioApp.factory('formBuilder', ['$sce', '$compile', function($sce, $compile) {
     form += '</div>';
 
     return $compile(form);
+  };
+
+  builder.preProcessModel = function(data, elements){
+    var model = {};
+
+    for (var i = 0; i < elements.length; i++) {
+      var el = elements[i];
+      if (!el.name || !el.title) {
+        continue;
+      }
+
+      if (!data[el.name]) {
+        continue;
+      }
+
+      var value = data[el.name];
+      if (el.element == 'http://fusio-project.org/ns/2015/form/textarea') {
+        model[el.name] = value;
+      } else if (el.element == 'http://fusio-project.org/ns/2015/form/input') {
+        model[el.name] = value;
+      } else if (el.element == 'http://fusio-project.org/ns/2015/form/select') {
+        model[el.name] = value;
+      } else if (el.element == 'http://fusio-project.org/ns/2015/form/tag') {
+        var tags = [];
+        if (angular.isArray(value)) {
+          tags = value.map(function(val){
+            return {
+              text: val
+            };
+          });
+        }
+
+        model[el.name] = tags;
+      } else {
+        model[el.name] = value;
+      }
+    }
+
+    return model;
+  };
+
+  builder.postProcessModel = function(data, elements){
+    var model = {};
+
+    for (var i = 0; i < elements.length; i++) {
+      var el = elements[i];
+      if (!el.name || !el.title) {
+        continue;
+      }
+
+      if (!data[el.name]) {
+        continue;
+      }
+
+      var value = data[el.name];
+      if (el.element == 'http://fusio-project.org/ns/2015/form/textarea') {
+        model[el.name] = value;
+      } else if (el.element == 'http://fusio-project.org/ns/2015/form/input') {
+        model[el.name] = value;
+      } else if (el.element == 'http://fusio-project.org/ns/2015/form/select') {
+        model[el.name] = value;
+      } else if (el.element == 'http://fusio-project.org/ns/2015/form/tag') {
+        var tags = [];
+        if (angular.isArray(value)) {
+          tags = value.map(function(val){
+            return val.text;
+          });
+        }
+
+        model[el.name] = tags;
+      } else {
+        model[el.name] = value;
+      }
+    }
+
+    return model;
   };
 
   return builder;

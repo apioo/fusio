@@ -136,20 +136,15 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     class: "",
     config: {}
   };
+  $scope.elements = [];
+  $scope.config = {};
   $scope.actions = [];
 
   $scope.create = function(action) {
     var data = angular.copy(action);
 
-    // cast every config value to string
-    if (angular.isObject(data.config)) {
-      var config = {};
-      for (var key in data.config) {
-        if (data.config.hasOwnProperty(key)) {
-          config[key] = '' + data.config[key];
-        }
-      }
-      data.config = config;
+    if (angular.isObject($scope.config)) {
+      data.config = formBuilder.postProcessModel($scope.config, $scope.elements);
     }
 
     $http.post(fusio.baseUrl + 'backend/action', data)
@@ -192,7 +187,9 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
           var containerEl = angular.element(document.querySelector('#config-form'));
           containerEl.children().remove();
 
-          var linkFn = formBuilder.buildHtml(data.element, 'action.config');
+          $scope.elements = data.element;
+          $scope.config = formBuilder.preProcessModel($scope.action.config, $scope.elements);
+          var linkFn = formBuilder.buildHtml($scope.elements, 'config');
           if (angular.isFunction(linkFn)) {
             var el = linkFn($scope);
             containerEl.append(el);
@@ -206,20 +203,15 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 .controller('ActionUpdateCtrl', ['$scope', '$http', '$uibModalInstance', '$uibModal', 'action', 'formBuilder', '$timeout', 'fusio', function($scope, $http, $uibModalInstance, $uibModal, action, formBuilder, $timeout, fusio) {
 
   $scope.action = action;
+  $scope.elements = [];
+  $scope.config = {};
   $scope.actions = [];
 
   $scope.update = function(action) {
     var data = angular.copy(action);
 
-    // cast every config value to string
-    if (angular.isObject(data.config)) {
-      var config = {};
-      for (var key in data.config) {
-        if (data.config.hasOwnProperty(key)) {
-          config[key] = '' + data.config[key];
-        }
-      }
-      data.config = config;
+    if (angular.isObject($scope.config)) {
+      data.config = formBuilder.postProcessModel($scope.config, $scope.elements);
     }
 
     $http.put(fusio.baseUrl + 'backend/action/' + action.id, data)
@@ -251,7 +243,9 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
           var containerEl = angular.element(document.querySelector('#config-form'));
           containerEl.children().remove();
 
-          var linkFn = formBuilder.buildHtml(data.element, 'action.config');
+          $scope.elements = data.element;
+          $scope.config = formBuilder.preProcessModel($scope.action.config, $scope.elements);
+          var linkFn = formBuilder.buildHtml($scope.elements, 'config');
           if (angular.isFunction(linkFn)) {
             var el = linkFn($scope);
             containerEl.append(el);
@@ -290,13 +284,7 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
 
   $http.get(fusio.baseUrl + 'backend/action/' + action.id)
     .then(function(response) {
-      var data = response.data;
-      if (angular.isArray(data.config)) {
-        data.config = {};
-      }
-
-      $scope.action = data;
-
+      $scope.action = response.data;
       $scope.loadConfig();
     });
 
