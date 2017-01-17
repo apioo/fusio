@@ -22,8 +22,8 @@ describe('Connection tests', function() {
     element(by.model('connection.name')).sendKeys('test-connection');
 
     var connectionOptions = element.all(by.options('conn.class as conn.name for conn in connections'));
-    expect(connectionOptions.get(0).getText()).toEqual('SQL-Connection');
-    expect(connectionOptions.get(1).getText()).toEqual('SQL-Connection (advanced)');
+    expect(connectionOptions.get(0).getText()).toEqual('SQL');
+    expect(connectionOptions.get(1).getText()).toEqual('SQL (advanced)');
     connectionOptions.get(1).click();
 
     browser.wait(EC.visibilityOf($('#config-url')), 5000);
@@ -47,7 +47,7 @@ describe('Connection tests', function() {
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
     expect(element(by.model('connection.name')).getAttribute('value')).toEqual('test-connection');
-    expect(element(by.model('connection.class')).getAttribute('value')).toEqual('Fusio\\Adapter\\Sql\\Connection\\DBALAdvanced');
+    expect(element(by.model('connection.class')).getAttribute('value')).toEqual('Fusio\\Adapter\\Sql\\Connection\\SqlAdvanced');
 
     $('button.btn-primary').click();
 

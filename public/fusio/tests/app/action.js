@@ -56,7 +56,7 @@ describe('Action tests', function() {
 
     browser.wait(EC.visibilityOf($('#config-statusCode')), 5000);
 
-    expect(element(by.model('action.config.statusCode')).getAttribute('value')).toEqual('200');
+    expect(element(by.model('config.statusCode')).getAttribute('value')).toEqual('200');
 
     $('button.btn-primary').click();
 
