@@ -63,38 +63,6 @@ describe('Routes tests', function() {
     browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
 
     expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
-
-    // test api
-    var asyncScript = browser.executeAsyncScript(function(callback){
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', '/test', true);
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-          callback(JSON.parse(xhr.responseText));
-        }
-      };
-      xhr.send('');
-    });
-
-    expect(asyncScript).toEqual({
-      totalResults: 2,
-      itemsPerPage: 16,
-      startIndex: 0,
-      entry: [
-        {
-          id: 2,
-          title: "bar",
-          content: "foo",
-          date: "2015-02-27 19:59:15"
-        },
-        {
-          id: 1,
-          title: "foo",
-          content: "bar",
-          date: "2015-02-27 19:59:15"
-        }
-      ]
-    });
   });
 
   it('Change status to production', function() {
