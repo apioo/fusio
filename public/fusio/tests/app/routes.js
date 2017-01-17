@@ -46,6 +46,82 @@ describe('Routes tests', function() {
     expect($('div.alert-success > div').getText()).toEqual('Route successful created');
   });
 
+  it('Change status to development', function() {
+    browser.get('#/routes');
+
+    var EC = protractor.ExpectedConditions;
+
+    element.all(by.css('div.fusio-options a:nth-child(3)')).first().click();
+
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+
+    var statusOptions = element.all(by.options('status.key as status.value for status in statuuus'));
+    statusOptions.get(0).click();
+
+    $('button.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
+
+    expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
+  });
+
+  it('Change status to production', function() {
+    browser.get('#/routes');
+
+    var EC = protractor.ExpectedConditions;
+
+    element.all(by.css('div.fusio-options a:nth-child(3)')).first().click();
+
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+
+    var statusOptions = element.all(by.options('status.key as status.value for status in statuuus'));
+    statusOptions.get(1).click();
+
+    $('button.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
+
+    expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
+  });
+
+  it('Change status to deprecated', function() {
+    browser.get('#/routes');
+
+    var EC = protractor.ExpectedConditions;
+
+    element.all(by.css('div.fusio-options a:nth-child(3)')).first().click();
+
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+
+    var statusOptions = element.all(by.options('status.key as status.value for status in statuuus'));
+    statusOptions.get(2).click();
+
+    $('button.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
+
+    expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
+  });
+
+  it('Change status to closed', function() {
+    browser.get('#/routes');
+
+    var EC = protractor.ExpectedConditions;
+
+    element.all(by.css('div.fusio-options a:nth-child(3)')).first().click();
+
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+
+    var statusOptions = element.all(by.options('status.key as status.value for status in statuuus'));
+    statusOptions.get(3).click();
+
+    $('button.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
+
+    expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
+  });
+
   it('Update route', function() {
     browser.get('#/routes');
 
