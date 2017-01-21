@@ -1,98 +1,74 @@
 module.exports = function(grunt){
   grunt.initConfig({
     concat: {
-      options: {
-        separator: ';\n',
-        process: function(src, filepath) {
-          return '// Source: ' + filepath + '\n' +
-            src.replace(/\/\/# sourceMappingURL=([A-z0-9\-\.\_]+)/g, '').trim();
-        }
-      },
-      dist: {
+      dist_js: {
+        options: {
+          separator: ';\n',
+          process: function(src, filepath) {
+            return '// Source: ' + filepath + '\n' +
+              src.replace(/\/\/# sourceMappingURL=([A-z0-9\-\.\_]+)/g, '').trim();
+          }
+        },
         src: [
-          './bower_components/ace-builds/src-min-noconflict/ace.js',
-          './bower_components/ace-builds/src-min-noconflict/mode-javascript.js',
-          './bower_components/ace-builds/src-min-noconflict/mode-json.js',
-          './bower_components/ace-builds/src-min-noconflict/mode-sql.js',
-          './bower_components/ace-builds/src-min-noconflict/mode-xml.js',
-          './bower_components/ace-builds/src-min-noconflict/worker-javascript.js',
-          './bower_components/ace-builds/src-min-noconflict/worker-json.js',
-          './bower_components/chart.js/dist/Chart.min.js',
-          './bower_components/showdown/dist/showdown.min.js',
-          './bower_components/highlightjs/highlight.pack.min.js',
-          './bower_components/angular/angular.min.js',
-          './bower_components/angular-route/angular-route.min.js',
-          './bower_components/angular-sanitize/angular-sanitize.min.js',
-          './bower_components/angular-animate/angular-animate.min.js',
-          './bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-          './bower_components/angular-ui-ace/ui-ace.min.js',
-          './bower_components/angular-chart.js/dist/angular-chart.min.js',
-          './bower_components/ng-showdown/dist/ng-showdown.min.js',
-          './bower_components/angular-highlightjs/angular-highlightjs.min.js',
-          './bower_components/angular-loading-bar/build/loading-bar.min.js',
-          './js/ng-tags-input/ng-tags-input.min.js',
-          './dist/fusio-app.min.js',
-          './dist/fusio-templates.min.js'
+          './node_modules/ace-builds/src-min-noconflict/ace.js',
+          './node_modules/ace-builds/src-min-noconflict/mode-javascript.js',
+          './node_modules/ace-builds/src-min-noconflict/mode-json.js',
+          './node_modules/ace-builds/src-min-noconflict/mode-sql.js',
+          './node_modules/ace-builds/src-min-noconflict/mode-xml.js',
+          './node_modules/ace-builds/src-min-noconflict/mode-yaml.js',
+          './node_modules/ace-builds/src-min-noconflict/worker-javascript.js',
+          './node_modules/ace-builds/src-min-noconflict/worker-json.js',
+          './dist/fusio-bundle.min.js',
+          './dist/fusio-templates.js'
         ],
         dest: './dist/fusio.min.js'
+      },
+      dist_css: {
+        options: {
+          separator: '\n',
+          process: function(src, filepath) {
+            return '/* Source: ' + filepath + ' */\n' +
+              src.replace(/\/\/# sourceMappingURL=([A-z0-9\-\.\_]+)/g, '').trim();
+          }
+        },
+        src: [
+          './css/bootstrap.min.css',
+          './css/bootstrap-theme.min.css',
+          './css/highlightjs-github.css',
+          './css/angular-loading-bar.min.css',
+          './css/ng-tags-input.min.css',
+          './css/ng-tags-input.bootstrap.min.css',
+          './css/default.css'
+        ],
+        dest: './dist/fusio.min.css'
       }
     },
     uglify: {
       options: {
-        banner: '/*\n fusio\n Copyright (C) 2015-2016 Christoph Kappestein\n License: AGPLv3\n*/\n',
+        banner: '/*\n fusio\n Copyright (C) 2015-2017 Christoph Kappestein\n License: AGPLv3\n*/\n',
         mangle: false
       },
       dist: {
         files: {
-          './dist/fusio-app.min.js': [
-            './app/app.js',
-            './app/account/change_password.js',
-            './app/login/login.js',
-            './app/logout/logout.js',
-            './app/dashboard/dashboard.js',
-            './app/routes/routes.js',
-            './app/schema/schema.js',
-            './app/action/action.js',
-            './app/config/config.js',
-            './app/connection/connection.js',
-            './app/app/app.js',
-            './app/log/log.js',
-            './app/rate/rate.js',
-            './app/user/user.js',
-            './app/scope/scope.js',
-            './app/statistic/statistic.js',
-            './app/import/import.js',
-            './js/FormBuilder.js',
-            './js/HelpLoader.js'
+          './dist/fusio-bundle.min.js': [
+            './dist/fusio-bundle.js'
           ]
         }
       }
     },
-    cssmin: {
-      options: {
-        shorthandCompacting: false,
-        roundingPrecision: -1,
-        rebase: ''
-      },
+    browserify: {
       dist: {
         files: {
-          './dist/fusio.min.css': [
-            './bower_components/bootstrap/dist/css/bootstrap.css',
-            './bower_components/bootstrap/dist/css/bootstrap-theme.css',
-            './bower_components/angular-chart.js/dist/angular-chart.css',
-            './bower_components/highlightjs/styles/github.css',
-            './bower_components/angular-loading-bar/build/loading-bar.min.css',
-            './css/ng-tags-input/ng-tags-input.min.css',
-            './css/ng-tags-input/ng-tags-input.bootstrap.min.css',
-            './css/default.css'
+          './dist/fusio-bundle.js': [
+            './app/app.js'
           ]
         }
       }
     },
     ngtemplates: {
       fusioApp: {
-        src: 'app/*/*.html',
-        dest: 'dist/fusio-templates.min.js',
+        src: 'app/controller/*/*.html',
+        dest: 'dist/fusio-templates.js',
         options: {
           htmlmin: {
             collapseBooleanAttributes: true,
@@ -111,9 +87,9 @@ module.exports = function(grunt){
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-angular-templates');
+  grunt.loadNpmTasks('grunt-browserify');
 
-  grunt.registerTask('default', ['uglify', 'ngtemplates', 'concat', 'cssmin']);
+  grunt.registerTask('default', ['browserify', 'ngtemplates', 'uglify', 'concat']);
 
 };

@@ -1,5 +1,6 @@
 'use strict';
 
+var angular = require('angular');
 var fusioApp = angular.module('fusioApp', [
   'ngRoute',
   'ngSanitize',
@@ -29,7 +30,37 @@ var fusioApp = angular.module('fusioApp', [
   'fusioApp.user'
 ]);
 
-fusioApp.value('version', 'v0.3');
+require('angular-route');
+require('angular-sanitize');
+require('angular-animate');
+require('angular-ui-bootstrap');
+require('angular-ui-ace');
+require('angular-chart.js');
+require('angular-loading-bar');
+require('angular-highlightjs');
+require('ng-tags-input');
+require('ng-showdown');
+require('./controller/account');
+require('./controller/action');
+require('./controller/app');
+require('./controller/config');
+require('./controller/connection');
+require('./controller/dashboard');
+require('./controller/import');
+require('./controller/log');
+require('./controller/login');
+require('./controller/logout');
+require('./controller/rate');
+require('./controller/routes');
+require('./controller/schema');
+require('./controller/scope');
+require('./controller/statistic');
+require('./controller/user');
+
+fusioApp.value('version', require('../package.json').version);
+
+fusioApp.factory('formBuilder', require('./service/form_builder'));
+fusioApp.factory('helpLoader', require('./service/help_loader'));
 
 fusioApp.provider('fusio', function() {
   var baseUrl = null;
@@ -115,3 +146,9 @@ fusioApp.run(function($rootScope, $window, $location, $http, helpLoader, version
   $rootScope.version = version;
 
 });
+
+if (window) {
+  window.fusioApp = fusioApp;
+}
+
+module.exports = fusioApp;

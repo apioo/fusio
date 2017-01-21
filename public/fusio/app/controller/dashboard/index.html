@@ -1,0 +1,68 @@
+
+<h1>Dashboard</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default fusio-panel">
+            <div class="panel-heading">Incoming request chart</div>
+            <div class="panel-body">
+                <canvas class="chart chart-line" height="220" chart-options="{'responsive':true,'maintainAspectRatio':false}" chart-data="incomingRequests.data" chart-labels="incomingRequests.labels" chart-series="incomingRequests.series"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default fusio-panel">
+            <div class="panel-heading">Most used routes</div>
+            <div class="panel-body">
+                <canvas class="chart chart-line" height="220" chart-options="{'responsive':true,'maintainAspectRatio':false}" chart-data="mostUsedRoutes.data" chart-labels="mostUsedRoutes.labels" chart-series="mostUsedRoutes.series"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default fusio-panel">
+            <div class="panel-heading">Most used apps</div>
+            <div class="panel-body">
+                <canvas class="chart chart-line" height="220" chart-options="{'responsive':true,'maintainAspectRatio':false}" chart-data="mostUsedApps.data" chart-labels="mostUsedApps.labels" chart-series="mostUsedApps.series"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default fusio-panel">
+            <div class="panel-heading">Latest requests</div>
+            <div class="panel-body">
+                <table class="table">
+                <tbody>
+                <tr ng-repeat="request in latestRequests">
+                    <td>{{request.path}}</td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default fusio-panel">
+            <div class="panel-heading">Latest apps</div>
+            <div class="panel-body">
+                <table class="table">
+                <tbody>
+                <tr ng-repeat="app in latestApps">
+                    <td>{{app.name}}</td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default fusio-panel">
+            <div class="panel-heading">Errors per route</div>
+            <div class="panel-body">
+                <canvas class="chart chart-line" height="220" chart-options="{'responsive':true,'maintainAspectRatio':false}" chart-data="errorsPerRoute.data" chart-labels="errorsPerRoute.labels" chart-series="errorsPerRoute.series"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

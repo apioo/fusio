@@ -213,11 +213,6 @@ pre
 {
 }
 
-.fusio-panel .chart
-{
-    height:220px;
-}
-
 .fusio-login
 {
     background-color:#021c35;
@@ -277,11 +272,6 @@ pre
 {
     padding:6px;
     margin-bottom:8px;
-}
-
-.fusio-statistic .chart
-{
-    height:400px;
 }
 
 .fusio-route-path
