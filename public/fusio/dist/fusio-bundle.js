@@ -85260,14 +85260,11 @@ if (typeof module !== 'undefined' && module.exports) {
 },{}],302:[function(require,module,exports){
 module.exports={
   "name": "fusio",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "private": true,
   "main": "Gruntfile.js",
   "author": "Christoph Kappestein",
   "license": "AGPLv3",
-  "scripts": {
-    "build": "browserify src/app.js -o dist/fusio.js"
-  },
   "dependencies": {
     "ace-builds": "1.2.*",
     "angular": "1.5.*",
