@@ -1,8 +1,13 @@
 _Ever growing list of ideas and thoughts howto improve and extend Fusio. Topics_ 
 _which are likely to be implemented are moved to a seperate github issue_
 
-### 0.5
+### 0.6
 
+- [ ] When creating an connection verify that the connection works #2
+      Add a PingableInterface to connection which support this and add check
+      to the service
+- [ ] Add a general log ui besides the request log where a user can see all 
+      system logs
 - [ ] Add option to set the status of an action or connection to disabled so it 
       can not be changed
 - [ ] Extend API controller test cases to 100%
@@ -12,9 +17,6 @@ _which are likely to be implemented are moved to a seperate github issue_
       Is this ok or should we add a check which tracks installed adapters?
 - [ ] We need a new app which only handles authorization and app management 
       especially for one page web apps
-- [ ] Build elektron app (http://electron.atom.io/) around backend
-- [ ] Add doc endpoints where a user can create tutorials which are listed on
-      the developer page
 - [ ] Simplify creating JSONSchema schemas for the request/response
   - [ ] A option to create a JSONSchema from a database table
   - [ ] A option to create a JSONSchema from a JSON string (see http://jsonschema.net/#/)
@@ -28,8 +30,6 @@ _which are likely to be implemented are moved to a seperate github issue_
 - [ ] Add consumer and documentation protractor tests
 - [ ] Maybe we need to handle the idle status in the backend through
       https://github.com/HackedByChinese/ng-idle
-- [ ] Improve cache action add option to specific get or uri parameters which
-      come into the cache key
 - [ ] App button to regenerate app key and secret
   - [ ] We need this option also on the consumer site
 - [ ] Consumer if access was already granted dont ask the user again instead 
@@ -40,8 +40,9 @@ _which are likely to be implemented are moved to a seperate github issue_
       interoperability
 - [ ] Add forms endpoint. The user can select a route, request method and an 
       input field which contains the form format.
-      - Maybe based on https://github.com/joshfire/jsonform
-      - http://angular-formly.com/#/
+    - Maybe based on https://github.com/joshfire/jsonform
+    - http://angular-formly.com/#/
+    - https://github.com/mozilla-services/react-jsonschema-form
   - [ ] Add a html endpoint which can render a form for an API endpoint for 
         humans to enter. This could be embeded per iframe in a website etc.
   - [ ] We need a new point forms. There a user can create a form for a schema.
@@ -61,31 +62,26 @@ _which are likely to be implemented are moved to a seperate github issue_
       calls to the api
 - [ ] Consumer login beside GitHub, Facebook, etc. provide a way to support 
       other login providers i.e. (LDAP)
-- [ ] Add support for multiple other database backends. We should probably move
-      these connections into seperate adapters.
-  - [ ] CouchDB
-  - [ ] Neo4j
-  - [ ] Cassandra
-  - [ ] Elasticsearch
-- [ ] Test message queues and probably move them also to a seperate adapter
-  - [ ] RabbitMQ
-  - [ ] Beanstalkd
-- [ ] Add phpinfo action
+- [ ] ~~Add phpinfo action~~
 - [ ] Add mail action which sends a mail using the provided data
-- [ ] A option to configure a memcache server in the config
+- [ ] Add connections to different API providers i.e. Google
+  - [ ] Probably add OAuth2 connection which can connect to any OAuth2 
+        compatible REST API
+- [x] A option to configure a memcache server in the config
+      Is possible through the psx config
 - [ ] System export fix sort so that i.e. schemas which refer no other schema
       are at the top 
-- [ ] Add docker and vagrant box to easy test and deploy fusio
-- [ ] Add function to measure execution time of an action add also additional
-      chart to the statistics panel which shows slow actions. Maybe we should
-      add a debug mode where those metrics are measured
+- [x] Add docker and vagrant box to easy test and deploy fusio. We have a docker
+      image a vagrant box is not needed
+- [ ] Add general API performance panel where we measure the execution time of 
+      each endpoint
 - [ ] Add option to get and use a refresh token to extend the life time of an 
       access token
-- [ ] When creating an connection verify that the connection works #2
 - [ ] Add an API console where it is possible to test the API #7
-  - [ ] Use http://schemaform.io/ to build a form based on a jsonschems to 
-        submit data to the endpoint
-        https://github.com/joshfire/jsonform
+  - [ ] Build ui form based on the json schema
+    - http://schemaform.io/
+    - https://github.com/joshfire/jsonform
+    - https://github.com/mozilla-services/react-jsonschema-form
 - [ ] Add different roles for the backend. I.e. an admin/manager and developer.
       A developer account can only edit specific entries
   - [ ] Probably we need a interface for developers. A editor view where the
@@ -97,6 +93,8 @@ _which are likely to be implemented are moved to a seperate github issue_
         action/schema with filtered route id
   - [ ] Probably use https://github.com/nickperkinslondon/angular-bootstrap-nav-tree
 - [ ] Write backend in TypeScript JS6 support transition to Angular2
+  - [x] We have transition to browserify so we could easily use the typescript
+        processor
 - [ ] Add system log where every login and system change is shown
   - [ ] Add login bruteforce protection. Therefor we must log the ip of every 
         login attempt
@@ -114,13 +112,13 @@ _which are likely to be implemented are moved to a seperate github issue_
         There is an API which we cna use to request specific tags
   - [ ] Extend the documentation howto write an adapter
 - [ ] Build new adapters
-  - [ ] Add action which builds a REST API from a table where a user only needs 
+  - [x] Add action which builds a REST API from a table where a user only needs 
         to provide the table name. The action needs two routes /table and 
         /table/:id
   - [x] Add SOAP action
   - [ ] Add OData action
-  - [ ] Add an action merge which combines the result of two actions into one 
-        result (This is probably already possible through the transform action)
+  - [ ] ~~Add an action merge which combines the result of two actions into one 
+        result (This is probably already possible through the transform action)~~
   - [ ] Build adapters for popular systems i.e. wordpress/drupal etc.
   - [ ] Gateways to other systems which dont have an API
   - [ ] Gateways to complex systems i.e. sharepoint
@@ -144,14 +142,17 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] Howto setup Fusio
   - [ ] Howto cache response of a slow action
   - [ ] Create API based on API spec swagger/RAML
+- [ ] Add training howto develop a javascript app based on Fusio
 - [ ] Add use case section to website
 - [ ] Add a training section to fusio-project.org similar to:
       https://developer.android.com/training/basics/firstapp/creating-project.html
 - [ ] Provide a video with a installation and demo about the system
+- [ ] We must host the demo system somewhere
+- [ ] Extend manual
+- [ ] Maybe create icon
 - [x] Register domain maybe fusio-api.org or fusio-project.org
 - [x] Add a online demo system
 - [ ] ~~Add beta phase on the website. Where users can enter an email for an invite~~
-- [ ] Extend manual
 - [x] Setup discourse forum (we have a google group)
 - [ ] For the stable release write about Fusio at 
   - [ ] http://nordicapis.com/create-with-us/
@@ -162,6 +163,22 @@ _which are likely to be implemented are moved to a seperate github issue_
 
 ### Archive
 
+- [x] Build elektron app (http://electron.atom.io/) around backend
+- [x] Add support for multiple other database backends. We should probably move
+      these connections into seperate adapters.
+  - [ ] ~~CouchDB~~
+  - [x] Neo4j
+  - [x] Cassandra
+  - [x] Elasticsearch
+- [x] Test message queues and probably move them also to a seperate adapter
+  - [x] RabbitMQ
+  - [x] Beanstalkd
+- [ ] ~~Improve cache action add option to specific get or uri parameters which
+      come into the cache key~~ The cache action was removed
+- [ ] ~~Add doc endpoints where a user can create tutorials which are listed on
+      the developer page~~ This can be done by modifying the js app
+- [x] If a connection is referenced in an adapter we probably need to provide a
+      way to change this connection
 - [x] Add action which can build a REST API for a table
 - [x] Import allow swagger format (probably wait for swagger v3?)
 - [ ] ~~Adapter if we reference a connection in the definition the connection may 
