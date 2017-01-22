@@ -1,6 +1,13 @@
 
-### 0.6.1
+### 0.6.2
 
+* Fixed user system check
+* Transition backend app to browserify and remove bower_components
+
+### 0.6.1 (2017-01-18)
+
+* Added config tag form
+* Action and connection config allow array values
 * Update json schema preview style
 * Add system status check command
 * Removed randomlib and use random_bytes to generate token
