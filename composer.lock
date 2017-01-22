@@ -716,16 +716,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v0.6.2",
+            "version": "v0.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "22aa8a0a33ae4f46d1b6f6f111889436accf5644"
+                "reference": "dd1382cd66c0bbff5c8a742a17aec51b008ce917"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/22aa8a0a33ae4f46d1b6f6f111889436accf5644",
-                "reference": "22aa8a0a33ae4f46d1b6f6f111889436accf5644",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/dd1382cd66c0bbff5c8a742a17aec51b008ce917",
+                "reference": "dd1382cd66c0bbff5c8a742a17aec51b008ce917",
                 "shasum": ""
             },
             "require": {
@@ -759,7 +759,7 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2017-01-15T20:36:01+00:00"
+            "time": "2017-01-22T06:58:37+00:00"
         },
         {
             "name": "fusio/impl",
