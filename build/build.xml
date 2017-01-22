@@ -124,7 +124,9 @@
         <delete file="${build}/public/fusio/index_dev.htm" />
         <delete file="${build}/public/fusio/Gruntfile.js" />
         <delete file="${build}/public/fusio/package.json" />
-        <delete file="${build}/public/fusio/dist/fusio-app.min.js" />
+        <delete file="${build}/public/fusio/dist/fusio-bundle.js" />
+        <delete file="${build}/public/fusio/dist/fusio-bundle.min.js" />
+        <delete file="${build}/public/fusio/dist/fusio-templates.js" />
         <delete file="${build}/public/fusio/dist/fusio-templates.min.js" />
         <delete includeemptydirs="true">
             <fileset dir="${build}/cache" includes="*" />
