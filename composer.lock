@@ -285,16 +285,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.7",
+            "version": "v2.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "3a351369582dade60c750e2cef540eb7b568e6b3"
+                "reference": "0d2f8187d4b4c7b72d8e2acba359e25c36feaf5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/3a351369582dade60c750e2cef540eb7b568e6b3",
-                "reference": "3a351369582dade60c750e2cef540eb7b568e6b3",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/0d2f8187d4b4c7b72d8e2acba359e25c36feaf5e",
+                "reference": "0d2f8187d4b4c7b72d8e2acba359e25c36feaf5e",
                 "shasum": ""
             },
             "require": {
@@ -352,7 +352,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-01-14T21:05:28+00:00"
+            "time": "2017-01-19T13:27:33+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -763,16 +763,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v0.6.3",
+            "version": "v0.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "11aaa52b34b5acb30c9772f1e4bac94bddcfff04"
+                "reference": "0ac12ebcf9e80a30e9f2d823c1e9165a9ccae8ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/11aaa52b34b5acb30c9772f1e4bac94bddcfff04",
-                "reference": "11aaa52b34b5acb30c9772f1e4bac94bddcfff04",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/0ac12ebcf9e80a30e9f2d823c1e9165a9ccae8ed",
+                "reference": "0ac12ebcf9e80a30e9f2d823c1e9165a9ccae8ed",
                 "shasum": ""
             },
             "require": {
@@ -810,7 +810,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-01-15T23:22:27+00:00"
+            "time": "2017-01-22T06:30:10+00:00"
         },
         {
             "name": "jms/metadata",
@@ -2754,16 +2754,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "1.3.8",
+            "version": "1.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "d9c1fd7c4b024179d49faf367da544b4eef7cfe8"
+                "reference": "d5d74ca5548753e0e427fcffca89b134943bac89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/d9c1fd7c4b024179d49faf367da544b4eef7cfe8",
-                "reference": "d9c1fd7c4b024179d49faf367da544b4eef7cfe8",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/d5d74ca5548753e0e427fcffca89b134943bac89",
+                "reference": "d5d74ca5548753e0e427fcffca89b134943bac89",
                 "shasum": ""
             },
             "require": {
@@ -2800,7 +2800,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2017-01-05T21:44:28+00:00"
+            "time": "2017-01-17T16:18:33+00:00"
         }
     ],
     "packages-dev": [
@@ -3112,16 +3112,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "4.0.4",
+            "version": "4.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "c14196e64a78570034afd0b7a9f3757ba71c2a0a"
+                "reference": "c19cfc7cbb0e9338d8c469c7eedecc2a428b0971"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c14196e64a78570034afd0b7a9f3757ba71c2a0a",
-                "reference": "c14196e64a78570034afd0b7a9f3757ba71c2a0a",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c19cfc7cbb0e9338d8c469c7eedecc2a428b0971",
+                "reference": "c19cfc7cbb0e9338d8c469c7eedecc2a428b0971",
                 "shasum": ""
             },
             "require": {
@@ -3171,7 +3171,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-12-20T15:22:42+00:00"
+            "time": "2017-01-20T15:06:43+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
