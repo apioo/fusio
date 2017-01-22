@@ -1,5 +1,9 @@
 
-### 0.6.2
+### 0.6.3 (2017-01-22)
+
+* Update v8 adapter
+
+### 0.6.2 (2017-01-22)
 
 * Fixed user system check
 * Transition backend app to browserify and remove bower_components
