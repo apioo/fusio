@@ -17,8 +17,11 @@
     fusioApp.config(['fusioProvider', function(fusioProvider) {
         /**
          * Url to the Fusio API endpoint. Change this to the fitting url to the
-         * backend API. If not provided Fusio will try to guess the correct url
+         * backend API. If not provided Fusio will try to guess the correct url.
          * I.e.: http://127.0.0.1/projects/fusio/public/index.php/
+         *
+         * If you change the first argument of guessFusioEndpointUrl from false
+         * to true all API calls are made without index.php/
          */
         var fusioUrl = fusioProvider.guessFusioEndpointUrl(false);
 
