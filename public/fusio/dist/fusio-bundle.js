@@ -3501,6 +3501,10 @@ module.exports = function($scope, $http, $uibModal, fusio) {
   };
 
   $scope.openUpdateDialog = function(scope) {
+    if (scope.id <= 3) {
+      return;
+    }
+
     var modalInstance = $uibModal.open({
       size: 'lg',
       backdrop: 'static',
@@ -3521,6 +3525,10 @@ module.exports = function($scope, $http, $uibModal, fusio) {
   };
 
   $scope.openDeleteDialog = function(scope) {
+    if (scope.id <= 3) {
+      return;
+    }
+
     var modalInstance = $uibModal.open({
       size: 'lg',
       backdrop: 'static',
@@ -85415,7 +85423,9 @@ module.exports={
     "jscs": "^3.0.7",
     "jshint": "^2.9.2",
     "protractor": "~2.5.1",
-    "protractor-console-plugin": "^0.1.1"
+    "protractor-console-plugin": "^0.1.1",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
   }
 }
 
