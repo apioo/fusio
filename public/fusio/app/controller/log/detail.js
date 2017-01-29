@@ -4,20 +4,25 @@ module.exports = function($scope, $http, $uibModal, $uibModalInstance, fusio, lo
 
   $scope.log = log;
 
-  $scope.statusLineOpen = true;
-  $scope.headerOpen = true;
-  $scope.bodyOpen = false;
-  $scope.errorsOpen = false;
-
   $scope.close = function() {
     $uibModalInstance.dismiss('cancel');
   };
 
-  $scope.openTraceDialog = function(error) {
-    $uibModal.open({
-      size: 'md',
+  $scope.openDetailDialog = function(error) {
+    var modalInstance = $uibModal.open({
+      size: 'lg',
       backdrop: 'static',
-      template: '<div class="modal-body"><pre>' + error.trace + '</pre></div>'
+      templateUrl: 'app/controller/error/detail.html',
+      controller: 'ErrorDetailCtrl',
+      resolve: {
+        error: function() {
+          return error;
+        }
+      }
+    });
+
+    modalInstance.result.then(function(response) {
+    }, function() {
     });
   };
 

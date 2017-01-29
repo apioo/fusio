@@ -5,29 +5,41 @@
 
 <div class="modal-body">
     <uib-accordion close-others="false">
-        <div uib-accordion-group class="panel-default" is-open="statusLineOpen">
-            <uib-accordion-heading>Status-Line <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': statusLineOpen, 'glyphicon-chevron-right': !statusLineOpen}"></i></uib-accordion-heading>
-            <pre style="background-color:#fff">{{log.method}} {{log.path}}</pre>
-        </div>
-        <div uib-accordion-group class="panel-default" is-open="headerOpen">
-            <uib-accordion-heading>Header <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': headerOpen, 'glyphicon-chevron-right': !headerOpen}"></i></uib-accordion-heading>
+        <div uib-accordion-group class="panel-default" heading="Header" is-open="true">
             <pre style="background-color:#fff">{{log.header}}</pre>
         </div>
-        <div uib-accordion-group class="panel-default" is-open="bodyOpen" ng-if="log.body">
-            <uib-accordion-heading>Body <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': bodyOpen, 'glyphicon-chevron-right': !bodyOpen}"></i></uib-accordion-heading>
+        <div uib-accordion-group class="panel-default" heading="Body" is-open="true" ng-if="log.body">
             <pre style="background-color:#fff">{{log.body}}</pre>
         </div>
-        <div uib-accordion-group class="panel-default" is-open="errorsOpen" ng-if="log.errors.length > 0">
-            <uib-accordion-heading>Errors <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': errorsOpen, 'glyphicon-chevron-right': !errorsOpen}"></i></uib-accordion-heading>
-            <ul>
-                <li ng-repeat="error in log.errors">
-                    <button class="btn btn-default pull-right" ng-click="openTraceDialog(error)">Trace</button>
-                    <b>{{error.message}}</b>
-                    <p>in {{error.file}} on {{error.line}}</p>
-                </li>
-            </ul>
-        </div>
     </uib-accordion>
+
+    <div ng-if="log.errors.length > 0">
+        <div class="fusio-grid">
+            <table class="table">
+                <colgroup>
+                    <col width="*" />
+                    <col width="50" />
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>Message</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="error in log.errors">
+                    <td>{{error.message}}</td>
+                    <td>
+                        <div class="fusio-options">
+                            <a ng-click="openDetailDialog(error)" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
 
     <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
 </div>

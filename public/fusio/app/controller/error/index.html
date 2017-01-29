@@ -1,0 +1,46 @@
+
+<h1>Error</h1>
+
+<div class="fusio-search">
+    <form name="errorsSearchForm" ng-submit="doSearch(search)">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="search" placeholder="Search i.e. message" />
+            <div class="input-group-btn">
+                <a class="btn btn-default" ng-click="help.showDialog('help/error.md')"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="fusio-grid">
+    <table class="table">
+    <colgroup>
+        <col width="*" />
+        <col width="150" />
+        <col width="150" />
+        <col width="50" />
+    </colgroup>
+    <thead>
+    <tr>
+        <th>Message</th>
+        <th>Path</th>
+        <th>Date</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="error in errors">
+        <td>{{error.message}}</td>
+        <td><div style="overflow:hidden;width:150px;white-space:nowrap;" title="{{error.path}}">{{error.path}}</div></td>
+        <td>{{error.date | date: 'short'}}</td>
+        <td>
+            <div class="fusio-options">
+                <a ng-click="openDetailDialog(error)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+
+<uib-pagination total-items="totalResults" items-per-page="16" ng-model="startIndex" ng-change="pageChanged()" max-size="10"></uib-pagination>

@@ -1,0 +1,18 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Error</h3>
+</div>
+
+<div class="modal-body">
+    <uib-accordion close-others="false">
+        <div uib-accordion-group class="panel-default" heading="Error" is-open="true">
+            <b>{{error.message}}</b>
+            <p>in {{error.file}} on {{error.line}}</p>
+        </div>
+        <div uib-accordion-group class="panel-default" heading="Trace" is-open="true">
+            <pre style="background-color:#fff">{{error.trace}}</pre>
+        </div>
+    </uib-accordion>
+
+    <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+</div>
