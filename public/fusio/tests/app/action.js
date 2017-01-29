@@ -83,4 +83,30 @@ describe('Action tests', function() {
     expect($('div.alert-success > div').getText()).toEqual('Action successful deleted');
   });
 
+  it('Create action routes', function() {
+    browser.get('#/action');
+
+    var EC = protractor.ExpectedConditions;
+
+    $('a.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+
+    element(by.model('action.name')).sendKeys('app-action');
+
+    var actionOptions = element.all(by.options('action.class as action.name for action in actions'));
+    actionOptions.get(0).click();
+
+    browser.wait(EC.visibilityOf($('#config-connection')), 5000);
+
+    element(by.cssContainingText('#config-connection option', 'app-connection')).click();
+    element(by.css('#config-table')).sendKeys('app_news');
+
+    $('button.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
+
+    expect($('div.alert-success > div').getText()).toEqual('Action successful created');
+  });
+
 });

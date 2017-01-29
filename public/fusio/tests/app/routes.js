@@ -1,5 +1,7 @@
 'use strict';
 
+var http = require('request-promise');
+
 describe('Routes tests', function() {
 
   it('List routes', function() {
@@ -33,9 +35,10 @@ describe('Routes tests', function() {
 
     var actionOptions = element.all(by.options('action.id as action.name for action in actions'));
     expect(actionOptions.get(0).getText()).toEqual('');
-    expect(actionOptions.get(1).getText()).toEqual('Sql-Table');
-    expect(actionOptions.get(2).getText()).toEqual('Util-Static-Response');
-    expect(actionOptions.get(3).getText()).toEqual('Welcome');
+    expect(actionOptions.get(1).getText()).toEqual('app-action');
+    expect(actionOptions.get(2).getText()).toEqual('Sql-Table');
+    expect(actionOptions.get(3).getText()).toEqual('Util-Static-Response');
+    expect(actionOptions.get(4).getText()).toEqual('Welcome');
 
     actionOptions.get(1).click();
 
@@ -63,6 +66,32 @@ describe('Routes tests', function() {
     browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
 
     expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
+
+    // make a request to the endpoint
+    expect(http({
+      method: 'GET',
+      // http://127.0.0.1/projects/fusio/public/fusio/index.htm
+      uri: browser.baseUrl.replace('/fusio/index.htm', '/index.php/test'),
+      headers: {
+        'User-Agent': 'Fusio-Test'
+      },
+      json: true
+    })).toEqual({
+      totalResults: 2,
+      itemsPerPage: 16,
+      startIndex: 0,
+      entry: [{
+        id: '2',
+        title: 'bar',
+        content: 'foo',
+        date: '2015-02-27 19:59:15'
+      }, {
+        id: '1',
+        title: 'foo',
+        content: 'bar',
+        date: '2015-02-27 19:59:15'
+      }]
+    });
   });
 
   it('Change status to production', function() {
@@ -82,6 +111,31 @@ describe('Routes tests', function() {
     browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
 
     expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
+
+    // make a request to the endpoint
+    expect(http({
+      method: 'GET',
+      uri: browser.baseUrl.replace('/fusio/index.htm', '/index.php/test'),
+      headers: {
+        'User-Agent': 'Fusio-Test'
+      },
+      json: true
+    })).toEqual({
+      totalResults: 2,
+      itemsPerPage: 16,
+      startIndex: 0,
+      entry: [{
+        id: '2',
+        title: 'bar',
+        content: 'foo',
+        date: '2015-02-27 19:59:15'
+      }, {
+        id: '1',
+        title: 'foo',
+        content: 'bar',
+        date: '2015-02-27 19:59:15'
+      }]
+    });
   });
 
   it('Change status to deprecated', function() {
@@ -101,6 +155,31 @@ describe('Routes tests', function() {
     browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
 
     expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
+
+    // make a request to the endpoint
+    expect(http({
+      method: 'GET',
+      uri: browser.baseUrl.replace('/fusio/index.htm', '/index.php/test'),
+      headers: {
+        'User-Agent': 'Fusio-Test'
+      },
+      json: true
+    })).toEqual({
+      totalResults: 2,
+      itemsPerPage: 16,
+      startIndex: 0,
+      entry: [{
+        id: '2',
+        title: 'bar',
+        content: 'foo',
+        date: '2015-02-27 19:59:15'
+      }, {
+        id: '1',
+        title: 'foo',
+        content: 'bar',
+        date: '2015-02-27 19:59:15'
+      }]
+    });
   });
 
   it('Change status to closed', function() {
@@ -120,6 +199,31 @@ describe('Routes tests', function() {
     browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
 
     expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
+
+    // make a request to the endpoint
+    expect(http({
+      method: 'GET',
+      uri: browser.baseUrl.replace('/fusio/index.htm', '/index.php/test'),
+      headers: {
+        'User-Agent': 'Fusio-Test'
+      },
+      json: true
+    })).toEqual({
+      totalResults: 2,
+      itemsPerPage: 16,
+      startIndex: 0,
+      entry: [{
+        id: '2',
+        title: 'bar',
+        content: 'foo',
+        date: '2015-02-27 19:59:15'
+      }, {
+        id: '1',
+        title: 'foo',
+        content: 'bar',
+        date: '2015-02-27 19:59:15'
+      }]
+    });
   });
 
   it('Update route', function() {
@@ -135,16 +239,17 @@ describe('Routes tests', function() {
     expect(element.all(by.model('config.active')).get(0).getAttribute('value')).toEqual('on');
     expect(element.all(by.model('config.public')).get(0).getAttribute('value')).toEqual('on');
     expect(element.all(by.model('config.response')).get(0).getAttribute('value')).toEqual('number:1');
-    expect(element.all(by.model('config.action')).get(0).getAttribute('value')).toEqual('number:3');
+    expect(element.all(by.model('config.action')).get(0).getAttribute('value')).toEqual('number:4');
 
     var responseOptions = element.all(by.options('schema.id as schema.name for schema in schemas'));
     expect(responseOptions.get(3).getText()).toEqual('Foo-Schema');
     expect(responseOptions.get(4).getText()).toEqual('Passthru');
 
     var actionOptions = element.all(by.options('action.id as action.name for action in actions'));
-    expect(actionOptions.get(0).getText()).toEqual('Sql-Table');
-    expect(actionOptions.get(1).getText()).toEqual('Util-Static-Response');
-    expect(actionOptions.get(2).getText()).toEqual('Welcome');
+    expect(actionOptions.get(0).getText()).toEqual('app-action');
+    expect(actionOptions.get(1).getText()).toEqual('Sql-Table');
+    expect(actionOptions.get(2).getText()).toEqual('Util-Static-Response');
+    expect(actionOptions.get(3).getText()).toEqual('Welcome');
 
     $('button.btn-primary').click();
 

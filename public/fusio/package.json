@@ -29,6 +29,8 @@
     "jscs": "^3.0.7",
     "jshint": "^2.9.2",
     "protractor": "~2.5.1",
-    "protractor-console-plugin": "^0.1.1"
+    "protractor-console-plugin": "^0.1.1",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
   }
 }

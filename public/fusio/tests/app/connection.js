@@ -74,4 +74,36 @@ describe('Connection tests', function() {
     expect($('div.alert-success > div').getText()).toEqual('Connection successful deleted');
   });
 
+  it('Create connection routes', function() {
+    browser.get('#/connection');
+
+    var EC = protractor.ExpectedConditions;
+
+    $('a.btn-primary').click();
+
+    var configUrl;
+    if (process.env.DB && process.env.DB == 'mysql') {
+      configUrl = 'mysql://root@localhost/fusio_ui';
+    } else {
+      configUrl = 'sqlite:///../../cache/fusio_ui.db';
+    }
+
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+
+    element(by.model('connection.name')).sendKeys('app-connection');
+
+    var connectionOptions = element.all(by.options('conn.class as conn.name for conn in connections'));
+    connectionOptions.get(1).click();
+
+    browser.wait(EC.visibilityOf($('#config-url')), 5000);
+
+    element(by.css('#config-url')).sendKeys(configUrl);
+
+    $('button.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.alert-success')), 5000);
+
+    expect($('div.alert-success > div').getText()).toEqual('Connection successful created');
+  });
+
 });
