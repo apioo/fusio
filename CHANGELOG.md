@@ -1,4 +1,10 @@
 
+### 0.6.4
+
+* Disable editing the default scopes
+* Added error panel
+* Redesigned backend ui and grouped main navigation into categories
+
 ### 0.6.3 (2017-01-22)
 
 * Update v8 adapter
