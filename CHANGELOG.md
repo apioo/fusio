@@ -1,5 +1,9 @@
 
-### 0.6.4
+### 0.6.5 (2017-01-29)
+
+* Fixed missing nav template
+
+### 0.6.4 (2017-01-29)
 
 * Disable editing the default scopes
 * Added error panel
