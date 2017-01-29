@@ -70,7 +70,6 @@ describe('Routes tests', function() {
     // make a request to the endpoint
     expect(http({
       method: 'GET',
-      // http://127.0.0.1/projects/fusio/public/fusio/index.htm
       uri: browser.baseUrl.replace('/fusio/index.htm', '/index.php/test'),
       headers: {
         'User-Agent': 'Fusio-Test'
@@ -112,29 +111,31 @@ describe('Routes tests', function() {
 
     expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
 
-    // make a request to the endpoint
-    expect(http({
-      method: 'GET',
-      uri: browser.baseUrl.replace('/fusio/index.htm', '/index.php/test'),
-      headers: {
-        'User-Agent': 'Fusio-Test'
-      },
-      json: true
-    })).toEqual({
-      totalResults: 2,
-      itemsPerPage: 16,
-      startIndex: 0,
-      entry: [{
-        id: '2',
-        title: 'bar',
-        content: 'foo',
-        date: '2015-02-27 19:59:15'
-      }, {
-        id: '1',
-        title: 'foo',
-        content: 'bar',
-        date: '2015-02-27 19:59:15'
-      }]
+    $('div.alert-success > div').getText().then(function(){
+      // make a request to the endpoint
+      expect(http({
+        method: 'GET',
+        uri: browser.baseUrl.replace('/fusio/index.htm', '/index.php/test'),
+        headers: {
+          'User-Agent': 'Fusio-Test'
+        },
+        json: true
+      })).toEqual({
+        totalResults: 2,
+        itemsPerPage: 16,
+        startIndex: 0,
+        entry: [{
+          id: '2',
+          title: 'bar',
+          content: 'foo',
+          date: '2015-02-27 19:59:15'
+        }, {
+          id: '1',
+          title: 'foo',
+          content: 'bar',
+          date: '2015-02-27 19:59:15'
+        }]
+      });
     });
   });
 
@@ -156,29 +157,31 @@ describe('Routes tests', function() {
 
     expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
 
-    // make a request to the endpoint
-    expect(http({
-      method: 'GET',
-      uri: browser.baseUrl.replace('/fusio/index.htm', '/index.php/test'),
-      headers: {
-        'User-Agent': 'Fusio-Test'
-      },
-      json: true
-    })).toEqual({
-      totalResults: 2,
-      itemsPerPage: 16,
-      startIndex: 0,
-      entry: [{
-        id: '2',
-        title: 'bar',
-        content: 'foo',
-        date: '2015-02-27 19:59:15'
-      }, {
-        id: '1',
-        title: 'foo',
-        content: 'bar',
-        date: '2015-02-27 19:59:15'
-      }]
+    $('div.alert-success > div').getText().then(function(){
+      // make a request to the endpoint
+      expect(http({
+        method: 'GET',
+        uri: browser.baseUrl.replace('/fusio/index.htm', '/index.php/test'),
+        headers: {
+          'User-Agent': 'Fusio-Test'
+        },
+        json: true
+      })).toEqual({
+        totalResults: 2,
+        itemsPerPage: 16,
+        startIndex: 0,
+        entry: [{
+          id: '2',
+          title: 'bar',
+          content: 'foo',
+          date: '2015-02-27 19:59:15'
+        }, {
+          id: '1',
+          title: 'foo',
+          content: 'bar',
+          date: '2015-02-27 19:59:15'
+        }]
+      });
     });
   });
 
@@ -200,29 +203,31 @@ describe('Routes tests', function() {
 
     expect($('div.alert-success > div').getText()).toEqual('Routes successful updated');
 
-    // make a request to the endpoint
-    expect(http({
-      method: 'GET',
-      uri: browser.baseUrl.replace('/fusio/index.htm', '/index.php/test'),
-      headers: {
-        'User-Agent': 'Fusio-Test'
-      },
-      json: true
-    })).toEqual({
-      totalResults: 2,
-      itemsPerPage: 16,
-      startIndex: 0,
-      entry: [{
-        id: '2',
-        title: 'bar',
-        content: 'foo',
-        date: '2015-02-27 19:59:15'
-      }, {
-        id: '1',
-        title: 'foo',
-        content: 'bar',
-        date: '2015-02-27 19:59:15'
-      }]
+    $('div.alert-success > div').getText().then(function(){
+      // make a request to the endpoint
+      expect(http({
+        method: 'GET',
+        uri: browser.baseUrl.replace('/fusio/index.htm', '/index.php/test'),
+        headers: {
+          'User-Agent': 'Fusio-Test'
+        },
+        json: true
+      })).toEqual({
+        totalResults: 2,
+        itemsPerPage: 16,
+        startIndex: 0,
+        entry: [{
+          id: '2',
+          title: 'bar',
+          content: 'foo',
+          date: '2015-02-27 19:59:15'
+        }, {
+          id: '1',
+          title: 'foo',
+          content: 'bar',
+          date: '2015-02-27 19:59:15'
+        }]
+      });
     });
   });
 
