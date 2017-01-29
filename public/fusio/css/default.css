@@ -15,50 +15,22 @@ pre
 
 .container-fluid
 {
-    margin-top:38px;
-}
-
-.fusio-header
-{
-    background-color:#55acee;
-    background-image:url(../img/grid.png);
-    background-repeat:no-repeat;
-    background-position:bottom left;
-    width:100%;
-    top:0px;
-    left:0px;
-    height:38px;
-    position:fixed;
-    z-index:100;
-}
-
-.fusio-header h1
-{
-    color:#fff;
-    margin:0px 15px;
-    padding:5px 0px;
-    font-size:1.8em;
-    font-weight:bold;
-    text-shadow:2px 1px #444;
-    letter-spacing:2px;
-}
-
-.fusio-header h1 > span
-{
-    vertical-align:middle;
-    color:#fff;
-    font-size:0.4em;
-    text-shadow:none;
 }
 
 .fusio-header-profile
 {
-    margin:10px 20px;
+    margin:10px 0;
 }
 
 .fusio-header-profile a
 {
     color:#fff;
+}
+
+.fusio-header-profile a > span
+{
+    vertical-align:top;
+    margin-left:4px;
 }
 
 .fusio-header-profile a:hover, a:focus
@@ -71,32 +43,52 @@ pre
     margin-right:4px;
 }
 
-.sidebar 
+.fusio-sidebar 
 {
     background-color:#021c35;
     position:fixed;
     height:100%;
 }
 
-@media (max-width:991px) {
-    .sidebar 
+.fusio-navigation
+{
+    width:180px;
+    float:left;
+    padding:0 15px;
+}
+
+@media (max-width:767px) {
+    .fusio-navigation
     {
-        position:relative;
-        height:auto;
+        width:50px;
     }
 }
 
-.content
+.fusio-navigation > h1
 {
-    background-color:#fff;
+    color:#eee;
+    padding:12px 15px;
+    margin:0px -15px;
+    border-bottom:1px solid #021c35;
+    font-size:1em;
+    background-color: #222;
+    background-repeat: repeat-x;
+    background-image: -webkit-linear-gradient(top,#444 0,#222 100%);
+    background-image: -o-linear-gradient(top,#444 0,#222 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#444),to(#222));
+    background-image: linear-gradient(to bottom,#444 0,#222 100%);
 }
 
-.fusio-navigation
+.fusio-navigation > h1 > span
 {
+    color:#666;
 }
 
 .fusio-navigation ul > li > a,
-.fusio-navigation ul > li > a:visited
+.fusio-navigation ul > li > a:link,
+.fusio-navigation ul > li > a:visited,
+.fusio-navigation ul > li > a:hover,
+.fusio-navigation ul > li > a:active
 {
     color:#fff;
     white-space:nowrap;
@@ -104,17 +96,40 @@ pre
     background-color:#021c35;
 }
 
-.fusio-navigation ul > li > a:hover,
-.fusio-navigation ul > li > a:hover,
-.fusio-navigation ul > li > a:active
+.fusio-navigation ul > li > a:hover
 {
-    background-color:#021c35;
     color:#55acee;
 }
 
 .fusio-navigation .glyphicon
 {
     margin-right:6px;
+}
+
+.fusio-navigation-heading
+{
+    background-color:#054582;
+    padding:6px 15px;
+    margin:0 -15px;
+}
+
+.fusio-navigation-heading a
+{
+    color:#fff;
+    display:block;
+    text-decoration:none;
+}
+
+.fusio-container
+{
+    margin-left:180px;
+}
+
+@media (max-width:767px) {
+    .fusio-container
+    {
+        margin-left:50px;
+    }
 }
 
 .fusio-content
