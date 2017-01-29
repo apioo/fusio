@@ -6,11 +6,11 @@
 <div class="modal-body">
     <uib-accordion close-others="false">
         <div uib-accordion-group class="panel-default" heading="Error" is-open="true">
-            <b>{{error.message}}</b>
-            <p>in {{error.file}} on {{error.line}}</p>
+            <b class="fusio-error-detail-message">{{error.message}}</b>
+            <p>in <span class="fusio-error-detail-file">{{error.file}}</span> on <span class="fusio-error-detail-line">{{error.line}}</span></p>
         </div>
         <div uib-accordion-group class="panel-default" heading="Trace" is-open="true">
-            <pre style="background-color:#fff">{{error.trace}}</pre>
+            <pre class="fusio-error-detail-trace">{{error.trace}}</pre>
         </div>
     </uib-accordion>
 

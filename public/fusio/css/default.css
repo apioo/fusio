@@ -295,6 +295,13 @@ pre
     color:inherit;
 }
 
+.fusio-log-detail-header,
+.fusio-log-detail-body,
+.fusio-error-detail-trace
+{
+    background-color:#fff
+}
+
 /* general bootstrap fixes */
 .form-control, .btn
 {
