@@ -8,6 +8,7 @@ exports.config = {
     'app/app.js',
     'app/config.js',
     'app/connection.js',
+    'app/error.js',
     'app/log.js',
     'app/rate.js',
     'app/routes.js',
