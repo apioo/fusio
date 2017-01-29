@@ -55,6 +55,10 @@ module.exports = function($scope, $http, $uibModal, fusio) {
   };
 
   $scope.openUpdateDialog = function(scope) {
+    if (scope.id <= 3) {
+      return;
+    }
+
     var modalInstance = $uibModal.open({
       size: 'lg',
       backdrop: 'static',
@@ -75,6 +79,10 @@ module.exports = function($scope, $http, $uibModal, fusio) {
   };
 
   $scope.openDeleteDialog = function(scope) {
+    if (scope.id <= 3) {
+      return;
+    }
+
     var modalInstance = $uibModal.open({
       size: 'lg',
       backdrop: 'static',

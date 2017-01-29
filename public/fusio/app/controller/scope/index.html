@@ -40,8 +40,8 @@
         <td>{{scope.name}}</td>
         <td>
             <div class="fusio-options">
-                <a ng-click="openUpdateDialog(scope)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
-                <a ng-click="openDeleteDialog(scope)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                <a ng-click="openUpdateDialog(scope)" ng-disabled="scope.id <= 3" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+                <a ng-click="openDeleteDialog(scope)" ng-disabled="scope.id <= 3" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
         </td>
     </tr>
