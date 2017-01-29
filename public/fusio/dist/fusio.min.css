@@ -204,7 +204,7 @@ pre
 @media (max-width:767px) {
     .fusio-navigation
     {
-        width:50px;
+        width:110px;
     }
 }
 
@@ -272,7 +272,7 @@ pre
 @media (max-width:767px) {
     .fusio-container
     {
-        margin-left:50px;
+        margin-left:110px;
     }
 }
 
