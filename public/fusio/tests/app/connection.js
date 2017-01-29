@@ -85,7 +85,7 @@ describe('Connection tests', function() {
     if (process.env.DB && process.env.DB == 'mysql') {
       configUrl = 'mysql://root@localhost/fusio_ui';
     } else {
-      configUrl = 'sqlite:///../../cache/fusio_ui.db';
+      configUrl = 'sqlite:///../../../cache/fusio_ui.db';
     }
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
