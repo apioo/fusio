@@ -18,6 +18,7 @@ var fusioApp = angular.module('fusioApp', [
   'fusioApp.config',
   'fusioApp.connection',
   'fusioApp.dashboard',
+  'fusioApp.error',
   'fusioApp.import',
   'fusioApp.log',
   'fusioApp.login',
@@ -47,6 +48,7 @@ require('./controller/config');
 require('./controller/connection');
 require('./controller/dashboard');
 require('./controller/import');
+require('./controller/error');
 require('./controller/log');
 require('./controller/login');
 require('./controller/logout');
@@ -137,6 +139,11 @@ fusioApp.run(function($rootScope, $window, $location, $http, helpLoader, version
     $rootScope.userAuthenticated = true;
   } else {
     $location.path('/login');
+  }
+
+  var user = $window.sessionStorage.getItem('fusio_user');
+  if (user) {
+    $rootScope.user = JSON.parse(user);
   }
 
   // make help loader global available

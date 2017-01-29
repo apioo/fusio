@@ -6,6 +6,7 @@ module.exports = function($scope, $http, $location, $window, $rootScope, fusio) 
     delete $http.defaults.headers.common['Authorization'];
 
     $window.sessionStorage.removeItem('fusio_access_token');
+    $window.sessionStorage.removeItem('fusio_user');
 
     $rootScope.userAuthenticated = false;
 

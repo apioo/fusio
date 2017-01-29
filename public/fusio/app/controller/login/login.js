@@ -31,9 +31,19 @@ module.exports = function($scope, $http, $location, $window, $rootScope, fusio) 
           // store access token
           $window.sessionStorage.setItem('fusio_access_token', data.access_token);
 
-          $location.path('/dashboard');
-
           $rootScope.userAuthenticated = true;
+
+          // request additional user information
+          $http.get(fusio.baseUrl + 'authorization/whoami')
+            .then(function(response){
+              var user = response.data;
+
+              $window.sessionStorage.setItem('fusio_user', JSON.stringify(user));
+
+              $rootScope.user = user;
+            });
+
+          $location.path('/dashboard');
         } else {
           $scope.response = data.error_description ? data.error_description : 'Authentication failed';
         }
