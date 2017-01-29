@@ -219,20 +219,9 @@ describe('Routes tests', function() {
         json: true,
         simple: false
       })).toEqual({
-        totalResults: 2,
-        itemsPerPage: 16,
-        startIndex: 0,
-        entry: [{
-          id: '2',
-          title: 'bar',
-          content: 'foo',
-          date: '2015-02-27 19:59:15'
-        }, {
-          id: '1',
-          title: 'foo',
-          content: 'bar',
-          date: '2015-02-27 19:59:15'
-        }]
+        success: false,
+        title: 'Internal Server Error',
+        message: 'Resource is not longer supported'
       });
     });
   });
