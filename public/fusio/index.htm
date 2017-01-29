@@ -39,40 +39,38 @@
 <div class="fusio-sidebar" ng-if="userAuthenticated">
     <nav class="fusio-navigation">
         <h1>Fusio <span>({{version}})</span></h1>
-        <div id="bs-example-navbar-collapse-1">
-            <uib-accordion close-others="false">
-                <div uib-accordion-group heading="API" is-open="true" template-url="app/nav-template.html">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#/"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Dashboard</a></li>
-                        <li><a href="#/routes"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Routes</a></li>
-                        <li><a href="#/action"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Action</a></li>
-                        <li><a href="#/schema"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Schema</a></li>
-                        <li><a href="#/connection"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Connection</a></li>
-                    </ul>
-                </div>
-                <div uib-accordion-group heading="Consumer" is-open="true" template-url="app/nav-template.html">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#/app"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> App</a></li>
-                        <li><a href="#/scope"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Scope</a></li>
-                        <li><a href="#/user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User</a></li>
-                        <li><a href="#/rate"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Rate</a></li>
-                    </ul>
-                </div>
-                <div uib-accordion-group heading="Analytics" is-open="true" template-url="app/nav-template.html">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#/log"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Log</a></li>
-                        <li><a href="#/statistic"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistic</a></li>
-                        <li><a href="#/error"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Error</a></li>
-                    </ul>
-                </div>
-                <div uib-accordion-group heading="System" is-open="true" template-url="app/nav-template.html">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#/import"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> Import</a></li>
-                        <li><a href="#/config"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
-                    </ul>
-                </div>
-            </uib-accordion>
-        </div>
+        <uib-accordion close-others="false">
+            <div uib-accordion-group heading="API" is-open="true" template-url="app/nav-template.html">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#/"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Dashboard</a></li>
+                    <li><a href="#/routes"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Routes</a></li>
+                    <li><a href="#/action"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Action</a></li>
+                    <li><a href="#/schema"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Schema</a></li>
+                    <li><a href="#/connection"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Connection</a></li>
+                </ul>
+            </div>
+            <div uib-accordion-group heading="Consumer" is-open="true" template-url="app/nav-template.html">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#/app"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> App</a></li>
+                    <li><a href="#/scope"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Scope</a></li>
+                    <li><a href="#/user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User</a></li>
+                    <li><a href="#/rate"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Rate</a></li>
+                </ul>
+            </div>
+            <div uib-accordion-group heading="Analytics" is-open="true" template-url="app/nav-template.html">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#/log"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Log</a></li>
+                    <li><a href="#/statistic"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistic</a></li>
+                    <li><a href="#/error"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Error</a></li>
+                </ul>
+            </div>
+            <div uib-accordion-group heading="System" is-open="true" template-url="app/nav-template.html">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#/import"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> Import</a></li>
+                    <li><a href="#/config"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
+                </ul>
+            </div>
+        </uib-accordion>
     </nav>
 </div>
 

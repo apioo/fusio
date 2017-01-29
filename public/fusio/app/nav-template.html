@@ -1,7 +1,7 @@
 <div ng-class="'fusio-navigation-group'">
     <div role="tab" id="{{::headingId}}" aria-selected="{{isOpen}}" class="fusio-navigation-heading" ng-keypress="toggleOpen($event)">
         <a role="button" data-toggle="collapse" href aria-expanded="{{isOpen}}" aria-controls="{{::panelId}}" tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
-            <span uib-accordion-header ng-class="{'text-muted': isDisabled}" class="hidden-xs">
+            <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
                 {{heading}}
             </span>
         </a>
