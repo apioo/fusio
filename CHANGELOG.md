@@ -1,4 +1,8 @@
 
+### 0.6.6
+
+* Register command add auto confirm option
+
 ### 0.6.5 (2017-01-29)
 
 * Fixed missing nav template
