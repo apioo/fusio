@@ -1,5 +1,5 @@
 
-### 0.6.6
+### 0.6.6 (2017-01-31)
 
 * Register command add auto confirm option
 
