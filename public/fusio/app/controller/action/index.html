@@ -49,6 +49,7 @@
         <td><span class="label label-default" ng-if="action.status == 2">Locked</span> {{action.name}}</td>
         <td>
             <div class="fusio-options">
+                <a ng-href="#/action/designer/{{action.id}}" class="btn btn-default"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
                 <a ng-click="openUpdateDialog(action)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
                 <a ng-click="openDeleteDialog(action)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>

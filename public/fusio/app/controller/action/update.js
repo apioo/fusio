@@ -54,34 +54,6 @@ module.exports = function($scope, $http, $uibModalInstance, $uibModal, action, f
     }
   };
 
-  $scope.execute = function(action) {
-    $http.put(fusio.baseUrl + 'backend/action/' + action.id, action)
-      .then(function(response) {
-        var data = response.data;
-        $scope.response = data;
-        if (data.success === true) {
-          var modalInstance = $uibModal.open({
-            size: 'lg',
-            backdrop: 'static',
-            templateUrl: 'app/controller/action/execute.html',
-            controller: 'ActionExecuteCtrl',
-            resolve: {
-              action: function() {
-                return action;
-              }
-            }
-          });
-
-          modalInstance.result.then(function(response) {
-          }, function() {
-          });
-        }
-      })
-      .catch(function(response) {
-        $scope.response = response.data;
-      });
-  };
-
   $http.get(fusio.baseUrl + 'backend/action/' + action.id)
     .then(function(response) {
       $scope.action = response.data;
