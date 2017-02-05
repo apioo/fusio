@@ -33,39 +33,6 @@ module.exports = function($scope, $http, $uibModalInstance, $uibModal, fusio, sc
     $scope.response = null;
   };
 
-  $scope.preview = function(schema) {
-    var data = angular.copy(schema);
-    if (typeof data.source == 'string') {
-      data.source = JSON.parse(data.source);
-    }
-
-    $http.put(fusio.baseUrl + 'backend/schema/' + data.id, data)
-      .then(function(response) {
-        var data = response.data;
-        $scope.response = data;
-        if (data.success === true) {
-          var modalInstance = $uibModal.open({
-            size: 'lg',
-            backdrop: 'static',
-            templateUrl: 'app/controller/schema/preview.html',
-            controller: 'SchemaPreviewCtrl',
-            resolve: {
-              schema: function() {
-                return schema;
-              }
-            }
-          });
-
-          modalInstance.result.then(function(response) {
-          }, function() {
-          });
-        }
-      })
-      .catch(function(response) {
-        $scope.response = response.data;
-      });
-  };
-
   $http.get(fusio.baseUrl + 'backend/schema/' + schema.id)
     .then(function(response) {
       var data = response.data;

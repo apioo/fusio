@@ -36,7 +36,7 @@
     <table class="table">
     <colgroup>
         <col width="*" />
-        <col width="100" />
+        <col width="150" />
     </colgroup>
     <thead>
     <tr>
@@ -49,6 +49,7 @@
         <td><span class="label label-default" ng-if="schema.status == 2">Locked</span> {{schema.name}}</td>
         <td>
             <div class="fusio-options">
+                <a ng-href="#/schema/designer/{{schema.id}}" class="btn btn-default"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
                 <a ng-click="openUpdateDialog(schema)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
                 <a ng-click="openDeleteDialog(schema)" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </div>
