@@ -35,7 +35,7 @@ describe('Schema tests', function() {
 
     var EC = protractor.ExpectedConditions;
 
-    element.all(by.css('div.fusio-options a:nth-child(1)')).first().click();
+    element.all(by.css('div.fusio-options a:nth-child(2)')).first().click();
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
@@ -53,7 +53,7 @@ describe('Schema tests', function() {
 
     var EC = protractor.ExpectedConditions;
 
-    element.all(by.css('div.fusio-options a:nth-child(2)')).first().click();
+    element.all(by.css('div.fusio-options a:nth-child(3)')).first().click();
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
