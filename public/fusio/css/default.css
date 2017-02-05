@@ -135,7 +135,6 @@ pre
 .fusio-content
 {
     background-color:#fff;
-    margin-bottom:64px;
 }
 
 .fusio-content > div > h1
@@ -152,6 +151,11 @@ pre
     background-image: -o-linear-gradient(top,#444 0,#222 100%);
     background-image: -webkit-gradient(linear,left top,left bottom,from(#444),to(#222));
     background-image: linear-gradient(to bottom,#444 0,#222 100%);
+}
+
+.fusio-content > div > h1 > a
+{
+    color:#eee;
 }
 
 .fusio-search
