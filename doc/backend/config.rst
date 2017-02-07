@@ -2,5 +2,5 @@
 Config
 ======
 
-.. literalinclude:: ../../public/help/config.md
+.. literalinclude:: ../../public/fusio/help/config.md
    :language: markdown

@@ -2,5 +2,5 @@
 App
 ===
 
-.. literalinclude:: ../../public/help/app.md
+.. literalinclude:: ../../public/fusio/help/app.md
    :language: markdown

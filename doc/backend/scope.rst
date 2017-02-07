@@ -2,5 +2,5 @@
 Scope
 =====
 
-.. literalinclude:: ../../public/help/scope.md
+.. literalinclude:: ../../public/fusio/help/scope.md
    :language: markdown

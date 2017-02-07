@@ -2,5 +2,5 @@
 Connection
 ==========
 
-.. literalinclude:: ../../public/help/connection.md
+.. literalinclude:: ../../public/fusio/help/connection.md
    :language: markdown

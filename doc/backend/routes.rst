@@ -2,5 +2,5 @@
 Routes
 ======
 
-.. literalinclude:: ../../public/help/routes.md
+.. literalinclude:: ../../public/fusio/help/routes.md
    :language: markdown

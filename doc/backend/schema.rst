@@ -2,5 +2,5 @@
 Schema
 ======
 
-.. literalinclude:: ../../public/help/schema.md
+.. literalinclude:: ../../public/fusio/help/schema.md
    :language: markdown

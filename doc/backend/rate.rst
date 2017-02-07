@@ -2,5 +2,5 @@
 Rate
 ====
 
-.. literalinclude:: ../../public/help/rate.md
+.. literalinclude:: ../../public/fusio/help/rate.md
    :language: markdown

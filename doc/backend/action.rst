@@ -2,5 +2,5 @@
 Action
 ======
 
-.. literalinclude:: ../../public/help/action.md
+.. literalinclude:: ../../public/fusio/help/action.md
    :language: markdown

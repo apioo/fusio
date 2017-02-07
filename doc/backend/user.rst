@@ -2,5 +2,5 @@
 User
 ====
 
-.. literalinclude:: ../../public/help/user.md
+.. literalinclude:: ../../public/fusio/help/user.md
    :language: markdown
