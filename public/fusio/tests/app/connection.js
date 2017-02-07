@@ -22,9 +22,10 @@ describe('Connection tests', function() {
     element(by.model('connection.name')).sendKeys('test-connection');
 
     var connectionOptions = element.all(by.options('conn.class as conn.name for conn in connections'));
-    expect(connectionOptions.get(0).getText()).toEqual('SQL');
-    expect(connectionOptions.get(1).getText()).toEqual('SQL (advanced)');
-    connectionOptions.get(1).click();
+    expect(connectionOptions.get(0).getText()).toEqual('HTTP');
+    expect(connectionOptions.get(1).getText()).toEqual('SQL');
+    expect(connectionOptions.get(2).getText()).toEqual('SQL (advanced)');
+    connectionOptions.get(2).click();
 
     browser.wait(EC.visibilityOf($('#config-url')), 5000);
 
@@ -93,7 +94,7 @@ describe('Connection tests', function() {
     element(by.model('connection.name')).sendKeys('app-connection');
 
     var connectionOptions = element.all(by.options('conn.class as conn.name for conn in connections'));
-    connectionOptions.get(1).click();
+    connectionOptions.get(2).click();
 
     browser.wait(EC.visibilityOf($('#config-url')), 5000);
 
