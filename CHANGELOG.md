@@ -1,4 +1,10 @@
 
+### 0.6.7
+
+* Add http connection
+* Add schema and action designer
+* Update psx v8 component
+
 ### 0.6.6 (2017-01-31)
 
 * Register command add auto confirm option
