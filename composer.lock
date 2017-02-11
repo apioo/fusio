@@ -715,16 +715,16 @@
         },
         {
             "name": "fusio/adapter-v8",
-            "version": "v0.3.2",
+            "version": "v0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-v8.git",
-                "reference": "d95a5a6ab9f92aac5851e94f20738d95926a578f"
+                "reference": "1daeadf5690b93b1b09312900698115255348c24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-v8/zipball/d95a5a6ab9f92aac5851e94f20738d95926a578f",
-                "reference": "d95a5a6ab9f92aac5851e94f20738d95926a578f",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-v8/zipball/1daeadf5690b93b1b09312900698115255348c24",
+                "reference": "1daeadf5690b93b1b09312900698115255348c24",
                 "shasum": ""
             },
             "require": {
@@ -760,7 +760,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-01-22T09:26:56+00:00"
+            "time": "2017-02-11T10:37:23+00:00"
         },
         {
             "name": "fusio/engine",
