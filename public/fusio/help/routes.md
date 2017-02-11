@@ -2,8 +2,8 @@
 ## Routes
 
 A route is the rule which redirects the incoming request to an action. If a 
-request arrives the first route which matches is taken. In order to be able to
-evolve an API it is possible to add multiple version for the same route. For 
+request arrives the first route which matches is used. In order to be able to
+evolve an API it is possible to add multiple versions for the same route. For 
 each version it is possible to specify the allowed request methods. Each method
 describes the request and response schema and the action which is executed upon 
 request. If a request method is public it is possible to request the API 
@@ -54,6 +54,6 @@ describes each status
 
 ### Action
 
-The action contains the business logic of your API endpoints. It i.e. selects
+The action contains the business logic of your API endpoint. It i.e. selects
 or inserts entries from a database or pushes a new entry to a message queue.
 
