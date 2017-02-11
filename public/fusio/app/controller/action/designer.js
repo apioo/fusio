@@ -90,8 +90,39 @@ module.exports = function($scope, $http, $routeParams, fusio, formBuilder) {
           if (angular.isFunction(linkFn)) {
             var el = linkFn($scope);
             containerEl.append(el);
+            $scope.adjustEditorHeight();
           }
         });
+    }
+  };
+
+  $scope.adjustEditorHeight = function(){
+    var blockCount = 3;
+    var blockUsed = 0;
+    var formEditor = false;
+    var formElements = document.querySelectorAll('#config-form .form-group');
+
+    for (var i = 0; i < formElements.length; ++i) {
+      var aceEditor = formElements[i].querySelector('.ace_editor');
+      if (aceEditor) {
+        if (formEditor) {
+          // in case we have multiple ace editors we skip this magic
+          formEditor = false;
+          break;
+        }
+        formEditor = aceEditor;
+      } else {
+        blockUsed++;
+      }
+    }
+
+    if (formEditor) {
+      var baseHeight = 133;
+      var blockFree = blockCount - blockUsed;
+      if (blockFree > 0) {
+        var editorEl = angular.element(formEditor);
+        editorEl.css('height', (baseHeight + (blockFree * 99)) + 'px');
+      }
     }
   };
 

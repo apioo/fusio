@@ -306,6 +306,50 @@ pre
     background-color:#fff
 }
 
+.fusio-action-designer-config
+{
+    height:530px;
+    overflow:auto;
+}
+
+.fusio-action-designer-config .ace_editor
+{
+}
+
+.fusio-action-designer-request
+{
+    height:530px;
+    overflow:auto;
+}
+
+.fusio-action-designer-request .ace_editor
+{
+    height:133px;
+}
+
+.fusio-action-designer-response > h4
+{
+    margin:0px;
+    padding:8px;
+}
+
+.fusio-schema-designer-config
+{
+    height:550px;
+    overflow:auto;
+}
+
+.fusio-schema-designer-config .ace_editor
+{
+    height:430px;
+}
+
+.fusio-schema-designer-preview
+{
+    height:550px;
+    overflow:auto;
+}
+
 /* general bootstrap fixes */
 .form-control, .btn
 {
@@ -379,7 +423,10 @@ pre
 
 .ace_editor
 {
-    height:200px;
+    /* height:133px; 2 blocks */
+    /* height:232px; 3 blocks */
+    /* height:331px; 4 blocks */
+    height:232px;
     border:1px solid #ccc;
 }
 
