@@ -575,16 +575,16 @@
         },
         {
             "name": "fusio/adapter-http",
-            "version": "v0.3.1",
+            "version": "v0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-http.git",
-                "reference": "39be17ebe62ef8b5ef42ae369304a84bea718147"
+                "reference": "8e69da3cbb1db22046f302fe102e92fe64ede452"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/39be17ebe62ef8b5ef42ae369304a84bea718147",
-                "reference": "39be17ebe62ef8b5ef42ae369304a84bea718147",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/8e69da3cbb1db22046f302fe102e92fe64ede452",
+                "reference": "8e69da3cbb1db22046f302fe102e92fe64ede452",
                 "shasum": ""
             },
             "require": {
@@ -612,25 +612,25 @@
                     "homepage": "http://christoph.kappestein.com"
                 }
             ],
-            "description": "Provides a connection to send and HTTP messages",
+            "description": "Provides a connection to send and retrieve HTTP messages",
             "homepage": "http://fusio-project.org",
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-01-14T17:40:53+00:00"
+            "time": "2017-02-12T10:14:43+00:00"
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v0.3.1",
+            "version": "v0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
-                "reference": "15893ed3744dfb4c72201010862f8c8737664d6c"
+                "reference": "7ef3dc06bf0ad1a5e52cc0eefd5b167dc46c6533"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/15893ed3744dfb4c72201010862f8c8737664d6c",
-                "reference": "15893ed3744dfb4c72201010862f8c8737664d6c",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/7ef3dc06bf0ad1a5e52cc0eefd5b167dc46c6533",
+                "reference": "7ef3dc06bf0ad1a5e52cc0eefd5b167dc46c6533",
                 "shasum": ""
             },
             "require": {
@@ -664,7 +664,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-01-15T20:42:45+00:00"
+            "time": "2017-02-11T21:43:47+00:00"
         },
         {
             "name": "fusio/adapter-util",
@@ -764,16 +764,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v0.6.3",
+            "version": "v0.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "dd1382cd66c0bbff5c8a742a17aec51b008ce917"
+                "reference": "870b0b17cd2fddd343a0fb8e0f92302d59bc73b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/dd1382cd66c0bbff5c8a742a17aec51b008ce917",
-                "reference": "dd1382cd66c0bbff5c8a742a17aec51b008ce917",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/870b0b17cd2fddd343a0fb8e0f92302d59bc73b1",
+                "reference": "870b0b17cd2fddd343a0fb8e0f92302d59bc73b1",
                 "shasum": ""
             },
             "require": {
@@ -807,20 +807,20 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2017-01-22T06:58:37+00:00"
+            "time": "2017-02-11T20:21:02+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v0.6.7",
+            "version": "v0.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "d874273eedf240105ee78fa353a2ea46ef7b7936"
+                "reference": "c98a2bb558c8f1cc88e79142d635aa4968863c39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/d874273eedf240105ee78fa353a2ea46ef7b7936",
-                "reference": "d874273eedf240105ee78fa353a2ea46ef7b7936",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/c98a2bb558c8f1cc88e79142d635aa4968863c39",
+                "reference": "c98a2bb558c8f1cc88e79142d635aa4968863c39",
                 "shasum": ""
             },
             "require": {
@@ -859,7 +859,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-02-06T22:19:17+00:00"
+            "time": "2017-02-12T10:19:05+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
