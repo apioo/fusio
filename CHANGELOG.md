@@ -1,5 +1,11 @@
 
-### 0.6.7
+### 0.6.8 (2017-02-12)
+
+* Connection try to connect to remote service on creation
+* Improve designer css
+* Update dependencies
+
+### 0.6.7 (2017-02-07)
 
 * Add http connection
 * Add schema and action designer
