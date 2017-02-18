@@ -73,6 +73,13 @@ redirects the ``Authorization`` header to Fusio which is otherwise removed.
 If the .htaccess file does not work please check whether the ``AllowOverride``
 directive is set correctly i.e. to ``All``.
 
+Javascript V8
+-------------
+
+Fusio provides an adapter which lets you write the endpoint logic in simple 
+javascript. To use this adapter you need to install the ``php-v8`` extension.
+Installation instructions are available at the `php-v8`_ repository
+
 Apps
 ----
 
@@ -172,3 +179,5 @@ new release:
 .. _download: http://www.fusio-project.org/download
 .. _repository: https://github.com/apioo/fusio-docker
 .. _docker-compose.yml: https://github.com/apioo/fusio-docker/blob/master/docker-compose.yml
+.. _php-v8: https://github.com/pinepain/php-v8
+
