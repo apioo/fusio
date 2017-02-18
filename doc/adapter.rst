@@ -8,7 +8,7 @@ custom action/connection classes or to install predefined routes for an existing
 system. A package needs to require the ``fusio/engine`` package and must have an 
 adapter class which implements the ``Fusio\Engine\AdapterInterface`` class. This 
 class has a method ``getDefinition`` which returns an absolute path to a 
-``adapter.json`` definition. This definition contains all informations for Fusio 
+``adapter.json`` definition. This definition contains all information for Fusio 
 how to extend the system. The adapter can be installed through the register 
 command:
 
@@ -16,7 +16,7 @@ command:
 
     php bin/fusio system:register Acme\System\Adapter
 
-In the following an example adater definition which showcases all available 
+In the following an example adapter definition which showcases all available 
 parameters.
 
 .. code-block:: json
@@ -66,24 +66,6 @@ parameters.
                     }
                 }
             }
-        }],
-        "database": [{
-            "name": "app_todo",
-            "columns": [{
-                "name": "id",
-                "type": "integer"
-            },{
-                "name": "title",
-                "type": "string"
-            },{
-                "name": "insertDate",
-                "type": "datetime"
-            }],
-            "indexes": [{
-                "name": "PRIMARY",
-                "columns": ["id"],
-                "primary": true
-            }]
         }],
         "connection": [{
             "name": "Adapter-Connection",
