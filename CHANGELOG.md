@@ -1,4 +1,9 @@
 
+### 0.6.9
+
+* Update v8 adapter
+* Connection test catch all exceptions and throw a http error
+
 ### 0.6.8 (2017-02-12)
 
 * Connection try to connect to remote service on creation
