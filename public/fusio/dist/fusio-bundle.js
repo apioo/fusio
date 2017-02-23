@@ -161,7 +161,7 @@ if (window) {
 
 module.exports = fusioApp;
 
-},{"../package.json":305,"./controller/account":3,"./controller/action":8,"./controller/app":13,"./controller/config":16,"./controller/connection":21,"./controller/dashboard":24,"./controller/error":27,"./controller/import":30,"./controller/log":35,"./controller/login":37,"./controller/logout":39,"./controller/rate":43,"./controller/routes":48,"./controller/schema":53,"./controller/scope":59,"./controller/statistic":63,"./controller/user":67,"./service/form_builder":70,"./service/help_loader":71,"angular":86,"angular-animate":73,"angular-chart.js":74,"angular-highlightjs":75,"angular-loading-bar":77,"angular-route":79,"angular-sanitize":81,"angular-ui-ace":82,"angular-ui-bootstrap":84,"ng-showdown":302,"ng-tags-input":303}],2:[function(require,module,exports){
+},{"../package.json":305,"./controller/account":3,"./controller/action":8,"./controller/app":13,"./controller/config":16,"./controller/connection":21,"./controller/dashboard":24,"./controller/error":27,"./controller/import":30,"./controller/log":35,"./controller/login":37,"./controller/logout":39,"./controller/rate":43,"./controller/routes":48,"./controller/schema":54,"./controller/scope":59,"./controller/statistic":63,"./controller/user":67,"./service/form_builder":70,"./service/help_loader":71,"angular":86,"angular-animate":73,"angular-chart.js":74,"angular-highlightjs":75,"angular-loading-bar":77,"angular-route":79,"angular-sanitize":81,"angular-ui-ace":82,"angular-ui-bootstrap":84,"ng-showdown":302,"ng-tags-input":303}],2:[function(require,module,exports){
 'use strict';
 
 module.exports = function($scope, $http, fusio) {
@@ -435,10 +435,11 @@ module.exports = function($scope, $http, $uibModalInstance, action, fusio) {
 },{}],7:[function(require,module,exports){
 'use strict';
 
-module.exports = function($scope, $http, $uibModalInstance, action, fusio) {
+module.exports = function($scope, $http, $routeParams, fusio, formBuilder) {
 
-  $scope.action = action;
+  $scope.action = {};
   $scope.methods = ['GET', 'POST', 'PUT', 'DELETE'];
+
   $scope.request = {
     method: 'GET',
     uriFragments: '',
@@ -446,9 +447,25 @@ module.exports = function($scope, $http, $uibModalInstance, action, fusio) {
     body: '{}'
   };
   $scope.response = null;
+  $scope.error = null;
 
-  $scope.requestOpen = false;
-  $scope.responseOpen = true;
+  $scope.update = function(action, request) {
+    var data = angular.copy(action);
+
+    if (angular.isObject($scope.config)) {
+      data.config = formBuilder.postProcessModel($scope.config, $scope.elements);
+    }
+
+    $http.put(fusio.baseUrl + 'backend/action/' + action.id, data)
+      .then(function(response) {
+        var data = response.data;
+        if (data.success === true) {
+          $scope.execute(action, request);
+        }
+      })
+      .catch(function(response) {
+      });
+  };
 
   $scope.execute = function(action, request) {
     var body = JSON.parse(request.body);
@@ -476,6 +493,16 @@ module.exports = function($scope, $http, $uibModalInstance, action, fusio) {
           resp = data;
         }
 
+        // check whether we have an error response
+        if (resp.body.success === false && resp.body.message && resp.body.trace) {
+          $scope.error = {
+            message: resp.body.message,
+            trace: resp.body.trace
+          };
+        } else {
+          $scope.error = null;
+        }
+
         $scope.response = {
           statusCode: resp.statusCode,
           headers: resp.headers,
@@ -484,11 +511,61 @@ module.exports = function($scope, $http, $uibModalInstance, action, fusio) {
       });
   };
 
-  $scope.close = function() {
-    $uibModalInstance.dismiss('cancel');
+  $scope.loadConfig = function() {
+    if ($scope.action.class) {
+      $http.get(fusio.baseUrl + 'backend/action/form?class=' + encodeURIComponent($scope.action.class))
+        .then(function(response) {
+          var data = response.data;
+          var containerEl = angular.element(document.querySelector('#config-form'));
+          containerEl.children().remove();
+
+          $scope.elements = data.element;
+          $scope.config = formBuilder.preProcessModel($scope.action.config, $scope.elements);
+          var linkFn = formBuilder.buildHtml($scope.elements, 'config');
+          if (angular.isFunction(linkFn)) {
+            var el = linkFn($scope);
+            containerEl.append(el);
+            $scope.adjustEditorHeight();
+          }
+        });
+    }
   };
 
-  $scope.execute(action, $scope.request);
+  $scope.adjustEditorHeight = function(){
+    var blockCount = 3;
+    var blockUsed = 0;
+    var formEditor = false;
+    var formElements = document.querySelectorAll('#config-form .form-group');
+
+    for (var i = 0; i < formElements.length; ++i) {
+      var aceEditor = formElements[i].querySelector('.ace_editor');
+      if (aceEditor) {
+        if (formEditor) {
+          // in case we have multiple ace editors we skip this magic
+          formEditor = false;
+          break;
+        }
+        formEditor = aceEditor;
+      } else {
+        blockUsed++;
+      }
+    }
+
+    if (formEditor) {
+      var baseHeight = 133;
+      var blockFree = blockCount - blockUsed;
+      if (blockFree > 0) {
+        var editorEl = angular.element(formEditor);
+        editorEl.css('height', (baseHeight + (blockFree * 99)) + 'px');
+      }
+    }
+  };
+
+  $http.get(fusio.baseUrl + 'backend/action/' + $routeParams.action_id)
+    .then(function(response) {
+      $scope.action = response.data;
+      $scope.loadConfig();
+    });
 
 };
 
@@ -504,17 +581,21 @@ angular.module('fusioApp.action', ['ngRoute', 'ui.ace'])
     templateUrl: 'app/controller/action/index.html',
     controller: 'ActionCtrl'
   });
+  $routeProvider.when('/action/designer/:action_id', {
+    templateUrl: 'app/controller/action/designer.html',
+    controller: 'ActionDesignerCtrl'
+  });
 }])
 
 .controller('ActionCtrl', require('./action'))
 .controller('ActionCreateCtrl', require('./create'))
 .controller('ActionUpdateCtrl', require('./update'))
 .controller('ActionDeleteCtrl', require('./delete'))
-.controller('ActionExecuteCtrl', require('./execute'))
+.controller('ActionDesignerCtrl', require('./designer'))
 
 ;
 
-},{"./action":4,"./create":5,"./delete":6,"./execute":7,"./update":9,"angular":86}],9:[function(require,module,exports){
+},{"./action":4,"./create":5,"./delete":6,"./designer":7,"./update":9,"angular":86}],9:[function(require,module,exports){
 'use strict';
 
 module.exports = function($scope, $http, $uibModalInstance, $uibModal, action, formBuilder, $timeout, fusio) {
@@ -569,34 +650,6 @@ module.exports = function($scope, $http, $uibModalInstance, $uibModal, action, f
           }
         });
     }
-  };
-
-  $scope.execute = function(action) {
-    $http.put(fusio.baseUrl + 'backend/action/' + action.id, action)
-      .then(function(response) {
-        var data = response.data;
-        $scope.response = data;
-        if (data.success === true) {
-          var modalInstance = $uibModal.open({
-            size: 'lg',
-            backdrop: 'static',
-            templateUrl: 'app/controller/action/execute.html',
-            controller: 'ActionExecuteCtrl',
-            resolve: {
-              action: function() {
-                return action;
-              }
-            }
-          });
-
-          modalInstance.result.then(function(response) {
-          }, function() {
-          });
-        }
-      })
-      .catch(function(response) {
-        $scope.response = response.data;
-      });
   };
 
   $http.get(fusio.baseUrl + 'backend/action/' + action.id)
@@ -3082,6 +3135,54 @@ module.exports = function($scope, $http, $uibModalInstance, fusio, schema) {
 },{}],53:[function(require,module,exports){
 'use strict';
 
+module.exports = function($scope, $http, $routeParams, fusio) {
+
+  $scope.schema = {};
+  $scope.response = null;
+
+  $scope.update = function(schema) {
+    var data = angular.copy(schema);
+    if (typeof data.source == 'string') {
+      data.source = JSON.parse(data.source);
+    }
+
+    $http.put(fusio.baseUrl + 'backend/schema/' + data.id, data)
+      .then(function(response) {
+        var data = response.data;
+        if (data.success === true) {
+          $scope.loadPreview(schema.id);
+        }
+      })
+      .catch(function(response) {
+      });
+  };
+
+  $scope.loadPreview = function(schemaId){
+    $http.post(fusio.baseUrl + 'backend/schema/preview/' + schemaId, null)
+      .then(function(response) {
+        var data = response.data;
+        data.preview = data.preview.replace(/href=\"\#([A-z0-9_]+)\"/g, "href=\"#/schema/designer/" + schemaId + "\"");
+        $scope.response = data;
+      });
+  };
+
+  $http.get(fusio.baseUrl + 'backend/schema/' + $routeParams.schema_id)
+    .then(function(response) {
+      var data = response.data;
+      if (!angular.isString(data.source)) {
+        data.source = JSON.stringify(data.source, null, 4);
+      }
+
+      $scope.schema = data;
+    });
+
+  $scope.loadPreview($routeParams.schema_id);
+
+};
+
+},{}],54:[function(require,module,exports){
+'use strict';
+
 var angular = require('angular');
 
 angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
@@ -3091,40 +3192,21 @@ angular.module('fusioApp.schema', ['ngRoute', 'ui.bootstrap'])
     templateUrl: 'app/controller/schema/index.html',
     controller: 'SchemaCtrl'
   });
+  $routeProvider.when('/schema/designer/:schema_id', {
+    templateUrl: 'app/controller/schema/designer.html',
+    controller: 'SchemaDesignerCtrl'
+  });
 }])
 
 .controller('SchemaCtrl', require('./schema'))
 .controller('SchemaCreateCtrl', require('./create'))
 .controller('SchemaUpdateCtrl', require('./update'))
 .controller('SchemaDeleteCtrl', require('./delete'))
-.controller('SchemaPreviewCtrl', require('./preview'))
+.controller('SchemaDesignerCtrl', require('./designer'))
 
 ;
 
-},{"./create":51,"./delete":52,"./preview":54,"./schema":55,"./update":56,"angular":86}],54:[function(require,module,exports){
-'use strict';
-
-module.exports = function($scope, $http, $uibModalInstance, schema, fusio) {
-
-  $scope.schema = schema;
-  $scope.response = null;
-
-  $scope.preview = function(schema) {
-    $http.post(fusio.baseUrl + 'backend/schema/preview/' + schema.id, null)
-      .then(function(response) {
-        $scope.response = response.data;
-      });
-  };
-
-  $scope.close = function() {
-    $uibModalInstance.dismiss('cancel');
-  };
-
-  $scope.preview(schema);
-
-};
-
-},{}],55:[function(require,module,exports){
+},{"./create":51,"./delete":52,"./designer":53,"./schema":55,"./update":56,"angular":86}],55:[function(require,module,exports){
 'use strict';
 
 module.exports = function($scope, $http, $uibModal, $routeParams, $location, fusio) {
@@ -3280,39 +3362,6 @@ module.exports = function($scope, $http, $uibModalInstance, $uibModal, fusio, sc
 
   $scope.closeResponse = function() {
     $scope.response = null;
-  };
-
-  $scope.preview = function(schema) {
-    var data = angular.copy(schema);
-    if (typeof data.source == 'string') {
-      data.source = JSON.parse(data.source);
-    }
-
-    $http.put(fusio.baseUrl + 'backend/schema/' + data.id, data)
-      .then(function(response) {
-        var data = response.data;
-        $scope.response = data;
-        if (data.success === true) {
-          var modalInstance = $uibModal.open({
-            size: 'lg',
-            backdrop: 'static',
-            templateUrl: 'app/controller/schema/preview.html',
-            controller: 'SchemaPreviewCtrl',
-            resolve: {
-              schema: function() {
-                return schema;
-              }
-            }
-          });
-
-          modalInstance.result.then(function(response) {
-          }, function() {
-          });
-        }
-      })
-      .catch(function(response) {
-        $scope.response = response.data;
-      });
   };
 
   $http.get(fusio.baseUrl + 'backend/schema/' + schema.id)
