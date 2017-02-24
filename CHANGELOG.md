@@ -1,5 +1,11 @@
 
-### 0.6.9
+### 0.7.0
+
+* Passthu schema fix handling empty request body
+* Updated v8 adapter
+* Updated manual
+
+### 0.6.9 (2017-02-19)
 
 * Update v8 adapter
 * Connection test catch all exceptions and throw a http error
