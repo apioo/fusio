@@ -124,14 +124,14 @@ most login errors in case you are not able to login at the backend:
 * *Apache module mod_rewrite is not activated*
 
   In case you use Apache as web server you must activate the module 
-  ``mod_rewrite`` and so that the ``public/.htaccess`` file is used. Besides 
+  ``mod_rewrite`` so that the ``public/.htaccess`` file is used. Besides 
   clean urls it contains an important rule which tells Apache to redirect the 
   ``Authorization`` header to Fusio otherwise Apache will remove the header and 
   Fusio can not authenticate the user
 * *Fusio API returns an error*
 
   In this case Fusio can probably not write to the ``cache/`` folder. To fix the 
-  problem you have to change the folder permissions so that the user of web 
+  problem you have to change the folder permissions so that the user of the web 
   server can write to the folder. If there is another error message it is maybe 
   a bug. Please report the issue to GitHub.
 
