@@ -1,5 +1,5 @@
-_Ever growing list of ideas and thoughts howto improve and extend Fusio. Topics_ 
-_which are likely to be implemented are moved to a seperate github issue_
+_Ever growing list of ideas and thoughts how to improve and extend Fusio. Topics_ 
+_which are likely to be implemented are moved to a separate Github issue_
 
 - [ ] Add option to set the status of an action or connection to disabled so it 
       can not be changed
