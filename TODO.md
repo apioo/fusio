@@ -1,13 +1,6 @@
 _Ever growing list of ideas and thoughts howto improve and extend Fusio. Topics_ 
 _which are likely to be implemented are moved to a seperate github issue_
 
-### 0.6
-
-- [ ] When creating an connection verify that the connection works #2
-      Add a PingableInterface to connection which support this and add check
-      to the service
-- [ ] Add a general log ui besides the request log where a user can see all 
-      system logs
 - [ ] Add option to set the status of an action or connection to disabled so it 
       can not be changed
 - [ ] Extend API controller test cases to 100%
@@ -15,77 +8,27 @@ _which are likely to be implemented are moved to a seperate github issue_
       (https://orionhub.org) to create a action in js
 - [ ] At the moment it is possible to register the same adapter multiple times.
       Is this ok or should we add a check which tracks installed adapters?
-- [ ] We need a new app which only handles authorization and app management 
-      especially for one page web apps
 - [ ] Simplify creating JSONSchema schemas for the request/response
   - [ ] A option to create a JSONSchema from a database table
   - [ ] A option to create a JSONSchema from a JSON string (see http://jsonschema.net/#/)
-- [ ] Add option to execute bulk actions for specific records i.e.:
-  - [ ] Assign/Remove scopes from multiple apps
-  - [ ] Remove all tokens from multiple apps
-  - [ ] Assign/Remove scopes from multiple users
-- [ ] Add OAuth2 refresh token endpoint #16
-  - [ ] Add method to relogin if token expires. Probably we should save the 
-        expire time and make the relogin attempt based on this
 - [ ] Add consumer and documentation protractor tests
 - [ ] Maybe we need to handle the idle status in the backend through
       https://github.com/HackedByChinese/ng-idle
-- [ ] App button to regenerate app key and secret
-  - [ ] We need this option also on the consumer site
 - [ ] Consumer if access was already granted dont ask the user again instead 
       redirect the user directly or show the access token. We could add this 
       logic maybe to the meta lookup response
 - [ ] Test GitHub/Google/Facebook login
 - [ ] General test. Build an API and use different libraries to test OAuth2 
       interoperability
-- [ ] Add forms endpoint. The user can select a route, request method and an 
-      input field which contains the form format.
-    - Maybe based on https://github.com/joshfire/jsonform
-    - http://angular-formly.com/#/
-    - https://github.com/mozilla-services/react-jsonschema-form
-  - [ ] Add a html endpoint which can render a form for an API endpoint for 
-        humans to enter. This could be embeded per iframe in a website etc.
-  - [ ] We need a new point forms. There a user can create a form for a schema.
-        This form has an abstract json format which describes the look of the 
-        form (look at schemaform.io or xforms). This abstract form can be 
-        rendered in javascript, java, etc.
-  - [ ] How do we handle form submits where a access token is required at the 
-        backend (which is probably always required)? Maybe we should assume that
-        the app which embeds the form provides an access token to it.
-  - [ ] We should build different libraries (javascript, java, etc.) to build 
-        these forms
-
-### 0.x
-
-- [ ] Add SDKs which help connecting to a Fusio API
+- [ ] Add more SDKs which help connecting to a Fusio API
 - [ ] Probably add link to the doc to get an access token to send authenticated
       calls to the api
 - [ ] Consumer login beside GitHub, Facebook, etc. provide a way to support 
       other login providers i.e. (LDAP)
-- [ ] ~~Add phpinfo action~~
-- [ ] Add mail action which sends a mail using the provided data
-- [ ] Add connections to different API providers i.e. Google
-  - [ ] Probably add OAuth2 connection which can connect to any OAuth2 
-        compatible REST API
-- [x] A option to configure a memcache server in the config
-      Is possible through the psx config
 - [ ] System export fix sort so that i.e. schemas which refer no other schema
       are at the top 
-- [x] Add docker and vagrant box to easy test and deploy fusio. We have a docker
-      image a vagrant box is not needed
 - [ ] Add general API performance panel where we measure the execution time of 
       each endpoint
-- [ ] Add option to get and use a refresh token to extend the life time of an 
-      access token
-- [ ] Add an API console where it is possible to test the API #7
-  - [ ] Build ui form based on the json schema
-    - http://schemaform.io/
-    - https://github.com/joshfire/jsonform
-    - https://github.com/mozilla-services/react-jsonschema-form
-- [ ] Add different roles for the backend. I.e. an admin/manager and developer.
-      A developer account can only edit specific entries
-  - [ ] Probably we need a interface for developers. A editor view where the
-        developer can design the APIs where he was assigned to
 - [ ] Optimize the way how data is organized. I.e. we could have many actions or 
       schemas, we need a way to group or categorize entries so it is easier to
       organize
@@ -105,64 +48,71 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] There is no way to add query parameters
   - [ ] At the moment we only handle the schema for an 200 return. Probably add 
         possibility to add response schema for other status codes
-- [ ] We need to create a marketplace where all adapters are listed and where
-      developers can provide a adapter for their system
-  - [x] The best way todo this is to parse all packages with a specific tag 
-        "fusio-adapter" from packagist add list them on fusio-project.org
-        There is an API which we cna use to request specific tags
-  - [ ] Extend the documentation howto write an adapter
 - [ ] Build new adapters
-  - [x] Add action which builds a REST API from a table where a user only needs 
-        to provide the table name. The action needs two routes /table and 
-        /table/:id
-  - [x] Add SOAP action
-  - [ ] Add OData action
-  - [ ] ~~Add an action merge which combines the result of two actions into one 
-        result (This is probably already possible through the transform action)~~
-  - [ ] Build adapters for popular systems i.e. wordpress/drupal etc.
+  - [ ] Add OData connection
+  - [ ] ~~Build adapters for popular systems i.e. wordpress/drupal etc.~~
   - [ ] Gateways to other systems which dont have an API
   - [ ] Gateways to complex systems i.e. sharepoint
 - [ ] Consider disable request model for DELETE method since a DELETE should
       probably not include a request body?
 
-### 1.0
-
 ### Meta
 
 - [ ] Update Fusio tutorial videos to showcase different topics
-  - [ ] Create API from SQL table
+  - [x] Create API from SQL table
   - [ ] Create API from complex SQL query
   - [ ] Insert entry into a SQL table
-  - [ ] Create API with MongoDB
+  - [x] Create API with MongoDB
   - [ ] Insert entry into a MongoDB
   - [ ] Push entry into a RabbitMQ
   - [ ] Push entry into Beanstalk
   - [ ] Javascript app request protected endpoints
   - [ ] Howto develop a custom action
-  - [ ] Howto setup Fusio
+  - [x] Howto setup Fusio
   - [ ] Howto cache response of a slow action
   - [ ] Create API based on API spec swagger/RAML
 - [ ] Add training howto develop a javascript app based on Fusio
 - [ ] Add use case section to website
 - [ ] Add a training section to fusio-project.org similar to:
       https://developer.android.com/training/basics/firstapp/creating-project.html
-- [ ] Provide a video with a installation and demo about the system
-- [ ] We must host the demo system somewhere
 - [ ] Extend manual
-- [ ] Maybe create icon
-- [x] Register domain maybe fusio-api.org or fusio-project.org
-- [x] Add a online demo system
-- [ ] ~~Add beta phase on the website. Where users can enter an email for an invite~~
-- [x] Setup discourse forum (we have a google group)
+- [ ] Extend the documentation how to write an adapter
 - [ ] For the stable release write about Fusio at 
   - [ ] http://nordicapis.com/create-with-us/
   - [ ] https://www.reddit.com/r/php / https://www.reddit.com/r/rest
   - [ ] http://www.sitepoint.com/
-- [x] Added Fusio to https://github.com/marmelab/awesome-rest
-- [x] Move Fusio samples to apioo org
 
 ### Archive
 
+- [x] We need to create a marketplace where all adapters are listed and where
+      developers can provide a adapter for their system
+  - [x] The best way todo this is to parse all packages with a specific tag 
+        "fusio-adapter" from packagist add list them on fusio-project.org
+        There is an API which we cna use to request specific tags
+- [x] Add action which builds a REST API from a table where a user only needs 
+      to provide the table name. The action needs two routes /table and 
+      /table/:id
+- [x] Add SOAP connection
+- [ ] ~~Add an action merge which combines the result of two actions into one 
+      result (This is probably already possible through the transform action)~~
+- [x] Provide a video with a installation and demo about the system
+- [x] We must host the demo system somewhere
+- [x] Maybe create icon
+- [x] Register domain maybe fusio-api.org or fusio-project.org
+- [x] Add a online demo system
+- [ ] ~~Add beta phase on the website. Where users can enter an email for an invite~~
+- [x] Setup discourse forum (we have a google group)
+- [x] Added Fusio to https://github.com/marmelab/awesome-rest
+- [x] Move Fusio samples to apioo org
+- [ ] ~~Add phpinfo action~~
+- [x] A option to configure a memcache server in the config
+      Is possible through the psx config
+- [x] Add docker and vagrant box to easy test and deploy fusio. We have a docker
+      image a vagrant box is not needed
+- [x] When creating an connection verify that the connection works #2
+      Add a PingableInterface to connection which support this and add check
+      to the service
+- [x] Error-Log UI where all errors are listed
 - [x] Build elektron app (http://electron.atom.io/) around backend
 - [x] Add support for multiple other database backends. We should probably move
       these connections into seperate adapters.
@@ -220,7 +170,6 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [x] Or build a native php action
 - [x] We remove the database endpoint and panel
 - [x] Add Swagger import support
-
 - [x] Backend database UI add auto increment option
 - [x] Add failover action which executes another action in case of an error
 - [x] Schema add preview button and close window always on save
@@ -241,7 +190,6 @@ _which are likely to be implemented are moved to a seperate github issue_
   - [ ] ~~ Use http://js.cytoscape.org/ to build a graph from the actions/schema ~~
   - [x] Write a processor action where a user can define multiple actions in
         a YAML format
-
 - [x] Update config help texts
 - [x] Add CORS support to backend config
 - [x] Installer handle upgrade from 0.2.x to 0.3.x
@@ -254,7 +202,6 @@ _which are likely to be implemented are moved to a seperate github issue_
 - [x] Add transactions to services
 - [x] Disable edit button of scope backend, consumer and authorization since a 
       user would remove all assigned routes on save #13
-
 - [ ] ~~Provide actions to create an API from a file i.e. JSON, XML maybe CSV?~~
 - [x] Option to manually generate an access token
   - [ ] ~~Option to generate an access token for an application through the 
