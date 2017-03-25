@@ -15,14 +15,6 @@ module.exports = function($scope, $http, $uibModalInstance, app, fusio) {
     value: 'Deactivated'
   }];
 
-  $http.get(fusio.baseUrl + 'backend/scope?count=1024')
-    .then(function(response) {
-      var data = response.data;
-      $scope.scopes = data.entry;
-
-      $scope.loadApp();
-    });
-
   $scope.update = function(app) {
     var data = angular.copy(app);
 
@@ -97,5 +89,16 @@ module.exports = function($scope, $http, $uibModalInstance, app, fusio) {
         }
       });
   };
+
+  $scope.getScopes = function(){
+    $http.get(fusio.baseUrl + 'backend/scope?count=1024')
+      .then(function(response) {
+        $scope.scopes = response.data.entry;
+
+        $scope.loadApp();
+      });
+  };
+
+  $scope.getScopes();
 
 };

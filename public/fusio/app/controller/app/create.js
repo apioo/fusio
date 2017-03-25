@@ -51,27 +51,21 @@ module.exports = function($scope, $http, $uibModalInstance, fusio) {
     $scope.response = null;
   };
 
-  $scope.getUsers = function(name) {
-    return $http.get(fusio.baseUrl + 'backend/user?search=' + encodeURIComponent(name))
+  $scope.getUsers = function() {
+    $http.get(fusio.baseUrl + 'backend/user?count=1024')
       .then(function(response) {
-        var data = response.data;
-        if (angular.isArray(data.entry)) {
-          return data.entry;
-          /*
-           return response.data.entry.map(function(item){
-           return item.name;
-           });
-           */
-        } else {
-          return [];
-        }
+        $scope.users = response.data.entry;
       });
   };
 
-  $http.get(fusio.baseUrl + 'backend/scope?count=1024')
-    .then(function(response) {
-      var data = response.data;
-      $scope.scopes = data.entry;
-    });
+  $scope.getScopes = function() {
+    $http.get(fusio.baseUrl + 'backend/scope?count=1024')
+      .then(function(response) {
+        $scope.scopes = response.data.entry;
+      });
+  };
+
+  $scope.getUsers();
+  $scope.getScopes();
 
 };
