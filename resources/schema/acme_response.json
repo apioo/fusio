@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "totalResults": {
+      "type": "integer"
+    },
+    "entry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "insertDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}

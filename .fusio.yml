@@ -1,0 +1,24 @@
+routes:
+  /acme:
+    version: 1
+    methods:
+      GET:
+        public: true
+        response: acme-response
+        action: acme-action
+schema:
+  acme-response: !include resources/schema/acme_response.json
+action:
+  acme-action:
+    class: Fusio\Custom\Action\AcmeAction
+    config:
+      connection: mysql
+connection:
+  acme-mysql:
+    class: Fusio\Adapter\Sql\Connection\Sql
+    config:
+      type: pdo_mysql
+      host: localhost
+      username: root
+      password: 
+      database: fusio
