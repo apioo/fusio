@@ -26,6 +26,9 @@ module.exports = function($scope, $http, $uibModal, $compile, fusio) {
   }, {
     name: 'Errors per route',
     value: 'errors_per_route'
+  }, {
+    name: 'Issued tokens',
+    value: 'issued_tokens'
   }];
 
   $scope.doFilter = function() {

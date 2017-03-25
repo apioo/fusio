@@ -21,7 +21,7 @@
 </div>
 
 <div class="panel panel-default">
-    <div class="panel-heading">{{ getStatisticName(statistic) }}</div>
+    <div class="panel-heading">{{ getStatisticName(statistic) }} ({{filter.from | date:'shortDate'}} - {{filter.to | date:'shortDate'}})</div>
     <div class="panel-body">
         <div class="fusio-statistic">
             <canvas id="statisticCanvas" class="chart chart-line" height="400" chart-options="{'responsive':true,'maintainAspectRatio':false}" chart-data="chart.data" chart-labels="chart.labels" chart-series="chart.series"></canvas>

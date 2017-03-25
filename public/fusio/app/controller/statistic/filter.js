@@ -3,7 +3,10 @@
 module.exports = function($scope, $http, $uibModalInstance, fusio, filter) {
 
   $scope.filter = filter;
-
+  $scope.apps = [];
+  $scope.users = [];
+  $scope.routes = [];
+  
   $scope.doFilter = function() {
     $uibModalInstance.close($scope.filter);
   };
@@ -12,14 +15,29 @@ module.exports = function($scope, $http, $uibModalInstance, fusio, filter) {
     $uibModalInstance.dismiss('cancel');
   };
 
-  $http.get(fusio.baseUrl + 'backend/routes')
-    .then(function(response) {
-      $scope.routes = response.data.entry;
-    });
+  $scope.getApps = function(name) {
+    $http.get(fusio.baseUrl + 'backend/app?count=1024')
+      .then(function(response) {
+        $scope.apps = response.data.entry;
+      });
+  };
 
-  $http.get(fusio.baseUrl + 'backend/app')
-    .then(function(response) {
-      $scope.apps = response.data.entry;
-    });
+  $scope.getUsers = function(name) {
+    $http.get(fusio.baseUrl + 'backend/user?count=1024')
+      .then(function(response) {
+        $scope.users = response.data.entry;
+      });
+  };
+
+  $scope.getRoutes = function(name) {
+    $http.get(fusio.baseUrl + 'backend/routes?count=1024')
+      .then(function(response) {
+        $scope.routes = response.data.entry;
+      });
+  };
+
+  $scope.getApps();
+  $scope.getUsers();
+  $scope.getRoutes();
 
 };
