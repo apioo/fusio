@@ -28,9 +28,13 @@ describe('App tests', function() {
     expect(statusOptions.get(2).getText()).toEqual('Deactivated');
     statusOptions.get(0).click();
 
-    element(by.id('user')).sendKeys('Develop');
-    browser.wait(EC.visibilityOf($('.dropdown-menu li a')), 5000);
-    element.all(by.css('.dropdown-menu li a')).first().click();
+    var userOptions = element.all(by.options('user.id as user.name for user in users'));
+    expect(userOptions.get(0).getText()).toEqual('Deleted');
+    expect(userOptions.get(1).getText()).toEqual('Developer');
+    expect(userOptions.get(2).getText()).toEqual('Disabled');
+    expect(userOptions.get(3).getText()).toEqual('Consumer');
+    expect(userOptions.get(4).getText()).toEqual('Administrator');
+    userOptions.get(1).click();
 
     element(by.model('app.name')).sendKeys('test-app');
     element(by.model('app.url')).sendKeys('http://foo.com');
