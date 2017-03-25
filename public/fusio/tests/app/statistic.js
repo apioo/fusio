@@ -11,6 +11,7 @@ describe('Statistic tests', function() {
     expect(routes.get(1).getText()).toEqual('Most used routes');
     expect(routes.get(2).getText()).toEqual('Most used apps');
     expect(routes.get(3).getText()).toEqual('Errors per route');
+    expect(routes.get(1).getText()).toEqual('Issued tokens');
 
     routes.get(0).click();
     browser.waitForAngular();
@@ -22,6 +23,9 @@ describe('Statistic tests', function() {
     browser.waitForAngular();
 
     routes.get(3).click();
+    browser.waitForAngular();
+
+    routes.get(4).click();
     browser.waitForAngular();
   });
 
