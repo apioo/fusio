@@ -19,6 +19,19 @@ return array(
     // CHANGE THE KEY ONLY BEFORE THE INSTALLATION
     'fusio_project_key'       => '42eec18ffdbffc9fda6110dcc705d6ce',
 
+    // Settings of the internal mailer. By default we use the internal PHP mail
+    // function
+    /*
+    'fusio_mailer'            => [
+        'transport'           => 'smtp',
+        'host'                => 'email-smtp.us-east-1.amazonaws.com',
+        'port'                => 587,
+        'username'            => 'my-username',
+        'password'            => 'my-password',
+        'encryption'          => 'tls',
+    ],
+    */
+
     // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
     // http://localhost.com)
     'psx_url'                 => 'http://127.0.0.1/projects/fusio/public',
