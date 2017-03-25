@@ -1,0 +1,46 @@
+
+<h1>Token</h1>
+
+<div class="fusio-search">
+    <form name="tokenSearchForm" ng-submit="doFilter(filter)">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="filter.search" placeholder="Search i.e. scope" />
+            <div class="input-group-btn">
+                <a class="btn btn-primary" ng-click="openFilterDialog()"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="fusio-grid">
+    <table class="table">
+    <colgroup>
+        <col width="*" />
+        <col width="200" />
+        <col width="150" />
+        <col width="50" />
+    </colgroup>
+    <thead>
+    <tr>
+        <th>Scope</th>
+        <th>IP</th>
+        <th>Date</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="token in tokens">
+        <td><span ng-repeat="scope in token.scope" class="label label-primary" style="margin-right:4px;font-size:14px;">{{scope}}</span></td>
+        <td>{{token.ip}}</td>
+        <td>{{token.date | date: 'short'}}</td>
+        <td>
+            <div class="fusio-options">
+                <a ng-click="openDetailDialog(token)" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+
+<uib-pagination total-items="totalResults" items-per-page="16" ng-model="startIndex" ng-change="pageChanged()" max-size="10"></uib-pagination>

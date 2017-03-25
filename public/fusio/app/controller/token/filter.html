@@ -1,0 +1,48 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Filter</h3>
+</div>
+
+<div class="modal-body">
+    <form name="statisticFilterForm" ng-submit="doFilter()">
+        <div class="form-group">
+            <label for="from">Date from/to:</label>
+            <div class="row">
+                <div class="col-md-6">
+                    <input id="from" type="date" ng-model="filter.from" required="required" class="form-control" aria-describedby="fromHelp">
+                </div>
+                <div class="col-md-6">
+                    <input id="to" type="date" ng-model="filter.to" required="required" class="form-control" aria-describedby="toHelp">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="app">App:</label>
+            <select id="app" ng-model="filter.appId" ng-options="app.id as app.name for app in apps" class="form-control" aria-describedby="appHelp">
+                <option value="">Every app</option>
+                <option value="-1">Anonymous</option>
+            </select>
+            <span class="help-block" id="appHelp"></span>
+        </div>
+        <div class="form-group">
+            <label for="user">User:</label>
+            <select id="user" ng-model="filter.userId" ng-options="user.id as user.name for user in users" class="form-control" aria-describedby="userHelp">
+                <option value="">Every user</option>
+            </select>
+            <span class="help-block" id="userHelp"></span>
+        </div>
+        <div class="form-group">
+            <label for="scope">Scope:</label>
+            <input id="scope" type="text" ng-model="filter.scope" class="form-control" aria-describedby="scopeHelp">
+            <span class="help-block" id="scopeHelp"></span>
+        </div>
+        <div class="form-group">
+            <label for="ip">IP:</label>
+            <input id="ip" type="text" ng-model="filter.ip" class="form-control" aria-describedby="ipHelp">
+            <span class="help-block" id="ipHelp"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Filter</button>
+        <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+    </form>
+</div>

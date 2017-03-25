@@ -1,0 +1,40 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Detail</h3>
+</div>
+
+<div class="modal-body">
+    <form name="tokenForm">
+        <input type="hidden" ng-model="token.id" value="{{token.id}}" />
+        <div class="form-group">
+            <label for="app">App:</label>
+            <input type="text" id="app" ng-model="token.app.name" ng-disabled="true" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="user">User:</label>
+            <input type="text" id="user" ng-model="token.user.name" ng-disabled="true" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" ng-model="token.status" ng-options="status.key as status.value for status in statuuus" ng-disabled="true" class="form-control">
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="scope">Scope:</label>
+            <input type="text" id="scope" ng-model="token.scope" ng-disabled="true" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="ip">IP:</label>
+            <input type="text" id="ip" ng-model="token.ip" ng-disabled="true" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="expire">Expire:</label>
+            <input type="text" id="expire" ng-model="token.expire" ng-disabled="true" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="text" id="date" ng-model="token.date" ng-disabled="true" class="form-control">
+        </div>
+        <button type="button" ng-click="close()" class="btn btn-default">Cancel</button>
+    </form>
+</div>
