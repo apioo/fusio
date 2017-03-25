@@ -28,6 +28,7 @@ var fusioApp = angular.module('fusioApp', [
   'fusioApp.schema',
   'fusioApp.scope',
   'fusioApp.statistic',
+  'fusioApp.token',
   'fusioApp.user'
 ]);
 
@@ -57,6 +58,7 @@ require('./controller/routes');
 require('./controller/schema');
 require('./controller/scope');
 require('./controller/statistic');
+require('./controller/token');
 require('./controller/user');
 
 fusioApp.value('version', require('../package.json').version);
