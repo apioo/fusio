@@ -1,5 +1,14 @@
 
-### 0.7.0
+### 0.7.1 (2017-03-26)
+
+* Added deploy command
+* Add issued token statistic
+* Add app token endpoint
+* The protected API endpoints accept now also a JWT as bearer token which was
+  obtained by the /consumer/login endpoint
+* Added consumer endpoint documentation test cases
+
+### 0.7.0 (2017-02-24)
 
 * Passthu schema fix handling empty request body
 * Updated v8 adapter
