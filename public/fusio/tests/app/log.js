@@ -5,6 +5,18 @@ describe('Log tests', function() {
   it('List log', function() {
     browser.get('#/log');
 
+    var EC = protractor.ExpectedConditions;
+
+    // set filter settings
+    $('a.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+
+    element(by.model('filter.from')).clear().sendKeys('2015-06-01');
+    element(by.model('filter.to')).clear().sendKeys('2015-06-30');
+
+    $('button.btn-primary').click();
+
     var logs = element.all(by.repeater('log in logs').column('log.path'));
     expect(logs.count()).toEqual(2);
     expect(logs.get(0).getText()).toMatch('/bar');
@@ -15,6 +27,16 @@ describe('Log tests', function() {
     browser.get('#/log');
 
     var EC = protractor.ExpectedConditions;
+
+    // set filter settings
+    $('a.btn-primary').click();
+
+    browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
+
+    element(by.model('filter.from')).clear().sendKeys('2015-06-01');
+    element(by.model('filter.to')).clear().sendKeys('2015-06-30');
+
+    $('button.btn-primary').click();
 
     element.all(by.css('div.fusio-options a:nth-child(1)')).get(1).click();
 

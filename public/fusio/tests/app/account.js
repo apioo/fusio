@@ -8,8 +8,8 @@ describe('Account tests', function() {
     var EC = protractor.ExpectedConditions;
 
     element(by.model('account.oldPassword')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
-    element(by.model('account.newPassword')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
-    element(by.model('account.verifyPassword')).sendKeys('qf2vX10Ec3wFZHx0K1eL');
+    element(by.model('account.newPassword')).sendKeys('qf2vX10Ec3wFZHx0K1eL!');
+    element(by.model('account.verifyPassword')).sendKeys('qf2vX10Ec3wFZHx0K1eL!');
 
     $('button.btn-primary').click();
 

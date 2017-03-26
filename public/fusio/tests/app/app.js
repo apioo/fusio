@@ -29,7 +29,7 @@ describe('App tests', function() {
     statusOptions.get(0).click();
 
     var userOptions = element.all(by.options('user.id as user.name for user in users'));
-    expect(userOptions.get(0).getText()).toEqual('Deleted');
+    expect(userOptions.get(0).getText()).toEqual('');
     expect(userOptions.get(1).getText()).toEqual('Developer');
     expect(userOptions.get(2).getText()).toEqual('Disabled');
     expect(userOptions.get(3).getText()).toEqual('Consumer');

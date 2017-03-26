@@ -5,9 +5,9 @@ describe('Token tests', function() {
   it('List token', function() {
     browser.get('#/token');
 
-    var errors = element.all(by.repeater('token in tokens').column('token.scope'));
-    expect(errors.count()).toEqual(4);
-    expect(errors.get(0).getText()).toMatch('backend authorization');
+    var tokens = element.all(by.repeater('token in tokens').column('scope'));
+    expect(tokens.count()).toEqual(1);
+    expect(tokens.get(0).getText()).toMatch('backend authorization');
   });
 
   it('Detail token', function() {
@@ -19,11 +19,11 @@ describe('Token tests', function() {
 
     browser.wait(EC.visibilityOf($('div.modal-body')), 5000);
 
-    expect(element(by.model('token.app.name')).getText()).toEqual('');
-    expect(element(by.model('token.user.name')).getText()).toEqual('');
-    expect(element(by.model('token.status')).getText()).toEqual('');
-    expect(element(by.model('token.scope')).getText()).toEqual('');
-    expect(element(by.model('token.ip')).getText()).toEqual('');
+    expect(element(by.model('token.app.name')).getAttribute('value')).toEqual('Backend');
+    expect(element(by.model('token.user.name')).getAttribute('value')).toEqual('Developer');
+    expect(element(by.model('token.status')).getAttribute('value')).toEqual('number:1');
+    expect(element(by.model('token.scope')).getAttribute('value')).toEqual('backend,authorization');
+    expect(element(by.model('token.ip')).getAttribute('value')).toEqual('127.0.0.1');
 
     $('button.btn-default').click();
   });
