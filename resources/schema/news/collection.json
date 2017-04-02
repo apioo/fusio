@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "totalResults": {
+      "type": "integer"
+    },
+    "entry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "$ref": "file:///entity.json"
+        }
+      }
+    }
+  }
+}

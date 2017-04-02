@@ -1,20 +1,26 @@
 routes:
-  /acme:
+  /news:
     version: 1
     methods:
       GET:
         public: true
-        response: acme-response
-        action: acme-action
+        response: News-Collection
+        action: News-Collection
+      POST:
+        public: false
+        request: News-Entity
+        response: Passthru
+        action: News-Insert
 schema:
-  acme-response: !include resources/schema/acme_response.json
+  News-Collection: !include resources/schema/news/collection.json
+  News-Entity: !include resources/schema/news/entity.json
 action:
-  acme-action:
-    class: Fusio\Custom\Action\AcmeAction
-    config:
-      connection: mysql
+  News-Collection:
+    class: Fusio\Custom\Action\News\Collection
+  News-Insert:
+    class: Fusio\Custom\Action\News\Insert
 connection:
-  acme-mysql:
+  Acme-Mysql:
     class: Fusio\Adapter\Sql\Connection\Sql
     config:
       type: pdo_mysql
@@ -22,3 +28,6 @@ connection:
       username: root
       password: 
       database: fusio
+migration:
+  Acme-Mysql:
+    - resources/sql/v1_schema.sql

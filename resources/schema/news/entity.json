@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 32
+    },
+    "content": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 255
+    },
+    "insertDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["title", "content"]
+}
