@@ -15,6 +15,8 @@ TOC
 
    overview
    installation
+   get_started
+   request_lifecycle
    backend
    consumer
    adapter

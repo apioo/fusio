@@ -104,7 +104,7 @@ be able to login with the username (which you have entered for the ``adduser``
 command) and the password which you have used. The following list covers the 
 most login errors in case you are not able to login at the backend:
 
-* *The javascript Backend-App uses the wrong API endpoint*
+* **The javascript Backend-App uses the wrong API endpoint**
 
   This can be tested with the browser developer console. If you login at the 
   backend with no credentials the app should make an request to the 
@@ -121,14 +121,15 @@ most login errors in case you are not able to login at the backend:
 
       var fusioUrl = "http://localhost:8080/fusio/public/index.php/";
 
-* *Apache module mod_rewrite is not activated*
+* **Apache module mod_rewrite is not activated**
 
   In case you use Apache as web server you must activate the module 
   ``mod_rewrite`` so that the ``public/.htaccess`` file is used. Besides 
   clean urls it contains an important rule which tells Apache to redirect the 
   ``Authorization`` header to Fusio otherwise Apache will remove the header and 
   Fusio can not authenticate the user
-* *Fusio API returns an error*
+
+* **Fusio API returns an error**
 
   In this case Fusio can probably not write to the ``cache/`` folder. To fix the 
   problem you have to change the folder permissions so that the user of the web 
