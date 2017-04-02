@@ -1,9 +1,10 @@
 
 # Connection
 
-All classes inside this folder which implement the `Fusio\Engine\ConnectionInterface`
-are listed in the connection dropdown. In the following a simple example of a 
-custom connection.
+This folder contains custom connection implementations. Each class must 
+implement the `Fusio\Engine\ConnectionInterface` interface and can be used 
+inside the `.fusio.yml` deploy configuration. In the following an example 
+implementation:
 
     <?php
     

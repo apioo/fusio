@@ -1,9 +1,9 @@
 
 # Action
 
-All classes inside this folder which implement the `Fusio\Engine\ActionInterface`
-are listed in the action dropdown. In the following a simple example of a 
-custom action.
+This folder contains custom action implementations. Each class must implement 
+the `Fusio\Engine\ActionInterface` interface and can be used inside the 
+`.fusio.yml` deploy configuration. In the following an example implementation:
 
     <?php
     
@@ -11,29 +11,17 @@ custom action.
     
     use Fusio\Engine\ActionAbstract;
     use Fusio\Engine\ContextInterface;
-    use Fusio\Engine\Form\BuilderInterface;
-    use Fusio\Engine\Form\ElementFactoryInterface;
     use Fusio\Engine\ParametersInterface;
     use Fusio\Engine\RequestInterface;
     
     class AcmeAction extends ActionAbstract
     {
-        public function getName()
-        {
-            return 'Acme-Action';
-        }
-    
         public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
         {
             // @TODO handle request and return response
     
             return $this->response->build(200, [], [
-                'message' => $configuration->get('message'),
+                'message' => 'Hello World!',
             ]);
-        }
-    
-        public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
-        {
-            $builder->add($elementFactory->newInput('message', 'Message', 'text', 'Message of the day'));
         }
     }
