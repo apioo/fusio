@@ -1,4 +1,8 @@
 
+### 0.7.2
+
+* Added deploy migration
+
 ### 0.7.1 (2017-03-26)
 
 * Added deploy command
