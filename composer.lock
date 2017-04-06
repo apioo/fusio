@@ -575,16 +575,16 @@
         },
         {
             "name": "fusio/adapter-http",
-            "version": "v0.3.2",
+            "version": "v0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-http.git",
-                "reference": "8e69da3cbb1db22046f302fe102e92fe64ede452"
+                "reference": "9aa1c55c6c35e05a15869742cc9226969a36d7d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/8e69da3cbb1db22046f302fe102e92fe64ede452",
-                "reference": "8e69da3cbb1db22046f302fe102e92fe64ede452",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/9aa1c55c6c35e05a15869742cc9226969a36d7d0",
+                "reference": "9aa1c55c6c35e05a15869742cc9226969a36d7d0",
                 "shasum": ""
             },
             "require": {
@@ -617,20 +617,20 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-02-12T10:14:43+00:00"
+            "time": "2017-04-06T18:19:33+00:00"
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v0.3.2",
+            "version": "v0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
-                "reference": "7ef3dc06bf0ad1a5e52cc0eefd5b167dc46c6533"
+                "reference": "4f8409b05bed89dca3a260de0cf67bd3cb2dcabe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/7ef3dc06bf0ad1a5e52cc0eefd5b167dc46c6533",
-                "reference": "7ef3dc06bf0ad1a5e52cc0eefd5b167dc46c6533",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/4f8409b05bed89dca3a260de0cf67bd3cb2dcabe",
+                "reference": "4f8409b05bed89dca3a260de0cf67bd3cb2dcabe",
                 "shasum": ""
             },
             "require": {
@@ -664,20 +664,20 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-02-11T21:43:47+00:00"
+            "time": "2017-04-06T18:36:22+00:00"
         },
         {
             "name": "fusio/adapter-util",
-            "version": "v0.3.0",
+            "version": "v0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-util.git",
-                "reference": "ee620d95363a3f3f7e8e0fcf0a7741687d396438"
+                "reference": "a702100e56fc851dafff031344c7f3bca977e431"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/ee620d95363a3f3f7e8e0fcf0a7741687d396438",
-                "reference": "ee620d95363a3f3f7e8e0fcf0a7741687d396438",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/a702100e56fc851dafff031344c7f3bca977e431",
+                "reference": "a702100e56fc851dafff031344c7f3bca977e431",
                 "shasum": ""
             },
             "require": {
@@ -711,20 +711,20 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2016-12-24T13:39:57+00:00"
+            "time": "2017-04-06T18:37:14+00:00"
         },
         {
             "name": "fusio/adapter-v8",
-            "version": "v0.3.5",
+            "version": "v0.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-v8.git",
-                "reference": "f52c35694cd7793ab502ef1a55ac82b36ca5ce54"
+                "reference": "c63e5ea157c069d96f221ec2feb3585067f02a38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-v8/zipball/f52c35694cd7793ab502ef1a55ac82b36ca5ce54",
-                "reference": "f52c35694cd7793ab502ef1a55ac82b36ca5ce54",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-v8/zipball/c63e5ea157c069d96f221ec2feb3585067f02a38",
+                "reference": "c63e5ea157c069d96f221ec2feb3585067f02a38",
                 "shasum": ""
             },
             "require": {
@@ -768,20 +768,20 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-02-21T16:21:15+00:00"
+            "time": "2017-04-06T19:33:07+00:00"
         },
         {
             "name": "fusio/engine",
-            "version": "v0.6.6",
+            "version": "v0.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "bafe40818fd8b8f2c707feffd54b23d177343046"
+                "reference": "6423cd570c882e122fee3a361d4e348bd393d544"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/bafe40818fd8b8f2c707feffd54b23d177343046",
-                "reference": "bafe40818fd8b8f2c707feffd54b23d177343046",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/6423cd570c882e122fee3a361d4e348bd393d544",
+                "reference": "6423cd570c882e122fee3a361d4e348bd393d544",
                 "shasum": ""
             },
             "require": {
@@ -815,7 +815,7 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2017-03-25T18:11:13+00:00"
+            "time": "2017-04-06T18:08:40+00:00"
         },
         {
             "name": "fusio/impl",
@@ -2993,16 +2993,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "1.3.10",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "83e8d98b9915de76c659ce27d683c02a0f99fa90"
+                "reference": "b03f285a333f51e58c95cce54109a4a9ed691436"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/83e8d98b9915de76c659ce27d683c02a0f99fa90",
-                "reference": "83e8d98b9915de76c659ce27d683c02a0f99fa90",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/b03f285a333f51e58c95cce54109a4a9ed691436",
+                "reference": "b03f285a333f51e58c95cce54109a4a9ed691436",
                 "shasum": ""
             },
             "require": {
@@ -3010,17 +3010,19 @@
                 "psr/http-message": "~1.0"
             },
             "provide": {
-                "psr/http-message-implementation": "~1.0.0"
+                "psr/http-message-implementation": "1.0"
             },
             "require-dev": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
                 "phpunit/phpunit": "^4.6 || ^5.5",
                 "zendframework/zend-coding-standard": "~1.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3-dev",
-                    "dev-develop": "1.4-dev"
+                    "dev-master": "1.4-dev",
+                    "dev-develop": "1.5-dev"
                 }
             },
             "autoload": {
@@ -3039,7 +3041,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2017-01-23T04:53:24+00:00"
+            "time": "2017-04-06T16:18:34+00:00"
         }
     ],
     "packages-dev": [
