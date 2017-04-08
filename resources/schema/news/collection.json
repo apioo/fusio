@@ -7,10 +7,7 @@
     "entry": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "$ref": "file:///entity.json"
-        }
+        "$ref": "file:///entity.json"
       }
     }
   }
