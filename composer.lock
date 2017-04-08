@@ -2051,16 +2051,16 @@
         },
         {
             "name": "psx/model",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-model.git",
-                "reference": "58f9a0d5a5429389b76dec772ce2fa23db7069cf"
+                "reference": "401f8697bc6c6914364a891016b794e783f5303c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-model/zipball/58f9a0d5a5429389b76dec772ce2fa23db7069cf",
-                "reference": "58f9a0d5a5429389b76dec772ce2fa23db7069cf",
+                "url": "https://api.github.com/repos/apioo/psx-model/zipball/401f8697bc6c6914364a891016b794e783f5303c",
+                "reference": "401f8697bc6c6914364a891016b794e783f5303c",
                 "shasum": ""
             },
             "require": {
@@ -2096,7 +2096,7 @@
                 "rss",
                 "swagger"
             ],
-            "time": "2016-12-15T22:31:00+00:00"
+            "time": "2017-04-08T11:05:02+00:00"
         },
         {
             "name": "psx/oauth",
