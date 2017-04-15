@@ -16,6 +16,7 @@ TOC
    overview
    installation
    get_started
+   deploy
    request_lifecycle
    backend
    consumer
