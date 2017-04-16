@@ -77,8 +77,8 @@ contains several keys:
       Acme-Mysql:
         - resources/sql/v1_schema.sql
 
-Through the command ``php bin/fusio`` deploy you can deploy the API. It is now 
-possible to visit the API endpoint at: /news.
+Through the command ``php bin/fusio deploy`` you can deploy the API. It is now 
+possible to visit the API endpoint at: ``/news``.
 
 
 Access a non-public API endpoint
