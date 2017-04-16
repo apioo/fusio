@@ -28,8 +28,9 @@ endpoint without an access token.
           action: News-Insert
 
 The ``request`` and ``response`` key reference a schema name which was defined
-under the ``schema`` key. The ``action`` key reference an action name which was
-defined under the ``action`` key.
+under the ``schema`` key. It is also possible to use the ``Passthru`` schema
+which simply redirects all data. The ``action`` key reference an action name 
+which was defined under the ``action`` key.
 
 Path
 ^^^^
