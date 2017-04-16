@@ -1,14 +1,16 @@
-Fusio
-=====
+
+<p align="center">
+    <a href="http://www.fusio-project.org/" target="_blank"><img src="http://www.fusio-project.org/img/fusio_64px.png"></a>
+</p>
 
 # About
 
 Fusio is an open source API management platform which helps to build and manage 
 RESTful APIs. We think that there is a huge potential in the API economy. 
 Whether you need an API to expose your business functionality, build micro 
-services or to develop One-Page web applications or Mobile-Apps. Because of this 
-we think that Fusio is a great tool to simplify building such APIs. More 
-information on http://www.fusio-project.org/
+services, develop SPAs or Mobile-Apps. Because of this we think that Fusio is a 
+great tool to simplify building such APIs. More information on 
+http://www.fusio-project.org/
 
 # Features
 
@@ -110,12 +112,12 @@ steps.
   account. Therefor you can use the following command `php bin/fusio adduser`. 
   Choose as account type "Administrator".
 
-You can then login to the backend at `/backend.htm` where you can start to 
-configure the system.
+You can then login to the backend at `/fusio` where you can start to configure 
+the system.
 
 # Documentation
 
-The offical documentation is available at http://fusio.readthedocs.org/
+The official documentation is available at http://fusio.readthedocs.org/
 
 # Use cases
 
