@@ -28,7 +28,7 @@ endpoint without an access token.
           action: News-Insert
 
 The ``request`` and ``response`` key reference a schema name which was defined
-under the ``schema`` key. The action ``key`` reference an action name which was
+under the ``schema`` key. The ``action`` key reference an action name which was
 defined under the ``action`` key.
 
 Path
@@ -109,7 +109,7 @@ Inside a schema it is possible to refer to other schema definitions by using the
                 "type": "string"
             },
             "author": {
-                "$ref": "schema:///author"
+                "$ref": "file:///author.json"
             },
             "date": {
                 "type": "string",
@@ -235,7 +235,7 @@ API
 ``url``
   The url must have the following format ``mongodb://[username:password@]host1[:port1][,host2[:port2:],...]/db``
 ``options``
-  It is possible to provide option parameters. The options must be url encoded i.e. `connect=1&fsync=1`
+  It is possible to provide option parameters. The options must be url encoded i.e. ``connect=1&fsync=1``
 ``database``
   The name of the database which is used upon connection
 
@@ -309,7 +309,8 @@ Website
 Cassandra
 ^^^^^^^^^
 
-Connects to a Cassandra database using the official PHP library.
+Connects to a Cassandra database using the official PHP library. Requires the
+``cassandra`` PHP extension.
 
 Class
   ``Fusio\Adapter\Cassandra\Connection\Cassandra``
@@ -349,7 +350,7 @@ Website
 Memcache
 ^^^^^^^^
 
-Uses the native PHP memcached extension to connect to a memcache server.
+Uses the native PHP ``memcached`` extension to connect to a memcache server.
 
 Class
   ``Fusio\Adapter\Memcache\Connection\Memcache``
@@ -410,7 +411,6 @@ Website
 ``password``
   Optional password for authentication
 
-
 migration
 ---------
 
@@ -421,5 +421,3 @@ executed once on deployment.
 
     Acme-Mysql:
       - resources/sql/v1_schema.sql
-
-
