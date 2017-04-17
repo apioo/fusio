@@ -1,24 +1,41 @@
 routes:
-  /news:
+  "/todo/:todo_id":
     version: 1
     methods:
       GET:
         public: true
-        response: News-Collection
-        action: News-Collection
+        response: Todo
+        action: Todo-Row
+      DELETE:
+        public: false
+        request: Passthru
+        response: Todo-Message
+        action: Todo-Delete
+  "/todo":
+    version: 1
+    methods:
+      GET:
+        public: true
+        response: Todo-Collection
+        action: Todo-List
       POST:
         public: false
-        request: News-Entity
-        response: Passthru
-        action: News-Insert
+        request: Todo
+        response: Todo-Message
+        action: Todo-Insert
 schema:
-  News-Collection: !include resources/schema/news/collection.json
-  News-Entity: !include resources/schema/news/entity.json
+  Todo: !include resources/schema/todo/entity.json
+  Todo-Collection: !include resources/schema/todo/collection.json
+  Todo-Message: !include resources/schema/todo/message.json
 action:
-  News-Collection:
-    class: Fusio\Custom\Action\News\Collection
-  News-Insert:
-    class: Fusio\Custom\Action\News\Insert
+  Todo-List:
+    class: Fusio\Custom\Action\Todo\Collection
+  Todo-Row:
+    class: Fusio\Custom\Action\Todo\Row
+  Todo-Insert:
+    class: Fusio\Custom\Action\Todo\Insert
+  Todo-Delete:
+    class: Fusio\Custom\Action\Todo\Delete
 connection:
   Acme-Mysql:
     class: Fusio\Adapter\Sql\Connection\Sql
@@ -26,8 +43,8 @@ connection:
       type: pdo_mysql
       host: localhost
       username: root
-      password: 
+      password: test123
       database: fusio
 migration:
-  Acme-Mysql:
+  sqlite:
     - resources/sql/v1_schema.sql

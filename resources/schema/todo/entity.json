@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "title": "todo",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "insertDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["title"]
+}

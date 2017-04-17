@@ -1,6 +1,6 @@
 <?php
 
-namespace Fusio\Custom\Action\News;
+namespace Fusio\Custom\Action\Todo;
 
 use Fusio\Engine\ActionAbstract;
 use Fusio\Engine\ContextInterface;
@@ -13,21 +13,20 @@ class Insert extends ActionAbstract
     public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
     {
         /** @var \Doctrine\DBAL\Connection $connection */
-        $connection = $this->connector->getConnection('Acme-Mysql');
+        $connection = $this->connector->getConnection('sqlite');
 
         $body = $request->getBody();
         $now  = new \DateTime();
 
-        $connection->insert('acme_news', [
-            'id' => Uuid::pseudoRandom(),
+        $connection->insert('app_todo', [
+            'status' => 1,
             'title' => $body->title,
-            'content' => $body->content,
             'insertDate' => $now->format('Y-m-d H:i:s'),
         ]);
 
         return $this->response->build(201, [], [
             'success' => true,
-            'message' => 'News successful inserted',
+            'message' => 'Insert successful',
         ]);
     }
 }

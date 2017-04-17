@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "title": "message",
+  "properties": {
+    "success": {
+      "type": "boolean"
+    },
+    "message": {
+      "type": "string"
+    }
+  }
+}
