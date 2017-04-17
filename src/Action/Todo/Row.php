@@ -13,7 +13,7 @@ class Row extends ActionAbstract
     public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
     {
         /** @var \Doctrine\DBAL\Connection $connection */
-        $connection = $this->connector->getConnection('sqlite');
+        $connection = $this->connector->getConnection('Default-Connection');
 
         $todo = $connection->fetchAssoc('SELECT * FROM app_todo WHERE id = :id', [
             'id' => $request->getUriFragment('todo_id')

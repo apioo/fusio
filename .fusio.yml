@@ -37,14 +37,10 @@ action:
   Todo-Delete:
     class: Fusio\Custom\Action\Todo\Delete
 connection:
-  Acme-Mysql:
-    class: Fusio\Adapter\Sql\Connection\Sql
+  Default-Connection:
+    class: Fusio\Adapter\Sql\Connection\SqlAdvanced
     config:
-      type: pdo_mysql
-      host: localhost
-      username: root
-      password: test123
-      database: fusio
+      url: "sqlite:///${dir.cache}/todo-app.db"
 migration:
-  sqlite:
+  Default-Connection:
     - resources/sql/v1_schema.sql

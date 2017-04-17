@@ -13,7 +13,7 @@ class Insert extends ActionAbstract
     public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
     {
         /** @var \Doctrine\DBAL\Connection $connection */
-        $connection = $this->connector->getConnection('sqlite');
+        $connection = $this->connector->getConnection('Default-Connection');
 
         $body = $request->getBody();
         $now  = new \DateTime();
