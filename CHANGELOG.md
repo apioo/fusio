@@ -1,5 +1,9 @@
 
-### 0.7.2
+### 0.7.3
+
+* Handle non empty connection passwords in the deploy config #37
+
+### 0.7.2 (2017-04-08)
 
 * Added deploy migration
 
