@@ -1,7 +1,10 @@
 
 ### 0.7.3
 
+* Updated default deployment configuration
+* Access env vars in deploy configuration
 * Handle non empty connection passwords in the deploy config #37
+* Extended manual
 
 ### 0.7.2 (2017-04-08)
 
