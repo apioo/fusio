@@ -25,6 +25,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - cd public
   - php server.php --warmup
+  - php server.php --deploy
   - (php -S 127.0.0.1:8008 server.php) &
   - (node fusio/node_modules/protractor/bin/webdriver-manager start > /dev/null 2>&1) &
   - sleep 8
@@ -33,6 +34,7 @@ script:
   - cd public/fusio/tests
   - node ../node_modules/protractor/bin/protractor conf.js
   - cd ../../..
+  - vendor/bin/phpunit
 env:
   - DB=mysql
   - DB=sqlite

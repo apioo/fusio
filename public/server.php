@@ -20,66 +20,43 @@
  */
 
 // entry point for the internal php server for testing
-$fileUris = [
-    '^\/developer\/',
-    '^\/documentation\/',
-    '^\/fusio\/',
-];
+if (isset($_SERVER['REQUEST_URI'])) {
+    $fileUris = [
+        '^\/developer\/',
+        '^\/documentation\/',
+        '^\/fusio\/',
+    ];
 
-foreach ($fileUris as $regexp) {
-    if (isset($_SERVER['REQUEST_URI']) && preg_match('/' . $regexp . '/', $_SERVER['REQUEST_URI'])) {
-        return false;
+    foreach ($fileUris as $regexp) {
+        if (preg_match('/' . $regexp . '/', $_SERVER['REQUEST_URI'])) {
+            return false;
+        }
+    }
+
+    // strip if the requests starts with /index.php/
+    if (substr($_SERVER['REQUEST_URI'], 0, 11) == '/index.php/') {
+        $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], 10);
     }
 }
 
-// strip if the requests starts with /index.php/
-if (isset($_SERVER['REQUEST_URI']) && substr($_SERVER['REQUEST_URI'], 0, 11) == '/index.php/') {
-    $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], 10);
-}
-
 $loader    = require(__DIR__ . '/../vendor/autoload.php');
-$container = require_once(__DIR__ . '/../container.php');
+$container = require_once(__DIR__ . '/../tests/container.php');
 
 PSX\Framework\Bootstrap::setupEnvironment($container->get('config'));
-
-// setup connection
-$params = null;
-switch (getenv('DB')) {
-    case 'mysql':
-        $params = array(
-            'dbname'   => 'fusio_ui',
-            'user'     => 'root',
-            'password' => '',
-            'host'     => 'localhost',
-            'driver'   => 'pdo_mysql',
-        );
-        break;
-
-    default:
-    case 'sqlite':
-        $params = array(
-            'path'     => PSX_PATH_CACHE . '/fusio_ui.db',
-            'driver'   => 'pdo_sqlite',
-        );
-        break;
-}
-
-$config     = new Doctrine\DBAL\Configuration();
-$connection = Doctrine\DBAL\DriverManager::getConnection($params, $config);
-
-$container->set('connection', $connection);
 
 if (isset($_SERVER['argv']) && in_array('--warmup', $_SERVER['argv'])) {
     // warmup
     $loader->addClassMap([
-        'Fusio\Impl\Tests\Fixture'    => __DIR__ . '/../vendor/fusio/impl/tests/Fixture.php',
+        'Fusio\Impl\Tests\Fixture' => __DIR__ . '/../vendor/fusio/impl/tests/Fixture.php',
         'Fusio\Impl\Tests\TestSchema' => __DIR__ . '/../vendor/fusio/impl/tests/TestSchema.php',
     ]);
 
     // create schema
+    /** @var \Doctrine\DBAL\Connection $connection */
+    $connection = $container->get('connection');
     $fromSchema = $connection->getSchemaManager()->createSchema();
-    $version    = \Fusio\Impl\Database\Installer::getLatestVersion();
-    $toSchema   = $version->getSchema();
+    $version = \Fusio\Impl\Database\Installer::getLatestVersion();
+    $toSchema = $version->getSchema();
     Fusio\Impl\Tests\TestSchema::appendSchema($toSchema);
 
     $queries = $fromSchema->getMigrateToSql($toSchema, $connection->getDatabasePlatform());
@@ -92,6 +69,16 @@ if (isset($_SERVER['argv']) && in_array('--warmup', $_SERVER['argv'])) {
     PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT()->execute($connection, Fusio\Impl\Tests\Fixture::getDataSet());
 
     echo 'Warmup successful' . "\n";
+} elseif (isset($_SERVER['argv']) && in_array('--deploy', $_SERVER['argv'])) {
+    /** @var \Symfony\Component\Console\Application $console */
+    $console = $container->get('console');
+    /** @var \Symfony\Component\Console\Command\Command $command */
+    $command = $container->get('console')->find('system:deploy');
+
+    $input  = new \Symfony\Component\Console\Input\ArrayInput(['file' => __DIR__ . '/../.fusio.yml']);
+    $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+
+    $command->run($input, $output);
 } else {
     // run
     $request  = $container->get('request_factory')->createRequest();
