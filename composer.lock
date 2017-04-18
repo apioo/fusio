@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6225ad831865f0e2b9fb58a83680be3",
+    "content-hash": "243abf1a6f95f972d3ea1422ecf8c774",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1993,16 +1993,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "20b3817fd5ffcb57c3bf862a94af553a74033f87"
+                "reference": "9b2c7e635153345b79c16c5d6bdc4924693c631c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/20b3817fd5ffcb57c3bf862a94af553a74033f87",
-                "reference": "20b3817fd5ffcb57c3bf862a94af553a74033f87",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/9b2c7e635153345b79c16c5d6bdc4924693c631c",
+                "reference": "9b2c7e635153345b79c16c5d6bdc4924693c631c",
                 "shasum": ""
             },
             "require": {
@@ -2056,7 +2056,7 @@
                 "framework",
                 "rest"
             ],
-            "time": "2017-04-15T09:52:48+00:00"
+            "time": "2017-04-18T09:49:21+00:00"
         },
         {
             "name": "psx/http",
