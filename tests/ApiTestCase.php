@@ -170,11 +170,11 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
                     'name' => 'todo',
                     'description' => 'Todo scope',
                     'routes' => [[
-                        'routeId' => 68,
+                        'routeId' => 70,
                         'allow'   => true,
                         'methods' => 'GET|POST|PUT|DELETE',
                     ], [
-                        'routeId' => 67,
+                        'routeId' => 69,
                         'allow'   => true,
                         'methods' => 'GET|POST|PUT|DELETE',
                     ]],
