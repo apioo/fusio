@@ -32,16 +32,6 @@ use PSX\Json\Parser;
  */
 abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    private static $client;
-
-    /**
-     * @var string
-     */
-    private static $accessToken;
-
     protected function setUp()
     {
     }
@@ -97,8 +87,10 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
      */
     private function getAccessToken()
     {
-        if (self::$accessToken) {
-            return self::$accessToken;
+        static $accessToken;
+
+        if ($accessToken) {
+            return $accessToken;
         }
 
         $response = $this->send('POST', 'consumer/login', [
@@ -110,7 +102,7 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
         $data = Parser::decode($body);
 
         if (isset($data->token)) {
-            return self::$accessToken = $data->token;
+            return $accessToken = $data->token;
         } else {
             $this->fail('Could not request access token');
         }
@@ -132,8 +124,10 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
      */
     private function getClient()
     {
-        if (self::$client) {
-            return self::$client;
+        static $client;
+
+        if ($client) {
+            return $client;
         }
 
         $client = new \GuzzleHttp\Client([
@@ -142,9 +136,6 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
 
         // check whether the base uri is available
         $client->get('/');
-
-        // assign the client
-        self::$client = $client;
 
         // create a scope which contains the routes from the deployment so that
         // we can access the protected endpoints
