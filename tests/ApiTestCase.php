@@ -95,7 +95,7 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
 
         $response = $this->send('POST', 'consumer/login', [
             'username' => 'Developer',
-            'password' => 'qf2vX10Ec3wFZHx0K1eL',
+            'password' => 'qf2vX10Ec3wFZHx0K1eL!',
         ]);
 
         $body = (string) $response->getBody();
@@ -104,7 +104,7 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
         if (isset($data->token)) {
             return $accessToken = $data->token;
         } else {
-            $this->fail('Could not request access token');
+            $this->fail('Could not request access token' . "\n" . $body);
         }
     }
 
@@ -148,7 +148,7 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
     {
         // get backend access token
         $response = $this->send('POST', 'backend/token', 'grant_type=client_credentials', [
-            'Authorization' => 'Basic ' . base64_encode('Developer:qf2vX10Ec3wFZHx0K1eL')
+            'Authorization' => 'Basic ' . base64_encode('Developer:qf2vX10Ec3wFZHx0K1eL!')
         ]);
 
         $body  = (string) $response->getBody();
@@ -163,32 +163,36 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
         $body = (string) $response->getBody();
         $data = Parser::decode($body);
 
-        if ($data->totalResults !== 1) {
-            // create scope
-            $data = [
-                'name' => 'todo',
-                'description' => 'Todo scope',
-                'routes' => [[
-                    'routeId' => 68,
-                    'allow'   => true,
-                    'methods' => 'GET|POST|PUT|DELETE',
-                ], [
-                    'routeId' => 67,
-                    'allow'   => true,
-                    'methods' => 'GET|POST|PUT|DELETE',
-                ]],
-            ];
+        if (isset($data->totalResults)) {
+            if ($data->totalResults !== 1) {
+                // create scope
+                $data = [
+                    'name' => 'todo',
+                    'description' => 'Todo scope',
+                    'routes' => [[
+                        'routeId' => 68,
+                        'allow'   => true,
+                        'methods' => 'GET|POST|PUT|DELETE',
+                    ], [
+                        'routeId' => 67,
+                        'allow'   => true,
+                        'methods' => 'GET|POST|PUT|DELETE',
+                    ]],
+                ];
 
-            $response = $this->send('POST', 'backend/scope', Parser::encode($data), [
-                'Authorization' => 'Bearer ' . $token
-            ]);
+                $response = $this->send('POST', 'backend/scope', Parser::encode($data), [
+                    'Authorization' => 'Bearer ' . $token
+                ]);
 
-            $body = (string) $response->getBody();
-            $data = Parser::decode($body);
+                $body = (string) $response->getBody();
+                $data = Parser::decode($body);
 
-            if ($data->success !== true) {
-                $this->fail('Could not create scope');
+                if ($data->success !== true) {
+                    $this->fail('Could not create scope');
+                }
             }
+        } else {
+            $this->fail('Invalid response' . "\n" . $body);
         }
 
         // assign scope to user developer

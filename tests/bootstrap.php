@@ -2,4 +2,4 @@
 
 require(__DIR__ . '/../vendor/autoload.php');
 
-PSX\Framework\Test\Environment::setup(__DIR__ . '/..');
+PSX\Framework\Test\Environment::setup(__DIR__);
