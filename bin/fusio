@@ -27,35 +27,27 @@ $files = array(
 
 $autoloadFile = null;
 
-foreach($files as $file)
-{
-    if(file_exists($file))
-    {
+foreach ($files as $file) {
+    if (file_exists($file)) {
         $autoloadFile = $file;
         break;
     }
 }
 
-if(!empty($autoloadFile))
-{
+if (!empty($autoloadFile)) {
     require_once($autoloadFile);
 
-    $containerFile = strstr($autoloadFile, 'autoload.php', true) . '../container.php';  
+    $containerFile = strstr($autoloadFile, 'autoload.php', true) . '../container.php';
 
-    if(is_file($containerFile))
-    {
+    if (is_file($containerFile)) {
         $container = require_once($containerFile);
 
         PSX\Framework\Bootstrap::setupEnvironment($container->get('config'));
 
         $container->get('console')->run();
-    }
-    else
-    {
+    } else {
         die('Could not find container at: ' . $containerFile);
     }
-}
-else
-{
+} else {
     die('You need to set up the project dependencies through composer');
 }
