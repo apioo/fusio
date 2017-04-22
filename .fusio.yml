@@ -8,7 +8,6 @@ routes:
         action: Fusio\Custom\Action\Todo\Row
       DELETE:
         public: false
-        request: Passthru
         response: Todo-Message
         action: Fusio\Custom\Action\Todo\Delete
   "/todo":
@@ -16,8 +15,8 @@ routes:
     methods:
       GET:
         public: true
-        response: Fusio\Custom\Action\Todo\Collection
-        action: Todo-List
+        response: Todo-Collection
+        action: Fusio\Custom\Action\Todo\Collection
       POST:
         public: false
         request: Todo
