@@ -818,16 +818,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v0.6.8",
+            "version": "v0.6.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "a6b0827b573b5958e964e1e397e3c27a519bfe7f"
+                "reference": "b4f949fdd57fd7c56ca15b6c22611c173dc4b1d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/a6b0827b573b5958e964e1e397e3c27a519bfe7f",
-                "reference": "a6b0827b573b5958e964e1e397e3c27a519bfe7f",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/b4f949fdd57fd7c56ca15b6c22611c173dc4b1d9",
+                "reference": "b4f949fdd57fd7c56ca15b6c22611c173dc4b1d9",
                 "shasum": ""
             },
             "require": {
@@ -863,20 +863,20 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2017-04-15T11:35:54+00:00"
+            "time": "2017-04-18T14:17:36+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v0.7.6",
+            "version": "v0.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "aeaa24553163234b671e02961f73cf026f39a4a8"
+                "reference": "33a042e0f23e98d057491eba90b24ce09447a1a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/aeaa24553163234b671e02961f73cf026f39a4a8",
-                "reference": "aeaa24553163234b671e02961f73cf026f39a4a8",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/33a042e0f23e98d057491eba90b24ce09447a1a7",
+                "reference": "33a042e0f23e98d057491eba90b24ce09447a1a7",
                 "shasum": ""
             },
             "require": {
@@ -916,7 +916,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-04-17T16:54:44+00:00"
+            "time": "2017-04-21T10:35:43+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2437,16 +2437,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v2.0.10",
+            "version": "v2.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "7ec60fd5b217bfae3846a7fcb3083333197d540c"
+                "reference": "6c46ce00cc18676164cc3f9129a865e6e357dfab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/7ec60fd5b217bfae3846a7fcb3083333197d540c",
-                "reference": "7ec60fd5b217bfae3846a7fcb3083333197d540c",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/6c46ce00cc18676164cc3f9129a865e6e357dfab",
+                "reference": "6c46ce00cc18676164cc3f9129a865e6e357dfab",
                 "shasum": ""
             },
             "require": {
@@ -2493,7 +2493,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-01-15T21:46:06+00:00"
+            "time": "2017-04-17T15:05:18+00:00"
         },
         {
             "name": "psx/sql",
@@ -2686,16 +2686,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.6",
+            "version": "v5.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e"
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
                 "shasum": ""
             },
             "require": {
@@ -2736,7 +2736,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-02-13T07:52:53+00:00"
+            "time": "2017-04-20T17:32:18+00:00"
         },
         {
             "name": "symfony/console",
