@@ -1,5 +1,9 @@
 
-### 0.7.3
+### 0.7.4
+
+* Allow class name as action in a route
+
+### 0.7.3 (2017-04-19)
 
 * Updated default deployment configuration
 * Access env vars in deploy configuration
