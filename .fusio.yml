@@ -5,37 +5,28 @@ routes:
       GET:
         public: true
         response: Todo
-        action: Todo-Row
+        action: Fusio\Custom\Action\Todo\Row
       DELETE:
         public: false
         request: Passthru
         response: Todo-Message
-        action: Todo-Delete
+        action: Fusio\Custom\Action\Todo\Delete
   "/todo":
     version: 1
     methods:
       GET:
         public: true
-        response: Todo-Collection
+        response: Fusio\Custom\Action\Todo\Collection
         action: Todo-List
       POST:
         public: false
         request: Todo
         response: Todo-Message
-        action: Todo-Insert
+        action: Fusio\Custom\Action\Todo\Insert
 schema:
   Todo: !include resources/schema/todo/entity.json
   Todo-Collection: !include resources/schema/todo/collection.json
   Todo-Message: !include resources/schema/todo/message.json
-action:
-  Todo-List:
-    class: Fusio\Custom\Action\Todo\Collection
-  Todo-Row:
-    class: Fusio\Custom\Action\Todo\Row
-  Todo-Insert:
-    class: Fusio\Custom\Action\Todo\Insert
-  Todo-Delete:
-    class: Fusio\Custom\Action\Todo\Delete
 connection:
   Default-Connection:
     class: Fusio\Adapter\Sql\Connection\SqlAdvanced
