@@ -73,11 +73,6 @@
         </exec>
     </target>
 
-    <!-- run phpunit tests -->
-    <target name="phpunit">
-        <exec dir="${build}" executable="${phpunit}" failonerror="true" />
-    </target>
-
     <!-- run protractor tests -->
     <target name="protractor">
         <exec dir="${build}/public/fusio/tests" executable="${nodejs}" failonerror="true">
@@ -85,8 +80,20 @@
         </exec>
     </target>
 
+    <!-- deploy api -->
+    <target name="deploy-api">
+        <exec dir="${build}/public" executable="${php}" failonerror="true">
+            <arg line="server.php --deploy" />
+        </exec>
+    </target>
+
+    <!-- run phpunit tests -->
+    <target name="phpunit">
+        <exec dir="${build}" executable="${phpunit}" failonerror="true" />
+    </target>
+
     <!-- this target runs all tests -->
-    <target name="test" depends="init,protractor" />
+    <target name="test" depends="init,protractor,deploy-api,phpunit" />
 
     <!-- ############################## CLEAN ############################## -->
     <!-- remove the lock file so that the web and selenium server shutdown -->
@@ -105,9 +112,6 @@
     <target name="remove-files">
         <delete dir="${build}/.git" />
         <delete dir="${build}/build" />
-        <delete>
-            <fileset dir="${build}/public/fusio/app" includes="**/*.js" />
-        </delete>
         <delete dir="${build}/public/fusio/app" />
         <delete dir="${build}/public/fusio/css" />
         <delete dir="${build}/public/fusio/js" />
