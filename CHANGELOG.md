@@ -1,7 +1,7 @@
 
-### 0.7.4
+### 0.7.4 (2017-04-29)
 
-* Allow class name as action in a route
+* Deploy config allow schema include and class name as action in a route
 
 ### 0.7.3 (2017-04-19)
 
