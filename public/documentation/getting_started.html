@@ -1,40 +1,38 @@
 
-<md-content flex layout-padding>
-
-    <div class="md-body-1">
-    <p><b>Welcome</b>, this is a quick introduction to help you get started 
-    using the API. On the left sidebar you see all available endpoints. Each 
-    endpoint shows the available request methods and the request/response data 
+<md-content layout-padding>
+  <div class="md-body-1">
+    <p><b>Welcome</b>, this is a quick introduction to help you get started
+    using the API. On the left sidebar you see all available endpoints. Each
+    endpoint shows the available request methods and the request/response data
     format.</p>
 
-    <p>Through the <a href="../developer">developer</a> portal it is possible to 
-    manage all your apps and authorizations. If you have obtained an app key and 
-    secret you have several options to obtain an access token. The API uses 
-    <a href="https://tools.ietf.org/html/rfc6749">OAuth2</a> for authorization 
+    <p>Through the <a href="../developer">developer</a> portal it is possible to
+    manage all your apps and authorizations. If you have obtained an app key
+    and secret you have several options to obtain an access token. The API uses
+    <a href="https://tools.ietf.org/html/rfc6749">OAuth2</a> for authorization
     so you can use any OAuth2 compatible library to request an access token.</p>
 
     <dl>
-        <dt><b>Authorization-Endpoint</b></dt>
-        <dd><code>/developer/auth</code></dd>
-        <dt><b>Token-Endpoint</b></dt>
-        <dd><code>/authorization/token</code></dd>
+      <dt><b>Authorization-Endpoint</b></dt>
+      <dd><code>/developer/auth</code></dd>
+      <dt><b>Token-Endpoint</b></dt>
+      <dd><code>/authorization/token</code></dd>
     </dl>
 
     <p><b>Authorization Code Grant</b><br>
-    For the authorization code you have to redirect the resource owner to the 
+    For the authorization code you have to redirect the resource owner to the
     consumer endpoint: <code>/developer/auth?response_type=code&amp;client_id=[app_key]&amp;redirect_uri=[url]&amp;scope=authorization</code>.
-    If the authorization was successful the user gets redirected to the 
-    <code>redirect_uri</code> of your app. The <a href="https://tools.ietf.org/html/rfc6749#section-4.1.2">redirect_uri</a> 
-    contains a GET parameter <code>code</code> which can be <a href="https://tools.ietf.org/html/rfc6749#section-4.1.3">exchanged</a> 
+    If the authorization was successful the user gets redirected to the
+    <code>redirect_uri</code> of your app. The <a href="https://tools.ietf.org/html/rfc6749#section-4.1.2">redirect_uri</a>
+    contains a GET parameter <code>code</code> which can be <a href="https://tools.ietf.org/html/rfc6749#section-4.1.3">exchanged</a>
     for an access token.</p>
 
     <p><b>Resource Owner Password Credentials Grant</b><br>
-    Through the resource owner password credentials grant you can <a href="https://tools.ietf.org/html/rfc6749#section-4.3.2">obtain</a> 
-    an access token with your app credentials and the username/password of your 
+    Through the resource owner password credentials grant you can <a href="https://tools.ietf.org/html/rfc6749#section-4.3.2">obtain</a>
+    an access token with your app credentials and the username/password of your
     account.</p>
 
-    <p>Please contact the API provider for more informations. This API was built 
+    <p>Please contact the API provider for more informations. This API was built
     with <a href="http://fusio-project.org">Fusio</a>.</p>
-    </div>
-
+  </div>
 </md-content>
