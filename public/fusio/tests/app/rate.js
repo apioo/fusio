@@ -6,10 +6,11 @@ describe('Rate tests', function() {
     browser.get('#/rate');
 
     var rates = element.all(by.repeater('rate in rates'));
-    expect(rates.count()).toEqual(3);
-    expect(rates.get(0).getText()).toMatch('silver');
-    expect(rates.get(1).getText()).toMatch('Default-Anonymous');
-    expect(rates.get(2).getText()).toMatch('Default');
+    expect(rates.count()).toEqual(4);
+    expect(rates.get(0).getText()).toMatch('gold');
+    expect(rates.get(1).getText()).toMatch('silver');
+    expect(rates.get(2).getText()).toMatch('Default-Anonymous');
+    expect(rates.get(3).getText()).toMatch('Default');
   });
 
   it('Create rate', function() {
