@@ -1,4 +1,11 @@
 
+### 0.8.0
+
+* Add oauth2 filter also for public endpoints if authorization header is 
+  available
+* Improve method selection performance
+* Added migration command which lists all executed migrations
+
 ### 0.7.4 (2017-04-29)
 
 * Deploy config allow schema include and class name as action in a route
