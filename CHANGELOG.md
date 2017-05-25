@@ -1,6 +1,7 @@
 
-### 0.8.0
+### 0.8.0 (2017-05-25)
 
+* Update api documentation app
 * Add oauth2 filter also for public endpoints if authorization header is 
   available
 * Improve method selection performance
