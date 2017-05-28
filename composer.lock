@@ -575,20 +575,20 @@
         },
         {
             "name": "fusio/adapter-http",
-            "version": "v0.3.3",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-http.git",
-                "reference": "9aa1c55c6c35e05a15869742cc9226969a36d7d0"
+                "reference": "e8af86ccdce840ce5cf77e01c3b4e7afffcc566a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/9aa1c55c6c35e05a15869742cc9226969a36d7d0",
-                "reference": "9aa1c55c6c35e05a15869742cc9226969a36d7d0",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/e8af86ccdce840ce5cf77e01c3b4e7afffcc566a",
+                "reference": "e8af86ccdce840ce5cf77e01c3b4e7afffcc566a",
                 "shasum": ""
             },
             "require": {
-                "fusio/engine": "^0.6@dev",
+                "fusio/engine": "^0.7@dev",
                 "guzzlehttp/guzzle": "^6.2",
                 "php": ">=5.6"
             },
@@ -617,24 +617,24 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-04-06T18:19:33+00:00"
+            "time": "2017-05-28T20:23:35+00:00"
         },
         {
             "name": "fusio/adapter-php",
-            "version": "v0.1.0",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-php.git",
-                "reference": "d44725bf003e28b99b1aef5cabab0188c53e254c"
+                "reference": "d24b2f85de9714f9366501bd9b3e2b30a0414cee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/d44725bf003e28b99b1aef5cabab0188c53e254c",
-                "reference": "d44725bf003e28b99b1aef5cabab0188c53e254c",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/d24b2f85de9714f9366501bd9b3e2b30a0414cee",
+                "reference": "d24b2f85de9714f9366501bd9b3e2b30a0414cee",
                 "shasum": ""
             },
             "require": {
-                "fusio/engine": "^0.6@dev",
+                "fusio/engine": "^0.7@dev",
                 "php": ">=5.6"
             },
             "require-dev": {
@@ -663,25 +663,25 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-04-08T18:31:57+00:00"
+            "time": "2017-05-28T20:12:42+00:00"
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v0.3.4",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
-                "reference": "b7bb17f0e6f26fcac6ad57d0ae24168848c4633a"
+                "reference": "c5a94c011c6a8d85f4a171254658bf55aa8141e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/b7bb17f0e6f26fcac6ad57d0ae24168848c4633a",
-                "reference": "b7bb17f0e6f26fcac6ad57d0ae24168848c4633a",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/c5a94c011c6a8d85f4a171254658bf55aa8141e2",
+                "reference": "c5a94c011c6a8d85f4a171254658bf55aa8141e2",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.5",
-                "fusio/engine": "^0.6@dev",
+                "fusio/engine": "^0.7@dev",
                 "php": ">=5.6"
             },
             "require-dev": {
@@ -710,25 +710,25 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-05-22T20:34:32+00:00"
+            "time": "2017-05-28T20:23:34+00:00"
         },
         {
             "name": "fusio/adapter-util",
-            "version": "v0.3.1",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-util.git",
-                "reference": "a702100e56fc851dafff031344c7f3bca977e431"
+                "reference": "e87ebf30b0d6f7c54f179e52edc93d8e2f7e676e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/a702100e56fc851dafff031344c7f3bca977e431",
-                "reference": "a702100e56fc851dafff031344c7f3bca977e431",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/e87ebf30b0d6f7c54f179e52edc93d8e2f7e676e",
+                "reference": "e87ebf30b0d6f7c54f179e52edc93d8e2f7e676e",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.5",
-                "fusio/engine": "^0.6@dev",
+                "fusio/engine": "^0.7@dev",
                 "php": ">=5.6"
             },
             "require-dev": {
@@ -757,37 +757,37 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-04-06T18:37:14+00:00"
+            "time": "2017-05-28T20:23:34+00:00"
         },
         {
             "name": "fusio/adapter-v8",
-            "version": "v0.3.6",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-v8.git",
-                "reference": "c63e5ea157c069d96f221ec2feb3585067f02a38"
+                "reference": "2e951e9a7179cf46cb8b7615610b9e241b9cc6a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-v8/zipball/c63e5ea157c069d96f221ec2feb3585067f02a38",
-                "reference": "c63e5ea157c069d96f221ec2feb3585067f02a38",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-v8/zipball/2e951e9a7179cf46cb8b7615610b9e241b9cc6a0",
+                "reference": "2e951e9a7179cf46cb8b7615610b9e241b9cc6a0",
                 "shasum": ""
             },
             "require": {
-                "fusio/engine": "^0.6@dev",
+                "fusio/engine": "^0.7@dev",
                 "php": ">=5.6",
-                "psx/v8": "^0.1@dev"
+                "psx/v8": "^0.2@dev"
             },
             "require-dev": {
-                "fusio/adapter-amqp": "^0.3",
-                "fusio/adapter-beanstalk": "^0.3",
-                "fusio/adapter-elasticsearch": "^0.1",
-                "fusio/adapter-http": "^0.3",
-                "fusio/adapter-memcache": "^0.3",
-                "fusio/adapter-mongodb": "^0.3",
-                "fusio/adapter-redis": "^0.1",
-                "fusio/adapter-soap": "^0.3",
-                "fusio/adapter-sql": "^0.3",
+                "fusio/adapter-amqp": "^0.4",
+                "fusio/adapter-beanstalk": "^0.4",
+                "fusio/adapter-elasticsearch": "^0.2",
+                "fusio/adapter-http": "^0.4",
+                "fusio/adapter-memcache": "^0.4",
+                "fusio/adapter-mongodb": "^0.4",
+                "fusio/adapter-redis": "^0.2",
+                "fusio/adapter-soap": "^0.4",
+                "fusio/adapter-sql": "^0.4",
                 "phpunit/dbunit": "^2.0",
                 "phpunit/phpunit": "^5.6",
                 "pinepain/php-v8-stubs": "^0.1.1"
@@ -814,20 +814,20 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-04-06T19:33:07+00:00"
+            "time": "2017-05-28T21:53:04+00:00"
         },
         {
             "name": "fusio/engine",
-            "version": "v0.6.9",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "b4f949fdd57fd7c56ca15b6c22611c173dc4b1d9"
+                "reference": "6f9b32884bfbc8cc9ebc0f36c74f6304b028b3a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/b4f949fdd57fd7c56ca15b6c22611c173dc4b1d9",
-                "reference": "b4f949fdd57fd7c56ca15b6c22611c173dc4b1d9",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/6f9b32884bfbc8cc9ebc0f36c74f6304b028b3a6",
+                "reference": "6f9b32884bfbc8cc9ebc0f36c74f6304b028b3a6",
                 "shasum": ""
             },
             "require": {
@@ -863,30 +863,30 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2017-04-18T14:17:36+00:00"
+            "time": "2017-05-28T19:56:17+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v0.8.0",
+            "version": "v0.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "43096c2f66c530d614fb018c286e120d227196fe"
+                "reference": "8e3fabe1fd1fd4efe648d02595da4c4f4ed3424d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/43096c2f66c530d614fb018c286e120d227196fe",
-                "reference": "43096c2f66c530d614fb018c286e120d227196fe",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/8e3fabe1fd1fd4efe648d02595da4c4f4ed3424d",
+                "reference": "8e3fabe1fd1fd4efe648d02595da4c4f4ed3424d",
                 "shasum": ""
             },
             "require": {
                 "firebase/php-jwt": "^3.0",
-                "fusio/adapter-http": "^0.3@dev",
-                "fusio/adapter-php": "^0.1@dev",
-                "fusio/adapter-sql": "^0.3@dev",
-                "fusio/adapter-util": "^0.3@dev",
-                "fusio/adapter-v8": "^0.3@dev",
-                "fusio/engine": "^0.6@dev",
+                "fusio/adapter-http": "^0.4@dev",
+                "fusio/adapter-php": "^0.2@dev",
+                "fusio/adapter-sql": "^0.4@dev",
+                "fusio/adapter-util": "^0.4@dev",
+                "fusio/adapter-v8": "^0.4@dev",
+                "fusio/engine": "^0.7@dev",
                 "paragonie/random_compat": "^2.0",
                 "php": ">=5.6",
                 "psx/openssl": "^1.0",
@@ -916,7 +916,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-05-25T17:49:42+00:00"
+            "time": "2017-05-28T22:26:36+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2594,23 +2594,23 @@
         },
         {
             "name": "psx/v8",
-            "version": "v0.1.5",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-v8.git",
-                "reference": "54f77b27f0ecb1fda5ee57274262ebff8ccc2cba"
+                "reference": "9db4a2ec149628042f39b6185309646045fa45b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-v8/zipball/54f77b27f0ecb1fda5ee57274262ebff8ccc2cba",
-                "reference": "54f77b27f0ecb1fda5ee57274262ebff8ccc2cba",
+                "url": "https://api.github.com/repos/apioo/psx-v8/zipball/9db4a2ec149628042f39b6185309646045fa45b9",
+                "reference": "9db4a2ec149628042f39b6185309646045fa45b9",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5"
+                "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.5",
+                "phpunit/phpunit": "^5.6",
                 "pinepain/php-v8-stubs": "^0.1"
             },
             "type": "library",
@@ -2635,7 +2635,7 @@
             "keywords": [
                 "v8"
             ],
-            "time": "2017-02-19T21:49:40+00:00"
+            "time": "2017-05-26T08:32:25+00:00"
         },
         {
             "name": "psx/validate",
