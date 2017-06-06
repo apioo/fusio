@@ -58,7 +58,9 @@ class EntityTest extends ApiTestCase
                         "type": "integer"
                     },
                     "title": {
-                        "type": "string"
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 32
                     },
                     "insertDate": {
                         "type": "string",
