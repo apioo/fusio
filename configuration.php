@@ -19,6 +19,13 @@ return array(
     // CHANGE THE KEY ONLY BEFORE THE INSTALLATION
     'fusio_project_key'       => '42eec18ffdbffc9fda6110dcc705d6ce',
 
+    // Optional the engine class which is used to execute an action. The
+    // following engines are available:
+    // * \Fusio\Engine\Factory\Resolver\PhpClass::class
+    // * \Fusio\Impl\Factory\Resolver\PhpFile::class
+    // * \Fusio\Impl\Factory\Resolver\JavascriptFile::class
+    'fusio_engine'            => \Fusio\Impl\Factory\Resolver\PhpFile::class,
+
     // Settings of the internal mailer. By default we use the internal PHP mail
     // function
     /*
@@ -41,7 +48,7 @@ return array(
 
     // Whether PSX runs in debug mode or not. If not error reporting is set to 0
     // Also several caches are used if the debug mode is false
-    'psx_debug'               => false,
+    'psx_debug'               => true,
 
     // Database parameters which are used for the doctrine DBAL connection
     // http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
