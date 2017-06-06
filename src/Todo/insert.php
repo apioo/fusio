@@ -8,11 +8,17 @@
  * @var \Psr\SimpleCache\CacheInterface $cache
  */
 
+use PSX\Http\Exception as StatusCode;
+
 /** @var \Doctrine\DBAL\Connection $connection */
 $connection = $connector->getConnection('Default-Connection');
 
 $body = $request->getBody();
 $now  = new \DateTime();
+
+if (empty($body->title)) {
+    throw new StatusCode\BadRequestException('No title provided');
+}
 
 $connection->insert('app_todo', [
     'status' => 1,
