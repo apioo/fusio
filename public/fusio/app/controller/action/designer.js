@@ -21,15 +21,21 @@ module.exports = function($scope, $http, $routeParams, fusio, formBuilder) {
       data.config = formBuilder.postProcessModel($scope.config, $scope.elements);
     }
 
-    $http.put(fusio.baseUrl + 'backend/action/' + action.id, data)
-      .then(function(response) {
-        var data = response.data;
-        if (data.success === true) {
-          $scope.execute(action, request);
-        }
-      })
-      .catch(function(response) {
-      });
+    // if we have a config we must update the action first else we can directly 
+    // execute the action
+    if (angular.isObject(data.config) && !angular.equals(data.config, {})) {
+      $http.put(fusio.baseUrl + 'backend/action/' + action.id, data)
+        .then(function(response) {
+          var data = response.data;
+          if (data.success === true) {
+            $scope.execute(action, request);
+          }
+        })
+        .catch(function(response) {
+        });
+    } else {
+      $scope.execute(action, request);
+    }
   };
 
   $scope.execute = function(action, request) {
