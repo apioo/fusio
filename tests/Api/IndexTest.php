@@ -40,6 +40,7 @@ class IndexTest extends ApiTestCase
         $expect = <<<'JSON'
 {
     "message": "Congratulations the installation of Fusio was successful",
+    "version": "0.8.1",
     "links": [
         {
             "rel": "about",

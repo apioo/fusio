@@ -72,7 +72,7 @@ class EntityTest extends ApiTestCase
             "Passthru": {
                 "type": "object",
                 "title": "passthru",
-                "description": "No schema was specified all data will pass through. Please contact the API provider for more informations about the data format."
+                "description": "No schema was specified."
             },
             "Message": {
                 "type": "object",
