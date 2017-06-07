@@ -1,4 +1,11 @@
 
+### 0.8.1
+
+* Changed default todo sample API to php file engine
+* Option to set config values in the deploy file
+* Add action resolver which determines the engine which is used i.e. php or v8
+* Move routes config handling to a separate service
+
 ### 0.8.0 (2017-05-25)
 
 * Update api documentation app
