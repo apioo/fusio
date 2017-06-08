@@ -94,9 +94,9 @@ php bin/fusio deploy
 
 The action of each route contains the file which handles the business logic. By
 default we use the `PhpFile` engine which uses a simple PHP file but you
-can also set another engine i.e. PhpClass or V8 to use either an actual php 
+can also set another engine i.e. `PhpClass` or `V8` to use either an actual php 
 class or javascript code. More information in the `src/` folder. In the 
-following and example action to build an API response from a database:
+following an example action to build an API response from a database:
 
 ```php
 <?php
