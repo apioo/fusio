@@ -32,13 +32,95 @@ on building the actual business logic of your API.
 * __Rate limiting__  
   It is possible to limit the requests to a specific threshold.
 
-Fusio provides already many actions to handle common use cases. I.e. it is 
-possible to execute SQL queries against a database or send data into a message 
-queue. It is also very easy to build a customized action. Fusio provides also an 
-[adapter system](http://www.fusio-project.org/adapter) through this it is 
-possible to share those actions via composer.
+# Development
 
-# System
+If you develop an API with Fusio you need to define a `.fusio.yml` deploy file
+which specifies the available routes and actions for the system. If a request
+schema is available for a method the input gets validated according to the 
+schema. A deploy file looks like:
+
+```yaml
+routes:
+  "/todo":
+    version: 1
+    methods:
+      GET:
+        public: true
+        response: Todo-Collection
+        action: "${dir.src}/Todo/collection.php"
+      POST:
+        public: false
+        request: Todo
+        response: Todo-Message
+        action: "${dir.src}/Todo/insert.php"
+  "/todo/:todo_id":
+    version: 1
+    methods:
+      GET:
+        public: true
+        response: Todo
+        action: "${dir.src}/Todo/row.php"
+      DELETE:
+        public: false
+        response: Todo-Message
+        action: "${dir.src}/Todo/delete.php"
+schema:
+  Todo: !include resources/schema/todo/entity.json
+  Todo-Collection: !include resources/schema/todo/collection.json
+  Todo-Message: !include resources/schema/todo/message.json
+connection:
+  Default-Connection:
+    class: Fusio\Adapter\Sql\Connection\SqlAdvanced
+    config:
+      url: "sqlite:///${dir.cache}/todo-app.db"
+migration:
+  Default-Connection:
+    - resources/sql/v1_schema.sql
+```
+
+This file can be deploy with the following command:
+
+```
+php bin/fusio deploy
+```
+
+The action of each route contains the file which handles the business logic. By
+default we use the `PhpFile` engine which uses a simple PHP file but you
+can also set another engine i.e. PhpClass or V8 to use either an actual php 
+class or javascript code. More information in the `src/` folder. In the 
+following and example action to build an API response from a database:
+
+```php
+<?php
+/**
+ * @var \Fusio\Engine\ConnectorInterface $connector
+ * @var \Fusio\Engine\RequestInterface $request
+ * @var \Fusio\Engine\Response\FactoryInterface $response
+ * @var \Fusio\Engine\ProcessorInterface $processor
+ * @var \Psr\Log\LoggerInterface $logger
+ * @var \Psr\SimpleCache\CacheInterface $cache
+ */
+
+/** @var \Doctrine\DBAL\Connection $connection */
+$connection = $connector->getConnection('Default-Connection');
+
+$count   = $connection->fetchColumn('SELECT COUNT(*) FROM app_todo');
+$entries = $connection->fetchAll('SELECT * FROM app_todo WHERE status = 1 ORDER BY insertDate DESC LIMIT 16');
+
+return $response->build(200, [], [
+    'totalResults' => $count,
+    'entry' => $entries,
+]);
+
+```
+
+In the code we get the `Default-Connection` which we have defined previously in
+our `.fusio.yml` deploy file. In this case the connection returns a 
+`\Doctrine\DBAL\Connection` instance but we have already 
+[many adapters](http://www.fusio-project.org/adapter) to connect to different 
+services. Then we simply fire some queries and return the response.
+
+# Backend
 
 This section gives a high level overview what the Fusio system provides and how
 the application is structured. Lets take a look at the components which are 
@@ -112,8 +194,7 @@ steps.
   account. Therefor you can use the following command `php bin/fusio adduser`. 
   Choose as account type "Administrator".
 
-You can then login to the backend at `/fusio` where you can start to configure 
-the system.
+You can then login to the backend at `/fusio`.
 
 # Documentation
 
