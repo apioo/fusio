@@ -36,7 +36,7 @@ on building the actual business logic of your API.
 * __Specifications__  
   Fusio generates different specification formats for the defined API endpoints
   i.e. OAI (Swagger), RAML
-* __User management__
+* __User management__  
   Fusio provides an API where new users can login or register a new account 
   through GitHub, Google, Facebook or through normal email registration
 
