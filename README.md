@@ -23,6 +23,8 @@ on building the actual business logic of your API.
 * __Documentation__  
   Fusio generates automatically a documentation of the API endpoints based on 
   the provided schema definitions.
+* __Validation__  
+  Fusio uses the standard JSONSchema to validate incoming request data
 * __Authorization__  
   Fusio uses OAuth2 for API authorization. Each app can be limited to scopes to 
   request only specific endpoints of the API.
@@ -31,6 +33,12 @@ on building the actual business logic of your API.
   know what is happening with your API. 
 * __Rate limiting__  
   It is possible to limit the requests to a specific threshold.
+* __Specifications__  
+  Fusio generates different specification formats for the defined API endpoints
+  i.e. OAI (Swagger), RAML
+* __User management__
+  Fusio provides an API where new users can login or register a new account 
+  through GitHub, Google, Facebook or through normal email registration
 
 # Development
 
