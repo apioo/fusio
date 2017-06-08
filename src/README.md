@@ -55,16 +55,16 @@ response.setBody({
 
 ```
 
-## Default
+## Class
 
 ```
-'fusio_engine' => \Fusio\Impl\Factory\Resolver\PhpFile::class,
+'fusio_engine' => \Fusio\Engine\Factory\Resolver\PhpClass::class,
 ```
 
-If you want to implement the endpoint logic in a PHP class you can also use the 
-default mode. In the default model you provide a class name to the action and 
-this class gets loaded through composer on execution. The class must implement 
-the `Fusio\Engine\ActionInterface`. In the following an example implementation:
+If you want to implement the endpoint logic in a PHP class. You provide a class 
+name to the action and this class gets loaded through composer on execution. The 
+class must implement the `Fusio\Engine\ActionInterface`. In the following an 
+example implementation:
 
 ```php
 <?php
