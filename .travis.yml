@@ -10,6 +10,7 @@ services:
   - mongodb
 before_install:
   - phpenv config-rm xdebug.ini
+  - mysql -e 'create database fusio;'
 install:
   - composer install
   - php bin/fusio install
