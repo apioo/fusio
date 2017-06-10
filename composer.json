@@ -21,12 +21,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Fusio\\Custom\\": "src/"
+      "App\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Fusio\\Custom\\Tests\\": "tests/"
+      "App\\Tests\\": "tests/"
     }
   }
 }
