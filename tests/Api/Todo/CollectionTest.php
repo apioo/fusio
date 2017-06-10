@@ -19,10 +19,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Fusio\Custom\Tests\Api\Todo;
+namespace App\Tests\Api\Todo;
 
-use Fusio\Custom\Tests\ApiTestCase;
-use PSX\Framework\Test\Environment;
+use App\Tests\ApiTestCase;
 
 /**
  * CollectionTest
@@ -35,7 +34,9 @@ class CollectionTest extends ApiTestCase
 {
     public function testDocumentation()
     {
-        $response = $this->send('GET', 'doc/*/todo');
+        $response = $this->sendRequest('http://127.0.0.1/doc/*/todo', 'GET', [
+            'User-Agent'    => 'Fusio TestCase',
+        ]);
 
         $actual = (string) $response->getBody();
         $expect = <<<'JSON'
@@ -126,23 +127,25 @@ class CollectionTest extends ApiTestCase
     "links": [
         {
             "rel": "swagger",
-            "href": "\/index.php\/export\/swagger\/*\/todo"
+            "href": "\/export\/swagger\/*\/todo"
         },
         {
             "rel": "raml",
-            "href": "\/index.php\/export\/raml\/*\/todo"
+            "href": "\/export\/raml\/*\/todo"
         }
     ]
 }
 JSON;
 
-        $this->assertEquals(200, $response->getStatusCode(), $actual);
+        $this->assertEquals(null, $response->getStatusCode(), $actual);
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
     }
 
     public function testGet()
     {
-        $response = $this->send('GET', 'todo');
+        $response = $this->sendRequest('http://127.0.0.1/todo', 'GET', [
+            'User-Agent'    => 'Fusio TestCase',
+        ]);
 
         $actual = (string) $response->getBody();
         $expect = <<<'JSON'
@@ -150,16 +153,16 @@ JSON;
     "totalResults": "4",
     "entry": [
         {
-            "id": "3",
-            "status": "1",
-            "title": "Task 3",
-            "insertDate": "2016-02-17 20:15:56"
-        },
-        {
             "id": "4",
             "status": "1",
             "title": "Task 4",
             "insertDate": "2016-02-17 20:15:56"
+        },
+        {
+            "id": "3",
+            "status": "1",
+            "title": "Task 3",
+            "insertDate": "2016-02-17 20:15:55"
         },
         {
             "id": "2",
@@ -183,7 +186,11 @@ JSON;
 
     public function testPost()
     {
-        $response = $this->sendAuthorized('POST', 'todo', ['title' => 'foo']);
+        $body     = json_encode(['title' => 'foo']);
+        $response = $this->sendRequest('http://127.0.0.1/todo', 'POST', [
+            'User-Agent'    => 'Fusio TestCase',
+            'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
+        ], $body);
 
         $actual = (string) $response->getBody();
         $expect = <<<'JSON'
@@ -199,7 +206,11 @@ JSON;
 
     public function testPostInvalidPayload()
     {
-        $response = $this->sendAuthorized('POST', 'todo', ['foo' => 'bar']);
+        $body     = json_encode(['foo' => 'foo']);
+        $response = $this->sendRequest('http://127.0.0.1/todo', 'POST', [
+            'User-Agent'    => 'Fusio TestCase',
+            'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
+        ], $body);
 
         $actual = (string) $response->getBody();
         $expect = <<<'JSON'
@@ -216,7 +227,10 @@ JSON;
 
     public function testPostWithoutAuthorization()
     {
-        $response = $this->send('POST', 'todo');
+        $body     = json_encode(['title' => 'foo']);
+        $response = $this->sendRequest('http://127.0.0.1/todo', 'POST', [
+            'User-Agent'    => 'Fusio TestCase',
+        ], $body);
 
         $actual = (string) $response->getBody();
         $expect = <<<'JSON'
@@ -233,7 +247,9 @@ JSON;
 
     public function testPut()
     {
-        $response = $this->send('PUT', 'todo');
+        $response = $this->sendRequest('http://127.0.0.1/todo', 'PUT', [
+            'User-Agent'    => 'Fusio TestCase',
+        ]);
 
         $actual = (string) $response->getBody();
         $expect = <<<'JSON'
@@ -250,7 +266,9 @@ JSON;
 
     public function testDelete()
     {
-        $response = $this->send('DELETE', 'todo');
+        $response = $this->sendRequest('http://127.0.0.1/todo', 'DELETE', [
+            'User-Agent'    => 'Fusio TestCase',
+        ]);
 
         $actual = (string) $response->getBody();
         $expect = <<<'JSON'

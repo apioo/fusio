@@ -1,28 +1,6 @@
 <?php
 
-// setup connection depending on the env var
-$connection = null;
-switch (getenv('DB')) {
-    case 'mysql':
-        $connection = array(
-            'dbname'   => 'fusio_ui',
-            'user'     => 'root',
-            'password' => '',
-            'host'     => 'localhost',
-            'driver'   => 'pdo_mysql',
-        );
-        break;
-
-    default:
-    case 'sqlite':
-        $connection = array(
-            'path'     => __DIR__ . '/../cache/fusio_ui.db',
-            'driver'   => 'pdo_sqlite',
-        );
-        break;
-}
-
-return array(
+return [
 
     // Whether the implicit flow is allowed. This is mostly needed for 
     // javascript apps
@@ -63,7 +41,7 @@ return array(
 
     // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
     // http://localhost.com)
-    'psx_url'                 => 'http://127.0.0.1:8008',
+    'psx_url'                 => 'http://127.0.0.1',
 
     // The default timezone
     'psx_timezone'            => 'UTC',
@@ -74,7 +52,10 @@ return array(
 
     // Database parameters which are used for the doctrine DBAL connection
     // http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
-    'psx_connection'          => $connection,
+    'psx_connection'          => [
+        'path'                => __DIR__ . '/../cache/app-test.db',
+        'driver'              => 'pdo_sqlite',
+    ],
 
     // Folder locations
     'psx_path_cache'          => __DIR__ . '/../cache',
@@ -107,4 +88,4 @@ return array(
     // specify a custom template
     //'psx_error_template'      => null,
 
-);
+];

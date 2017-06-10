@@ -1,0 +1,9 @@
+# deploy yaml file but which uses the system sqlite in memory connection for 
+# testing purpose. Note since the base path is .. we include the values from the 
+# production file
+routes: !include .fusio.yml#/routes
+schema: !include .fusio.yml#/schema
+connection:
+  Default-Connection:
+    class: Fusio\Impl\Connection\System
+migration: !include .fusio.yml#/migration
