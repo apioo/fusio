@@ -2,9 +2,23 @@
 Installation
 ============
 
-To install Fusio `download`_ the latest release and place the folder into the 
-``www/`` directory of the web server. After this Fusio can be installed in the 
-following steps.
+It is possible to install Fusio either through composer or install it manually.
+Place the project into the www directory of the web server.
+
+Composer
+^^^^^^^^
+
+.. code-block:: text
+
+    composer create-project fusio/fusio
+
+Download
+^^^^^^^^
+
+https://github.com/apioo/fusio/releases
+
+Configuration
+^^^^^^^^^^^^^
 
 * **Adjust the configuration file**
 
@@ -27,7 +41,7 @@ should see a API response that the installation was successful. The backend is
 available at ``/fusio/``.
 
 Docker
-------
+^^^^^^
 
 Alternatively it is also possible to setup a Fusio system through docker. This
 has the advantage that you automatically get a complete running Fusio system
@@ -67,10 +81,10 @@ Apache
         CustomLog /var/log/apache2/fusio-access.log combined
     </VirtualHost>
 
-Also you should enable the module ``mod_rewrite`` so that the .htaccess file in 
-the public folder is used. The htaccess contains an important rule which 
-redirects the ``Authorization`` header to Fusio which is otherwise removed.
-If the .htaccess file does not work please check whether the ``AllowOverride``
+You should enable the module ``mod_rewrite`` so that the .htaccess file in the 
+public folder is used. The htaccess contains an important rule which redirects 
+the ``Authorization`` header to Fusio which is otherwise removed. If the 
+.htaccess file does not work please check whether the ``AllowOverride`` 
 directive is set correctly i.e. to ``All``.
 
 Javascript V8
@@ -83,11 +97,11 @@ Installation instructions are available at the `php-v8`_ repository
 Apps
 ----
 
-There are three javascript apps which need to connect to the Fusio backend API.
-The backend app, the developer app and the documentation app. By default they 
-try to guess the url of the API endpoint. If an app is not working properly the 
-problem is probably that the javascript app can not correctly determine the API 
-endpoint url. In this case you have to adjust the url in the following files:
+There are three javascript apps which can connect to the Fusio backend API. The 
+backend, developer and documentation app. By default they try to guess the url 
+of the API endpoint. If an app is not working properly the problem is probably 
+that the javascript app can not correctly determine the API endpoint url. In 
+this case you have to adjust the url in the following files:
 
 * ``/public/fusio/index.htm``
 * ``/public/developer/index.html``

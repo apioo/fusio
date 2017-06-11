@@ -18,19 +18,38 @@ endpoint without an access token.
 
 .. code-block:: yaml
 
-    /news:
-      version: 1
-      methods:
-        POST:
-          public: true
-          request: News-Schema-Insert
-          response: News-Schema-Message
-          action: News-Insert
+    routes:
+      "/todo":
+        version: 1
+        methods:
+          GET:
+            public: true
+            response: Todo-Collection
+            action: "${dir.src}/Todo/collection.php"
+          POST:
+            public: false
+            request: Todo
+            response: Todo-Message
+            action: "${dir.src}/Todo/insert.php"
+      "/todo/:todo_id":
+        version: 1
+        methods:
+          GET:
+            public: true
+            response: Todo
+            action: "${dir.src}/Todo/row.php"
+          DELETE:
+            public: false
+            response: Todo-Message
+            action: "${dir.src}/Todo/delete.php"
 
 The ``request`` and ``response`` key reference a schema name which was defined
 under the ``schema`` key. It is also possible to use the ``Passthru`` schema
-which simply redirects all data. The ``action`` key reference an action name 
-which was defined under the ``action`` key.
+which simply redirects all data. The ``action`` key reference an action. How
+this action is used depends on the ``fusio_engine`` setting in the 
+``configuration.php`` file. By default we use the ``PhpFile`` engine which uses
+a simple php file. But it is also possible to use a ``PhpClass`` or ``V8`` 
+engine.
 
 Path
 ^^^^
@@ -94,7 +113,10 @@ and include them in the config.
 
 .. code-block:: yaml
 
-    News-Schema-Insert: !include resources/schema/news/collection.json
+    schema:
+      Todo: !include resources/schema/todo/entity.json
+      Todo-Collection: !include resources/schema/todo/collection.json
+      Todo-Message: !include resources/schema/todo/message.json
 
 Inside a schema it is possible to refer to other schema definitions by using the 
 ``$ref`` key and the ``file`` protocol i.e. ``file:///[file]``.
@@ -116,48 +138,6 @@ Inside a schema it is possible to refer to other schema definitions by using the
                 "type": "string",
                 "format": "date-time"
             }
-        }
-    }
-
-action
-------
-
-The action contains the logic to handle the request and produce a response. Each 
-action is based on a class and can have specific config parameters. The class
-must be placed in the ``src/`` folder.
-
-.. code-block:: yaml
-
-    News-Insert:
-      class: Fusio\Custom\Action\News\Insert
-      config:
-        foo: bar
-
-.. code-block:: php
-    
-    <?php
-    
-    namespace Fusio\Custom\Action\News;
-    
-    use Fusio\Engine\ActionAbstract;
-    use Fusio\Engine\ContextInterface;
-    use Fusio\Engine\ParametersInterface;
-    use Fusio\Engine\RequestInterface;
-    
-    class Collection extends ActionAbstract
-    {
-        public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
-        {
-            /** @var \Doctrine\DBAL\Connection $connection */
-            $connection = $this->connector->getConnection('Acme-Mysql');
-    
-            $totalResults = $connection->fetchColumn('SELECT COUNT(*) FROM acme_news');
-            $entries      = $connection->fetchAll('SELECT id, title, content, insertDate FROM acme_news ORDER BY insertDate DESC');
-    
-            return $this->response->build(200, [], [
-                'totalResults' => $totalResults,
-                'entry' => $entries,
-            ]);
         }
     }
 
@@ -420,5 +400,6 @@ executed once on deployment.
 
 .. code-block:: yaml
 
-    Acme-Mysql:
-      - resources/sql/v1_schema.sql
+    migration:
+      Default-Connection:
+        - resources/sql/v1_schema.php

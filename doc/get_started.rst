@@ -5,7 +5,7 @@ Get started
 Build an API endpoint
 ---------------------
 
-Fusio provides a demo news API which is ready for deployment. Take a look at the 
+Fusio provides a demo todo API which is ready for deployment. Take a look at the 
 ``.fusio.yml`` file which contains the deployment configuration. The file 
 contains several keys:
 
@@ -18,13 +18,29 @@ contains several keys:
   .. code-block:: yaml
 
     routes:
-      /news:
+      "/todo":
         version: 1
         methods:
           GET:
             public: true
-            response: News-Collection
-            action: News-Collection
+            response: Todo-Collection
+            action: "${dir.src}/Todo/collection.php"
+          POST:
+            public: false
+            request: Todo
+            response: Todo-Message
+            action: "${dir.src}/Todo/insert.php"
+      "/todo/:todo_id":
+        version: 1
+        methods:
+          GET:
+            public: true
+            response: Todo
+            action: "${dir.src}/Todo/row.php"
+          DELETE:
+            public: false
+            response: Todo-Message
+            action: "${dir.src}/Todo/delete.php"
 
 * **schema**
 
@@ -33,21 +49,9 @@ contains several keys:
   .. code-block:: yaml
 
     schema:
-      News-Collection: !include resources/schema/news/collection.json
-      News-Entity: !include resources/schema/news/entity.json
-
-* **action**
-
-  Contains the actual actions which are executed if an request arrives and which 
-  produce the response:
-
-  .. code-block:: yaml
-
-    action:
-      News-Collection:
-        class: Fusio\Custom\Action\News\Collection
-      News-Insert:
-        class: Fusio\Custom\Action\News\Insert
+      Todo: !include resources/schema/todo/entity.json
+      Todo-Collection: !include resources/schema/todo/collection.json
+      Todo-Message: !include resources/schema/todo/message.json
 
 * **connection**
 
@@ -55,16 +59,12 @@ contains several keys:
   connection can be used inside an action:
 
   .. code-block:: yaml
-
+    
     connection:
-      Acme-Mysql:
-        class: Fusio\Adapter\Sql\Connection\Sql
+      Default-Connection:
+        class: Fusio\Adapter\Sql\Connection\SqlAdvanced
         config:
-          type: pdo_mysql
-          host: localhost
-          username: root
-          password: 
-          database: fusio
+          url: "sqlite:///${dir.cache}/todo-app.db"
 
 * **migration**
 
@@ -74,29 +74,28 @@ contains several keys:
   .. code-block:: yaml
 
     migration:
-      Acme-Mysql:
-        - resources/sql/v1_schema.sql
+      Default-Connection:
+        - resources/sql/v1_schema.php
 
 Through the command ``php bin/fusio deploy`` you can deploy the API. It is now 
-possible to visit the API endpoint at: ``/news``.
-
+possible to visit the API endpoint at: ``/todo``.
 
 Access a non-public API endpoint
 --------------------------------
 
-The POST method of the news API is not public, because of this you need an 
+The POST method of the todo API is not public, because of this you need an 
 access token in order to send a POST request.
 
 * **Create a scope**
 
-  At first we must create a scope for the ``/news`` API endpoint. Therefor login 
+  At first we must create a scope for the ``/todo`` API endpoint. Therefor login 
   to the backend an go to the scope panel. Click on the plus button and create a 
-  new scope ``news`` which has the ``/news`` route assigned.
+  new scope ``todo`` which has the ``/todo`` route assigned.
 
 * **Assign the scope to your user**
 
   In order to use a scope, the scope must be assigned to your user account. 
-  Therefor go to the user panel click on the edit button and assign the ``news``
+  Therefor go to the user panel click on the edit button and assign the ``todo``
   scope to your user.
 
 * **Request a JWT**
@@ -129,7 +128,7 @@ access token in order to send a POST request.
 
   .. code-block:: http
 
-    POST /news HTTP/1.1
+    POST /todo HTTP/1.1
     Host: 127.0.0.1
     Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5N2JkNDUzYjdlMDZlOWFlMDQxNi00YmY2MWFiYjg4MDJjZmRmOWZmN2UyNDg4OTNmNzYyYmU5Njc5MGUzYTk4NDQ3MDEtYjNkYTk1MDYyNCIsImlhdCI6MTQ5MTE2NzIzNiwiZXhwIjoxNDkxMTcwODM2LCJuYW1lIjoidGVzdCJ9.T49Af5wnPIFYbPer3rOn-KV5PcN0FLcBVykUMCIAuwI
     Content-Type: application/json
