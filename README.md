@@ -130,9 +130,10 @@ services. Then we simply fire some queries and return the response.
 
 # Backend
 
-This section gives a high level overview what the Fusio system provides and how
-the application is structured. Lets take a look at the components which are 
-provided by Fusio:
+Fusio provides several apps which work with the internal backend API. These apps
+can be used to manage and work with the API. This section gives a high level 
+overview what the Fusio system provides and how the application is structured. 
+Lets take a look at the components which are provided by Fusio:
 
 ![Overview](https://github.com/apioo/fusio/blob/master/doc/_static/overview.png)
 
@@ -156,15 +157,13 @@ paths which are needed by the system.
 
 # Apps
 
-The following apps are working with the Fusio API. Because of that it is also 
-really easy to integrate Fusio into an existing system since you can call those 
-endpoints also from your application.
+The following apps are working with the Fusio API.
 
 ## Backend
 
 ![Backend](https://github.com/apioo/fusio/blob/master/doc/_static/backend.png)
 
-The backend app is the app where the administrator can configure the system. The 
+The backend app is the app where the administrator can configure the system. The
 app is located at `/fusio/`.
 
 ## Developer
@@ -185,9 +184,20 @@ Swagger. The app is located at `/documentation/`.
 
 # Installation
 
-To install Fusio download the latest version and place the folder into the www 
-directory of the webserver. After this Fusio can be installed in the following 
-steps.
+It is possible to install Fusio either through composer or install it manually.
+Place the project into the www directory of the web server.
+
+## Composer
+
+```
+composer create-project fusio/fusio
+```
+
+## Download
+
+https://github.com/apioo/fusio/releases
+
+## Configuration
 
 * __Adjust the configuration file__  
   Open the file `configuration.php` in the Fusio directory and change the key 
@@ -202,7 +212,15 @@ steps.
   account. Therefor you can use the following command `php bin/fusio adduser`. 
   Choose as account type "Administrator".
 
-You can then login to the backend at `/fusio`.
+You can login to the backend at `/fusio`.
+
+## Deploy
+
+To deploy the sample API you can run the following command:
+
+```
+php bin/fusio deploy
+```
 
 # Documentation
 
