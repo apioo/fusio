@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "36ad6d0fd8a1dd9e229767f1c3a5d2ed",
+    "content-hash": "b61b0f17bbaf5aeedc3e573b9b82974e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -867,16 +867,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v0.8.7",
+            "version": "v0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "290540185b2730f8a6d176a13f872ce37072239b"
+                "reference": "64688f8c6a1aef9e778c7fa30ae53093c3f4cda1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/290540185b2730f8a6d176a13f872ce37072239b",
-                "reference": "290540185b2730f8a6d176a13f872ce37072239b",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/64688f8c6a1aef9e778c7fa30ae53093c3f4cda1",
+                "reference": "64688f8c6a1aef9e778c7fa30ae53093c3f4cda1",
                 "shasum": ""
             },
             "require": {
@@ -916,7 +916,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-06-10T16:29:14+00:00"
+            "time": "2017-06-11T20:48:28+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
