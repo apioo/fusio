@@ -1,6 +1,7 @@
 
-### 0.8.1
+### 0.9.0
 
+* Improved deploy service
 * Changed default todo sample API to php file engine
 * Option to set config values in the deploy file
 * Add action resolver which determines the engine which is used i.e. php or v8
