@@ -28,42 +28,8 @@
         </exec>
     </target>
 
-    <!-- npm install -->
-    <target name="npm-install">
-        <exec dir="${build}/public/fusio" executable="${npm}" failonerror="true">
-            <arg line="install" />
-        </exec>
-    </target>
-
-    <!-- grunt -->
-    <target name="grunt">
-        <exec dir="${build}/public/fusio" executable="${nodejs}" failonerror="true">
-            <arg line="node_modules/grunt-cli/bin/grunt" />
-        </exec>
-    </target>
-
-    <!-- start webserver -->
-    <target name="start-webserver">
-        <exec dir="${build}/public" executable="${php}" failonerror="true">
-            <arg line="server.php --warmup" />
-        </exec>
-        <exec dir="${build}/build" executable="${php}" spawn="true">
-            <arg line="service.php webserver start" />
-        </exec>
-    </target>
-
-    <!-- start webdriver -->
-    <target name="start-webdriver">
-        <exec dir="${build}/public" executable="${nodejs}" failonerror="true">
-            <arg line="fusio/node_modules/protractor/bin/webdriver-manager update" />
-        </exec>
-        <exec dir="${build}/build" executable="${php}" spawn="true">
-            <arg line="service.php webdriver start" />
-        </exec>
-    </target>
-
-    <!-- after this target we have an system with all dependencies installed -->
-    <target name="init" depends="delete-git-dir,git-clone,composer-install,npm-install,grunt,start-webserver,start-webdriver" />
+    <!-- after this target we have a system with all dependencies installed -->
+    <target name="init" depends="delete-git-dir,git-clone,composer-install" />
 
     <!-- ############################## TESTS ############################## -->
     <!-- syntax check of all files -->
@@ -73,72 +39,31 @@
         </exec>
     </target>
 
-    <!-- run protractor tests -->
-    <target name="protractor">
-        <exec dir="${build}/public/fusio/tests" executable="${nodejs}" failonerror="true">
-            <arg line="../node_modules/protractor/bin/protractor conf.js " />
-        </exec>
-    </target>
-
-    <!-- deploy api -->
-    <target name="deploy-api">
-        <exec dir="${build}/public" executable="${php}" failonerror="true">
-            <arg line="server.php --deploy" />
-        </exec>
-    </target>
-
     <!-- run phpunit tests -->
     <target name="phpunit">
         <exec dir="${build}" executable="${phpunit}" failonerror="true" />
     </target>
 
     <!-- this target runs all tests -->
-    <target name="test" depends="init,protractor,deploy-api,phpunit" />
+    <target name="test" depends="init,phpunit" />
 
     <!-- ############################## CLEAN ############################## -->
-    <!-- remove the lock file so that the web and selenium server shutdown -->
-    <target name="shutdown-server">
-        <echo message="Waiting for servers to shutdown ..." />
-        <sleep seconds="4" />
-        <exec dir="${build}/build" executable="${php}">
-            <arg line="service.php webserver stop" />
-        </exec>
-        <exec dir="${build}/build" executable="${php}">
-            <arg line="service.php webdriver stop" />
-        </exec>
-    </target>
-
     <!-- removes all files wich are not needed in the release -->
     <target name="remove-files">
         <delete dir="${build}/.git" />
         <delete dir="${build}/build" />
-        <delete dir="${build}/public/fusio/app" />
-        <delete dir="${build}/public/fusio/css" />
-        <delete dir="${build}/public/fusio/js" />
-        <delete dir="${build}/public/fusio/node_modules" />
-        <delete dir="${build}/public/fusio/tests" />
         <delete dir="${build}/tests" />
         <delete dir="${build}/doc" />
         <delete file="${build}/.travis.yml" />
         <delete file="${build}/phpunit.xml" />
         <delete file="${build}/TODO.md" />
-        <delete file="${build}/public/server.php" />
-        <delete file="${build}/public/fusio/.jscsrc" />
-        <delete file="${build}/public/fusio/.jshintrc" />
-        <delete file="${build}/public/fusio/index_dev.htm" />
-        <delete file="${build}/public/fusio/Gruntfile.js" />
-        <delete file="${build}/public/fusio/package.json" />
-        <delete file="${build}/public/fusio/dist/fusio-bundle.js" />
-        <delete file="${build}/public/fusio/dist/fusio-bundle.min.js" />
-        <delete file="${build}/public/fusio/dist/fusio-templates.js" />
-        <delete file="${build}/public/fusio/dist/fusio-templates.min.js" />
         <delete includeemptydirs="true">
             <fileset dir="${build}/cache" includes="*" />
         </delete>
     </target>
 
     <!-- clean build -->
-    <target name="clean" depends="shutdown-server,remove-files" />
+    <target name="clean" depends="remove-files" />
 
     <!-- ############################## BUILD ############################## -->
     <!-- returns the current version -->
