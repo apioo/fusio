@@ -1,5 +1,5 @@
 
-### 0.9.0
+### 0.9.0 (2017-06-11)
 
 * Improved deploy service
 * Changed default todo sample API to php file engine
