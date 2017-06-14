@@ -40,6 +40,10 @@ on building the actual business logic of your API.
   Fusio provides an API where new users can login or register a new account 
   through GitHub, Google, Facebook or through normal email registration
 
+Basically with Fusio you only have to define the schema (request/response) of 
+your API endpoints and implement the business logic in a simple PHP file. All
+other aspects are covered by Fusio.
+
 # Development
 
 If you develop an API with Fusio you need to define a `.fusio.yml` deploy file
@@ -212,7 +216,9 @@ https://github.com/apioo/fusio/releases
   account. Therefor you can use the following command `php bin/fusio adduser`. 
   Choose as account type "Administrator".
 
-You can login to the backend at `/fusio`.
+You can verify the installation by visiting the `psx_url` with a browser. You
+should see a API response that the installation was successful. The backend is
+available at `/fusio/`.
 
 ## Deploy
 
