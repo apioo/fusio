@@ -69,7 +69,7 @@ example implementation:
 ```php
 <?php
 
-namespace Fusio\Custom\Action;
+namespace App\Todo\Action;
 
 use Fusio\Engine\ActionAbstract;
 use Fusio\Engine\ContextInterface;
