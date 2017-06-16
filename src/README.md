@@ -20,6 +20,7 @@ an example implementation:
 <?php
 /**
  * @var \Fusio\Engine\ConnectorInterface $connector
+ * @var \Fusio\Engine\ContextInterface $context
  * @var \Fusio\Engine\RequestInterface $request
  * @var \Fusio\Engine\Response\FactoryInterface $response
  * @var \Fusio\Engine\ProcessorInterface $processor
@@ -47,12 +48,10 @@ implementation requires the [php v8](https://github.com/pinepain/php-v8)
 extension. In the following an example implementation:
 
 ```javascript
-
 response.setStatusCode(200);
 response.setBody({
     message: "Hello World!"
 });
-
 ```
 
 ## Class
