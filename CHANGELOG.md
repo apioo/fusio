@@ -1,4 +1,10 @@
 
+### 0.9.1 (2017-06-28)
+
+* Rename default namespace
+* Update docs
+* Add action engine parameter to export
+
 ### 0.9.0 (2017-06-11)
 
 * Improved deploy service
