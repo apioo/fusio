@@ -233,7 +233,7 @@ php bin/fusio deploy
 Alternatively it is also possible to setup a Fusio system through docker. This
 has the advantage that you automatically get a complete running Fusio system
 without configuration. This is especially great for testing and evaluation. To 
-setup the container you have to checkout the [repository](https://github.com/apioo/fusio/releases) 
+setup the container you have to checkout the [repository](https://github.com/apioo/fusio-docker) 
 and run the following command:
 
 ```
