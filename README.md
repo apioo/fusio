@@ -87,7 +87,7 @@ connection:
       url: "sqlite:///${dir.cache}/todo-app.db"
 migration:
   Default-Connection:
-    - resources/sql/v1_schema.sql
+    - resources/sql/v1_schema.php
 ```
 
 This file can be deploy with the following command:
