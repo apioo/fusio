@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b61b0f17bbaf5aeedc3e573b9b82974e",
+    "content-hash": "004a8768fbd526cb5608454cb2bafca5",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -867,16 +867,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v0.9.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "3d59216bf505709d99f8d5288f8556ecc7307dc9"
+                "reference": "1a3e1ed30204a87f1e1c7f2ddf12dbdfa1bd90f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/3d59216bf505709d99f8d5288f8556ecc7307dc9",
-                "reference": "3d59216bf505709d99f8d5288f8556ecc7307dc9",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/1a3e1ed30204a87f1e1c7f2ddf12dbdfa1bd90f4",
+                "reference": "1a3e1ed30204a87f1e1c7f2ddf12dbdfa1bd90f4",
                 "shasum": ""
             },
             "require": {
@@ -916,7 +916,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-06-16T08:46:44+00:00"
+            "time": "2017-07-02T20:00:27+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1344,16 +1344,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.0.5",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "2b9e2f71b722f7c53918ab0c25f7646c2013f17d"
+                "reference": "0808939f81c1347a3c8a82a5925385a08074b0f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/2b9e2f71b722f7c53918ab0c25f7646c2013f17d",
-                "reference": "2b9e2f71b722f7c53918ab0c25f7646c2013f17d",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/0808939f81c1347a3c8a82a5925385a08074b0f1",
+                "reference": "0808939f81c1347a3c8a82a5925385a08074b0f1",
                 "shasum": ""
             },
             "require": {
@@ -1391,7 +1391,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-03-05T18:23:57+00:00"
+            "time": "2017-06-28T20:53:48+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2500,16 +2500,16 @@
         },
         {
             "name": "psx/sql",
-            "version": "v2.0.4",
+            "version": "v2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-sql.git",
-                "reference": "65761e5f953867be3965d58380930df1ef97b79a"
+                "reference": "fec7b1ff90199dfda644f4c8a1d708c0cb541fb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-sql/zipball/65761e5f953867be3965d58380930df1ef97b79a",
-                "reference": "65761e5f953867be3965d58380930df1ef97b79a",
+                "url": "https://api.github.com/repos/apioo/psx-sql/zipball/fec7b1ff90199dfda644f4c8a1d708c0cb541fb2",
+                "reference": "fec7b1ff90199dfda644f4c8a1d708c0cb541fb2",
                 "shasum": ""
             },
             "require": {
@@ -2546,7 +2546,7 @@
             "keywords": [
                 "sql"
             ],
-            "time": "2017-03-13T21:48:27+00:00"
+            "time": "2017-07-01T15:06:24+00:00"
         },
         {
             "name": "psx/uri",
