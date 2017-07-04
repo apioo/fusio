@@ -445,7 +445,8 @@ pre
 
 .fusio-log-detail-header,
 .fusio-log-detail-body,
-.fusio-error-detail-trace
+.fusio-error-detail-trace,
+.fusio-audit-detail-content
 {
     background-color:#fff
 }
