@@ -1,4 +1,8 @@
 
+### 0.9.2
+
+* Add audit panel which contains a log from every action on the system
+
 ### 0.9.1 (2017-06-28)
 
 * Rename default namespace
