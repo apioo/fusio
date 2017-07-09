@@ -1,7 +1,8 @@
 
-### 0.9.2
+### 0.9.2 (2017-07-09)
 
 * Add audit panel which contains a log from every action on the system
+* Added event handler
 
 ### 0.9.1 (2017-06-28)
 
