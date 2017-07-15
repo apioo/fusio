@@ -1,4 +1,9 @@
 
+### 0.9.3
+
+* Add general update code which inserts new routes on update
+* Add statistic request count method
+
 ### 0.9.2 (2017-07-09)
 
 * Add audit panel which contains a log from every action on the system
