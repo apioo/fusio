@@ -1,6 +1,7 @@
 
 ### 0.9.3
 
+* Deploy command handle verbose mode
 * Add general update code which inserts new routes on update
 * Add statistic request count method
 
