@@ -405,5 +405,5 @@ executed once on deployment.
         - resources/sql/v1_schema.php
 
 Note: If you migrate a schema to a specific database the migration tool will
-delete all tables from the database to adjust the tables according to then 
+delete all tables from the database to adjust the tables according to the 
 defined schema.
