@@ -1,0 +1,4 @@
+Default-Connection:
+  class: Fusio\Adapter\Sql\Connection\SqlAdvanced
+  config:
+    url: "sqlite:///${dir.cache}/todo-app.db"

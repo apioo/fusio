@@ -1,36 +1,32 @@
+# This deploy configuration contains all routes, schemas and connections of the
+# app. The configuration can be deployed through the following command:
+# > php bin/fusio deploy
+
+# ------------------------------------------------------------------------------
+# Contains all available routes of the app. Each route reference a yaml file 
+# which defines the request/response schema and the action which gets executed.
+# Documentation: http://fusio.readthedocs.io/en/latest/deploy.html#routes
 routes:
-  "/todo":
-    version: 1
-    methods:
-      GET:
-        public: true
-        response: Todo-Collection
-        action: "${dir.src}/Todo/collection.php"
-      POST:
-        public: false
-        request: Todo
-        response: Todo-Message
-        action: "${dir.src}/Todo/insert.php"
-  "/todo/:todo_id":
-    version: 1
-    methods:
-      GET:
-        public: true
-        response: Todo
-        action: "${dir.src}/Todo/row.php"
-      DELETE:
-        public: false
-        response: Todo-Message
-        action: "${dir.src}/Todo/delete.php"
+  "/todo": !include resources/routes/todo/collection.yaml
+  "/todo/:todo_id": !include resources/routes/todo/entity.yaml
+
+# ------------------------------------------------------------------------------
+# Contains all available schema definitions. Each schema reference a json file
+# which contains a json schema. These schema names can be referenced in a route.
+# Documentation: http://fusio.readthedocs.io/en/latest/deploy.html#schema
 schema:
   Todo: !include resources/schema/todo/entity.json
   Todo-Collection: !include resources/schema/todo/collection.json
-  Todo-Message: !include resources/schema/todo/message.json
-connection:
-  Default-Connection:
-    class: Fusio\Adapter\Sql\Connection\SqlAdvanced
-    config:
-      url: "sqlite:///${dir.cache}/todo-app.db"
-migration:
-  Default-Connection:
-    - resources/sql/v1_schema.php
+  Message: !include resources/schema/message.json
+
+# ------------------------------------------------------------------------------
+# Reference a yaml file which contains all available connections to remote 
+# services i.e. a database or mongodb connection. These connections can be used
+# inside an action to produce a response or insert data from a request. 
+# Documentation: http://fusio.readthedocs.io/en/latest/deploy.html#connection
+connection: !include resources/connections.yaml
+
+# ------------------------------------------------------------------------------
+# Reference a yaml file which contains migrations for a specific connection.
+# Documentation: http://fusio.readthedocs.io/en/latest/deploy.html#migration
+migration: !include resources/migrations.yaml
