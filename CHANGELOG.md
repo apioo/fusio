@@ -1,5 +1,13 @@
 
-### 0.9.3
+### 0.9.4
+
+* Handle schema for query parameters
+* Improved route serialization #44
+* Handle multiple responses for different status codes
+* Split up deploy file into separate files
+* Execute migration on an empty database schema
+
+### 0.9.3 (2017-07-20)
 
 * Deploy command handle verbose mode
 * Add general update code which inserts new routes on update
