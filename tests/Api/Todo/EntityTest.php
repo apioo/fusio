@@ -22,6 +22,7 @@
 namespace App\Tests\Api\Todo;
 
 use App\Tests\ApiTestCase;
+use PSX\Framework\Test\Environment;
 
 /**
  * EntityTest
@@ -73,11 +74,6 @@ class EntityTest extends ApiTestCase
                     "title"
                 ]
             },
-            "Passthru": {
-                "type": "object",
-                "title": "passthru",
-                "description": "No schema was specified."
-            },
             "Message": {
                 "type": "object",
                 "title": "message",
@@ -90,13 +86,24 @@ class EntityTest extends ApiTestCase
                     }
                 }
             },
+            "Passthru": {
+                "type": "object",
+                "title": "passthru",
+                "description": "No schema was specified."
+            },
             "GET-200-response": {
                 "$ref": "#\/definitions\/Todo"
+            },
+            "GET-500-response": {
+                "$ref": "#\/definitions\/Message"
             },
             "DELETE-request": {
                 "$ref": "#\/definitions\/Passthru"
             },
             "DELETE-200-response": {
+                "$ref": "#\/definitions\/Message"
+            },
+            "DELETE-500-response": {
                 "$ref": "#\/definitions\/Message"
             }
         }
@@ -104,17 +111,23 @@ class EntityTest extends ApiTestCase
     "methods": {
         "GET": {
             "responses": {
-                "200": "#\/definitions\/GET-200-response"
+                "200": "#\/definitions\/GET-200-response",
+                "500": "#\/definitions\/GET-500-response"
             }
         },
         "DELETE": {
             "request": "#\/definitions\/DELETE-request",
             "responses": {
-                "200": "#\/definitions\/DELETE-200-response"
+                "200": "#\/definitions\/DELETE-200-response",
+                "500": "#\/definitions\/DELETE-500-response"
             }
         }
     },
     "links": [
+        {
+            "rel": "openapi",
+            "href": "\/export\/openapi\/*\/todo\/:todo_id"
+        },
         {
             "rel": "swagger",
             "href": "\/export\/swagger\/*\/todo\/:todo_id"
@@ -206,6 +219,17 @@ JSON;
 
         $this->assertEquals(200, $response->getStatusCode(), $actual);
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
+
+        /** @var \Doctrine\DBAL\Connection $connection */
+        $connection = Environment::getService('connector')->getConnection('Default-Connection');
+        $actual = $connection->fetchAssoc('SELECT id, status, title FROM app_todo WHERE id = 4');
+        $expect = [
+            'id' => 4,
+            'status' => 0,
+            'title' => 'Task 4',
+        ];
+
+        $this->assertEquals($expect, $actual);
     }
 
     public function testDeleteWithoutAuthorization()

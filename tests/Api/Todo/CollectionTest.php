@@ -22,6 +22,7 @@
 namespace App\Tests\Api\Todo;
 
 use App\Tests\ApiTestCase;
+use PSX\Framework\Test\Environment;
 
 /**
  * CollectionTest
@@ -103,10 +104,16 @@ class CollectionTest extends ApiTestCase
             "GET-200-response": {
                 "$ref": "#\/definitions\/Collection"
             },
+            "GET-500-response": {
+                "$ref": "#\/definitions\/Message"
+            },
             "POST-request": {
                 "$ref": "#\/definitions\/Todo"
             },
-            "POST-200-response": {
+            "POST-201-response": {
+                "$ref": "#\/definitions\/Message"
+            },
+            "POST-500-response": {
                 "$ref": "#\/definitions\/Message"
             }
         }
@@ -114,17 +121,23 @@ class CollectionTest extends ApiTestCase
     "methods": {
         "GET": {
             "responses": {
-                "200": "#\/definitions\/GET-200-response"
+                "200": "#\/definitions\/GET-200-response",
+                "500": "#\/definitions\/GET-500-response"
             }
         },
         "POST": {
             "request": "#\/definitions\/POST-request",
             "responses": {
-                "200": "#\/definitions\/POST-200-response"
+                "201": "#\/definitions\/POST-201-response",
+                "500": "#\/definitions\/POST-500-response"
             }
         }
     },
     "links": [
+        {
+            "rel": "openapi",
+            "href": "\/export\/openapi\/*\/todo"
+        },
         {
             "rel": "swagger",
             "href": "\/export\/swagger\/*\/todo"
@@ -200,8 +213,19 @@ JSON;
 }
 JSON;
 
-        $this->assertEquals(200, $response->getStatusCode(), $actual);
+        $this->assertEquals(201, $response->getStatusCode(), $actual);
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
+
+        /** @var \Doctrine\DBAL\Connection $connection */
+        $connection = Environment::getService('connector')->getConnection('Default-Connection');
+        $actual = $connection->fetchAssoc('SELECT id, status, title FROM app_todo ORDER BY id DESC LIMIT 1');
+        $expect = [
+            'id' => 5,
+            'status' => 1,
+            'title' => 'foo',
+        ];
+
+        $this->assertEquals($expect, $actual);
     }
 
     public function testPostInvalidPayload()

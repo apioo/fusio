@@ -21,6 +21,7 @@
 
 namespace App\Tests;
 
+use Doctrine\DBAL\Connection;
 use Fusio\Impl\Controller\SchemaApiController;
 use Fusio\Impl\Loader\DatabaseRoutes;
 use Fusio\Impl\Service\System\Deploy;
@@ -73,12 +74,18 @@ abstract class ApiTestCase extends ControllerDbTestCase
         }
 
         // insert the app fixture data
-        $inserts = Fixture::getAppInserts();
-        foreach ($inserts as $tableName => $rows) {
-            $this->connection->executeUpdate('DELETE FROM ' . $tableName . ' WHERE 1=1');
-            foreach ($rows as $row) {
-                $this->connection->insert($tableName, $row);
+        $connection = Environment::getService('connector')->getConnection('Default-Connection');
+        $inserts    = Fixture::getAppInserts();
+
+        if ($connection instanceof Connection) {
+            foreach ($inserts as $tableName => $rows) {
+                $connection->executeUpdate('DELETE FROM ' . $tableName . ' WHERE 1=1');
+                foreach ($rows as $row) {
+                    $connection->insert($tableName, $row);
+                }
             }
+        } else {
+            throw new \RuntimeException('Can only insert fixture for SQL connections');
         }
     }
 }
