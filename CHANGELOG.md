@@ -1,10 +1,13 @@
 
 ### 0.9.4
 
+* Added openapi generation and import support
 * Handle schema for query parameters
 * Improved route serialization #44
 * Handle multiple responses for different status codes
 * Split up deploy file into separate files
+* Removed routes action and schema relation handling
+* Removed old upgrade paths
 * Execute migration on an empty database schema
 
 ### 0.9.3 (2017-07-20)
