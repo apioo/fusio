@@ -50,67 +50,24 @@ on building the actual business logic of your API.
   through GitHub, Google, Facebook or through normal email registration.
 
 Basically with Fusio you only have to define the schema (request/response) of 
-your API endpoints and implement the business logic in a simple PHP file. All
-other aspects are covered by Fusio.
+your API endpoints and implement the business logic. All other aspects are 
+covered by Fusio.
 
 Development
 -----------
 
-If you develop an API with Fusio you need to define a .fusio.yml deploy file 
-which specifies the available routes and actions for the system. If a request 
-schema is available for a method the input gets validated according to the 
-schema. A deploy file looks like:
-
-.. code-block:: yaml
-    
-    routes:
-      "/todo":
-        version: 1
-        methods:
-          GET:
-            public: true
-            response: Todo-Collection
-            action: "${dir.src}/Todo/collection.php"
-          POST:
-            public: false
-            request: Todo
-            response: Todo-Message
-            action: "${dir.src}/Todo/insert.php"
-      "/todo/:todo_id":
-        version: 1
-        methods:
-          GET:
-            public: true
-            response: Todo
-            action: "${dir.src}/Todo/row.php"
-          DELETE:
-            public: false
-            response: Todo-Message
-            action: "${dir.src}/Todo/delete.php"
-    schema:
-      Todo: !include resources/schema/todo/entity.json
-      Todo-Collection: !include resources/schema/todo/collection.json
-      Todo-Message: !include resources/schema/todo/message.json
-    connection:
-      Default-Connection:
-        class: Fusio\Adapter\Sql\Connection\SqlAdvanced
-        config:
-          url: "sqlite:///${dir.cache}/todo-app.db"
-    migration:
-      Default-Connection:
-        - resources/sql/v1_schema.sql
-
-This file can be deploy with the following command:
+If you develop an API with Fusio you need to define a ``.fusio.yml`` deploy file 
+which specifies the available routes and actions of the system. This file can 
+be deployed with the following command:
 
 .. code-block:: text
     
     php bin/fusio deploy
 
-The action of each route contains the file which handles the business logic. By 
-default we use the PhpFile engine which uses a simple PHP file but you can also 
-set another engine i.e. PhpClass or V8 to use either an actual php class or 
-javascript code. More information in the src/ folder. In the following an 
-example action to build an API response from a database:
+The action of each route contains the source which handles the business logic. 
+This can be i.e. a simple php file, php class or a url. More information in the 
+``src/`` folder. In the following an example action to build an API response 
+from a database:
 
 .. code-block:: php
     
@@ -195,7 +152,7 @@ Developer
 
 .. image:: _static/developer.png
 
-The developer app is designed to quickly setup an API programm where new 
+The developer app is designed to quickly setup an API program where new 
 developers can register and create/manage their apps. The app is located at 
 ``/developer/``.
 

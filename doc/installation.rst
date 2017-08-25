@@ -56,7 +56,7 @@ command:
 This builds the Fusio system with a predefined backend account. The credentials 
 are taken from the env variables ``FUSIO_BACKEND_USER``, ``FUSIO_BACKEND_EMAIL`` 
 and ``FUSIO_BACKEND_PW`` in the `docker-compose.yml`_. If you are planing to run 
-the container on the internet you must change these credentials.
+the container on the internet you MUST change these credentials.
 
 Configure web server
 --------------------
@@ -82,10 +82,11 @@ Apache
     </VirtualHost>
 
 You should enable the module ``mod_rewrite`` so that the .htaccess file in the 
-public folder is used. The htaccess contains an important rule which redirects 
-the ``Authorization`` header to Fusio which is otherwise removed. If the 
-.htaccess file does not work please check whether the ``AllowOverride`` 
-directive is set correctly i.e. to ``All``.
+public folder is used. It is also possible to include the htaccess commands 
+directly into the virtual host which also increases performance. The htaccess 
+contains an important rule which redirects the ``Authorization`` header to Fusio 
+which is otherwise removed. If the .htaccess file does not work please check 
+whether the ``AllowOverride`` directive is set correctly i.e. to ``All``.
 
 Javascript V8
 -------------

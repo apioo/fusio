@@ -33,9 +33,11 @@ parameters.
                     "GET": {
                         "active": true,
                         "public": true,
-                        "action": "Void-Action",
                         "request": "Adapter-Schema",
-                        "response": "Passthru"
+                        "responses": {
+                            "200": "Passthru"
+                        },
+                        "action": "Void-Action"
                     }
                 }
             }]

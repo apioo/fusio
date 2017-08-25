@@ -2,8 +2,8 @@
 Deploy
 ======
 
-The ``.fusio.yml`` deploy configuration is the main configuration file to 
-develop an API with Fusio. This chapter explains in detail the format.
+The ``.fusio.yml`` deploy file is the main configuration file to develop an API 
+with Fusio. This chapter explains in detail the format.
 
 routes
 ------
@@ -17,39 +17,22 @@ request. If a request method is public it is possible to request the API
 endpoint without an access token.
 
 .. code-block:: yaml
-
-    routes:
-      "/todo":
-        version: 1
-        methods:
-          GET:
-            public: true
-            response: Todo-Collection
-            action: "${dir.src}/Todo/collection.php"
-          POST:
-            public: false
-            request: Todo
-            response: Todo-Message
-            action: "${dir.src}/Todo/insert.php"
-      "/todo/:todo_id":
-        version: 1
-        methods:
-          GET:
-            public: true
-            response: Todo
-            action: "${dir.src}/Todo/row.php"
-          DELETE:
-            public: false
-            response: Todo-Message
-            action: "${dir.src}/Todo/delete.php"
+    
+    version: 1
+    methods:
+      GET:
+        public: true
+        response: Todo-Collection
+        action: "${dir.src}/Todo/collection.php"
+      POST:
+        public: false
+        request: Todo
+        response: Todo-Message
+        action: "${dir.src}/Todo/insert.php"
 
 The ``request`` and ``response`` key reference a schema name which was defined
 under the ``schema`` key. It is also possible to use the ``Passthru`` schema
-which simply redirects all data. The ``action`` key reference an action. How
-this action is used depends on the ``fusio_engine`` setting in the 
-``configuration.php`` file. By default we use the ``PhpFile`` engine which uses
-a simple php file. But it is also possible to use a ``PhpClass`` or ``V8`` 
-engine.
+which simply redirects all data. The ``action`` key reference an action.
 
 Path
 ^^^^
@@ -98,18 +81,11 @@ following list describes each status
   Used if you dont want to support a specific version anymore. Returns an error 
   message with a ``410 Gone`` status code
 
-Action
-^^^^^^
-
-The action contains the business logic of your API endpoint. It i.e. selects
-or inserts entries from a database or pushes a new entry to a message queue.
-
 schema
 ------
 
 The schema defines the format of the request and response data. It uses the 
-JsonSchema format. It is recommended to place the schemas into a separate folder 
-and include them in the config. 
+JsonSchema format.
 
 .. code-block:: yaml
 
@@ -396,14 +372,15 @@ migration
 ---------
 
 The migration key can contain an array of files per connection. The files are
-executed once on deployment.
+executed once on deployment. At the moment migrations are only supported for SQL
+connections.
 
 .. code-block:: yaml
 
-    migration:
-      Default-Connection:
-        - resources/sql/v1_schema.php
+    Default-Connection:
+      - resources/sql/v1_schema.php
 
-Note: If you migrate a schema to a specific database the migration tool will
+**Note: If you migrate a schema to a specific database the migration tool will
 delete all tables from the database to adjust the tables according to the 
-defined schema.
+defined schema This means all tables which are not defined in the migration file
+will be deleted.**
