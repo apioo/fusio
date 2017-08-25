@@ -575,16 +575,16 @@
         },
         {
             "name": "fusio/adapter-http",
-            "version": "v0.4.0",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-http.git",
-                "reference": "e8af86ccdce840ce5cf77e01c3b4e7afffcc566a"
+                "reference": "5fecd2818b744c6833bc8d1457ed51ee6cf04ec4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/e8af86ccdce840ce5cf77e01c3b4e7afffcc566a",
-                "reference": "e8af86ccdce840ce5cf77e01c3b4e7afffcc566a",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/5fecd2818b744c6833bc8d1457ed51ee6cf04ec4",
+                "reference": "5fecd2818b744c6833bc8d1457ed51ee6cf04ec4",
                 "shasum": ""
             },
             "require": {
@@ -617,7 +617,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-05-28T20:23:35+00:00"
+            "time": "2017-08-16T21:47:24+00:00"
         },
         {
             "name": "fusio/adapter-php",
@@ -818,16 +818,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v0.7.6",
+            "version": "v0.7.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "d4dfb5a6267ba536d4fd082f78878c138ccb8f23"
+                "reference": "9e6720d0c6388e797d47037191406ec4cff5d023"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/d4dfb5a6267ba536d4fd082f78878c138ccb8f23",
-                "reference": "d4dfb5a6267ba536d4fd082f78878c138ccb8f23",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/9e6720d0c6388e797d47037191406ec4cff5d023",
+                "reference": "9e6720d0c6388e797d47037191406ec4cff5d023",
                 "shasum": ""
             },
             "require": {
@@ -863,20 +863,20 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2017-07-14T20:56:23+00:00"
+            "time": "2017-08-16T20:33:20+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v0.9.4",
+            "version": "v0.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "68e338038c31f2baf3a2ebf878e81093fe487f9f"
+                "reference": "026ea62f4770821d6ee5817d62d018e58f854ead"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/68e338038c31f2baf3a2ebf878e81093fe487f9f",
-                "reference": "68e338038c31f2baf3a2ebf878e81093fe487f9f",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/026ea62f4770821d6ee5817d62d018e58f854ead",
+                "reference": "026ea62f4770821d6ee5817d62d018e58f854ead",
                 "shasum": ""
             },
             "require": {
@@ -916,7 +916,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-08-13T22:44:37+00:00"
+            "time": "2017-08-25T08:15:18+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1785,16 +1785,16 @@
         },
         {
             "name": "psx/api",
-            "version": "v2.2.3",
+            "version": "v2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-api.git",
-                "reference": "b9229995bea97887ba62783b5459691184b73cc0"
+                "reference": "6a9ecf23d21aff1b0cd95c386c9a3fff2e40e326"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-api/zipball/b9229995bea97887ba62783b5459691184b73cc0",
-                "reference": "b9229995bea97887ba62783b5459691184b73cc0",
+                "url": "https://api.github.com/repos/apioo/psx-api/zipball/6a9ecf23d21aff1b0cd95c386c9a3fff2e40e326",
+                "reference": "6a9ecf23d21aff1b0cd95c386c9a3fff2e40e326",
                 "shasum": ""
             },
             "require": {
@@ -1840,7 +1840,7 @@
                 "swagger",
                 "wsdl"
             ],
-            "time": "2017-08-12T09:15:26+00:00"
+            "time": "2017-08-15T19:56:28+00:00"
         },
         {
             "name": "psx/cache",
@@ -2933,16 +2933,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "f29dca382a6485c3cbe6379f0c61230167681937"
+                "reference": "7c8fae0ac1d216eb54349e6a8baa57d515fe8803"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/f29dca382a6485c3cbe6379f0c61230167681937",
-                "reference": "f29dca382a6485c3cbe6379f0c61230167681937",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7c8fae0ac1d216eb54349e6a8baa57d515fe8803",
+                "reference": "7c8fae0ac1d216eb54349e6a8baa57d515fe8803",
                 "shasum": ""
             },
             "require": {
@@ -2954,7 +2954,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "1.5-dev"
                 }
             },
             "autoload": {
@@ -2988,7 +2988,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-06-09T14:24:12+00:00"
+            "time": "2017-06-14T15:44:48+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -3047,21 +3047,21 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "b03f285a333f51e58c95cce54109a4a9ed691436"
+                "reference": "1d23172f9dc1687a97c195a777b0199f14f7b26e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/b03f285a333f51e58c95cce54109a4a9ed691436",
-                "reference": "b03f285a333f51e58c95cce54109a4a9ed691436",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/1d23172f9dc1687a97c195a777b0199f14f7b26e",
+                "reference": "1d23172f9dc1687a97c195a777b0199f14f7b26e",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.4 || ^7.0",
-                "psr/http-message": "~1.0"
+                "php": "^5.6 || ^7.0",
+                "psr/http-message": "^1.0"
             },
             "provide": {
                 "psr/http-message-implementation": "1.0"
@@ -3069,14 +3069,14 @@
             "require-dev": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
-                "phpunit/phpunit": "^4.6 || ^5.5",
-                "zendframework/zend-coding-standard": "~1.0.0"
+                "phpunit/phpunit": "^5.7.16 || ^6.0.8",
+                "zendframework/zend-coding-standard": "~1.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev",
-                    "dev-develop": "1.5-dev"
+                    "dev-master": "1.5-dev",
+                    "dev-develop": "1.6-dev"
                 }
             },
             "autoload": {
@@ -3095,7 +3095,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2017-04-06T16:18:34+00:00"
+            "time": "2017-08-22T20:38:56+00:00"
         }
     ],
     "packages-dev": [
@@ -3607,16 +3607,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "ecb0b2cdaa0add708fe6f329ef65ae0c5225130b"
+                "reference": "9a02332089ac48e704c70f6cefed30c224e3c0b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/ecb0b2cdaa0add708fe6f329ef65ae0c5225130b",
-                "reference": "ecb0b2cdaa0add708fe6f329ef65ae0c5225130b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/9a02332089ac48e704c70f6cefed30c224e3c0b0",
+                "reference": "9a02332089ac48e704c70f6cefed30c224e3c0b0",
                 "shasum": ""
             },
             "require": {
@@ -3652,7 +3652,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2017-08-03T14:17:41+00:00"
+            "time": "2017-08-20T05:47:52+00:00"
         },
         {
             "name": "phpunit/phpunit",
