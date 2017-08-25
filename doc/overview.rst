@@ -8,9 +8,9 @@ About
 Fusio is an open source API management platform which helps to build and manage 
 RESTful APIs. We think that there is a huge potential in the API economy. 
 Whether you need an API to expose your business functionality, build micro 
-services or to develop One-Page web applications or Mobile-Apps. Because of this 
-we think that Fusio is a great tool to simplify building such APIs. More 
-information on http://www.fusio-project.org/
+services, develop SPAs or Mobile-Apps. Because of this we think that Fusio is a 
+great tool to simplify building such APIs. More information on 
+http://www.fusio-project.org/
 
 Features
 --------
@@ -92,8 +92,8 @@ from a database:
         'entry' => $entries,
     ]);
 
-In the code we get the Default-Connection which we have defined previously in 
-our ``.fusio.yml`` deploy file. In this case the connection returns a 
+In the code we get the ``Default-Connection`` which we have defined previously 
+in our ``.fusio.yml`` deploy file. In this case the connection returns a
 ``\Doctrine\DBAL\Connection`` instance but we have already many adapters to 
 connect to different services. Then we simply fire some queries and return the 
 response.
@@ -111,13 +111,13 @@ Lets take a look at the components which are provided by Fusio:
 API
 ^^^^
 
-If you install a Fusio system it setups the default API with that it is possible
-to manage the complete system. Because of that Fusio has some reserved paths 
-which are needed by the system.
+If you install a Fusio system it setups the default API. Through the API it is 
+possible to manage the complete system. Because of that Fusio has some reserved 
+paths which are needed by the system.
 
 * ``/backend``
 
-  Endpoints for configuring the system
+  Endpoints for the system configuration
 * ``/consumer``
 
   Endpoints for the consumer i.e. register new accounts or create new apps 
@@ -135,9 +135,7 @@ which are needed by the system.
 Apps
 ----
 
-All following apps are working with the API. Because of that it is also really 
-easy to integrate Fusio into an existing system since you can call the endpoints 
-from your application.
+The following apps are working with the Fusio API.
 
 Backend
 ^^^^^^^
