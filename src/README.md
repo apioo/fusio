@@ -1,20 +1,19 @@
 
 # About
 
-The source folder contains the code which is executed if a request arrives at
-an endpoint which was specified in the `.fusio.yml` deploy file. How the file
-in this `src/` folder is interpreted depends on the `fusio_engine` parameter
-in the `configuration.php` file. Fusio comes with three engine modes:
+The source folder contains the action code which is executed if a request 
+arrives at an endpoint which was specified in the `.fusio.yml` deploy file. 
+Fusio determines the engine based on the provided action string. The following
+action sources can be used:
 
-## PHP
+## PHP File
 
 ```
-'fusio_engine' => \Fusio\Impl\Factory\Resolver\PhpFile::class
+action: "${dir.src}/Todo/collection.php"
 ```
 
-With this engine PHP includes a simple PHP file. This is suitable for PHP 
-developers who like a simple way to provide the endpoint logic. In the following 
-an example implementation:
+If the action points to an actual file with a `php` file extension Fusio simply
+includes this file. In the following an example implementation:
 
 ```php
 <?php
@@ -35,16 +34,16 @@ $response->build(200, [], [
 ]);
 ```
 
-## V8
+## Javascript File
 
 ```
-'fusio_engine' => \Fusio\Impl\Factory\Resolver\JavascriptFile::class,
+action: "${dir.src}/Todo/collection.js"
 ```
 
-With this engine you can write the endpoint logic in javascript. This is 
-suitable for javascript developers who like to write the code in 
-[javascript](http://www.fusio-project.org/documentation/v8). Note the v8 
-implementation requires the [php v8](https://github.com/pinepain/php-v8) 
+If the action points to an actual file with a `js` file extension Fusio uses
+the internal v8 engine to execute the js code. This is suitable for javascript 
+developers who like to write the code in [javascript](http://www.fusio-project.org/documentation/v8). 
+Note the v8 implementation requires the [php v8](https://github.com/pinepain/php-v8) 
 extension. In the following an example implementation:
 
 ```javascript
@@ -54,28 +53,28 @@ response.setBody({
 });
 ```
 
-## Class
+## PHP Class
 
 ```
-'fusio_engine' => \Fusio\Engine\Factory\Resolver\PhpClass::class,
+action: "App\\Todo\\CollectionAction"
 ```
 
-If you want to implement the endpoint logic in a PHP class. You provide a class 
-name to the action and this class gets loaded through composer on execution. The 
-class must implement the `Fusio\Engine\ActionInterface`. In the following an 
-example implementation:
+If the action string is an PHP class Fusio tries to autoload this class through 
+composer. The class must implement the `Fusio\Engine\ActionInterface`. This is
+the most advanced solution since it is also possible to access services from the
+DI container. In the following an example implementation:
 
 ```php
 <?php
 
-namespace App\Todo\Action;
+namespace App\Todo;
 
 use Fusio\Engine\ActionAbstract;
 use Fusio\Engine\ContextInterface;
 use Fusio\Engine\ParametersInterface;
 use Fusio\Engine\RequestInterface;
 
-class AcmeAction extends ActionAbstract
+class CollectionAction extends ActionAbstract
 {
     public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
     {
