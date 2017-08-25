@@ -46,10 +46,10 @@ covered by Fusio.
 
 # Development
 
-If you develop an API with Fusio you need to define a `.fusio.yml` deploy file
-which specifies the available routes and actions of the system. More information
-how the deploy file is structured at the [manual](http://fusio.readthedocs.io/en/latest/deploy.html)
-This file can be deployed with the following command:
+If you develop an API with Fusio you need to define a `.fusio.yml` 
+[deploy file](http://fusio.readthedocs.io/en/latest/deploy.html)
+which specifies the available routes and actions of the system. This file can be 
+deployed with the following command:
 
 ```
 php bin/fusio deploy
