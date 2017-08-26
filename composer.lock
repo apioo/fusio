@@ -667,16 +667,16 @@
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v0.4.0",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
-                "reference": "c5a94c011c6a8d85f4a171254658bf55aa8141e2"
+                "reference": "f090e61e9e9950c2330351453ed633fc16a96ec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/c5a94c011c6a8d85f4a171254658bf55aa8141e2",
-                "reference": "c5a94c011c6a8d85f4a171254658bf55aa8141e2",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/f090e61e9e9950c2330351453ed633fc16a96ec1",
+                "reference": "f090e61e9e9950c2330351453ed633fc16a96ec1",
                 "shasum": ""
             },
             "require": {
@@ -710,7 +710,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-05-28T20:23:34+00:00"
+            "time": "2017-08-26T08:15:55+00:00"
         },
         {
             "name": "fusio/adapter-util",
