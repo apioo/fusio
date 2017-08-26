@@ -1,8 +1,9 @@
 
-### 0.9.4
+### 0.9.4 (2017-08-26)
 
 * Added automatic engine detection
 * Improved backend app
+* Log execution time of an action and add new statistics
 * Added openapi generation and import support
 * Handle schema for query parameters
 * Improved route serialization #44
