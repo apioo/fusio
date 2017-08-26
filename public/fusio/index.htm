@@ -39,37 +39,37 @@
 <div class="fusio-sidebar" ng-if="userAuthenticated">
     <nav class="fusio-navigation">
         <h1>Fusio <span>({{version}})</span></h1>
-        <uib-accordion close-others="false">
+        <uib-accordion close-others="false" class="fusio-navigation-accordion">
             <div uib-accordion-group heading="API" is-open="true" template-url="app/nav-template.html">
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#/"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Dashboard</a></li>
-                    <li><a href="#/routes"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Routes</a></li>
-                    <li><a href="#/action"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Action</a></li>
-                    <li><a href="#/schema"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Schema</a></li>
-                    <li><a href="#/connection"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Connection</a></li>
+                    <li><a ng-href="#!/"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Dashboard</a></li>
+                    <li><a ng-href="#!/routes"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Routes</a></li>
+                    <li><a ng-href="#!/action"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Action</a></li>
+                    <li><a ng-href="#!/schema"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Schema</a></li>
+                    <li><a ng-href="#!/connection"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Connection</a></li>
                 </ul>
             </div>
             <div uib-accordion-group heading="Consumer" is-open="true" template-url="app/nav-template.html">
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#/app"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> App</a></li>
-                    <li><a href="#/scope"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Scope</a></li>
-                    <li><a href="#/user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User</a></li>
-                    <li><a href="#/rate"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Rate</a></li>
+                    <li><a ng-href="#!/app"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> App</a></li>
+                    <li><a ng-href="#!/scope"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Scope</a></li>
+                    <li><a ng-href="#!/user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User</a></li>
+                    <li><a ng-href="#!/rate"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Rate</a></li>
                 </ul>
             </div>
             <div uib-accordion-group heading="Analytics" is-open="true" template-url="app/nav-template.html">
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#/log"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Log</a></li>
-                    <li><a href="#/statistic"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistic</a></li>
-                    <li><a href="#/error"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Error</a></li>
-                    <li><a href="#/token"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Token</a></li>
+                    <li><a ng-href="#!/log"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Log</a></li>
+                    <li><a ng-href="#!/statistic"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Statistic</a></li>
+                    <li><a ng-href="#!/error"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Error</a></li>
+                    <li><a ng-href="#!/token"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Token</a></li>
                 </ul>
             </div>
             <div uib-accordion-group heading="System" is-open="true" template-url="app/nav-template.html">
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#/import"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> Import</a></li>
-                    <li><a href="#/config"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
-                    <li><a href="#/audit"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Audit</a></li>
+                    <li><a ng-href="#!/import"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> Import</a></li>
+                    <li><a ng-href="#!/config"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
+                    <li><a ng-href="#!/audit"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Audit</a></li>
                 </ul>
             </div>
         </uib-accordion>
@@ -84,8 +84,8 @@
                     <span class="dropdown" uib-dropdown on-toggle="toggled(open)">
                         <a href uib-dropdown-toggle class="dropdown-toggle">{{user.name}} <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
                         <ul uib-dropdown-menu role="menu" class="dropdown-menu dropdown-menu-right">
-                            <li role="menuitem"><a href="#/account/change_password">Change password</a></li>
-                            <li role="menuitem"><a href="#/logout">Logout</a></li>
+                            <li role="menuitem"><a ng-href="#!/account/change_password">Change password</a></li>
+                            <li role="menuitem"><a ng-href="#!/logout">Logout</a></li>
                         </ul>
                     </span>
                 </div>
