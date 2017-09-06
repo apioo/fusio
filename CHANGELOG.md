@@ -1,4 +1,11 @@
 
+### 0.9.5
+
+* Add scopes per route #55
+* Add OAuth2 refresh token endpoint #16
+* Added static file processor
+* Case insensitive env vars replacement
+
 ### 0.9.4 (2017-08-26)
 
 * Added automatic engine detection
