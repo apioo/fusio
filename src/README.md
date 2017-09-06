@@ -4,7 +4,7 @@
 The source folder contains the action code which is executed if a request 
 arrives at an endpoint which was specified in the `.fusio.yml` deploy file. 
 Fusio determines the engine based on the provided action string. The following
-action sources can be used:
+action sources are available:
 
 ## PHP File
 
@@ -12,8 +12,8 @@ action sources can be used:
 action: "${dir.src}/Todo/collection.php"
 ```
 
-If the action points to an actual file with a `php` file extension Fusio simply
-includes this file. In the following an example implementation:
+If the action points to a file with a `php` file extension Fusio simply includes 
+this file. In the following an example implementation:
 
 ```php
 <?php
@@ -40,8 +40,8 @@ $response->build(200, [], [
 action: "${dir.src}/Todo/collection.js"
 ```
 
-If the action points to an actual file with a `js` file extension Fusio uses
-the internal v8 engine to execute the js code. This is suitable for javascript 
+If the action points to a file with a `js` file extension Fusio uses the 
+internal v8 engine to execute the js code. This is suitable for javascript 
 developers who like to write the code in [javascript](http://www.fusio-project.org/documentation/v8). 
 Note the v8 implementation requires the [php v8](https://github.com/pinepain/php-v8) 
 extension. In the following an example implementation:
@@ -59,7 +59,7 @@ response.setBody({
 action: "App\\Todo\\CollectionAction"
 ```
 
-If the action string is an PHP class Fusio tries to autoload this class through 
+If the action string is a PHP class Fusio tries to autoload this class through 
 composer. The class must implement the `Fusio\Engine\ActionInterface`. This is
 the most advanced solution since it is also possible to access services from the
 DI container. In the following an example implementation:
