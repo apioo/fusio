@@ -59,17 +59,13 @@ Access a non-public API endpoint
 The POST method of the todo API is not public, because of this you need an 
 access token in order to send a POST request.
 
-* **Create a scope**
-
-  At first we must create a scope for the ``/todo`` API endpoint. Therefor login 
-  to the backend an go to the scope panel. Click on the plus button and create a 
-  new scope ``todo`` which has the ``/todo`` route assigned.
-
 * **Assign the scope to your user**
 
-  In order to use a scope, the scope must be assigned to your user account. 
-  Therefor go to the user panel click on the edit button and assign the ``todo``
-  scope to your user.
+  By default all routes are assigned to the ``todo`` scope. In order to use a 
+  scope, the scope must be assigned to your user account. Therefor go to the 
+  user panel click on the edit button and assign the ``todo`` scope to your 
+  user. It is also possible to set the default scopes for new users under 
+  settings ``scopes_default``.
 
 * **Request a JWT**
 
@@ -95,9 +91,14 @@ access token in order to send a POST request.
         "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5N2JkNDUzYjdlMDZlOWFlMDQxNi00YmY2MWFiYjg4MDJjZmRmOWZmN2UyNDg4OTNmNzYyYmU5Njc5MGUzYTk4NDQ3MDEtYjNkYTk1MDYyNCIsImlhdCI6MTQ5MTE2NzIzNiwiZXhwIjoxNDkxMTcwODM2LCJuYW1lIjoidGVzdCJ9.T49Af5wnPIFYbPer3rOn-KV5PcN0FLcBVykUMCIAuwI"
     }
 
+  Note this generates an OAuth2 token with contains all scopes from your user 
+  account. It is also possible to use the OAuth2 endpoint `/authorization/token`
+  to create an access token with specific assigned scopes.
+
 * **Request the non-public API endpoint**
 
-  Now we can use the JWT as Bearer token in the Authorization header.
+  Now we can use the JWT as Bearer token in the ``Authorization`` header to 
+  access the protected endpoint.
 
   .. code-block:: http
 
