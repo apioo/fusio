@@ -35,10 +35,13 @@ on building the actual business logic of your API.
   It is possible to limit the requests to a specific threshold.
 * __Specification__  
   Fusio generates different specification formats for the defined API endpoints
-  i.e. OAI (Swagger), RAML
+  i.e. OAI (Swagger), RAML.
 * __User management__  
   Fusio provides an API where new users can login or register a new account 
-  through GitHub, Google, Facebook or through normal email registration
+  through GitHub, Google, Facebook or through normal email registration.
+* __Logging__  
+  All errors which occur in your endpoint are logged and are visible at the 
+  backend including all information from the request.
 * __Connection__  
   Fusio provides an [adapter](http://www.fusio-project.org/adapter) system to
   connect to external services. By default we provide the HTTP and SQL 
@@ -47,6 +50,9 @@ on building the actual business logic of your API.
 * __Migration__  
   Fusio has a migration system which allows you to change the database schema
   on deployment.
+* __Testing__  
+  Fusio provides an api test case wherewith you can test every endpoint 
+  response without setting up a local web server.
 
 Basically with Fusio you only have to define the schema (request/response) of 
 your API endpoints and implement the business logic. All other aspects are 
