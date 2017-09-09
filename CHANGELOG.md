@@ -1,5 +1,5 @@
 
-### 0.9.5
+### 0.9.5 (2017-09-09)
 
 * Add scopes per route #55
 * Add OAuth2 refresh token endpoint #16
