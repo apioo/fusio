@@ -1,4 +1,8 @@
 
+### 0.9.6
+
+* Update dependencies and prepare release
+
 ### 0.9.5 (2017-09-09)
 
 * Add scopes per route #55
