@@ -50,7 +50,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Fusio'
-copyright = '2016, Christoph Kappestein'
+copyright = '2017, Christoph Kappestein'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

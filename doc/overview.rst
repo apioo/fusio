@@ -48,6 +48,24 @@ on building the actual business logic of your API.
 
   Fusio provides an API where new users can login or register a new account 
   through GitHub, Google, Facebook or through normal email registration.
+* **Logging**
+
+  All errors which occur in your endpoint are logged and are visible at the 
+  backend including all information from the request.
+* **Connection**
+
+  Fusio provides an [adapter](http://www.fusio-project.org/adapter) system to
+  connect to external services. By default we provide the HTTP and SQL 
+  connection type but there are many other types available i.e. MongoDB, Amqp, 
+  Cassandra.
+* **Migration**
+
+  Fusio has a migration system which allows you to change the database schema
+  on deployment.
+* **Testing**
+
+  Fusio provides an api test case wherewith you can test every endpoint 
+  response without setting up a local web server.
 
 Basically with Fusio you only have to define the schema (request/response) of 
 your API endpoints and implement the business logic. All other aspects are 

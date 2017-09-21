@@ -2,8 +2,8 @@
 Installation
 ============
 
-It is possible to install Fusio either through composer or install it manually.
-Place the project into the www directory of the web server.
+It is possible to install Fusio either through composer or manually file 
+download. Place the project into the www directory of the web server.
 
 Composer
 ^^^^^^^^
@@ -160,8 +160,8 @@ to the backend api and where you configure the system. The backend system
 contains the actual backend code providing the backend API and the API which you 
 create with the system.
 
-Backend system
-^^^^^^^^^^^^^^
+Server
+^^^^^^
 
 Fusio makes heavy use of composer. Because of that you can easily upgrade a 
 Fusio system with the following composer command.
@@ -183,8 +183,8 @@ updated the vendor folder:
 This gives Fusio the chance to adjust the database schema in case something has
 changed with a new release.
 
-Backend app
-^^^^^^^^^^^
+App
+^^^
 
 To update the backend app simply replace the javascript and css files from the 
 new release:
