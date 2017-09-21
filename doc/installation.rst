@@ -5,20 +5,18 @@ Installation
 It is possible to install Fusio either through composer or manually file 
 download. Place the project into the www directory of the web server.
 
-Composer
-^^^^^^^^
+**Composer**
 
 .. code-block:: text
 
     composer create-project fusio/fusio
 
-Download
-^^^^^^^^
+**Download**
 
 https://github.com/apioo/fusio/releases
 
 Configuration
-^^^^^^^^^^^^^
+-------------
 
 * **Adjust the configuration file**
 
@@ -41,7 +39,7 @@ should see a API response that the installation was successful. The backend is
 available at ``/fusio/``.
 
 Docker
-^^^^^^
+------
 
 Alternatively it is also possible to setup a Fusio system through docker. This
 has the advantage that you automatically get a complete running Fusio system
@@ -58,8 +56,8 @@ are taken from the env variables ``FUSIO_BACKEND_USER``, ``FUSIO_BACKEND_EMAIL``
 and ``FUSIO_BACKEND_PW`` in the `docker-compose.yml`_. If you are planing to run 
 the container on the internet you MUST change these credentials.
 
-Configure web server
---------------------
+Web server
+----------
 
 It is recommended to setup a virtual host in your ``sites-available`` folder 
 which points to the public folder of Fusio. After this you also have to change 
