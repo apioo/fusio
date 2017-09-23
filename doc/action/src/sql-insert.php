@@ -12,7 +12,7 @@
 use PSX\Http\Exception as StatusCode;
 
 /** @var \Doctrine\DBAL\Connection $connection */
-$connection = $connector->getConnection('Default-Connection');
+$connection = $connector->getConnection('Database-Connection');
 
 $body = $request->getBody();
 $now  = new \DateTime();
