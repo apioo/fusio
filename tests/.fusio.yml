@@ -1,8 +1,8 @@
 # Deploy yaml file dedicated for testing. It basically uses the production 
 # configuration but replaces the connection with an in-memory sqlite database.
 # ------------------------------------------------------------------------------
-routes: !include .fusio.yml#/routes
-schema: !include .fusio.yml#/schema
+routes: !include resources/routes.yaml
+schema: !include resources/schemas.yaml
 connection:
   Default-Connection:
     class: Fusio\Impl\Connection\Memory
