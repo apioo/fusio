@@ -13,6 +13,7 @@ maintain an API with Fusio.
    installation
    get_started
    deploy
+   development
    request_lifecycle
    backend
    consumer
