@@ -15,7 +15,7 @@ contains several keys:
   is public or private, the available request/response schema and also the 
   action which should be executed:
 
-  .. code-block:: yaml
+.. code-block:: yaml
 
     routes:
       "/todo": !include resources/routes/todo/collection.yaml
@@ -25,7 +25,7 @@ contains several keys:
 
   Contains the available request and response schema in the JSON-Schema format:
 
-  .. code-block:: yaml
+.. code-block:: yaml
 
     schema:
       Todo: !include resources/schema/todo/entity.json
@@ -37,7 +37,7 @@ contains several keys:
   Provides connections to a remote service i.e. mysql or mongodb. This 
   connection can be used inside an action:
 
-  .. code-block:: yaml
+.. code-block:: yaml
     
     connection: !include resources/connections.yaml
 
@@ -46,7 +46,7 @@ contains several keys:
   Through migrations it is possible to execute i.e. sql queries on a connection. 
   This allows you to change your database schema on deployment.
 
-  .. code-block:: yaml
+.. code-block:: yaml
 
     migration: !include resources/migrations.yaml
 
@@ -72,7 +72,7 @@ access token in order to send a POST request.
   Now you can obtain a JWT through a simple HTTP request to the 
   ``consumer/login`` endpoint.
 
-  .. code-block:: http
+.. code-block:: http
 
     POST /consumer/login HTTP/1.1
     Host: 127.0.0.1
@@ -85,7 +85,7 @@ access token in order to send a POST request.
 
   Which returns a token i.e.:
 
-  .. code-block:: json
+.. code-block:: json
 
     {
         "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5N2JkNDUzYjdlMDZlOWFlMDQxNi00YmY2MWFiYjg4MDJjZmRmOWZmN2UyNDg4OTNmNzYyYmU5Njc5MGUzYTk4NDQ3MDEtYjNkYTk1MDYyNCIsImlhdCI6MTQ5MTE2NzIzNiwiZXhwIjoxNDkxMTcwODM2LCJuYW1lIjoidGVzdCJ9.T49Af5wnPIFYbPer3rOn-KV5PcN0FLcBVykUMCIAuwI"
@@ -100,7 +100,7 @@ access token in order to send a POST request.
   Now we can use the JWT as Bearer token in the ``Authorization`` header to 
   access the protected endpoint.
 
-  .. code-block:: http
+.. code-block:: http
 
     POST /todo HTTP/1.1
     Host: 127.0.0.1

@@ -123,16 +123,16 @@ most login errors in case you are not able to login at the backend:
   backend with no credentials the app should make an request to the 
   ``/backend/token`` endpoint which should return a JSON response i.e.: 
 
-  .. code-block:: json
+.. code-block:: json
 
-      { "error": "invalid_request", "error_description": "Credentials not available" }
+    { "error": "invalid_request", "error_description": "Credentials not available" }
 
   If this is the case your app is correctly configured. If this is not the case 
   you need to adjust the endpoint url at ``/public/fusio/index.htm`` i.e.:
 
-  .. code-block:: javascript
+.. code-block:: javascript
 
-      var fusioUrl = "http://localhost:8080/fusio/public/index.php/";
+    var fusioUrl = "http://localhost:8080/fusio/public/index.php/";
 
 * **Apache module mod_rewrite is not activated**
 
