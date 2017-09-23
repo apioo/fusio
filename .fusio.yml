@@ -15,13 +15,13 @@ routes: !include resources/routes.yaml
 schema: !include resources/schemas.yaml
 
 # ------------------------------------------------------------------------------
-# Reference a yaml file which contains all available connections to remote 
-# services i.e. a database or mongodb connection. These connections can be used
-# inside an action to produce a response or insert data from a request. 
+# Contains all available connections to remote services i.e. a database or 
+# mongodb connection. These connections can be used inside an action to produce 
+# a response or insert data from a request. 
 # Documentation: http://fusio.readthedocs.io/en/latest/deploy.html#connection
 connection: !include resources/connections.yaml
 
 # ------------------------------------------------------------------------------
-# Reference a yaml file which contains migrations for a specific connection.
+# Contains migrations for specific connections.
 # Documentation: http://fusio.readthedocs.io/en/latest/deploy.html#migration
 migration: !include resources/migrations.yaml
