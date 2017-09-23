@@ -6,18 +6,13 @@
 # Contains all available routes of the app. Each route reference a yaml file 
 # which defines the request/response schema and the action which gets executed.
 # Documentation: http://fusio.readthedocs.io/en/latest/deploy.html#routes
-routes:
-  "/todo": !include resources/routes/todo/collection.yaml
-  "/todo/:todo_id": !include resources/routes/todo/entity.yaml
+routes: !include resources/routes.yaml
 
 # ------------------------------------------------------------------------------
 # Contains all available schema definitions. Each schema reference a json file
 # which contains a json schema. These schema names can be referenced in a route.
 # Documentation: http://fusio.readthedocs.io/en/latest/deploy.html#schema
-schema:
-  Todo: !include resources/schema/todo/entity.json
-  Todo-Collection: !include resources/schema/todo/collection.json
-  Message: !include resources/schema/message.json
+schema: !include resources/schemas.yaml
 
 # ------------------------------------------------------------------------------
 # Reference a yaml file which contains all available connections to remote 

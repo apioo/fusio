@@ -1,0 +1,2 @@
+"/todo": !include resources/routes/todo/collection.yaml
+"/todo/:todo_id": !include resources/routes/todo/entity.yaml

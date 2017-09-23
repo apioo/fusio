@@ -1,0 +1,3 @@
+Todo: !include resources/schema/todo/entity.json
+Todo-Collection: !include resources/schema/todo/collection.json
+Message: !include resources/schema/message.json
