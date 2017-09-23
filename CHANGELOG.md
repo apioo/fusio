@@ -1,6 +1,8 @@
 
 ### 0.9.6
 
+* Improved documentation add backend api reference and action examples
+* Add PATCH method support
 * Update dependencies and prepare release
 
 ### 0.9.5 (2017-09-09)
