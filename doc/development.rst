@@ -45,9 +45,9 @@ Javascript File
 
 If the action points to a file with a ``js`` file extension Fusio uses the 
 internal v8 engine to execute the js code. This is suitable for javascript 
-developers who like to write the code in [javascript](http://www.fusio-project.org/documentation/v8). 
-Note the v8 implementation requires the [php v8](https://github.com/pinepain/php-v8) 
-extension. In the following an example implementation:
+developers who like to write the code in `javascript`_. Note the v8 
+implementation requires the `php-v8`_ extension. In the following an example 
+implementation:
 
   .. code-block:: javascript
 
@@ -121,3 +121,6 @@ DI container. In the following an example implementation:
             ]);
         }
     }
+
+.. _javascript: http://www.fusio-project.org/documentation/v8
+.. _php-v8: https://github.com/pinepain/php-v8
