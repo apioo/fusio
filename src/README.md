@@ -4,7 +4,8 @@
 The `src/` folder contains the action code which is executed if a request 
 arrives at an endpoint which was specified in the `.fusio.yml` deploy file. 
 Fusio determines the engine based on the provided action string. The following
-action sources are available:
+engines are available. Please take a look at the `doc/action/` folder to see
+example action implementations.
 
 ## PHP File
 
