@@ -18,5 +18,4 @@ extracted from the online help which is also available inside the backend app:
    backend/routes
    backend/schema
    backend/scope
-   backend/template
    backend/user
