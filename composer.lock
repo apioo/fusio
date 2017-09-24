@@ -913,16 +913,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "2e4975169eba55e40bf63f82512ef1dd33a0866d"
+                "reference": "6258c64e9e80e6b810910a67542b9f34d028bdf3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/2e4975169eba55e40bf63f82512ef1dd33a0866d",
-                "reference": "2e4975169eba55e40bf63f82512ef1dd33a0866d",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/6258c64e9e80e6b810910a67542b9f34d028bdf3",
+                "reference": "6258c64e9e80e6b810910a67542b9f34d028bdf3",
                 "shasum": ""
             },
             "require": {
@@ -963,7 +963,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-09-10T10:06:32+00:00"
+            "time": "2017-09-20T17:25:21+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1832,16 +1832,16 @@
         },
         {
             "name": "psx/api",
-            "version": "v2.2.4",
+            "version": "v2.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-api.git",
-                "reference": "6a9ecf23d21aff1b0cd95c386c9a3fff2e40e326"
+                "reference": "40717047a52fa25effbb6cf046ef33ca0bb2d779"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-api/zipball/6a9ecf23d21aff1b0cd95c386c9a3fff2e40e326",
-                "reference": "6a9ecf23d21aff1b0cd95c386c9a3fff2e40e326",
+                "url": "https://api.github.com/repos/apioo/psx-api/zipball/40717047a52fa25effbb6cf046ef33ca0bb2d779",
+                "reference": "40717047a52fa25effbb6cf046ef33ca0bb2d779",
                 "shasum": ""
             },
             "require": {
@@ -1887,7 +1887,7 @@
                 "swagger",
                 "wsdl"
             ],
-            "time": "2017-08-15T19:56:28+00:00"
+            "time": "2017-09-16T18:20:29+00:00"
         },
         {
             "name": "psx/cache",
@@ -2047,16 +2047,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v2.2.0",
+            "version": "v2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "13bd0183a1c081cb9bb7f30e5992cf9baff85c94"
+                "reference": "27381f607769aa5c50ad2636fdfeca2c56006dd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/13bd0183a1c081cb9bb7f30e5992cf9baff85c94",
-                "reference": "13bd0183a1c081cb9bb7f30e5992cf9baff85c94",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/27381f607769aa5c50ad2636fdfeca2c56006dd9",
+                "reference": "27381f607769aa5c50ad2636fdfeca2c56006dd9",
                 "shasum": ""
             },
             "require": {
@@ -2110,7 +2110,7 @@
                 "framework",
                 "rest"
             ],
-            "time": "2017-09-09T12:45:52+00:00"
+            "time": "2017-09-20T17:08:21+00:00"
         },
         {
             "name": "psx/http",
@@ -2491,16 +2491,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v2.1.6",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "635bb9267890923fbcfe12882ee8ae145f230abd"
+                "reference": "b7d2daa6b721cdb1d0536363b4079d2e347efba2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/635bb9267890923fbcfe12882ee8ae145f230abd",
-                "reference": "635bb9267890923fbcfe12882ee8ae145f230abd",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/b7d2daa6b721cdb1d0536363b4079d2e347efba2",
+                "reference": "b7d2daa6b721cdb1d0536363b4079d2e347efba2",
                 "shasum": ""
             },
             "require": {
@@ -2547,7 +2547,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-08-12T08:45:39+00:00"
+            "time": "2017-09-16T18:08:30+00:00"
         },
         {
             "name": "psx/sql",
@@ -3703,16 +3703,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.21",
+            "version": "5.7.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "3b91adfb64264ddec5a2dee9851f354aa66327db"
+                "reference": "10df877596c9906d4110b5b905313829043f2ada"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3b91adfb64264ddec5a2dee9851f354aa66327db",
-                "reference": "3b91adfb64264ddec5a2dee9851f354aa66327db",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/10df877596c9906d4110b5b905313829043f2ada",
+                "reference": "10df877596c9906d4110b5b905313829043f2ada",
                 "shasum": ""
             },
             "require": {
@@ -3781,7 +3781,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-06-21T08:11:54+00:00"
+            "time": "2017-09-24T07:23:38+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
