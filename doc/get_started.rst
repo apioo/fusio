@@ -17,9 +17,8 @@ contains several keys:
 
 .. code-block:: yaml
 
-    routes:
-      "/todo": !include resources/routes/todo/collection.yaml
-      "/todo/:todo_id": !include resources/routes/todo/entity.yaml
+    "/todo": !include resources/routes/todo/collection.yaml
+    "/todo/:todo_id": !include resources/routes/todo/entity.yaml
 
 * **schema**
 
@@ -27,10 +26,9 @@ contains several keys:
 
 .. code-block:: yaml
 
-    schema:
-      Todo: !include resources/schema/todo/entity.json
-      Todo-Collection: !include resources/schema/todo/collection.json
-      Message: !include resources/schema/message.json
+    Todo: !include resources/schema/todo/entity.json
+    Todo-Collection: !include resources/schema/todo/collection.json
+    Message: !include resources/schema/message.json
 
 * **connection**
 
@@ -39,7 +37,10 @@ contains several keys:
 
 .. code-block:: yaml
     
-    connection: !include resources/connections.yaml
+    Default-Connection:
+      class: Fusio\Adapter\Sql\Connection\SqlAdvanced
+      config:
+        url: "sqlite:///${dir.cache}/todo-app.db"
 
 * **migration**
 
@@ -48,7 +49,8 @@ contains several keys:
 
 .. code-block:: yaml
 
-    migration: !include resources/migrations.yaml
+    Default-Connection:
+      - resources/migration/v1_schema.php
 
 Through the command ``php bin/fusio deploy`` you can deploy the API. It is now 
 possible to visit the API endpoint at: ``/todo``.
