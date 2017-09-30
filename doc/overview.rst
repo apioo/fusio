@@ -74,9 +74,16 @@ covered by Fusio.
 Development
 -----------
 
-If you develop an API with Fusio you need to define a ``.fusio.yml`` deploy file 
-which specifies the available routes and actions of the system. This file can 
-be deployed with the following command:
+Fusio provides two ways to develop an API. The first way is to build API 
+endpoints only through the backend interface by using all available actions.
+Through this you can solve already many tasks especially through the usage of
+the `v8 action`_.
+
+The other way is to use the deploy mechanism. Through this you can use normal
+PHP files to implement your business logic and thus you have ability to use the
+complete PHP ecosystem. Therefor you need to define a ``.fusio.yml`` 
+`deploy file`_ which specifies the available routes and actions of the system. 
+This file can be deployed with the following command:
 
 .. code-block:: text
     
@@ -180,3 +187,8 @@ Documentation
 The documentation app simply provides an overview of all available endpoints. 
 It is possible to export the API definition into other schema formats like i.e. 
 Swagger. The app is located at ``/documentation/``.
+
+
+
+.. _v8 action: https://www.fusio-project.org/documentation/v8
+.. _deploy file: http://fusio.readthedocs.io/en/latest/deploy.html
