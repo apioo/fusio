@@ -1,126 +1,55 @@
-
-# /backend/routes/$route_id<[0-9]+>
-
-
-## GET
-
-
-### GET Response - 200 OK
-
-#### routes
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-id | Integer |  | 
-path | String |  | 
-config | Array (Object ([version](#psx_model_Version))) |  | 
-
-#### version
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-version | Integer |  | 
-status | Integer |  | 
-scopes | Array (String) |  | 
-methods | Object ([methods](#psx_model_Methods)) |  | 
-
-#### methods
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-^(GET|POST|PUT|DELETE)$ | Object ([method](#psx_model_Method)) |  | 
-
-#### method
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-method | String |  | 
-version | Integer |  | 
-status | Integer |  | 
-active | Boolean |  | 
-public | Boolean |  | 
-parameters | Integer |  | 
-request | Integer |  | 
-response | Integer |  | 
-responses | Object ([responses](#psx_model_Responses)) |  | 
-action | Integer |  | 
-
-#### responses
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-^([0-9]{3})$ | Integer |  | 
-
-
-## PUT
-
-
-### PUT Request
-
-#### routes
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-id | Integer |  | 
-path | String |  | 
-config | Array (Object ([version](#psx_model_Version))) |  | 
-
-#### version
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-version | Integer |  | 
-status | Integer |  | 
-scopes | Array (String) |  | 
-methods | Object ([methods](#psx_model_Methods)) |  | 
-
-#### methods
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-^(GET|POST|PUT|DELETE)$ | Object ([method](#psx_model_Method)) |  | 
-
-#### method
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-method | String |  | 
-version | Integer |  | 
-status | Integer |  | 
-active | Boolean |  | 
-public | Boolean |  | 
-parameters | Integer |  | 
-request | Integer |  | 
-response | Integer |  | 
-responses | Object ([responses](#psx_model_Responses)) |  | 
-action | Integer |  | 
-
-#### responses
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-^([0-9]{3})$ | Integer |  | 
-
-
-### PUT Response - 200 OK
-
-#### message
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-success | Boolean |  | 
-message | String |  | 
-
-
-## DELETE
-
-
-### DELETE Response - 200 OK
-
-#### message
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-success | Boolean |  | 
-message | String |  | 
-
+<div class="psx-resource" data-status="1" data-path="/backend/routes/$route_id<[0-9]+>"><h1>/backend/routes/$route_id<[0-9]+></h1><div class="psx-resource-method" data-method="GET"><h2>GET</h2><div class="psx-resource-schema" data-type="4"><h3>GET Response - 200 OK</h3><div class="psx-resource-schema-content"><div id="psx_model_Routes" class="psx-object"><h4>routes</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"id"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"path"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"config"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Array (Object (<a href="#psx_model_Version" title="RFC4648">version</a>))</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">id</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">path</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">config</span></td><td><span class="psx-property-type">Array (Object (<a href="#psx_model_Version" title="RFC4648">version</a>))</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Version" class="psx-object"><h4>version</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"version"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"status"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"scopes"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Array (String)</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"methods"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_Methods" title="RFC4648">methods</a>)</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">version</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">status</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">scopes</span></td><td><span class="psx-property-type">Array (String)</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">methods</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_Methods" title="RFC4648">methods</a>)</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Methods" class="psx-object"><h4>methods</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"^(GET|POST|PUT|PATCH|DELETE)$"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_Method" title="RFC4648">method</a>)</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">^(GET|POST|PUT|PATCH|DELETE)$</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_Method" title="RFC4648">method</a>)</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Method" class="psx-object"><h4>method</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"method"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"version"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"status"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"active"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Boolean</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"public"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Boolean</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"parameters"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"request"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"response"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"responses"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_Responses" title="RFC4648">responses</a>)</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"action"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">method</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">version</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">status</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">active</span></td><td><span class="psx-property-type">Boolean</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">public</span></td><td><span class="psx-property-type">Boolean</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">parameters</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">request</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">response</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">responses</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_Responses" title="RFC4648">responses</a>)</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">action</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Responses" class="psx-object"><h4>responses</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"^([0-9]{3})$"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">^([0-9]{3})$</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div></div><div class="psx-resource-method" data-method="PUT"><h2>PUT</h2><div class="psx-resource-schema" data-type="3"><h3>PUT Request</h3><div class="psx-resource-schema-content"><div id="psx_model_Routes" class="psx-object"><h4>routes</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"id"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"path"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"config"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Array (Object (<a href="#psx_model_Version" title="RFC4648">version</a>))</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">id</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">path</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-required">config</span></td><td><span class="psx-property-type">Array (Object (<a href="#psx_model_Version" title="RFC4648">version</a>))</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Version" class="psx-object"><h4>version</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"version"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"status"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"scopes"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Array (String)</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"methods"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_Methods" title="RFC4648">methods</a>)</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">version</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">status</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">scopes</span></td><td><span class="psx-property-type">Array (String)</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">methods</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_Methods" title="RFC4648">methods</a>)</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Methods" class="psx-object"><h4>methods</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"^(GET|POST|PUT|PATCH|DELETE)$"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_Method" title="RFC4648">method</a>)</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">^(GET|POST|PUT|PATCH|DELETE)$</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_Method" title="RFC4648">method</a>)</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Method" class="psx-object"><h4>method</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"method"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"version"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"status"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"active"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Boolean</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"public"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Boolean</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"parameters"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"request"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"response"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"responses"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_Responses" title="RFC4648">responses</a>)</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"action"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">method</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">version</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">status</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">active</span></td><td><span class="psx-property-type">Boolean</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">public</span></td><td><span class="psx-property-type">Boolean</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">parameters</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">request</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">response</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">responses</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_Responses" title="RFC4648">responses</a>)</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">action</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Responses" class="psx-object"><h4>responses</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"^([0-9]{3})$"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">^([0-9]{3})$</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div><div class="psx-resource-schema" data-type="4"><h3>PUT Response - 200 OK</h3><div class="psx-resource-schema-content"><div id="psx_model_Message" class="psx-object"><h4>message</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"success"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Boolean</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"message"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">success</span></td><td><span class="psx-property-type">Boolean</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">message</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div></div><div class="psx-resource-method" data-method="DELETE"><h2>DELETE</h2><div class="psx-resource-schema" data-type="4"><h3>DELETE Response - 200 OK</h3><div class="psx-resource-schema-content"><div id="psx_model_Message" class="psx-object"><h4>message</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"success"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Boolean</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"message"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">success</span></td><td><span class="psx-property-type">Boolean</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">message</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div></div></div>

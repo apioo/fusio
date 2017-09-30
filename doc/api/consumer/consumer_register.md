@@ -1,28 +1,9 @@
-
-# /consumer/register
-
-
-## POST
-
-
-### POST Request
-
-#### user
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-name | String |  | 
-email | String |  | 
-password | String |  | 
-captcha | String |  | 
-
-
-### POST Response - 200 OK
-
-#### message
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-success | Boolean |  | 
-message | String |  | 
-
+<div class="psx-resource" data-status="1" data-path="/consumer/register"><h1>/consumer/register</h1><div class="psx-resource-method" data-method="POST"><h2>POST</h2><div class="psx-resource-schema" data-type="3"><h3>POST Request</h3><div class="psx-resource-schema-content"><div id="psx_model_User" class="psx-object"><h4>user</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"name"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"email"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"password"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"captcha"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-required">name</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-required">email</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-required">password</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">captcha</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div><div class="psx-resource-schema" data-type="4"><h3>POST Response - 200 OK</h3><div class="psx-resource-schema-content"><div id="psx_model_Message" class="psx-object"><h4>message</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"success"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Boolean</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"message"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">success</span></td><td><span class="psx-property-type">Boolean</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">message</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div></div></div>

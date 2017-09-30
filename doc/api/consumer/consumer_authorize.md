@@ -1,41 +1,18 @@
-
-# /consumer/authorize
-
-
-## POST
-
-
-### POST Request
-
-#### request
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-responseType | String |  | 
-clientId | String |  | 
-redirectUri | String |  | 
-scope | String |  | 
-state | String |  | 
-allow | Boolean |  | 
-
-
-### POST Response - 200 OK
-
-#### response
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-type | String |  | 
-token | Object ([token](#psx_model_Token)) |  | 
-code | String |  | 
-redirectUri | String |  | 
-
-#### token
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-access_token | String |  | 
-token_type | String |  | 
-expires_in | String |  | 
-scope | String |  | 
-
+<div class="psx-resource" data-status="1" data-path="/consumer/authorize"><h1>/consumer/authorize</h1><div class="psx-resource-method" data-method="POST"><h2>POST</h2><div class="psx-resource-schema" data-type="3"><h3>POST Request</h3><div class="psx-resource-schema-content"><div id="psx_model_Request" class="psx-object"><h4>request</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"responseType"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"clientId"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"redirectUri"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"scope"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"state"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"allow"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Boolean</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-required">responseType</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-required">clientId</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">redirectUri</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-required">scope</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">state</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-required">allow</span></td><td><span class="psx-property-type">Boolean</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div><div class="psx-resource-schema" data-type="4"><h3>POST Response - 200 OK</h3><div class="psx-resource-schema-content"><div id="psx_model_Response" class="psx-object"><h4>response</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"type"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"token"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_Token" title="RFC4648">token</a>)</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"code"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"redirectUri"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">type</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">token</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_Token" title="RFC4648">token</a>)</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">code</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">redirectUri</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Token" class="psx-object"><h4>token</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"access_token"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"token_type"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"expires_in"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"scope"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">access_token</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">token_type</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">expires_in</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">scope</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div></div></div>

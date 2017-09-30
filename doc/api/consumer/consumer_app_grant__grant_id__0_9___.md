@@ -1,6 +1,1 @@
-
-# /consumer/app/grant/$grant_id<[0-9]+>
-
-
-## DELETE
-
+<div class="psx-resource" data-status="1" data-path="/consumer/app/grant/$grant_id<[0-9]+>"><h1>/consumer/app/grant/$grant_id<[0-9]+></h1><div class="psx-resource-method" data-method="DELETE"><h2>DELETE</h2></div></div>

@@ -1,63 +1,22 @@
-
-# /backend/schema
-
-
-## GET
-
-
-### GET Response - 200 OK
-
-#### collection
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-totalResults | Integer |  | 
-startIndex | Integer |  | 
-entry | Array (Object ([schema](#psx_model_Schema))) |  | 
-
-#### schema
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-id | Integer |  | 
-status | Integer |  | 
-name | String |  | Pattern: [a-zA-Z0-9\-\_]{3,64}
-source | Object ([source](#psx_model_Source)) |  | 
-
-#### source
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-* | Mixed |  | 
-
-
-## POST
-
-
-### POST Request
-
-#### schema
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-id | Integer |  | 
-status | Integer |  | 
-name | String |  | Pattern: [a-zA-Z0-9\-\_]{3,64}
-source | Object ([source](#psx_model_Source)) |  | 
-
-#### source
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-* | Mixed |  | 
-
-
-### POST Response - 201 Created
-
-#### message
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-success | Boolean |  | 
-message | String |  | 
-
+<div class="psx-resource" data-status="1" data-path="/backend/schema"><h1>/backend/schema</h1><div class="psx-resource-method" data-method="GET"><h2>GET</h2><div class="psx-resource-schema" data-type="4"><h3>GET Response - 200 OK</h3><div class="psx-resource-schema-content"><div id="psx_model_Collection" class="psx-object"><h4>collection</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"totalResults"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"startIndex"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"entry"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Array (Object (<a href="#psx_model_Schema" title="RFC4648">schema</a>))</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">totalResults</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">startIndex</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">entry</span></td><td><span class="psx-property-type">Array (Object (<a href="#psx_model_Schema" title="RFC4648">schema</a>))</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Schema" class="psx-object"><h4>schema</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"id"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"status"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"name"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"source"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_Source" title="RFC4648">source</a>)</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">id</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">status</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">name</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div><dl class="psx-property-constraint"><dt>Pattern</dt><dd><span class="psx-constraint-pattern">[a-zA-Z0-9\-\_]{3,64}</span></dd></dl></td></tr><tr><td><span class="psx-property-name psx-property-optional">source</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_Source" title="RFC4648">source</a>)</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Source" class="psx-object"><h4>source</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"*"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Mixed</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">*</span></td><td><span class="psx-property-type">Mixed</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div></div><div class="psx-resource-method" data-method="POST"><h2>POST</h2><div class="psx-resource-schema" data-type="3"><h3>POST Request</h3><div class="psx-resource-schema-content"><div id="psx_model_Schema" class="psx-object"><h4>schema</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"id"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"status"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"name"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"source"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_Source" title="RFC4648">source</a>)</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">id</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">status</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-required">name</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div><dl class="psx-property-constraint"><dt>Pattern</dt><dd><span class="psx-constraint-pattern">[a-zA-Z0-9\-\_]{3,64}</span></dd></dl></td></tr><tr><td><span class="psx-property-name psx-property-optional">source</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_Source" title="RFC4648">source</a>)</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Source" class="psx-object"><h4>source</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"*"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Mixed</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">*</span></td><td><span class="psx-property-type">Mixed</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div><div class="psx-resource-schema" data-type="4"><h3>POST Response - 201 Created</h3><div class="psx-resource-schema-content"><div id="psx_model_Message" class="psx-object"><h4>message</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"success"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Boolean</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"message"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">success</span></td><td><span class="psx-property-type">Boolean</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">message</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div></div></div>

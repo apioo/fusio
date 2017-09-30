@@ -1,46 +1,22 @@
-
-# /backend/audit
-
-
-## GET
-
-
-### GET Response - 200 OK
-
-#### collection
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-totalResults | Integer |  | 
-startIndex | Integer |  | 
-entry | Array (Object ([audit](#psx_model_Audit))) |  | 
-
-#### audit
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-id | Integer |  | 
-app | Object ([app](#psx_model_App)) |  | 
-user | Object ([user](#psx_model_User)) |  | 
-event | String |  | 
-ip | String |  | 
-message | String |  | 
-content | Object ([object](#psx_model_Object)) | A key value object containing the changes | 
-date | [DateTime](http://tools.ietf.org/html/rfc3339#section-5.6) |  | 
-
-#### app
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-id | Integer |  | 
-status | Integer |  | 
-name | String |  | 
-
-#### user
-
-Field | Type | Description | Constraints
------ | ---- | ----------- | -----------
-id | Integer |  | 
-status | Integer |  | 
-name | String |  | 
-
+<div class="psx-resource" data-status="1" data-path="/backend/audit"><h1>/backend/audit</h1><div class="psx-resource-method" data-method="GET"><h2>GET</h2><div class="psx-resource-schema" data-type="4"><h3>GET Response - 200 OK</h3><div class="psx-resource-schema-content"><div id="psx_model_Collection" class="psx-object"><h4>collection</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"totalResults"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"startIndex"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"entry"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Array (Object (<a href="#psx_model_Audit" title="RFC4648">audit</a>))</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">totalResults</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">startIndex</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">entry</span></td><td><span class="psx-property-type">Array (Object (<a href="#psx_model_Audit" title="RFC4648">audit</a>))</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_Audit" class="psx-object"><h4>audit</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"id"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"app"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_App" title="RFC4648">app</a>)</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"user"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_User" title="RFC4648">user</a>)</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"event"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"ip"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"message"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"content"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Object (<a href="#psx_model_Object" title="RFC4648">object</a>)</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"date"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type"><a href="http://tools.ietf.org/html/rfc3339#section-5.6" title="RFC4648">DateTime</a></span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">id</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">app</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_App" title="RFC4648">app</a>)</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">user</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_User" title="RFC4648">user</a>)</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">event</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">ip</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">message</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">content</span></td><td><span class="psx-property-type">Object (<a href="#psx_model_Object" title="RFC4648">object</a>)</span><br /><div class="psx-property-description">A key value object containing the changes</div></td></tr><tr><td><span class="psx-property-name psx-property-optional">date</span></td><td><span class="psx-property-type"><a href="http://tools.ietf.org/html/rfc3339#section-5.6" title="RFC4648">DateTime</a></span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_App" class="psx-object"><h4>app</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"id"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"status"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"name"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">id</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">status</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">name</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div><div id="psx_model_User" class="psx-object"><h4>user</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+  <span class="psx-object-json-key">"id"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"status"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Integer</span><span class="psx-object-json-pun">,</span>
+  <span class="psx-object-json-key">"name"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">id</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">status</span></td><td><span class="psx-property-type">Integer</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">name</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div></div></div>
