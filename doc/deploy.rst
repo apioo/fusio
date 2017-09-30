@@ -85,17 +85,9 @@ schema
 ------
 
 The schema defines the format of the request and response data. It uses the 
-JsonSchema format.
-
-.. code-block:: yaml
-
-    schema:
-      Todo: !include resources/schema/todo/entity.json
-      Todo-Collection: !include resources/schema/todo/collection.json
-      Todo-Message: !include resources/schema/todo/message.json
-
-Inside a schema it is possible to refer to other schema definitions by using the 
-``$ref`` key and the ``file`` protocol i.e. ``file:///[file]``.
+JsonSchema format. Inside a schema it is possible to refer to other schema 
+definitions by using the ``$ref`` key and the ``file`` protocol i.e. 
+``file:///[file]``.
 
 .. code-block:: json
 
@@ -130,7 +122,7 @@ A connection provides a class which helps to connect to another service.
         type: pdo_mysql
         host: localhost
         username: root
-        password: 
+        password: test
         database: fusio
 
 The following list contains connection classes which you can use. Note some 
