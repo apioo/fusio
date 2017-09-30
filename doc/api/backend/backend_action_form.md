@@ -1,5 +1,18 @@
-<div class="psx-resource" data-status="1" data-path="/backend/action/form"><h1>/backend/action/form</h1><div class="psx-resource-method" data-method="GET"><h2>GET</h2><div class="psx-resource-parameters" data-type="2"><h3>GET Query-Parameters</h3><div class="psx-resource-parameters-content"><div id="psx_model_Query" class="psx-object"><h4>query</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+
+# /backend/action/form
+
+
+## GET
+
+
+### GET Query-Parameters
+
+<div id="psx_model_Query" class="psx-object"><h4>query</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
   <span class="psx-object-json-key">"class"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
-<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">class</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div><div class="psx-resource-schema" data-type="4"><h3>GET Response - 200 OK</h3><div class="psx-resource-schema-content"><div id="psx_model_Container" class="psx-object"><h4>container</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">class</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div>
+
+### GET Response - 200 OK
+
+<div id="psx_model_Container" class="psx-object"><h4>container</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
   <span class="psx-object-json-key">"element"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Array (Mixed)</span><span class="psx-object-json-pun">,</span>
-<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">element</span></td><td><span class="psx-property-type">Array (Mixed)</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div></div></div>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">element</span></td><td><span class="psx-property-type">Array (Mixed)</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div>

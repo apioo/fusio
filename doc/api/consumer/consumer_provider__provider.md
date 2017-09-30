@@ -1,8 +1,21 @@
-<div class="psx-resource" data-status="1" data-path="/consumer/provider/:provider"><h1>/consumer/provider/:provider</h1><div class="psx-resource-method" data-method="POST"><h2>POST</h2><div class="psx-resource-schema" data-type="3"><h3>POST Request</h3><div class="psx-resource-schema-content"><div id="psx_model_Provider" class="psx-object"><h4>provider</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+
+# /consumer/provider/:provider
+
+
+## POST
+
+
+### POST Request
+
+<div id="psx_model_Provider" class="psx-object"><h4>provider</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
   <span class="psx-object-json-key">"code"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
   <span class="psx-object-json-key">"clientId"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
   <span class="psx-object-json-key">"redirectUri"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
   <span class="psx-object-json-key">"*"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">Mixed</span><span class="psx-object-json-pun">,</span>
-<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">code</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">clientId</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">redirectUri</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">*</span></td><td><span class="psx-property-type">Mixed</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div><div class="psx-resource-schema" data-type="4"><h3>POST Response - 200 OK</h3><div class="psx-resource-schema-content"><div id="psx_model_Jwt" class="psx-object"><h4>jwt</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">code</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">clientId</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">redirectUri</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr><tr><td><span class="psx-property-name psx-property-optional">*</span></td><td><span class="psx-property-type">Mixed</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div>
+
+### POST Response - 200 OK
+
+<div id="psx_model_Jwt" class="psx-object"><h4>jwt</h4><pre class="psx-object-json"><span class="psx-object-json-pun">{</span>
   <span class="psx-object-json-key">"token"</span><span class="psx-object-json-pun">: </span><span class="psx-property-type">String</span><span class="psx-object-json-pun">,</span>
-<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">token</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div></div></div></div></div>
+<span class="psx-object-json-pun">}</span></pre><table class="table psx-object-properties"><colgroup><col width="30%" /><col width="70%" /></colgroup><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><span class="psx-property-name psx-property-optional">token</span></td><td><span class="psx-property-type">String</span><br /><div class="psx-property-description"></div></td></tr></tbody></table></div>
