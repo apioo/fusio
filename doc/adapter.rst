@@ -6,18 +6,18 @@ An adapter is a composer package which provides classes to extend the
 functionality of Fusio. Through an adapter it is i.e. possible to provide 
 custom action/connection classes or to install predefined routes for an existing
 system. A package needs to require the ``fusio/engine`` package and must have an 
-adapter class which implements the ``Fusio\Engine\AdapterInterface`` class. This 
-class has a method ``getDefinition`` which returns an absolute path to a 
-``adapter.json`` definition. This definition contains all information for Fusio 
-how to extend the system. The adapter can be installed through the register 
-command:
+adapter class which implements the ``Fusio\Engine\AdapterInterface`` interface. 
+This interface has a method ``getDefinition`` which returns an absolute path to 
+a ``adapter.json`` definition file. This definition contains all information for 
+Fusio how to extend the system. The adapter can be installed through the 
+register command:
 
 .. code-block:: text
 
-    php bin/fusio system:register Acme\System\Adapter
+    php bin/fusio system:register "Acme\System\Adapter"
 
 In the following an example adapter definition which showcases all available 
-parameters.
+parameters. There is also a complete `JsonSchema`_ which describes this format.
 
 .. code-block:: json
  
@@ -84,3 +84,6 @@ the ``system:export`` command.
 .. code-block:: text
 
     php bin/fusio system:export > export.json
+
+
+.. _JsonSchema: https://github.com/apioo/fusio-engine/blob/master/src/Test/definition_schema.json
