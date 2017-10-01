@@ -1,5 +1,11 @@
 
-### 0.9.6
+### 0.9.7
+
+* Add a schema to every backend endpoint
+* Fix route path regexp validation #63
+* Update API doc
+
+### 0.9.6 (2017-09-25)
 
 * Improved documentation add backend api reference and action examples
 * Add PATCH method support
