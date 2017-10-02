@@ -1,6 +1,8 @@
 <?php
 /**
  * @var \Doctrine\DBAL\Schema\Schema $schema
+ * @var \Fusio\Impl\Service\System\Migration\DBAL\QueryBucket $migration
+ * @var \Doctrine\DBAL\Platforms\AbstractPlatform $platform
  */
 
 $todoTable = $schema->createTable('app_todo');
