@@ -1,6 +1,7 @@
 
 ### 0.9.7
 
+* Add cronjob service
 * Add a schema to every backend endpoint
 * Fix route path regexp validation #63
 * Update API doc
