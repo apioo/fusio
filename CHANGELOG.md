@@ -1,5 +1,10 @@
 
-### 0.9.7
+### 0.9.8
+
+* Improve HEAD and OPTIONS method handling 
+* Cronjob handle errors
+
+### 0.9.7 (2017-10-05)
 
 * Add cronjob service
 * Add a schema to every backend endpoint
