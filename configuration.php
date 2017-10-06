@@ -32,6 +32,15 @@ return array(
     ],
     */
 
+    // Location of the automatically generated cron file. Note Fusio writes only
+    // to this file if it exists. In order to use the cronjob service you need
+    // to create this file with i.e. "touch /etc/cronjob.d/fusio"
+    'fusio_cron_file'         => '/etc/cronjob.d/fusio',
+
+    // Command to execute the Fusio console which is used in the generated cron
+    // file
+    'fusio_cron_exec'         => '/usr/bin/php ' . __DIR__ . '/bin/fusio',
+
     // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
     // http://localhost.com)
     'psx_url'                 => 'http://127.0.0.1/projects/fusio/public',
