@@ -192,6 +192,7 @@ pre
     background-color:#021c35;
     position:fixed;
     height:100%;
+    overflow-y:auto;
 }
 
 .fusio-navigation
