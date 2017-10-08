@@ -137,6 +137,9 @@ paths which are needed by the system.
 * `/export`  
   Endpoints to export the documentation into other formats i.e. swagger
 
+There is also a complete [documentation](http://demo.fusio-project.org/internal/#!/page/about)
+about all internal API endpoints.
+
 # Apps
 
 The following apps are working with the Fusio API.
