@@ -913,16 +913,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v1.0.3",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "b8b3ae892bc729780ded7bc027f476e105174641"
+                "reference": "57c4539cc958a2d4c68c85f3160dd5e42d9b3503"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/b8b3ae892bc729780ded7bc027f476e105174641",
-                "reference": "b8b3ae892bc729780ded7bc027f476e105174641",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/57c4539cc958a2d4c68c85f3160dd5e42d9b3503",
+                "reference": "57c4539cc958a2d4c68c85f3160dd5e42d9b3503",
                 "shasum": ""
             },
             "require": {
@@ -963,7 +963,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-10-05T18:47:25+00:00"
+            "time": "2017-10-10T11:32:34+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2048,16 +2048,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "aac6fc01f44360b0c06a8c9873a112f5efaabb3f"
+                "reference": "e174afc36691c21be7e4d8addc81dbc7526f47c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/aac6fc01f44360b0c06a8c9873a112f5efaabb3f",
-                "reference": "aac6fc01f44360b0c06a8c9873a112f5efaabb3f",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/e174afc36691c21be7e4d8addc81dbc7526f47c3",
+                "reference": "e174afc36691c21be7e4d8addc81dbc7526f47c3",
                 "shasum": ""
             },
             "require": {
@@ -2111,7 +2111,7 @@
                 "framework",
                 "rest"
             ],
-            "time": "2017-10-04T13:12:15+00:00"
+            "time": "2017-10-06T12:50:40+00:00"
         },
         {
             "name": "psx/http",
