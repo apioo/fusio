@@ -1,6 +1,7 @@
 
 ### 0.9.8
 
+* Add config.yaml to deploy
 * Add system restore command
 * Improve HEAD and OPTIONS method handling 
 * Cronjob handle errors
