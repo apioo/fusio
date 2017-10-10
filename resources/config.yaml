@@ -1,0 +1,29 @@
+# If true the status of a new app is PENDING so that an administrator has to 
+# manually activate the app
+app_approval: 0
+# The max amount of apps a consumer can register
+app_consumer: 16
+# If a user registers through the consumer API the following scopes are assigned
+scopes_default: "authorization,consumer"
+# Subject of the activation mail
+mail_register_subject: "Fusio registration"
+# Body of the activation mail
+mail_register_body: >
+  Hello {name},
+
+  you have successful registered at Fusio.
+  To activate you account please visit the following url:
+  http://127.0.0.1/projects/fusio/public/consumer/#activate?token={token}
+# Email address which is used in the "From" header
+mail_sender: ""
+# Facebook app secret
+provider_facebook_secret: ""
+# Google app secret
+provider_google_secret: ""
+# GitHub app secret
+provider_github_secret: ""
+# ReCaptcha secret
+recaptcha_secret: ""
+# If set each API response contains a Access-Control-Allow-Origin header with 
+# the provided value
+cors_allow_origin: "*"
