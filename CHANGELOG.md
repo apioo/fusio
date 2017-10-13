@@ -1,5 +1,13 @@
 
-### 0.9.8
+### 0.9.9
+
+* Update OAuth2 token endpoint handle OPTIONS request
+* Add query parameters to backend schema
+* Backend endpoints handle count parameter #67
+* Relaxed password requirements and make min pw length configurable #68
+* Allow email as user name login #66
+
+### 0.9.8 (2017-10-11)
 
 * Add config.yaml to deploy
 * Add system restore command
