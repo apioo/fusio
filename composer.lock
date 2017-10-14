@@ -1946,21 +1946,21 @@
         },
         {
             "name": "psx/data",
-            "version": "v2.0.3",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-data.git",
-                "reference": "26c8885e1d4bd33721ccad7c961b87553231b12a"
+                "reference": "814f39ada44d6c318bd3b85a7ea7e7eb7fd3332f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-data/zipball/26c8885e1d4bd33721ccad7c961b87553231b12a",
-                "reference": "26c8885e1d4bd33721ccad7c961b87553231b12a",
+                "url": "https://api.github.com/repos/apioo/psx-data/zipball/814f39ada44d6c318bd3b85a7ea7e7eb7fd3332f",
+                "reference": "814f39ada44d6c318bd3b85a7ea7e7eb7fd3332f",
                 "shasum": ""
             },
             "require": {
                 "doctrine/annotations": "^1.3",
-                "php": ">=5.6",
+                "php": ">=7.0",
                 "psx/datetime": "^1.0",
                 "psx/http": "^1.0",
                 "psx/json": "^1.0",
@@ -1998,7 +1998,7 @@
                 "processor",
                 "xml"
             ],
-            "time": "2017-02-08T18:53:54+00:00"
+            "time": "2017-10-14T12:51:40+00:00"
         },
         {
             "name": "psx/datetime",
@@ -2048,16 +2048,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v2.3.1",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "e174afc36691c21be7e4d8addc81dbc7526f47c3"
+                "reference": "8ffa10d55112a1955bfbd09170f69aed5f92b60b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/e174afc36691c21be7e4d8addc81dbc7526f47c3",
-                "reference": "e174afc36691c21be7e4d8addc81dbc7526f47c3",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/8ffa10d55112a1955bfbd09170f69aed5f92b60b",
+                "reference": "8ffa10d55112a1955bfbd09170f69aed5f92b60b",
                 "shasum": ""
             },
             "require": {
@@ -2111,7 +2111,7 @@
                 "framework",
                 "rest"
             ],
-            "time": "2017-10-06T12:50:40+00:00"
+            "time": "2017-10-14T13:05:57+00:00"
         },
         {
             "name": "psx/http",
