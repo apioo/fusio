@@ -913,16 +913,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "206f36c7878b808c9108ad8abe0e0ecf0ed085ef"
+                "reference": "b0c97cd96f3df200e9b6702c3e5eb20853b549a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/206f36c7878b808c9108ad8abe0e0ecf0ed085ef",
-                "reference": "206f36c7878b808c9108ad8abe0e0ecf0ed085ef",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/b0c97cd96f3df200e9b6702c3e5eb20853b549a3",
+                "reference": "b0c97cd96f3df200e9b6702c3e5eb20853b549a3",
                 "shasum": ""
             },
             "require": {
@@ -963,7 +963,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-10-13T14:29:36+00:00"
+            "time": "2017-10-15T19:16:25+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3770,16 +3770,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.22",
+            "version": "5.7.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "10df877596c9906d4110b5b905313829043f2ada"
+                "reference": "78532d5269d984660080d8e0f4c99c5c2ea65ffe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/10df877596c9906d4110b5b905313829043f2ada",
-                "reference": "10df877596c9906d4110b5b905313829043f2ada",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/78532d5269d984660080d8e0f4c99c5c2ea65ffe",
+                "reference": "78532d5269d984660080d8e0f4c99c5c2ea65ffe",
                 "shasum": ""
             },
             "require": {
@@ -3848,7 +3848,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-09-24T07:23:38+00:00"
+            "time": "2017-10-15T06:13:55+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
