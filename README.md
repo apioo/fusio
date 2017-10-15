@@ -1,6 +1,6 @@
 
 <p align="center">
-    <a href="http://www.fusio-project.org/" target="_blank"><img src="http://www.fusio-project.org/img/fusio_64px.png"></a>
+    <a href="https://www.fusio-project.org/" target="_blank"><img src="https://www.fusio-project.org/img/fusio_64px.png"></a>
 </p>
 
 # About
@@ -10,7 +10,7 @@ RESTful APIs. We think that there is a huge potential in the API economy.
 Whether you need an API to expose your business functionality, build micro 
 services, develop SPAs or Mobile-Apps. Because of this we think that Fusio is a 
 great tool to simplify building such APIs. More information on 
-http://www.fusio-project.org/
+https://www.fusio-project.org/
 
 # Features
 
@@ -43,7 +43,7 @@ on building the actual business logic of your API.
   All errors which occur in your endpoint are logged and are visible at the 
   backend including all information from the request.
 * __Connection__  
-  Fusio provides an [adapter](http://www.fusio-project.org/adapter) system to
+  Fusio provides an [adapter](https://www.fusio-project.org/adapter) system to
   connect to external services. By default we provide the HTTP and SQL 
   connection type but there are many other types available i.e. MongoDB, Amqp, 
   Cassandra.
@@ -107,7 +107,7 @@ return $response->build(200, [], [
 In the code we get the `Default-Connection` which we have defined previously in
 our `.fusio.yml` deploy file. In this case the connection returns a 
 `\Doctrine\DBAL\Connection` instance but we have already 
-[many adapters](http://www.fusio-project.org/adapter) to connect to different 
+[many adapters](https://www.fusio-project.org/adapter) to connect to different 
 services. Then we simply fire some queries and return the response.
 
 # Backend
