@@ -1,5 +1,11 @@
 
-### 0.9.9
+### 1.0.0-RC1
+
+* Add action execute command #64
+* User service add check whether email already exists #80
+* Internal API add config option to send CORS header
+
+### 0.9.9 (2017-10-15)
 
 * Update OAuth2 token endpoint handle OPTIONS request
 * Add query parameters to backend schema
