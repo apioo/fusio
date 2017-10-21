@@ -41,6 +41,11 @@ return array(
     // file
     'fusio_cron_exec'         => '/usr/bin/php ' . __DIR__ . '/bin/fusio',
 
+    // In case you want to host the backend app on a different domain you need
+    // to set a fitting Access-Control-Allow-Origin header. To set a CORS header
+    // for your app please use the system setting
+    'fusio_cors'              => null,
+
     // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
     // http://localhost.com)
     'psx_url'                 => 'http://127.0.0.1/projects/fusio/public',
