@@ -913,16 +913,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v1.0.8",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "9d5f0a8f22dbd18ec132fbe2e49cb8d36ce1b9cc"
+                "reference": "35c4fe200992ad7e6a15a3d395b5cfda37846e84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/9d5f0a8f22dbd18ec132fbe2e49cb8d36ce1b9cc",
-                "reference": "9d5f0a8f22dbd18ec132fbe2e49cb8d36ce1b9cc",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/35c4fe200992ad7e6a15a3d395b5cfda37846e84",
+                "reference": "35c4fe200992ad7e6a15a3d395b5cfda37846e84",
                 "shasum": ""
             },
             "require": {
@@ -963,7 +963,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-10-20T21:22:06+00:00"
+            "time": "2017-10-28T12:28:01+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1234,16 +1234,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "1.9.0",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "f4683f41ebf21e60667447bb49939bee35807c3c"
+                "reference": "e708d6ef549044974b60a57fdcec2fa165436d57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/f4683f41ebf21e60667447bb49939bee35807c3c",
-                "reference": "f4683f41ebf21e60667447bb49939bee35807c3c",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/e708d6ef549044974b60a57fdcec2fa165436d57",
+                "reference": "e708d6ef549044974b60a57fdcec2fa165436d57",
                 "shasum": ""
             },
             "require": {
@@ -1313,7 +1313,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2017-09-28T15:17:28+00:00"
+            "time": "2017-10-27T07:15:54+00:00"
         },
         {
             "name": "monolog/monolog",
