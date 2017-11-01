@@ -4,6 +4,7 @@
 * Add action execute command #64
 * User service add check whether email already exists #80
 * User API proper handling of OPTIONS and HEAD requests #82
+* Fix update correct handling of changed backend routes #85
 * Internal API add config option to send CORS header
 
 ### 0.9.9 (2017-10-15)
