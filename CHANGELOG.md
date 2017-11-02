@@ -1,5 +1,11 @@
 
-### 1.0.0-RC1
+### 1.0.0-RC2
+
+* Add header field to action designer #89
+* Backend scope load all assigned routes #90
+* Added apache example conf and update docs
+
+### 1.0.0-RC1 (2017-11-01)
 
 * Add action execute command #64
 * User service add check whether email already exists #80
