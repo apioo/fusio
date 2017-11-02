@@ -74,9 +74,29 @@ Apache
 
     <VirtualHost *:80>
         ServerName api.acme.com
-        DocumentRoot /var/www/fusio/public/
-        ErrorLog /var/log/apache2/fusio-error.log
-        CustomLog /var/log/apache2/fusio-access.log combined
+        DocumentRoot /var/www/html/fusio/public
+    
+        <Directory /var/www/html/fusio/public>
+            Options FollowSymLinks
+            AllowOverride All
+            Require all granted
+    
+            # rewrite
+            RewriteEngine On
+            RewriteBase /
+    
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteRule (.*) /index.php/$1 [L]
+    
+            RewriteCond %{HTTP:Authorization} ^(.*)
+            RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+        </Directory>
+    
+        # log
+        LogLevel warn
+        ErrorLog ${APACHE_LOG_DIR}/fusio.error.log
+        CustomLog ${APACHE_LOG_DIR}/fusio.access.log combined
     </VirtualHost>
 
 You should enable the module ``mod_rewrite`` so that the .htaccess file in the 
