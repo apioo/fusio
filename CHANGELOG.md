@@ -1,6 +1,7 @@
 
 ### 1.0.0-RC2
 
+* Fix proper handling of null values #84
 * Add header field to action designer #89
 * Backend scope load all assigned routes #90
 * Added apache example conf and update docs
