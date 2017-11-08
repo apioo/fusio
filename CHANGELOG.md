@@ -1,6 +1,9 @@
 
 ### 1.0.0-RC2
 
+* Trigger app.remove_token event on /authorization/revoke endpoint #94
+* Improved HTTP adapter add a content-type config field and parse form encoded 
+  responses #92
 * Fix proper handling of null values #84
 * Add header field to action designer #89
 * Backend scope load all assigned routes #90
