@@ -567,16 +567,16 @@
         },
         {
             "name": "fusio/adapter-http",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-http.git",
-                "reference": "77d9681703d8c5fea506c7523f66e6e790943fcb"
+                "reference": "aa5c278ca7975744e74f66e1cb9aff22ed676f51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/77d9681703d8c5fea506c7523f66e6e790943fcb",
-                "reference": "77d9681703d8c5fea506c7523f66e6e790943fcb",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/aa5c278ca7975744e74f66e1cb9aff22ed676f51",
+                "reference": "aa5c278ca7975744e74f66e1cb9aff22ed676f51",
                 "shasum": ""
             },
             "require": {
@@ -609,7 +609,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-09-09T19:48:16+00:00"
+            "time": "2017-11-07T22:51:59+00:00"
         },
         {
             "name": "fusio/adapter-php",
@@ -859,16 +859,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "57ef99add39891af7ab60ff514483cd6760b55cc"
+                "reference": "15e488f56e71bf59ad21b2f7310af39ec20ce299"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/57ef99add39891af7ab60ff514483cd6760b55cc",
-                "reference": "57ef99add39891af7ab60ff514483cd6760b55cc",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/15e488f56e71bf59ad21b2f7310af39ec20ce299",
+                "reference": "15e488f56e71bf59ad21b2f7310af39ec20ce299",
                 "shasum": ""
             },
             "require": {
@@ -909,7 +909,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2017-11-01T13:50:30+00:00"
+            "time": "2017-11-07T23:13:26+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1172,16 +1172,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.1.1",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a"
+                "reference": "08131e7ff29de6bb9f12275c7d35df71f25f4d89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a1e8e1a30e1352f118feff1a8481066ddc2f234a",
-                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/08131e7ff29de6bb9f12275c7d35df71f25f4d89",
+                "reference": "08131e7ff29de6bb9f12275c7d35df71f25f4d89",
                 "shasum": ""
             },
             "require": {
@@ -1219,7 +1219,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-09-02T17:10:46+00:00"
+            "time": "2017-11-04T11:48:34+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1625,16 +1625,16 @@
         },
         {
             "name": "psx/data",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-data.git",
-                "reference": "814f39ada44d6c318bd3b85a7ea7e7eb7fd3332f"
+                "reference": "abe6e102a4bd7e679d17c02e782920b5ecc43c5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-data/zipball/814f39ada44d6c318bd3b85a7ea7e7eb7fd3332f",
-                "reference": "814f39ada44d6c318bd3b85a7ea7e7eb7fd3332f",
+                "url": "https://api.github.com/repos/apioo/psx-data/zipball/abe6e102a4bd7e679d17c02e782920b5ecc43c5a",
+                "reference": "abe6e102a4bd7e679d17c02e782920b5ecc43c5a",
                 "shasum": ""
             },
             "require": {
@@ -1677,7 +1677,7 @@
                 "processor",
                 "xml"
             ],
-            "time": "2017-10-14T12:51:40+00:00"
+            "time": "2017-11-02T23:39:07+00:00"
         },
         {
             "name": "psx/datetime",
