@@ -1,6 +1,9 @@
 
 ### 1.0.0-RC2
 
+* Issue 401 http response code if access token is not valid #97
+* Add user_approval setting to control whether a user needs to verify an 
+  account through email #83
 * Add swagger-ui as app
 * Improve generated OpenAPI spec add security scope
 * Add listing filter to show only user routes by default
