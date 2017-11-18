@@ -1,6 +1,9 @@
 
 ### 1.0.0-RC2
 
+* Add swagger-ui as app
+* Improve generated OpenAPI spec add security scope
+* Add listing filter to show only user routes by default
 * Trigger app.remove_token event on /authorization/revoke endpoint #94
 * Improved HTTP adapter add a content-type config field and parse form encoded 
   responses #92
