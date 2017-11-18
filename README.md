@@ -167,6 +167,14 @@ The documentation app simply provides an overview of all available endpoints.
 It is possible to export the API definition into other schema formats like i.e. 
 Swagger. The app is located at `/documentation/`.
 
+## Swagger-UI
+
+![Swagger-UI](https://github.com/apioo/fusio/blob/master/doc/_static/swagger-ui.png)
+
+The [swagger-ui](https://github.com/swagger-api/swagger-ui) app renders a 
+documentation based on the OpenAPI specification. The app is located at 
+`/swagger-ui/`.
+
 # Installation
 
 It is possible to install Fusio either through composer or manually file 
