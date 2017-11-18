@@ -1,5 +1,5 @@
 
-### 1.0.0-RC2
+### 1.0.0-RC2 (2017-11-18)
 
 * Issue 401 http response code if access token is not valid #97
 * Add user_approval setting to control whether a user needs to verify an 
