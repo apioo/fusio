@@ -54,10 +54,9 @@ on building the actual business logic of your API.
   backend including all information from the request.
 * **Connection**
 
-  Fusio provides an [adapter](http://www.fusio-project.org/adapter) system to
-  connect to external services. By default we provide the HTTP and SQL 
-  connection type but there are many other types available i.e. MongoDB, Amqp, 
-  Cassandra.
+  Fusio provides an `adapter`_ system to connect to external services. By 
+  default we provide the HTTP and SQL connection type but there are many other 
+  types available i.e. MongoDB, Amqp, Cassandra.
 * **Migration**
 
   Fusio has a migration system which allows you to change the database schema
@@ -188,7 +187,16 @@ The documentation app simply provides an overview of all available endpoints.
 It is possible to export the API definition into other schema formats like i.e. 
 Swagger. The app is located at ``/documentation/``.
 
+Swagger-UI
+^^^^^^^^^^
+
+.. image:: _static/swagger-ui.png
+
+The `swagger-ui`_ app renders a documentation based on the OpenAPI 
+specification. The app is located at `/swagger-ui/`.
 
 
+.. _adapter: http://www.fusio-project.org/adapter
 .. _v8 action: https://www.fusio-project.org/documentation/v8
 .. _deploy file: http://fusio.readthedocs.io/en/latest/deploy.html
+.. _swagger-ui: https://github.com/swagger-api/swagger-ui
