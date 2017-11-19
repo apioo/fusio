@@ -1,4 +1,8 @@
 
+### 1.0.0-RC3
+
+* Fix materialize resource collection
+
 ### 1.0.0-RC2 (2017-11-18)
 
 * Issue 401 http response code if access token is not valid #97
