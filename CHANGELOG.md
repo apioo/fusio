@@ -1,5 +1,11 @@
 
-### 1.0.0-RC3
+### 1.0.0-RC4 (2017-11-26)
+
+* Backend app fix add responses
+* Improved http engine action
+* Allow array json structure in response #81
+
+### 1.0.0-RC3 (2017-11-19)
 
 * Fix materialize resource collection
 
