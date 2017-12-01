@@ -1,4 +1,10 @@
 
+### 1.0.0-RC5 (2017-12-01)
+
+* Add upgrade check
+* Improve test cases
+* Add PHP 7.2 support
+
 ### 1.0.0-RC4 (2017-11-27)
 
 * Backend app fix add responses
