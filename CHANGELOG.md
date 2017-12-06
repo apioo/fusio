@@ -1,6 +1,7 @@
 
-### 1.0.0-RC5 (2017-12-01)
+### 1.0.0-RC5 (2017-12-06)
 
+* Allow schema scheme when deploying a json schema #103
 * Add upgrade check
 * Improve test cases
 * Add PHP 7.2 support
