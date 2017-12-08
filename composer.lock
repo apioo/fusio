@@ -659,20 +659,20 @@
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
-                "reference": "b20d47c13abd55fbecda3b1be352bc67b0b9f668"
+                "reference": "5da032281ff5fe05632613cc2cc5871b7788a78a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/b20d47c13abd55fbecda3b1be352bc67b0b9f668",
-                "reference": "b20d47c13abd55fbecda3b1be352bc67b0b9f668",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/5da032281ff5fe05632613cc2cc5871b7788a78a",
+                "reference": "5da032281ff5fe05632613cc2cc5871b7788a78a",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "^2.5",
+                "doctrine/dbal": "~2.5.0",
                 "fusio/engine": "^1.0",
                 "php": ">=7.0"
             },
@@ -702,24 +702,24 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-09-09T19:43:27+00:00"
+            "time": "2017-12-07T18:04:41+00:00"
         },
         {
             "name": "fusio/adapter-util",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-util.git",
-                "reference": "006da52078fdb9c3ed9edef31a112efec968d262"
+                "reference": "8b25194e1c7b7f5248c94384d028f2b070c7d540"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/006da52078fdb9c3ed9edef31a112efec968d262",
-                "reference": "006da52078fdb9c3ed9edef31a112efec968d262",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/8b25194e1c7b7f5248c94384d028f2b070c7d540",
+                "reference": "8b25194e1c7b7f5248c94384d028f2b070c7d540",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "^2.5",
+                "doctrine/cache": "^1.6",
                 "fusio/engine": "^1.0",
                 "php": ">=7.0"
             },
@@ -749,7 +749,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2017-09-09T19:58:35+00:00"
+            "time": "2017-12-07T18:04:08+00:00"
         },
         {
             "name": "fusio/adapter-v8",
@@ -2077,21 +2077,21 @@
         },
         {
             "name": "psx/psx",
-            "version": "v3.0.2",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx.git",
-                "reference": "dc2a4095ed82644f48136ec4e93bc8ff82c2f621"
+                "reference": "ee453b4409387bd728cbd8dcf6326f30d8b5e1b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx/zipball/dc2a4095ed82644f48136ec4e93bc8ff82c2f621",
-                "reference": "dc2a4095ed82644f48136ec4e93bc8ff82c2f621",
+                "url": "https://api.github.com/repos/apioo/psx/zipball/ee453b4409387bd728cbd8dcf6326f30d8b5e1b9",
+                "reference": "ee453b4409387bd728cbd8dcf6326f30d8b5e1b9",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6",
-                "psx/framework": "^2.0"
+                "php": ">=7.0",
+                "psx/framework": "^2.4"
             },
             "require-dev": {
                 "phpunit/dbunit": "^2.0",
@@ -2119,7 +2119,7 @@
                 "framework",
                 "rest"
             ],
-            "time": "2017-08-09T18:07:55+00:00"
+            "time": "2017-12-07T17:44:47+00:00"
         },
         {
             "name": "psx/record",
