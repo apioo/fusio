@@ -12,6 +12,10 @@ return array(
     'fusio_expire_backend'    => 'PT1H',
     'fusio_expire_consumer'   => 'PT1H',
 
+    // How long can you use the refresh token after the access token was
+    // generated
+    'fusio_expire_refresh'    => 'P3D',
+
     // The secret key of a project. It is recommended to change this to another
     // random value. This is used i.e. to encrypt the connection credentials in 
     // the database. NOTE IF YOU CHANGE THE KEY FUSIO CAN NO LONGER READ ANY 
