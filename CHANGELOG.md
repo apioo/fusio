@@ -1,6 +1,9 @@
 
-### 1.0.0-RC5 (2017-12-06)
+### 1.0.0-RC5 (2017-12-09)
 
+* Documentation handle schema array types #106
+* Fix logging of long request uris #105
+* Add config to specify expire time of refresh token #104
 * Allow schema scheme when deploying a json schema #103
 * Add upgrade check
 * Improve test cases
