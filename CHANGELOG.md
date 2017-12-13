@@ -1,4 +1,9 @@
 
+### 1.0.0-RC6
+
+* Summarize deploy status and improve deploy output #108
+* Improve deploy schema file resolving #107
+
 ### 1.0.0-RC5 (2017-12-09)
 
 * Documentation handle schema array types #106
