@@ -1,6 +1,7 @@
 
 ### 1.0.0-RC6
 
+* Update developer app
 * Summarize deploy status and improve deploy output #108
 * Improve deploy schema file resolving #107
 
