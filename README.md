@@ -239,7 +239,7 @@ https://github.com/apioo/fusio/releases
   account. Therefor you can use the following command `php bin/fusio adduser`. 
   Choose as account type "Administrator".
 
-You can verify the installation by visiting the `psx_url` with a browser. You
+You can verify the installation by visiting the `FUSIO_URL` with a browser. You
 should see a API response that the installation was successful. The backend is
 available at `/fusio/`.
 
