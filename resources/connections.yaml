@@ -1,4 +1,122 @@
 Default-Connection:
   class: Fusio\Adapter\Sql\Connection\SqlAdvanced
   config:
-    url: "sqlite:///${dir.cache}/todo-app.db"
+    url: "sqlite:///${dir.cache}/${env.SQLITE_1_DB}"
+
+# SQL
+# Connects to a SQL database using the doctrine DBAL library.
+#
+#Mysql-1:
+#  class: Fusio\Adapter\Sql\Connection\Sql
+#  config:
+#    type: "pdo_mysql"
+#    host: ""
+#    username: ""
+#    password: ""
+#    database: ""
+
+# HTTP
+# Uses the Guzzle library to send HTTP requests.
+#
+#Http-1:
+#  class: Fusio\Adapter\Http\Connection\Http
+#  config:
+#    url: ""
+
+# MongoDB
+# Connects to a MongoDB using the official MongoDB library. Note this requires 
+# the PHP mongodb extension.
+#
+# > composer require fusio/adapter-mongodb
+# > php bin/fusio system:register "Fusio\Adapter\Mongodb\Adapter"
+#
+#Mongo-1:
+#  class: Fusio\Adapter\Mongodb\Connection\MongoDB
+#  config:
+#    url: ""
+#    database: ""
+
+# AMQP
+# Provides a client to send messages to a RabbitMQ.
+#
+# > composer require fusio/adapter-amqp
+# > php bin/fusio system:register "Fusio\Adapter\Amqp\Adapter"
+#
+#Amqp-1:
+#  class: Fusio\Adapter\Amqp\Connection\Amqp
+#  config:
+#    host: ""
+#    port: ""
+#    user: ""
+#    password: ""
+#    vhost: ""
+
+# Beanstalk
+# Provides a client to send messages to a Beanstalkd.
+#
+# > composer require fusio/adapter-beanstalk
+# > php bin/fusio system:register "Fusio\Adapter\Beanstalk\Adapter"
+#
+#Beanstalk-1:
+#  class: Fusio\Adapter\Beanstalk\Connection\Beanstalk
+#  config:
+#    host: ""
+#    port: ""
+
+# Cassandra
+# Connects to a Cassandra database using the official PHP library. Requires the 
+# cassandra PHP extension.
+#
+# > composer require fusio/adapter-cassandra
+# > php bin/fusio system:register "Fusio\Adapter\Cassandra\Adapter"
+#
+#Cassandra-1:
+#  class: Fusio\Adapter\Cassandra\Connection\Cassandra
+#  config:
+#    host: ""
+#    port: ""
+#    keyspace: ""
+
+# ElasticSearch
+# Connects to a Elasticsearch database using the official PHP library.
+#
+# > composer require fusio/adapter-elasticsearch
+# > php bin/fusio system:register "Fusio\Adapter\Elasticsearch\Adapter"
+#
+#Elasticsearch-1:
+#  class: Fusio\Adapter\Elasticsearch\Connection\Elasticsearch
+#  config:
+#    host: ""
+
+# Memcache
+# Uses the native PHP memcached extension to connect to a memcache server.
+#
+# > composer require fusio/adapter-memcache
+# > php bin/fusio system:register "Fusio\Adapter\Memcache\Adapter"
+#
+#Memcache-1:
+#  class: Fusio\Adapter\Memcache\Connection\Memcache
+#  config:
+#    host: ""
+
+# Neo4j
+# Connects to a Neo7j graph database using the official PHP library.
+#
+# > composer require fusio/adapter-neo4j
+# > php bin/fusio system:register "Fusio\Adapter\Neo4j\Adapter"
+#
+#Neo4j-1:
+#  class: Fusio\Adapter\Neo4j\Connection\Neo4j
+#  config:
+#    uri: ""
+
+# SOAP
+# Provides a client to send SOAP requests.
+#
+# > composer require fusio/adapter-soap
+# > php bin/fusio system:register "Fusio\Adapter\Soap\Adapter"
+#
+#Soap-1:
+#  class: Fusio\Adapter\Soap\Connection\Soap
+#  config:
+#    wsdl: ""

@@ -17,13 +17,13 @@ mail_register_body: >
 # Email address which is used in the "From" header
 mail_sender: ""
 # Facebook app secret
-provider_facebook_secret: ""
+provider_facebook_secret: "${env.PROVIDER_FACEBOOK_SECRET}"
 # Google app secret
-provider_google_secret: ""
+provider_google_secret: "${env.PROVIDER_GOOGLE_SECRET}"
 # GitHub app secret
-provider_github_secret: ""
+provider_github_secret: "${env.PROVIDER_GITHUB_SECRET}"
 # ReCaptcha secret
-recaptcha_secret: ""
+recaptcha_secret: "${env.RECAPTCHA_SECRET}"
 # If set each API response contains a Access-Control-Allow-Origin header with 
 # the provided value
 cors_allow_origin: "*"

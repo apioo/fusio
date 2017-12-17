@@ -1,5 +1,10 @@
 
-### 1.0.0-RC6
+### 1.0.0-RC7
+
+* Use dotenv config to load sensitive values from environment variables
+* Add missing help files
+
+### 1.0.0-RC6 (2017-12-14)
 
 * Update developer app
 * Summarize deploy status and improve deploy output #108

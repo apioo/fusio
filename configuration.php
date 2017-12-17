@@ -1,6 +1,11 @@
 <?php
 
-return array(
+if (!getenv('FUSIO_ENV')) {
+    $dotenv = new \Symfony\Component\Dotenv\Dotenv();
+    $dotenv->load(__DIR__ . '/.env');
+}
+
+return [
 
     // Whether the implicit flow is allowed. This is mostly needed for 
     // javascript apps
@@ -21,7 +26,7 @@ return array(
     // the database. NOTE IF YOU CHANGE THE KEY FUSIO CAN NO LONGER READ ANY 
     // DATA WHICH WAS ENCRYPTED BEFORE. BECAUSE OF THAT IT IS RECOMMENDED TO 
     // CHANGE THE KEY ONLY BEFORE THE INSTALLATION
-    'fusio_project_key'       => '42eec18ffdbffc9fda6110dcc705d6ce',
+    'fusio_project_key'       => getenv('FUSIO_PROJECT_KEY'),
 
     // Settings of the internal mailer. By default we use the internal PHP mail
     // function
@@ -52,22 +57,22 @@ return array(
 
     // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
     // http://localhost.com)
-    'psx_url'                 => 'http://127.0.0.1/projects/fusio/public',
+    'psx_url'                 => getenv('FUSIO_URL'),
 
     // The default timezone
     'psx_timezone'            => 'UTC',
 
     // Whether PSX runs in debug mode or not. If not error reporting is set to 0
     // Also several caches are used if the debug mode is false
-    'psx_debug'               => true,
+    'psx_debug'               => getenv('FUSIO_ENV') != 'prod',
 
     // Database parameters which are used for the doctrine DBAL connection
     // http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
     'psx_connection'          => [
-        'dbname'              => 'fusio',
-        'user'                => 'root',
-        'password'            => '',
-        'host'                => 'localhost',
+        'dbname'              => getenv('FUSIO_DB_NAME'),
+        'user'                => getenv('FUSIO_DB_USER'),
+        'password'            => getenv('FUSIO_DB_PW'),
+        'host'                => getenv('FUSIO_DB_HOST'),
         'driver'              => 'pdo_mysql',
     ],
 
@@ -89,7 +94,18 @@ return array(
 
     // A closure which returns a doctrine cache implementation. If null the
     // filesystem cache is used
-    //'psx_cache_factory'       => null,
+    /*
+    'psx_cache_factory'       => function($config, $namespace){
+        $memcached = new \Memcached();
+        $memcached->addServer(getenv('FUSIO_MEMCACHE_HOST'), getenv('FUSIO_MEMCACHE_PORT'));
+
+        $memcache = new \Doctrine\Common\Cache\MemcachedCache();
+        $memcache->setMemcached($memcached);
+        $memcache->setNamespace($namespace);
+
+        return $memcache;
+    },
+    */
 
     // A closure which returns a monolog handler implementation. If null the
     // system handler is used
@@ -102,4 +118,4 @@ return array(
     // specify a custom template
     //'psx_error_template'      => null,
 
-);
+];
