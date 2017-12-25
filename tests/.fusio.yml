@@ -2,8 +2,13 @@
 # configuration but replaces the connection with an in-memory sqlite database.
 # ------------------------------------------------------------------------------
 routes: !include resources/routes.yaml
+# ------------------------------------------------------------------------------
 schema: !include resources/schemas.yaml
+# ------------------------------------------------------------------------------
 connection:
   Default-Connection:
     class: Fusio\Impl\Connection\Memory
+# ------------------------------------------------------------------------------
 migration: !include resources/migrations.yaml
+# ------------------------------------------------------------------------------
+config: !include resources/config.yaml

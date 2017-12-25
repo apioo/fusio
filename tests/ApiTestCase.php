@@ -55,7 +55,7 @@ abstract class ApiTestCase extends ControllerDbTestCase
         $deploy->deploy(file_get_contents(__DIR__ . '/.fusio.yml'), __DIR__ . '/..');
 
         // clear all cached routes after deployment since the deploy adds new
-        // routes which are not in the databas
+        // routes which are not in the database
         $routingParser = Environment::getService('routing_parser');
         if ($routingParser instanceof DatabaseRoutes) {
             $routingParser->clear();
@@ -71,21 +71,6 @@ abstract class ApiTestCase extends ControllerDbTestCase
                 'allow'   => 1,
                 'methods' => 'GET|POST|PUT|DELETE',
             ]);
-        }
-
-        // insert the app fixture data
-        $connection = Environment::getService('connector')->getConnection('Default-Connection');
-        $inserts    = Fixture::getAppInserts();
-
-        if ($connection instanceof Connection) {
-            foreach ($inserts as $tableName => $rows) {
-                $connection->executeUpdate('DELETE FROM ' . $tableName . ' WHERE 1=1');
-                foreach ($rows as $row) {
-                    $connection->insert($tableName, $row);
-                }
-            }
-        } else {
-            throw new \RuntimeException('Can only insert fixture for SQL connections');
         }
     }
 }

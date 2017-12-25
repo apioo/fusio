@@ -151,12 +151,13 @@ JSON;
         ]);
 
         $actual = (string) $response->getBody();
+        $actual = preg_replace('/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/', '0000-00-00 00:00:00', $actual);
         $expect = <<<'JSON'
 {
     "id": "4",
     "status": "1",
     "title": "Task 4",
-    "insertDate": "2016-02-17 20:15:56"
+    "insertDate": "0000-00-00 00:00:00"
 }
 JSON;
 

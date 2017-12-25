@@ -32,18 +32,6 @@ class Fixture
 {
     protected static $dataSet;
 
-    public static function getAppInserts()
-    {
-        return [
-            'app_todo' => [
-                ['status' => 1, 'title' => 'Task 1', 'insertDate' => '2016-02-17 20:14:45'],
-                ['status' => 1, 'title' => 'Task 2', 'insertDate' => '2016-02-17 20:14:49'],
-                ['status' => 1, 'title' => 'Task 3', 'insertDate' => '2016-02-17 20:15:55'],
-                ['status' => 1, 'title' => 'Task 4', 'insertDate' => '2016-02-17 20:15:56'],
-            ],
-        ];
-    }
-
     public static function getSystemInserts()
     {
         $expire = new \DateTime();
