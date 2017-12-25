@@ -1,7 +1,11 @@
 
-### 1.0.0-RC7
+### 1.0.0
 
-* Use dotenv config to load sensitive values from environment variables
+* Improve tests and use migration as fixture
+
+### 1.0.0-RC7 (2017-12-23)
+
+* Use dotenv config to load sensitive values from environment variables #110
 * Add missing help files
 
 ### 1.0.0-RC6 (2017-12-14)
