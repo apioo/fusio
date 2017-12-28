@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fusio-Consumer</title>
-    <base href="/projects/fusio/public/developer/">
+    <base href="/developer/">
     <link href="css/fusio.min.css" rel="stylesheet" media="screen">
     <script src="js/fusio.min.js"></script>
     <script type="text/javascript">
@@ -19,7 +19,7 @@
              * backend API. If not provided Fusio will try to guess the correct url
              * I.e.: http://127.0.0.1/projects/fusio/public/index.php/
              */
-            var fusioUrl = 'http://127.0.0.1/projects/fusio/public/index.php/';
+            var fusioUrl = fusioProvider.guessFusioEndpointUrl(false);
 
             fusioProvider.setBaseUrl(fusioUrl);
 
