@@ -13,7 +13,7 @@ mail_register_body: >
 
   you have successful registered at Fusio.
   To activate you account please visit the following url:
-  http://127.0.0.1/projects/fusio/public/consumer/#activate?token={token}
+  ${env.FUSIO_URL}/developer/activate?token={token}
 # Email address which is used in the "From" header
 mail_sender: ""
 # Facebook app secret
