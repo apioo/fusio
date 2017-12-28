@@ -8,12 +8,11 @@ scopes_default: "authorization,consumer"
 # Subject of the activation mail
 mail_register_subject: "Fusio registration"
 # Body of the activation mail
-mail_register_body: >
-  Hello {name},
+mail_register_body: "Hello {name},
 
   you have successful registered at Fusio.
   To activate you account please visit the following url:
-  ${env.FUSIO_URL}/developer/activate?token={token}
+  ${env.FUSIO_URL}\/developer\/activate?token={token}"
 # Email address which is used in the "From" header
 mail_sender: ""
 # Facebook app secret
