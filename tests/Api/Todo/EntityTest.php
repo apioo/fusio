@@ -126,15 +126,15 @@ class EntityTest extends ApiTestCase
     "links": [
         {
             "rel": "openapi",
-            "href": "\/export\/openapi\/*\/todo\/:todo_id"
+            "href": "\/index.php\/export\/openapi\/*\/todo\/:todo_id"
         },
         {
             "rel": "swagger",
-            "href": "\/export\/swagger\/*\/todo\/:todo_id"
+            "href": "\/index.php\/export\/swagger\/*\/todo\/:todo_id"
         },
         {
             "rel": "raml",
-            "href": "\/export\/raml\/*\/todo\/:todo_id"
+            "href": "\/index.php\/export\/raml\/*\/todo\/:todo_id"
         }
     ]
 }

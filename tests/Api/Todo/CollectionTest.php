@@ -136,15 +136,15 @@ class CollectionTest extends ApiTestCase
     "links": [
         {
             "rel": "openapi",
-            "href": "\/export\/openapi\/*\/todo"
+            "href": "\/index.php\/export\/openapi\/*\/todo"
         },
         {
             "rel": "swagger",
-            "href": "\/export\/swagger\/*\/todo"
+            "href": "\/index.php\/export\/swagger\/*\/todo"
         },
         {
             "rel": "raml",
-            "href": "\/export\/raml\/*\/todo"
+            "href": "\/index.php\/export\/raml\/*\/todo"
         }
     ]
 }
