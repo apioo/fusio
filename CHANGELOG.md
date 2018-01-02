@@ -1,6 +1,8 @@
 
-### 1.0.0
+### 1.0.0-RC8
 
+* Update PSX framework to version 4.0
+* Update developer app
 * Improve tests and use migration as fixture
 
 ### 1.0.0-RC7 (2017-12-23)
