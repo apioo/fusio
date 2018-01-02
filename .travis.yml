@@ -6,8 +6,6 @@ php:
 sudo: false
 services:
   - mysql
-  - memcached
-  - mongodb
 before_install:
   - phpenv config-rm xdebug.ini
   - mysql -e 'create database fusio;'
