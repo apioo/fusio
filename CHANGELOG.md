@@ -1,7 +1,8 @@
 
-### 1.0.0-RC8
+### 1.0.0-RC8 (2018-01-03)
 
 * Update PSX framework to version 4.0
+* Add rate limit to deployment
 * Update developer app
 * Improve tests and use migration as fixture
 
