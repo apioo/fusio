@@ -35,7 +35,7 @@ class CollectionTest extends ApiTestCase
 {
     public function testDocumentation()
     {
-        $response = $this->sendRequest('http://127.0.0.1/doc/*/todo', 'GET', [
+        $response = $this->sendRequest('/doc/*/todo', 'GET', [
             'User-Agent'    => 'Fusio TestCase',
         ]);
 
@@ -156,7 +156,7 @@ JSON;
 
     public function testGet()
     {
-        $response = $this->sendRequest('http://127.0.0.1/todo', 'GET', [
+        $response = $this->sendRequest('/todo', 'GET', [
             'User-Agent'    => 'Fusio TestCase',
         ]);
 
@@ -273,7 +273,7 @@ JSON;
     public function testPost()
     {
         $body     = json_encode(['title' => 'foo']);
-        $response = $this->sendRequest('http://127.0.0.1/todo', 'POST', [
+        $response = $this->sendRequest('/todo', 'POST', [
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ], $body);
@@ -304,7 +304,7 @@ JSON;
     public function testPostInvalidPayload()
     {
         $body     = json_encode(['foo' => 'foo']);
-        $response = $this->sendRequest('http://127.0.0.1/todo', 'POST', [
+        $response = $this->sendRequest('/todo', 'POST', [
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ], $body);
@@ -325,7 +325,7 @@ JSON;
     public function testPostWithoutAuthorization()
     {
         $body     = json_encode(['title' => 'foo']);
-        $response = $this->sendRequest('http://127.0.0.1/todo', 'POST', [
+        $response = $this->sendRequest('/todo', 'POST', [
             'User-Agent'    => 'Fusio TestCase',
         ], $body);
 
@@ -344,7 +344,7 @@ JSON;
 
     public function testPut()
     {
-        $response = $this->sendRequest('http://127.0.0.1/todo', 'PUT', [
+        $response = $this->sendRequest('/todo', 'PUT', [
             'User-Agent'    => 'Fusio TestCase',
         ]);
 
@@ -363,7 +363,7 @@ JSON;
 
     public function testDelete()
     {
-        $response = $this->sendRequest('http://127.0.0.1/todo', 'DELETE', [
+        $response = $this->sendRequest('/todo', 'DELETE', [
             'User-Agent'    => 'Fusio TestCase',
         ]);
 

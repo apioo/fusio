@@ -35,7 +35,7 @@ class EntityTest extends ApiTestCase
 {
     public function testDocumentation()
     {
-        $response = $this->sendRequest('http://127.0.0.1/doc/*/todo/4', 'GET', [
+        $response = $this->sendRequest('/doc/*/todo/4', 'GET', [
             'User-Agent'    => 'Fusio TestCase',
         ]);
 
@@ -146,7 +146,7 @@ JSON;
 
     public function testGet()
     {
-        $response = $this->sendRequest('http://127.0.0.1/todo/4', 'GET', [
+        $response = $this->sendRequest('/todo/4', 'GET', [
             'User-Agent'    => 'Fusio TestCase',
         ]);
 
@@ -167,7 +167,7 @@ JSON;
 
     public function testPost()
     {
-        $response = $this->sendRequest('http://127.0.0.1/todo/4', 'POST', [
+        $response = $this->sendRequest('/todo/4', 'POST', [
             'User-Agent'    => 'Fusio TestCase',
         ]);
 
@@ -186,7 +186,7 @@ JSON;
 
     public function testPut()
     {
-        $response = $this->sendRequest('http://127.0.0.1/todo/4', 'PUT', [
+        $response = $this->sendRequest('/todo/4', 'PUT', [
             'User-Agent'    => 'Fusio TestCase',
         ]);
 
@@ -205,7 +205,7 @@ JSON;
 
     public function testDelete()
     {
-        $response = $this->sendRequest('http://127.0.0.1/todo/4', 'DELETE', [
+        $response = $this->sendRequest('/todo/4', 'DELETE', [
             'User-Agent'    => 'Fusio TestCase',
             'Authorization' => 'Bearer da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf'
         ]);
@@ -235,7 +235,7 @@ JSON;
 
     public function testDeleteWithoutAuthorization()
     {
-        $response = $this->sendRequest('http://127.0.0.1/todo/4', 'DELETE', [
+        $response = $this->sendRequest('/todo/4', 'DELETE', [
             'User-Agent'    => 'Fusio TestCase',
         ]);
 
