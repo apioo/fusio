@@ -55,7 +55,7 @@
         <delete dir="${build}/doc" />
         <delete file="${build}/.travis.yml" />
         <delete includeemptydirs="true">
-            <fileset dir="${build}/cache" includes="*" />
+            <fileset dir="${build}/cache" includes="**/*" />
         </delete>
     </target>
 
