@@ -1,4 +1,9 @@
 
+### 1.0.0 (2018-01-13)
+
+* Updated dependencies
+* Improved tests and documentation
+
 ### 1.0.0-RC8 (2018-01-03)
 
 * Update PSX framework to version 4.0
