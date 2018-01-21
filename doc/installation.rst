@@ -106,6 +106,26 @@ contains an important rule which redirects the ``Authorization`` header to Fusio
 which is otherwise removed. If the .htaccess file does not work please check 
 whether the ``AllowOverride`` directive is set correctly i.e. to ``All``.
 
+Shared-Hosting
+^^^^^^^^^^^^^^
+
+If you want to run Fusio on a shared-hosting environment it is possible but in 
+general not recommended since you can not properly configure the web server and
+access the CLI. Therefore you can not use the deploy command which simplifies
+development. The bigest problem of a shared hosting environment is that you can 
+not set the document root to the ``public/`` folder. If you place the following 
+``.htaccess`` file in the directory you can bypass this problem by redirecting 
+all requests to the ``public/`` folder.
+
+.. code-block:: text
+
+    RewriteEngine on
+    RewriteRule (.*) public/$1/
+
+While this may work many shared hosting provider have strict limitations of 
+specific PHP functions which are maybe used by Fusio and which produce other
+errors.
+
 Javascript V8
 -------------
 
