@@ -2,11 +2,8 @@
 API
 ===
 
-This chapter contains the automatic generated API documentation about the
-internal API endpoints.
+If you want to access or use the internal REST API of Fusio you can take a look
+at our internal `API documentation`_. This documentation contains all available
+REST API endpoints.
 
-.. toctree::
-   :maxdepth: 3
-
-   api/backend
-   api/consumer
+.. _API documentation: http://demo.fusio-project.org/internal/#!/page/about
