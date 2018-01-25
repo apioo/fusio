@@ -35,14 +35,18 @@ different actions.
 
     $connection = $connector->get('Mysql-1');
     
-    $logger = new MyLogger($connection);
-    $logger->log('Request was made);
+    $myLogger = new MyLogger($connection);
+    $myLogger->log('A new log entry');
 
 A simple implementation of the logger could look like:
 
 .. code-block:: php
 
     <?php
+
+    namespace Acme\MyLib;
+
+    use Doctrine\DBAL\Connection;
 
     class MyLogger
     {
@@ -88,6 +92,10 @@ A simple client implementation could look like:
 .. code-block:: php
 
     <?php
+
+    namespace Acme\MyLib;
+
+    use GuzzleHttp\Client;
 
     class MyClient
     {
