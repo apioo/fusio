@@ -132,10 +132,10 @@ We have several example actions which show how to implement a specific task as
 action. 
 
 .. toctree::
-:maxdepth: 2
-
-       action/sql
-       action/mongodb
+    :maxdepth: 2
+    
+    action/sql
+    action/mongodb
 
 
 .. _javascript: http://www.fusio-project.org/documentation/v8
