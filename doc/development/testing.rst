@@ -29,7 +29,9 @@ Development
 Every test case should extend from the ``ApiTestCase`` class. The test case
 contains a test method for every HTTP method i.e. ``testGet``, ``testPost``, etc.
 Every test makes the appropriated call to the API endpoint. Then we assert the
-response body and if needed also the headers. Through this way we can simply 
+response body and if needed also the headers (for larger response bodies it is
+recommended to move the expected JSON payload to an external file which is then
+included i.e. through ``file_get_contents``). Through this way we can simply 
 assure that our API works as expected. The following shows a simple API test 
 case from the example todo entity API endpoint:
 
