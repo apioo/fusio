@@ -35,6 +35,8 @@ case from the example todo entity API endpoint:
 
 .. code-block:: php
 
+    <?php
+
     class EntityTest extends ApiTestCase
     {
         public function testGet()

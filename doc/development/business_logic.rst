@@ -30,7 +30,9 @@ example shows a simple custom logger implementation which you could use in
 different actions.
 
 .. code-block:: php
-    
+
+    <?php
+
     $connection = $connector->get('Mysql-1');
     
     $logger = new MyLogger($connection);
@@ -39,6 +41,8 @@ different actions.
 A simple implementation of the logger could look like:
 
 .. code-block:: php
+
+    <?php
 
     class MyLogger
     {
@@ -72,6 +76,8 @@ AMQP connection to use a message queue.
 
 .. code-block:: php
 
+    <?php
+
     $client = $connector->get('Http-1');
     
     $myClient = new MyClient($client);
@@ -80,6 +86,8 @@ AMQP connection to use a message queue.
 A simple client implementation could look like:
 
 .. code-block:: php
+
+    <?php
 
     class MyClient
     {
@@ -128,6 +136,8 @@ the technique describe in the chapter above to develop platform independent
 services which can be reused across multiple actions and applications.
 
 .. code-block:: php
+
+    <?php
 
     namespace App;
 
