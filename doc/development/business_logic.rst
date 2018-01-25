@@ -1,6 +1,6 @@
 
-Dependency
-==========
+Business logic
+==============
 
 In case your API is not a simple CRUD app you probably need to execute some more 
 complex business logic. This chapter shows options how you can organize this 
