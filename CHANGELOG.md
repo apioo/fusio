@@ -1,4 +1,10 @@
 
+### 1.0.1 (2018-02-03)
+
+* Add priority to routes so that the order of the routes in deployment is 
+  stable #120
+* Installer add preview option to show SQL queries #74
+
 ### 1.0.0 (2018-01-13)
 
 * Updated dependencies
