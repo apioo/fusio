@@ -4,7 +4,7 @@
 * Add priority to routes so that the order of the routes in deployment is 
   stable #120
 * Installer add preview option to show SQL queries #74
-* Add connection lifecycle and deployment interface to give an action the 
+* Add connection lifecycle and deployment interface to give a connection the 
   possibility to execute additional logic on execution
 * Improved documentation
 
