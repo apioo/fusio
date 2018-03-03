@@ -1,6 +1,7 @@
 
-### 1.0.1
+### 1.1.0
 
+* Update dependencies
 * Add priority to routes so that the order of the routes in deployment is 
   stable #120
 * Installer add preview option to show SQL queries #74
