@@ -23,6 +23,3 @@ provider_google_secret: "${env.PROVIDER_GOOGLE_SECRET}"
 provider_github_secret: "${env.PROVIDER_GITHUB_SECRET}"
 # ReCaptcha secret
 recaptcha_secret: "${env.RECAPTCHA_SECRET}"
-# If set each API response contains a Access-Control-Allow-Origin header with 
-# the provided value
-cors_allow_origin: "*"
