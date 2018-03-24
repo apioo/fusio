@@ -140,7 +140,7 @@ class EntityTest extends ApiTestCase
 }
 JSON;
 
-        $this->assertEquals(null, $response->getStatusCode(), $actual);
+        $this->assertEquals(200, $response->getStatusCode(), $actual);
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
     }
 
