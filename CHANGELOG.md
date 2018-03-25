@@ -1,5 +1,13 @@
 
-### 1.1.0
+### 1.1.1
+
+* Add web server config generator #132
+* Update fusio backend app
+* Update swagger-ui and backend app
+* Importer parses now also OpenAPI and Swagger YAML format #115
+* Improved CORS handling and removed config
+
+### 1.1.0 (2018-03-04)
 
 * Update dependencies
 * Add priority to routes so that the order of the routes in deployment is 
