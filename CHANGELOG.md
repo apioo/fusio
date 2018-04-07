@@ -1,5 +1,13 @@
 
-### 1.1.1
+### 1.1.2
+
+* Fix handling of OPTIONS request without GET schema #142
+* Increase name column length #141
+* Add option to deploy command to force re-execution of migration files #140
+* Add clean command #137
+* Add push command to push the Fusio instance to a remote provider
+
+### 1.1.1 (2018-03-25)
 
 * Add web server config generator #132
 * Update fusio backend app
