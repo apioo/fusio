@@ -1,5 +1,5 @@
 
-### 1.1.2
+### 1.1.2 (2018-04-08)
 
 * Fix handling of OPTIONS request without GET schema #142
 * Increase name column length #141
