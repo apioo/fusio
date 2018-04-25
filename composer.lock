@@ -863,16 +863,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "cc33ca2f1f58025f834184893ce8553dfa98ce1e"
+                "reference": "530c875312a56e3dd3cbd37f239256bfea809abe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/cc33ca2f1f58025f834184893ce8553dfa98ce1e",
-                "reference": "cc33ca2f1f58025f834184893ce8553dfa98ce1e",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/530c875312a56e3dd3cbd37f239256bfea809abe",
+                "reference": "530c875312a56e3dd3cbd37f239256bfea809abe",
                 "shasum": ""
             },
             "require": {
@@ -913,20 +913,20 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2018-04-07T21:18:07+00:00"
+            "time": "2018-04-23T20:58:57+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.3.2",
+            "version": "6.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90"
+                "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/68d0ea14d5a3f42a20e87632a5f84931e2709c90",
-                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/407b0cb880ace85c9b63c5f9551db498cb2d50ba",
+                "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba",
                 "shasum": ""
             },
             "require": {
@@ -936,7 +936,7 @@
             },
             "require-dev": {
                 "ext-curl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4",
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
                 "psr/log": "^1.0"
             },
             "suggest": {
@@ -978,7 +978,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2018-03-26T16:33:04+00:00"
+            "time": "2018-04-22T15:46:56+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1599,16 +1599,16 @@
         },
         {
             "name": "psx/api",
-            "version": "v2.4.7",
+            "version": "v2.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-api.git",
-                "reference": "8ab96a14f94cb5125ef7b627e90851f3fd187aa5"
+                "reference": "cef252d890529815c79b1aa5342e3a7d2f04aa8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-api/zipball/8ab96a14f94cb5125ef7b627e90851f3fd187aa5",
-                "reference": "8ab96a14f94cb5125ef7b627e90851f3fd187aa5",
+                "url": "https://api.github.com/repos/apioo/psx-api/zipball/cef252d890529815c79b1aa5342e3a7d2f04aa8a",
+                "reference": "cef252d890529815c79b1aa5342e3a7d2f04aa8a",
                 "shasum": ""
             },
             "require": {
@@ -1620,6 +1620,7 @@
                 "psx/json": "^1.0",
                 "psx/model": "^2.0",
                 "psx/schema": "^2.0",
+                "symfony/console": "~2.8|~3.0|~4.0",
                 "symfony/yaml": "~2.8|~3.0",
                 "twig/twig": "^2.4"
             },
@@ -1655,7 +1656,7 @@
                 "swagger",
                 "wsdl"
             ],
-            "time": "2018-01-06T20:22:50+00:00"
+            "time": "2018-04-23T19:19:45+00:00"
         },
         {
             "name": "psx/cache",
@@ -2031,16 +2032,16 @@
         },
         {
             "name": "psx/model",
-            "version": "v2.0.3",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-model.git",
-                "reference": "85aa0d24b0fafd604cb351f3fc35f1871a9f8721"
+                "reference": "a91b1ae20383601538cebf882857400adeaa18b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-model/zipball/85aa0d24b0fafd604cb351f3fc35f1871a9f8721",
-                "reference": "85aa0d24b0fafd604cb351f3fc35f1871a9f8721",
+                "url": "https://api.github.com/repos/apioo/psx-model/zipball/a91b1ae20383601538cebf882857400adeaa18b6",
+                "reference": "a91b1ae20383601538cebf882857400adeaa18b6",
                 "shasum": ""
             },
             "require": {
@@ -2077,7 +2078,7 @@
                 "rss",
                 "swagger"
             ],
-            "time": "2017-11-13T20:59:36+00:00"
+            "time": "2018-04-19T20:29:03+00:00"
         },
         {
             "name": "psx/oauth",
@@ -2267,16 +2268,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "14f9bb5377ed43da54272726718967032b556f53"
+                "reference": "533192678b820a8fe5eaed13e4055330a710079e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/14f9bb5377ed43da54272726718967032b556f53",
-                "reference": "14f9bb5377ed43da54272726718967032b556f53",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/533192678b820a8fe5eaed13e4055330a710079e",
+                "reference": "533192678b820a8fe5eaed13e4055330a710079e",
                 "shasum": ""
             },
             "require": {
@@ -2291,7 +2292,7 @@
                 "psx/record": "^1.0",
                 "psx/uri": "^1.0",
                 "psx/validate": "^1.0",
-                "symfony/console": "~2.8|~3.0"
+                "symfony/console": "~2.8|~3.0|~4.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^5.6"
@@ -2323,7 +2324,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2018-02-13T22:31:14+00:00"
+            "time": "2018-04-09T20:27:08+00:00"
         },
         {
             "name": "psx/sql",
@@ -3249,23 +3250,23 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.7.5",
+            "version": "1.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401"
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/dfd6be44111a7c41c2e884a336cc4f461b3b2401",
-                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/33a7e3c4fda54e912ff6338c48823bd5c0f0b712",
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712",
                 "shasum": ""
             },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
                 "php": "^5.3|^7.0",
                 "phpdocumentor/reflection-docblock": "^2.0|^3.0.2|^4.0",
-                "sebastian/comparator": "^1.1|^2.0",
+                "sebastian/comparator": "^1.1|^2.0|^3.0",
                 "sebastian/recursion-context": "^1.0|^2.0|^3.0"
             },
             "require-dev": {
@@ -3308,7 +3309,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-02-19T10:16:54+00:00"
+            "time": "2018-04-18T13:57:24+00:00"
         },
         {
             "name": "phpunit/dbunit",
