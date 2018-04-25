@@ -3,8 +3,27 @@
 app_approval: 0
 # The max amount of apps a consumer can register
 app_consumer: 16
-# If a user registers through the consumer API the following scopes are assigned
-scopes_default: "authorization,consumer"
+
+# Additional API information which are used in various API specifications
+# The title of the application
+info_title: "Fusio"
+# A short description of the application. CommonMark syntax MAY be used for rich 
+# text representation
+info_description: ""
+# A URL to the Terms of Service for the API. MUST be in the format of a URL
+info_tos: ""
+# The identifying name of the contact person/organization
+info_contact_name: ""
+# The URL pointing to the contact information. MUST be in the format of a URL
+info_contact_url: ""
+# The email address of the contact person/organization. MUST be in the format of 
+# an email address
+info_contact_email: ""
+# The license name used for the API
+info_license_name: ""
+# A URL to the license used for the API. MUST be in the format of a URL
+info_license_url: ""
+
 # Subject of the activation mail
 mail_register_subject: "Fusio registration"
 # Body of the activation mail
@@ -15,11 +34,16 @@ mail_register_body: "Hello {name},
   ${env.FUSIO_URL}\/developer\/activate?token={token}"
 # Email address which is used in the "From" header
 mail_sender: ""
+
 # Facebook app secret
 provider_facebook_secret: "${env.PROVIDER_FACEBOOK_SECRET}"
 # Google app secret
 provider_google_secret: "${env.PROVIDER_GOOGLE_SECRET}"
 # GitHub app secret
 provider_github_secret: "${env.PROVIDER_GITHUB_SECRET}"
+
 # ReCaptcha secret
 recaptcha_secret: "${env.RECAPTCHA_SECRET}"
+
+# If a user registers through the consumer API the following scopes are assigned
+scopes_default: "authorization,consumer"
