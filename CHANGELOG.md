@@ -1,4 +1,9 @@
 
+### 1.1.3
+
+* Add additional meta fields to OpenAPI and Swagger spec
+* Add security fields to the Swagger spec
+
 ### 1.1.2 (2018-04-08)
 
 * Fix handling of OPTIONS request without GET schema #142
