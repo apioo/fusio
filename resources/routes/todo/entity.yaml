@@ -3,12 +3,14 @@ scopes: ["todo"]
 methods:
   GET:
     public: true
+    description: "Returns a single todo entry"
     responses: 
       200: Todo
       500: Message
     action: "${dir.src}/Todo/row.php"
   DELETE:
     public: false
+    description: "Removes a todo entry"
     responses: 
       200: Message
       500: Message

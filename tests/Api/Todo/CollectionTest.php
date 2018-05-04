@@ -45,7 +45,7 @@ class CollectionTest extends ApiTestCase
     "path": "\/todo",
     "version": "*",
     "status": 4,
-    "description": "",
+    "description": null,
     "schema": {
         "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
         "id": "urn:schema.phpsx.org#",
@@ -120,12 +120,14 @@ class CollectionTest extends ApiTestCase
     },
     "methods": {
         "GET": {
+            "description": "Returns all todo entries",
             "responses": {
                 "200": "#\/definitions\/GET-200-response",
                 "500": "#\/definitions\/GET-500-response"
             }
         },
         "POST": {
+            "description": "Creates a new todo entry",
             "request": "#\/definitions\/POST-request",
             "responses": {
                 "201": "#\/definitions\/POST-201-response",

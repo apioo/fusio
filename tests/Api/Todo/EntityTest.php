@@ -45,11 +45,20 @@ class EntityTest extends ApiTestCase
     "path": "\/todo\/:todo_id",
     "version": "*",
     "status": 4,
-    "description": "",
+    "description": null,
     "schema": {
         "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
         "id": "urn:schema.phpsx.org#",
         "definitions": {
+            "path-template": {
+                "type": "object",
+                "title": "path",
+                "properties": {
+                    "todo_id": {
+                        "type": "string"
+                    }
+                }
+            },
             "Todo": {
                 "type": "object",
                 "title": "todo",
@@ -108,14 +117,17 @@ class EntityTest extends ApiTestCase
             }
         }
     },
+    "pathParameters": "#\/definitions\/path-template",
     "methods": {
         "GET": {
+            "description": "Returns a single todo entry",
             "responses": {
                 "200": "#\/definitions\/GET-200-response",
                 "500": "#\/definitions\/GET-500-response"
             }
         },
         "DELETE": {
+            "description": "Removes a todo entry",
             "request": "#\/definitions\/DELETE-request",
             "responses": {
                 "200": "#\/definitions\/DELETE-200-response",

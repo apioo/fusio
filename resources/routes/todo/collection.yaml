@@ -3,12 +3,14 @@ scopes: ["todo"]
 methods:
   GET:
     public: true
+    description: "Returns all todo entries"
     responses: 
       200: Todo-Collection
       500: Message
     action: "${dir.src}/Todo/collection.php"
   POST:
     public: false
+    description: "Creates a new todo entry"
     request: Todo
     responses: 
       201: Message
