@@ -12,6 +12,19 @@ services, develop SPAs or Mobile-Apps. Because of this we think that Fusio is a
 great tool to simplify building such APIs. More information on 
 https://www.fusio-project.org/
 
+# Why
+
+The originally idea of Fusio was to provide a tool which lets you easily build a
+great API beside an existing application. I.e. in case you have already a web
+application on a domain `acme.com` Fusio helps you to build the fitting API
+at `api.acme.com`. Beside this use case you can also use Fusio to build a new 
+API from scratch or use it internally i.e. for micro services.
+
+To build the API Fusio can connect to many different databases, message queue
+systems or internal web services. There are also many ways to integrate your
+[business logic](http://fusio.readthedocs.io/en/latest/development/business_logic.html)
+into the API of Fusio.
+
 # Features
 
 Fusio covers all important aspects of the API lifecycle so you can concentrate
