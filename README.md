@@ -91,8 +91,8 @@ uses a library which helps to work with a remote service. I.e. the SQL
 connection uses the Doctrine DBAL library to work with a database (it returns
 a `Doctrine\DBAL\Connection` instance). A connection always returns a fully 
 configured object so you never have to deal with any credentials in an action. 
-Besides that there are already many different actions available which you can 
-use i.e. to create an API based on a database table.
+There are already many different actions available which you can use i.e. to
+create an API based on a database table.
 
 With Fusio we want to remove as many layers as possible so that you can work
 in your action directly with a specific library. Because of this Fusio has no 
