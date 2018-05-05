@@ -48,7 +48,7 @@ on building the actual business logic of your API.
   It is possible to limit the requests to a specific threshold.
 * __Specification__  
   Fusio generates different specification formats for the defined API endpoints
-  i.e. OAI (Swagger), RAML.
+  i.e. OpenAPI, Swagger, RAML.
 * __User management__  
   Fusio provides an API where new users can login or register a new account 
   through GitHub, Google, Facebook or through normal email registration.
