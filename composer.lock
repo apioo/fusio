@@ -1599,16 +1599,16 @@
         },
         {
             "name": "psx/api",
-            "version": "v2.4.9",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-api.git",
-                "reference": "cef252d890529815c79b1aa5342e3a7d2f04aa8a"
+                "reference": "2f2f69e5bb1636d9ffce0ef85f9f0262b006350b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-api/zipball/cef252d890529815c79b1aa5342e3a7d2f04aa8a",
-                "reference": "cef252d890529815c79b1aa5342e3a7d2f04aa8a",
+                "url": "https://api.github.com/repos/apioo/psx-api/zipball/2f2f69e5bb1636d9ffce0ef85f9f0262b006350b",
+                "reference": "2f2f69e5bb1636d9ffce0ef85f9f0262b006350b",
                 "shasum": ""
             },
             "require": {
@@ -1656,7 +1656,7 @@
                 "swagger",
                 "wsdl"
             ],
-            "time": "2018-04-23T19:19:45+00:00"
+            "time": "2018-05-05T18:03:11+00:00"
         },
         {
             "name": "psx/cache",
