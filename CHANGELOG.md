@@ -1,8 +1,11 @@
 
 ### 1.1.3
 
+* Add description field to method
+* Add scopes field to route
 * Add additional meta fields to OpenAPI and Swagger spec
 * Add security fields to the Swagger spec
+* Updated swagger-ui app
 
 ### 1.1.2 (2018-04-08)
 
