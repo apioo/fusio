@@ -50,11 +50,6 @@ return [
     // file
     'fusio_cron_exec'         => '/usr/bin/php ' . __DIR__ . '/bin/fusio',
 
-    // In case you want to host the backend app on a different domain you need
-    // to set a fitting Access-Control-Allow-Origin header. To set a CORS header
-    // for your app please use the system setting
-    'fusio_cors'              => null,
-
     // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
     // http://localhost.com)
     'psx_url'                 => getenv('FUSIO_URL'),
@@ -111,12 +106,5 @@ return [
     // A closure which returns a monolog handler implementation. If null the
     // system handler is used
     //'psx_logger_factory'      => null,
-
-    // Class name of the error controller
-    //'psx_error_controller'    => null,
-
-    // If you only want to change the appearance of the error page you can 
-    // specify a custom template
-    //'psx_error_template'      => null,
 
 ];
