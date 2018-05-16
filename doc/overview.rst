@@ -10,7 +10,7 @@ RESTful APIs. We think that there is a huge potential in the API economy.
 Whether you need an API to expose your business functionality, build micro 
 services, develop SPAs or Mobile-Apps. Because of this we think that Fusio is a 
 great tool to simplify building such APIs. More information on 
-http://www.fusio-project.org/
+https://www.fusio-project.org/
 
 Features
 --------
