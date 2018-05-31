@@ -46,8 +46,10 @@ if (!empty($autoloadFile)) {
 
         $container->get('console')->run();
     } else {
-        die('Could not find container at: ' . $containerFile);
+        echo 'Could not find container at: ' . $containerFile;
+        exit(1);
     }
 } else {
-    die('You need to set up the project dependencies through composer');
+    echo 'You need to set up the project dependencies through composer';
+    exit(1);
 }
