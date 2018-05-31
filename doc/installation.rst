@@ -18,6 +18,11 @@ https://github.com/apioo/fusio/releases
 Configuration
 -------------
 
+You can either manually install Fusio with the steps below or you can also use
+the browser based installer at ``public/install.php``. Note because of security
+reasons it is highly recommended to remove the installer script after the
+installation.
+
 * **Adjust the configuration file**
 
   Open the file ``.env`` in the Fusio directory and change the key ``FUSIO_URL``
