@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e576792381cecabed6f5a04c8faa787e",
+    "content-hash": "ce1aa7cfca79d40ce11406be5b26f738",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -614,21 +614,22 @@
         },
         {
             "name": "fusio/adapter-php",
-            "version": "v3.0.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-php.git",
-                "reference": "987cf6b19945de0e1aad462cbcab33319a9e05b9"
+                "reference": "586afe406850135fbd9759af4696c021933a090e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/987cf6b19945de0e1aad462cbcab33319a9e05b9",
-                "reference": "987cf6b19945de0e1aad462cbcab33319a9e05b9",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/586afe406850135fbd9759af4696c021933a090e",
+                "reference": "586afe406850135fbd9759af4696c021933a090e",
                 "shasum": ""
             },
             "require": {
-                "fusio/engine": "^3.0",
-                "php": ">=7.0"
+                "fusio/engine": "^3.1.1",
+                "php": ">=7.0",
+                "psx/sandbox": "^0.2"
             },
             "require-dev": {
                 "phpunit/dbunit": "^2.0",
@@ -656,7 +657,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2018-02-25T19:11:59+00:00"
+            "time": "2018-05-30T18:47:30+00:00"
         },
         {
             "name": "fusio/adapter-sql",
@@ -812,16 +813,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v3.0.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "c25d011b7b1bcfad50ec093e64f9f090ad2bbb0d"
+                "reference": "65a6f3d0e52b17444ae2827fcaa983259f549b7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/c25d011b7b1bcfad50ec093e64f9f090ad2bbb0d",
-                "reference": "c25d011b7b1bcfad50ec093e64f9f090ad2bbb0d",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/65a6f3d0e52b17444ae2827fcaa983259f549b7e",
+                "reference": "65a6f3d0e52b17444ae2827fcaa983259f549b7e",
                 "shasum": ""
             },
             "require": {
@@ -859,20 +860,20 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2018-02-24T16:35:58+00:00"
+            "time": "2018-05-27T08:46:11+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v3.0.7",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "0cf3f3c0a2541a34aa380952f410ed7b9eae0c6d"
+                "reference": "aa2b0f8131bc50bb86d0ceab2fd06197cb7b37bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/0cf3f3c0a2541a34aa380952f410ed7b9eae0c6d",
-                "reference": "0cf3f3c0a2541a34aa380952f410ed7b9eae0c6d",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/aa2b0f8131bc50bb86d0ceab2fd06197cb7b37bc",
+                "reference": "aa2b0f8131bc50bb86d0ceab2fd06197cb7b37bc",
                 "shasum": ""
             },
             "require": {
@@ -913,7 +914,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2018-05-10T18:06:46+00:00"
+            "time": "2018-06-02T20:46:51+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2267,6 +2268,53 @@
             "time": "2018-02-25T21:38:32+00:00"
         },
         {
+            "name": "psx/sandbox",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/psx-sandbox.git",
+                "reference": "791aaf28335067432fbb1a1e87236d458c899b36"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/psx-sandbox/zipball/791aaf28335067432fbb1a1e87236d458c899b36",
+                "reference": "791aaf28335067432fbb1a1e87236d458c899b36",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^3.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PSX\\Sandbox\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com/"
+                }
+            ],
+            "description": "PHP sandbox to execute a safe subset of the PHP programming language",
+            "homepage": "http://phpsx.org",
+            "keywords": [
+                "parser",
+                "php",
+                "sandbox"
+            ],
+            "time": "2018-05-30T18:19:00+00:00"
+        },
+        {
             "name": "psx/schema",
             "version": "v2.4.1",
             "source": {
@@ -2569,16 +2617,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.9",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "5b1fdfa8eb93464bcc36c34da39cedffef822cdf"
+                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/5b1fdfa8eb93464bcc36c34da39cedffef822cdf",
-                "reference": "5b1fdfa8eb93464bcc36c34da39cedffef822cdf",
+                "url": "https://api.github.com/repos/symfony/console/zipball/36f83f642443c46f3cf751d4d2ee5d047d757a27",
+                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27",
                 "shasum": ""
             },
             "require": {
@@ -2634,20 +2682,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-30T01:22:56+00:00"
+            "time": "2018-05-16T08:49:21+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v3.4.9",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "1b95888cfd996484527cb41e8952d9a5eaf7454f"
+                "reference": "b28fd73fefbac341f673f5efd707d539d6a19f68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/1b95888cfd996484527cb41e8952d9a5eaf7454f",
-                "reference": "1b95888cfd996484527cb41e8952d9a5eaf7454f",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/b28fd73fefbac341f673f5efd707d539d6a19f68",
+                "reference": "b28fd73fefbac341f673f5efd707d539d6a19f68",
                 "shasum": ""
             },
             "require": {
@@ -2690,11 +2738,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-30T16:53:52+00:00"
+            "time": "2018-05-16T14:03:39+00:00"
         },
         {
             "name": "symfony/dotenv",
-            "version": "v3.4.9",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
@@ -2751,7 +2799,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.4.9",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -2811,6 +2859,61 @@
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
             "time": "2018-04-06T07:35:25+00:00"
+        },
+        {
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                },
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "time": "2018-04-30T19:57:29+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2873,20 +2976,21 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.9",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "033cfa61ef06ee0847e056e530201842b6e926c3"
+                "reference": "c5010cc1692ce1fa328b1fb666961eb3d4a85bb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/033cfa61ef06ee0847e056e530201842b6e926c3",
-                "reference": "033cfa61ef06ee0847e056e530201842b6e926c3",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/c5010cc1692ce1fa328b1fb666961eb3d4a85bb0",
+                "reference": "c5010cc1692ce1fa328b1fb666961eb3d4a85bb0",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9|>=7.0.8"
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/polyfill-ctype": "~1.8"
             },
             "conflict": {
                 "symfony/console": "<3.4"
@@ -2927,7 +3031,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-08T08:21:29+00:00"
+            "time": "2018-05-03T23:18:14+00:00"
         },
         {
             "name": "twig/twig",
