@@ -586,6 +586,11 @@ pre
     width:calc(100% - 40px);
 }
 
+.no-animate {
+    -webkit-transition: none !important;
+    transition: none !important;
+}
+
 /* psx schema */
 .psx-object {
     margin:0;
