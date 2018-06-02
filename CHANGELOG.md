@@ -1,5 +1,20 @@
 
-### 1.1.3
+### 1.2.0
+
+* Return proper 429 status code and error response in case the rate limit is
+  reached
+* Add subscription support #152
+* Fix /whoami and /revoke endpoint not sending proper CORS headers #153
+* Add PHP sandbox action #69
+* Add installer script to install Fusio also without access to the CLI
+* Backend app add option to provide custom action class
+* Consumer app add subscription support to allow customers to register HTTP
+  callbacks
+* Updated backend and consumer app to Angular 1.7
+* User registration fix handling recaptcha verification
+* Reorganized consumer app and grant endpoints
+
+### 1.1.3 (2018-05-11)
 
 * Add description field to method
 * Add scopes field to route
