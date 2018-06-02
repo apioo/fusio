@@ -10,64 +10,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fusio-Consumer</title>
     <base href="/developer/">
-    <link href="css/fusio.min.css" rel="stylesheet" media="screen">
-    <script src="js/fusio.min.js"></script>
+    <link href="dist/fusio.min.css" rel="stylesheet" media="screen">
+    <script src="dist/fusio.min.js"></script>
     <script type="text/javascript">
-        fusioApp.config(function(fusioProvider) {
-            /**
-             * Url to the fusio API endpoint. Change this to the fitting url to the
-             * backend API. If not provided Fusio will try to guess the correct url
-             * I.e.: http://127.0.0.1/projects/fusio/public/index.php/
-             */
-            var fusioUrl = fusioProvider.guessFusioEndpointUrl(false);
+    fusioApp.config(function(fusioProvider) {
+        /**
+         * Url to the fusio API endpoint. Change this to the fitting url to the
+         * backend API. If not provided Fusio will try to guess the correct url
+         * I.e.: http://127.0.0.1/projects/fusio/public/index.php/
+         */
+        var fusioUrl = fusioProvider.guessFusioEndpointUrl(false);
 
-            fusioProvider.setBaseUrl(fusioUrl);
-
-            /**
-             * The documentation menu
-             */
-            fusioProvider.setDocumentationMenu({
-                'Overview': {
-                    'Getting started': 'bootstrap',
-                    'Authorization': 'authorization',
-                    'Support': 'support'
-                }
-            });
-        });
+        fusioProvider.setBaseUrl(fusioUrl);
 
         /**
-         * Optional you can configure additional login provider which can be used
-         * by a user. Also you need to save the app secret in the Fusio backend
-         * configuration
+         * The documentation menu
          */
-        fusioApp.config(function($authProvider, fusioProvider) {
-            $authProvider.baseUrl = fusioProvider.getBaseUrl();
-            $authProvider.loginUrl = 'consumer/login';
-            $authProvider.httpInterceptor = function() { return false; };
+        fusioProvider.setDocumentationMenu({
+            'Overview': {
+                'Getting started': 'bootstrap',
+                'API': 'api',
+                'Authorization': 'authorization',
+                'Support': 'support'
+            }
+        });
+    });
 
-            $authProvider.facebook({
-                url: 'consumer/provider/facebook',
-                clientId: '' // Facebook App ID
-            });
+    /**
+     * Optional you can configure additional login provider which can be used
+     * by a user. Also you need to save the app secret in the Fusio backend 
+     * configuration
+     */
+    fusioApp.config(function($authProvider, fusioProvider) {
+        $authProvider.baseUrl = fusioProvider.getBaseUrl();
+        $authProvider.loginUrl = 'consumer/login';
+        $authProvider.httpInterceptor = function() { return false; };
 
-            $authProvider.google({
-                url: 'consumer/provider/google',
-                clientId: '' // Google Client ID
-            });
-
-            $authProvider.github({
-                url: 'consumer/provider/github',
-                clientId: '' // GitHub Client ID
-            });
+        $authProvider.facebook({
+            url: 'consumer/provider/facebook',
+            clientId: '' // Facebook App ID
         });
 
-        /**
-         * Google captcha site key for registration. Also you need to save the
-         * secret key in the Fusio backend configuration
-         */
-        fusioApp.config(['noCAPTCHAProvider', function(noCaptchaProvider) {
-            noCaptchaProvider.setSiteKey('');
-        }]);
+        $authProvider.google({
+            url: 'consumer/provider/google',
+            clientId: '' // Google Client ID
+        });
+
+        $authProvider.github({
+            url: 'consumer/provider/github',
+            clientId: '' // GitHub Client ID
+        });
+    });
+
+    /**
+     * Google captcha site key for registration. Also you need to save the 
+     * secret key in the Fusio backend configuration
+     */
+    fusioApp.config(['vcRecaptchaServiceProvider', function(vcRecaptchaServiceProvider) {
+      vcRecaptchaServiceProvider.setSiteKey('');
+    }]);
     </script>
 </head>
 <body>
