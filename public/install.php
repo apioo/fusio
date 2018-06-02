@@ -284,7 +284,7 @@ function guessEndpointUrl() {
     };
 
     var url = window.location.href;
-    url = url.replace('/installer.php', '');
+    url = url.replace('/<?php echo basename(__FILE__); ?>', '');
 
     var parts = ['#', '?'];
     for (var i = 0; i < parts.length; i++) {
