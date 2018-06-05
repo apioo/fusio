@@ -23,11 +23,11 @@ available objects. In the following a simple example implementation:
 /** @var \Doctrine\DBAL\Connection $connection */
 $connection = $connector->getConnection('My-DB');
 
-$count = $connection->fetchColumn('SELECT COUNT(*) FROM my_table');
-$result = $connection->fetchAll('SELECT * FROM my_table ORDER BY insertDate DESC');
+$count  = $connection->fetchColumn('SELECT COUNT(*) FROM my_table');
+$result = $connection->fetchAll('SELECT * FROM my_table ORDER BY sort DESC');
 
 return $response->build(200, [], [
     'totalCount' => $count,
-    'entries' => $result,
+    'entries'    => $result,
 ]);
 ```
