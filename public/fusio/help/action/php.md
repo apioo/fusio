@@ -1,8 +1,11 @@
 
 ## PHP
 
-Path to a PHP file. Fusio simply includes this file on execution. In the 
-following an example implementation:
+The PHP action processes a PHP file or inline code. There is also a complete API
+[documentation](http://www.fusio-project.org/documentation/php) describing all
+available objects. In the following a simple example implementation:
+
+### Example
 
 ```php
 <?php
@@ -12,19 +15,19 @@ following an example implementation:
  * @var \Fusio\Engine\RequestInterface $request
  * @var \Fusio\Engine\Response\FactoryInterface $response
  * @var \Fusio\Engine\ProcessorInterface $processor
+ * @var \Fusio\Engine\ProcessorInterface $dispatcher
  * @var \Psr\Log\LoggerInterface $logger
  * @var \Psr\SimpleCache\CacheInterface $cache
  */
 
-// @TODO handle request and return response
+/** @var \Doctrine\DBAL\Connection $connection */
+$connection = $connector->getConnection('My-DB');
 
-$response->build(200, [], [
-    'message' => 'Hello World!',
+$count = $connection->fetchColumn('SELECT COUNT(*) FROM my_table');
+$result = $connection->fetchAll('SELECT * FROM my_table ORDER BY insertDate DESC');
+
+return $response->build(200, [], [
+    'totalCount' => $count,
+    'entries' => $result,
 ]);
-```
-
-### Example
-
-```
-/tmp/Todo/collection.php"
 ```
