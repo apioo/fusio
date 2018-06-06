@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($exitCode == 0) {
                     $success[] = 'Added admin user successful';
                 } else {
-                    $errors[] = 'Created admin account successful';
+                    $errors[] = 'Could not create admin account';
                 }
             } else {
                 $warnings[] = 'Admin user already available';
