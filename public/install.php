@@ -19,140 +19,231 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once(__DIR__ . '/../vendor/autoload.php');
+
 /**
- * NOTE this installer helps to setup Fusio through a browser. It simply executes the steps of a manual installation. 
- * After successful installation your should delete this installer script. Since it only executes PHP commands you also
- * need to have the PHP CLI installed
+ * NOTE this installer helps to setup Fusio through a browser. It simply 
+ * executes the steps of a manual installation. After successful installation
+ * you should delete this installer script
  */
 
 ignore_user_abort(true);
 set_time_limit(0);
 
-$success  = [];
-$warnings = [];
-$errors   = [];
+$container = require_once(__DIR__ . '/../container.php');
+$messages  = [];
+
+PSX\Framework\Bootstrap::setupEnvironment($container->get('config'));
+
+/** @var \Symfony\Component\Console\Application $app */
+$app = $container->get('console');
+$app->setAutoExit(false);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $key      = $_POST['key'] ?? null;
-    $url      = $_POST['url'] ?? null;
-    $dbName   = $_POST['db_name'] ?? null;
-    $dbUser   = $_POST['db_user'] ?? null;
-    $dbPw     = $_POST['db_pw'] ?? null;
-    $dbHost   = $_POST['db_host'] ?? null;
-
-    $username = $_POST['username'] ?? null;
-    $password = $_POST['password'] ?? null;
-    $email    = $_POST['email'] ?? null;
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $email    = $_POST['email'] ?? '';
 
     $env = [
-        'FUSIO_PROJECT_KEY' => $key,
-        'FUSIO_URL'         => $url,
-        'FUSIO_DB_NAME'     => $dbName,
-        'FUSIO_DB_USER'     => $dbUser,
-        'FUSIO_DB_PW'       => $dbPw,
-        'FUSIO_DB_HOST'     => $dbHost,
+        'FUSIO_PROJECT_KEY' => $_POST['key'] ?? '',
+        'FUSIO_URL'         => $_POST['url'] ?? '',
+        'FUSIO_DB_NAME'     => $_POST['db_name'] ?? '',
+        'FUSIO_DB_USER'     => $_POST['db_user'] ?? '',
+        'FUSIO_DB_PW'       => $_POST['db_pw'] ?? '',
+        'FUSIO_DB_HOST'     => $_POST['db_host'] ?? '',
     ];
 
     $envFile = __DIR__ . '/../.env';
 
-    $output = [];
-    exec('php -v', $output, $exitCode);
-    if ($exitCode > 0) {
-        $warnings[] = 'It looks like the PHP CLI is not available';
+    // lets go try to install Fusio ;)
+    $return =
+        validateInput($env, $username, $password, $email) &&
+        checkEnv($envFile, $env) &&
+        (isInstalled() || (
+            adjustEnvFile($envFile, $env) &&
+            executeInstall() && (
+                hasAdmin() ||
+                createAdminUser($username, $password, $email)
+            )
+        ));
+}
+
+function validateInput(array $env, $username, $password, $email)
+{
+    if (empty($env['FUSIO_PROJECT_KEY'])) {
+        alert('warning', 'Project key must contain a value');
+        return false;
     }
 
-    $output = [];
-    exec('php ../bin/fusio --version', $output, $exitCode);
-    if ($exitCode > 0) {
-        $warnings[] = 'It looks like bin/fusio is not available, you may need to run <code>composer install</code>';
+    if (empty($env['FUSIO_URL'])) {
+        alert('warning', 'Url must contain a value');
+        return false;
     }
 
+    if (empty($env['FUSIO_DB_NAME'])) {
+        alert('warning', 'Database name must contain a value');
+        return false;
+    }
+
+    if (empty($env['FUSIO_DB_USER'])) {
+        alert('warning', 'Database user must contain a value');
+        return false;
+    }
+
+    if (empty($env['FUSIO_DB_HOST'])) {
+        alert('warning', 'Database host must contain a value');
+        return false;
+    }
+
+    if (!preg_match('/' . \Fusio\Impl\Backend\Schema\User::NAME_PATTERN . '/', $username)) {
+        alert('warning', 'Invalid username value');
+        return false;
+    }
+
+    try {
+        \Fusio\Impl\Service\User\PasswordComplexity::assert($password, 8);
+    } catch (\Exception $e) {
+        alert('warning', $e->getMessage());
+        return false;
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        alert('warning', 'Invalid email format');
+        return false;
+    }
+
+    return true;
+}
+
+function checkEnv($envFile, array $env)
+{
+    // check env file
     if (!is_file($envFile)) {
-        $warnings[] = 'It looks like the <code>.env</code> file does not exist';
+        alert('warning', 'It looks like the <code>.env</code> file does not exist');
+        return false;
     }
 
     if (!is_writable($envFile)) {
-        $warnings[] = 'It looks like the <code>.env</code> file is not writable';
+        alert('warning', 'It looks like the <code>.env</code> file is not writable');
+        return false;
     }
 
-    // we only proceed if we have no warnings
-    if (count($warnings) == 0) {
-        $isInstalled = false;
-        $output = [];
-        exec('php ../bin/fusio system:check install', $output, $exitCode);
-        if ($exitCode === 0) {
-            $isInstalled = true;
+    // check whether we can connect to the db with these credentials
+    $params = [
+        'dbname'   => $env['FUSIO_DB_NAME'],
+        'user'     => $env['FUSIO_DB_USER'],
+        'password' => $env['FUSIO_DB_PW'],
+        'host'     => $env['FUSIO_DB_HOST'],
+        'driver'   => 'pdo_mysql',
+    ];
+
+    try {
+        $connection = \Doctrine\DBAL\DriverManager::getConnection($params);
+
+        if (!$connection->ping()) {
+            alert('warning', 'Could not connect to database');
+            return false;
         }
-
-        $hasAdmin = false;
-        $output = [];
-        exec('php ../bin/fusio system:check user', $output, $exitCode);
-        if ($exitCode === 0) {
-            $hasAdmin = true;
-        }
-
-        if (!$isInstalled) {
-            // adjust env
-            $content  = file_get_contents($envFile);
-            $modified = $content;
-
-            foreach ($env as $envKey => $envValue) {
-                $modified = preg_replace('/' . $envKey . '="(.*)"/imsU', $envKey . '="' . $envValue . '"', $modified, 1);
-            }
-
-            if ($modified != $content) {
-                $bytes = file_put_contents($envFile, $modified);
-                if ($bytes) {
-                    $success[] = 'Adjusted <code>.env</code> file successful';
-                } else {
-                    $errors[] = 'Could not write <code>.env</code> file';
-                }
-            }
-
-            // execute install
-            $output = [];
-            exec('php ../bin/fusio install 2>&1', $output, $exitCode);
-            if ($exitCode == 0) {
-                $success[] = 'Installation successful';
-            } else {
-                $errors[] = 'An error occurred on installation:<pre>' . implode("\n", $output). '</pre>';
-            }
-
-            if (!$hasAdmin) {
-                // create admin user
-                $output = [];
-                exec('php ../bin/fusio adduser --status="1" --username="' . escapeshellarg($username) . '" --password="' . escapeshellarg($password) . '" --email="' . escapeshellarg($email) . '"', $output, $exitCode);
-                if ($exitCode == 0) {
-                    $success[] = 'Added admin user successful';
-                } else {
-                    $errors[] = 'Could not create admin account, you can add a new admin account later on using the command <code>bin/fusio adduser</code>';
-                }
-            } else {
-                $warnings[] = 'Admin user already available';
-            }
-        } else {
-            $warnings[] = 'It looks like Fusio is already <a href="./">installed</a>';
-        }
+    } catch (\Doctrine\DBAL\DBALException $e) {
+        alert('warning', 'Could not connect to database');
+        return false;
     }
-} else {
-    $key      = md5(uniqid());
-    $url      = null;
-    $dbName   = null;
-    $dbUser   = null;
-    $dbPw     = null;
-    $dbHost   = null;
 
-    $username = null;
-    $password = null;
-    $email    = null;
-
+    return true;
 }
 
-$messages = [
-    'success' => $success,
-    'warning' => $warnings,
-    'danger'  => $errors,
-];
+function isInstalled()
+{
+    runCommand('system:check', ['name' => 'install'], $exitCode);
+    if ($exitCode === 0) {
+        alert('warning', 'It looks like Fusio is already installed');
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function hasAdmin()
+{
+    runCommand('system:check', ['name' => 'user'], $exitCode);
+    return $exitCode === 0;
+}
+
+function adjustEnvFile($envFile, array $env)
+{
+    $content  = file_get_contents($envFile);
+    $modified = $content;
+
+    foreach ($env as $envKey => $envValue) {
+        $modified = preg_replace('/' . $envKey . '="(.*)"/imsU', $envKey . '="' . $envValue . '"', $modified, 1);
+    }
+
+    if ($modified != $content) {
+        $bytes = file_put_contents($envFile, $modified);
+        if ($bytes) {
+            alert('success', 'Adjusted <code>.env</code> file successful');
+            return true;
+        } else {
+            alert('danger', 'Could not write <code>.env</code> file');
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function executeInstall()
+{
+    $output = runCommand('install', [], $exitCode);
+    if ($exitCode === 0) {
+        alert('success', 'Installation successful');
+        return true;
+    } else {
+        alert('danger', 'An error occurred on installation:<pre>' . htmlspecialchars($output) . '</pre>');
+        return false;
+    }
+}
+
+function createAdminUser($username, $password, $email)
+{
+    runCommand('adduser', ['--status' => '1', '--username' => $username, '--password' => $password, '--email' => $email], $exitCode);
+    if ($exitCode == 0) {
+        alert('success', 'Added admin user successful');
+        return true;
+    } else {
+        alert('danger', 'Could not create admin account, you can add a new admin account later on using the command <code>bin/fusio adduser</code>');
+        return false;
+    }
+}
+
+function runCommand($command, array $params = [], &$exitCode)
+{
+    global $app;
+
+    $input  = new \Symfony\Component\Console\Input\ArrayInput(array_merge(['command' => $command], $params));
+    $output = new \Symfony\Component\Console\Output\BufferedOutput();
+
+    try {
+        $exitCode = $app->run($input, $output);
+
+        return $output->fetch();
+    } catch (\Throwable $e) {
+        $exitCode = 1;
+
+        return $e->getMessage();
+    }
+}
+
+function alert($level, $message)
+{
+    global $messages;
+
+    if (!isset($messages[$level])) {
+        $messages[$level] = [];
+    }
+
+    $messages[$level][] = $message;
+}
 
 ?>
 <!DOCTYPE html>
@@ -209,11 +300,11 @@ $messages = [
                 to the Fusio schema.</p>
                 <div class="form-group">
                     <label for="db_name">Name:</label>
-                    <input type="text" name="db_name" id="dbName" value="<?php echo $dbName; ?>" placeholder="Database name" required class="form-control">
+                    <input type="text" name="db_name" id="dbName" value="<?php echo htmlspecialchars($_POST['db_name'] ?? ''); ?>" placeholder="Database name" required class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="db_user">User:</label>
-                    <input type="text" name="db_user" id="dbUser" value="<?php echo $dbUser; ?>" placeholder="Database user" required class="form-control">
+                    <input type="text" name="db_user" id="dbUser" value="<?php echo htmlspecialchars($_POST['db_user'] ?? ''); ?>" placeholder="Database user" required class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="db_pw">Password:</label>
@@ -221,7 +312,7 @@ $messages = [
                 </div>
                 <div class="form-group">
                     <label for="db_host">Host:</label>
-                    <input type="text" name="db_host" id="dbHost" value="<?php echo $dbHost; ?>" placeholder="Database host" required class="form-control">
+                    <input type="text" name="db_host" id="dbHost" value="<?php echo htmlspecialchars($_POST['db_host'] ?? ''); ?>" placeholder="Database host" required class="form-control">
                 </div>
             </fieldset>
         </div>
@@ -234,7 +325,7 @@ $messages = [
                 backend at <a href="./fusio">/fusio</a>.</p>
                 <div class="form-group">
                     <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" value="<?php echo $username; ?>" placeholder="Username" required class="form-control">
+                    <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" placeholder="Username" required minlength="3" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
@@ -242,7 +333,7 @@ $messages = [
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" value="<?php echo $email; ?>" placeholder="Email" required class="form-control">
+                    <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" placeholder="Email" required class="form-control">
                 </div>
             </fieldset>
         </div>
@@ -255,11 +346,11 @@ $messages = [
                 useful default values.</p>
                 <div class="form-group">
                     <label for="key">Project-Key:</label>
-                    <input type="text" name="key" id="key" placeholder="Project key" value="<?php echo $key; ?>" required aria-describedby="keyHelp" class="form-control">
+                    <input type="text" name="key" id="key" placeholder="Project key" value="<?php echo htmlspecialchars($_POST['key'] ?? md5(uniqid())); ?>" required aria-describedby="keyHelp" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="url">Url:</label>
-                    <input type="url" name="url" id="url" placeholder="Url" value="<?php echo $url; ?>" required aria-describedby="urlHelp" class="form-control">
+                    <input type="url" name="url" id="url" placeholder="Url" value="<?php echo htmlspecialchars($_POST['url'] ?? ''); ?>" required aria-describedby="urlHelp" class="form-control">
                 </div>
             </fieldset>
         </div>
