@@ -175,6 +175,7 @@ function adjustEnvFile($envFile, array $env)
     $modified = $content;
 
     foreach ($env as $envKey => $envValue) {
+        $envValue = addslashes($envValue);
         $modified = preg_replace('/' . $envKey . '="(.*)"/imsU', $envKey . '="' . $envValue . '"', $modified, 1);
     }
 
