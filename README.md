@@ -49,6 +49,8 @@ on building the actual business logic of your API.
 * __Specification__  
   Fusio generates different specification formats for the defined API endpoints
   i.e. OpenAPI, Swagger, RAML.
+* __Subscription__  
+  Fusio contains a subscription layer which helps to build pub/sub for your API.
 * __User management__  
   Fusio provides an API where new users can login or register a new account 
   through GitHub, Google, Facebook or through normal email registration.
