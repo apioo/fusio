@@ -24,6 +24,7 @@ this file. In the following an example implementation:
  * @var \Fusio\Engine\RequestInterface $request
  * @var \Fusio\Engine\Response\FactoryInterface $response
  * @var \Fusio\Engine\ProcessorInterface $processor
+ * @var \Fusio\Engine\DispatcherInterface $dispatcher
  * @var \Psr\Log\LoggerInterface $logger
  * @var \Psr\SimpleCache\CacheInterface $cache
  */
