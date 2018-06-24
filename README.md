@@ -317,6 +317,66 @@ then can also be used by other applications.
 
 # Contribution
 
-If you have found bugs or want to make feature requests use the bug tracker on 
-GitHub. For code contributions feel free to send a pull request through GitHub, 
-there we can discuss all details of the changes.
+Contributions to the project are always appreciated. There are many options
+available to improve the project (which is not limited to coding). The following
+list shows some ways how you can participate:
+
+## Developing
+
+If you are a PHP or Javascript developer you can help to improve the system. 
+If you want to create a new feature it is in general recommended to create a new
+issue where we can talk about the feature before you start to hack on it. So
+there are three main components of Fusio:
+
+**[Backend-API](https://github.com/apioo/fusio-impl)**
+
+The backend API is the core of the system developed in PHP, which provides the
+basic functionality of Fusio. This is the place to develop new core features and 
+improvements.
+
+**[Adapter](https://www.fusio-project.org/adapter)**
+
+An adapter is a plugin to the Fusio system which can be used to connect to other
+remote services. I.e. you could create a new adapter which speaks to a specific
+API or other remote service. This is easy to develop since you can build it in
+a separate repository. Please use the keyword `fusio-adapter` in your
+`composer.json` file so that adapter gets listed automatically on our website.
+
+**[Backend-App](https://github.com/apioo/fusio-backend)**
+
+This is the AngularJS app which is used as GUI to control the backend. It is
+the main app to improve the Fusio backend. But you are also free to develop new
+apps for special use cases which talk to the internal API of Fusio.
+
+## Testing
+
+In general we have a high PHPUnit test case coverage and also automatic 
+end-to-end AngularJS tests using protractor and selenium. Beside this it is
+always great if users checkout the current master version of the project and try
+to test every aspect of the system. In case you have found an issue please
+report it through the issue tracker.
+
+## Documentation
+
+We want to create a sytem which is easy to use also by novice users. To enable
+everybody to start using Fusio we need a simple to understand documentation.
+Since we have not always the view of a novice developer please let us know about
+chapters which are difficult to understand or topics which are missing. You can
+also send us directly a pull request with an improved version. The main
+documentation of Fusio is available at [readthedocs](http://fusio.readthedocs.io/en/latest/).
+The documentation source is available in the `docs/` folder.
+
+## Promotion
+
+If you are a blogger or magazine you can cover Fusio explaining in general the
+system or write tutorials covering a specific use case. In case you have any
+questions please write us a message directly so we can help you to create
+accurate content.
+
+# Donations
+
+Since some users have asked us how they can donate to the project we have setup
+the following paypal button where you can donate any amount directly to the
+project. We like to thank every user who has donated to the project.
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=C55NZT4DYGLXA)
