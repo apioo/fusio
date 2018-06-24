@@ -112,7 +112,8 @@ complicated SQL queries, message queue inserts or multiple remote HTTP calls.
 Fusio provides two ways to develop an API. The first way is to build API 
 endpoints only through the backend interface by using all available actions.
 Through this you can solve already many tasks especially through the usage of
-the [v8 action](https://www.fusio-project.org/documentation/v8).
+the [PHP-Sandbox](https://www.fusio-project.org/documentation/php) or
+[V8-Processor](https://www.fusio-project.org/documentation/v8) action.
 
 The other way is to use the deploy mechanism. Through this you can use normal
 PHP files to implement your business logic and thus you can use the complete PHP 
