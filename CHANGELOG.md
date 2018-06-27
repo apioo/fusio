@@ -1,5 +1,13 @@
 
-### 1.2.0
+### 1.2.1
+
+* Fixed a critical bug in the authorization middleware #164
+* Sql action add config to set default limit #162
+* Update backend app add PHP sandbox autocomplete, fix automatic logout and
+  update deps #160
+* Truncate large exception messages on logging middleware
+
+### 1.2.0 (2018-06-09)
 
 * Return proper 429 status code and error response in case the rate limit is
   reached
