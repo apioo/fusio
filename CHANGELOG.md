@@ -1,5 +1,23 @@
 
-### 1.2.1
+### 1.3.0
+
+* Moved to Doctrine DBAL Migrations system. This is a BC since the old
+  migrations are not used any more. Because of this it is also possible to use
+  Fusio with a single database which contains Fusio and the App tables
+* Converted example todo endpoint from PHP files to classes
+* Its not longer possible to rename existing Connections since they are
+  referenced in other resources
+* Add an option to store an arbitrary UI vocabulary to argument the
+  JsonSchema #166
+* Add `/export/schema/:name` endpoint which allows to access any JsonSchema and
+  UI vocabulary from the public
+* Add Link header on OPTIONS request which link to the fitting export schema
+  endpoint, this allows us in the future to build apps which can automatically
+  discover the create and update form of an endpoint 
+* Add OAuth2 client credentials grant to obtain an access token based on the
+  app key and secret #172
+
+### 1.2.1 (2018-06-27)
 
 * Fixed a critical bug in the authorization middleware #164
 * Sql action add config to set default limit #162
