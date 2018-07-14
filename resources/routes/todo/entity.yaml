@@ -7,11 +7,11 @@ methods:
     responses: 
       200: Todo
       500: Message
-    action: "${dir.src}/Todo/row.php"
+    action: "App\\Todo\\Row"
   DELETE:
     public: false
     description: "Removes a todo entry"
     responses: 
       200: Message
       500: Message
-    action: "${dir.src}/Todo/delete.php"
+    action: "App\\Todo\\Delete"

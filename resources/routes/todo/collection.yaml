@@ -7,7 +7,7 @@ methods:
     responses: 
       200: Todo-Collection
       500: Message
-    action: "${dir.src}/Todo/collection.php"
+    action: "App\\Todo\\Collection"
   POST:
     public: false
     description: "Creates a new todo entry"
@@ -15,4 +15,4 @@ methods:
     responses: 
       201: Message
       500: Message
-    action: "${dir.src}/Todo/insert.php"
+    action: "App\\Todo\\Insert"
