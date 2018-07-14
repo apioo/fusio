@@ -21,6 +21,9 @@
 
 namespace App\Tests;
 
+use Fusio\Impl\Connection\Native;
+use Fusio\Impl\Migrations\Version\Version20180713131743;
+
 /**
  * Fixture
  *
@@ -59,8 +62,15 @@ class Fixture
             return self::$dataSet;
         }
 
-        $version = \Fusio\Impl\Database\Installer::getLatestVersion();
-        $dataSet = array_merge_recursive($version->getInstallInserts(), self::getSystemInserts());
+        $installInserts = Version20180713131743::getInstallInserts();
+
+        // replace System connection class
+        $installInserts['fusio_connection'][0]['class'] = Native::class;
+
+        $dataSet = array_merge_recursive(
+            $installInserts,
+            self::getSystemInserts()
+        );
 
         return self::$dataSet = new \PHPUnit_Extensions_Database_DataSet_ArrayDataSet($dataSet);
     }

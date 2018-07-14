@@ -64,7 +64,7 @@ return [
     // Database parameters which are used for the doctrine DBAL connection
     // http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
     'psx_connection'          => [
-        'path'                => __DIR__ . '/../cache/app-test.db',
+        'memory'              => true,
         'driver'              => 'pdo_sqlite',
     ],
 

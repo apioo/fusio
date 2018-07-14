@@ -292,7 +292,7 @@ JSON;
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
 
         /** @var \Doctrine\DBAL\Connection $connection */
-        $connection = Environment::getService('connector')->getConnection('Default-Connection');
+        $connection = Environment::getService('connector')->getConnection('System');
         $actual = $connection->fetchAssoc('SELECT id, status, title FROM app_todo ORDER BY id DESC LIMIT 1');
         $expect = [
             'id' => 32,
