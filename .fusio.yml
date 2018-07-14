@@ -22,11 +22,6 @@ schema: !include resources/schemas.yaml
 connection: !include resources/connections.yaml
 
 # ------------------------------------------------------------------------------
-# Contains migrations for specific connections.
-# Documentation: http://fusio.readthedocs.io/en/latest/deploy.html#migration
-migration: !include resources/migrations.yaml
-
-# ------------------------------------------------------------------------------
 # Contains general system settings
 # Documentation: http://fusio.readthedocs.io/en/latest/deploy.html#config
 config: !include resources/config.yaml
