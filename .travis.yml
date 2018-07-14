@@ -14,5 +14,6 @@ install:
   - php bin/fusio install
 before_script:
   - php bin/fusio deploy
+  - php bin/fusio migration:migrate --connection=System
 script:
   - vendor/bin/phpunit
