@@ -40,32 +40,53 @@ $app = $container->get('console');
 $app->setAutoExit(false);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $email    = $_POST['email'] ?? '';
+    $method = $_GET['method'] ?? '';
 
-    $env = [
-        'FUSIO_PROJECT_KEY' => $_POST['key'] ?? '',
-        'FUSIO_URL'         => $_POST['url'] ?? '',
-        'FUSIO_DB_NAME'     => $_POST['db_name'] ?? '',
-        'FUSIO_DB_USER'     => $_POST['db_user'] ?? '',
-        'FUSIO_DB_PW'       => $_POST['db_pw'] ?? '',
-        'FUSIO_DB_HOST'     => $_POST['db_host'] ?? '',
-    ];
+    switch ($method) {
+        case 'adjustEnvFile':
+            $env = [
+                'FUSIO_PROJECT_KEY' => $_POST['key'] ?? '',
+                'FUSIO_URL'         => $_POST['url'] ?? '',
+                'FUSIO_DB_NAME'     => $_POST['db_name'] ?? '',
+                'FUSIO_DB_USER'     => $_POST['db_user'] ?? '',
+                'FUSIO_DB_PW'       => $_POST['db_pw'] ?? '',
+                'FUSIO_DB_HOST'     => $_POST['db_host'] ?? '',
+            ];
 
-    $envFile = __DIR__ . '/../.env';
+            $return = adjustEnvFile(__DIR__ . '/../.env', $env);
+            break;
 
-    // lets go try to install Fusio ;)
-    $return =
-        validateInput($env, $username, $password, $email) &&
-        checkEnv($envFile, $env) &&
-        (isInstalled() || (
-            adjustEnvFile($envFile, $env) &&
-            executeInstall() && (
-                hasAdmin() ||
-                createAdminUser($username, $password, $email)
-            )
-        ));
+        case 'executeFusioMigration':
+            $return = executeFusioMigration();
+            break;
+
+        case 'executeAppMigration':
+            $return = executeAppMigration();
+            break;
+
+        case 'executeDeploy':
+            $return = executeDeploy();
+            break;
+
+        case 'createAdminUser':
+            $username = $_POST['username'] ?? '';
+            $password = $_POST['password'] ?? '';
+            $email    = $_POST['email'] ?? '';
+
+            $return = createAdminUser($username, $password, $email);
+            break;
+
+        default:
+            $return = false;
+            break;
+    }
+
+    header('Content-Type: application/json');
+    echo \json_encode([
+        'success' => $return,
+        'messages' => $messages,
+    ]);
+    exit;
 }
 
 function validateInput(array $env, $username, $password, $email)
@@ -152,17 +173,6 @@ function checkEnv($envFile, array $env)
     return true;
 }
 
-function isInstalled()
-{
-    runCommand('system:check', ['name' => 'install'], $exitCode);
-    if ($exitCode === 0) {
-        alert('warning', 'It looks like Fusio is already installed');
-        return true;
-    } else {
-        return false;
-    }
-}
-
 function hasAdmin()
 {
     runCommand('system:check', ['name' => 'user'], $exitCode);
@@ -171,6 +181,10 @@ function hasAdmin()
 
 function adjustEnvFile($envFile, array $env)
 {
+    if (!checkEnv($envFile, $env)) {
+        return false;
+    }
+
     $content  = file_get_contents($envFile);
     $modified = $content;
 
@@ -193,9 +207,9 @@ function adjustEnvFile($envFile, array $env)
     return true;
 }
 
-function executeInstall()
+function executeFusioMigration()
 {
-    $output = runCommand('install', [], $exitCode);
+    $output = runCommand('migration:migrate', [], $exitCode);
     if ($exitCode === 0) {
         alert('success', 'Installation successful');
         return true;
@@ -205,8 +219,36 @@ function executeInstall()
     }
 }
 
+function executeAppMigration()
+{
+    $output = runCommand('migration:migrate', ['--connection' => 'System'], $exitCode);
+    if ($exitCode === 0) {
+        alert('success', 'App migration successful');
+        return true;
+    } else {
+        alert('danger', 'An error occurred on app migration:<pre>' . htmlspecialchars($output) . '</pre>');
+        return false;
+    }
+}
+
+function executeDeploy()
+{
+    $output = runCommand('deploy', [], $exitCode);
+    if ($exitCode === 0) {
+        alert('success', 'Deploy successful');
+        return true;
+    } else {
+        alert('danger', 'An error occurred on deploy:<pre>' . htmlspecialchars($output) . '</pre>');
+        return false;
+    }
+}
+
 function createAdminUser($username, $password, $email)
 {
+    if (hasAdmin()) {
+        return true;
+    }
+
     runCommand('adduser', ['--status' => '1', '--username' => $username, '--password' => $password, '--email' => $email], $exitCode);
     if ($exitCode == 0) {
         alert('success', 'Added admin user successful');
@@ -221,7 +263,9 @@ function runCommand($command, array $params = [], &$exitCode)
 {
     global $app;
 
-    $input  = new \Symfony\Component\Console\Input\ArrayInput(array_merge(['command' => $command], $params));
+    $input = new \Symfony\Component\Console\Input\ArrayInput(array_merge(['command' => $command], $params));
+    $input->setInteractive(false);
+
     $output = new \Symfony\Component\Console\Output\BufferedOutput();
 
     try {
@@ -251,6 +295,7 @@ function alert($level, $message)
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style type="text/css">
         .fusio-installer {
             max-width:600px;
@@ -265,11 +310,15 @@ function alert($level, $message)
         .fusio-installer fieldset {
             margin-bottom:16px;
         }
+        
+        #messages {
+            margin-top:8px;
+        }
     </style>
 </head>
 <body>
 
-<form method="POST">
+<form method="POST" id="installer">
 <div class="container fusio-installer">
     <div class="row">
         <div class="col">
@@ -279,17 +328,14 @@ function alert($level, $message)
                 installation</a>. <b>After successful installation your should
                 delete this installer script.</b>
             </div>
-            <?php foreach ($messages as $type => $list): ?>
-            <?php if(!empty($list)): ?>
-            <div class="alert alert-<?php echo $type; ?>">
-                <ul>
-                <?php foreach($list as $message): ?>
-                    <li><?php echo $message; ?></li>
-                <?php endforeach; ?>
-                </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="progress">
+                <div id="progress" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
             </div>
-            <?php endif; ?>
-            <?php endforeach; ?>
+            <div id="messages"></div>
         </div>
     </div>
     <div class="row">
@@ -365,6 +411,16 @@ function alert($level, $message)
 </form>
 
 <script type="text/javascript">
+var methods = [
+    "adjustEnvFile",
+    "executeFusioMigration",
+    "executeAppMigration",
+    "executeDeploy",
+    "createAdminUser"
+];
+
+var complete = methods.length;
+
 function guessEndpointUrl() {
     var removePart = function(url, sign) {
         var count = (url.match(/\//g) || []).length;
@@ -386,15 +442,71 @@ function guessEndpointUrl() {
     return url;
 }
 
-if (!document.getElementById("url").getAttribute("value")) {
-    document.getElementById("url").setAttribute("value", guessEndpointUrl(false));
+function runNextAction() {
+    var method = methods[0];
+    var params = {};
+
+    if (method === "checkEnv" || method === "adjustEnvFile") {
+        params = {
+            key: $("#key").val(),
+            url: $("#url").val(),
+            db_name: $("#dbName").val(),
+            db_user: $("#dbUser").val(),
+            db_pw: $("#dbPw").val(),
+            db_host: $("#dbHost").val()
+        };
+    } else if (method === "createAdminUser") {
+        params = {
+            username: $("#username").val(),
+            password: $("#password").val(),
+            email: $("#email").val()
+        };
+    }
+
+    $.post('install.php?method=' + method, params, function(data){
+        $("#messages").html('');
+        if (data.success) {
+            methods.shift();
+
+            var done = complete - methods.length;
+            var per = Math.floor(done * 100 / complete);
+            $("#progress").css("width", per + "%");
+            $("#progress").text(done +  " / " + complete);
+
+            if (done === complete) {
+                $(".fusio-installer").html("<div class='alert alert-success' role='alert'>Installation successful! You can now login to the <a href='./fusio'>backend</a> to build your <a href='./'>API</a>.</div>");
+            } else {
+                runNextAction();
+            }
+        } else if (data.messages) {
+            for (var type in data.messages) {
+                var msgs = data.messages[type];
+                for (var i = 0; i < msgs.length; i++) {
+                    $("#messages").append("<div class='alert alert-" + type + "' role='alert'>" + msgs[i] + "</div>");
+                }
+            }
+        }
+    });
 }
+
+function runInstallation(e) {
+    e.preventDefault();
+    runNextAction();
+    $('body,html').animate({
+        scrollTop: 0
+    }, 400);
+}
+
+$(document).ready(function(){
+    if (!$("#url").val()) {
+        $("#url").val(guessEndpointUrl(false));
+    }
+
+    $("#installer").submit(runInstallation);
+    $("#progress").text("0 / " + complete);
+});
+
 </script>
 
 </body>
 </html>
-
-
-
-
-
