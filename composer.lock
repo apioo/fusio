@@ -938,16 +938,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v4.0.0",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "85a5badda4056710da533c98354ed4a74a7552fc"
+                "reference": "26253dcc33e3ab23f2e2f285c23ac9405fac32cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/85a5badda4056710da533c98354ed4a74a7552fc",
-                "reference": "85a5badda4056710da533c98354ed4a74a7552fc",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/26253dcc33e3ab23f2e2f285c23ac9405fac32cb",
+                "reference": "26253dcc33e3ab23f2e2f285c23ac9405fac32cb",
                 "shasum": ""
             },
             "require": {
@@ -990,7 +990,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2018-07-14T21:58:05+00:00"
+            "time": "2018-07-21T06:06:57+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
