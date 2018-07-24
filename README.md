@@ -376,8 +376,8 @@ accurate content.
 
 # Donations
 
-Since some users have asked us how they can donate to the project we have setup
-the following paypal button where you can donate any amount directly to the
-project. We like to thank every user who has donated to the project.
+If this project helps you to generate revenue or in general if you like to
+support the project you can donate any amount through paypal. We like to thank
+every user who has donated to the project.
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=C55NZT4DYGLXA)
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/fusioapi)
