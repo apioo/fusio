@@ -6,7 +6,6 @@ use Fusio\Engine\ActionAbstract;
 use Fusio\Engine\ContextInterface;
 use Fusio\Engine\ParametersInterface;
 use Fusio\Engine\RequestInterface;
-use PSX\Framework\Test\Environment;
 
 class Collection extends ActionAbstract
 {
