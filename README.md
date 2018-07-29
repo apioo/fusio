@@ -127,36 +127,40 @@ php bin/fusio deploy
 ```
 
 The action of each route contains the source which handles the business logic. 
-This can be i.e. a simple php file, php class or a url. More information in the 
-`src/` folder. In the following an example action to build an API response 
-from a database:
+This can be i.e. a php class, a simple php file or a url. More information in
+the [development doc](DEVELOPMENT.md). In the following an example action to
+build an API response from a database:
 
 ```php
 <?php
-/**
- * @var \Fusio\Engine\ConnectorInterface $connector
- * @var \Fusio\Engine\RequestInterface $request
- * @var \Fusio\Engine\Response\FactoryInterface $response
- * @var \Fusio\Engine\ProcessorInterface $processor
- * @var \Fusio\Engine\DispatcherInterface $dispatcher
- * @var \Psr\Log\LoggerInterface $logger
- * @var \Psr\SimpleCache\CacheInterface $cache
- */
 
-/** @var \Doctrine\DBAL\Connection $connection */
-$connection = $connector->getConnection('Default-Connection');
+namespace App\Todo;
 
-$count   = $connection->fetchColumn('SELECT COUNT(*) FROM app_todo');
-$entries = $connection->fetchAll('SELECT * FROM app_todo WHERE status = 1 ORDER BY insertDate DESC LIMIT 16');
+use Fusio\Engine\ActionAbstract;
+use Fusio\Engine\ContextInterface;
+use Fusio\Engine\ParametersInterface;
+use Fusio\Engine\RequestInterface;
 
-return $response->build(200, [], [
-    'totalResults' => $count,
-    'entry' => $entries,
-]);
+class Collection extends ActionAbstract
+{
+    public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
+    {
+        /** @var \Doctrine\DBAL\Connection $connection */
+        $connection = $this->connector->getConnection('System');
+
+        $count   = $connection->fetchColumn('SELECT COUNT(*) FROM app_todo');
+        $entries = $connection->fetchAll('SELECT * FROM app_todo WHERE status = 1 ORDER BY insertDate DESC LIMIT 16');
+
+        return $this->response->build(200, [], [
+            'totalResults' => $count,
+            'entry' => $entries,
+        ]);
+    }
+}
+
 ```
 
-In the code we get the `Default-Connection` which we have defined previously in
-our `.fusio.yml` deploy file. In this case the connection returns a 
+In the code we get the `System` connection which returns a
 `\Doctrine\DBAL\Connection` instance but we have already 
 [many adapters](https://www.fusio-project.org/adapter) to connect to different 
 services. Then we simply fire some queries and return the response.
