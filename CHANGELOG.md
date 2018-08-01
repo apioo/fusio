@@ -1,5 +1,10 @@
 
-### 1.3.0
+### 1.3.1
+
+* Make Fusio compatible with multiple database vendors and renamed camel case
+  database columns to snake case columns #178
+
+### 1.3.0 (2018-07-21)
 
 * Moved to Doctrine DBAL Migrations system. This is a BC since the old
   migrations are not used any more. Because of this it is also possible to use
