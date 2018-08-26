@@ -66,10 +66,10 @@ abstract class ApiTestCase extends ControllerDbTestCase
         $routes = $this->connection->fetchAll('SELECT * FROM fusio_routes WHERE controller = :controller', ['controller' => SchemaApiController::class]);
         foreach ($routes as $route) {
             $this->connection->insert('fusio_scope_routes', [
-                'scopeId' => 4,
-                'routeId' => $route['id'],
-                'allow'   => 1,
-                'methods' => 'GET|POST|PUT|DELETE',
+                'scope_id' => 4,
+                'route_id' => $route['id'],
+                'allow'    => 1,
+                'methods'  => 'GET|POST|PUT|DELETE',
             ]);
         }
     }
