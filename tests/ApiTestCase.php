@@ -21,7 +21,6 @@
 
 namespace App\Tests;
 
-use Doctrine\DBAL\Connection;
 use Fusio\Impl\Controller\SchemaApiController;
 use Fusio\Impl\Loader\DatabaseRoutes;
 use Fusio\Impl\Service\System\Deploy;
