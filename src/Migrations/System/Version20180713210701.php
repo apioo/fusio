@@ -17,7 +17,7 @@ class Version20180713210701 extends AbstractMigration
     {
         $date = new \DateTime();
         for ($i = 1; $i < 32; $i++) {
-            $this->addSql('INSERT INTO app_todo (status, title, insertDate) VALUES (?, ?, ?)', [1, 'Task ' . $i, $date->format('Y-m-d H:i:s')]);
+            $this->addSql('INSERT INTO app_todo (status, title, insert_date) VALUES (?, ?, ?)', [1, 'Task ' . $i, $date->format('Y-m-d H:i:s')]);
         }
     }
 

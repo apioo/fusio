@@ -19,7 +19,7 @@ class Version20180713210336 extends AbstractMigration
         $todoTable->addColumn('id', 'integer', ['autoincrement' => true]);
         $todoTable->addColumn('status', 'integer', ['default' => 1]);
         $todoTable->addColumn('title', 'string', ['length' => 64]);
-        $todoTable->addColumn('insertDate', 'datetime');
+        $todoTable->addColumn('insert_date', 'datetime');
         $todoTable->setPrimaryKey(['id']);
     }
 
