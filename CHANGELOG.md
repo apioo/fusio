@@ -1,6 +1,8 @@
 
 ### 1.3.1
 
+* Improve serialization formats store all data json encoded instead of PHP
+  serialized
 * Make Fusio compatible with multiple database vendors and renamed camel case
   database columns to snake case columns #178
 
