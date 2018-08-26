@@ -14,8 +14,18 @@ class Collection extends ActionAbstract
         /** @var \Doctrine\DBAL\Connection $connection */
         $connection = $this->connector->getConnection('System');
 
+        $sql = 'SELECT id, 
+                       status, 
+                       title, 
+                       insert_date AS insertDate 
+                  FROM app_todo 
+                 WHERE status = 1 
+              ORDER BY insert_date DESC';
+
+        $sql = $connection->getDatabasePlatform()->modifyLimitQuery($sql, 16);
+
         $count   = $connection->fetchColumn('SELECT COUNT(*) FROM app_todo');
-        $entries = $connection->fetchAll('SELECT * FROM app_todo WHERE status = 1 ORDER BY insertDate DESC LIMIT 16');
+        $entries = $connection->fetchAll($sql);
 
         return $this->response->build(200, [], [
             'totalResults' => $count,

@@ -25,7 +25,7 @@ class Insert extends ActionAbstract
         $connection->insert('app_todo', [
             'status' => 1,
             'title' => $body->title,
-            'insertDate' => $now->format('Y-m-d H:i:s'),
+            'insert_date' => $now->format('Y-m-d H:i:s'),
         ]);
 
         return $this->response->build(201, [], [

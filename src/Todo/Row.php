@@ -15,7 +15,14 @@ class Row extends ActionAbstract
         /** @var \Doctrine\DBAL\Connection $connection */
         $connection = $this->connector->getConnection('System');
 
-        $todo = $connection->fetchAssoc('SELECT * FROM app_todo WHERE id = :id', [
+        $sql = 'SELECT id, 
+                       status, 
+                       title, 
+                       insert_date AS insertDate 
+                  FROM app_todo 
+                 WHERE id = :id';
+
+        $todo = $connection->fetchAssoc($sql, [
             'id' => $request->getUriFragment('todo_id')
         ]);
 
