@@ -371,14 +371,23 @@ also send us directly a pull request with an improved version. The main
 documentation of Fusio is available at [readthedocs](http://fusio.readthedocs.io/en/latest/).
 The documentation source is available in the `docs/` folder.
 
+# Support
+
 ## Promotion
 
-If you are a blogger or magazine you can cover Fusio explaining in general the
-system or write tutorials covering a specific use case. In case you have any
-questions please write us a message directly so we can help you to create
-accurate content.
+If you are a blogger or magazine we would be happy if you like to cover Fusio.
+Please take a look at the Media section of our [About Page](https://www.fusio-project.org/about)
+to download the official icon set. In case you have any questions please write
+us a message directly so we can help you to create great content.
 
-# Donations
+## Consulting
+
+If you are a company or freelancer and want to get detailed information how you
+can use Fusio you can contact us for consulting. In the workshop we try to find
+the best way how you can use/integrate Fusio also we try to explain the
+functionality and answer your questions.
+
+## Donations
 
 If this project helps you to generate revenue or in general if you like to
 support the project you can donate any amount through paypal. We like to thank
