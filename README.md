@@ -269,6 +269,16 @@ You can verify the installation by visiting the `FUSIO_URL` with a browser. You
 should see a API response that the installation was successful. The backend is
 available at `/fusio/`.
 
+In case you want to install Fusio on a specific database you need to adjust the
+`driver` parameter at the `configuration.php` file:
+
+* `pdo_mysql`: MySQL
+* `pdo_sqlite`: SQLite
+* `pdo_pgsql`: PostgreSQL
+* `sqlsrv`: Microsoft SQL Server
+* `oci8`: Oracle
+* `sqlanywhere`: SAP Sybase SQL Anywhere
+
 ## Docker
 
 Alternatively it is also possible to setup a Fusio system through docker. This
