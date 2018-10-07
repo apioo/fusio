@@ -359,20 +359,3 @@ Website
   Optional username for authentication
 ``password``
   Optional password for authentication
-
-migration
----------
-
-The migration key can contain an array of files per connection. The files are
-executed once on deployment. At the moment migrations are only supported for SQL
-connections.
-
-.. code-block:: yaml
-
-    Default-Connection:
-      - resources/sql/v1_schema.php
-
-**Note: If you migrate a schema to a specific database the migration tool will
-delete all tables from the database to adjust the tables according to the 
-defined schema This means all tables which are not defined in the migration file
-will be deleted.**

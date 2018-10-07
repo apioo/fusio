@@ -9,4 +9,5 @@ This chapter contains information how to develop endpoint actions.
 
    development/action
    development/business_logic
+   development/deploy
    development/testing
