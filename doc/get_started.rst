@@ -2,6 +2,17 @@
 Get started
 ===========
 
+This chapter helps you to quickly create your first API with Fusio. In general
+there are two ways how you can use Fusio:
+
+* You can use Fusio to build the complete API through the backend UI. This means
+  you use it more like a CMS to build your API.
+* You can use Fusio as framework to build your API. This means you can develop
+  your endpoint logic in simple PHP classes and define your route meta data in
+  simple YAML files.
+
+In this example we build our first API using Fusio as a framework.
+
 Build an API endpoint
 ---------------------
 
@@ -41,16 +52,6 @@ contains several keys:
         class: Fusio\Adapter\Sql\Connection\SqlAdvanced
         config:
           url: "sqlite:///${dir.cache}/todo-app.db"
-
-* **migration**
-
-  Through migrations it is possible to execute i.e. sql queries on a connection. 
-  This allows you to change your database schema on deployment.
-
-  .. code-block:: yaml
-
-      Default-Connection:
-        - resources/migration/v1_schema.php
 
 Through the command ``php bin/fusio deploy`` you can deploy the API. It is now 
 possible to visit the API endpoint at: ``/todo``.
