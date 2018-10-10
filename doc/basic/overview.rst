@@ -110,7 +110,7 @@ validation, Logging etc. The class has to implement the following signature:
         public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
         {
             return $this->response->build(200, [], [
-                'hello' => 'world,
+                'hello' => 'world',
             ]);
         }
     }
