@@ -2,7 +2,7 @@
 Consumer
 ========
 
-.. image:: _static/developer.png
+.. image:: ../_static/developer.png
 
 Fusio provides a default consumer implementation located at ``/developer`` which 
 provides a basic admin panel to manage and authorize apps. It is also possible

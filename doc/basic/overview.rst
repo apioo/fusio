@@ -94,7 +94,7 @@ has to implement the following signature:
 To give you a first overview, every request which arrives at Fusio goes through
 the following lifecycle:
 
-.. image:: _static/request_flow.png
+.. image:: ../_static/request_flow.png
 
 Fusio tries to assign the incoming request to a fitting route. The route 
 contains all schema information about the incoming request and outgoing 
@@ -183,7 +183,7 @@ can be used to manage and work with the API. This section gives a high level
 overview what the Fusio system provides and how the application is structured. 
 Lets take a look at the components which are provided by Fusio:
 
-.. image:: _static/overview.png
+.. image:: ../_static/overview.png
 
 API
 ^^^^
@@ -217,7 +217,7 @@ The following apps are working with the Fusio API.
 Backend
 ^^^^^^^
 
-.. image:: _static/backend.png
+.. image:: ../_static/backend.png
 
 The backend app is the app where the administrator can configure the system. The 
 app is located at ``/fusio/``.
@@ -225,7 +225,7 @@ app is located at ``/fusio/``.
 Developer
 ^^^^^^^^^
 
-.. image:: _static/developer.png
+.. image:: ../_static/developer.png
 
 The developer app is designed to quickly setup an API program where new 
 developers can register and create/manage their apps. The app is located at 
@@ -234,7 +234,7 @@ developers can register and create/manage their apps. The app is located at
 Documentation
 ^^^^^^^^^^^^^
 
-.. image:: _static/documentation.png
+.. image:: ../_static/documentation.png
 
 The documentation app simply provides an overview of all available endpoints. 
 It is possible to export the API definition into other schema formats like i.e. 
@@ -243,7 +243,7 @@ Swagger. The app is located at ``/documentation/``.
 Swagger-UI
 ^^^^^^^^^^
 
-.. image:: _static/swagger-ui.png
+.. image:: ../_static/swagger-ui.png
 
 The `swagger-ui`_ app renders a documentation based on the OpenAPI 
 specification. The app is located at `/swagger-ui/`.
