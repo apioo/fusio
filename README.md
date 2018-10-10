@@ -75,8 +75,34 @@ covered by Fusio.
 
 # Architecture
 
-To give you a first overview, every request which arrives at Fusio goes through
-the following lifecycle:
+The basic building block of Fusio is the concept of an action. An action is
+simply a PHP class which receives a request and returns a response. Around this
+action Fusio handles all common logic like Authentication, Rate-Limiting, Schema
+validation, Logging etc. The class has to implement the following signature:
+
+```php
+<?php
+
+namespace App;
+
+use Fusio\Engine\ActionAbstract;
+use Fusio\Engine\ContextInterface;
+use Fusio\Engine\ParametersInterface;
+use Fusio\Engine\RequestInterface;
+
+class HelloWorld extends ActionAbstract
+{
+    public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
+    {
+        return $this->response->build(200, [], [
+            'hello' => 'world,
+        ]);
+    }
+}
+```
+
+To give you a first overview, every request which arrives at such an action goes
+through the following lifecycle:
 
 ![Request_Flow](https://github.com/apioo/fusio/blob/master/doc/_static/request_flow.png)
 

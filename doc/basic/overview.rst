@@ -90,12 +90,20 @@ Architecture
 ------------
 
 The basic building block of Fusio is the concept of an action. An action is
-simply a PHP class which receives a request and returns a response. The class
-has to implement the following signature:
+simply a PHP class which receives a request and returns a response. Around this
+action Fusio handles all common logic like Authentication, Rate-Limiting, Schema
+validation, Logging etc. The class has to implement the following signature:
 
 .. code-block:: php
     
     <?php
+
+    namespace App;
+    
+    use Fusio\Engine\ActionAbstract;
+    use Fusio\Engine\ContextInterface;
+    use Fusio\Engine\ParametersInterface;
+    use Fusio\Engine\RequestInterface;
 
     class HelloWorld extends ActionAbstract
     {
