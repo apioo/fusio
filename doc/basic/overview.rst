@@ -12,6 +12,19 @@ services, develop SPAs or Mobile-Apps. Because of this we think that Fusio is a
 great tool to simplify building such APIs. More information on 
 https://www.fusio-project.org/
 
+Why
+---
+
+The originally idea of Fusio was to provide a tool which lets you easily build a
+great API beside an existing application. I.e. in case you have already a web
+application on a domain ``acme.com`` Fusio helps you to build the fitting API
+at ``api.acme.com``. Beside this use case you can also use Fusio to build a new 
+API from scratch or use it internally i.e. for micro services.
+
+To build the API Fusio can connect to many different databases, message queue
+systems or internal web services. There are also many ways to integrate your
+`business logic`_ into the API of Fusio.
+
 Features
 --------
 
@@ -43,7 +56,10 @@ on building the actual business logic of your API.
 * **Specifications**
 
   Fusio generates different specification formats for the defined API endpoints
-  i.e. OAI (Swagger), RAML.
+  i.e. OpenAPI, Swagger, RAML.
+* **Subscription**
+
+  Fusio contains a subscription layer which helps to build pub/sub for your API.
 * **User management**
 
   Fusio provides an API where new users can login or register a new account 
@@ -91,8 +107,8 @@ has to implement the following signature:
         }
     }
 
-To give you a first overview, every request which arrives at Fusio goes through
-the following lifecycle:
+To give you a first overview, every request which arrives at such an action goes
+through the following lifecycle:
 
 .. image:: ../_static/request_flow.png
 
@@ -109,8 +125,8 @@ uses a library which helps to work with a remote service. I.e. the SQL
 connection uses the Doctrine DBAL library to work with a database (it returns
 a ``Doctrine\DBAL\Connection`` instance). A connection always returns a fully 
 configured object so you never have to deal with any credentials in an action. 
-Besides that there are already many different actions available which you can 
-use i.e. to create an API based on a database table.
+There are already many different actions available which you can use i.e. to
+create an API based on a database table.
 
 With Fusio we want to remove as many layers as possible so that you can work
 in your action directly with a specific library. Because of this Fusio has no 
@@ -129,50 +145,54 @@ Development
 Fusio provides two ways to develop an API. The first way is to build API 
 endpoints only through the backend interface by using all available actions.
 Through this you can solve already many tasks especially through the usage of
-the `v8 action`_.
+the `PHP-Sandbox`_ or `V8-Processor`_ action.
 
 The other way is to use the deploy mechanism. Through this you can use normal
-PHP files to implement your business logic and thus you have ability to use the
-complete PHP ecosystem. Therefor you need to define a ``.fusio.yml`` 
-`deploy file`_ which specifies the available routes and actions of the system. 
-This file can be deployed with the following command:
+PHP files to implement your business logic and thus you can use the complete PHP
+ecosystem. Therefor you need to define a ``.fusio.yml`` `deploy file`_ which
+specifies the available routes and actions of the system. This file can be
+deployed with the following command:
 
 .. code-block:: text
     
     php bin/fusio deploy
 
 The action of each route contains the source which handles the business logic. 
-This can be i.e. a simple php file, php class or a url. More information in the 
-``src/`` folder. In the following an example action to build an API response 
+This can be i.e. a php class, a simple php file or a url. More information in
+the ``src/`` folder. In the following an example action to build an API response 
 from a database:
 
 .. code-block:: php
-    
-    <?php
-    /**
-     * @var \Fusio\Engine\ConnectorInterface $connector
-     * @var \Fusio\Engine\RequestInterface $request
-     * @var \Fusio\Engine\Response\FactoryInterface $response
-     * @var \Fusio\Engine\ProcessorInterface $processor
-     * @var \Psr\Log\LoggerInterface $logger
-     * @var \Psr\SimpleCache\CacheInterface $cache
-     */
-    
-    /** @var \Doctrine\DBAL\Connection $connection */
-    $connection = $connector->getConnection('Default-Connection');
-    
-    $count   = $connection->fetchColumn('SELECT COUNT(*) FROM app_todo');
-    $entries = $connection->fetchAll('SELECT * FROM app_todo WHERE status = 1 ORDER BY insertDate DESC LIMIT 16');
-    
-    return $response->build(200, [], [
-        'totalResults' => $count,
-        'entry' => $entries,
-    ]);
 
-In the code we get the ``Default-Connection`` which we have defined previously 
-in our ``.fusio.yml`` deploy file. In this case the connection returns a
-``\Doctrine\DBAL\Connection`` instance but we have already many adapters to 
-connect to different services. Then we simply fire some queries and return the 
+    <?php
+    
+    namespace App\Todo;
+    
+    use Fusio\Engine\ActionAbstract;
+    use Fusio\Engine\ContextInterface;
+    use Fusio\Engine\ParametersInterface;
+    use Fusio\Engine\RequestInterface;
+    
+    class Collection extends ActionAbstract
+    {
+        public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
+        {
+            /** @var \Doctrine\DBAL\Connection $connection */
+            $connection = $this->connector->getConnection('System');
+    
+            $count   = $connection->fetchColumn('SELECT COUNT(*) FROM app_todo');
+            $entries = $connection->fetchAll('SELECT * FROM app_todo WHERE status = 1 ORDER BY insertDate DESC LIMIT 16');
+    
+            return $this->response->build(200, [], [
+                'totalResults' => $count,
+                'entry' => $entries,
+            ]);
+        }
+    }
+
+In the code we get the ``System`` connection which returns a
+``\Doctrine\DBAL\Connection`` instance but we have already `many adapters`_ to
+connect to different services. Then we simply fire some queries and return the
 response.
 
 Backend
@@ -208,6 +228,8 @@ paths which are needed by the system.
 * ``/export``
 
   Endpoints to export the documentation into other formats i.e. swagger
+
+There is also a complete `documentation`_ about all internal API endpoints.
 
 Apps
 ----
@@ -250,6 +272,10 @@ specification. The app is located at `/swagger-ui/`.
 
 
 .. _adapter: http://www.fusio-project.org/adapter
-.. _v8 action: https://www.fusio-project.org/documentation/v8
+.. _V8-Processor: https://www.fusio-project.org/documentation/v8
+.. _PHP-Sandbox: https://www.fusio-project.org/documentation/php
 .. _deploy file: http://fusio.readthedocs.io/en/latest/deploy.html
 .. _swagger-ui: https://github.com/swagger-api/swagger-ui
+.. _business logic: http://fusio.readthedocs.io/en/latest/development/business_logic.html
+.. _many adapters: https://www.fusio-project.org/adapter
+.. _documentation: http://demo.fusio-project.org/internal/#!/page/about
