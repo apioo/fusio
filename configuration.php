@@ -37,6 +37,10 @@ return [
     // off, then it is not possible to create or update such actions
     'fusio_php_sandbox'       => false,
 
+    // Points to the Fusio provider file which contains specific classes for the
+    // system. Please take a look at the provider file for more information
+    'fusio_provider'          => __DIR__ . '/provider.php',
+
     // Settings of the internal mailer. By default we use the internal PHP mail
     // function
     /*
