@@ -887,16 +887,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v3.1.1",
+            "version": "v3.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "65a6f3d0e52b17444ae2827fcaa983259f549b7e"
+                "reference": "955929a80ce0f1793d902d2bb99658b91ff6aedd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/65a6f3d0e52b17444ae2827fcaa983259f549b7e",
-                "reference": "65a6f3d0e52b17444ae2827fcaa983259f549b7e",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/955929a80ce0f1793d902d2bb99658b91ff6aedd",
+                "reference": "955929a80ce0f1793d902d2bb99658b91ff6aedd",
                 "shasum": ""
             },
             "require": {
@@ -934,20 +934,20 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2018-05-27T08:46:11+00:00"
+            "time": "2018-10-09T23:01:20+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v4.0.2",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "916a81045349cc0e149873b5b794777bb5f29a30"
+                "reference": "25bd2d3797c7fd474be5e6b0bbac8fe1599dc56b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/916a81045349cc0e149873b5b794777bb5f29a30",
-                "reference": "916a81045349cc0e149873b5b794777bb5f29a30",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/25bd2d3797c7fd474be5e6b0bbac8fe1599dc56b",
+                "reference": "25bd2d3797c7fd474be5e6b0bbac8fe1599dc56b",
                 "shasum": ""
             },
             "require": {
@@ -990,7 +990,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2018-08-01T19:53:56+00:00"
+            "time": "2018-10-09T10:07:09+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2061,16 +2061,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v4.0.9",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "989f51c06d63c8047f31d04e34518587c613c489"
+                "reference": "93f0853394af5c9885fb77b9bed907d4567d8966"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/989f51c06d63c8047f31d04e34518587c613c489",
-                "reference": "989f51c06d63c8047f31d04e34518587c613c489",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/93f0853394af5c9885fb77b9bed907d4567d8966",
+                "reference": "93f0853394af5c9885fb77b9bed907d4567d8966",
                 "shasum": ""
             },
             "require": {
@@ -2125,7 +2125,7 @@
                 "framework",
                 "rest"
             ],
-            "time": "2018-07-29T18:33:22+00:00"
+            "time": "2018-10-06T10:31:26+00:00"
         },
         {
             "name": "psx/http",
@@ -2808,16 +2808,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.14",
+            "version": "v3.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "6b217594552b9323bcdcfc14f8a0ce126e84cd73"
+                "reference": "3b2b415d4c48fbefca7dc742aa0a0171bfae4e0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/6b217594552b9323bcdcfc14f8a0ce126e84cd73",
-                "reference": "6b217594552b9323bcdcfc14f8a0ce126e84cd73",
+                "url": "https://api.github.com/repos/symfony/console/zipball/3b2b415d4c48fbefca7dc742aa0a0171bfae4e0b",
+                "reference": "3b2b415d4c48fbefca7dc742aa0a0171bfae4e0b",
                 "shasum": ""
             },
             "require": {
@@ -2873,20 +2873,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:19:56+00:00"
+            "time": "2018-10-02T16:33:53+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v3.4.14",
+            "version": "v3.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "d5a058ff6ecad26b30c1ba452241306ea34c65cc"
+                "reference": "0a612e9dfbd2ccce03eb174365f31ecdca930ff6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/d5a058ff6ecad26b30c1ba452241306ea34c65cc",
-                "reference": "d5a058ff6ecad26b30c1ba452241306ea34c65cc",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/0a612e9dfbd2ccce03eb174365f31ecdca930ff6",
+                "reference": "0a612e9dfbd2ccce03eb174365f31ecdca930ff6",
                 "shasum": ""
             },
             "require": {
@@ -2929,11 +2929,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:19:56+00:00"
+            "time": "2018-10-02T16:33:53+00:00"
         },
         {
             "name": "symfony/dotenv",
-            "version": "v3.4.14",
+            "version": "v3.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
@@ -2990,7 +2990,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.4.14",
+            "version": "v3.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -3170,16 +3170,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.14",
+            "version": "v3.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "810af2d35fc72b6cf5c01116806d2b65ccaaf2e2"
+                "reference": "640b6c27fed4066d64b64d5903a86043f4a4de7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/810af2d35fc72b6cf5c01116806d2b65ccaaf2e2",
-                "reference": "810af2d35fc72b6cf5c01116806d2b65ccaaf2e2",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/640b6c27fed4066d64b64d5903a86043f4a4de7f",
+                "reference": "640b6c27fed4066d64b64d5903a86043f4a4de7f",
                 "shasum": ""
             },
             "require": {
@@ -3225,7 +3225,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:19:56+00:00"
+            "time": "2018-10-02T16:33:53+00:00"
         },
         {
             "name": "twig/twig",
