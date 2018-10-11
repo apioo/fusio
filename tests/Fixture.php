@@ -22,7 +22,7 @@
 namespace App\Tests;
 
 use Fusio\Impl\Connection\Native;
-use Fusio\Impl\Migrations\Version\Version20180713131743;
+use Fusio\Impl\Migrations\NewInstallation;
 
 /**
  * Fixture
@@ -62,7 +62,7 @@ class Fixture
             return self::$dataSet;
         }
 
-        $installInserts = Version20180713131743::getInstallInserts();
+        $installInserts = NewInstallation::getData();
 
         // replace System connection class
         $installInserts['fusio_connection'][0]['class'] = Native::class;
