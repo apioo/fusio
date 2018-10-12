@@ -134,8 +134,13 @@ all requests to the ``public/`` folder.
 
 .. code-block:: text
 
-    RewriteEngine on
-    RewriteRule (.*) public/$1/
+    RewriteEngine On
+    RewriteBase /fusio/
+    
+    RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ public/index.php/$1 [L,QSA]
 
 While this may work many shared hosting provider have strict limitations of 
 specific PHP functions which are maybe used by Fusio and which produce other
