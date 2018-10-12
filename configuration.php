@@ -37,6 +37,10 @@ return [
     // off, then it is not possible to create or update such actions
     'fusio_php_sandbox'       => false,
 
+    // The three-character ISO-4217 currency code which is used to process
+    // payments
+    'fusio_payment_currency'  => 'EUR',
+
     // Points to the Fusio provider file which contains specific classes for the
     // system. Please take a look at the provider file for more information
     'fusio_provider'          => __DIR__ . '/provider.php',
