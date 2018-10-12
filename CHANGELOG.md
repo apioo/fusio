@@ -1,12 +1,21 @@
 
-### 1.3.1
+### 1.4.0
+
+* Added payment system to monetize the API
+* Added user provider support to easily implement other OAuth2 provider
+* Extended dashboard and statistics
+* Added provider.php config file which contains PHP classes to extend Fusio
+* Add deploy info in case web server config could not be written
+* Updated fusio backend and swagger-ui app
+
+### 1.3.1 (2018-09-01)
 
 * Improve serialization formats store all data json encoded instead of PHP
   serialized
 * Make Fusio compatible with multiple database vendors and renamed camel case
   database columns to snake case columns #178
 
-### 1.3.0 (2018-07-21)
+### 1.3.0 (2018-07-21) 
 
 * Moved to Doctrine DBAL Migrations system. This is a BC since the old
   migrations are not used any more. Because of this it is also possible to use
