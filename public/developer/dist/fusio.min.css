@@ -119,43 +119,20 @@
 
 .fusio-sidebar {
   background-color: #222;
-  border-right: 1px solid #222;
-  position: fixed;
   height: 100%;
-  overflow-x: auto;
   background-image: url(../img/nav.jpg);
   background-position: left bottom;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .fusio-nav {
   min-height: 600px;
 }
 
-@media (max-width: 991px) {
-  .fusio-sidebar {
-    border-bottom: 1px solid #ccc;
-  }
-
-  .fusio-nav {
-    min-height: 0;
-  }
-
-  .fusio-intro {
-    background-position: left top;
-  }
-}
-
 .fusio-nav h3 {
   font-size: 1.2em;
   font-weight: bold;
-  margin:0;
-  margin-right:-14px;
-  margin-left:-14px;
-  padding: 16px;
-  padding-top: 20px;
-  padding-bottom: 10px;
-  border-bottom:1px solid #999;
   color:#fff;
 }
 
@@ -174,8 +151,6 @@
   border-bottom:1px solid #999;
   font-family: monospace;
   border-left:4px solid #999;
-  margin-right:-16px;
-  margin-left:-14px;
   background-color:#fff;
   opacity:0.9;
 }
