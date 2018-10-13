@@ -6,8 +6,8 @@ secret. With the access token it is possible to request protected API
 endpoints. There is a default consumer implementation located at `developer/` 
 which enables a user to manage their apps. The consumer can use any OAuth2 client 
 to request an access token. Fusio supports by default the `authorization_code`,
-`implicit` and `password` grant type. More detailed information about the 
-[OAuth2] flow.
+`implicit` and `password` grant type. Please take a look at the [OAuth2] RFC for
+more information about the flow.
 
 ### Authorization code
 
