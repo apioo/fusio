@@ -22,6 +22,8 @@ maintain an API with Fusio.
    development/business_logic
    development/deploy
    development/testing
+   development/integration
+   development/serialization
 
 .. toctree::
    :maxdepth: 2
