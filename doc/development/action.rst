@@ -128,15 +128,9 @@ DI container. In the following an example implementation:
 Examples
 --------
 
-We have several example actions which show how to implement a specific task as
-action. 
+On our website we have a `recipes`_ section which contains short snippets which
+show case a specific task.
 
-.. toctree::
-   :maxdepth: 2
-
-   action/sql
-   action/mongodb
-
-
-.. _javascript: http://www.fusio-project.org/documentation/v8
+.. _recipes: https://www.fusio-project.org/documentation/recipes
+.. _javascript: https://www.fusio-project.org/documentation/v8
 .. _php-v8: https://github.com/pinepain/php-v8
