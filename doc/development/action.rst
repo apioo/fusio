@@ -128,8 +128,9 @@ DI container. In the following an example implementation:
 Examples
 --------
 
-On our website we have a `recipes`_ section which contains short snippets which
-show case a specific task.
+Please take a look at the `recipes`_ section of our website, there we have
+example code to complete a specific task i.e. send a HTTP request or query data
+from a database.
 
 .. _recipes: https://www.fusio-project.org/documentation/recipes
 .. _javascript: https://www.fusio-project.org/documentation/v8
