@@ -22,6 +22,7 @@ maintain an API with Fusio.
    development/business_logic
    development/deploy
    development/testing
+   development/registration
    development/integration
    development/serialization
 
