@@ -43,9 +43,11 @@ on building the actual business logic of your API.
   request only specific endpoints of the API.
 * __Analytics__  
   Fusio monitors all API activities and shows them on a dashboard so you always 
-  know what is happening with your API. 
+  know what is happening with your API.
+* __Monetization__  
+  Fusio provides a simple payment system to charge for specific routes.
 * __Rate limiting__  
-  It is possible to limit the requests to a specific threshold.
+  It is possible to limit requests to a specific threshold.
 * __Specification__  
   Fusio generates different specification formats for the defined API endpoints
   i.e. OpenAPI, Swagger, RAML.
