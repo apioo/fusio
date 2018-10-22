@@ -1,8 +1,8 @@
 
 ### 1.4.0
 
-* Added payment system to monetize the API
-* Added user provider support to easily implement other OAuth2 provider
+* Added payment system to monetize the API #174
+* Added user provider support to easily implement other OAuth2 provider #190
 * Extended dashboard and statistics
 * Added provider.php config file which contains PHP classes to extend Fusio
 * Add deploy info in case web server config could not be written
