@@ -887,16 +887,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v3.1.7",
+            "version": "v3.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "955929a80ce0f1793d902d2bb99658b91ff6aedd"
+                "reference": "0ae2f6cda88790277115e7649913208acf8ba518"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/955929a80ce0f1793d902d2bb99658b91ff6aedd",
-                "reference": "955929a80ce0f1793d902d2bb99658b91ff6aedd",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/0ae2f6cda88790277115e7649913208acf8ba518",
+                "reference": "0ae2f6cda88790277115e7649913208acf8ba518",
                 "shasum": ""
             },
             "require": {
@@ -934,20 +934,20 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2018-10-09T23:01:20+00:00"
+            "time": "2018-10-11T21:54:25+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v4.1.1",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "25bd2d3797c7fd474be5e6b0bbac8fe1599dc56b"
+                "reference": "3c4f1ffadd15e2d7c29b0190b62271570df12f86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/25bd2d3797c7fd474be5e6b0bbac8fe1599dc56b",
-                "reference": "25bd2d3797c7fd474be5e6b0bbac8fe1599dc56b",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/3c4f1ffadd15e2d7c29b0190b62271570df12f86",
+                "reference": "3c4f1ffadd15e2d7c29b0190b62271570df12f86",
                 "shasum": ""
             },
             "require": {
@@ -990,7 +990,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2018-10-09T10:07:09+00:00"
+            "time": "2018-10-13T22:08:22+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
