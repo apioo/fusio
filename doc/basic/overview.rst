@@ -278,6 +278,40 @@ Swagger-UI
 The `swagger-ui`_ app renders a documentation based on the OpenAPI 
 specification. The app is located at `/swagger-ui/`.
 
+Use cases
+---------
+
+Today there are many use cases where you need a great documented REST API. In
+the following we list the most popular choices where Fusio comes in to play.
+
+Business functionality
+^^^^^^^^^^^^^^^^^^^^^^
+
+Exposing an API of your business functionality is a great way to extend your
+product. You enable customers to integrate it into other applications which
+gives the possibility to open up for new markets. With Fusio you can build such
+APIs and integrate them seamlessly into your product. We also see many companies
+which use the API itself as the core product.
+
+Micro services
+^^^^^^^^^^^^^^
+
+With Fusio you can simply build small micro services which solve a specific task
+in a complex system.
+
+Javascript applications
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Javascript frameworks like i.e. AngularJS or EmberJS becoming the standard. With
+Fusio you can easily build a backend for such applications. So you dont have to
+build the backend part by yourself.
+
+Mobile apps
+^^^^^^^^^^^
+
+Almost all mobile apps need some form to interact with a remote service. This is
+mostly done through REST APIs. With Fusio you can easily build such APIs which
+then can also be used by other applications.
 
 .. _adapter: http://www.fusio-project.org/adapter
 .. _V8-Processor: https://www.fusio-project.org/documentation/v8
