@@ -25,6 +25,7 @@ maintain an API with Fusio.
    development/registration
    development/integration
    development/serialization
+   development/event
 
 .. toctree::
    :maxdepth: 2
