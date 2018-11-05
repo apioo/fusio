@@ -24,8 +24,6 @@ maintain an API with Fusio.
    development/testing
    development/registration
    development/integration
-   development/serialization
-   development/event
 
 .. toctree::
    :maxdepth: 2
@@ -44,3 +42,5 @@ maintain an API with Fusio.
    internal/consumer
    internal/api
    internal/adapter
+   internal/serialization
+   internal/event
