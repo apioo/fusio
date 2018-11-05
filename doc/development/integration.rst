@@ -6,13 +6,13 @@ Fusio is often used to create a REST API beside an existing web app. This
 chapter describes best practices how you can integrate your app without ignoring
 the business logic.
 
-At first we should to distinguish between read and write requests. A read
-request is a request which does not modify the state (database). For this case
-you can also connect directly to your app database. A write request modifies the
-state (database) of your app i.e. it creates a new record. In this case you most
-likely want to run the business logic of your app so that all data gets
-validated and all depending mechanisms are executed. For this case there are
-multiple ways to run your business logic:
+At first we should distinguish between read and write requests. A read
+request is a request which does not modify the state (database) of your app. For
+this case you can also connect directly to your app database. A write request
+modifies the state (database) of your app i.e. it creates a new record. In this
+case you most likely want to run the business logic of your app so that all data
+gets validated and all depending mechanisms are executed. For this case there
+are multiple ways to run your business logic:
 
 HTTP
 ^^^^
