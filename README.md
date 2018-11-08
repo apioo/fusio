@@ -146,9 +146,9 @@ the [PHP-Sandbox](https://www.fusio-project.org/documentation/php) or
 The other way is to use the deploy mechanism. Through this you can use normal
 PHP files to implement your business logic and thus you can use the complete PHP 
 ecosystem. Therefor you need to define a `.fusio.yml` 
-[deploy file](http://fusio.readthedocs.io/en/latest/deploy.html) which specifies 
-the available routes and actions of the system. This file can be deployed with 
-the following command:
+[deploy file](https://fusio.readthedocs.io/en/latest/development/deploy.html)
+which specifies the available routes and actions of the system. This file can be
+deployed with the following command:
 
 ```
 php bin/fusio deploy
