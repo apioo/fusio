@@ -330,10 +330,10 @@ Here we list all available documentation resources. If these resources dont
 answer your questions or you want to provide feedback feel free to create an
 issue on GitHub.
 
-* [Getting started](http://fusio-project.org/bootstrap)  
+* [Getting started](https://www.fusio-project.org/bootstrap)  
 * [Manual](https://fusio.readthedocs.io/en/latest/) 
-* [Recipes](http://fusio-project.org/documentation/recipes) 
-* [Videos](http://fusio-project.org/documentation/videos)
+* [Recipes](https://www.fusio-project.org/documentation/recipes) 
+* [Videos](https://www.fusio-project.org/documentation/videos)
 * [Backend API](http://demo.fusio-project.org/internal/#!/page/about)
 * [PHP API](https://www.fusio-project.org/documentation/php)
 
