@@ -24,6 +24,7 @@ maintain an API with Fusio.
    development/testing
    development/registration
    development/integration
+   development/sql_builder
 
 .. toctree::
    :maxdepth: 2
