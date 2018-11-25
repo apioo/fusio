@@ -1,5 +1,13 @@
 
-### 1.4.0
+### 1.4.1
+
+* Use connection for sending SMTP mails #197
+* Make pub/sub system more customizable #196
+* Set correct CORS header if an exception occurs
+* Use JWT as access token #198
+* Fix add costs field to the routes schema
+
+### 1.4.0 (2018-10-28)
 
 * Added payment system to monetize the API #174
 * Added user provider support to easily implement other OAuth2 provider #190
