@@ -34,6 +34,7 @@ maintain an API with Fusio.
    concept/migration
    concept/payment
    concept/social_login
+   concept/cronjob
 
 .. toctree::
    :maxdepth: 2
