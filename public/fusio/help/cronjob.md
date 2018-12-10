@@ -4,7 +4,7 @@
 When building an API it is sometimes required that specific code gets executed
 at a certain interval. For this purpose Fusio provides the cronjobs.
 
-To execute those cronjobs Fusio uses the standard linux `cro`` util. It can
+To execute those cronjobs Fusio uses the standard linux `cron` util. It can
 write a dedicated cron file which contains all needed cron entries. This file
 should be placed in the `cron.d` folder of your system.
 
