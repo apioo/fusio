@@ -225,7 +225,9 @@ about all internal API endpoints.
 
 # Apps
 
-The following apps are working with the Fusio API.
+The following apps are working with the Fusio API. Beside the standard apps
+which are shipped with Fusio we have also a [dedicated page](https://www.fusio-project.org/apps)
+on our website which lists available apps for Fusio.
 
 ## Backend
 
