@@ -56,7 +56,21 @@ class Fixture
         ];
     }
 
-    public static function getPhpUnitDataSet()
+    public static function getDemoInserts()
+    {
+        $result = [];
+        $date   = new \DateTime();
+
+        for ($i = 1; $i < 32; $i++) {
+            $result[] = ['status' => 1, 'title' => 'Task ' . $i, 'insert_date' => $date->format('Y-m-d H:i:s')];
+        }
+
+        return [
+            'app_todo' => $result
+        ];
+    }
+    
+    public static function getFixture()
     {
         if (self::$dataSet !== null) {
             return self::$dataSet;
@@ -69,10 +83,11 @@ class Fixture
 
         $dataSet = array_merge_recursive(
             $installInserts,
-            self::getSystemInserts()
+            self::getSystemInserts(),
+            self::getDemoInserts()
         );
 
-        return self::$dataSet = new \PHPUnit_Extensions_Database_DataSet_ArrayDataSet($dataSet);
+        return self::$dataSet = $dataSet;
     }
 }
 
