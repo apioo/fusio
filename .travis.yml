@@ -1,13 +1,13 @@
 language: php
 php:
-  - 7.0
   - 7.1
   - 7.2
+  - 7.3
 sudo: false
 services:
   - mysql
 before_install:
-  - phpenv config-rm xdebug.ini
+  - if [ $TRAVIS_PHP_VERSION != '7.3' ]; then phpenv config-rm xdebug.ini; fi;
   - mysql -e 'create database fusio;'
 install:
   - composer install
