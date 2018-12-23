@@ -6,6 +6,8 @@
 * Set correct CORS header if an exception occurs
 * Use JWT as access token #198
 * Fix add costs field to the routes schema
+* Migrated all unit tests to PHPUnit 6.0
+* Set all travis tests to check PHP 7.1, 7.2 and 7.3
 
 ### 1.4.0 (2018-10-28)
 
