@@ -1,13 +1,16 @@
 
-### 1.4.1
+### 1.5.0
 
 * Use connection for sending SMTP mails #197
 * Make pub/sub system more customizable #196
 * Set correct CORS header if an exception occurs
 * Use JWT as access token #198
 * Fix add costs field to the routes schema
+* Improve SQL-Table action add possibility to specify default settings and
+  return proper types on all db drivers
 * Migrated all unit tests to PHPUnit 6.0
 * Set all travis tests to check PHP 7.1, 7.2 and 7.3
+* Minimum PHP requirement is now 7.1
 
 ### 1.4.0 (2018-10-28)
 
