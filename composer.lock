@@ -557,20 +557,23 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v3.0.0",
+            "version": "v5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "fa8a06e96526eb7c0eeaa47e4f39be59d21f16e1"
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/fa8a06e96526eb7c0eeaa47e4f39be59d21f16e1",
-                "reference": "fa8a06e96526eb7c0eeaa47e4f39be59d21f16e1",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": " 4.8.35"
             },
             "type": "library",
             "autoload": {
@@ -596,7 +599,7 @@
             ],
             "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
             "homepage": "https://github.com/firebase/php-jwt",
-            "time": "2015-07-22T18:31:08+00:00"
+            "time": "2017-06-27T22:17:23+00:00"
         },
         {
             "name": "fusio/adapter-file",
@@ -941,21 +944,21 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v4.1.6",
+            "version": "v4.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "459ee0cd7afd94799149a47df83892d3b154f783"
+                "reference": "42d7fc649f88c82251368f79cbdaa08ca899f379"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/459ee0cd7afd94799149a47df83892d3b154f783",
-                "reference": "459ee0cd7afd94799149a47df83892d3b154f783",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/42d7fc649f88c82251368f79cbdaa08ca899f379",
+                "reference": "42d7fc649f88c82251368f79cbdaa08ca899f379",
                 "shasum": ""
             },
             "require": {
                 "doctrine/migrations": "^1.5",
-                "firebase/php-jwt": "^3.0",
+                "firebase/php-jwt": "^5.0",
                 "fusio/adapter-file": "^3.0",
                 "fusio/adapter-http": "^3.0",
                 "fusio/adapter-php": "^3.0",
@@ -964,15 +967,13 @@
                 "fusio/adapter-v8": "^3.0",
                 "fusio/engine": "^3.0",
                 "ocramius/package-versions": "^1.2",
-                "paragonie/random_compat": "^2.0",
                 "php": ">=7.0",
                 "psx/framework": "^4.0",
                 "psx/openssl": "^1.0",
                 "swiftmailer/swiftmailer": "^5.4"
             },
             "require-dev": {
-                "phpunit/dbunit": "^2.0",
-                "phpunit/phpunit": "^5.6"
+                "phpunit/phpunit": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -993,7 +994,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2018-12-06T18:45:06+00:00"
+            "time": "2018-12-25T09:56:11+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1508,55 +1509,6 @@
                 "service proxies"
             ],
             "time": "2017-05-04T11:12:50+00:00"
-        },
-        {
-            "name": "paragonie/random_compat",
-            "version": "v2.0.17",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/29af24f25bab834fcbb38ad2a69fa93b867e070d",
-                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*|5.*"
-            },
-            "suggest": {
-                "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "lib/random.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Paragon Initiative Enterprises",
-                    "email": "security@paragonie.com",
-                    "homepage": "https://paragonie.com"
-                }
-            ],
-            "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
-            "keywords": [
-                "csprng",
-                "polyfill",
-                "pseudorandom",
-                "random"
-            ],
-            "time": "2018-07-04T16:31:37+00:00"
         },
         {
             "name": "psr/cache",
