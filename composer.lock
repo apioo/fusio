@@ -603,26 +603,26 @@
         },
         {
             "name": "fusio/adapter-file",
-            "version": "v3.0.1",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-file.git",
-                "reference": "c65fcfe774c6f001176be9749b989011bd51b8a2"
+                "reference": "116917c4f658a3a7c4668856573c6cc920954754"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-file/zipball/c65fcfe774c6f001176be9749b989011bd51b8a2",
-                "reference": "c65fcfe774c6f001176be9749b989011bd51b8a2",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-file/zipball/116917c4f658a3a7c4668856573c6cc920954754",
+                "reference": "116917c4f658a3a7c4668856573c6cc920954754",
                 "shasum": ""
             },
             "require": {
                 "fusio/engine": "^3.0",
                 "league/flysystem": "^1.0",
-                "php": ">=7.0"
+                "php": ">=7.0",
+                "symfony/yaml": "~2.8|~3.0"
             },
             "require-dev": {
-                "phpunit/dbunit": "^2.0",
-                "phpunit/phpunit": "^5.6"
+                "phpunit/phpunit": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -646,20 +646,20 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2018-11-21T19:00:06+00:00"
+            "time": "2018-12-17T20:47:07+00:00"
         },
         {
             "name": "fusio/adapter-http",
-            "version": "v3.0.0",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-http.git",
-                "reference": "e089a108ade1294e669d4836aec888aede834921"
+                "reference": "393cf95626ecc9cabf9ad45b62abc39173acd71e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/e089a108ade1294e669d4836aec888aede834921",
-                "reference": "e089a108ade1294e669d4836aec888aede834921",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/393cf95626ecc9cabf9ad45b62abc39173acd71e",
+                "reference": "393cf95626ecc9cabf9ad45b62abc39173acd71e",
                 "shasum": ""
             },
             "require": {
@@ -668,7 +668,7 @@
                 "php": ">=7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.6"
+                "phpunit/phpunit": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -692,20 +692,20 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2018-02-25T21:43:08+00:00"
+            "time": "2018-12-17T20:43:20+00:00"
         },
         {
             "name": "fusio/adapter-php",
-            "version": "v3.1.1",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-php.git",
-                "reference": "586afe406850135fbd9759af4696c021933a090e"
+                "reference": "d01cfd108011ab46d601bb0ec6f7a0078b8ff7e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/586afe406850135fbd9759af4696c021933a090e",
-                "reference": "586afe406850135fbd9759af4696c021933a090e",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/d01cfd108011ab46d601bb0ec6f7a0078b8ff7e0",
+                "reference": "d01cfd108011ab46d601bb0ec6f7a0078b8ff7e0",
                 "shasum": ""
             },
             "require": {
@@ -714,8 +714,7 @@
                 "psx/sandbox": "^0.2"
             },
             "require-dev": {
-                "phpunit/dbunit": "^2.0",
-                "phpunit/phpunit": "^5.6"
+                "phpunit/phpunit": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -739,7 +738,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2018-05-30T18:47:30+00:00"
+            "time": "2018-12-17T21:29:25+00:00"
         },
         {
             "name": "fusio/adapter-sql",
@@ -789,16 +788,16 @@
         },
         {
             "name": "fusio/adapter-util",
-            "version": "v3.0.0",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-util.git",
-                "reference": "ce88e8948023e68f29ea1f707c152f348b26c3f8"
+                "reference": "49895f026a9131127a762f3bd4d3fbc3e5d65307"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/ce88e8948023e68f29ea1f707c152f348b26c3f8",
-                "reference": "ce88e8948023e68f29ea1f707c152f348b26c3f8",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/49895f026a9131127a762f3bd4d3fbc3e5d65307",
+                "reference": "49895f026a9131127a762f3bd4d3fbc3e5d65307",
                 "shasum": ""
             },
             "require": {
@@ -807,8 +806,7 @@
                 "php": ">=7.0"
             },
             "require-dev": {
-                "phpunit/dbunit": "^2.0",
-                "phpunit/phpunit": "^5.6"
+                "phpunit/phpunit": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -832,20 +830,20 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2018-02-25T19:04:06+00:00"
+            "time": "2018-12-18T18:32:47+00:00"
         },
         {
             "name": "fusio/adapter-v8",
-            "version": "v3.0.0",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-v8.git",
-                "reference": "e3a377b4aa79fc125eaceba4bdc819ab406a4d22"
+                "reference": "c694de1f0ea5571a8f6fe67d6e23dd04afbcf1c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-v8/zipball/e3a377b4aa79fc125eaceba4bdc819ab406a4d22",
-                "reference": "e3a377b4aa79fc125eaceba4bdc819ab406a4d22",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-v8/zipball/c694de1f0ea5571a8f6fe67d6e23dd04afbcf1c1",
+                "reference": "c694de1f0ea5571a8f6fe67d6e23dd04afbcf1c1",
                 "shasum": ""
             },
             "require": {
@@ -863,9 +861,8 @@
                 "fusio/adapter-redis": "^3.0",
                 "fusio/adapter-soap": "^3.0",
                 "fusio/adapter-sql": "^3.0",
-                "phpunit/dbunit": "^2.0",
-                "phpunit/phpunit": "^5.6",
-                "pinepain/php-v8-stubs": "^0.1.1"
+                "phpunit/phpunit": "^6.0",
+                "phpv8/php-v8-stubs": "^0.2.2"
             },
             "type": "library",
             "autoload": {
@@ -889,7 +886,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2018-02-28T21:31:46+00:00"
+            "time": "2018-12-29T21:34:08+00:00"
         },
         {
             "name": "fusio/engine",
@@ -4885,20 +4882,21 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "0df1908962e7a3071564e857d86874dad1ef204a"
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/0df1908962e7a3071564e857d86874dad1ef204a",
-                "reference": "0df1908962e7a3071564e857d86874dad1ef204a",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/83e253c8e0be5b0257b881e1827274667c5c17a9",
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.3 || ^7.0"
+                "php": "^5.3.3 || ^7.0",
+                "symfony/polyfill-ctype": "^1.8"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.6",
@@ -4931,7 +4929,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2018-01-29T19:49:41+00:00"
+            "time": "2018-12-25T11:19:39+00:00"
         }
     ],
     "aliases": [],
