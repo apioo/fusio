@@ -419,6 +419,14 @@ var methods = [
     "createAdminUser"
 ];
 
+var lang = {
+    adjustEnvFile: "Adjusting environment file ...",
+    executeFusioMigration: "Executing database migration ...",
+    executeAppMigration: "Executing app migration ...",
+    executeDeploy: "Executing deploy ...",
+    createAdminUser: "Creating admin user ..."
+};
+
 var complete = methods.length;
 
 function guessEndpointUrl() {
@@ -463,6 +471,7 @@ function runNextAction() {
         };
     }
 
+    $("#messages").html(lang[method]);
     $.post('install.php?method=' + method, params, function(data){
         $("#messages").html('');
         if (data.success) {
