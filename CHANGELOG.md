@@ -1,5 +1,11 @@
 
-### 1.5.0
+### 1.6.0
+
+* Store registered provider classes in database since under docker we should
+  not write to the filesystem
+* Added new default connections: Ftp, GraphQL, Smtp and Soap
+
+### 1.5.0 (2019-01-01)
 
 * Use connection for sending SMTP mails #197
 * Make pub/sub system more customizable #196
