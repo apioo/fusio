@@ -120,6 +120,9 @@ return [
     },
     */
 
+    // Specify a specific log level
+    //'psx_log_level' => \Monolog\Logger::ERROR,
+
     // A closure which returns a monolog handler implementation. If null the
     // system handler is used
     //'psx_logger_factory'      => null,
