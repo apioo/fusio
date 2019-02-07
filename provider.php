@@ -34,7 +34,11 @@ return [
         \Fusio\Adapter\Util\Action\UtilStaticResponse::class,
     ],
     'connection' => [
+        \Fusio\Adapter\File\Connection\Ftp::class,
+        \Fusio\Adapter\GraphQL\Connection\GraphQL::class,
         \Fusio\Adapter\Http\Connection\Http::class,
+        \Fusio\Adapter\Smtp\Connection\Smtp::class,
+        \Fusio\Adapter\Soap\Connection\Soap::class,
         \Fusio\Adapter\Sql\Connection\Sql::class,
         \Fusio\Adapter\Sql\Connection\SqlAdvanced::class,
     ],
