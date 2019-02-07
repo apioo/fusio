@@ -1,9 +1,12 @@
 
-### 1.6.0
+### 1.5.1
 
+* Add health endpoint to check whether every connection works. This can be
+  useful for docker container or other monitoring solutions
 * Store registered provider classes in database since under docker we should
   not write to the filesystem
 * Added new default connections: Ftp, GraphQL, Smtp and Soap
+* Removed v8 adapter
 
 ### 1.5.0 (2019-01-01)
 
