@@ -649,6 +649,52 @@
             "time": "2018-12-17T20:47:07+00:00"
         },
         {
+            "name": "fusio/adapter-graphql",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/fusio-adapter-graphql.git",
+                "reference": "6accaf8adc76c3b3788964a0b4b959cd0b32f576"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-graphql/zipball/6accaf8adc76c3b3788964a0b4b959cd0b32f576",
+                "reference": "6accaf8adc76c3b3788964a0b4b959cd0b32f576",
+                "shasum": ""
+            },
+            "require": {
+                "fusio/engine": "^3.0",
+                "guzzlehttp/guzzle": "^6.2",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fusio\\Adapter\\GraphQL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com"
+                }
+            ],
+            "description": "Provides a connection to send GraphQL queries",
+            "homepage": "http://fusio-project.org",
+            "keywords": [
+                "fusio-adapter"
+            ],
+            "time": "2018-12-22T10:57:16+00:00"
+        },
+        {
             "name": "fusio/adapter-http",
             "version": "v3.1.0",
             "source": {
@@ -739,6 +785,98 @@
                 "fusio-adapter"
             ],
             "time": "2018-12-17T21:29:25+00:00"
+        },
+        {
+            "name": "fusio/adapter-smtp",
+            "version": "v3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/fusio-adapter-smtp.git",
+                "reference": "90a8dca3e9196bad84ce099c430eedf78f8b1c44"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-smtp/zipball/90a8dca3e9196bad84ce099c430eedf78f8b1c44",
+                "reference": "90a8dca3e9196bad84ce099c430eedf78f8b1c44",
+                "shasum": ""
+            },
+            "require": {
+                "fusio/engine": "^3.0",
+                "php": ">=7.0",
+                "swiftmailer/swiftmailer": "^5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fusio\\Adapter\\Smtp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com"
+                }
+            ],
+            "description": "Provides a connection to send mails",
+            "homepage": "http://fusio-project.org",
+            "keywords": [
+                "fusio-adapter"
+            ],
+            "time": "2018-12-17T21:32:34+00:00"
+        },
+        {
+            "name": "fusio/adapter-soap",
+            "version": "v3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/fusio-adapter-soap.git",
+                "reference": "510459c48d224cc027ff5905e6e246dc19617245"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-soap/zipball/510459c48d224cc027ff5905e6e246dc19617245",
+                "reference": "510459c48d224cc027ff5905e6e246dc19617245",
+                "shasum": ""
+            },
+            "require": {
+                "ext-soap": "*",
+                "fusio/engine": "^3.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fusio\\Adapter\\Soap\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com"
+                }
+            ],
+            "description": "Provides a connection to call SOAP endpoints",
+            "homepage": "http://fusio-project.org",
+            "keywords": [
+                "fusio-adapter"
+            ],
+            "time": "2018-12-17T21:33:32+00:00"
         },
         {
             "name": "fusio/adapter-sql",
@@ -833,62 +971,6 @@
             "time": "2018-12-18T18:32:47+00:00"
         },
         {
-            "name": "fusio/adapter-v8",
-            "version": "v3.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/apioo/fusio-adapter-v8.git",
-                "reference": "c694de1f0ea5571a8f6fe67d6e23dd04afbcf1c1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-v8/zipball/c694de1f0ea5571a8f6fe67d6e23dd04afbcf1c1",
-                "reference": "c694de1f0ea5571a8f6fe67d6e23dd04afbcf1c1",
-                "shasum": ""
-            },
-            "require": {
-                "fusio/engine": "^3.0",
-                "php": ">=7.0",
-                "psx/v8": "^0.2"
-            },
-            "require-dev": {
-                "fusio/adapter-amqp": "^3.0",
-                "fusio/adapter-beanstalk": "^3.0",
-                "fusio/adapter-elasticsearch": "^3.0",
-                "fusio/adapter-http": "^3.0",
-                "fusio/adapter-memcache": "^3.0",
-                "fusio/adapter-mongodb": "^3.0",
-                "fusio/adapter-redis": "^3.0",
-                "fusio/adapter-soap": "^3.0",
-                "fusio/adapter-sql": "^3.0",
-                "phpunit/phpunit": "^6.0",
-                "phpv8/php-v8-stubs": "^0.2.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Fusio\\Adapter\\V8\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "AGPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Christoph Kappestein",
-                    "email": "christoph.kappestein@gmail.com",
-                    "homepage": "http://christoph.kappestein.com"
-                }
-            ],
-            "description": "Write the endpoint logic in javascript using the V8 engine",
-            "homepage": "http://fusio-project.org",
-            "keywords": [
-                "fusio-adapter"
-            ],
-            "time": "2018-12-29T21:34:08+00:00"
-        },
-        {
             "name": "fusio/engine",
             "version": "v3.1.9",
             "source": {
@@ -941,27 +1023,29 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v4.1.8",
+            "version": "v4.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "42d7fc649f88c82251368f79cbdaa08ca899f379"
+                "reference": "8fb00998b3bb8ec4c09b32d89ddbc290d6f11ee4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/42d7fc649f88c82251368f79cbdaa08ca899f379",
-                "reference": "42d7fc649f88c82251368f79cbdaa08ca899f379",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/8fb00998b3bb8ec4c09b32d89ddbc290d6f11ee4",
+                "reference": "8fb00998b3bb8ec4c09b32d89ddbc290d6f11ee4",
                 "shasum": ""
             },
             "require": {
                 "doctrine/migrations": "^1.5",
                 "firebase/php-jwt": "^5.0",
                 "fusio/adapter-file": "^3.0",
+                "fusio/adapter-graphql": "^0.1",
                 "fusio/adapter-http": "^3.0",
                 "fusio/adapter-php": "^3.0",
+                "fusio/adapter-smtp": "^3.0",
+                "fusio/adapter-soap": "^3.0",
                 "fusio/adapter-sql": "^3.0",
                 "fusio/adapter-util": "^3.0",
-                "fusio/adapter-v8": "^3.0",
                 "fusio/engine": "^3.0",
                 "ocramius/package-versions": "^1.2",
                 "php": ">=7.0",
@@ -991,7 +1075,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2018-12-25T09:56:11+00:00"
+            "time": "2019-01-26T22:40:48+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2086,16 +2170,16 @@
         },
         {
             "name": "psx/http",
-            "version": "v2.0.7",
+            "version": "v2.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-http.git",
-                "reference": "f70742672d2579f3e893e1f8b3fb6e8e183ddc9b"
+                "reference": "c54d7212cfb513df84f810429aa34c6ac9942c01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-http/zipball/f70742672d2579f3e893e1f8b3fb6e8e183ddc9b",
-                "reference": "f70742672d2579f3e893e1f8b3fb6e8e183ddc9b",
+                "url": "https://api.github.com/repos/apioo/psx-http/zipball/c54d7212cfb513df84f810429aa34c6ac9942c01",
+                "reference": "c54d7212cfb513df84f810429aa34c6ac9942c01",
                 "shasum": ""
             },
             "require": {
@@ -2103,7 +2187,8 @@
                 "php": ">=7.0",
                 "psr/http-message": "^1.0",
                 "psr/log": "^1.0",
-                "psx/uri": "^1.0"
+                "psx/uri": "^1.0",
+                "symfony/polyfill-mbstring": "^1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
@@ -2130,7 +2215,7 @@
             "keywords": [
                 "http"
             ],
-            "time": "2018-12-16T19:26:43+00:00"
+            "time": "2019-02-06T20:55:49+00:00"
         },
         {
             "name": "psx/json",
@@ -2465,16 +2550,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v2.4.2",
+            "version": "v2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "808d8975e6c2ad578e101d6d764ddc4ed5a7f143"
+                "reference": "50cf378d68b2333d48c0b0544a15418a9dce205b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/808d8975e6c2ad578e101d6d764ddc4ed5a7f143",
-                "reference": "808d8975e6c2ad578e101d6d764ddc4ed5a7f143",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/50cf378d68b2333d48c0b0544a15418a9dce205b",
+                "reference": "50cf378d68b2333d48c0b0544a15418a9dce205b",
                 "shasum": ""
             },
             "require": {
@@ -2522,7 +2607,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2018-12-16T00:59:54+00:00"
+            "time": "2019-01-19T21:51:25+00:00"
         },
         {
             "name": "psx/sql",
@@ -2619,51 +2704,6 @@
                 "url"
             ],
             "time": "2018-12-15T22:44:46+00:00"
-        },
-        {
-            "name": "psx/v8",
-            "version": "v0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/apioo/psx-v8.git",
-                "reference": "9db4a2ec149628042f39b6185309646045fa45b9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-v8/zipball/9db4a2ec149628042f39b6185309646045fa45b9",
-                "reference": "9db4a2ec149628042f39b6185309646045fa45b9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.6",
-                "pinepain/php-v8-stubs": "^0.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PSX\\V8\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Christoph Kappestein",
-                    "email": "christoph.kappestein@gmail.com",
-                    "homepage": "http://christoph.kappestein.com/"
-                }
-            ],
-            "description": "Helper library for the php-v8 extension",
-            "homepage": "http://phpsx.org",
-            "keywords": [
-                "v8"
-            ],
-            "time": "2017-05-26T08:32:25+00:00"
         },
         {
             "name": "psx/validate",
@@ -2806,16 +2846,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.20",
+            "version": "v3.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "8f80fc39bbc3b7c47ee54ba7aa2653521ace94bb"
+                "reference": "069bf3f0e8f871a2169a06e43d9f3f03f355e9be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/8f80fc39bbc3b7c47ee54ba7aa2653521ace94bb",
-                "reference": "8f80fc39bbc3b7c47ee54ba7aa2653521ace94bb",
+                "url": "https://api.github.com/repos/symfony/console/zipball/069bf3f0e8f871a2169a06e43d9f3f03f355e9be",
+                "reference": "069bf3f0e8f871a2169a06e43d9f3f03f355e9be",
                 "shasum": ""
             },
             "require": {
@@ -2827,6 +2867,9 @@
                 "symfony/dependency-injection": "<3.4",
                 "symfony/process": "<3.3"
             },
+            "provide": {
+                "psr/log-implementation": "1.0"
+            },
             "require-dev": {
                 "psr/log": "~1.0",
                 "symfony/config": "~3.3|~4.0",
@@ -2836,7 +2879,7 @@
                 "symfony/process": "~3.3|~4.0"
             },
             "suggest": {
-                "psr/log-implementation": "For using the console logger",
+                "psr/log": "For using the console logger",
                 "symfony/event-dispatcher": "",
                 "symfony/lock": "",
                 "symfony/process": ""
@@ -2871,7 +2914,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-26T12:48:07+00:00"
+            "time": "2019-01-25T10:42:12+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -2943,16 +2986,16 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.2.1",
+            "version": "v4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "e0a2b92ee0b5b934f973d90c2f58e18af109d276"
+                "reference": "cf9b2e33f757deb884ce474e06d2647c1c769b65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/e0a2b92ee0b5b934f973d90c2f58e18af109d276",
-                "reference": "e0a2b92ee0b5b934f973d90c2f58e18af109d276",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/cf9b2e33f757deb884ce474e06d2647c1c769b65",
+                "reference": "cf9b2e33f757deb884ce474e06d2647c1c769b65",
                 "shasum": ""
             },
             "require": {
@@ -2995,20 +3038,20 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-28T18:24:18+00:00"
+            "time": "2019-01-25T14:35:16+00:00"
         },
         {
             "name": "symfony/dotenv",
-            "version": "v3.4.20",
+            "version": "v3.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
-                "reference": "154e3f7054d53a14747303844657e905c8acca51"
+                "reference": "47c2020b21b46889fa647ec9568831284af6faff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dotenv/zipball/154e3f7054d53a14747303844657e905c8acca51",
-                "reference": "154e3f7054d53a14747303844657e905c8acca51",
+                "url": "https://api.github.com/repos/symfony/dotenv/zipball/47c2020b21b46889fa647ec9568831284af6faff",
+                "reference": "47c2020b21b46889fa647ec9568831284af6faff",
                 "shasum": ""
             },
             "require": {
@@ -3052,20 +3095,20 @@
                 "env",
                 "environment"
             ],
-            "time": "2018-11-14T22:14:12+00:00"
+            "time": "2019-01-21T13:02:53+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v4.2.1",
+            "version": "v4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "921f49c3158a276d27c0d770a5a347a3b718b328"
+                "reference": "bd09ad265cd50b2b9d09d65ce6aba2d29bc81fe1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/921f49c3158a276d27c0d770a5a347a3b718b328",
-                "reference": "921f49c3158a276d27c0d770a5a347a3b718b328",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/bd09ad265cd50b2b9d09d65ce6aba2d29bc81fe1",
+                "reference": "bd09ad265cd50b2b9d09d65ce6aba2d29bc81fe1",
                 "shasum": ""
             },
             "require": {
@@ -3116,7 +3159,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-12-01T08:52:38+00:00"
+            "time": "2019-01-16T20:35:37+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -3237,16 +3280,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.20",
+            "version": "v3.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "291e13d808bec481eab83f301f7bff3e699ef603"
+                "reference": "ba11776e9e6c15ad5759a07bffb15899bac75c2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/291e13d808bec481eab83f301f7bff3e699ef603",
-                "reference": "291e13d808bec481eab83f301f7bff3e699ef603",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/ba11776e9e6c15ad5759a07bffb15899bac75c2d",
+                "reference": "ba11776e9e6c15ad5759a07bffb15899bac75c2d",
                 "shasum": ""
             },
             "require": {
@@ -3292,20 +3335,20 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-11T19:48:54+00:00"
+            "time": "2019-01-16T10:59:17+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v2.6.0",
+            "version": "v2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "a11dd39f5b6589e14f0ff3b36675d06047c589b1"
+                "reference": "7d7342c8a4059fefb9b8d07db0cc14007021f9b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a11dd39f5b6589e14f0ff3b36675d06047c589b1",
-                "reference": "a11dd39f5b6589e14f0ff3b36675d06047c589b1",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/7d7342c8a4059fefb9b8d07db0cc14007021f9b7",
+                "reference": "7d7342c8a4059fefb9b8d07db0cc14007021f9b7",
                 "shasum": ""
             },
             "require": {
@@ -3359,7 +3402,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-12-16T10:36:48+00:00"
+            "time": "2019-01-14T15:00:48+00:00"
         },
         {
             "name": "zendframework/zend-code",
@@ -4140,16 +4183,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "6.5.13",
+            "version": "6.5.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "0973426fb012359b2f18d3bd1e90ef1172839693"
+                "reference": "bac23fe7ff13dbdb461481f706f0e9fe746334b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0973426fb012359b2f18d3bd1e90ef1172839693",
-                "reference": "0973426fb012359b2f18d3bd1e90ef1172839693",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/bac23fe7ff13dbdb461481f706f0e9fe746334b7",
+                "reference": "bac23fe7ff13dbdb461481f706f0e9fe746334b7",
                 "shasum": ""
             },
             "require": {
@@ -4220,7 +4263,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-09-08T15:10:43+00:00"
+            "time": "2019-02-01T05:22:47+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
