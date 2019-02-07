@@ -32,12 +32,11 @@ return [
         \Fusio\Adapter\Php\Action\PhpSandbox::class,
         \Fusio\Adapter\Sql\Action\SqlTable::class,
         \Fusio\Adapter\Util\Action\UtilStaticResponse::class,
-        \Fusio\Adapter\V8\Action\V8Processor::class,
     ],
     'connection' => [
         \Fusio\Adapter\Http\Connection\Http::class,
         \Fusio\Adapter\Sql\Connection\Sql::class,
-        \Fusio\Adapter\Sql\Connection\SqlAdvanced::class
+        \Fusio\Adapter\Sql\Connection\SqlAdvanced::class,
     ],
     'payment' => [
     ],
