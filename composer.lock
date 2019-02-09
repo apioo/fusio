@@ -742,16 +742,16 @@
         },
         {
             "name": "fusio/adapter-php",
-            "version": "v3.2.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-php.git",
-                "reference": "d01cfd108011ab46d601bb0ec6f7a0078b8ff7e0"
+                "reference": "3c9e00d92497c5568743771acaeb2f91d9edf0f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/d01cfd108011ab46d601bb0ec6f7a0078b8ff7e0",
-                "reference": "d01cfd108011ab46d601bb0ec6f7a0078b8ff7e0",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/3c9e00d92497c5568743771acaeb2f91d9edf0f6",
+                "reference": "3c9e00d92497c5568743771acaeb2f91d9edf0f6",
                 "shasum": ""
             },
             "require": {
@@ -784,7 +784,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2018-12-17T21:29:25+00:00"
+            "time": "2019-01-12T21:46:30+00:00"
         },
         {
             "name": "fusio/adapter-smtp",
