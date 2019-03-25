@@ -10,6 +10,11 @@
       "homepage": "http://christoph.kappestein.com"
     }
   ],
+  "config": {
+    "platform": {
+      "php": "7.1"
+    }
+  },
   "require": {
     "php": ">=7.0",
     "fusio/impl": "^4.0",
