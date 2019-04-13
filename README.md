@@ -193,6 +193,14 @@ In the code we get the `System` connection which returns a
 [many adapters](https://www.fusio-project.org/adapter) to connect to different 
 services. Then we simply fire some queries and return the response.
 
+## Code-Generation
+
+Fusio can be used in a lot of use cases. If you build an API based on entities
+which should be stored in a relational database you can use our code generator
+to simply build all routes, schemas and actions based on a simple YAML
+definition. The code can be used as great starting point to rapidly build your
+API. The tool is available at: https://generate.apioo.de/
+
 # Backend
 
 Fusio provides several apps which work with the internal backend API. These apps
