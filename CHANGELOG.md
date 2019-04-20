@@ -1,5 +1,11 @@
 
-### 1.5.1
+### 1.5.2
+
+* Custom user attributes #226
+* Add option to get information about the current token i.e. scopes inside an
+  action
+
+### 1.5.1 (2019-02-09)
 
 * Add health endpoint to check whether every connection works. This can be
   useful for docker container or other monitoring solutions
