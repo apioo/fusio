@@ -1,9 +1,15 @@
 
-### 1.5.2
+### 1.6.0
 
+* Added missing entity id to all backend endpoint schemas
+* Improved monetization system add contract and invoice to plan #217
+* CLI action add command handle optional arguments #230
 * Custom user attributes #226
 * Add option to get information about the current token i.e. scopes inside an
   action
+* PHP Sandbox allow the definition of functions
+* Update dotenv dependency
+* HTTP adapter redirect variable path fragments
 
 ### 1.5.1 (2019-02-09)
 
