@@ -30,12 +30,14 @@ maintain an API with Fusio.
    :maxdepth: 2
    :caption: Concepts
 
-   concept/event
-   concept/migration
-   concept/payment
-   concept/social_login
-   concept/cronjob
    concept/authorization
+   concept/cronjob
+   concept/migration
+   concept/monetization
+   concept/pubsub
+   concept/rate_limit
+   concept/scope
+   concept/social_login
    concept/user_attributes
 
 .. toctree::

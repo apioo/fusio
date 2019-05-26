@@ -1,6 +1,6 @@
 
-Event
-=====
+PubSub
+======
 
 Fusio has an event system which helps to build a pub/sub system. This means
 consumer of your API can subscribe to specific events. Inside your API endpoint
