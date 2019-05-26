@@ -42,10 +42,15 @@ maintain an API with Fusio.
 
 .. toctree::
    :maxdepth: 2
+   :caption: Apps
+
+   apps/backend
+   apps/consumer
+
+.. toctree::
+   :maxdepth: 2
    :caption: Internals
 
-   internal/backend
-   internal/consumer
    internal/api
    internal/adapter
    internal/serialization
