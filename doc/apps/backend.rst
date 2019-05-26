@@ -13,7 +13,11 @@ extracted from the online help which is also available inside the backend app:
    backend/app
    backend/config
    backend/connection
+   backend/cronjob
+   backend/error
+   backend/event
    backend/import
+   backend/plan
    backend/rate
    backend/routes
    backend/schema
