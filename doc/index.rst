@@ -46,6 +46,8 @@ maintain an API with Fusio.
 
    apps/backend
    apps/consumer
+   apps/documentation
+   apps/swagger-ui
 
 .. toctree::
    :maxdepth: 2
