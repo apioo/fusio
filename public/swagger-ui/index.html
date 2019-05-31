@@ -43,13 +43,12 @@
         dom_id: '#swagger-ui',
         deepLinking: true,
         presets: [
-          SwaggerUIBundle.presets.apis,
-          SwaggerUIStandalonePreset.slice(1)
+          SwaggerUIBundle.presets.apis
         ],
         plugins: [
           SwaggerUIBundle.plugins.DownloadUrl
         ],
-        layout: "StandaloneLayout"
+        layout: "BaseLayout"
       })
       // End Swagger UI call region
 
