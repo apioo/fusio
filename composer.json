@@ -17,8 +17,8 @@
   },
   "require": {
     "php": ">=7.0",
-    "fusio/impl": "^4.0",
-    "symfony/dotenv": "^3.4"
+    "fusio/impl": "^4.2",
+    "symfony/dotenv": "^4.2"
   },
   "require-dev": {
     "phpunit/phpunit": "^6.0",
