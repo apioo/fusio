@@ -2,7 +2,8 @@
 ### 1.6.0
 
 * Added missing entity id to all backend endpoint schemas
-* Improved monetization system add contract and invoice to plan #217
+* Improved monetization system added contract and invoice to plan #217
+* Updated backend and consumer app
 * CLI action add command handle optional arguments #230
 * Custom user attributes #226
 * Add option to get information about the current token i.e. scopes inside an
