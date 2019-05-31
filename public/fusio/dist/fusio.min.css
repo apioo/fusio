@@ -258,16 +258,25 @@ pre
 
 .fusio-navigation-heading
 {
-    background-color:#054582;
-    padding:6px 15px;
-    margin:0 -15px;
-}
-
-.fusio-navigation-heading a
-{
     color:#fff;
     display:block;
     text-decoration:none;
+    background-color:#054582;
+    padding:6px 15px;
+    margin:0 -15px;
+    cursor:pointer;
+    border-bottom:2px solid #021c35;
+}
+
+.fusio-navigation-heading-active
+{
+    background-color:#55acee;
+}
+
+.fusio-navigation-heading:hover
+{
+    color:#fff;
+    background-color:#55acee;
 }
 
 .fusio-container
