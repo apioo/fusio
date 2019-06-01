@@ -51,6 +51,7 @@
     <!-- removes all files wich are not needed in the release -->
     <target name="remove-files">
         <delete dir="${build}/.git" />
+        <delete dir="${build}/.github" />
         <delete dir="${build}/build" />
         <delete dir="${build}/doc" />
         <delete file="${build}/.travis.yml" />
