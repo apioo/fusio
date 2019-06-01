@@ -39,6 +39,7 @@ maintain an API with Fusio.
    concept/scope
    concept/social_login
    concept/user_attributes
+   concept/sdk_generation
 
 .. toctree::
    :maxdepth: 2
