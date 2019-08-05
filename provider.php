@@ -22,11 +22,16 @@ class. The following list contains an explanation of each extension point:
   Contains all available user provider. Through a user provider a user can
   authenticate with a remote provider i.e. Google. The class must implement the
   interface: Fusio\Engine\User\ProviderInterface
+- routes
+  Contains all available route provider. A provider can automatically create
+  multiple schemas, actions and routes under a provided base path. The class
+  must implement the interface: Fusio\Engine\Routes\ProviderInterface
 */
 
 return [
     'action' => [
         \Fusio\Adapter\File\Action\FileProcessor::class,
+        \Fusio\Adapter\GraphQL\Action\GraphQLProcessor::class,
         \Fusio\Adapter\Http\Action\HttpProcessor::class,
         \Fusio\Adapter\Php\Action\PhpProcessor::class,
         \Fusio\Adapter\Php\Action\PhpSandbox::class,
@@ -48,6 +53,9 @@ return [
         \Fusio\Impl\Provider\User\Facebook::class,
         \Fusio\Impl\Provider\User\Github::class,
         \Fusio\Impl\Provider\User\Google::class,
+    ],
+    'routes' => [
+        \Fusio\Adapter\Sql\Routes\SqlTable::class,
     ],
 ];
 
