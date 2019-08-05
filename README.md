@@ -268,6 +268,14 @@ The [swagger-ui](https://github.com/swagger-api/swagger-ui) app renders a
 documentation based on the OpenAPI specification. The app is located at 
 `/swagger-ui/`.
 
+## VSCode
+
+![VSCode](https://github.com/apioo/fusio/blob/master/doc/_static/vscode.png)
+
+The VSCode app helps to develop all endpoint logic online using the
+[monaco editor](https://microsoft.github.io/monaco-editor/). The app is located
+at `/vscode/`.
+
 # Installation
 
 It is possible to install Fusio either through composer or manually file 

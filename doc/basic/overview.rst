@@ -276,7 +276,15 @@ Swagger-UI
 .. image:: ../_static/swagger-ui.png
 
 The `swagger-ui`_ app renders a documentation based on the OpenAPI 
-specification. The app is located at `/swagger-ui/`.
+specification. The app is located at ``/swagger-ui/``.
+
+VSCode
+^^^^^^
+
+.. image:: ../_static/vscode.png
+
+The VSCode app helps to develop all endpoint logic online using the
+`monaco editor`_. The app is located at ``/vscode/``.
 
 Use cases
 ---------
@@ -318,6 +326,7 @@ then can also be used by other applications.
 .. _PHP-Sandbox: https://www.fusio-project.org/documentation/php
 .. _deploy file: http://fusio.readthedocs.io/en/latest/deploy.html
 .. _swagger-ui: https://github.com/swagger-api/swagger-ui
+.. _monaco editor: https://microsoft.github.io/monaco-editor/
 .. _business logic: http://fusio.readthedocs.io/en/latest/development/business_logic.html
 .. _many adapters: https://www.fusio-project.org/adapter
 .. _documentation: http://demo.fusio-project.org/internal/#!/page/about
