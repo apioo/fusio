@@ -1,5 +1,16 @@
 
-### 1.6.0
+### 1.7.0
+
+* Add discover route endpoint #249
+* Add command to clear the cache #243
+* Add GraphQL proxy #238
+* Add option to specify an operation id for each method #236
+* Pre-configured routes #233
+* Added new vscode app which allows to edit PHP sandbox actions #191
+* Add RPC endpoint to execute actions directly #167
+* Fix issue in SqlTable action to handle null values #239
+
+### 1.6.0 (2019-06-01)
 
 * Added missing entity id to all backend endpoint schemas
 * Improved monetization system added contract and invoice to plan #217
