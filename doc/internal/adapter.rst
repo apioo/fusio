@@ -25,7 +25,7 @@ Provider
 User
 ^^^^
 
-Class: ``Fusio\Engine\User\ProviderInterface``
+Interface: ``Fusio\Engine\User\ProviderInterface``
 
 Describes a remote identity provider which can be used to authorize an user
 through a remote system so that the developer dont need to create an account.
@@ -49,7 +49,7 @@ Please take a look at the `Github`_ provider for an example implementation.
 Payment
 ^^^^^^^
 
-Class: ``Fusio\Engine\Payment\ProviderInterface``
+Interface: ``Fusio\Engine\Payment\ProviderInterface``
 
 Describes a payment provider which can be used to execute payments. Through
 the developer app the user has the possibility to buy points which can be
@@ -76,7 +76,7 @@ Please take a look at the `Paypal`_ provider for an example implementation.
 Routes
 ^^^^^^
 
-Class: ``Fusio\Engine\Routes\ProviderInterface``
+Interface: ``Fusio\Engine\Routes\ProviderInterface``
 
 Preconfigured route provider which helps to create automatically schemas,
 actions and routes for the user. This can be used to create complete
