@@ -19,75 +19,93 @@ register command:
 
     php bin/fusio system:register "Acme\System\Adapter"
 
-In the following an example adapter definition which showcases all available 
-parameters. There is also a complete `JsonSchema`_ which describes this format.
+Provider
+--------
+
+User
+^^^^
+
+Class: ``Fusio\Engine\User\ProviderInterface``
+
+Describes a remote identity provider which can be used to authorize an user
+through a remote system so that the developer dont need to create an account.
+Usually this is done through OAuth2, which has the following flow:
+ 
+- The App redirects the user to the authorization endpoint of the remote
+  provider (i.e. Google)
+- The user authenticates and returns via redirect to the App
+- The App calls the API endpoint and provides the fitting data to Fusio
+- If everything is ok Fusio will get additional information and create a new
+  account
+
+Please take a look at the `Github`_ provider for an example implementation.
 
 .. code-block:: json
- 
+
     {
-        "actionClass": ["Fusio\\Impl\\Tests\\Adapter\\Test\\VoidAction"],
-        "connectionClass": ["Fusio\\Impl\\Tests\\Adapter\\Test\\VoidConnection"],
-        "routes": [{
-            "path": "/void",
-            "config": [{
-                "version": 1,
-                "status": 4,
-                "methods": {
-                    "GET": {
-                        "active": true,
-                        "public": true,
-                        "request": "Adapter-Schema",
-                        "responses": {
-                            "200": "Passthru"
-                        },
-                        "action": "Void-Action"
-                    }
-                }
-            }]
-        }],
-        "action": [{
-            "name": "Void-Action",
-            "class": "Fusio\\Impl\\Tests\\Adapter\\Test\\VoidAction",
-            "config": {
-                "foo": "bar",
-                "connection": "Adapter-Connection"
-            }
-        }],
-        "schema": [{
-            "name": "Adapter-Schema",
-            "source": {
-                "id": "http://fusio-project.org",
-                "title": "process",
-                "type": "object",
-                "properties": {
-                    "logId": {
-                        "type": "integer"
-                    },
-                    "title": {
-                        "type": "string"
-                    },
-                    "content": {
-                        "type": "string"
-                    }
-                }
-            }
-        }],
-        "connection": [{
-            "name": "Adapter-Connection",
-            "class": "Fusio\\Impl\\Tests\\Adapter\\Test\\VoidConnection",
-            "config": {
-                "foo": "bar"
-            }
-        }]
+      "userClass": ["Acme\System\User\Provider"]
     }
 
-It is also possible to generate such a definition on an existing system through 
-the ``system:export`` command.
+Payment
+^^^^^^^
 
-.. code-block:: text
+Class: ``Fusio\Engine\Payment\ProviderInterface``
 
-    php bin/fusio system:export > export.json
+Describes a payment provider which can be used to execute payments. Through
+the developer app the user has the possibility to buy points which can be
+used to call specific routes which cost points. To buy those points Fusio
+uses these payment providers to execute a payment. Usually the flow is:
+
+- App calls the API endpoint to prepare a specific product, it provides an
+  plan and a return url. The call returns an approval url
+- App redirects the user to the approval url. The user has to approve the
+  payment at the payment provider
+- User returns to the App, the url contains the id of the transaction so the
+  app can call the API endpoint to get details about the transaction
+- If everything is ok Fusio will credit the points to the user so that he can
+  start calling specific endpoints
+
+Please take a look at the `Paypal`_ provider for an example implementation.
+
+.. code-block:: json
+
+    {
+      "paymentClass": ["Acme\System\Payment\Provider"]
+    }
+
+Routes
+^^^^^^
+
+Class: ``Fusio\Engine\Routes\ProviderInterface``
+
+Preconfigured route provider which helps to create automatically schemas,
+actions and routes for the user. This can be used to create complete
+applications.
+
+Please take a look at the `SQL-Table`_ provider for an example implementation.
+
+.. code-block:: json
+
+    {
+      "routesClass": ["Acme\System\Routes\Provider"]
+    }
+
+Testing
+-------
+
+If you build an adapter it is recommend to build a test case which extends the
+``Fusio\Engine\Test\AdapterTestCase`` Test-Case. This test case checks whether
+the `definition.json` is valid and contains only plausible values.
+
+Definition Schema
+-----------------
+
+Please take a look at the `JsonSchema`_ to see all options and to validate an
+existing definition.json file.
 
 
+.. _Github: https://github.com/apioo/fusio-impl/blob/master/src/Provider/User/Github.php
+.. _Paypal: https://github.com/apioo/fusio-adapter-paypal/blob/master/src/Provider/Paypal.php
+.. _SQL-Table: https://github.com/apioo/fusio-adapter-sql/blob/master/src/Routes/SqlTable.php
 .. _JsonSchema: https://github.com/apioo/fusio-engine/blob/master/src/Test/definition_schema.json
 .. _website: https://www.fusio-project.org/adapter
