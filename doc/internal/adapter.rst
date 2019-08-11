@@ -97,8 +97,8 @@ If you build an adapter it is recommend to build a test case which extends the
 ``Fusio\Engine\Test\AdapterTestCase`` Test-Case. This test case checks whether
 the `definition.json` is valid and contains only plausible values.
 
-Definition Schema
------------------
+Schema
+------
 
 Please take a look at the `JsonSchema`_ to see all options and to validate an
 existing definition.json file.
