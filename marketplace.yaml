@@ -1,0 +1,48 @@
+#
+# Repository of all frontend apps which can be installed through the Fusio
+# backend panel. To add a new app simply create a new pull request containing
+# the following information:
+#
+# name:                   < the app name
+#   version: 'string'     < current version of the app 
+#   description: 'string' < short description about the app use case
+#   screenshot: 'string'  < screenshot of the app (should have a 1024 px width)
+#   website: 'string'     < url to the website or repository
+#   downloadUrl: 'string' < direct link to the zip file containing the app
+#   sha1Hash: 'string'    < sha1 hash of the zip file
+#
+fusio:
+  version: '0.6'
+  description: 'The backend app to administrator and configure the system.'
+  screenshot: 'https://github.com/apioo/fusio/raw/master/doc/_static/backend.png'
+  website: 'https://github.com/apioo/fusio-backend'
+  downloadUrl: 'https://www.fusio-project.org/marketplace/fusio.zip'
+  sha1Hash: 'da95c95f56f4aaaa6e2326fe56a94f4ce51aa116'
+developer:
+  version: '0.1'
+  description: 'The developer app is designed to quickly setup an API program where new developers can register and create/manage their apps.'
+  screenshot: 'https://github.com/apioo/fusio/blob/master/doc/_static/developer.png'
+  website: 'https://github.com/apioo/fusio-consumer'
+  downloadUrl: 'https://www.fusio-project.org/marketplace/developer.zip'
+  sha1Hash: 'ca112c07d71b92398a3ce151f030867d46e0c060'
+documentation:
+  version: '0.1'
+  description: 'The documentation app simply provides an overview of all available endpoints. It is possible to export the API definition into other schema formats like i.e. Swagger.'
+  screenshot: 'https://github.com/apioo/fusio/blob/master/doc/_static/documentation.png'
+  website: 'https://github.com/chriskapp/evid'
+  downloadUrl: 'https://www.fusio-project.org/marketplace/documentation.zip'
+  sha1Hash: '3c26a9eeeb19673fa20ee74cb705239b9810c052'
+swagger-ui:
+  version: '0.1'
+  description: 'The Swagger UI app renders a documentation based on the OpenAPI specification.'
+  screenshot: 'https://github.com/apioo/fusio/blob/master/doc/_static/swagger-ui.png'
+  website: 'https://github.com/swagger-api/swagger-ui'
+  downloadUrl: 'https://www.fusio-project.org/marketplace/swagger-ui.zip'
+  sha1Hash: '4a82a3625f82f732a6f4abb29ae4d9034ece8a93'
+vscode:
+  version: '0.1'
+  description: 'The VSCode app helps to develop all endpoint logic online using the monaco editor.'
+  screenshot: 'https://github.com/apioo/fusio/blob/master/doc/_static/vscode.png'
+  website: 'https://microsoft.github.io/monaco-editor/'
+  downloadUrl: 'https://www.fusio-project.org/marketplace/vscode.zip'
+  sha1Hash: '490e29fe04f115e1d8cda543669a8df7df9ea886'
