@@ -46,3 +46,10 @@ vscode:
   website: 'https://microsoft.github.io/monaco-editor/'
   downloadUrl: 'https://www.fusio-project.org/marketplace/vscode.zip'
   sha1Hash: 'b1c85605794980ca5916c8d050f60cc412b7856d'
+pma:
+  version: '0.1'
+  description: 'phpMyAdmin app to handle the administration of MySQL over the Web.'
+  screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/pma.png'
+  website: 'https://www.phpmyadmin.net/'
+  downloadUrl: 'https://www.fusio-project.org/marketplace/pma.zip'
+  sha1Hash: '281fb9bd48c9a4b85a8b5aa5566943bbd930b80a'
