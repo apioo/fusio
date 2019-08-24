@@ -1,5 +1,0 @@
-RewriteEngine On
-RewriteBase /developer
-
-DirectoryIndex index.html
-FallbackResource /developer/index.html
