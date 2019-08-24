@@ -52,4 +52,4 @@ pma:
   screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/pma.png'
   website: 'https://www.phpmyadmin.net/'
   downloadUrl: 'https://www.fusio-project.org/marketplace/pma.zip'
-  sha1Hash: 'b60746cc2fa284cf001ed34ff52a6d1dee4ade81'
+  sha1Hash: '281fb9bd48c9a4b85a8b5aa5566943bbd930b80a'
