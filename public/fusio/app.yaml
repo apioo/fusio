@@ -1,5 +1,5 @@
 version: '0.6'
-description: 'The backend app to administrator and configure the system.'
+description: 'The backend app is the official app to develop, configure and maintain your API.'
 screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/backend.png'
 website: 'https://github.com/apioo/fusio-backend'
 downloadUrl: 'https://www.fusio-project.org/marketplace/fusio.zip'
