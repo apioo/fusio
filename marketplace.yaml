@@ -24,7 +24,7 @@ developer:
   screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/developer.png'
   website: 'https://github.com/apioo/fusio-consumer'
   downloadUrl: 'https://www.fusio-project.org/marketplace/developer.zip'
-  sha1Hash: '5714a8b57fbcf75be36ddb930087a9a39e728022'
+  sha1Hash: '9fe4dd1acf7b018ab3144ba87054537c140b14cc'
 documentation:
   version: '0.1'
   description: 'The documentation app simply provides an overview of all available endpoints. It is possible to export the API definition into other schema formats like i.e. OpenAPI.'
