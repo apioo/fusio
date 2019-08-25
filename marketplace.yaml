@@ -13,7 +13,7 @@
 #
 fusio:
   version: '0.6'
-  description: 'The backend app to administrator and configure the system.'
+  description: 'The backend app is the official app to develop, configure and maintain your API.'
   screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/backend.png'
   website: 'https://github.com/apioo/fusio-backend'
   downloadUrl: 'https://www.fusio-project.org/marketplace/fusio.zip'
@@ -27,7 +27,7 @@ developer:
   sha1Hash: '5714a8b57fbcf75be36ddb930087a9a39e728022'
 documentation:
   version: '0.1'
-  description: 'The documentation app simply provides an overview of all available endpoints. It is possible to export the API definition into other schema formats like i.e. Swagger.'
+  description: 'The documentation app simply provides an overview of all available endpoints. It is possible to export the API definition into other schema formats like i.e. OpenAPI.'
   screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/documentation.png'
   website: 'https://github.com/chriskapp/evid'
   downloadUrl: 'https://www.fusio-project.org/marketplace/documentation.zip'
