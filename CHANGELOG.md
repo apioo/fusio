@@ -1,5 +1,10 @@
 
-### 1.7.0
+### 1.8.0
+
+* Add marketplace to backend #254
+* Update doctrine/dbal to 2.9
+
+### 1.7.0 (2019-08-12)
 
 * Add discover route endpoint #249
 * Add command to clear the cache #243
