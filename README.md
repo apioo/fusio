@@ -233,9 +233,10 @@ about all internal API endpoints.
 
 # Apps
 
-The following apps are working with the Fusio API. Beside the standard apps
-which are shipped with Fusio we have also a [dedicated page](https://www.fusio-project.org/apps)
-on our website which lists available apps for Fusio.
+The following apps are working with the Fusio API. Beside the backend app which
+is shipped with Fusio we have a [marketplace](https://www.fusio-project.org/marketplace)
+which contains a variety of apps for specific use cases. Every app can be directly
+installed from the backend app under System / Marketplace.
 
 ## Backend
 
@@ -243,38 +244,6 @@ on our website which lists available apps for Fusio.
 
 The backend app is the app where the administrator can configure the system. The
 app is located at `/fusio/`.
-
-## Developer
-
-![Developer](https://github.com/apioo/fusio/blob/master/doc/_static/developer.png)
-
-The developer app is designed to quickly setup an API program where new 
-developers can register and create/manage their apps. The app is located at 
-`/developer/`.
-
-## Documentation
-
-![Documentation](https://github.com/apioo/fusio/blob/master/doc/_static/documentation.png)
-
-The documentation app simply provides an overview of all available endpoints. 
-It is possible to export the API definition into other schema formats like i.e. 
-Swagger. The app is located at `/documentation/`.
-
-## Swagger-UI
-
-![Swagger-UI](https://github.com/apioo/fusio/blob/master/doc/_static/swagger-ui.png)
-
-The [swagger-ui](https://github.com/swagger-api/swagger-ui) app renders a 
-documentation based on the OpenAPI specification. The app is located at 
-`/swagger-ui/`.
-
-## VSCode
-
-![VSCode](https://github.com/apioo/fusio/blob/master/doc/_static/vscode.png)
-
-The VSCode app helps to develop all endpoint logic online using the
-[monaco editor](https://microsoft.github.io/monaco-editor/). The app is located
-at `/vscode/`.
 
 # Installation
 
