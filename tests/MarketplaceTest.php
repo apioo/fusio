@@ -47,11 +47,11 @@ class MarketplaceTest extends TestCase
         $apps = Yaml::parse(file_get_contents(__DIR__ . '/../marketplace.yaml'));
 
         foreach ($apps as $name => $app) {
-            $this->assertSame(1, version_compare($app['version'], '0.0'));
-            $this->assertNotEmpty($app['description']);
-            $this->assertEquals($app['screenshot'], filter_var($app['screenshot'], FILTER_VALIDATE_URL));
-            $this->assertEquals($app['website'], filter_var($app['website'], FILTER_VALIDATE_URL));
-            $this->assertEquals($app['downloadUrl'], filter_var($app['downloadUrl'], FILTER_VALIDATE_URL));
+            $this->assertSame(1, version_compare($app['version'], '0.0'), $name);
+            $this->assertNotEmpty($app['description'], $name);
+            $this->assertEquals($app['screenshot'], filter_var($app['screenshot'], FILTER_VALIDATE_URL), $name);
+            $this->assertEquals($app['website'], filter_var($app['website'], FILTER_VALIDATE_URL), $name);
+            $this->assertEquals($app['downloadUrl'], filter_var($app['downloadUrl'], FILTER_VALIDATE_URL), $name);
 
             $response = $httpClient->request(new GetRequest($app['downloadUrl']));
 
@@ -59,7 +59,7 @@ class MarketplaceTest extends TestCase
             file_put_contents($file, (string) $response->getBody());
 
             $this->assertEquals(200, $response->getStatusCode());
-            $this->assertEquals($app['sha1Hash'], sha1_file($file));
+            $this->assertEquals($app['sha1Hash'], sha1_file($file), $name);
             $this->assertTrue((new \ZipArchive())->open($file, \ZipArchive::CHECKCONS));
         }
     }
