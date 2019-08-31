@@ -233,17 +233,18 @@ about all internal API endpoints.
 
 # Apps
 
-The following apps are working with the Fusio API. Beside the backend app which
-is shipped with Fusio we have a [marketplace](https://www.fusio-project.org/marketplace)
-which contains a variety of apps for specific use cases. Every app can be directly
-installed from the backend app under System / Marketplace.
-
 ## Backend
 
 ![Backend](https://github.com/apioo/fusio/blob/master/doc/_static/backend.png)
 
 The backend app is the app where the administrator can configure the system. The
 app is located at `/fusio/`.
+
+## Marketplace
+
+Fusio has a [marketplace](https://www.fusio-project.org/marketplace) which
+contains a variety of apps for specific use cases. Every app can be directly
+installed from the backend app under System / Marketplace.
 
 # Installation
 
