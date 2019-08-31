@@ -252,39 +252,12 @@ Backend
 The backend app is the app where the administrator can configure the system. The 
 app is located at ``/fusio/``.
 
-Developer
+Marketplace
 ^^^^^^^^^
 
-.. image:: ../_static/developer.png
-
-The developer app is designed to quickly setup an API program where new 
-developers can register and create/manage their apps. The app is located at 
-``/developer/``.
-
-Documentation
-^^^^^^^^^^^^^
-
-.. image:: ../_static/documentation.png
-
-The documentation app simply provides an overview of all available endpoints. 
-It is possible to export the API definition into other schema formats like i.e. 
-Swagger. The app is located at ``/documentation/``.
-
-Swagger-UI
-^^^^^^^^^^
-
-.. image:: ../_static/swagger-ui.png
-
-The `swagger-ui`_ app renders a documentation based on the OpenAPI 
-specification. The app is located at ``/swagger-ui/``.
-
-VSCode
-^^^^^^
-
-.. image:: ../_static/vscode.png
-
-The VSCode app helps to develop all endpoint logic online using the
-`monaco editor`_. The app is located at ``/vscode/``.
+Fusio has a `marketplace`_ which contains a variety of apps for specific use
+cases. Every app can be directly installed from the backend app under System /
+Marketplace.
 
 Use cases
 ---------
@@ -330,3 +303,4 @@ then can also be used by other applications.
 .. _business logic: http://fusio.readthedocs.io/en/latest/development/business_logic.html
 .. _many adapters: https://www.fusio-project.org/adapter
 .. _documentation: http://demo.fusio-project.org/internal/#!/page/about
+.. _marketplace: https://www.fusio-project.org/marketplace
