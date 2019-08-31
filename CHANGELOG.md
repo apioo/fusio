@@ -1,6 +1,7 @@
 
 ### 1.8.0
 
+* Add log rotate command to copy all logs to an archive table
 * Add marketplace to backend #254
 * Update doctrine/dbal to 2.9
 
