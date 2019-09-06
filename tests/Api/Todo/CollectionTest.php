@@ -121,6 +121,7 @@ class CollectionTest extends ApiTestCase
     "methods": {
         "GET": {
             "description": "Returns all todo entries",
+            "operationId": "get.todo",
             "responses": {
                 "200": "#\/definitions\/GET-200-response",
                 "500": "#\/definitions\/GET-500-response"
@@ -128,6 +129,7 @@ class CollectionTest extends ApiTestCase
         },
         "POST": {
             "description": "Creates a new todo entry",
+            "operationId": "post.todo",
             "request": "#\/definitions\/POST-request",
             "responses": {
                 "201": "#\/definitions\/POST-201-response",
@@ -137,16 +139,36 @@ class CollectionTest extends ApiTestCase
     },
     "links": [
         {
-            "rel": "openapi",
-            "href": "\/index.php\/export\/openapi\/*\/todo"
+            "rel": "client-php",
+            "href": "\/index.php\/export\/client-php\/*\/todo"
         },
         {
-            "rel": "swagger",
-            "href": "\/index.php\/export\/swagger\/*\/todo"
+            "rel": "client-typescript",
+            "href": "\/index.php\/export\/client-typescript\/*\/todo"
         },
         {
-            "rel": "raml",
-            "href": "\/index.php\/export\/raml\/*\/todo"
+            "rel": "markup-html",
+            "href": "\/index.php\/export\/markup-html\/*\/todo"
+        },
+        {
+            "rel": "markup-markdown",
+            "href": "\/index.php\/export\/markup-markdown\/*\/todo"
+        },
+        {
+            "rel": "spec-jsonschema",
+            "href": "\/index.php\/export\/spec-jsonschema\/*\/todo"
+        },
+        {
+            "rel": "spec-openapi",
+            "href": "\/index.php\/export\/spec-openapi\/*\/todo"
+        },
+        {
+            "rel": "spec-raml",
+            "href": "\/index.php\/export\/spec-raml\/*\/todo"
+        },
+        {
+            "rel": "spec-swagger",
+            "href": "\/index.php\/export\/spec-swagger\/*\/todo"
         }
     ]
 }

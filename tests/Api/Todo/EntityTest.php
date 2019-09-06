@@ -121,6 +121,7 @@ class EntityTest extends ApiTestCase
     "methods": {
         "GET": {
             "description": "Returns a single todo entry",
+            "operationId": "get.todo.todo_id",
             "responses": {
                 "200": "#\/definitions\/GET-200-response",
                 "500": "#\/definitions\/GET-500-response"
@@ -128,6 +129,7 @@ class EntityTest extends ApiTestCase
         },
         "DELETE": {
             "description": "Removes a todo entry",
+            "operationId": "delete.todo.todo_id",
             "request": "#\/definitions\/DELETE-request",
             "responses": {
                 "200": "#\/definitions\/DELETE-200-response",
@@ -137,16 +139,36 @@ class EntityTest extends ApiTestCase
     },
     "links": [
         {
-            "rel": "openapi",
-            "href": "\/index.php\/export\/openapi\/*\/todo\/:todo_id"
+            "rel": "client-php",
+            "href": "\/index.php\/export\/client-php\/*\/todo\/:todo_id"
         },
         {
-            "rel": "swagger",
-            "href": "\/index.php\/export\/swagger\/*\/todo\/:todo_id"
+            "rel": "client-typescript",
+            "href": "\/index.php\/export\/client-typescript\/*\/todo\/:todo_id"
         },
         {
-            "rel": "raml",
-            "href": "\/index.php\/export\/raml\/*\/todo\/:todo_id"
+            "rel": "markup-html",
+            "href": "\/index.php\/export\/markup-html\/*\/todo\/:todo_id"
+        },
+        {
+            "rel": "markup-markdown",
+            "href": "\/index.php\/export\/markup-markdown\/*\/todo\/:todo_id"
+        },
+        {
+            "rel": "spec-jsonschema",
+            "href": "\/index.php\/export\/spec-jsonschema\/*\/todo\/:todo_id"
+        },
+        {
+            "rel": "spec-openapi",
+            "href": "\/index.php\/export\/spec-openapi\/*\/todo\/:todo_id"
+        },
+        {
+            "rel": "spec-raml",
+            "href": "\/index.php\/export\/spec-raml\/*\/todo\/:todo_id"
+        },
+        {
+            "rel": "spec-swagger",
+            "href": "\/index.php\/export\/spec-swagger\/*\/todo\/:todo_id"
         }
     ]
 }
