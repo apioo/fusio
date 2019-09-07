@@ -55,6 +55,8 @@
         <delete dir="${build}/build" />
         <delete dir="${build}/doc" />
         <delete file="${build}/.travis.yml" />
+        <delete file="${build}/marketplace.yaml" />
+        <delete file="${build}/tests/MarketplaceTest.php" />
         <delete includeemptydirs="true">
             <fileset dir="${build}/cache" includes="**/*" />
         </delete>
