@@ -957,16 +957,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v4.3.1",
+            "version": "v4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "44ac0d354e1f443f0d3e09aa5f07bf089e2136e9"
+                "reference": "0646fc7a0c97ea6cf75a535dc047deaa4469d48e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/44ac0d354e1f443f0d3e09aa5f07bf089e2136e9",
-                "reference": "44ac0d354e1f443f0d3e09aa5f07bf089e2136e9",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/0646fc7a0c97ea6cf75a535dc047deaa4469d48e",
+                "reference": "0646fc7a0c97ea6cf75a535dc047deaa4469d48e",
                 "shasum": ""
             },
             "require": {
@@ -986,7 +986,8 @@
                 "php": ">=7.0",
                 "psx/framework": "^4.0",
                 "psx/openssl": "^1.0",
-                "swiftmailer/swiftmailer": "^5.4"
+                "swiftmailer/swiftmailer": "^5.4",
+                "symfony/filesystem": "^4.3"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
@@ -1010,7 +1011,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2019-09-06T07:50:37+00:00"
+            "time": "2019-09-10T17:25:47+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1285,16 +1286,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.24.0",
+            "version": "1.25.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266"
+                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266",
-                "reference": "bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
+                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
                 "shasum": ""
             },
             "require": {
@@ -1359,7 +1360,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2018-11-05T09:00:11+00:00"
+            "time": "2019-09-06T13:49:17+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3043,6 +3044,56 @@
                 "standards"
             ],
             "time": "2019-06-20T06:46:26+00:00"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v4.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/filesystem.git",
+                "reference": "9abbb7ef96a51f4d7e69627bc6f63307994e4263"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/9abbb7ef96a51f4d7e69627bc6f63307994e4263",
+                "reference": "9abbb7ef96a51f4d7e69627bc6f63307994e4263",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/polyfill-ctype": "~1.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-08-20T14:07:54+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
