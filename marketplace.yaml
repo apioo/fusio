@@ -17,7 +17,7 @@ fusio:
   screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/backend.png'
   website: 'https://github.com/apioo/fusio-backend'
   downloadUrl: 'https://www.fusio-project.org/files/fusio.zip'
-  sha1Hash: 'de93335ba3b8f5b171aff8214249b5bcbf796a2b'
+  sha1Hash: 'aacd5398e5ce9ffe9f77c8a4e794222c9f144394'
 developer:
   version: '0.1'
   description: 'The developer app is designed to quickly setup an API program where new developers can register and create/manage their apps.'
