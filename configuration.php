@@ -75,6 +75,10 @@ return [
     // http://localhost.com)
     'psx_url'                 => getenv('FUSIO_URL'),
 
+    // To enable clean urls you need to set this to '' this works only in case
+    // mod rewrite is activated
+    'psx_dispatch'            => 'index.php/',
+
     // The default timezone
     'psx_timezone'            => 'UTC',
 
