@@ -60,6 +60,9 @@
         <delete includeemptydirs="true">
             <fileset dir="${build}/cache" includes="**/*" />
         </delete>
+        <delete>
+            <fileset dir="${build}/tests" includes="*.zip" />
+        </delete>
     </target>
 
     <!-- clean build -->
