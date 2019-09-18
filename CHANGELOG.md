@@ -1,9 +1,11 @@
 
 ### 1.8.0
 
-* Add log rotate command to copy all logs to an archive table
+* Add SQL select action #260
+* Add option to download the SDK #259
+* Add log rotate command to copy all logs to an archive table #256
 * Add marketplace to backend #254
-* Update doctrine/dbal to 2.9
+* Update doctrine/dbal to 2.9 #252
 
 ### 1.7.0 (2019-08-12)
 
