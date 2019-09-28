@@ -19,6 +19,7 @@ maintain an API with Fusio.
    :caption: Development
 
    development/action
+   development/connection
    development/business_logic
    development/deploy
    development/testing
