@@ -253,7 +253,7 @@ The backend app is the app where the administrator can configure the system. The
 app is located at ``/fusio/``.
 
 Marketplace
-^^^^^^^^^
+^^^^^^^^^^^
 
 Fusio has a `marketplace`_ which contains a variety of apps for specific use
 cases. Every app can be directly installed from the backend app under System /
