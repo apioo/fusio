@@ -39,26 +39,6 @@ includes this file. In the following an example implementation:
         'message' => 'Hello World!',
     ]);
 
-Javascript File
-^^^^^^^^^^^^^^^
-
-.. code-block:: yaml
-
-    action: "${dir.src}/Todo/collection.js"
-
-If the action points to a file with a ``js`` file extension Fusio uses the 
-internal v8 engine to execute the js code. This is suitable for javascript 
-developers who like to write the code in `javascript`_. Note the v8 
-implementation requires the `php-v8`_ extension. In the following an example 
-implementation:
-
-.. code-block:: javascript
-
-    response.setStatusCode(200);
-    response.setBody({
-        message: "Hello World!"
-    });
-
 HTTP Url
 ^^^^^^^^
 
