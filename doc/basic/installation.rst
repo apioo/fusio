@@ -150,36 +150,18 @@ cPanel
 ^^^^^^
 
 On cPanel you can create a new sub-domain and use the "base document path"
-option to point it at ``/public``.
-
-Javascript V8
--------------
-
-Fusio provides an adapter which lets you write the endpoint logic in simple 
-javascript. To use this adapter you need to install the ``php-v8`` extension.
-Installation instructions are available at the `php-v8`_ repository
+option to point it at ``/public``. Also you need to set the ``psx_dispatch``
+key at the ``configuration.php`` to ``''`` and adjust the url at the ``.env``
+file to your correct domain.
 
 Apps
 ----
 
-There are three javascript apps which can connect to the Fusio backend API. The 
-backend, developer and documentation app. By default they try to guess the url 
-of the API endpoint. If an app is not working properly the problem is probably 
-that the javascript app can not correctly determine the API endpoint url. In 
-this case you have to adjust the url in the following files:
-
-* ``/public/fusio/index.htm``
-* ``/public/developer/index.html``
-* ``/public/documentation/index.html``
-
-These apps are of course optional. If you dont want to use them you could also
-simply delete the folder.
-
 Backend
 ^^^^^^^
 
-At the endpoint ``fusio/`` you can login to the backend app. You should
-be able to login with the username (which you have entered for the ``adduser``
+At the endpoint ``fusio/index.html`` you can login to the backend app. You
+should be able to login with the username (which you have entered for the ``adduser``
 command) and the password which you have used. The following list covers the 
 most login errors in case you are not able to login at the backend:
 
@@ -214,6 +196,13 @@ most login errors in case you are not able to login at the backend:
   problem you have to change the folder permissions so that the user of the web 
   server can write to the folder. If there is another error message it is maybe 
   a bug. Please report the issue to GitHub.
+
+Marketplace
+^^^^^^^^^^^
+
+Fusio has a `marketplace`_ which contains a variety of apps for specific use
+cases. Every app can be directly installed from the backend app under
+System / Marketplace.
 
 Updating
 --------
@@ -260,4 +249,5 @@ new release:
 .. _repository: https://github.com/apioo/fusio-docker
 .. _docker-compose.yml: https://github.com/apioo/fusio-docker/blob/master/docker-compose.yml
 .. _php-v8: https://github.com/pinepain/php-v8
+.. _marketplace: https://www.fusio-project.org/marketplace
 
