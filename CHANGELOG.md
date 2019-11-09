@@ -1,5 +1,12 @@
 
-### 1.8.0
+### 1.9.0
+
+* Added specific scopes to backend/consumer endpoints to allow access to
+  only specific parts of the backend/consumer API
+* Add option to request concrete scopes for backend and consumer authorization
+* Expired JWT return proper 401 status code #268
+
+### 1.8.0 (2019-09-18)
 
 * Add SQL select action #260
 * Add option to download the SDK #259
