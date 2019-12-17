@@ -31,7 +31,7 @@ documentation:
   screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/documentation.png'
   website: 'https://github.com/chriskapp/evid'
   downloadUrl: 'https://www.fusio-project.org/files/documentation.zip'
-  sha1Hash: '109d0846939ab44a89e97094248e9324bccfcf73'
+  sha1Hash: '08ab9333a177ba5986216d20b844af863609f91b'
 swagger-ui:
   version: '0.1'
   description: 'The Swagger UI app renders a documentation based on the OpenAPI specification.'
