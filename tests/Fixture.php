@@ -48,7 +48,7 @@ class Fixture
                 ['app_id' => 1, 'scope_id' => 4],
             ],
             'fusio_app_token' => [
-                ['app_id' => 1, 'user_id' => 1, 'status' => 1, 'token' => 'da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf', 'scope' => 'testing', 'ip' => '127.0.0.1', 'expire' => $expire->format('Y-m-d H:i:s'), 'date' => '2015-06-25 22:49:09'],
+                ['app_id' => 1, 'user_id' => 1, 'status' => 1, 'token' => 'da250526d583edabca8ac2f99e37ee39aa02a3c076c0edc6929095e20ca18dcf', 'scope' => 'todo', 'ip' => '127.0.0.1', 'expire' => $expire->format('Y-m-d H:i:s'), 'date' => '2015-06-25 22:49:09'],
             ],
             'fusio_user_scope' => [
                 ['user_id' => 1, 'scope_id' => 4],
