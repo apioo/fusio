@@ -35,6 +35,14 @@ class Fixture
 {
     protected static $dataSet;
 
+    /**
+     * Returns the default Fusio system inserts, through this it is i.e.
+     * possible to add test users or apps which are required for your API. The
+     * test token needs the required scopes to access your endpoints
+     * 
+     * @return array
+     * @throws \Exception
+     */
     public static function getSystemInserts()
     {
         $expire = new \DateTime();
@@ -56,6 +64,13 @@ class Fixture
         ];
     }
 
+    /**
+     * Returns the demo inserts for your app specific tables. In this case we
+     * simply add entries to the app_todo table
+     * 
+     * @return array
+     * @throws \Exception
+     */
     public static function getDemoInserts()
     {
         $result = [];
