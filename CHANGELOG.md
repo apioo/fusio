@@ -4,8 +4,9 @@
 * Add rest password process for users which have registered through email. If
   the process the user receives an email containing a link with a token which
   can be used to change the current password
+* Renamed column period to period_type for MariaDB compatibility #252
 * Return refresh token for simple login and add option extend an existing
-  access token
+  access token #264
 * Restructured clean command to remove expired database entries i.e. app token
   instead of removing the demo files
 * Added specific scopes to backend/consumer endpoints to allow access to
