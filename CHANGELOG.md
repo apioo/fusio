@@ -1,6 +1,13 @@
 
 ### 1.9.0
 
+* Add rest password process for users which have registered through email. If
+  the process the user receives an email containing a link with a token which
+  can be used to change the current password
+* Return refresh token for simple login and add option extend an existing
+  access token
+* Restructured clean command to remove expired database entries i.e. app token
+  instead of removing the demo files
 * Added specific scopes to backend/consumer endpoints to allow access to
   only specific parts of the backend/consumer API
 * Add option to request concrete scopes for backend and consumer authorization
