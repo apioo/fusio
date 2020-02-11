@@ -24,14 +24,14 @@ developer:
   screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/developer.png'
   website: 'https://github.com/apioo/fusio-consumer'
   downloadUrl: 'https://www.fusio-project.org/files/developer.zip'
-  sha1Hash: 'd911c76c3eb849ce911c70c549005b0b12d79324'
+  sha1Hash: 'a48ffa3482eddc495f684d454279f6be29a724f4'
 documentation:
   version: '0.2'
   description: 'The documentation app simply provides an overview of all available endpoints. It is possible to export the API definition into other schema formats like i.e. OpenAPI.'
   screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/documentation.png'
   website: 'https://github.com/chriskapp/evid'
   downloadUrl: 'https://www.fusio-project.org/files/documentation.zip'
-  sha1Hash: '08ab9333a177ba5986216d20b844af863609f91b'
+  sha1Hash: '109d0846939ab44a89e97094248e9324bccfcf73'
 swagger-ui:
   version: '0.1'
   description: 'The Swagger UI app renders a documentation based on the OpenAPI specification.'
