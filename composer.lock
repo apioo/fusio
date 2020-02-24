@@ -687,22 +687,22 @@
         },
         {
             "name": "fusio/adapter-php",
-            "version": "v3.2.1",
+            "version": "v3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-php.git",
-                "reference": "3c9e00d92497c5568743771acaeb2f91d9edf0f6"
+                "reference": "2c92e00baacb20e0f46e648160ac1c2d4208a794"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/3c9e00d92497c5568743771acaeb2f91d9edf0f6",
-                "reference": "3c9e00d92497c5568743771acaeb2f91d9edf0f6",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/2c92e00baacb20e0f46e648160ac1c2d4208a794",
+                "reference": "2c92e00baacb20e0f46e648160ac1c2d4208a794",
                 "shasum": ""
             },
             "require": {
                 "fusio/engine": "^3.1.1",
                 "php": ">=7.0",
-                "psx/sandbox": "^0.2"
+                "psx/sandbox": "^0.3"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
@@ -729,7 +729,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2019-01-12T21:46:30+00:00"
+            "time": "2020-02-08T13:05:37+00:00"
         },
         {
             "name": "fusio/adapter-smtp",
@@ -825,16 +825,16 @@
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v3.0.9",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
-                "reference": "c512436999a7656c1e4852fd9eec4592698aa3d2"
+                "reference": "c104027390f9678216b4b940d9a8fa18df46db61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/c512436999a7656c1e4852fd9eec4592698aa3d2",
-                "reference": "c512436999a7656c1e4852fd9eec4592698aa3d2",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/c104027390f9678216b4b940d9a8fa18df46db61",
+                "reference": "c104027390f9678216b4b940d9a8fa18df46db61",
                 "shasum": ""
             },
             "require": {
@@ -867,7 +867,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2019-09-21T08:53:11+00:00"
+            "time": "2020-02-17T19:54:36+00:00"
         },
         {
             "name": "fusio/adapter-util",
@@ -917,16 +917,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v3.2.5",
+            "version": "v3.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "bf3314cbe2d48e4630a0d9b7819240a825619875"
+                "reference": "8b4f054daf5a4f5925e5c83ebdd635a0c84a61fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/bf3314cbe2d48e4630a0d9b7819240a825619875",
-                "reference": "bf3314cbe2d48e4630a0d9b7819240a825619875",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/8b4f054daf5a4f5925e5c83ebdd635a0c84a61fe",
+                "reference": "8b4f054daf5a4f5925e5c83ebdd635a0c84a61fe",
                 "shasum": ""
             },
             "require": {
@@ -964,20 +964,20 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2019-08-04T15:25:45+00:00"
+            "time": "2020-02-16T11:42:21+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v4.3.7",
+            "version": "v4.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "a926d19046af60ac55c89c0ee5d386a34fbeeeb3"
+                "reference": "0f21a3c74d511e28bf278a7d1832fa40c698ad95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/a926d19046af60ac55c89c0ee5d386a34fbeeeb3",
-                "reference": "a926d19046af60ac55c89c0ee5d386a34fbeeeb3",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/0f21a3c74d511e28bf278a7d1832fa40c698ad95",
+                "reference": "0f21a3c74d511e28bf278a7d1832fa40c698ad95",
                 "shasum": ""
             },
             "require": {
@@ -995,6 +995,7 @@
                 "fusio/engine": "^3.0",
                 "ocramius/package-versions": "^1.2",
                 "php": ">=7.0",
+                "psx/cloudevents": "^0.1",
                 "psx/framework": "^4.0",
                 "psx/openssl": "^1.0",
                 "swiftmailer/swiftmailer": "^5.4",
@@ -1022,7 +1023,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2020-02-04T19:25:58+00:00"
+            "time": "2020-02-24T16:41:03+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1377,24 +1378,25 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.1.5",
+            "version": "v4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "bb87e28e7d7b8d9a7fda231d37457c9210faf6ce"
+                "reference": "9a9981c347c5c49d6dfe5cf826bb882b824080dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/bb87e28e7d7b8d9a7fda231d37457c9210faf6ce",
-                "reference": "bb87e28e7d7b8d9a7fda231d37457c9210faf6ce",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/9a9981c347c5c49d6dfe5cf826bb882b824080dc",
+                "reference": "9a9981c347c5c49d6dfe5cf826bb882b824080dc",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
-                "php": ">=5.5"
+                "php": ">=7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0|~5.0"
+                "ircmaxell/php-yacc": "0.0.5",
+                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
             },
             "bin": [
                 "bin/php-parse"
@@ -1402,7 +1404,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "4.3-dev"
                 }
             },
             "autoload": {
@@ -1424,7 +1426,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2018-02-28T20:30:58+00:00"
+            "time": "2019-11-08T13:50:10+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -1788,27 +1790,27 @@
         },
         {
             "name": "psx/api",
-            "version": "v2.6.5",
+            "version": "v2.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-api.git",
-                "reference": "e20271184a41625dc59888d4ea36f04acda492c0"
+                "reference": "50488c043081c7b3467ac1ca5f61c390018f3a5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-api/zipball/e20271184a41625dc59888d4ea36f04acda492c0",
-                "reference": "e20271184a41625dc59888d4ea36f04acda492c0",
+                "url": "https://api.github.com/repos/apioo/psx-api/zipball/50488c043081c7b3467ac1ca5f61c390018f3a5c",
+                "reference": "50488c043081c7b3467ac1ca5f61c390018f3a5c",
                 "shasum": ""
             },
             "require": {
                 "doctrine/annotations": "^1.3",
                 "doctrine/cache": "^1.6",
-                "nikic/php-parser": "^3.0",
+                "nikic/php-parser": "^4.0",
                 "php": ">=7.0",
                 "psx/cache": "^1.0",
                 "psx/json": "^1.0",
                 "psx/model": "^2.0",
-                "psx/schema": "^2.0",
+                "psx/schema": "^2.6",
                 "symfony/console": "~2.8|~3.0|~4.0",
                 "symfony/yaml": "~2.8|~3.0",
                 "twig/twig": "^2.4"
@@ -1840,12 +1842,12 @@
             "homepage": "http://phpsx.org",
             "keywords": [
                 "api",
+                "openapi",
                 "raml",
                 "specification",
-                "swagger",
-                "wsdl"
+                "swagger"
             ],
-            "time": "2019-10-14T19:14:05+00:00"
+            "time": "2020-02-22T10:24:48+00:00"
         },
         {
             "name": "psx/cache",
@@ -1900,6 +1902,53 @@
                 "psr-6"
             ],
             "time": "2018-12-16T20:14:16+00:00"
+        },
+        {
+            "name": "psx/cloudevents",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/psx-cloudevents.git",
+                "reference": "4e38f6299f819c0cdb2082f2fcf6e9359cf1f69e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/psx-cloudevents/zipball/4e38f6299f819c0cdb2082f2fcf6e9359cf1f69e",
+                "reference": "4e38f6299f819c0cdb2082f2fcf6e9359cf1f69e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PSX\\CloudEvents\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com/"
+                }
+            ],
+            "description": "Produce and consume cloud events",
+            "homepage": "http://phpsx.org",
+            "keywords": [
+                "cloud",
+                "cloudevents",
+                "events"
+            ],
+            "time": "2020-01-25T16:20:08+00:00"
         },
         {
             "name": "psx/data",
@@ -2058,16 +2107,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v4.2.3",
+            "version": "v4.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "b50679bfa4354a08d3af67d2212c6756b00770b4"
+                "reference": "37949550063a28cf3e4866f59a99b5cba556de9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/b50679bfa4354a08d3af67d2212c6756b00770b4",
-                "reference": "b50679bfa4354a08d3af67d2212c6756b00770b4",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/37949550063a28cf3e4866f59a99b5cba556de9a",
+                "reference": "37949550063a28cf3e4866f59a99b5cba556de9a",
                 "shasum": ""
             },
             "require": {
@@ -2121,7 +2170,7 @@
                 "framework",
                 "rest"
             ],
-            "time": "2019-11-16T07:58:55+00:00"
+            "time": "2020-02-22T13:20:22+00:00"
         },
         {
             "name": "psx/http",
@@ -2458,20 +2507,20 @@
         },
         {
             "name": "psx/sandbox",
-            "version": "v0.2.2",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-sandbox.git",
-                "reference": "2bfb44b29f359d905c325005f07e1827d9831c76"
+                "reference": "f1659ac5f1e32213b13d7fa063a6435b709acf5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-sandbox/zipball/2bfb44b29f359d905c325005f07e1827d9831c76",
-                "reference": "2bfb44b29f359d905c325005f07e1827d9831c76",
+                "url": "https://api.github.com/repos/apioo/psx-sandbox/zipball/f1659ac5f1e32213b13d7fa063a6435b709acf5d",
+                "reference": "f1659ac5f1e32213b13d7fa063a6435b709acf5d",
                 "shasum": ""
             },
             "require": {
-                "nikic/php-parser": "^3.0",
+                "nikic/php-parser": "^4.0",
                 "php": ">=7.0"
             },
             "require-dev": {
@@ -2501,25 +2550,25 @@
                 "php",
                 "sandbox"
             ],
-            "time": "2019-05-06T06:35:27+00:00"
+            "time": "2019-10-28T20:13:22+00:00"
         },
         {
             "name": "psx/schema",
-            "version": "v2.5.3",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "acfdec5aec795fabd0dfd3cfee299dad94dc387f"
+                "reference": "f0bc90a805ddf7ec2dd6e641cee9e1543244cbfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/acfdec5aec795fabd0dfd3cfee299dad94dc387f",
-                "reference": "acfdec5aec795fabd0dfd3cfee299dad94dc387f",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/f0bc90a805ddf7ec2dd6e641cee9e1543244cbfb",
+                "reference": "f0bc90a805ddf7ec2dd6e641cee9e1543244cbfb",
                 "shasum": ""
             },
             "require": {
                 "doctrine/annotations": "^1.3",
-                "nikic/php-parser": "^3.0",
+                "nikic/php-parser": "^4.0",
                 "php": ">=7.0",
                 "psr/cache": "^1.0",
                 "psx/cache": "^1.0",
@@ -2562,25 +2611,25 @@
                 "json",
                 "schema"
             ],
-            "time": "2019-10-17T19:49:57+00:00"
+            "time": "2019-11-15T21:04:04+00:00"
         },
         {
             "name": "psx/sql",
-            "version": "v2.1.6",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-sql.git",
-                "reference": "37b0c6c13714972a72a1d0bc84e610ceb7270e4e"
+                "reference": "5042bb1899a27841e7e8762d410b57aa2ec22a9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-sql/zipball/37b0c6c13714972a72a1d0bc84e610ceb7270e4e",
-                "reference": "37b0c6c13714972a72a1d0bc84e610ceb7270e4e",
+                "url": "https://api.github.com/repos/apioo/psx-sql/zipball/5042bb1899a27841e7e8762d410b57aa2ec22a9a",
+                "reference": "5042bb1899a27841e7e8762d410b57aa2ec22a9a",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "~2.9.0",
-                "nikic/php-parser": "^3.0",
+                "nikic/php-parser": "^4.0",
                 "php": ">=7.0",
                 "psx/record": "^1.0",
                 "symfony/console": "~2.8|~3.0|~4.0"
@@ -2611,7 +2660,7 @@
             "keywords": [
                 "sql"
             ],
-            "time": "2019-08-30T18:50:29+00:00"
+            "time": "2019-10-28T19:11:09+00:00"
         },
         {
             "name": "psx/uri",
@@ -3112,16 +3161,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.13.1",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3"
+                "reference": "fbdeaec0df06cf3d51c93de80c7eb76e271f5a38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
-                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/fbdeaec0df06cf3d51c93de80c7eb76e271f5a38",
+                "reference": "fbdeaec0df06cf3d51c93de80c7eb76e271f5a38",
                 "shasum": ""
             },
             "require": {
@@ -3133,7 +3182,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -3166,20 +3215,20 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-11-27T13:56:44+00:00"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.13.1",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
+                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7b4aab9743c30be783b73de055d24a39cf4b954f",
-                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/34094cfa9abe1f0f14f48f490772db7a775559f2",
+                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2",
                 "shasum": ""
             },
             "require": {
@@ -3191,7 +3240,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -3225,20 +3274,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-11-27T14:18:11+00:00"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.13.1",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "4b0e2222c55a25b4541305a053013d5647d3a25f"
+                "reference": "5e66a0fa1070bf46bec4bea7962d285108edd675"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/4b0e2222c55a25b4541305a053013d5647d3a25f",
-                "reference": "4b0e2222c55a25b4541305a053013d5647d3a25f",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/5e66a0fa1070bf46bec4bea7962d285108edd675",
+                "reference": "5e66a0fa1070bf46bec4bea7962d285108edd675",
                 "shasum": ""
             },
             "require": {
@@ -3247,7 +3296,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -3283,7 +3332,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-11-27T16:25:15+00:00"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -3404,16 +3453,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.12.3",
+            "version": "v2.12.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "97b6311585cae66a26833b14b33785f5797f7d39"
+                "reference": "18772e0190734944277ee97a02a9a6c6555fcd94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/97b6311585cae66a26833b14b33785f5797f7d39",
-                "reference": "97b6311585cae66a26833b14b33785f5797f7d39",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/18772e0190734944277ee97a02a9a6c6555fcd94",
+                "reference": "18772e0190734944277ee97a02a9a6c6555fcd94",
                 "shasum": ""
             },
             "require": {
@@ -3465,7 +3514,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-12-28T07:12:03+00:00"
+            "time": "2020-02-11T15:31:23+00:00"
         },
         {
             "name": "zendframework/zend-code",
@@ -3842,41 +3891,38 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "4.3.4",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "da3fd972d6bafd628114f7e7e036f45944b62e9c"
+                "reference": "a48807183a4b819072f26e347bbd0b5199a9d15f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/da3fd972d6bafd628114f7e7e036f45944b62e9c",
-                "reference": "da3fd972d6bafd628114f7e7e036f45944b62e9c",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/a48807183a4b819072f26e347bbd0b5199a9d15f",
+                "reference": "a48807183a4b819072f26e347bbd0b5199a9d15f",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
-                "phpdocumentor/reflection-common": "^1.0.0 || ^2.0.0",
-                "phpdocumentor/type-resolver": "~0.4 || ^1.0.0",
-                "webmozart/assert": "^1.0"
+                "ext-filter": "^7.1",
+                "php": "^7.2",
+                "phpdocumentor/reflection-common": "^2.0",
+                "phpdocumentor/type-resolver": "^1.0",
+                "webmozart/assert": "^1"
             },
             "require-dev": {
-                "doctrine/instantiator": "^1.0.5",
-                "mockery/mockery": "^1.0",
-                "phpdocumentor/type-resolver": "0.4.*",
-                "phpunit/phpunit": "^6.4"
+                "doctrine/instantiator": "^1",
+                "mockery/mockery": "^1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.x-dev"
+                    "dev-master": "5.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "phpDocumentor\\Reflection\\": [
-                        "src/"
-                    ]
+                    "phpDocumentor\\Reflection\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3887,10 +3933,14 @@
                 {
                     "name": "Mike van Riel",
                     "email": "me@mikevanriel.com"
+                },
+                {
+                    "name": "Jaap van Otterdijk",
+                    "email": "account@ijaap.nl"
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2019-12-28T18:55:12+00:00"
+            "time": "2020-02-09T09:16:15+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -4996,16 +5046,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "573381c0a64f155a0d9a23f4b0c797194805b925"
+                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/573381c0a64f155a0d9a23f4b0c797194805b925",
-                "reference": "573381c0a64f155a0d9a23f4b0c797194805b925",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/aed98a490f9a8f78468232db345ab9cf606cf598",
+                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598",
                 "shasum": ""
             },
             "require": {
@@ -5040,7 +5090,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2019-11-24T13:36:37+00:00"
+            "time": "2020-02-14T12:15:55+00:00"
         }
     ],
     "aliases": [],
