@@ -1,0 +1,131 @@
+{
+  "path": "\/todo",
+  "version": "*",
+  "status": 4,
+  "description": null,
+  "schema": {
+    "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+    "id": "urn:schema.phpsx.org#",
+    "definitions": {
+      "Todo": {
+        "type": "object",
+        "title": "todo",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32
+          },
+          "insertDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "title"
+        ]
+      },
+      "Collection": {
+        "type": "object",
+        "title": "collection",
+        "properties": {
+          "totalCount": {
+            "type": "integer"
+          },
+          "entry": {
+            "type": "array",
+            "items": {
+              "$ref": "#\/definitions\/Todo"
+            }
+          }
+        }
+      },
+      "Message": {
+        "type": "object",
+        "title": "message",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "GET-200-response": {
+        "$ref": "#\/definitions\/Collection"
+      },
+      "GET-500-response": {
+        "$ref": "#\/definitions\/Message"
+      },
+      "POST-request": {
+        "$ref": "#\/definitions\/Todo"
+      },
+      "POST-201-response": {
+        "$ref": "#\/definitions\/Message"
+      },
+      "POST-500-response": {
+        "$ref": "#\/definitions\/Message"
+      }
+    }
+  },
+  "methods": {
+    "GET": {
+      "description": "Returns all todo entries",
+      "operationId": "get.todo",
+      "responses": {
+        "200": "#\/definitions\/GET-200-response",
+        "500": "#\/definitions\/GET-500-response"
+      }
+    },
+    "POST": {
+      "description": "Creates a new todo entry",
+      "operationId": "post.todo",
+      "request": "#\/definitions\/POST-request",
+      "responses": {
+        "201": "#\/definitions\/POST-201-response",
+        "500": "#\/definitions\/POST-500-response"
+      }
+    }
+  },
+  "links": [
+    {
+      "rel": "client-php",
+      "href": "\/index.php\/export\/client-php\/*\/todo"
+    },
+    {
+      "rel": "client-typescript",
+      "href": "\/index.php\/export\/client-typescript\/*\/todo"
+    },
+    {
+      "rel": "markup-html",
+      "href": "\/index.php\/export\/markup-html\/*\/todo"
+    },
+    {
+      "rel": "markup-markdown",
+      "href": "\/index.php\/export\/markup-markdown\/*\/todo"
+    },
+    {
+      "rel": "spec-jsonschema",
+      "href": "\/index.php\/export\/spec-jsonschema\/*\/todo"
+    },
+    {
+      "rel": "spec-openapi",
+      "href": "\/index.php\/export\/spec-openapi\/*\/todo"
+    },
+    {
+      "rel": "spec-raml",
+      "href": "\/index.php\/export\/spec-raml\/*\/todo"
+    },
+    {
+      "rel": "spec-swagger",
+      "href": "\/index.php\/export\/spec-swagger\/*\/todo"
+    }
+  ]
+}

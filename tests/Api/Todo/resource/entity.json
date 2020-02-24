@@ -1,0 +1,132 @@
+{
+  "path": "\/todo\/:todo_id",
+  "version": "*",
+  "status": 4,
+  "description": null,
+  "schema": {
+    "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+    "id": "urn:schema.phpsx.org#",
+    "definitions": {
+      "path-template": {
+        "type": "object",
+        "title": "path",
+        "properties": {
+          "todo_id": {
+            "type": "string"
+          }
+        }
+      },
+      "Todo": {
+        "type": "object",
+        "title": "todo",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32
+          },
+          "insertDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "title"
+        ]
+      },
+      "Message": {
+        "type": "object",
+        "title": "message",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Passthru": {
+        "type": "object",
+        "title": "passthru",
+        "description": "No schema was specified.",
+        "additionalProperties": true
+      },
+      "GET-200-response": {
+        "$ref": "#\/definitions\/Todo"
+      },
+      "GET-500-response": {
+        "$ref": "#\/definitions\/Message"
+      },
+      "DELETE-request": {
+        "$ref": "#\/definitions\/Passthru"
+      },
+      "DELETE-200-response": {
+        "$ref": "#\/definitions\/Message"
+      },
+      "DELETE-500-response": {
+        "$ref": "#\/definitions\/Message"
+      }
+    }
+  },
+  "pathParameters": "#\/definitions\/path-template",
+  "methods": {
+    "GET": {
+      "description": "Returns a single todo entry",
+      "operationId": "get.todo.todo_id",
+      "responses": {
+        "200": "#\/definitions\/GET-200-response",
+        "500": "#\/definitions\/GET-500-response"
+      }
+    },
+    "DELETE": {
+      "description": "Removes a todo entry",
+      "operationId": "delete.todo.todo_id",
+      "request": "#\/definitions\/DELETE-request",
+      "responses": {
+        "200": "#\/definitions\/DELETE-200-response",
+        "500": "#\/definitions\/DELETE-500-response"
+      }
+    }
+  },
+  "links": [
+    {
+      "rel": "client-php",
+      "href": "\/index.php\/export\/client-php\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "client-typescript",
+      "href": "\/index.php\/export\/client-typescript\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "markup-html",
+      "href": "\/index.php\/export\/markup-html\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "markup-markdown",
+      "href": "\/index.php\/export\/markup-markdown\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "spec-jsonschema",
+      "href": "\/index.php\/export\/spec-jsonschema\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "spec-openapi",
+      "href": "\/index.php\/export\/spec-openapi\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "spec-raml",
+      "href": "\/index.php\/export\/spec-raml\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "spec-swagger",
+      "href": "\/index.php\/export\/spec-swagger\/*\/todo\/:todo_id"
+    }
+  ]
+}
