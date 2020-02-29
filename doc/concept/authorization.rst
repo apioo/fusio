@@ -10,7 +10,7 @@ an expire time adn can be revoked.
 Simple
 ------
 
-The most simple way to obtain an access token is to use the /consumer/login
+The most simple way to obtain an access token is to use the ``/consumer/login``
 endpoint. If you need more control of your access token you should use the
 Oauth2 endpoint to obtain an access token.
 

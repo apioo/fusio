@@ -27,7 +27,7 @@ you have configured at Fusio.
 
 .. code-block:: text
     
-    php /bin/fusio migration:migrate -connection=System
+    php /bin/fusio migration:migrate --connection=System
 
 Fusio will look into the ``src/Migrations/`` folder and search for a folder
 which has the name of your connection. In this case it would be "System".

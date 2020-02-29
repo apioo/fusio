@@ -239,10 +239,8 @@ changed with a new release.
 App
 ^^^
 
-To update the backend app simply replace the javascript and css files from the 
-new release:
-
- * ``public/fusio/``
+All apps can be updated at the Marketplace panel of the backend app. There you
+can simply use the update button to receive the latest version of the app.
 
 
 .. _download: http://www.fusio-project.org/download

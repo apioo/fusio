@@ -56,6 +56,17 @@ contains several keys:
 Through the command ``php bin/fusio deploy`` you can deploy the API. It is now 
 possible to visit the API endpoint at: ``/todo``.
 
+Migration
+^^^^^^^^^
+
+The demo endpoint works on an app_todo table. In order to create this table you
+need to execute the migration files available at ``src/Migrations/System``. The
+migrations can be executed with the following command:
+``php bin/fusio migration:migrate --connection=System``
+
+By default we use the System connection, which is the connection where Fusio is
+installed but you can also use any other connection.
+
 Access a non-public API endpoint
 --------------------------------
 
@@ -64,8 +75,8 @@ access token in order to send a POST request.
 
 * **Assign the scope to your user**
 
-  By default all routes are assigned to the ``todo`` scope. In order to use a 
-  scope, the scope must be assigned to your user account. Therefor go to the 
+  The routes are assigned to the ``todo`` scope. In order to use a scope, the
+  scope must be assigned to your user account. Therefor go to the 
   user panel click on the edit button and assign the ``todo`` scope to your 
   user. It is also possible to set the default scopes for new users under 
   settings ``scopes_default``.
@@ -94,8 +105,8 @@ access token in order to send a POST request.
           "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5N2JkNDUzYjdlMDZlOWFlMDQxNi00YmY2MWFiYjg4MDJjZmRmOWZmN2UyNDg4OTNmNzYyYmU5Njc5MGUzYTk4NDQ3MDEtYjNkYTk1MDYyNCIsImlhdCI6MTQ5MTE2NzIzNiwiZXhwIjoxNDkxMTcwODM2LCJuYW1lIjoidGVzdCJ9.T49Af5wnPIFYbPer3rOn-KV5PcN0FLcBVykUMCIAuwI"
       }
 
-  Note this generates an OAuth2 token with contains all scopes from your user 
-  account. It is also possible to use the OAuth2 endpoint `/authorization/token`
+  Note this generates an OAuth2 token which contains all scopes from your user 
+  account. It is also possible to use the OAuth2 endpoint ``/authorization/token``
   to create an access token with specific assigned scopes.
 
 * **Request the non-public API endpoint**

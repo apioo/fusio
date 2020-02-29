@@ -2,7 +2,7 @@
 Connection
 ==========
 
-Inside an action you can use the ``connector`` to obtain an configured
+Inside an action you can use the ``connector`` to obtain a configured
 connection. The following list contains connection classes which you can use. 
 Note some connections depend on PHP extensions or other client libraries, you
 have to install the fitting adapter in order to use the connection. Take a look
