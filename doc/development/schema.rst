@@ -5,11 +5,9 @@ Schema
 By default you need to write standard JSON Schema files to provide a schema for
 the request and response format of an endpoint. Besides this it is also possible
 to create a PHP class with specific annotations which can be transformed into
-JSON Schema by Fusio. This has the advantage that you action will receive this
-specific class as request body.
-
-At the ``resources/schemas.yaml`` you can define a new schema using a simple
-PHP class name instead of a file:
+JSON Schema by Fusio. This has the advantage that your action will receive this
+specific class as request body. At the ``resources/schemas.yaml`` file you can
+define a new schema using a simple PHP class name instead of a file:
 
 .. code-block:: php
 
