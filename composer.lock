@@ -917,27 +917,27 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v3.2.7",
+            "version": "v3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "8b4f054daf5a4f5925e5c83ebdd635a0c84a61fe"
+                "reference": "120494e3b32f7b5aa08c61d6f2386caa47ac6a1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/8b4f054daf5a4f5925e5c83ebdd635a0c84a61fe",
-                "reference": "8b4f054daf5a4f5925e5c83ebdd635a0c84a61fe",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/120494e3b32f7b5aa08c61d6f2386caa47ac6a1c",
+                "reference": "120494e3b32f7b5aa08c61d6f2386caa47ac6a1c",
                 "shasum": ""
             },
             "require": {
                 "doctrine/annotations": "^1.3",
-                "doctrine/cache": "^1.6",
                 "monolog/monolog": "^1.17",
                 "php": ">=7.0",
                 "psr/container": "^1.0",
                 "psr/log": "^1.0",
                 "psr/simple-cache": "^1.0",
-                "psx/dependency": "^0.1",
+                "psx/cache": "^1.0",
+                "psx/dependency": "^1.0",
                 "psx/http": "^2.0",
                 "psx/record": "^1.0",
                 "psx/schema": "^2.0"
@@ -964,20 +964,20 @@
             ],
             "description": "Abstract definition of the Fusio system",
             "homepage": "http://fusio-project.org",
-            "time": "2020-02-16T11:42:21+00:00"
+            "time": "2020-03-23T18:16:39+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v4.4.0",
+            "version": "v4.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "330a7d2c9bc38a08d5afea61f4d11d027cf1468a"
+                "reference": "24d29be0e8769bed0d8c7cedf2e9e8fe5e928234"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/330a7d2c9bc38a08d5afea61f4d11d027cf1468a",
-                "reference": "330a7d2c9bc38a08d5afea61f4d11d027cf1468a",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/24d29be0e8769bed0d8c7cedf2e9e8fe5e928234",
+                "reference": "24d29be0e8769bed0d8c7cedf2e9e8fe5e928234",
                 "shasum": ""
             },
             "require": {
@@ -999,8 +999,8 @@
                 "psx/framework": "^4.0",
                 "psx/openssl": "^1.0",
                 "swiftmailer/swiftmailer": "^5.4",
-                "symfony/filesystem": "^5.0",
-                "symfony/property-access": "^5.0"
+                "symfony/filesystem": "^4.0|^5.0",
+                "symfony/property-access": "^4.0|^5.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
@@ -1024,7 +1024,7 @@
             ],
             "description": "Fusio implementation",
             "homepage": "http://fusio-project.org",
-            "time": "2020-02-29T08:56:03+00:00"
+            "time": "2020-03-23T18:54:08+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1696,16 +1696,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801"
+                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/446d54b4cb6bf489fc9d75f55843658e6f25d801",
-                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
+                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
                 "shasum": ""
             },
             "require": {
@@ -1739,7 +1739,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2019-11-01T11:05:21+00:00"
+            "time": "2020-03-23T09:12:05+00:00"
         },
         {
             "name": "psr/simple-cache",
@@ -2055,16 +2055,16 @@
         },
         {
             "name": "psx/dependency",
-            "version": "v0.1.1",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-dependency.git",
-                "reference": "c4ae512d6c05889fcdaf4d52d0c1bc2db7903916"
+                "reference": "fcb2d9d8194b2d933e30584a2091e0559b82db40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-dependency/zipball/c4ae512d6c05889fcdaf4d52d0c1bc2db7903916",
-                "reference": "c4ae512d6c05889fcdaf4d52d0c1bc2db7903916",
+                "url": "https://api.github.com/repos/apioo/psx-dependency/zipball/fcb2d9d8194b2d933e30584a2091e0559b82db40",
+                "reference": "fcb2d9d8194b2d933e30584a2091e0559b82db40",
                 "shasum": ""
             },
             "require": {
@@ -2104,20 +2104,20 @@
                 "dependency",
                 "di"
             ],
-            "time": "2018-12-16T19:30:03+00:00"
+            "time": "2020-03-22T18:26:53+00:00"
         },
         {
             "name": "psx/framework",
-            "version": "v4.2.6",
+            "version": "v4.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "37949550063a28cf3e4866f59a99b5cba556de9a"
+                "reference": "396fc6ccf1cd400c50712b8267da3a6c2c049a2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/37949550063a28cf3e4866f59a99b5cba556de9a",
-                "reference": "37949550063a28cf3e4866f59a99b5cba556de9a",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/396fc6ccf1cd400c50712b8267da3a6c2c049a2d",
+                "reference": "396fc6ccf1cd400c50712b8267da3a6c2c049a2d",
                 "shasum": ""
             },
             "require": {
@@ -2130,7 +2130,7 @@
                 "psx/api": "^2.0",
                 "psx/cache": "^1.0",
                 "psx/data": "^2.0",
-                "psx/dependency": "^0.1",
+                "psx/dependency": "^1.0",
                 "psx/http": "^2.0",
                 "psx/json": "^1.0",
                 "psx/oauth": "^2.0",
@@ -2139,8 +2139,8 @@
                 "psx/sql": "^2.0",
                 "psx/uri": "^1.0",
                 "psx/validate": "^1.0",
-                "symfony/console": "~2.8|~3.0|~4.0",
-                "symfony/event-dispatcher": "~2.8|~3.0|~4.0"
+                "symfony/console": "^4.0|^5.0",
+                "symfony/event-dispatcher": "^4.0|^5.0"
             },
             "require-dev": {
                 "guzzlehttp/guzzle": "^6.3",
@@ -2171,20 +2171,20 @@
                 "framework",
                 "rest"
             ],
-            "time": "2020-02-22T13:20:22+00:00"
+            "time": "2020-03-22T18:44:52+00:00"
         },
         {
             "name": "psx/http",
-            "version": "v2.0.8",
+            "version": "v2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-http.git",
-                "reference": "c54d7212cfb513df84f810429aa34c6ac9942c01"
+                "reference": "421aed6b7df398aa4c4f154b955ec2586ae069e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-http/zipball/c54d7212cfb513df84f810429aa34c6ac9942c01",
-                "reference": "c54d7212cfb513df84f810429aa34c6ac9942c01",
+                "url": "https://api.github.com/repos/apioo/psx-http/zipball/421aed6b7df398aa4c4f154b955ec2586ae069e2",
+                "reference": "421aed6b7df398aa4c4f154b955ec2586ae069e2",
                 "shasum": ""
             },
             "require": {
@@ -2192,8 +2192,7 @@
                 "php": ">=7.0",
                 "psr/http-message": "^1.0",
                 "psr/log": "^1.0",
-                "psx/uri": "^1.0",
-                "symfony/polyfill-mbstring": "^1.0"
+                "psx/uri": "^1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
@@ -2220,7 +2219,7 @@
             "keywords": [
                 "http"
             ],
-            "time": "2019-02-06T20:55:49+00:00"
+            "time": "2020-03-09T20:09:32+00:00"
         },
         {
             "name": "psx/json",
@@ -2555,16 +2554,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v2.6.1",
+            "version": "v2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "f0bc90a805ddf7ec2dd6e641cee9e1543244cbfb"
+                "reference": "c2105003d66e80c5c0ca99d2882e53c2e0504b47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/f0bc90a805ddf7ec2dd6e641cee9e1543244cbfb",
-                "reference": "f0bc90a805ddf7ec2dd6e641cee9e1543244cbfb",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/c2105003d66e80c5c0ca99d2882e53c2e0504b47",
+                "reference": "c2105003d66e80c5c0ca99d2882e53c2e0504b47",
                 "shasum": ""
             },
             "require": {
@@ -2579,7 +2578,7 @@
                 "psx/record": "^1.0",
                 "psx/uri": "^1.0",
                 "psx/validate": "^1.0",
-                "symfony/console": "~2.8|~3.0|~4.0"
+                "symfony/console": "^4.0|^5.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0",
@@ -2612,20 +2611,20 @@
                 "json",
                 "schema"
             ],
-            "time": "2019-11-15T21:04:04+00:00"
+            "time": "2020-03-09T20:04:55+00:00"
         },
         {
             "name": "psx/sql",
-            "version": "v2.2.0",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-sql.git",
-                "reference": "5042bb1899a27841e7e8762d410b57aa2ec22a9a"
+                "reference": "21b52082483497ffe1ca214ec39139bf9d1b86f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-sql/zipball/5042bb1899a27841e7e8762d410b57aa2ec22a9a",
-                "reference": "5042bb1899a27841e7e8762d410b57aa2ec22a9a",
+                "url": "https://api.github.com/repos/apioo/psx-sql/zipball/21b52082483497ffe1ca214ec39139bf9d1b86f3",
+                "reference": "21b52082483497ffe1ca214ec39139bf9d1b86f3",
                 "shasum": ""
             },
             "require": {
@@ -2633,7 +2632,7 @@
                 "nikic/php-parser": "^4.0",
                 "php": ">=7.0",
                 "psx/record": "^1.0",
-                "symfony/console": "~2.8|~3.0|~4.0"
+                "symfony/console": "^4.0|^5.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0",
@@ -2661,7 +2660,7 @@
             "keywords": [
                 "sql"
             ],
-            "time": "2019-10-28T19:11:09+00:00"
+            "time": "2020-03-09T20:08:09+00:00"
         },
         {
             "name": "psx/uri",
@@ -4116,16 +4115,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "v1.10.2",
+            "version": "v1.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "b4400efc9d206e83138e2bb97ed7f5b14b831cd9"
+                "reference": "451c3cd1418cf640de218914901e51b064abb093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/b4400efc9d206e83138e2bb97ed7f5b14b831cd9",
-                "reference": "b4400efc9d206e83138e2bb97ed7f5b14b831cd9",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/451c3cd1418cf640de218914901e51b064abb093",
+                "reference": "451c3cd1418cf640de218914901e51b064abb093",
                 "shasum": ""
             },
             "require": {
@@ -4175,7 +4174,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2020-01-20T15:57:02+00:00"
+            "time": "2020-03-05T15:02:03+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
