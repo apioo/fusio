@@ -25,7 +25,7 @@ info_license_name: ""
 info_license_url: ""
 
 # Subject of the password reset mail
-mail_pw_reset_subject: ""
+mail_pw_reset_subject: "Fusio password reset"
 # Body of the password reset mail
 mail_pw_reset_body: "Hello {name},
 
