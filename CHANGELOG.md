@@ -1,11 +1,12 @@
 
 ### 1.9.1
 
+* Action constructor dependency injection #301
 * Publish internal events through webhooks feature #288
 * Add option to deploy a schema class #251
 * SqlTable provider generate schema based on the table schema #294
 * Add Laravel and Symfony adapter #246
-* Add php version 7.4 to all test cases
+* Add PHP version 7.4 to all test cases
 * Make schema TypSchema compatible
 
 ### 1.9.0
