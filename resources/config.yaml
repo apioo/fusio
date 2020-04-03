@@ -61,5 +61,6 @@ recaptcha_secret: "${env.RECAPTCHA_SECRET}"
 
 # If a user registers through the consumer API the following scopes are assigned
 scopes_default: "authorization,consumer"
+
 # The default amount of points which a user receives if he registers
 points_default: 0
