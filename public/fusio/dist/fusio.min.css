@@ -454,8 +454,6 @@ pre
 
 .fusio-route-path
 {
-    background-color:inherit;
-    color:inherit;
 }
 
 .fusio-log-detail-header,
@@ -515,6 +513,38 @@ pre
     font-size:90%;
     margin-right:4px;
     font-weight:normal;
+}
+
+.fusio-route-navigation
+{
+    min-height:600px;
+}
+
+.fusio-route-navigation ul
+{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+.fusio-route-navigation li
+{
+    margin:0;
+    padding:0;
+}
+
+.fusio-route-navigation a
+{
+    font-family:monospace;
+    cursor:pointer;
+    padding:8px 0;
+    display:block;
+    overflow:hidden;
+}
+
+.fusio-route-navigation a:hover
+{
+    background-color:#eee;
 }
 
 /* general bootstrap fixes */
