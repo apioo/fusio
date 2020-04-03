@@ -9,7 +9,7 @@
 * Add PHP version 7.4 to all test cases
 * Make schema TypSchema compatible
 
-### 1.9.0
+### 1.9.0 (2020-02-04)
 
 * Add rest password process for users which have registered through email. If
   the process the user receives an email containing a link with a token which
