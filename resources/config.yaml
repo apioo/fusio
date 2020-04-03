@@ -24,14 +24,28 @@ info_license_name: ""
 # A URL to the license used for the API. MUST be in the format of a URL
 info_license_url: ""
 
+# Subject of the password reset mail
+mail_pw_reset_subject: ""
+# Body of the password reset mail
+mail_pw_reset_body: "Hello {name},
+
+you have requested to reset your password.
+To set a new password please visit the following link:
+${env.FUSIO_URL}\/developer\/password_reset?token={token}
+
+Please ignore this email if you have not requested a password reset.
+"
+
 # Subject of the activation mail
 mail_register_subject: "Fusio registration"
 # Body of the activation mail
 mail_register_body: "Hello {name},
 
-  you have successful registered at Fusio.
-  To activate you account please visit the following url:
-  ${env.FUSIO_URL}\/developer\/activate?token={token}"
+you have successful registered at Fusio.
+To activate you account please visit the following url:
+${env.FUSIO_URL}\/developer\/activate?token={token}
+"
+
 # Email address which is used in the "From" header
 mail_sender: ""
 
