@@ -1,6 +1,9 @@
 
-### 1.9.1
+### 1.9.2
 
+### 1.9.1 (2020-04-05)
+
+* Improved the routes overview at the backend app
 * Action constructor dependency injection #301
 * Publish internal events through webhooks feature #288
 * Add option to deploy a schema class #251
