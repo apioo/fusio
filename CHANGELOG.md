@@ -1,6 +1,9 @@
 
 ### 1.9.2
 
+* Allow dot in event name
+* Fix deletion of active routes #300
+
 ### 1.9.1 (2020-04-05)
 
 * Improved the routes overview at the backend app
