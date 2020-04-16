@@ -16,17 +16,6 @@ maintain an API with Fusio.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Setup
-
-   setup/apache
-   setup/cpanel
-   setup/docker
-   setup/iis
-   setup/nginx
-   setup/shared_hosting
-
-.. toctree::
-   :maxdepth: 2
    :caption: Development
 
    development/action
