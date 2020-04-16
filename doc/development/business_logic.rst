@@ -17,6 +17,85 @@ Fusio is designed to help you write framework independent code. That means that
 all services which you develop are complete free of Fusio specific code so you 
 can simply reuse those components in another context.
 
+DI Container
+------------
+
+Fusio uses a DI container to manage all internal services. In Fusio all services
+are defined in a simple PHP class so there is no ``yaml`` configuration. To
+define a custom service you need to create a container class i.e. at
+``src/Dependency/Container.php``. This class then needs to extend the Fusio
+container:
+
+.. code-block:: php
+    
+    <?php
+    
+    namespace App\Dependency;
+    
+    use Fusio\Impl\Dependency\Container as FusioContainer;
+    
+    class Container extends FusioContainer
+    {
+        public function getMyService(): MyServiceInterface
+        {
+            return new MyService(
+                $this->get('connector')->getConnection('System'),
+                $this->get('engine_dispatcher')
+            );
+        }
+    }
+
+In this example we simply define a new service. To use this container you need
+to create a new instance of this container at the ``container.php`` file.
+
+.. code-block:: php
+    
+    <?php
+
+    $container = new Fusio\Impl\Dependency\Container();
+    $container->setParameter('config.file', __DIR__ . '/configuration.php');
+    
+    return $container;
+
+Then you can use the autowire feature of the DI container to receive the
+dependencies through constructor injection. In the following we create an action
+which automatically receives the ``MyServiceInterface`` based on the
+type-hint. It is important that the type-hint and the return type of the method
+at the DI container match.
+
+.. code-block:: php
+    
+    <?php
+    
+    namespace App\Action\Page;
+    
+    use Fusio\Engine\ActionAbstract;
+    use Fusio\Engine\ContextInterface;
+    use Fusio\Engine\ParametersInterface;
+    use Fusio\Engine\RequestInterface;
+    
+    class MyAction extends ActionAbstract
+    {
+        private $myService;
+    
+        public function __construct(MyServiceInterface $myService)
+        {
+            $this->myService = $myService;
+        }
+    
+        public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
+        {
+            $body = [
+                'result' => $this->myService->doStuff();
+            ];
+    
+            return $this->response->build(200, [], $body);
+        }
+    }
+
+We have created also a sample project showing all best practices of Fusio at:
+https://github.com/apioo/fusio-sample-cms
+
 Library
 -------
 
@@ -116,66 +195,3 @@ A simple client implementation could look like:
             ]);
         }
     }
-
-DI Container
-------------
-
-Fusio uses a DI container to manage all internal services. You can also use this 
-internal DI container in your action to access Fusio specific functions. It is 
-also possible to extend the container with custom services. There for you need 
-to add your service to the ``container.php`` file:
-
-.. code-block:: php
-    
-    <?php
-    
-    $container = new Fusio\Impl\Dependency\Container();
-    $container->setParameter('config.file', __DIR__ . '/configuration.php');
-    
-    $container->set('my_service', function($c){
-        return new MyService();
-    });
-    
-    return $container;
-
-To access this service in your action you need to use the following PHP action 
-class. Note we do not recommend to rely heavily on the DI container instead use
-the technique describe in the chapter above to develop platform independent 
-services which can be reused across multiple actions and applications.
-
-.. code-block:: php
-
-    <?php
-
-    namespace App;
-
-    use Fusio\Engine\ActionAbstract;
-    use Fusio\Engine\ContextInterface;
-    use Fusio\Engine\ParametersInterface;
-    use Fusio\Engine\RequestInterface;
-    use Fusio\Engine\Factory\ContainerAwareInterface;
-    use Psr\Container\ContainerInterface;
-
-    class Endpoint extends ActionAbstract implements ContainerAwareInterface
-    {
-        protected $container;
-
-        public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
-        {
-            $myService = $this->container->get('my_service');
-
-            $data = $myService->doSomething();
-
-            return $this->response->build(200, [], [
-                'hello' => $data,
-            ]);
-        }
-
-        public function setContainer(ContainerInterface $container)
-        {
-            $this->container = $container;
-        }
-    }
-
-This works only in case you use a PHP class as action. For normal PHP files and
-Javascript files it is not possible to access the DI container.
