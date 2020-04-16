@@ -53,106 +53,19 @@ In case you want to install Fusio on a specific database you need to adjust the
 * ``oci8``: Oracle
 * ``sqlanywhere``: SAP Sybase SQL Anywhere
 
-Docker
-------
 
-Alternatively it is also possible to setup a Fusio system through docker. This
-has the advantage that you automatically get a complete running Fusio system
-without configuration. This is especially great for testing and evaluation. To 
-setup the container you have to checkout the `repository`_ and run the following 
-command:
+Setup
+-----
 
-.. code-block:: text
+Fusio can be used on almost any setup which provides a web server and supports
+PHP. Please take a look at a platform specific setup guide: 
 
-    docker-compose up -d
-
-This builds the Fusio system with a predefined backend account. The credentials 
-are taken from the env variables ``FUSIO_BACKEND_USER``, ``FUSIO_BACKEND_EMAIL`` 
-and ``FUSIO_BACKEND_PW`` in the `docker-compose.yml`_. If you are planing to run 
-the container on the internet you MUST change these credentials.
-
-Web server
-----------
-
-It is recommended to setup a virtual host in your ``sites-available`` folder 
-which points to the public folder of Fusio. After this you also have to change 
-the configuration of the url i.e.:
-
-.. code-block:: text
-
-    'psx_url' => 'http://api.acme.com',
-
-Apache
-^^^^^^
-
-.. code-block:: text
-
-    <VirtualHost *:80>
-        ServerName api.acme.com
-        DocumentRoot /var/www/html/fusio/public
-    
-        <Directory /var/www/html/fusio/public>
-            Options FollowSymLinks
-            AllowOverride All
-            Require all granted
-    
-            # rewrite
-            RewriteEngine On
-            RewriteBase /
-    
-            RewriteCond %{REQUEST_FILENAME} !-f
-            RewriteCond %{REQUEST_FILENAME} !-d
-            RewriteRule (.*) /index.php/$1 [L]
-    
-            RewriteCond %{HTTP:Authorization} ^(.*)
-            RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
-        </Directory>
-    
-        # log
-        LogLevel warn
-        ErrorLog ${APACHE_LOG_DIR}/fusio.error.log
-        CustomLog ${APACHE_LOG_DIR}/fusio.access.log combined
-    </VirtualHost>
-
-You should enable the module ``mod_rewrite`` so that the .htaccess file in the 
-public folder is used. It is also possible to include the htaccess commands 
-directly into the virtual host which also increases performance. The htaccess 
-contains an important rule which redirects the ``Authorization`` header to Fusio 
-which is otherwise removed. If the .htaccess file does not work please check 
-whether the ``AllowOverride`` directive is set correctly i.e. to ``All``.
-
-Shared-Hosting
-^^^^^^^^^^^^^^
-
-If you want to run Fusio on a shared-hosting environment it is possible but in 
-general not recommended since you can not properly configure the web server and
-access the CLI. Therefore you can not use the deploy command which simplifies
-development. The biggest problem of a shared hosting environment is that you can 
-not set the document root to the ``public/`` folder. If you place the following 
-``.htaccess`` file in the directory you can bypass this problem by redirecting 
-all requests to the ``public/`` folder.
-
-.. code-block:: text
-
-    RewriteEngine On
-    RewriteBase /fusio/
-    
-    RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ public/index.php/$1 [L,QSA]
-
-While this may work many shared hosting provider have strict limitations of 
-specific PHP functions which are maybe used by Fusio and which produce other
-errors.
-
-cPanel
-^^^^^^
-
-On cPanel you can create a new sub-domain and use the "base document path"
-option to point it at ``/public``. Also you need to set the ``psx_dispatch``
-key at the ``configuration.php`` to ``''`` and adjust the url at the ``.env``
-file to your correct domain.
+* :doc:`/setup/apache`
+* :doc:`/setup/nginx`
+* :doc:`/setup/iis`
+* :doc:`/setup/docker`
+* :doc:`/setup/cpanel`
+* :doc:`/setup/shared_hosting`
 
 Apps
 ----
@@ -236,16 +149,14 @@ updated the vendor folder:
 This gives Fusio the chance to adjust the database schema in case something has
 changed with a new release.
 
-App
-^^^
+Apps
+^^^^
 
 All apps can be updated at the Marketplace panel of the backend app. There you
 can simply use the update button to receive the latest version of the app.
 
 
 .. _download: http://www.fusio-project.org/download
-.. _repository: https://github.com/apioo/fusio-docker
-.. _docker-compose.yml: https://github.com/apioo/fusio-docker/blob/master/docker-compose.yml
 .. _php-v8: https://github.com/pinepain/php-v8
 .. _marketplace: https://www.fusio-project.org/marketplace
 
