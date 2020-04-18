@@ -19,12 +19,12 @@ fusio:
   downloadUrl: 'https://www.fusio-project.org/files/fusio.zip'
   sha1Hash: '3b9a085de7cbd01e34ac6f067f434d056a9d2295'
 developer:
-  version: '0.2'
+  version: '0.3'
   description: 'The developer app is designed to quickly setup an API program where new developers can register and create/manage their apps.'
   screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/developer.png'
   website: 'https://github.com/apioo/fusio-consumer'
   downloadUrl: 'https://www.fusio-project.org/files/developer.zip'
-  sha1Hash: 'a48ffa3482eddc495f684d454279f6be29a724f4'
+  sha1Hash: 'a7370eed2b5065a276a75945e08ec359420cd13e'
 documentation:
   version: '0.2'
   description: 'The documentation app simply provides an overview of all available endpoints. It is possible to export the API definition into other schema formats like i.e. OpenAPI.'
