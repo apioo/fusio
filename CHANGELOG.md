@@ -1,6 +1,9 @@
 
 ### 1.9.2
 
+* Developer app add user activation endpoint
+* Fix and improve user activation and password reset
+* Add captcha check to password reset endpoint
 * Allow dot in event name
 * Fix deletion of active routes #300
 
