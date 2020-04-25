@@ -62,6 +62,11 @@ return [
     // user at the backend app
     'fusio_marketplace_url'   => 'https://raw.githubusercontent.com/apioo/fusio/master/marketplace.yaml',
 
+    // Location where the apps are persisted from the marketplace. By default
+    // this is the public dir to access the apps directly, but it is also
+    // possible to specify a different folder
+    'fusio_apps_dir'          => __DIR__ . '/public',
+
     // Location of the automatically generated cron file. Note Fusio writes only
     // to this file if it exists. In order to use the cronjob service you need
     // to create this file with i.e. "touch /etc/cron.d/fusio"
