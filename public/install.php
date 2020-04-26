@@ -3,7 +3,7 @@
  * Fusio
  * A web-application to create dynamically RESTful APIs
  *
- * Copyright (C) 2015-2018 Christoph Kappestein <christoph.kappestein@gmail.com>
+ * Copyright (C) 2015-2020 Christoph Kappestein <christoph.kappestein@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -44,16 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     switch ($method) {
         case 'adjustEnvFile':
+            $scheme = parse_url($_POST['url'], PHP_URL_SCHEME);
+            $host = parse_url($_POST['url'], PHP_URL_HOST);
+            $path = parse_url($_POST['url'], PHP_URL_PATH);
+
             $env = [
                 'FUSIO_PROJECT_KEY' => $_POST['key'] ?? '',
-                'FUSIO_URL'         => $_POST['url'] ?? '',
+                'FUSIO_HOST'        => $host,
+                'FUSIO_URL'         => $scheme . '://${FUSIO_HOST}' . $path,
                 'FUSIO_DB_NAME'     => $_POST['db_name'] ?? '',
                 'FUSIO_DB_USER'     => $_POST['db_user'] ?? '',
                 'FUSIO_DB_PW'       => $_POST['db_pw'] ?? '',
                 'FUSIO_DB_HOST'     => $_POST['db_host'] ?? '',
             ];
 
-            $return = adjustEnvFile(__DIR__ . '/../.env', $env);
+            $return = adjustEnvFile(__DIR__ . '/../.env', $env, $container->get('config'));
             break;
 
         case 'executeFusioMigration':
@@ -76,6 +81,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $return = createAdminUser($username, $password, $email);
             break;
 
+        case 'installBackendApp':
+            $return = installBackendApp();
+            break;
+
         default:
             $return = false;
             break;
@@ -89,14 +98,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit;
 }
 
-function validateInput(array $env, $username, $password, $email)
+function checkEnv($envFile, array $env, \PSX\Framework\Config\Config $config)
 {
+    // check folder writable
+    $appsDir = $config->get('fusio_apps_dir');
+    if (!is_writable($appsDir)) {
+        alert('warning', 'It looks like the dir <code>' . $appsDir . '</code> is not writable');
+        return false;
+    }
+
+    $cacheDir = $config->get('psx_path_cache');
+    if (!is_writable($cacheDir)) {
+        alert('warning', 'It looks like the dir <code>' . $cacheDir . '</code> is not writable');
+        return false;
+    }
+
+    // check env file
+    if (!is_file($envFile)) {
+        alert('warning', 'It looks like the <code>.env</code> file does not exist');
+        return false;
+    }
+
+    if (!is_writable($envFile)) {
+        alert('warning', 'It looks like the <code>.env</code> file is not writable');
+        return false;
+    }
+
     if (empty($env['FUSIO_PROJECT_KEY'])) {
         alert('warning', 'Project key must contain a value');
         return false;
     }
 
-    if (empty($env['FUSIO_URL'])) {
+    if (empty($env['FUSIO_HOST'])) {
+        alert('warning', 'Url must contain a host');
+        return false;
+    }
+
+    if (empty($env['FUSIO_URL']) || $env['FUSIO_URL'] === '://${FUSIO_HOST}') {
         alert('warning', 'Url must contain a value');
         return false;
     }
@@ -113,39 +151,6 @@ function validateInput(array $env, $username, $password, $email)
 
     if (empty($env['FUSIO_DB_HOST'])) {
         alert('warning', 'Database host must contain a value');
-        return false;
-    }
-
-    if (!preg_match('/' . \Fusio\Impl\Backend\Schema\User::NAME_PATTERN . '/', $username)) {
-        alert('warning', 'Invalid username value');
-        return false;
-    }
-
-    try {
-        \Fusio\Impl\Service\User\PasswordComplexity::assert($password, 8);
-    } catch (\Exception $e) {
-        alert('warning', $e->getMessage());
-        return false;
-    }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        alert('warning', 'Invalid email format');
-        return false;
-    }
-
-    return true;
-}
-
-function checkEnv($envFile, array $env)
-{
-    // check env file
-    if (!is_file($envFile)) {
-        alert('warning', 'It looks like the <code>.env</code> file does not exist');
-        return false;
-    }
-
-    if (!is_writable($envFile)) {
-        alert('warning', 'It looks like the <code>.env</code> file is not writable');
         return false;
     }
 
@@ -179,9 +184,9 @@ function hasAdmin()
     return $exitCode === 0;
 }
 
-function adjustEnvFile($envFile, array $env)
+function adjustEnvFile($envFile, array $env, \PSX\Framework\Config\Config $config)
 {
-    if (!checkEnv($envFile, $env)) {
+    if (!checkEnv($envFile, $env, $config)) {
         return false;
     }
 
@@ -249,6 +254,23 @@ function createAdminUser($username, $password, $email)
         return true;
     }
 
+    if (!preg_match('/' . \Fusio\Impl\Backend\Schema\User::NAME_PATTERN . '/', $username)) {
+        alert('warning', 'Invalid username value');
+        return false;
+    }
+
+    try {
+        \Fusio\Impl\Service\User\PasswordComplexity::assert($password, 8);
+    } catch (\Exception $e) {
+        alert('warning', $e->getMessage());
+        return false;
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        alert('warning', 'Invalid email format');
+        return false;
+    }
+
     runCommand('adduser', ['--status' => '1', '--username' => $username, '--password' => $password, '--email' => $email], $exitCode);
     if ($exitCode == 0) {
         alert('success', 'Added admin user successful');
@@ -259,7 +281,19 @@ function createAdminUser($username, $password, $email)
     }
 }
 
-function runCommand($command, array $params = [], &$exitCode)
+function installBackendApp()
+{
+    runCommand('marketplace:install', ['--disable_ssl_verify', 'name' => 'fusio'], $exitCode);
+    if ($exitCode == 0) {
+        alert('success', 'Added admin user successful');
+        return true;
+    } else {
+        alert('danger', 'Could not install backend app, you can install the backend app later on using the command <code>bin/fusio marketplace:install fusio</code>');
+        return false;
+    }
+}
+
+function runCommand($command, array $params, &$exitCode)
 {
     global $app;
 
@@ -416,7 +450,8 @@ var methods = [
     "executeFusioMigration",
     "executeAppMigration",
     "executeDeploy",
-    "createAdminUser"
+    "createAdminUser",
+    "installBackendApp"
 ];
 
 var lang = {
@@ -424,7 +459,8 @@ var lang = {
     executeFusioMigration: "Executing database migration ...",
     executeAppMigration: "Executing app migration ...",
     executeDeploy: "Executing deploy ...",
-    createAdminUser: "Creating admin user ..."
+    createAdminUser: "Creating admin user ...",
+    installBackendApp: "Installing backend app ..."
 };
 
 var complete = methods.length;
@@ -454,7 +490,7 @@ function runNextAction() {
     var method = methods[0];
     var params = {};
 
-    if (method === "checkEnv" || method === "adjustEnvFile") {
+    if (method === 'adjustEnvFile') {
         params = {
             key: $("#key").val(),
             url: $("#url").val(),
@@ -463,7 +499,7 @@ function runNextAction() {
             db_pw: $("#dbPw").val(),
             db_host: $("#dbHost").val()
         };
-    } else if (method === "createAdminUser") {
+    } else if (method === 'createAdminUser') {
         params = {
             username: $("#username").val(),
             password: $("#password").val(),
@@ -483,7 +519,7 @@ function runNextAction() {
             $("#progress").text(done +  " / " + complete);
 
             if (done === complete) {
-                $(".fusio-installer").html("<div class='alert alert-success' role='alert'>Installation successful! You can now login to the <a href='./fusio'>backend</a> to build your <a href='./'>API</a>.</div>");
+                $(".fusio-installer").html("<div class='alert alert-success' role='alert'>Installation successful! You can now login to the <a href='../apps/fusio'>backend</a> to build your <a href='./'>API</a>.</div>");
             } else {
                 runNextAction();
             }
