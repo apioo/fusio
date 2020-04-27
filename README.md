@@ -206,9 +206,6 @@ API. The tool is available at: https://generate.apioo.de/
 Fusio provides several apps which work with the internal backend API. These apps
 can be used to manage and work with the API. This section gives a high level 
 overview what the Fusio system provides and how the application is structured. 
-Lets take a look at the components which are provided by Fusio:
-
-![Overview](https://github.com/apioo/fusio/blob/master/doc/_static/overview.png)
 
 ## API
 
@@ -233,18 +230,20 @@ about all internal API endpoints.
 
 # Apps
 
+The main entry point of Fusio is the `public/` folder which serves your API.
+Beside this Fusio provides also many apps which help to work with your API i.e.
+the backend app which provides an UI to configure your API. These apps are
+located at the `apps/` folder. Fusio provides also a [marketplace](https://www.fusio-project.org/marketplace)
+which lists all available apps. It is possible to install an app either through
+a CLI command i.e. `php bin/fusio marketplace:install fusio` to install the
+backend app or through the backend app.
+
 ## Backend
 
 ![Backend](https://github.com/apioo/fusio/blob/master/doc/_static/backend.png)
 
 The backend app is the app where the administrator can configure the system. The
-app is located at `/fusio/`.
-
-## Marketplace
-
-Fusio has a [marketplace](https://www.fusio-project.org/marketplace) which
-contains a variety of apps for specific use cases. Every app can be directly
-installed from the backend app under System / Marketplace.
+app is located at `/apps/fusio/`.
 
 # Installation
 
@@ -270,8 +269,8 @@ installation.
 
 * __Adjust the configuration file__  
   Open the file `.env` in the Fusio directory and change the key 
-  `FUSIO_URL` to the domain pointing to the public folder. Also insert the 
-  database credentials to the `FUSIO_DB_*` keys.
+  `FUSIO_HOST` and `FUSIO_URL` to the domain pointing to the public folder. Also
+  insert the database credentials to the `FUSIO_DB_*` keys.
 * __Execute the installation command__  
   The installation script inserts the Fusio database schema into the provided 
   database. It can be executed with the following command 
@@ -282,8 +281,7 @@ installation.
   Choose as account type "Administrator".
 
 You can verify the installation by visiting the `FUSIO_URL` with a browser. You
-should see a API response that the installation was successful. The backend is
-available at `/fusio/`.
+should see an API response that the installation was successful.
 
 In case you want to install Fusio on a specific database you need to adjust the
 `driver` parameter at the `configuration.php` file:
