@@ -403,7 +403,7 @@ function alert($level, $message)
             <fieldset>
                 <legend>User</legend>
                 <p class="text-muted">Credentials of the admin account. After installation you can login to the
-                backend at <a href="./fusio">/fusio</a>.</p>
+                backend at <a href="../apps/fusio">/fusio</a>.</p>
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" placeholder="Username" required minlength="3" class="form-control">
