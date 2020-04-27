@@ -1,5 +1,13 @@
 
-### 1.9.2
+### 1.9.3
+
+* Add .htaccess to root dir redirect all requests to the public/ folder
+* Removed backend app from repo and install backend app through marketplace on
+  install
+* Install apps at a different folder
+* Added no SSL verify option to marketplace install/update command
+
+### 1.9.2 (2020-04-18)
 
 * Developer app add user activation
 * Developer app add password reset #303
