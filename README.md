@@ -201,17 +201,12 @@ to simply build all routes, schemas and actions based on a simple YAML
 definition. The code can be used as great starting point to rapidly build your
 API. The tool is available at: https://generate.apioo.de/
 
-# Backend
+# Internal API
 
-Fusio provides several apps which work with the internal backend API. These apps
-can be used to manage and work with the API. This section gives a high level 
-overview what the Fusio system provides and how the application is structured. 
-
-## API
-
-If you install a Fusio system it setups the default API. Through the API it is 
-possible to manage the complete system. Because of that Fusio has some reserved 
-paths which are needed by the system.
+If you install Fusio it provides the internal API. Through the internal API it
+is possible to manage the complete system. This means you can create i.e.
+routes, actions, schemas etc. Because of this Fusio has some reserved paths
+which are needed by the system.
 
 * `/backend`  
   Endpoints for the system configuration
@@ -230,20 +225,24 @@ about all internal API endpoints.
 
 # Apps
 
-The main entry point of Fusio is the `public/` folder which serves your API.
-Beside this Fusio provides also many apps which help to work with your API i.e.
-the backend app which provides an UI to configure your API. These apps are
-located at the `apps/` folder. Fusio provides also a [marketplace](https://www.fusio-project.org/marketplace)
-which lists all available apps. It is possible to install an app either through
-a CLI command i.e. `php bin/fusio marketplace:install fusio` to install the
-backend app or through the backend app.
+Since it is difficult to work with an API only app Fusio provides apps which
+help to work with the API. Mostly apps are simple JS apps, which work with the
+internal API of Fusio. You can see a list of all available apps at our
+[marketplace](https://www.fusio-project.org/marketplace). You can install such
+an app either through a CLI command i.e. `php bin/fusio marketplace:install fusio`
+or through the backend app.
+
+All apps are installed to the `apps/` folder. You need to tell Fusio the public
+url to the apps folder at the `.env` file by defining the `FUSIO_APPS_URL`
+variable. Depending on your setup this can be either a custom sub-domain like
+`https://apps.acme.com` or simply the sub folder `https://acme.com/apps`.
 
 ## Backend
 
 ![Backend](https://github.com/apioo/fusio/blob/master/doc/_static/backend.png)
 
-The backend app is the app where the administrator can configure the system. The
-app is located at `/apps/fusio/`.
+The backend app is the main app to configure and manage your API. The installer
+automatically installs this app. The app is located at `/apps/fusio/`.
 
 # Installation
 
