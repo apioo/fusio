@@ -267,8 +267,9 @@ reasons it is highly recommended to remove the installer script after the
 installation.
 
 * __Adjust the configuration file__  
-  Open the file `.env` in the Fusio directory and change the key 
-  `FUSIO_HOST` and `FUSIO_URL` to the domain pointing to the public folder. Also
+  Open the file `.env` in the Fusio directory and change the `FUSIO_URL` to
+  the domain pointing to the public folder. Also adjust `FUSIO_APPS_URL` to the
+  public url of the apps folder (in case you want to use the backend app). Also
   insert the database credentials to the `FUSIO_DB_*` keys.
 * __Execute the installation command__  
   The installation script inserts the Fusio database schema into the provided 
@@ -278,6 +279,9 @@ installation.
   After the installation is complete you have to create a new administrator 
   account. Therefor you can use the following command `php bin/fusio adduser`. 
   Choose as account type "Administrator".
+* __Install backend app__  
+  To manage your API through an admin panel you need to install the backend app.
+  Teh app can be installed with the following command `php bin/fusio marketplace:install fusio`
 
 You can verify the installation by visiting the `FUSIO_URL` with a browser. You
 should see an API response that the installation was successful.
