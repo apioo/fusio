@@ -35,10 +35,6 @@ $messages  = [];
 
 PSX\Framework\Bootstrap::setupEnvironment($container->get('config'));
 
-/** @var \Symfony\Component\Console\Application $app */
-$app = $container->get('console');
-$app->setAutoExit(false);
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $method = $_GET['method'] ?? '';
 
@@ -295,7 +291,11 @@ function installBackendApp()
 
 function runCommand($command, array $params, &$exitCode)
 {
-    global $app;
+    global $container;
+
+    /** @var \Symfony\Component\Console\Application $app */
+    $app = $container->get('console');
+    $app->setAutoExit(false);
 
     $input = new \Symfony\Component\Console\Input\ArrayInput(array_merge(['command' => $command], $params));
     $input->setInteractive(false);
