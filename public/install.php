@@ -44,10 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $host = parse_url($_POST['url'], PHP_URL_HOST);
             $path = parse_url($_POST['url'], PHP_URL_PATH);
 
+            $url = $scheme . '://${FUSIO_HOST}' . $path;
+
+            if (strpos($path, '/public') !== false) {
+                $appsUrl = $scheme . '://${FUSIO_HOST}' . str_replace('/public', '/apps', $path);
+            } else {
+                // in this case we have already a fitting vhost pointing to the
+                // public folder so we guess the apps sub domain
+                $appsUrl = $scheme . '://apps.${FUSIO_HOST}';
+            }
+
             $env = [
                 'FUSIO_PROJECT_KEY' => $_POST['key'] ?? '',
                 'FUSIO_HOST'        => $host,
-                'FUSIO_URL'         => $scheme . '://${FUSIO_HOST}' . $path,
+                'FUSIO_URL'         => $url,
+                'FUSIO_APPS_URL'    => $appsUrl,
                 'FUSIO_DB_NAME'     => $_POST['db_name'] ?? '',
                 'FUSIO_DB_USER'     => $_POST['db_user'] ?? '',
                 'FUSIO_DB_PW'       => $_POST['db_pw'] ?? '',
@@ -79,6 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         case 'installBackendApp':
             $return = installBackendApp();
+            break;
+
+        case 'finishInstall':
+            $return = finishInstall($container->get('config'));
             break;
 
         default:
@@ -289,6 +304,26 @@ function installBackendApp()
     }
 }
 
+function finishInstall(\PSX\Framework\Config\Config $config)
+{
+    $apiUrl = $config->get('psx_url');
+    $appsUrl = $config->get('fusio_apps_url');
+
+    $text = <<<TEXT
+<p>Installation successful!</p>
+<dl>
+  <dt>API-Url</dt>
+  <dd><a href="{$apiUrl}">{$apiUrl}</a></dd>
+  <dt>Apps-Url</dt>
+  <dd><a href="{$appsUrl}">{$appsUrl}</a></dd>
+</dl>
+TEXT;
+
+    alert('success', $text);
+
+    return true;
+}
+
 function runCommand($command, array $params, &$exitCode)
 {
     global $container;
@@ -328,27 +363,27 @@ function alert($level, $message)
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <style type="text/css">
-        .fusio-installer {
-            max-width:600px;
-            margin-top:32px;
-            margin-bottom:128px;
-        }
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style type="text/css">
+    .fusio-installer {
+      max-width:600px;
+      margin-top:32px;
+      margin-bottom:128px;
+    }
 
-        .fusio-installer legend {
-            border-bottom:1px solid #ccc;
-        }
+    .fusio-installer legend {
+      border-bottom:1px solid #ccc;
+    }
 
-        .fusio-installer fieldset {
-            margin-bottom:16px;
-        }
-        
-        #messages {
-            margin-top:8px;
-        }
-    </style>
+    .fusio-installer fieldset {
+      margin-bottom:16px;
+    }
+
+    #messages {
+      margin-top:8px;
+    }
+  </style>
 </head>
 <body>
 
@@ -402,8 +437,7 @@ function alert($level, $message)
         <div class="col">
             <fieldset>
                 <legend>User</legend>
-                <p class="text-muted">Credentials of the admin account. After installation you can login to the
-                backend at <a href="../apps/fusio">/fusio</a>.</p>
+                <p class="text-muted">Credentials of the admin account.</p>
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" placeholder="Username" required minlength="3" class="form-control">
@@ -451,7 +485,8 @@ var methods = [
     "executeAppMigration",
     "executeDeploy",
     "createAdminUser",
-    "installBackendApp"
+    "installBackendApp",
+    "finishInstall"
 ];
 
 var lang = {
@@ -460,7 +495,8 @@ var lang = {
     executeAppMigration: "Executing app migration ...",
     executeDeploy: "Executing deploy ...",
     createAdminUser: "Creating admin user ...",
-    installBackendApp: "Installing backend app ..."
+    installBackendApp: "Installing backend app ...",
+    finishInstall: "Finishing installation ..."
 };
 
 var complete = methods.length;
@@ -518,12 +554,12 @@ function runNextAction() {
             $("#progress").css("width", per + "%");
             $("#progress").text(done +  " / " + complete);
 
-            if (done === complete) {
-                $(".fusio-installer").html("<div class='alert alert-success' role='alert'>Installation successful! You can now login to the <a href='../apps/fusio'>backend</a> to build your <a href='./'>API</a>.</div>");
-            } else {
+            if (done !== complete) {
                 runNextAction();
             }
-        } else if (data.messages) {
+        }
+
+        if (data.messages) {
             for (var type in data.messages) {
                 var msgs = data.messages[type];
                 for (var i = 0; i < msgs.length; i++) {
