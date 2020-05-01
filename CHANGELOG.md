@@ -1,11 +1,11 @@
 
 ### 1.9.3
 
-* Add .htaccess to root dir redirect all requests to the public/ folder
 * Removed backend app from repo and install backend app through marketplace on
   install
-* Install apps at a different folder
+* Moved apps from public folder into a dedicated apps folder
 * Added no SSL verify option to marketplace install/update command
+* Add .htaccess to root dir which redirect all requests to the public/ folder
 
 ### 1.9.2 (2020-04-18)
 
