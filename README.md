@@ -20,14 +20,14 @@ application on a domain `acme.com` Fusio helps you to build the fitting API
 at `api.acme.com`. Beside this use case you can also use Fusio to build a new 
 API from scratch or use it internally i.e. for micro services.
 
-To build the API Fusio can connect to many different databases, message queue
+To build the API Fusio can connect to different databases, message queue
 systems or internal web services. There are also many ways to integrate your
 [business logic](http://fusio.readthedocs.io/en/latest/development/business_logic.html)
 into the API of Fusio.
 
 # Features
 
-Fusio covers all important aspects of the API lifecycle so you can concentrate
+Fusio covers all important aspects of the API lifecycle, so you can concentrate
 on building the actual business logic of your API.
 
 * __Versioning__  
@@ -75,75 +75,14 @@ Basically with Fusio you only have to define the schema (request/response) of
 your API endpoints and implement the business logic. All other aspects are 
 covered by Fusio.
 
-# Architecture
-
-The basic building block of Fusio is the concept of an action. An action is
-simply a PHP class which receives a request and returns a response. Around this
-action Fusio handles all common logic like Authentication, Rate-Limiting, Schema
-validation, Logging etc. The class has to implement the following signature:
-
-```php
-<?php
-
-namespace App;
-
-use Fusio\Engine\ActionAbstract;
-use Fusio\Engine\ContextInterface;
-use Fusio\Engine\ParametersInterface;
-use Fusio\Engine\RequestInterface;
-
-class HelloWorld extends ActionAbstract
-{
-    public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
-    {
-        return $this->response->build(200, [], [
-            'hello' => 'world',
-        ]);
-    }
-}
-```
-
-To give you a first overview, every request which arrives at such an action goes
-through the following lifecycle:
-
-![Request_Flow](https://github.com/apioo/fusio/blob/master/doc/_static/request_flow.png)
-
-Fusio tries to assign the incoming request to a fitting route. The route 
-contains all schema information about the incoming request and outgoing 
-responses. Those schemas are also used at the documentation which is 
-automatically available. If a request schema was provided the incoming request 
-body gets validated after this schema. In case everything is ok the action 
-which is assigned to the route gets executed.
-
-An action represents the code which handles an incoming request and produces a 
-response. Each action can use connections to accomplish this task. A connection 
-uses a library which helps to work with a remote service. I.e. the SQL 
-connection uses the Doctrine DBAL library to work with a database (it returns
-a `Doctrine\DBAL\Connection` instance). A connection always returns a fully 
-configured object so you never have to deal with any credentials in an action. 
-There are already many different actions available which you can use i.e. to
-create an API based on a database table.
-
-With Fusio we want to remove as many layers as possible so that you can work
-in your action directly with a specific library. Because of this Fusio has no 
-model or entity system like many other frameworks, instead we recommend to write
-plain SQL in case you work with a relational database. We think that building API 
-endpoints based on models/entities limits the way how you would design a 
-response. You only need to describe the request and response in the JSON schema 
-format. This schema is then the contract of your API endpoint, how you produce 
-this response technically is secondary. Fusio provides the mentioned 
-connections, which help you to create complete customized responses based on 
-complicated SQL queries, message queue inserts or multiple remote HTTP calls.
-
 # Development
 
 Fusio provides two ways to develop an API. The first way is to build API 
 endpoints only through the backend interface by using all available actions.
 Through this you can solve already many tasks especially through the usage of
-the [PHP-Sandbox](https://www.fusio-project.org/documentation/php) or
-[V8-Processor](https://www.fusio-project.org/documentation/v8) action.
+the [PHP-Sandbox](https://www.fusio-project.org/documentation/php) action.
 
-The other way is to use the deploy mechanism. Through this you can use normal
+The other way is to use the deploy-mechanism. Through this you can use normal
 PHP files to implement your business logic and thus you can use the complete PHP 
 ecosystem. Therefor you need to define a `.fusio.yml` 
 [deploy file](https://fusio.readthedocs.io/en/latest/development/deploy.html)
@@ -155,7 +94,7 @@ php bin/fusio deploy
 ```
 
 The action of each route contains the source which handles the business logic. 
-This can be i.e. a php class, a simple php file or a url. More information in
+This can be i.e. a php class, a simple php file or an url. More information in
 the [development doc](DEVELOPMENT.md). In the following an example action to
 build an API response from a database:
 
@@ -189,7 +128,7 @@ class Collection extends ActionAbstract
 ```
 
 In the code we get the `System` connection which returns a
-`\Doctrine\DBAL\Connection` instance but we have already 
+`\Doctrine\DBAL\Connection` instance. We have already 
 [many adapters](https://www.fusio-project.org/adapter) to connect to different 
 services. Then we simply fire some queries and return the response.
 
@@ -239,7 +178,7 @@ variable. Depending on your setup this can be either a custom sub-domain like
 
 ## Backend
 
-![Backend](https://github.com/apioo/fusio/blob/master/doc/_static/backend.png)
+![Backend](https://github.com/apioo/fusio/blob/master/doc/_static/backend/routes.png)
 
 The backend app is the main app to configure and manage your API. The installer
 automatically installs this app. The app is located at `/apps/fusio/`.
@@ -247,7 +186,7 @@ automatically installs this app. The app is located at `/apps/fusio/`.
 # Installation
 
 It is possible to install Fusio either through composer or manually file 
-download. Place the project into the www directory of the web server.
+download.
 
 ## Composer
 
@@ -268,9 +207,9 @@ installation.
 
 * __Adjust the configuration file__  
   Open the file `.env` in the Fusio directory and change the `FUSIO_URL` to
-  the domain pointing to the public folder. Also adjust `FUSIO_APPS_URL` to the
-  public url of the apps folder (in case you want to use the backend app). Also
-  insert the database credentials to the `FUSIO_DB_*` keys.
+  the domain pointing to the public folder. Also insert the database credentials
+  to the `FUSIO_DB_*` keys. Optional adjust `FUSIO_APPS_URL` to the public url
+  of the apps folder (in case you want to use apps).
 * __Execute the installation command__  
   The installation script inserts the Fusio database schema into the provided 
   database. It can be executed with the following command 
@@ -281,7 +220,7 @@ installation.
   Choose as account type "Administrator".
 * __Install backend app__  
   To manage your API through an admin panel you need to install the backend app.
-  Teh app can be installed with the following command `php bin/fusio marketplace:install fusio`
+  The app can be installed with the following command `php bin/fusio marketplace:install fusio`
 
 You can verify the installation by visiting the `FUSIO_URL` with a browser. You
 should see an API response that the installation was successful.
@@ -298,10 +237,10 @@ In case you want to install Fusio on a specific database you need to adjust the
 
 ## Docker
 
-Alternatively it is also possible to setup a Fusio system through docker. This
-has the advantage that you automatically get a complete running Fusio system
-without configuration. This is especially great for testing and evaluation. To 
-setup the container you have to checkout the [repository](https://github.com/apioo/fusio-docker) 
+Alternatively it is also possible to setup Fusio through docker. This has the
+advantage that you automatically get a complete running Fusio system without
+configuration. This is especially great for testing and evaluation. To setup the
+container you have to checkout the [repository](https://github.com/apioo/fusio-docker) 
 and run the following command:
 
 ```
@@ -399,7 +338,7 @@ report it through the issue tracker.
 
 ## Documentation
 
-We want to create a sytem which is easy to use also by novice users. To enable
+We want to create a system which is easy to use also by novice users. To enable
 everybody to start using Fusio we need a simple to understand documentation.
 Since we have not always the view of a novice developer please let us know about
 chapters which are difficult to understand or topics which are missing. You can
