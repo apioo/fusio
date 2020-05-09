@@ -40,12 +40,12 @@ swagger-ui:
   downloadUrl: 'https://github.com/apioo/fusio-apps-swaggerui/archive/v0.1.0.zip'
   sha1Hash: '3adb0a70d354541bf3ff6d9afe23c16266bf9a77'
 vscode:
-  version: '0.1'
+  version: '0.2'
   description: 'The VSCode app helps to develop all endpoint logic online using the monaco editor.'
   screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/vscode.png'
   website: 'https://github.com/apioo/fusio-apps-vscode'
-  downloadUrl: 'https://github.com/apioo/fusio-apps-vscode/archive/v0.1.0.zip'
-  sha1Hash: '4936e1099292ea379b0bfea5af128b5afd0f12d6'
+  downloadUrl: 'https://github.com/apioo/fusio-apps-vscode/archive/v0.2.0.zip'
+  sha1Hash: 'f47d7578410e7d5ab680188b0af2783971b00771'
 pma:
   version: '0.1'
   description: 'phpMyAdmin app to handle the administration of MySQL over the Web.'
