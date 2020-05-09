@@ -1,6 +1,7 @@
 
 ### 1.9.3
 
+* Migrated all apps to a repo with a fusio-apps prefix
 * Removed backend app from repo and install backend app through marketplace on
   install
 * Moved apps from public folder into a dedicated apps folder
