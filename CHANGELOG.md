@@ -1,7 +1,10 @@
 
 ### 1.9.4
 
-* Add a/b test, cache and json patch action
+* Add unique request id to the response header #298
+* Add A/B test action #314
+* Add JSON patch action #315
+* Add util cache action #313
 
 ### 1.9.3 (2020-05-09)
 
