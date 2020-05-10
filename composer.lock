@@ -826,22 +826,23 @@
         },
         {
             "name": "fusio/adapter-util",
-            "version": "v3.1.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-util.git",
-                "reference": "49895f026a9131127a762f3bd4d3fbc3e5d65307"
+                "reference": "149a0a546bbf7a0909c5d44a1ac1c6148159aaf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/49895f026a9131127a762f3bd4d3fbc3e5d65307",
-                "reference": "49895f026a9131127a762f3bd4d3fbc3e5d65307",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/149a0a546bbf7a0909c5d44a1ac1c6148159aaf6",
+                "reference": "149a0a546bbf7a0909c5d44a1ac1c6148159aaf6",
                 "shasum": ""
             },
             "require": {
                 "doctrine/cache": "^1.6",
                 "fusio/engine": "^3.0",
-                "php": ">=7.0"
+                "php": ">=7.0",
+                "psx/json": "^1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
@@ -868,7 +869,7 @@
             "keywords": [
                 "fusio-adapter"
             ],
-            "time": "2018-12-18T18:32:47+00:00"
+            "time": "2020-05-10T09:06:51+00:00"
         },
         {
             "name": "fusio/engine",

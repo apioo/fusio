@@ -37,6 +37,9 @@ return [
         \Fusio\Adapter\Php\Action\PhpSandbox::class,
         \Fusio\Adapter\Sql\Action\SqlSelect::class,
         \Fusio\Adapter\Sql\Action\SqlTable::class,
+        \Fusio\Adapter\Util\Action\UtilABTest::class,
+        \Fusio\Adapter\Util\Action\UtilCache::class,
+        \Fusio\Adapter\Util\Action\UtilJsonPatch::class,
         \Fusio\Adapter\Util\Action\UtilStaticResponse::class,
     ],
     'connection' => [
