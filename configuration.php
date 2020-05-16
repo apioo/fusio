@@ -102,7 +102,7 @@ return [
         'user'                => getenv('FUSIO_DB_USER'),
         'password'            => getenv('FUSIO_DB_PW'),
         'host'                => getenv('FUSIO_DB_HOST'),
-        'driver'              => 'pdo_mysql',
+        'driver'              => getenv('FUSIO_DB_DRIVER') ?: 'pdo_mysql',
         'driverOptions'       => [
             // dont emulate so that we can use prepared statements in limit clause
             \PDO::ATTR_EMULATE_PREPARES => false
