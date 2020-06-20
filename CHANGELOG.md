@@ -1,9 +1,12 @@
 
-### 1.9.4
+### 1.9.5
 
-* Add driver option to env file
 * Add properties to passthru record #316
 * Add unique request id to the response header #298
+
+### 1.9.4 (2020-06-20)
+
+* Add driver option to env file
 * Add A/B test action #314
 * Add JSON patch action #315
 * Add util cache action #313
