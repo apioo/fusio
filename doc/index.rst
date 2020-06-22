@@ -61,3 +61,4 @@ maintain an API with Fusio.
    internal/adapter
    internal/serialization
    internal/event
+   internal/middleware
