@@ -122,7 +122,7 @@ return [
     ],
 
     // Global middleware which are applied before and after every request. Must
-    // bei either a classname, closure or PSX\Dispatch\FilterInterface instance
+    // bei either a classname, closure or PSX\Http\FilterInterface instance
     //'psx_filter_pre'          => [],
     //'psx_filter_post'         => [],
 
