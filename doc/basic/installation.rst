@@ -73,7 +73,7 @@ Apps
 Backend
 ^^^^^^^
 
-At the endpoint ``fusio/index.html`` you can login to the backend app. You
+At the endpoint ``apps/fusio/index.html`` you can login to the backend app. You
 should be able to login with the username (which you have entered for the ``adduser``
 command) and the password which you have used. The following list covers the 
 most login errors in case you are not able to login at the backend:
@@ -89,7 +89,7 @@ most login errors in case you are not able to login at the backend:
       { "error": "invalid_request", "error_description": "Credentials not available" }
 
   If this is the case your app is correctly configured. If this is not the case 
-  you need to adjust the endpoint url at ``/public/fusio/index.htm`` i.e.:
+  you need to adjust the endpoint url at ``/apps/fusio/index.htm`` i.e.:
 
   .. code-block:: javascript
 
