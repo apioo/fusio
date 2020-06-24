@@ -41,7 +41,7 @@ installation.
 
 You can verify the installation by visiting the ``psx_url`` with a browser. You
 should see a API response that the installation was successful. The backend is
-available at ``/fusio/``.
+available at ``/apps/fusio/``.
 
 In case you want to install Fusio on a specific database you need to adjust the
 ``driver`` parameter at the ``configuration.php`` file:
