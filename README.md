@@ -5,82 +5,65 @@
 
 # About
 
-Fusio is an open source API management platform which helps to build and manage 
-RESTful APIs. We think that there is a huge potential in the API economy. 
-Whether you need an API to expose your business functionality, build micro 
-services, develop SPAs or Mobile-Apps. Because of this we think that Fusio is a 
-great tool to simplify building such APIs. More information on 
-https://www.fusio-project.org/
+Fusio is as an open source api management and serverless platform which helps
+to build great APIs while being self hosted and vendor independent.
 
-# Why
+## API management and features
 
-The originally idea of Fusio was to provide a tool which lets you easily build a
-great API beside an existing application. I.e. in case you have already a web
-application on a domain `acme.com` Fusio helps you to build the fitting API
-at `api.acme.com`. Beside this use case you can also use Fusio to build a new 
-API from scratch or use it internally i.e. for micro services.
+Fusio is an API management platform where you can configure routes which execute
+a specific action. An action is the equivalent to a serverless function, which can be executed
+on a route call or via RPC. Fusio covers many aspects of the API management life cycle
+so that you can concentrate on writing the actual business logic of your API. The following feature
+list gives your an overview:
 
-To build the API Fusio can connect to different databases, message queue
-systems or internal web services. There are also many ways to integrate your
-[business logic](http://fusio.readthedocs.io/en/latest/development/business_logic.html)
-into the API of Fusio.
-
-# Features
-
-Fusio covers all important aspects of the API lifecycle, so you can concentrate
-on building the actual business logic of your API.
-
-* __Versioning__  
-  It is possible to define different versions of your endpoint. A concrete 
-  version can be requested through the `Accept` header i.e. `application/vnd.acme.v1+json`
-* __Documentation__  
-  Fusio generates automatically a documentation of the API endpoints based on 
-  the provided schema definitions.
-* __Validation__  
-  Fusio uses the standard JSONSchema to validate incoming request data
+* __OpenAPI generation__  
+  Fusio generates automatically an OpenAPI specification for the defined routes.
+* __SDK generation__  
+  Fusio can automatically generate a client SDK for your API based on the defined schema.
+* __Subscription support__  
+  Fusio contains a subscription layer which helps to build pub/sub for your API.
+* __Rate limiting__  
+  Fusio provides a way to rate limit requests based on the user or app.
 * __Authorization__  
-  Fusio uses OAuth2 for API authorization. Each app can be limited to scopes to 
-  request only specific endpoints of the API.
-* __Analytics__  
-  Fusio monitors all API activities and shows them on a dashboard so you always 
-  know what is happening with your API.
+  Fusio uses OAuth2 for API authorization.
 * __Monetization__  
   Fusio provides a simple payment system to charge for specific routes.
-* __Rate limiting__  
-  It is possible to limit requests to a specific threshold.
-* __Specification__  
-  Fusio generates different specification formats for the defined API endpoints
-  i.e. OpenAPI, Swagger, RAML.
-* __Subscription__  
-  Fusio contains a subscription layer which helps to build pub/sub for your API.
-* __User management__  
-  Fusio provides an API where new users can login or register a new account 
-  through GitHub, Google, Facebook or through normal email registration.
+* __Versioning__  
+  It is possible to define different versions of your endpoint.
+* __Validation__  
+  Fusio uses the standard TypeSchema to automatically validate incoming request data
+* __Analytics__  
+  Fusio monitors all API activities and shows them on a dashboard.
+* __User management__
+  Fusio provides an developer app where new users can login or register a new account through GitHub, Google, Facebook or through normal email registration.
 * __Logging__  
-  All errors which occur in your endpoint are logged and are visible at the 
-  backend including all information from the request.
+  All errors which occur in your endpoint are logged and are visible at the backend including all information from the request.
 * __Connection__  
-  Fusio provides an [adapter](https://www.fusio-project.org/adapter) system to
-  connect to external services. By default we provide the HTTP and SQL 
-  connection type but there are many other types available i.e. MongoDB, Amqp, 
-  Cassandra.
+  Fusio provides an adapter system to connect to external services. By default we provide the HTTP and SQL connection type but there are many other types available i.e. MongoDB, Amqp, Cassandra.
+* __Action__  
+  Fusio contains action ecosystem which help you to build APIs based on different sources, i.e. the SQL-Table actions provides an API based on a database table.
 * __Migration__  
-  Fusio has a migration system which allows you to change the database schema
-  on deployment.
+  Fusio has a migration system which allows you to change the database schema on deployment.
 * __Testing__  
-  Fusio provides an api test case wherewith you can test every endpoint 
-  response without setting up a local web server.
+  Fusio provides an api test case wherewith you can test every endpoint response without setting up a local web server.
 
-Basically with Fusio you only have to define the schema (request/response) of 
-your API endpoints and implement the business logic. All other aspects are 
-covered by Fusio.
+## Serverless and vendor independence
+
+Serverless is a great paradigma to build scaleable APIs. The biggest disadvantage is that
+your app is locked in at the serverless provider. If the conditions of the provider change
+and you want to switch the provider it is difficult to move your app to a different vendor.
+
+Fusio tries to solve this problem by providing a self hosted platform written in PHP which
+you can simply host on your own bare-metal server, but it is also possible to move the
+entire application to a serverless provider i.e. AWS. If you develop your API with Fusio
+you can start hosting your app on a cheap self-hosted server and move to serverless only
+if you actually need the scaling capabilities.
 
 # Development
 
 Fusio provides two ways to develop an API. The first way is to build API 
 endpoints only through the backend interface by using all available actions.
-Through this you can solve already many tasks especially through the usage of
-the [PHP-Sandbox](https://www.fusio-project.org/documentation/php) action.
+Through this you can solve already many tasks.
 
 The other way is to use the deploy-mechanism. Through this you can use normal
 PHP files to implement your business logic and thus you can use the complete PHP 
@@ -140,27 +123,31 @@ to simply build all routes, schemas and actions based on a simple YAML
 definition. The code can be used as great starting point to rapidly build your
 API. The tool is available at: https://generate.apioo.de/
 
-# Internal API
+## Serverless (in development)
 
-If you install Fusio it provides the internal API. Through the internal API it
-is possible to manage the complete system. This means you can create i.e.
-routes, actions, schemas etc. Because of this Fusio has some reserved paths
-which are needed by the system.
+The serverless feature allows you to move a Fusio app to a cloud provider. For this we need to 
+require a fitting adapter to support a serverless cloud provider. I.e. for AWS:
 
-* `/backend`  
-  Endpoints for the system configuration
-* `/consumer`  
-  Endpoints for the consumer i.e. register new accounts or create new apps 
-* `/doc`  
-  Endpoints for the documentation
-* `/authorization`  
-  Endpoints for the consumer to get i.e. information about the user itself and 
-  to revoke an obtained access token
-* `/export`  
-  Endpoints to export the documentation into other formats i.e. swagger
+```
+composer require fusio/adapter-aws
+php bin/fusio system:register "Fusio\Adapter\Aws\Adapter"
+```
 
-There is also a complete [documentation](http://demo.fusio-project.org/internal/#!/page/about)
-about all internal API endpoints.
+To push the app to a cloud provider we use the [serverless framework](https://www.serverless.com/).
+Through the following command Fusio generates a `serverless.yaml` file and the fitting action
+files at the `public/` folder.
+
+```
+php bin/fusio push aws
+```
+
+To finally push this to the cloud provider we use the recommended serverless framework via:
+
+```
+npm install -g serverless
+serverless config credentials --provider aws --key <key> --secret <secret>
+serverless deploy
+```
 
 # Apps
 
@@ -285,7 +272,7 @@ in a complex system.
 
 ## Javascript applications
 
-Javascript frameworks like i.e. AngularJS or EmberJS becoming the standard. With
+Javascript frameworks like i.e. Angular or Vue becoming the standard. With
 Fusio you can easily build a backend for such applications. So you dont have to
 build the backend part by yourself.
 
