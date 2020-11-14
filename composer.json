@@ -16,12 +16,12 @@
     }
   },
   "require": {
-    "php": ">=7.0",
-    "fusio/impl": "^4.4",
-    "symfony/dotenv": "^4.2"
+    "php": ">=7.2",
+    "fusio/impl": "^5.0-RC1",
+    "symfony/dotenv": "^5.1"
   },
   "require-dev": {
-    "phpunit/phpunit": "^6.0",
+    "phpunit/phpunit": "^8.0",
     "guzzlehttp/guzzle": "^6.2"
   },
   "autoload": {
