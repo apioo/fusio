@@ -2,6 +2,7 @@
 
 if (!getenv('FUSIO_ENV')) {
     $dotenv = new \Symfony\Component\Dotenv\Dotenv();
+    $dotenv->usePutenv(true);
     $dotenv->load(__DIR__ . '/.env');
 }
 
