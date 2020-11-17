@@ -22,7 +22,7 @@
 namespace App\Tests;
 
 use Fusio\Impl\Controller\SchemaApiController;
-use Fusio\Impl\Loader\DatabaseRoutes;
+use Fusio\Impl\Framework\Loader\RoutingParser\DatabaseParser;
 use Fusio\Impl\Service\System\Deploy;
 use PSX\Framework\Test\ControllerDbTestCase;
 use PSX\Framework\Test\Environment;
@@ -41,7 +41,7 @@ abstract class ApiTestCase extends ControllerDbTestCase
         return Fixture::getFixture();
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -56,7 +56,7 @@ abstract class ApiTestCase extends ControllerDbTestCase
         // clear all cached routes after deployment since the deploy adds new
         // routes which are not in the database
         $routingParser = Environment::getService('routing_parser');
-        if ($routingParser instanceof DatabaseRoutes) {
+        if ($routingParser instanceof DatabaseParser) {
             $routingParser->clear();
         }
 
