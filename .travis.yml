@@ -11,7 +11,7 @@ before_install:
   - mysql -e 'create database fusio;'
 install:
   - composer install
-  - php bin/fusio install --no-interaction
+  - php bin/fusio install --no-interaction -vvv
 before_script:
   - php bin/fusio deploy
   - php bin/fusio migration:migrate --connection=System --no-interaction
