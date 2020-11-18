@@ -19,7 +19,7 @@ function runMigrations()
     $versions = $configuration->getAvailableVersions();
     foreach ($versions as $versionNumber) {
         $version = $configuration->getVersion($versionNumber);
-        $version->execute(\Doctrine\DBAL\Migrations\Version::DIRECTION_UP);
+        $version->execute('up');
     }
 
     // replace System connection class
@@ -36,7 +36,7 @@ function runMigrations()
     $versions = $configuration->getAvailableVersions();
     foreach ($versions as $versionNumber) {
         $version = $configuration->getVersion($versionNumber);
-        $version->execute(\Doctrine\DBAL\Migrations\Version::DIRECTION_UP);
+        $version->execute('up');
     }
 
     $connection->getConfiguration()->setFilterSchemaAssetsExpression(null);
