@@ -16,11 +16,8 @@ function runMigrations()
         \PSX\Framework\Test\Environment::getService('connection')
     );
 
-    $versions = $configuration->getAvailableVersions();
-    foreach ($versions as $versionNumber) {
-        $version = $configuration->getVersion($versionNumber);
-        $version->execute('up');
-    }
+    $factory = new \Doctrine\Migrations\DependencyFactory($configuration);
+    $factory->getMigrator()->migrate();
 
     // replace System connection class
     $connection->update('fusio_connection', ['class' => \Fusio\Impl\Connection\Native::class], ['id' => 1]);
@@ -33,11 +30,8 @@ function runMigrations()
         \PSX\Framework\Test\Environment::getService('connector')
     );
 
-    $versions = $configuration->getAvailableVersions();
-    foreach ($versions as $versionNumber) {
-        $version = $configuration->getVersion($versionNumber);
-        $version->execute('up');
-    }
+    $factory = new \Doctrine\Migrations\DependencyFactory($configuration);
+    $factory->getMigrator()->migrate();
 
     $connection->getConfiguration()->setFilterSchemaAssetsExpression(null);
 }
