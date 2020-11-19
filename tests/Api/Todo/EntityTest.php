@@ -35,7 +35,7 @@ class EntityTest extends ApiTestCase
 {
     public function testDocumentation()
     {
-        $response = $this->sendRequest('/doc/*/todo/4', 'GET', [
+        $response = $this->sendRequest('/system/doc/*/todo/4', 'GET', [
             'User-Agent'    => 'Fusio TestCase',
         ]);
 

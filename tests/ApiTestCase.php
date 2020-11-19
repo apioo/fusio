@@ -38,7 +38,7 @@ abstract class ApiTestCase extends ControllerDbTestCase
 {
     public function getDataSet()
     {
-        return Fixture::getFixture();
+        return Fixture::getFixture()->toArray();
     }
 
     protected function setUp(): void
