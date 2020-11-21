@@ -5,14 +5,14 @@ methods:
     public: true
     description: "Returns all todo entries"
     responses: 
-      200: Todo-Collection
-      500: Message
-    action: "App\\Todo\\Collection"
+      200: App\Model\Todo_Collection
+      500: App\Model\Message
+    action: App\Action\Todo\Collection
   POST:
     public: false
     description: "Creates a new todo entry"
-    request: Todo
+    request: App\Model\Todo_Create
     responses: 
-      201: Message
-      500: Message
-    action: "App\\Todo\\Insert"
+      201: App\Model\Message
+      500: App\Model\Message
+    action: App\Action\Todo\Insert

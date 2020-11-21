@@ -3,6 +3,6 @@
 # ------------------------------------------------------------------------------
 routes: !include resources/routes.yaml
 # ------------------------------------------------------------------------------
-schema: !include resources/schemas.yaml
+#schema: !include resources/schemas.yaml
 # ------------------------------------------------------------------------------
 config: !include resources/config.yaml

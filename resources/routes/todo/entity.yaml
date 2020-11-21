@@ -5,13 +5,13 @@ methods:
     public: true
     description: "Returns a single todo entry"
     responses: 
-      200: Todo
-      500: Message
-    action: "App\\Todo\\Row"
+      200: App\Model\Todo
+      500: App\Model\Message
+    action: App\Action\Todo\Row
   DELETE:
     public: false
     description: "Removes a todo entry"
     responses: 
-      200: Message
-      500: Message
-    action: "App\\Todo\\Delete"
+      200: App\Model\Message
+      500: App\Model\Message
+    action: App\Action\Todo\Delete

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Todo;
+namespace App\Action\Todo;
 
+use App\Model\Todo;
 use Fusio\Engine\ActionAbstract;
 use Fusio\Engine\ContextInterface;
 use Fusio\Engine\ParametersInterface;
@@ -15,16 +16,14 @@ class Insert extends ActionAbstract
         /** @var \Doctrine\DBAL\Connection $connection */
         $connection = $this->connector->getConnection('System');
 
-        $body = $request->getBody();
+        $body = $request->getPayload();
         $now  = new \DateTime();
 
-        if (empty($body->title)) {
-            throw new StatusCode\BadRequestException('No title provided');
-        }
+        assert($body instanceof Todo);
 
         $connection->insert('app_todo', [
             'status' => 1,
-            'title' => $body->title,
+            'title' => $body->getTitle(),
             'insert_date' => $now->format('Y-m-d H:i:s'),
         ]);
 

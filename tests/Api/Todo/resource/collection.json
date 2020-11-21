@@ -10,8 +10,8 @@
         "default"
       ],
       "responses": {
-        "200": "Todo-Collection",
-        "500": "Message"
+        "200": "App_Model_Todo_Collection",
+        "500": "App_Model_Message"
       }
     },
     "POST": {
@@ -27,16 +27,38 @@
         "todo",
         "default"
       ],
-      "request": "Todo",
+      "request": "App_Model_Todo_Create",
       "responses": {
-        "201": "Message",
-        "500": "Message"
+        "201": "App_Model_Message",
+        "500": "App_Model_Message"
       }
     }
   },
   "definitions": {
+    "App_Model_Message": {
+      "$ref": "Message"
+    },
+    "App_Model_Todo_Collection": {
+      "$ref": "Todo_Collection"
+    },
+    "App_Model_Todo_Create": {
+      "$ref": "Todo_Create"
+    },
+    "Collection": {
+      "type": "object",
+      "properties": {
+        "totalResults": {
+          "type": "integer"
+        },
+        "entry": {
+          "type": "array",
+          "items": {
+            "$generic": "T"
+          }
+        }
+      }
+    },
     "Message": {
-      "title": "message",
       "type": "object",
       "properties": {
         "success": {
@@ -48,43 +70,25 @@
       }
     },
     "Todo": {
-      "title": "todo",
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "status": {
-          "type": "integer"
-        },
         "title": {
-          "type": "string",
-          "minLength": 3,
-          "maxLength": 32
-        },
-        "insertDate": {
-          "format": "date-time",
           "type": "string"
         }
-      },
+      }
+    },
+    "Todo_Collection": {
+      "$ref": "Collection",
+      "$template": {
+        "T": "Todo"
+      }
+    },
+    "Todo_Create": {
+      "$extends": "Todo",
+      "type": "object",
       "required": [
         "title"
       ]
-    },
-    "Todo-Collection": {
-      "title": "collection",
-      "type": "object",
-      "properties": {
-        "totalCount": {
-          "type": "integer"
-        },
-        "entry": {
-          "type": "array",
-          "items": {
-            "$ref": "file:\/\/\/entity.json"
-          }
-        }
-      }
     }
   }
 }

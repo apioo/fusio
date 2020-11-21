@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Todo;
+namespace App\Action\Todo;
 
 use Fusio\Engine\ActionAbstract;
 use Fusio\Engine\ContextInterface;
 use Fusio\Engine\ParametersInterface;
 use Fusio\Engine\RequestInterface;
+use PSX\Http\Exception as StatusCode;
 
-class Collection extends ActionAbstract
+class Row extends ActionAbstract
 {
     public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
     {
@@ -19,17 +20,16 @@ class Collection extends ActionAbstract
                        title, 
                        insert_date AS insertDate 
                   FROM app_todo 
-                 WHERE status = 1 
-              ORDER BY insert_date DESC';
+                 WHERE id = :id';
 
-        $sql = $connection->getDatabasePlatform()->modifyLimitQuery($sql, 16);
-
-        $count   = $connection->fetchColumn('SELECT COUNT(*) FROM app_todo');
-        $entries = $connection->fetchAll($sql);
-
-        return $this->response->build(200, [], [
-            'totalResults' => $count,
-            'entry' => $entries,
+        $todo = $connection->fetchAssoc($sql, [
+            'id' => $request->get('todo_id')
         ]);
+
+        if (empty($todo)) {
+            throw new StatusCode\NotFoundException('Entry not available');
+        }
+
+        return $this->response->build(200, [], $todo);
     }
 }

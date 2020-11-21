@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Todo;
+namespace App\Action\Todo;
 
 use Fusio\Engine\ActionAbstract;
 use Fusio\Engine\ContextInterface;
@@ -18,7 +18,7 @@ class Delete extends ActionAbstract
         $affected = $connection->update('app_todo', [
             'status' => 0,
         ], [
-            'id' => $request->getUriFragment('todo_id')
+            'id' => $request->get('todo_id')
         ]);
 
         if (empty($affected)) {
