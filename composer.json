@@ -17,7 +17,7 @@
   },
   "require": {
     "php": ">=7.2",
-    "fusio/impl": "^5.0-RC1",
+    "fusio/impl": "dev-master",
     "symfony/dotenv": "^5.1"
   },
   "require-dev": {

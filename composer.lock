@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ebe8bc083b0af951dd8374715dd83af",
+    "content-hash": "1899e38d53b29409ed9fd59d42c3a89c",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1197,16 +1197,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v5.0.0-RC2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "8b957c85203f5226d00c314bdc924e6a6ec597d1"
+                "reference": "98ccf3a9858f6636564b8e9d840bd5f1de64b9de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/8b957c85203f5226d00c314bdc924e6a6ec597d1",
-                "reference": "8b957c85203f5226d00c314bdc924e6a6ec597d1",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/98ccf3a9858f6636564b8e9d840bd5f1de64b9de",
+                "reference": "98ccf3a9858f6636564b8e9d840bd5f1de64b9de",
                 "shasum": ""
             },
             "require": {
@@ -1233,6 +1233,7 @@
                 "phpunit/phpunit": "^8.0",
                 "vimeo/psalm": "^3.14"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1254,9 +1255,9 @@
             "homepage": "http://fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v5.0.0-RC2"
+                "source": "https://github.com/apioo/fusio-impl/tree/master"
             },
-            "time": "2020-11-19T20:19:40+00:00"
+            "time": "2020-11-21T21:44:07+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -6807,7 +6808,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "fusio/impl": 5
+        "fusio/impl": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
