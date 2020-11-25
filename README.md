@@ -11,10 +11,11 @@ to build great APIs while being self hosted and vendor independent.
 ## API management and features
 
 Fusio is an API management platform where you can configure routes which execute
-a specific action. An action is the equivalent to a serverless function, which can be executed
-on a route call or via RPC. Fusio covers many aspects of the API management life cycle
-so that you can concentrate on writing the actual business logic of your API. The following feature
-list gives your an overview:
+specific actions. An action triggers your business logic, it is like a controller
+in a classical framework, you can also think of it like a serverless lambda function,
+which can be executed on a route call or via RPC. Fusio covers many aspects of the API
+management life cycle so that you can concentrate on writing the actual business
+logic of your API. The following feature list gives your a first overview:
 
 * __OpenAPI generation__  
   Fusio generates automatically an OpenAPI specification for the defined routes.
@@ -50,8 +51,8 @@ list gives your an overview:
 ## Serverless and vendor independence
 
 Serverless is a great paradigma to build scaleable APIs. The biggest disadvantage is that
-your app is locked in at the serverless provider. If the conditions of the provider change
-and you want to switch the provider it is difficult to move your app to a different vendor.
+your app is locked in at the serverless provider (vendor-lock-in). If you want to switch
+the provider it is difficult to move your app to a different vendor.
 
 Fusio tries to solve this problem by providing a self hosted platform written in PHP which
 you can simply host on your own bare-metal server, but it is also possible to move the
