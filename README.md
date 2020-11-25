@@ -27,22 +27,24 @@ logic of your API. The following feature list gives your a first overview:
   Fusio provides a way to rate limit requests based on the user or app.
 * __Authorization__  
   Fusio uses OAuth2 for API authorization.
+* __RPC support__  
+  Fusio provides RPC support, every action which you create can be also called via JsonRPC
 * __Monetization__  
   Fusio provides a simple payment system to charge for specific routes.
 * __Versioning__  
   It is possible to define different versions of your endpoint.
 * __Validation__  
-  Fusio uses the standard TypeSchema to automatically validate incoming request data
+  Fusio uses the TypeSchema to automatically validate incoming request data
 * __Analytics__  
   Fusio monitors all API activities and shows them on a dashboard.
 * __User management__
-  Fusio provides an developer app where new users can login or register a new account through GitHub, Google, Facebook or through normal email registration.
+  Fusio provides a developer app where new users can login or register a new account through GitHub, Google, Facebook or through normal email registration.
 * __Logging__  
   All errors which occur in your endpoint are logged and are visible at the backend including all information from the request.
 * __Connection__  
   Fusio provides an adapter system to connect to external services. By default we provide the HTTP and SQL connection type but there are many other types available i.e. MongoDB, Amqp, Cassandra.
 * __Action__  
-  Fusio contains action ecosystem which help you to build APIs based on different sources, i.e. the SQL-Table actions provides an API based on a database table.
+  Fusio contains an action ecosystem which helps to build APIs based on different sources, i.e. the SQL-Table actions provides an API based on a database table.
 * __Migration__  
   Fusio has a migration system which allows you to change the database schema on deployment.
 * __Testing__  
@@ -67,7 +69,7 @@ endpoints only through the backend interface by using all available actions.
 Through this you can solve already many tasks.
 
 The other way is to use the deploy-mechanism. Through this you can use normal
-PHP files to implement your business logic and thus you can use the complete PHP 
+PHP classes to implement your business logic and thus you can use the complete PHP 
 ecosystem. Therefor you need to define a `.fusio.yml` 
 [deploy file](https://fusio.readthedocs.io/en/latest/development/deploy.html)
 which specifies the available routes and actions of the system. This file can be
