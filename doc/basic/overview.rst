@@ -5,86 +5,71 @@ Overview
 About
 -----
 
-Fusio is an open source API management platform which helps to build and manage 
-RESTful APIs. We think that there is a huge potential in the API economy. 
-Whether you need an API to expose your business functionality, build micro 
-services, develop SPAs or Mobile-Apps. Because of this we think that Fusio is a 
-great tool to simplify building such APIs. More information on 
-https://www.fusio-project.org/
+Fusio is as an open source api management and serverless platform which helps
+to build great APIs while being self hosted and vendor independent. More
+information on https://www.fusio-project.org/
 
-Why
----
+API management and features
+---------------------------
 
-The originally idea of Fusio was to provide a tool which lets you easily build a
-great API beside an existing application. I.e. in case you have already a web
-application on a domain ``acme.com`` Fusio helps you to build the fitting API
-at ``api.acme.com``. Beside this use case you can also use Fusio to build a new 
-API from scratch or use it internally i.e. for micro services.
-
-To build the API Fusio can connect to many different databases, message queue
-systems or internal web services. There are also many ways to integrate your
-`business logic`_ into the API of Fusio.
+Fusio is an API management platform where you can configure routes which execute
+specific actions. An action triggers your business logic, it is like a controller
+in a classical framework, you can also think of it like a serverless lambda function,
+which can be executed on a route call or via RPC. Fusio covers many aspects of the API
+management life cycle so that you can concentrate on writing the actual business
+logic of your API. The following feature list gives your a first overview:
 
 Features
 --------
 
-Fusio covers all important aspects of the API lifecycle so you can concentrate
-on building the actual business logic of your API.
+* **OpenAPI generation**  
 
-* **Versioning**
+  Fusio generates automatically an OpenAPI specification for the defined routes.
+* **SDK generation**  
 
-  It is possible to define different versions of your endpoint. A concrete 
-  version can be requested through the ``Accept`` header i.e. ``application/vnd.acme.v1+json``
-* **Documentation**
-
-  Fusio generates automatically a documentation of the API endpoints based on 
-  the provided schema definitions.
-* **Validation**
-
-  Fusio uses the standard JSONSchema to validate incoming request data.
-* **Authorization**
-
-  Fusio uses OAuth2 for API authorization. Each app can be limited to scopes to 
-  request only specific endpoints of the API.
-* **Analytics**
-
-  Fusio monitors all API activities and shows them on a dashboard so you always 
-  know what is happening with your API. 
-* **Rate limiting**
-
-  It is possible to limit the requests to a specific threshold.
-* **Specifications**
-
-  Fusio generates different specification formats for the defined API endpoints
-  i.e. OpenAPI, Swagger, RAML.
-* **Subscription**
+  Fusio can automatically generate a client SDK for your API based on the defined schema.
+* **Subscription support**  
 
   Fusio contains a subscription layer which helps to build pub/sub for your API.
+* **Rate limiting**  
+
+  Fusio provides a way to rate limit requests based on the user or app.
+* **Authorization**  
+
+  Fusio uses OAuth2 for API authorization.
+* **RPC support**  
+
+  Fusio provides RPC support, every action which you create can be also called via JsonRPC
+* **Monetization**  
+
+  Fusio provides a simple payment system to charge for specific routes.
+* **Versioning**  
+
+  It is possible to define different versions of your endpoint.
+* **Validation**  
+
+  Fusio uses the TypeSchema to automatically validate incoming request data
+* **Analytics**  
+
+  Fusio monitors all API activities and shows them on a dashboard.
 * **User management**
 
-  Fusio provides an API where new users can login or register a new account 
-  through GitHub, Google, Facebook or through normal email registration.
-* **Logging**
+  Fusio provides a developer app where new users can login or register a new account through GitHub, Google, Facebook or through normal email registration.
+* **Logging**  
 
-  All errors which occur in your endpoint are logged and are visible at the 
-  backend including all information from the request.
-* **Connection**
+  All errors which occur in your endpoint are logged and are visible at the backend including all information from the request.
+* **Connection**  
 
-  Fusio provides an `adapter`_ system to connect to external services. By 
-  default we provide the HTTP and SQL connection type but there are many other 
-  types available i.e. MongoDB, Amqp, Cassandra.
-* **Migration**
+  Fusio provides an adapter system to connect to external services. By default we provide the HTTP and SQL connection type but there are many other types available i.e. MongoDB, Amqp, Cassandra.
+* **Action**  
 
-  Fusio has a migration system which allows you to change the database schema
-  on deployment.
-* **Testing**
+  Fusio contains an action ecosystem which helps to build APIs based on different sources, i.e. the SQL-Table actions provides an API based on a database table.
+* **Migration**  
 
-  Fusio provides an api test case wherewith you can test every endpoint 
-  response without setting up a local web server.
+  Fusio has a migration system which allows you to change the database schema on deployment.
+* **Testing**  
 
-Basically with Fusio you only have to define the schema (request/response) of 
-your API endpoints and implement the business logic. All other aspects are 
-covered by Fusio.
+  Fusio provides an api test case wherewith you can test every endpoint response without setting up a local web server.
 
 Architecture
 ------------
@@ -152,13 +137,12 @@ Development
 
 Fusio provides two ways to develop an API. The first way is to build API 
 endpoints only through the backend interface by using all available actions.
-Through this you can solve already many tasks especially through the usage of
-the `PHP-Sandbox`_ or `V8-Processor`_ action.
+Through this you can solve already many tasks.
 
-The other way is to use the deploy mechanism. Through this you can use normal
-PHP files to implement your business logic and thus you can use the complete PHP
-ecosystem. Therefor you need to define a ``.fusio.yml`` `deploy file`_ which
-specifies the available routes and actions of the system. This file can be
+The other way is to use the deploy-mechanism. Through this you can use normal
+PHP classes to implement your business logic and thus you can use the complete PHP 
+ecosystem. Therefor you need to define a ``.fusio.yml`` `deploy file`_
+which specifies the available routes and actions of the system. This file can be
 deployed with the following command:
 
 .. code-block:: text
@@ -226,16 +210,13 @@ paths which are needed by the system.
 * ``/consumer``
 
   Endpoints for the consumer i.e. register new accounts or create new apps 
-* ``/doc``
+* ``/system``
 
-  Endpoints for the documentation
+  Endpoints for public system functions
 * ``/authorization``
 
   Endpoints for the consumer to get i.e. information about the user itself and 
   to revoke an obtained access token
-* ``/export``
-
-  Endpoints to export the documentation into other formats i.e. swagger
 
 There is also a complete `documentation`_ about all internal API endpoints.
 
@@ -250,7 +231,7 @@ Backend
 .. image:: ../_static/backend.png
 
 The backend app is the app where the administrator can configure the system. The 
-app is located at ``/fusio/``.
+app is located at ``/apps/fusio/``.
 
 Marketplace
 ^^^^^^^^^^^
@@ -295,8 +276,6 @@ mostly done through REST APIs. With Fusio you can easily build such APIs which
 then can also be used by other applications.
 
 .. _adapter: http://www.fusio-project.org/adapter
-.. _V8-Processor: https://www.fusio-project.org/documentation/v8
-.. _PHP-Sandbox: https://www.fusio-project.org/documentation/php
 .. _deploy file: http://fusio.readthedocs.io/en/latest/deploy.html
 .. _swagger-ui: https://github.com/swagger-api/swagger-ui
 .. _monaco editor: https://microsoft.github.io/monaco-editor/
