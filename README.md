@@ -139,6 +139,14 @@ php bin/fusio deploy
 This reads all yaml files and uses the internal API to create those resources at the database. For more information
 please read the [development doc](DEVELOPMENT.md).
 
+## Backend
+
+For simple uses cases you also dont need to use the deployment. You can simply build your API based on the available
+actions and only through the backend. This means you use Fusio more like a CMS. The following actions are available by
+default:
+
+![Action](https://github.com/apioo/fusio/blob/master/doc/_static/backend/action.png)
+
 ## Code-Generation
 
 Fusio can be used in a lot of use cases. If you build an API based on entities which should be stored in a relational
