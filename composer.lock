@@ -1201,12 +1201,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "42bbe5749f02d1df77fea6e464a351aafdcf8a35"
+                "reference": "99682f417ccaeb7e4dfeac4cd2abed817a882127"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/42bbe5749f02d1df77fea6e464a351aafdcf8a35",
-                "reference": "42bbe5749f02d1df77fea6e464a351aafdcf8a35",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/99682f417ccaeb7e4dfeac4cd2abed817a882127",
+                "reference": "99682f417ccaeb7e4dfeac4cd2abed817a882127",
                 "shasum": ""
             },
             "require": {
@@ -1257,7 +1257,7 @@
                 "issues": "https://github.com/apioo/fusio-impl/issues",
                 "source": "https://github.com/apioo/fusio-impl/tree/master"
             },
-            "time": "2020-12-08T19:20:59+00:00"
+            "time": "2020-12-10T19:14:16+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
