@@ -65,6 +65,7 @@ return [
         \Fusio\Impl\Provider\User\Google::class,
     ],
     'routes' => [
+        \Fusio\Impl\Provider\Routes\OpenAPI::class,
         \Fusio\Adapter\Sql\Routes\SqlTable::class,
     ],
 ];
