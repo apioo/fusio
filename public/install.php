@@ -286,9 +286,14 @@ function createAdminUser($username, $password, $email)
 
 function installBackendApp()
 {
+    if (is_dir(__DIR__ . '/../apps/fusio')) {
+        alert('success', 'Backend app already installed');
+        return true;
+    }
+
     runCommand('marketplace:install', ['--disable_ssl_verify', 'name' => 'fusio'], $exitCode);
     if ($exitCode == 0) {
-        alert('success', 'Added admin user successful');
+        alert('success', 'Installed backend app');
         return true;
     } else {
         alert('danger', 'Could not install backend app, you can install the backend app later on using the command <code>bin/fusio marketplace:install fusio</code>');
