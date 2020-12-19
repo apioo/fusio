@@ -265,20 +265,12 @@ function createAdminUser($username, $password, $email)
         return true;
     }
 
-    if (!preg_match('/' . \Fusio\Impl\Backend\Schema\User::NAME_PATTERN . '/', $username)) {
-        alert('warning', 'Invalid username value');
-        return false;
-    }
-
     try {
-        \Fusio\Impl\Service\User\PasswordComplexity::assert($password, 8);
+        \Fusio\Impl\Service\User\Validator::assertName($username);
+        \Fusio\Impl\Service\User\Validator::assertPassword($password, 8);
+        \Fusio\Impl\Service\User\Validator::assertEmail($email);
     } catch (\Exception $e) {
         alert('warning', $e->getMessage());
-        return false;
-    }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        alert('warning', 'Invalid email format');
         return false;
     }
 
