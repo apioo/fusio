@@ -49,7 +49,7 @@ class Fixture
         $expire = new \DateTime();
         $expire->add(new \DateInterval('P1M'));
 
-        $scopes = ['todo'];
+        $scopes = ['testing'];
 
         $dataBag->addScope('default', 'testing', 'Test scope');
         $dataBag->addAppScope('Backend', 'testing');

@@ -60,12 +60,12 @@ abstract class ApiTestCase extends ControllerDbTestCase
             $routingParser->clear();
         }
 
-        // after the deployment we must assign all routes to the scope from our
-        // test token so that we can access every endpoint in the tests
-        $routes = $this->connection->fetchAll('SELECT * FROM fusio_routes WHERE controller = :controller', ['controller' => SchemaApiController::class]);
+        // add scope for all routes
+        $scopeId = Fixture::getFixture()->getId('fusio_scope', 'testing');
+        $routes = $this->connection->fetchAll('SELECT id FROM fusio_routes WHERE category_id = :category', ['category' => 1]);
         foreach ($routes as $route) {
             $this->connection->insert('fusio_scope_routes', [
-                'scope_id' => 4,
+                'scope_id' => $scopeId,
                 'route_id' => $route['id'],
                 'allow'    => 1,
                 'methods'  => 'GET|POST|PUT|DELETE',
