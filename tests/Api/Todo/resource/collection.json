@@ -7,7 +7,7 @@
       "description": "Returns all todo entries",
       "tags": [
         "todo",
-        "default"
+        "testing"
       ],
       "responses": {
         "200": "App_Model_Todo_Collection",
@@ -20,12 +20,12 @@
       "security": {
         "app": [
           "todo",
-          "default"
+          "testing"
         ]
       },
       "tags": [
         "todo",
-        "default"
+        "testing"
       ],
       "request": "App_Model_Todo_Create",
       "responses": {

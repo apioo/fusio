@@ -8,7 +8,7 @@
       "description": "Returns a single todo entry",
       "tags": [
         "todo",
-        "default"
+        "testing"
       ],
       "responses": {
         "200": "App_Model_Todo",
@@ -21,12 +21,12 @@
       "security": {
         "app": [
           "todo",
-          "default"
+          "testing"
         ]
       },
       "tags": [
         "todo",
-        "default"
+        "testing"
       ],
       "request": "Passthru",
       "responses": {
