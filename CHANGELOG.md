@@ -1,6 +1,15 @@
 
-### 1.9.5
+### 2.0.0-RC1
 
+* Migrated all backend controller to actions
+* Reorganized endpoints
+* Improved RPC support
+* Add option to execute an action async
+* Migrated all schemas to TypeSchema
+* Schema based on PHP class
+* Improved backend app
+* Redesigned adapter actions
+* Removed migrations and moved all tables to InnoDB
 * Add properties to passthru record #316
 * Add unique request id to the response header #298
 
