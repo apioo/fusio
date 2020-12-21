@@ -63,7 +63,7 @@ if you actually need the scaling capabilities.
 # Development
 
 In Fusio an action contains the business logic of your API. It i.e. inserts data to a database or returns specific data
-for an endpoint. Fusio contains already example Todo actions please take a look at the `src/` folder. To give you a
+for an endpoint. Fusio contains already example Todo actions, please take a look at the `src/` folder. To give you a
 first impression the following action shows how to insert a todo entry:
 
 ```php
@@ -214,7 +214,7 @@ https://github.com/apioo/fusio/releases
 ## Configuration
 
 You can either manually install Fusio with the steps below or you can also use the browser based installer at
-`public/install.php`. Note because of security reasons it is highly recommended to remove the installer script after the
+`public/install.php`. Note because of security reasons it is highly recommended removing the installer script after the
 installation.
 
 * __Adjust the configuration file__  
