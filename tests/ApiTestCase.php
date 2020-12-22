@@ -51,7 +51,7 @@ abstract class ApiTestCase extends ControllerDbTestCase
         // run deploy
         /** @var Deploy $deploy */
         $deploy = Environment::getService('system_deploy_service');
-        $deploy->deploy(file_get_contents(__DIR__ . '/.fusio.yml'), __DIR__ . '/..');
+        $deploy->deploy(file_get_contents(__DIR__ . '/../.fusio.yml'), __DIR__ . '/..');
 
         // clear all cached routes after deployment since the deploy adds new
         // routes which are not in the database

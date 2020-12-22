@@ -1,8 +1,0 @@
-# Deploy yaml file dedicated for testing. It basically uses the production 
-# configuration but replaces the connection with an in-memory sqlite database.
-# ------------------------------------------------------------------------------
-routes: !include resources/routes.yaml
-# ------------------------------------------------------------------------------
-#schema: !include resources/schemas.yaml
-# ------------------------------------------------------------------------------
-config: !include resources/config.yaml
