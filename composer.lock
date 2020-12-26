@@ -256,31 +256,32 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.9.3",
+            "version": "2.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "7345cd59edfa2036eb0fa4264b77ae2576842035"
+                "reference": "adce7a954a1c2f14f85e94aed90c8489af204086"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/7345cd59edfa2036eb0fa4264b77ae2576842035",
-                "reference": "7345cd59edfa2036eb0fa4264b77ae2576842035",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/adce7a954a1c2f14f85e94aed90c8489af204086",
+                "reference": "adce7a954a1c2f14f85e94aed90c8489af204086",
                 "shasum": ""
             },
             "require": {
                 "doctrine/cache": "^1.0",
                 "doctrine/event-manager": "^1.0",
                 "ext-pdo": "*",
-                "php": "^7.1"
+                "php": "^7.3 || ^8"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^5.0",
-                "jetbrains/phpstorm-stubs": "^2018.1.2",
-                "phpstan/phpstan": "^0.10.1",
-                "phpunit/phpunit": "^7.4",
-                "symfony/console": "^2.0.5|^3.0|^4.0",
-                "symfony/phpunit-bridge": "^3.4.5|^4.0.5"
+                "doctrine/coding-standard": "^8.1",
+                "jetbrains/phpstorm-stubs": "^2019.1",
+                "phpstan/phpstan": "^0.12.40",
+                "phpunit/phpunit": "^9.4",
+                "psalm/plugin-phpunit": "^0.10.0",
+                "symfony/console": "^2.0.5|^3.0|^4.0|^5.0",
+                "vimeo/psalm": "^3.17.2"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
@@ -291,8 +292,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.9.x-dev",
-                    "dev-develop": "3.0.x-dev"
+                    "dev-master": "4.0.x-dev"
                 }
             },
             "autoload": {
@@ -327,18 +327,43 @@
             "keywords": [
                 "abstraction",
                 "database",
+                "db2",
                 "dbal",
+                "mariadb",
+                "mssql",
                 "mysql",
-                "persistence",
+                "oci8",
+                "oracle",
+                "pdo",
                 "pgsql",
-                "php",
-                "queryobject"
+                "postgresql",
+                "queryobject",
+                "sasql",
+                "sql",
+                "sqlanywhere",
+                "sqlite",
+                "sqlserver",
+                "sqlsrv"
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/2.9"
+                "source": "https://github.com/doctrine/dbal/tree/2.12.1"
             },
-            "time": "2019-11-02T22:19:34+00:00"
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fdbal",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-11-14T20:26:58+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -2834,21 +2859,20 @@
         },
         {
             "name": "psx/framework",
-            "version": "v5.0.3",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "a24131e39d7dcd1312666b392d6c1ece885b97f0"
+                "reference": "804003577ca7fcab80259821925e6b74d2cca80d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/a24131e39d7dcd1312666b392d6c1ece885b97f0",
-                "reference": "a24131e39d7dcd1312666b392d6c1ece885b97f0",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/804003577ca7fcab80259821925e6b74d2cca80d",
+                "reference": "804003577ca7fcab80259821925e6b74d2cca80d",
                 "shasum": ""
             },
             "require": {
                 "doctrine/annotations": "^1.5",
-                "doctrine/dbal": "~2.9.0",
                 "monolog/monolog": "^1.17",
                 "php": ">=7.2",
                 "psr/container": "^1.0",
@@ -2872,7 +2896,7 @@
             "require-dev": {
                 "guzzlehttp/guzzle": "^6.3",
                 "phpunit/phpunit": "^8.0",
-                "vimeo/psalm": "^3.11"
+                "vimeo/psalm": "^4.0"
             },
             "type": "library",
             "autoload": {
@@ -2901,9 +2925,9 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-framework/issues",
-                "source": "https://github.com/apioo/psx-framework/tree/v5.0.3"
+                "source": "https://github.com/apioo/psx-framework/tree/v5.0.4"
             },
-            "time": "2020-12-06T09:14:28+00:00"
+            "time": "2020-12-25T22:52:36+00:00"
         },
         {
             "name": "psx/http",
@@ -3071,16 +3095,16 @@
         },
         {
             "name": "psx/oauth",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-oauth.git",
-                "reference": "12ba87954cc6453c594b0ed2677a9e2fb7e38d99"
+                "reference": "84a9b89f073c613b1c9aad0964da815a75d5e7c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-oauth/zipball/12ba87954cc6453c594b0ed2677a9e2fb7e38d99",
-                "reference": "12ba87954cc6453c594b0ed2677a9e2fb7e38d99",
+                "url": "https://api.github.com/repos/apioo/psx-oauth/zipball/84a9b89f073c613b1c9aad0964da815a75d5e7c2",
+                "reference": "84a9b89f073c613b1c9aad0964da815a75d5e7c2",
                 "shasum": ""
             },
             "require": {
@@ -3089,7 +3113,7 @@
                 "psx/record": "^1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0"
+                "phpunit/phpunit": "^8.0"
             },
             "type": "library",
             "autoload": {
@@ -3115,9 +3139,9 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-oauth/issues",
-                "source": "https://github.com/apioo/psx-oauth/tree/master"
+                "source": "https://github.com/apioo/psx-oauth/tree/v2.1.2"
             },
-            "time": "2018-12-16T01:37:12+00:00"
+            "time": "2020-12-25T21:30:50+00:00"
         },
         {
             "name": "psx/oauth2",
@@ -3325,16 +3349,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "f91d85b93dcf0b5d1b2ee4bb0925e0b0607835ba"
+                "reference": "7dd68aea6dd263b932ec01ad672551f6a5faf628"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/f91d85b93dcf0b5d1b2ee4bb0925e0b0607835ba",
-                "reference": "f91d85b93dcf0b5d1b2ee4bb0925e0b0607835ba",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/7dd68aea6dd263b932ec01ad672551f6a5faf628",
+                "reference": "7dd68aea6dd263b932ec01ad672551f6a5faf628",
                 "shasum": ""
             },
             "require": {
@@ -3355,7 +3379,7 @@
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
                 "psx/model": "^2.0",
-                "vimeo/psalm": "^3.11"
+                "vimeo/psalm": "^4.0"
             },
             "bin": [
                 "bin/schema"
@@ -3386,34 +3410,35 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-schema/issues",
-                "source": "https://github.com/apioo/psx-schema/tree/v3.0.4"
+                "source": "https://github.com/apioo/psx-schema/tree/v3.0.5"
             },
-            "time": "2020-12-05T19:19:02+00:00"
+            "time": "2020-12-25T22:33:43+00:00"
         },
         {
             "name": "psx/sql",
-            "version": "v2.2.1",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-sql.git",
-                "reference": "21b52082483497ffe1ca214ec39139bf9d1b86f3"
+                "reference": "05092958857544422199e42537731961896718af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-sql/zipball/21b52082483497ffe1ca214ec39139bf9d1b86f3",
-                "reference": "21b52082483497ffe1ca214ec39139bf9d1b86f3",
+                "url": "https://api.github.com/repos/apioo/psx-sql/zipball/05092958857544422199e42537731961896718af",
+                "reference": "05092958857544422199e42537731961896718af",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "~2.9.0",
+                "doctrine/dbal": "^2.12",
                 "nikic/php-parser": "^4.0",
-                "php": ">=7.0",
+                "php": ">=7.2",
                 "psx/record": "^1.0",
                 "symfony/console": "^4.0|^5.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0",
-                "psx/cache": "^1.0"
+                "phpunit/phpunit": "^8.0",
+                "psx/cache": "^1.0",
+                "vimeo/psalm": "^4.0"
             },
             "type": "library",
             "autoload": {
@@ -3439,9 +3464,9 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-sql/issues",
-                "source": "https://github.com/apioo/psx-sql/tree/master"
+                "source": "https://github.com/apioo/psx-sql/tree/v2.3.0"
             },
-            "time": "2020-03-09T20:08:09+00:00"
+            "time": "2020-12-25T21:59:17+00:00"
         },
         {
             "name": "psx/uri",
