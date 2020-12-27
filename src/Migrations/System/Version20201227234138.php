@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Migrations\System;
 
 use Doctrine\DBAL\Schema\Schema;
@@ -8,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180713210701 extends AbstractMigration
+final class Version20201227234138 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -27,5 +29,13 @@ class Version20180713210701 extends AbstractMigration
     public function down(Schema $schema): void
     {
         $this->addSql('DELETE FROM app_todo WHERE 1=1');
+    }
+
+    /**
+     * @see https://github.com/doctrine/migrations/issues/1104
+     */
+    public function isTransactional(): bool
+    {
+        return false;
     }
 }

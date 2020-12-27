@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Migrations\System;
 
 use Doctrine\DBAL\Schema\Schema;
@@ -8,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180713210336 extends AbstractMigration
+final class Version20201227234115 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -29,5 +31,13 @@ class Version20180713210336 extends AbstractMigration
     public function down(Schema $schema): void
     {
         $schema->dropTable('app_todo');
+    }
+
+    /**
+     * @see https://github.com/doctrine/migrations/issues/1104
+     */
+    public function isTransactional(): bool
+    {
+        return false;
     }
 }
