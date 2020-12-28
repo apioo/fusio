@@ -1,5 +1,5 @@
 
-### 2.0.0-RC1
+### 2.0.0-RC1 (2020-12-28)
 
 * Migrated all backend controller to actions
 * Reorganized endpoints
@@ -10,6 +10,7 @@
 * Improved backend app
 * Redesigned adapter actions
 * Removed migrations and moved all tables to InnoDB
+* Set PHP 7.2 as min requirement and support 8.0
 * Add properties to passthru record #316
 * Add unique request id to the response header #298
 
