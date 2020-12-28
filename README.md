@@ -36,7 +36,7 @@ first overview:
   Fusio uses the TypeSchema to automatically validate incoming request data
 * __Analytics__  
   Fusio monitors all API activities and shows them on a dashboard.
-* __User management__
+* __User management__  
   Fusio provides a developer app where new users can login or register a new account through GitHub, Google, Facebook or through normal email registration.
 * __Logging__  
   All errors which occur in your endpoint are logged and are visible at the backend including all information from the request.
