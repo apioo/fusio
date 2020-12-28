@@ -108,6 +108,9 @@ At the code we get the `System` connection which returns a `\Doctrine\DBAL\Conne
 [many adapters](https://www.fusio-project.org/adapter) to connect to different services. Then we simply fire some
 queries and return the response.
 
+We have also a [CMS demo app](https://github.com/apioo/fusio-sample-cms) which is a headless CMS build with Fusio
+which shows how to design and structure a more complex app.
+
 ## Folder structure
 
 * `resources/config.yaml`  
