@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bdddcb42495f2e90393d684bd4f6c5e6",
+    "content-hash": "599fad4db6ac5c19d5d35a841d517dcd",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -763,20 +763,20 @@
         },
         {
             "name": "friendsofphp/proxy-manager-lts",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/proxy-manager-lts.git",
-                "reference": "352d7fbb045f8ce2a0e740704b2cc6cb306f1e15"
+                "reference": "aa76978a8feaf7ddffaf346ba4f409efbfe5f9a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/proxy-manager-lts/zipball/352d7fbb045f8ce2a0e740704b2cc6cb306f1e15",
-                "reference": "352d7fbb045f8ce2a0e740704b2cc6cb306f1e15",
+                "url": "https://api.github.com/repos/FriendsOfPHP/proxy-manager-lts/zipball/aa76978a8feaf7ddffaf346ba4f409efbfe5f9a9",
+                "reference": "aa76978a8feaf7ddffaf346ba4f409efbfe5f9a9",
                 "shasum": ""
             },
             "require": {
-                "laminas/laminas-code": "^3.4.1",
+                "laminas/laminas-code": "^3.4.1|^4.0",
                 "php": ">=7.1",
                 "symfony/filesystem": "^4.4.17|^5.0"
             },
@@ -829,7 +829,7 @@
             ],
             "support": {
                 "issues": "https://github.com/FriendsOfPHP/proxy-manager-lts/issues",
-                "source": "https://github.com/FriendsOfPHP/proxy-manager-lts/tree/v1.0.0"
+                "source": "https://github.com/FriendsOfPHP/proxy-manager-lts/tree/v1.0.1"
             },
             "funding": [
                 {
@@ -841,7 +841,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-22T15:47:11+00:00"
+            "time": "2020-12-28T10:50:10+00:00"
         },
         {
             "name": "fusio/adapter-file",
@@ -1304,7 +1304,7 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v5.0.0-RC5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
@@ -1340,6 +1340,7 @@
                 "phpunit/phpunit": "^8.0",
                 "vimeo/psalm": "^4.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -7018,7 +7019,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "fusio/impl": 5
+        "fusio/impl": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
