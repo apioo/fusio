@@ -15,6 +15,10 @@
       "php": "7.3"
     }
   },
+  "scripts": {
+    "tests": "@php vendor/phpunit/phpunit/phpunit --configuration phpunit.xml tests",
+    "generate": "@php gen/gen_model.php"
+  },
   "require": {
     "php": ">=7.3",
     "fusio/impl": "^5.0-RC4",
