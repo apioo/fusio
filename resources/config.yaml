@@ -59,8 +59,8 @@ provider_github_secret: "${env.PROVIDER_GITHUB_SECRET}"
 # ReCaptcha secret
 recaptcha_secret: "${env.RECAPTCHA_SECRET}"
 
-# If a user registers through the consumer API the following scopes are assigned
-scopes_default: "authorization,consumer"
+# If a user registers through the consumer API the following role is assigned
+role_default: "Consumer"
 
 # The default amount of points which a user receives if he registers
 points_default: 0
