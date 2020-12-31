@@ -1,4 +1,10 @@
 
+### 2.0.0-RC2
+
+* Added role, a role is assigned to a user and specifies the scopes and category 
+* Make category editable, this allows to create new categories for your app
+* Consolidate OAuth2 endpoints
+
 ### 2.0.0-RC1 (2020-12-28)
 
 * Migrated all backend controller to actions
