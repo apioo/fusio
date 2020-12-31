@@ -641,16 +641,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.24",
+            "version": "2.1.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "ca90a3291eee1538cd48ff25163240695bd95448"
+                "reference": "0dbf5d78455d4d6a41d186da50adc1122ec066f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/ca90a3291eee1538cd48ff25163240695bd95448",
-                "reference": "ca90a3291eee1538cd48ff25163240695bd95448",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/0dbf5d78455d4d6a41d186da50adc1122ec066f4",
+                "reference": "0dbf5d78455d4d6a41d186da50adc1122ec066f4",
                 "shasum": ""
             },
             "require": {
@@ -697,7 +697,7 @@
             ],
             "support": {
                 "issues": "https://github.com/egulias/EmailValidator/issues",
-                "source": "https://github.com/egulias/EmailValidator/tree/2.1.24"
+                "source": "https://github.com/egulias/EmailValidator/tree/2.1.25"
             },
             "funding": [
                 {
@@ -705,7 +705,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-14T15:56:27+00:00"
+            "time": "2020-12-29T14:50:06+00:00"
         },
         {
             "name": "firebase/php-jwt",
@@ -1247,16 +1247,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v4.0.5",
+            "version": "v4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "4f77e20612360225709a72afaad73b151bc1f1d2"
+                "reference": "d9f5ab39513b6e7bc492afc5008a6477ed5acd1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/4f77e20612360225709a72afaad73b151bc1f1d2",
-                "reference": "4f77e20612360225709a72afaad73b151bc1f1d2",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/d9f5ab39513b6e7bc492afc5008a6477ed5acd1f",
+                "reference": "d9f5ab39513b6e7bc492afc5008a6477ed5acd1f",
                 "shasum": ""
             },
             "require": {
@@ -1275,7 +1275,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
-                "vimeo/psalm": "^3.14"
+                "vimeo/psalm": "^4.0"
             },
             "type": "library",
             "autoload": {
@@ -1298,9 +1298,9 @@
             "homepage": "http://fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-engine/issues",
-                "source": "https://github.com/apioo/fusio-engine/tree/v4.0.5"
+                "source": "https://github.com/apioo/fusio-engine/tree/v4.0.6"
             },
-            "time": "2020-12-23T20:33:18+00:00"
+            "time": "2020-12-29T20:18:41+00:00"
         },
         {
             "name": "fusio/impl",
@@ -1308,12 +1308,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "df9543796e43134229e791f1fd44cec0f3f3a9f3"
+                "reference": "e61ce924ff9cdef574157fe67c4e6eb705116f37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/df9543796e43134229e791f1fd44cec0f3f3a9f3",
-                "reference": "df9543796e43134229e791f1fd44cec0f3f3a9f3",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/e61ce924ff9cdef574157fe67c4e6eb705116f37",
+                "reference": "e61ce924ff9cdef574157fe67c4e6eb705116f37",
                 "shasum": ""
             },
             "require": {
@@ -1362,9 +1362,9 @@
             "homepage": "http://fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v5.0.0-RC5"
+                "source": "https://github.com/apioo/fusio-impl/tree/master"
             },
-            "time": "2020-12-27T20:56:48+00:00"
+            "time": "2020-12-30T12:53:03+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2860,16 +2860,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v5.0.4",
+            "version": "v5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "804003577ca7fcab80259821925e6b74d2cca80d"
+                "reference": "763288678e50742b7915deab77869c38e5f641ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/804003577ca7fcab80259821925e6b74d2cca80d",
-                "reference": "804003577ca7fcab80259821925e6b74d2cca80d",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/763288678e50742b7915deab77869c38e5f641ee",
+                "reference": "763288678e50742b7915deab77869c38e5f641ee",
                 "shasum": ""
             },
             "require": {
@@ -2926,9 +2926,9 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-framework/issues",
-                "source": "https://github.com/apioo/psx-framework/tree/v5.0.4"
+                "source": "https://github.com/apioo/psx-framework/tree/v5.0.6"
             },
-            "time": "2020-12-25T22:52:36+00:00"
+            "time": "2020-12-29T20:01:55+00:00"
         },
         {
             "name": "psx/http",
