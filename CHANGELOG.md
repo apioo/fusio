@@ -1,9 +1,13 @@
 
 ### 2.0.0-RC2
 
+* It is now possible to deploy changes to a remote Fusio instance #356 
+* Moved all CLI commands to a separate package fusio/cli #357
+* Execute all internal periodic tasks through the cron system
 * Added role, a role is assigned to a user and specifies the scopes and category 
 * Make category editable, this allows to create new categories for your app
 * Consolidate OAuth2 endpoints
+* An adapter can now register only provider classes
 
 ### 2.0.0-RC1 (2020-12-28)
 
