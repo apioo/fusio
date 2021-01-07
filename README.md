@@ -17,37 +17,26 @@ so that you can concentrate on writing the actual business logic of your API. Th
 first overview:
 
 * __OpenAPI generation__  
-  Fusio generates automatically an OpenAPI specification for the defined routes.
+  Fusio generates automatically an OpenAPI specification for the defined routes
 * __SDK generation__  
-  Fusio can automatically generate a client SDK for your API based on the defined schema.
+  Fusio can automatically generate a client SDK for your API based on the defined schema
 * __Subscription support__  
-  Fusio contains a subscription layer which helps to build pub/sub for your API.
+  Fusio contains a subscription layer which helps to build pub/sub for your API
 * __Rate limiting__  
-  Fusio provides a way to rate limit requests based on the user or app.
+  Fusio provides a way to rate limit requests based on the user or app
 * __Authorization__  
-  Fusio uses OAuth2 for API authorization.
+  Fusio uses OAuth2 for API authorization
 * __RPC support__  
   Fusio provides RPC support, every action which you create can be also called via JsonRPC
 * __Monetization__  
-  Fusio provides a simple payment system to charge for specific routes.
-* __Versioning__  
-  It is possible to define different versions of your endpoint.
+  Fusio provides a simple payment system to charge for specific routes
 * __Validation__  
   Fusio uses the TypeSchema to automatically validate incoming request data
 * __Analytics__  
-  Fusio monitors all API activities and shows them on a dashboard.
+  Fusio monitors all API activities and shows them on a dashboard
 * __User management__  
-  Fusio provides a developer app where new users can login or register a new account through GitHub, Google, Facebook or through normal email registration.
-* __Logging__  
-  All errors which occur in your endpoint are logged and are visible at the backend including all information from the request.
-* __Connection__  
-  Fusio provides an adapter system to connect to external services. By default we provide the HTTP and SQL connection type but there are many other types available i.e. MongoDB, Amqp, Cassandra.
-* __Action__  
-  Fusio contains an action ecosystem which helps to build APIs based on different sources, i.e. the SQL-Table actions provides an API based on a database table.
-* __Migration__  
-  Fusio has a migration system which allows you to change the database schema on deployment.
-* __Testing__  
-  Fusio provides an api test case wherewith you can test every endpoint response without setting up a local web server.
+  Fusio provides a developer app where new users can login or register a new account through GitHub, Google, Facebook or
+  through normal email registration
 
 ## Serverless and vendor independence
 
@@ -59,6 +48,42 @@ Fusio tries to solve this problem by providing a self hosted platform written in
 own bare-metal server, but it is also possible to move the entire application to a serverless provider i.e. AWS. If you
 develop your API with Fusio you can start hosting your app on a cheap self-hosted server and move to serverless only
 if you actually need the scaling capabilities.
+
+## Ecosystem overview
+
+This should give you a first overview about all important repositories which belong to the Fusio project:
+
+* [Fusio](https://github.com/apioo/fusio)  
+  Contains a configured Fusio instance with a simple Todo app. It is also the main place about Fusio where we collect
+  and discuss all ideas and issues
+* [Fusio-Impl](https://github.com/apioo/fusio-impl)  
+  Contains the backend API implementation of Fusio. This is the place if you like to change the internal API of Fusio
+* [Fusio-CLI](https://github.com/apioo/fusio-cli)  
+  Contains the CLI client for Fusio, it is automatically included in every Fusio installation but you can also run the
+  CLI client standalone. It allows you to directly interact with the API and to deploy specific YAML configuration files
+* [Fusio-Model](https://github.com/apioo/fusio-model)  
+  Contains all Fusio models automatically generated via [TypeSchema](https://typeschema.org/). This repository helps if
+  you want to work with the Fusio API since you can use the same model classes which we also use at the backend
+* [Fusio-Engine](https://github.com/apioo/fusio-engine)  
+  Contains mostly interfaces which are also needed by adapters. This repository is very stable and there are few
+  changes
+* [Fusio-Adapter](https://www.fusio-project.org/adapter)  
+  Page which shows all available adapters. An adapter can extend Fusio by providing i.e. custom Actions or Connections
+  to different services. I.e. we have an adapter [MongoDB](http://github.com/apioo/fusio-adapter-mongodb) which helps to
+  work with a [MongoDB](https://www.mongodb.com/)
+* [Fusio-Docker](https://github.com/apioo/fusio-docker)  
+  Contains a Docker-Image to run Fusio, it helps to quickly create a Fusio instance in the cloud. You can find it also
+  directly on [DockerHub](https://hub.docker.com/r/fusio/fusio)
+* [App-Backend](https://github.com/apioo/fusio-apps-backend)  
+  Contains the Fusio backend app which you can use to configure your API. This is the place if you like to change or
+  improve the backend app
+* [App-Consumer](https://github.com/apioo/fusio-apps-consumer)  
+  Contains a developer portal app where external developers can register to use your API
+* [SDK-PHP](https://github.com/apioo/fusio-sdk-php)  
+  Contains an SDK for PHP which can be required by any package which likes to interact with the internal API of Fusio,
+  you can find it also on [Packagist](https://packagist.org/packages/fusio/sdk)
+* [SDK-Javascript](https://github.com/apioo/fusio-sdk-javascript)  
+  Contains an SDK for Javascript which helps to work with the internal API, you can find it also on [NPM](https://www.npmjs.com/package/fusio-sdk)
 
 # Development
 
