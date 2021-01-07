@@ -8,6 +8,7 @@
 * Make category editable, this allows to create new categories for your app
 * Consolidate OAuth2 endpoints
 * An adapter can now register only provider classes
+* Removed webserver config generation
 
 ### 2.0.0-RC1 (2020-12-28)
 
