@@ -11,8 +11,10 @@ before_install:
 install:
   - composer install
   - php bin/fusio install --no-interaction
-before_script:
-  - php bin/fusio deploy
   - php bin/fusio migration:migrate --connection=System --no-interaction
+  - php bin/fusio adduser --role=1 --username=test --email=test@test.com --password=test1234!
+before_script:
+  - php bin/fusio login --username=test --password=test1234!
+  - php bin/fusio deploy
 script:
   - vendor/bin/phpunit
