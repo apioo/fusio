@@ -1247,16 +1247,16 @@
         },
         {
             "name": "fusio/cli",
-            "version": "v0.1.3",
+            "version": "v0.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-cli.git",
-                "reference": "161ca163e750c254232269da13c6db5cf01bae6b"
+                "reference": "e20694359cf3af879b23a55376d15c9a872b3b07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/161ca163e750c254232269da13c6db5cf01bae6b",
-                "reference": "161ca163e750c254232269da13c6db5cf01bae6b",
+                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/e20694359cf3af879b23a55376d15c9a872b3b07",
+                "reference": "e20694359cf3af879b23a55376d15c9a872b3b07",
                 "shasum": ""
             },
             "require": {
@@ -1294,9 +1294,9 @@
             "homepage": "http://fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-cli/issues",
-                "source": "https://github.com/apioo/fusio-cli/tree/v0.1.3"
+                "source": "https://github.com/apioo/fusio-cli/tree/v0.1.6"
             },
-            "time": "2021-01-09T15:12:26+00:00"
+            "time": "2021-01-09T23:15:41+00:00"
         },
         {
             "name": "fusio/engine",
@@ -1361,12 +1361,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "76f1130abae5bbb97ecf6193ecdd263ab0c0b847"
+                "reference": "13dd73610ef0c08ac556eb09238ec533a4a0bdb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/76f1130abae5bbb97ecf6193ecdd263ab0c0b847",
-                "reference": "76f1130abae5bbb97ecf6193ecdd263ab0c0b847",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/13dd73610ef0c08ac556eb09238ec533a4a0bdb5",
+                "reference": "13dd73610ef0c08ac556eb09238ec533a4a0bdb5",
                 "shasum": ""
             },
             "require": {
@@ -1418,7 +1418,7 @@
                 "issues": "https://github.com/apioo/fusio-impl/issues",
                 "source": "https://github.com/apioo/fusio-impl/tree/master"
             },
-            "time": "2021-01-08T21:45:13+00:00"
+            "time": "2021-01-09T22:52:05+00:00"
         },
         {
             "name": "fusio/model",
