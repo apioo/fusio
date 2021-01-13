@@ -7,6 +7,7 @@
     </condition>
 
     <property file="${properties-file}.properties" />
+    <property name="version" value="2.0.0-RC2" />
 
     <!-- ############################# INSTALL ############################# -->
     <!-- delete git dir -->
@@ -18,6 +19,9 @@
     <target name="git-clone">
         <exec executable="${git}" failonerror="true">
             <arg line="clone https://github.com/apioo/fusio.git ${build}" />
+        </exec>
+        <exec executable="${git}" failonerror="true" dir="${build}">
+            <arg line="checkout tags/v${version}" />
         </exec>
     </target>
 
@@ -69,16 +73,8 @@
     <target name="clean" depends="remove-files" />
 
     <!-- ############################## BUILD ############################## -->
-    <!-- returns the current version -->
-    <target name="get-version">
-        <exec executable="${php}" failonerror="true" outputproperty="version">
-            <arg line="get-version.php" />
-        </exec>
-        <echo message="Building version ${version}" />
-    </target>
-
     <!-- creates the archive -->
-    <target name="create-archive" depends="get-version">
+    <target name="create-archive">
         <tar destfile="fusio_${version}.tar" basedir="${build}" />
         <gzip destfile="fusio_${version}.tar.gz" src="fusio_${version}.tar" />
         <delete file="fusio_${version}.tar" />
