@@ -76,16 +76,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $return = executeAppMigration();
             break;
 
-        case 'executeDeploy':
-            $return = executeDeploy();
-            break;
-
         case 'createAdminUser':
             $username = $_POST['username'] ?? '';
             $password = $_POST['password'] ?? '';
             $email    = $_POST['email'] ?? '';
 
             $return = createAdminUser($username, $password, $email);
+            break;
+
+        case 'login':
+            $username = $_POST['username'] ?? '';
+            $password = $_POST['password'] ?? '';
+
+            $return = login($username, $password);
+            break;
+
+        case 'executeDeploy':
+            $return = executeDeploy();
             break;
 
         case 'installBackendApp':
@@ -109,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit;
 }
 
-function checkEnv($envFile, array $env, \PSX\Framework\Config\Config $config)
+function checkEnv(string $envFile, array $env, \PSX\Framework\Config\Config $config)
 {
     // check folder writable
     $appsDir = $config->get('fusio_apps_dir');
@@ -195,7 +202,7 @@ function hasAdmin()
     return $exitCode === 0;
 }
 
-function adjustEnvFile($envFile, array $env, \PSX\Framework\Config\Config $config)
+function adjustEnvFile(string $envFile, array $env, \PSX\Framework\Config\Config $config)
 {
     if (!checkEnv($envFile, $env, $config)) {
         return false;
@@ -247,6 +254,18 @@ function executeAppMigration()
     }
 }
 
+function login(string $username, string $password)
+{
+    $output = runCommand('login', ['--username' => $username, '--password' => $password], $exitCode);
+    if ($exitCode === 0) {
+        alert('success', 'Login successful');
+        return true;
+    } else {
+        alert('danger', 'An error occurred on login:<pre>' . htmlspecialchars($output) . '</pre>');
+        return false;
+    }
+}
+
 function executeDeploy()
 {
     $output = runCommand('deploy', [], $exitCode);
@@ -259,7 +278,7 @@ function executeDeploy()
     }
 }
 
-function createAdminUser($username, $password, $email)
+function createAdminUser(string $username, string $password, string $email)
 {
     if (hasAdmin()) {
         return true;
@@ -274,7 +293,7 @@ function createAdminUser($username, $password, $email)
         return false;
     }
 
-    runCommand('adduser', ['--status' => '1', '--username' => $username, '--password' => $password, '--email' => $email], $exitCode);
+    runCommand('adduser', ['--role' => '1', '--username' => $username, '--password' => $password, '--email' => $email], $exitCode);
     if ($exitCode == 0) {
         alert('success', 'Added admin user successful');
         return true;
@@ -480,8 +499,9 @@ var methods = [
     "adjustEnvFile",
     "executeFusioMigration",
     "executeAppMigration",
-    "executeDeploy",
     "createAdminUser",
+    "login",
+    "executeDeploy",
     "installBackendApp",
     "finishInstall"
 ];
@@ -490,8 +510,9 @@ var lang = {
     adjustEnvFile: "Adjusting environment file ...",
     executeFusioMigration: "Executing database migration ...",
     executeAppMigration: "Executing app migration ...",
-    executeDeploy: "Executing deploy ...",
     createAdminUser: "Creating admin user ...",
+    login: "Obtain access token ...",
+    executeDeploy: "Executing deploy ...",
     installBackendApp: "Installing backend app ...",
     finishInstall: "Finishing installation ..."
 };
@@ -537,6 +558,11 @@ function runNextAction() {
             username: $("#username").val(),
             password: $("#password").val(),
             email: $("#email").val()
+        };
+    } else if (method === 'login') {
+        params = {
+            username: $("#username").val(),
+            password: $("#password").val()
         };
     }
 
