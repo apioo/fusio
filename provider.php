@@ -30,6 +30,8 @@ class. The following list contains an explanation of each extension point:
 
 return [
     'action' => [
+        \Fusio\Adapter\Cli\Action\CliProcessor::class,
+        \Fusio\Adapter\Fcgi\Action\FcgiProcessor::class,
         \Fusio\Adapter\File\Action\FileProcessor::class,
         \Fusio\Adapter\GraphQL\Action\GraphQLProcessor::class,
         \Fusio\Adapter\Http\Action\HttpProcessor::class,

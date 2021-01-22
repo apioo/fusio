@@ -844,6 +844,106 @@
             "time": "2021-01-14T21:52:44+00:00"
         },
         {
+            "name": "fusio/adapter-cli",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/fusio-adapter-cli.git",
+                "reference": "330a8c0cb736a39183ea473a876cce8b160bd719"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-cli/zipball/330a8c0cb736a39183ea473a876cce8b160bd719",
+                "reference": "330a8c0cb736a39183ea473a876cce8b160bd719",
+                "shasum": ""
+            },
+            "require": {
+                "fusio/engine": "^4.0",
+                "php": ">=7.2",
+                "symfony/process": "^5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fusio\\Adapter\\Cli\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com"
+                }
+            ],
+            "description": "Provides a connection to execute cli command",
+            "homepage": "http://fusio-project.org",
+            "keywords": [
+                "fusio-adapter"
+            ],
+            "support": {
+                "issues": "https://github.com/apioo/fusio-adapter-cli/issues",
+                "source": "https://github.com/apioo/fusio-adapter-cli/tree/v0.1.0"
+            },
+            "time": "2021-01-18T20:55:36+00:00"
+        },
+        {
+            "name": "fusio/adapter-fcgi",
+            "version": "v4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/fusio-adapter-fcgi.git",
+                "reference": "7f05db23a27be3f1afdc3913561ea225ee1efc88"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-fcgi/zipball/7f05db23a27be3f1afdc3913561ea225ee1efc88",
+                "reference": "7f05db23a27be3f1afdc3913561ea225ee1efc88",
+                "shasum": ""
+            },
+            "require": {
+                "fusio/engine": "^4.0",
+                "hollodotme/fast-cgi-client": "^3.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fusio\\Adapter\\Fcgi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "http://christoph.kappestein.com"
+                }
+            ],
+            "description": "Adapter to call a FastCGI endpoint",
+            "homepage": "http://fusio-project.org",
+            "keywords": [
+                "fusio-adapter"
+            ],
+            "support": {
+                "issues": "https://github.com/apioo/fusio-adapter-fcgi/issues",
+                "source": "https://github.com/apioo/fusio-adapter-fcgi/tree/master"
+            },
+            "time": "2020-08-31T20:02:39+00:00"
+        },
+        {
             "name": "fusio/adapter-file",
             "version": "v4.0.0",
             "source": {
@@ -1361,17 +1461,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "8a875353e3a7fbbe31288a9654f2d21f9ddfc374"
+                "reference": "500e22121b673ea3f62ab8d84d91a8c73edef14b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/8a875353e3a7fbbe31288a9654f2d21f9ddfc374",
-                "reference": "8a875353e3a7fbbe31288a9654f2d21f9ddfc374",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/500e22121b673ea3f62ab8d84d91a8c73edef14b",
+                "reference": "500e22121b673ea3f62ab8d84d91a8c73edef14b",
                 "shasum": ""
             },
             "require": {
                 "doctrine/migrations": "^2.3",
                 "firebase/php-jwt": "^5.0",
+                "fusio/adapter-cli": "^0.1",
+                "fusio/adapter-fcgi": "^4.0",
                 "fusio/adapter-file": "^4.0",
                 "fusio/adapter-graphql": "^4.0",
                 "fusio/adapter-http": "^4.0",
@@ -1418,7 +1520,7 @@
                 "issues": "https://github.com/apioo/fusio-impl/issues",
                 "source": "https://github.com/apioo/fusio-impl/tree/master"
             },
-            "time": "2021-01-11T17:18:13+00:00"
+            "time": "2021-01-19T21:48:42+00:00"
         },
         {
             "name": "fusio/model",
@@ -1667,6 +1769,76 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.7.0"
             },
             "time": "2020-09-30T07:37:11+00:00"
+        },
+        {
+            "name": "hollodotme/fast-cgi-client",
+            "version": "v3.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hollodotme/fast-cgi-client.git",
+                "reference": "8a9b2bd38ccfd8fc6905a6b1acfbb9f84ed700dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hollodotme/fast-cgi-client/zipball/8a9b2bd38ccfd8fc6905a6b1acfbb9f84ed700dd",
+                "reference": "8a9b2bd38ccfd8fc6905a6b1acfbb9f84ed700dd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "ext-xdebug": ">=2.6.0",
+                "tm/tooly-composer-script": "^1.4.1"
+            },
+            "type": "library",
+            "extra": {
+                "tools": {
+                    "phpunit7": {
+                        "url": "https://phar.phpunit.de/phpunit-7.phar",
+                        "replace": true,
+                        "only-dev": true
+                    },
+                    "phpunit8": {
+                        "url": "https://phar.phpunit.de/phpunit-8.phar",
+                        "replace": true,
+                        "only-dev": true
+                    },
+                    "phpunit9": {
+                        "url": "https://phar.phpunit.de/phpunit-9.phar",
+                        "replace": true,
+                        "only-dev": true
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "hollodotme\\FastCGI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Holger Woltersdorf",
+                    "email": "hw@hollo.me"
+                }
+            ],
+            "description": "A PHP fast CGI client to send requests (a)synchronously to PHP-FPM.",
+            "keywords": [
+                "Socket",
+                "async",
+                "fastcgi",
+                "php-fpm"
+            ],
+            "support": {
+                "issues": "https://github.com/hollodotme/fast-cgi-client/issues",
+                "source": "https://github.com/hollodotme/fast-cgi-client/tree/v3.1.5"
+            },
+            "time": "2020-12-10T10:15:06+00:00"
         },
         {
             "name": "laminas/laminas-code",
@@ -1966,16 +2138,16 @@
         },
         {
             "name": "league/mime-type-detection",
-            "version": "1.5.1",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/mime-type-detection.git",
-                "reference": "353f66d7555d8a90781f6f5e7091932f9a4250aa"
+                "reference": "3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/353f66d7555d8a90781f6f5e7091932f9a4250aa",
-                "reference": "353f66d7555d8a90781f6f5e7091932f9a4250aa",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3",
+                "reference": "3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3",
                 "shasum": ""
             },
             "require": {
@@ -1983,8 +2155,9 @@
                 "php": "^7.2 || ^8.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^0.12.36",
-                "phpunit/phpunit": "^8.5.8"
+                "friendsofphp/php-cs-fixer": "^2.18",
+                "phpstan/phpstan": "^0.12.68",
+                "phpunit/phpunit": "^8.5.8 || ^9.3"
             },
             "type": "library",
             "autoload": {
@@ -2005,7 +2178,7 @@
             "description": "Mime-type detection for Flysystem",
             "support": {
                 "issues": "https://github.com/thephpleague/mime-type-detection/issues",
-                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.5.1"
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.7.0"
             },
             "funding": [
                 {
@@ -2017,7 +2190,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-18T11:50:25+00:00"
+            "time": "2021-01-18T20:58:21+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -4980,6 +5153,68 @@
             "time": "2021-01-07T16:49:33+00:00"
         },
         {
+            "name": "symfony/process",
+            "version": "v5.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "bd8815b8b6705298beaa384f04fabd459c10bedd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/bd8815b8b6705298beaa384f04fabd459c10bedd",
+                "reference": "bd8815b8b6705298beaa384f04fabd459c10bedd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/polyfill-php80": "^1.15"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/process/tree/v5.2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-12-08T17:03:37+00:00"
+        },
+        {
             "name": "symfony/property-access",
             "version": "v5.2.1",
             "source": {
@@ -6190,16 +6425,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.13",
+            "version": "8.5.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "8e86be391a58104ef86037ba8a846524528d784e"
+                "reference": "c25f79895d27b6ecd5abfa63de1606b786a461a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8e86be391a58104ef86037ba8a846524528d784e",
-                "reference": "8e86be391a58104ef86037ba8a846524528d784e",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c25f79895d27b6ecd5abfa63de1606b786a461a3",
+                "reference": "c25f79895d27b6ecd5abfa63de1606b786a461a3",
                 "shasum": ""
             },
             "require": {
@@ -6271,7 +6506,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/8.5.13"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/8.5.14"
             },
             "funding": [
                 {
@@ -6283,7 +6518,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-01T04:53:52+00:00"
+            "time": "2021-01-17T07:37:30+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -7069,12 +7304,12 @@
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "shasum": ""
             },
@@ -7112,8 +7347,8 @@
                 "validate"
             ],
             "support": {
-                "issues": "https://github.com/webmozart/assert/issues",
-                "source": "https://github.com/webmozart/assert/tree/master"
+                "issues": "https://github.com/webmozarts/assert/issues",
+                "source": "https://github.com/webmozarts/assert/tree/1.9.1"
             },
             "time": "2020-07-08T17:02:28+00:00"
         }
