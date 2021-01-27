@@ -38,17 +38,6 @@ first overview:
   Fusio provides a developer app where new users can login or register a new account through GitHub, Google, Facebook or
   through normal email registration
 
-## Serverless and vendor independence
-
-Serverless is a great paradigma to build scaleable APIs. The biggest disadvantage is that your app is locked in at the
-serverless provider (vendor-lock-in). If you want to switch the provider it is difficult to move your app to a different
-vendor.
-
-Fusio tries to solve this problem by providing a self hosted platform written in PHP which you can simply host on your
-own bare-metal server, but it is also possible to move the entire application to a serverless provider i.e. AWS. If you
-develop your API with Fusio you can start hosting your app on a cheap self-hosted server and move to serverless only
-if you actually need the scaling capabilities.
-
 # Development
 
 In Fusio an action contains the business logic of your API. It i.e. inserts data to a database or returns specific data
@@ -148,8 +137,16 @@ at: https://generate.apioo.de/
 
 ## Serverless (in development)
 
-The serverless feature allows you to move a Fusio app to a cloud provider. For this we need to require a fitting adapter
-to support a serverless cloud provider. I.e. for AWS:
+Serverless is a great paradigma to build scaleable APIs. The biggest disadvantage is that your app is locked in at the
+serverless provider (vendor-lock-in). If you want to switch the provider it is difficult to move your app to a different
+vendor.
+
+Fusio tries to solve this problem by providing a self hosted platform written in PHP which you can simply host on your
+own bare-metal server, but it is also possible to move the entire application to a serverless provider i.e. AWS. If you
+develop your API with Fusio you can start hosting your app on a cheap self-hosted server and move to serverless only
+if you actually need the scaling capabilities.
+
+For this we need to require a fitting adapter to support a serverless cloud provider. I.e. for AWS:
 
 ```
 composer require fusio/adapter-aws
