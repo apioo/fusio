@@ -17,7 +17,8 @@
   },
   "scripts": {
     "tests": "@php vendor/phpunit/phpunit/phpunit --configuration phpunit.xml tests",
-    "generate": "@php gen/gen_model.php"
+    "generate-model": "@php gen/gen_model.php",
+    "generate-sdk": "@php bin/fusio api:generate --format=client-php --filter=backend --config=Fusio\\Sdk\\Generated\\Backend output"
   },
   "require": {
     "php": ">=7.3",
