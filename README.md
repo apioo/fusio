@@ -13,7 +13,7 @@ hosted and vendor independent.
 Fusio is an API management platform where you can configure routes which execute specific actions. An action triggers
 your business logic, it is like a controller in a classical framework, you can also think of it like a serverless lambda
 function, which can be executed on a route call or via RPC. Fusio covers many aspects of the API management life cycle
-so that you can concentrate on writing the actual business logic of your API. The following feature list gives your a
+so that you can concentrate on writing the actual business logic of your API. The following feature list gives you a
 first overview:
 
 * __OpenAPI generation__  
@@ -128,6 +128,20 @@ default:
 
 ![Action](https://github.com/apioo/fusio/blob/master/doc/_static/backend/action.png)
 
+## Client SDKs
+
+Fusio provides multiple SDKs to talk to the internal API of Fusio. The SDK can be used to integrate Fusio into your app
+and to automate processes. I.e. it would be possible to dynamically create a route, user or app. These SDKs are
+automatically generated and you can easily also generate such an SDK for the API which you build with Fusio.
+
+#### SDK-PHP
+* [GitHub](https://github.com/apioo/fusio-sdk-php)  
+* [Packagist](https://packagist.org/packages/fusio/sdk)
+
+#### SDK-Javascript
+* [GitHub](https://github.com/apioo/fusio-sdk-javascript)  
+* [NPM](https://www.npmjs.com/package/fusio-sdk)
+
 ## Code-Generation
 
 Fusio can be used in a lot of use cases. If you build an API based on entities which should be stored in a relational
@@ -198,11 +212,6 @@ This should give you a first overview about all important repositories which bel
   improve the backend app
 * [App-Consumer](https://github.com/apioo/fusio-apps-consumer)  
   Contains a developer portal app where external developers can register to use your API
-* [SDK-PHP](https://github.com/apioo/fusio-sdk-php)  
-  Contains an SDK for PHP which can be required by any package which likes to interact with the internal API of Fusio,
-  you can find it also on [Packagist](https://packagist.org/packages/fusio/sdk)
-* [SDK-Javascript](https://github.com/apioo/fusio-sdk-javascript)  
-  Contains an SDK for Javascript which helps to work with the internal API, you can find it also on [NPM](https://www.npmjs.com/package/fusio-sdk)
 
 # Apps
 
