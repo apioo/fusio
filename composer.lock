@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "599fad4db6ac5c19d5d35a841d517dcd",
+    "content-hash": "b0078795b70e9cae381b76de65bb1e09",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1457,7 +1457,7 @@
         },
         {
             "name": "fusio/impl",
-            "version": "dev-master",
+            "version": "v5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
@@ -1496,7 +1496,6 @@
                 "phpunit/phpunit": "^8.0",
                 "vimeo/psalm": "^4.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1518,7 +1517,7 @@
             "homepage": "http://fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/master"
+                "source": "https://github.com/apioo/fusio-impl/tree/v5.0.0"
             },
             "time": "2021-01-30T09:55:26+00:00"
         },
@@ -7355,9 +7354,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "fusio/impl": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
