@@ -203,7 +203,7 @@ function adjustEnvFile(string $envFile, array $env, \PSX\Framework\Config\Config
     $modified = $content;
 
     foreach ($env as $envKey => $envValue) {
-        $envValue = addslashes($envValue);
+        $envValue = preg_quote($envValue);
         $modified = preg_replace('/' . $envKey . '="(.*)"/imsU', $envKey . '="' . $envValue . '"', $modified, 1);
     }
 
