@@ -46,19 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $url = $scheme . '://${FUSIO_HOST}' . $path;
 
-            if (strpos($path, '/public') !== false) {
-                $appsUrl = $scheme . '://${FUSIO_HOST}' . str_replace('/public', '/apps', $path);
-            } else {
-                // in this case we have already a fitting vhost pointing to the
-                // public folder so we guess the apps sub domain
-                $appsUrl = $scheme . '://apps.${FUSIO_HOST}';
-            }
-
             $env = [
                 'FUSIO_PROJECT_KEY' => $_POST['key'] ?? '',
                 'FUSIO_HOST'        => $host,
                 'FUSIO_URL'         => $url,
-                'FUSIO_APPS_URL'    => $appsUrl,
                 'FUSIO_DB_NAME'     => $_POST['db_name'] ?? '',
                 'FUSIO_DB_USER'     => $_POST['db_user'] ?? '',
                 'FUSIO_DB_PW'       => $_POST['db_pw'] ?? '',
@@ -293,29 +284,29 @@ function createAdminUser(string $username, string $password, string $email)
         return false;
     }
 
-    runCommand('adduser', ['--role' => '1', '--username' => $username, '--password' => $password, '--email' => $email], $exitCode);
+    $output = runCommand('adduser', ['--role' => '1', '--username' => $username, '--password' => $password, '--email' => $email], $exitCode);
     if ($exitCode == 0) {
         alert('success', 'Added admin user successful');
         return true;
     } else {
-        alert('danger', 'Could not create admin account, you can add a new admin account later on using the command <code>bin/fusio adduser</code>');
+        alert('danger', 'Could not create admin account, you can add a new admin account later on using the command <code>bin/fusio adduser</code><pre>' . htmlspecialchars($output) . '</pre>');
         return false;
     }
 }
 
 function installBackendApp()
 {
-    if (is_dir(__DIR__ . '/../apps/fusio')) {
+    if (is_dir(__DIR__ . '/apps/fusio')) {
         alert('success', 'Backend app already installed');
         return true;
     }
 
-    runCommand('marketplace:install', ['--disable_ssl_verify', 'name' => 'fusio'], $exitCode);
+    $output = runCommand('marketplace:install', ['--disable_ssl_verify', 'name' => 'fusio'], $exitCode);
     if ($exitCode == 0) {
         alert('success', 'Installed backend app');
         return true;
     } else {
-        alert('danger', 'Could not install backend app, you can install the backend app later on using the command <code>bin/fusio marketplace:install fusio</code>');
+        alert('danger', 'Could not install backend app, you can install the backend app later on using the command <code>bin/fusio marketplace:install fusio</code><pre>' . htmlspecialchars($output) . '</pre>');
         return false;
     }
 }
@@ -379,7 +370,7 @@ function alert($level, $message)
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <style type="text/css">
     .fusio-installer {
@@ -418,7 +409,7 @@ function alert($level, $message)
     <div class="row">
         <div class="col">
             <div class="progress">
-                <div id="progress" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
             </div>
             <div id="messages"></div>
         </div>
@@ -489,7 +480,7 @@ function alert($level, $message)
     <div class="row">
         <div class="col">
             <hr>
-            <input type="submit" value="Install" class="btn btn-default">
+            <input type="submit" value="Install" class="btn btn-primary">
         </div>
     </div>
 </form>
@@ -566,7 +557,7 @@ function runNextAction() {
         };
     }
 
-    $("#messages").html(lang[method]);
+    $("#messages").html('<div class="spinner-border text-primary spinner-border-sm" role="status"><span class="sr-only">Loading ...</span></div>&nbsp;' + lang[method]);
     $.post('install.php?method=' + method, params, function(data){
         $("#messages").html('');
         if (data.success) {
