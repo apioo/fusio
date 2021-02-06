@@ -1,5 +1,10 @@
 
-### 2.0.0-RC2
+### 2.0.0 (2021-02-06)
+
+* Updated client SDKs
+* Moved apps folder to public folder
+
+### 2.0.0-RC2 (2021-01-15)
 
 * It is now possible to deploy changes to a remote Fusio instance #356 
 * Moved all CLI commands to a separate package fusio/cli #357
