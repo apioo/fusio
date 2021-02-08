@@ -1,4 +1,8 @@
 
+### 2.0.1
+
+* Fix installer env quoting #365
+
 ### 2.0.0 (2021-02-06)
 
 * Updated client SDKs
