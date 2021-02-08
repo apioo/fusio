@@ -44,12 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $host = parse_url($_POST['url'], PHP_URL_HOST);
             $path = parse_url($_POST['url'], PHP_URL_PATH);
 
-            $url = $scheme . '://${FUSIO_HOST}' . $path;
-
             $env = [
                 'FUSIO_PROJECT_KEY' => $_POST['key'] ?? '',
                 'FUSIO_HOST'        => $host,
-                'FUSIO_URL'         => $url,
+                'FUSIO_URL'         => $scheme . '://' . $host . $path,
+                'FUSIO_APPS_URL'    => $scheme . '://' . $host . $path . '/apps',
                 'FUSIO_DB_NAME'     => $_POST['db_name'] ?? '',
                 'FUSIO_DB_USER'     => $_POST['db_user'] ?? '',
                 'FUSIO_DB_PW'       => $_POST['db_pw'] ?? '',
@@ -199,16 +198,19 @@ function adjustEnvFile(string $envFile, array $env, \PSX\Framework\Config\Config
         return false;
     }
 
-    $content  = file_get_contents($envFile);
-    $modified = $content;
+    $data = (new Symfony\Component\Dotenv\Dotenv())->parse(file_get_contents($envFile));
 
-    foreach ($env as $envKey => $envValue) {
-        $envValue = preg_quote($envValue);
-        $modified = preg_replace('/' . $envKey . '="(.*)"/imsU', $envKey . '="' . $envValue . '"', $modified, 1);
+    $content = '';
+    foreach ($data as $key => $value) {
+        if (isset($env[$key])) {
+            $content.= $key . '="' . escapeQuotedString($env[$key]) . '"' . "\n";
+        } else {
+            $content.= $key . '="' . escapeQuotedString($value) . '"' . "\n";
+        }
     }
 
-    if ($modified != $content) {
-        $bytes = file_put_contents($envFile, $modified);
+    if (md5($content) != md5_file($envFile)) {
+        $bytes = file_put_contents($envFile, $content);
         if ($bytes) {
             alert('success', 'Adjusted <code>.env</code> file successful');
             return true;
@@ -219,6 +221,11 @@ function adjustEnvFile(string $envFile, array $env, \PSX\Framework\Config\Config
     }
 
     return true;
+}
+
+function escapeQuotedString(string $value)
+{
+    return str_replace(['"', '$'], ['\\"', '\\$'], $value);
 }
 
 function executeFusioMigration()
