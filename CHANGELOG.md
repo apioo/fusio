@@ -1,5 +1,5 @@
 
-### 2.0.1
+### 2.0.1 (2021-02-09)
 
 * Fix installer env quoting #365
 
