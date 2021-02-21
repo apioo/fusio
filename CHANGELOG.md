@@ -1,4 +1,9 @@
 
+### 2.0.2 
+
+* Fix documentation endpoint return correct export links
+* About response add additional links and categories and scopes
+
 ### 2.0.1 (2021-02-09)
 
 * Fix installer env quoting #365
