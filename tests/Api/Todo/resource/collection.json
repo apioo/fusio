@@ -90,5 +90,43 @@
         "title"
       ]
     }
-  }
+  },
+  "links": [
+    {
+      "rel": "client-go",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/client-go\/*\/todo"
+    },
+    {
+      "rel": "client-java",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/client-java\/*\/todo"
+    },
+    {
+      "rel": "client-php",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/client-php\/*\/todo"
+    },
+    {
+      "rel": "client-typescript",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/client-typescript\/*\/todo"
+    },
+    {
+      "rel": "markup-html",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/markup-html\/*\/todo"
+    },
+    {
+      "rel": "markup-markdown",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/markup-markdown\/*\/todo"
+    },
+    {
+      "rel": "spec-typeschema",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/spec-typeschema\/*\/todo"
+    },
+    {
+      "rel": "spec-openapi",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/spec-openapi\/*\/todo"
+    },
+    {
+      "rel": "spec-raml",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/spec-raml\/*\/todo"
+    }
+  ]
 }

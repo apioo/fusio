@@ -73,5 +73,43 @@
         }
       }
     }
-  }
+  },
+  "links": [
+    {
+      "rel": "client-go",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/client-go\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "client-java",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/client-java\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "client-php",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/client-php\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "client-typescript",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/client-typescript\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "markup-html",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/markup-html\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "markup-markdown",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/markup-markdown\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "spec-typeschema",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/spec-typeschema\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "spec-openapi",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/spec-openapi\/*\/todo\/:todo_id"
+    },
+    {
+      "rel": "spec-raml",
+      "href": "http:\/\/127.0.0.1\/index.php\/system\/export\/spec-raml\/*\/todo\/:todo_id"
+    }
+  ]
 }
