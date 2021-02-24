@@ -1452,16 +1452,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v5.0.1",
+            "version": "v5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "3518f0ddb49dff3f5775c656202735aa9e14f829"
+                "reference": "fff4f4f7d8b0c5fe13d744b0c013a6bec5d825ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/3518f0ddb49dff3f5775c656202735aa9e14f829",
-                "reference": "3518f0ddb49dff3f5775c656202735aa9e14f829",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/fff4f4f7d8b0c5fe13d744b0c013a6bec5d825ed",
+                "reference": "fff4f4f7d8b0c5fe13d744b0c013a6bec5d825ed",
                 "shasum": ""
             },
             "require": {
@@ -1512,9 +1512,9 @@
             "homepage": "http://fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v5.0.1"
+                "source": "https://github.com/apioo/fusio-impl/tree/v5.0.2"
             },
-            "time": "2021-02-20T22:22:46+00:00"
+            "time": "2021-02-21T21:19:37+00:00"
         },
         {
             "name": "fusio/model",
