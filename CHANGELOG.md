@@ -1,6 +1,7 @@
 
-### 2.0.2 
+### 2.0.2 (2021-02-24)
 
+* Fix async action execution command
 * Fix documentation endpoint return correct export links
 * About response add additional links and categories and scopes
 
