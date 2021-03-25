@@ -1,4 +1,9 @@
 
+### 2.0.3
+
+* Add postman routes provider which allows to import a postman export
+* Improve CORS handling for error responses
+
 ### 2.0.2 (2021-02-24)
 
 * Fix async action execution command
