@@ -1,19 +1,19 @@
 
 Nginx
 =====
-This instruction based on a on standard Nginx installation on Ubuntu 20.04.1 LTS.
+This instruction based on a on standard Nginx installation on Ubuntu 20.04.1 LTS and has been double checked on Debian 10.
 
 
 Php installation
 ----------------
 
-Standard setup of nginx doesn't contain php installation. Here is a sample how to install php in a dedicated version (e.g. 7.4) with required modules:
+Standard setup of nginx doesn't contain php installation. Here is a sample how to install php in a dedicated version (e.g. 7.4) with required modules (tested on Ubuntu 20.04.1):
 
 .. code-block:: text
 
   apt update
   apt -y install software-properties-common
-  add-apt-repository ppa:ondrej/php
+  add-apt-repository -y ppa:ondrej/php
 
   systemctl disable --now apache2
   apt -y install php7.4-fpm
@@ -25,6 +25,21 @@ Standard setup of nginx doesn't contain php installation. Here is a sample how t
   apt -y install php7.4-zip
 
   apt -y upgrade
+
+On Debian 10 the current version (8.0) of php has been installed with at least required modules like this:
+
+.. code-block:: text
+
+  systemctl disable --now apache2
+
+  apt -y install software-properties-common
+  wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
+  echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
+  apt update
+
+  apt -y install php php-fpm php-mysql php-mbstring php-soap php-xml php-curl php-zip
+  apt -y upgrade
+
 
 Fusio site creation
 -------------------
@@ -110,7 +125,7 @@ As mentioned above after installation the ownership should be corrected to limit
   rm /var/www/fusio/html/public/install.php
   chown root:root /var/www
   chown -R root:root /var/www/fusio
-  chown www-data:www-data /var/www/fusio/html/public/apps
+  chown -R www-data:www-data /var/www/fusio/html/public/apps
   chown -R www-data:www-data /var/www/fusio/html/cache
   
   systemctl start nginx
