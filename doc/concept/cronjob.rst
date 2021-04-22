@@ -15,5 +15,5 @@ Installation
 To tell Fusio that it should write such a cron file you need to create the file
 where the ``fusio_cron_file`` setting points to i.e. ``/etc/cron.d/fusio``. The
 web user needs also write access to this file since Fusio always updates the
-file in case you create or update an entry. You can change those settings at the
-``configuration.php`` file.
+file in case you create or update an entry. You can change the location of the file
+at the setting ``fusio_cron_file`` in the ``configuration.php`` file.
