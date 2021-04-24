@@ -7,7 +7,7 @@
     </condition>
 
     <property file="${properties-file}.properties" />
-    <property name="version" value="2.0.0-RC2" />
+    <property name="version" value="2.0.3" />
 
     <!-- ############################# INSTALL ############################# -->
     <!-- delete git dir -->
@@ -20,9 +20,11 @@
         <exec executable="${git}" failonerror="true">
             <arg line="clone https://github.com/apioo/fusio.git ${build}" />
         </exec>
+        <!--
         <exec executable="${git}" failonerror="true" dir="${build}">
             <arg line="checkout tags/v${version}" />
         </exec>
+        -->
     </target>
 
     <!-- composer install -->
