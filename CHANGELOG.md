@@ -1,8 +1,9 @@
 
-### 2.0.3
+### 2.0.3 (2021-04-24)
 
 * Add postman routes provider which allows to import a postman export
 * Improve CORS handling for error responses
+* Update composer dependencies
 
 ### 2.0.2 (2021-02-24)
 
