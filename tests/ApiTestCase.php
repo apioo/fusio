@@ -62,6 +62,7 @@ abstract class ApiTestCase extends ControllerDbTestCase
         /** @var Application $application */
         $application = Environment::getService('console');
         $application->setAutoExit(false);
+        $application->setCatchExceptions(false);
 
         $this->runLogin($application);
         $this->runDeploy($application);
