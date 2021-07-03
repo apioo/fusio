@@ -3,21 +3,6 @@ on:
   - pull_request
   - push
 jobs:
-  psalm:
-    name: Psalm
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.0
-          coverage: none
-      - name: Composer install
-        run: composer install --no-interaction --no-ansi --no-progress
-      - name: Run Psalm
-        run: vendor/bin/psalm --no-progress --shepherd --show-info=false --stats
   phpunit:
     name: "PHPUnit (PHP: ${{ matrix.php-versions }})"
     runs-on: ubuntu-latest
