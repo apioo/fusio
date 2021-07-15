@@ -1,4 +1,10 @@
 
+### 2.0.4 (2021-07-15)
+
+* Added Laravel PHP SDK
+* Improved PHP/Javascript SDK
+* Add page handling
+
 ### 2.0.3 (2021-04-24)
 
 * Add postman routes provider which allows to import a postman export
