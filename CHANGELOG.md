@@ -1,6 +1,7 @@
 
 ### 2.0.4 (2021-07-15)
 
+* Added VSCode Fusio plugin
 * Added Laravel PHP SDK
 * Improved PHP/Javascript SDK
 * Add page handling
