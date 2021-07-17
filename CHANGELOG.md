@@ -4,7 +4,8 @@
 * Added VSCode Fusio plugin
 * Added Laravel PHP SDK
 * Improved PHP/Javascript SDK
-* Add page handling
+* Move documentation to backend #400
+* Allow OAuth2 app key/secret on client credentials flow #386
 
 ### 2.0.3 (2021-04-24)
 
