@@ -49,6 +49,10 @@ return [
         \Fusio\Adapter\Util\Action\UtilCache::class,
         \Fusio\Adapter\Util\Action\UtilJsonPatch::class,
         \Fusio\Adapter\Util\Action\UtilStaticResponse::class,
+        \Fusio\Impl\Worker\Action\WorkerJava::class,
+        \Fusio\Impl\Worker\Action\WorkerJavascript::class,
+        \Fusio\Impl\Worker\Action\WorkerPHP::class,
+        \Fusio\Impl\Worker\Action\WorkerPython::class,
     ],
     'connection' => [
         \Fusio\Adapter\File\Connection\Ftp::class,
