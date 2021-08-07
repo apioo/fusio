@@ -1,4 +1,9 @@
 
+### 2.1.0 (2021-08-07)
+
+* Added worker system and actions to support different programming languages
+* Added Java, Javascript, PHP and Python worker
+
 ### 2.0.4 (2021-07-15)
 
 * Added VSCode Fusio plugin
