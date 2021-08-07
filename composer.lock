@@ -81,16 +81,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "1.13.1",
+            "version": "1.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "e6e7b7d5b45a2f2abc5460cc6396480b2b1d321f"
+                "reference": "5b668aef16090008790395c02c893b1ba13f7e08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/e6e7b7d5b45a2f2abc5460cc6396480b2b1d321f",
-                "reference": "e6e7b7d5b45a2f2abc5460cc6396480b2b1d321f",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/5b668aef16090008790395c02c893b1ba13f7e08",
+                "reference": "5b668aef16090008790395c02c893b1ba13f7e08",
                 "shasum": ""
             },
             "require": {
@@ -147,9 +147,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/annotations/issues",
-                "source": "https://github.com/doctrine/annotations/tree/1.13.1"
+                "source": "https://github.com/doctrine/annotations/tree/1.13.2"
             },
-            "time": "2021-05-16T18:07:53+00:00"
+            "time": "2021-08-05T19:00:23+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -1491,16 +1491,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v5.1.0",
+            "version": "v5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "1a82ce9f748451f366c05e08efa1bd82cb2e9293"
+                "reference": "9184fa45028d6b8d1737f4cf92fbc555d25bfc86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/1a82ce9f748451f366c05e08efa1bd82cb2e9293",
-                "reference": "1a82ce9f748451f366c05e08efa1bd82cb2e9293",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/9184fa45028d6b8d1737f4cf92fbc555d25bfc86",
+                "reference": "9184fa45028d6b8d1737f4cf92fbc555d25bfc86",
                 "shasum": ""
             },
             "require": {
@@ -1552,7 +1552,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v5.1.0"
+                "source": "https://github.com/apioo/fusio-impl/tree/v5.1.1"
             },
             "funding": [
                 {
@@ -1568,7 +1568,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-08-01T16:58:37+00:00"
+            "time": "2021-08-01T21:38:41+00:00"
         },
         {
             "name": "fusio/model",
@@ -7266,7 +7266,6 @@
                     "type": "github"
                 }
             ],
-            "abandoned": true,
             "time": "2020-11-30T07:30:19+00:00"
         },
         {
