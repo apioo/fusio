@@ -46,151 +46,7 @@ first overview:
   Fusio provides a developer app where new users can login or register a new account through GitHub, Google, Facebook or
   through normal email registration
 
-# Development
-
-In Fusio an action contains the business logic of your API. It i.e. inserts data to a database or returns specific data
-for an endpoint. Fusio contains already example Todo actions, please take a look at the `src/` folder. To give you a
-first impression the following action shows how to insert a todo entry:
-
-```php
-<?php
-
-namespace App\Action\Todo;
-
-use App\Model\Todo;
-use Fusio\Engine\ActionAbstract;
-use Fusio\Engine\ContextInterface;
-use Fusio\Engine\ParametersInterface;
-use Fusio\Engine\RequestInterface;
-
-class Insert extends ActionAbstract
-{
-    public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
-    {
-        /** @var \Doctrine\DBAL\Connection $connection */
-        $connection = $this->connector->getConnection('System');
-
-        $body = $request->getPayload();
-        $now  = new \DateTime();
-
-        assert($body instanceof Todo);
-
-        $connection->insert('app_todo', [
-            'status' => 1,
-            'title' => $body->getTitle(),
-            'insert_date' => $now->format('Y-m-d H:i:s'),
-        ]);
-
-        return $this->response->build(201, [], [
-            'success' => true,
-            'message' => 'Insert successful',
-        ]);
-    }
-}
-
-```
-
-At the code we get the `System` connection which returns a `\Doctrine\DBAL\Connection` instance. We have already 
-[many adapters](https://www.fusio-project.org/adapter) to connect to different services. Then we simply fire some
-queries and return the response.
-
-We have also a [CMS demo app](https://github.com/apioo/fusio-sample-cms) which is a headless CMS build with Fusio
-which shows how to design and structure a more complex app.
-
-## Folder structure
-
-* `resources/config.yaml`  
-  Contains common config values of your API
-* `resources/connections.yaml`  
-  Contains all available connections which can be used at an action. The `System` connection to the Fusio database is
-  always available
-* `resources/routes.yaml`  
-  Contains all routes of your API. Each route points to a dedicated `yaml` file which contains all information about the
-  endpoint
-* `src/Action`  
-  Contains all actions
-* `src/Migrations`  
-  Contains migrations which can be executed on a specific connection. To execute those migrations on the `System`
-  connection you can run the following command: `php bin/fusio migration:migrate --connection=System`
-* `src/Model`  
-  Contains all models which are used at your actions. You can also automatically generate those models, please take a
-  look at the `gen/` folder
-
-## Deployment
-
-To tell Fusio about all the routes, actions and connections which you define at the `yaml` files you need to run the
-deploy command:
-
-```
-php bin/fusio deploy
-```
-
-This reads all yaml files and uses the internal API to create those resources at the database. For more information
-please read the [development doc](DEVELOPMENT.md).
-
-## Backend
-
-For simple uses cases you also dont need to use the deployment. You can simply build your API based on the available
-actions and only through the backend. This means you use Fusio more like a CMS. The following actions are available by
-default:
-
-![Action](https://github.com/apioo/fusio/blob/master/doc/_static/backend/action.png)
-
-## Client SDKs
-
-Fusio provides multiple SDKs to talk to the internal API of Fusio. The SDK can be used to integrate Fusio into your app
-and to automate processes. I.e. it would be possible to dynamically create a route, user or app. These SDKs are
-automatically generated and you can easily also generate such an SDK for the API which you build with Fusio.
-
-#### SDK-PHP
-* [GitHub](https://github.com/apioo/fusio-sdk-php)  
-* [Packagist](https://packagist.org/packages/fusio/sdk)
-
-#### SDK-Javascript
-* [GitHub](https://github.com/apioo/fusio-sdk-javascript)  
-* [NPM](https://www.npmjs.com/package/fusio-sdk)
-
-## Code-Generation
-
-Fusio can be used in a lot of use cases. If you build an API based on entities which should be stored in a relational
-database you can use our code generator to simply build all routes, schemas and actions based on a simple YAML
-definition. The code can be used as great starting point to rapidly build your API. The tool is available
-at: https://generate.apioo.de/
-
-## Serverless (in development)
-
-Serverless is a great paradigma to build scaleable APIs. The biggest disadvantage is that your app is locked in at the
-serverless provider (vendor-lock-in). If you want to switch the provider it is difficult to move your app to a different
-vendor.
-
-Fusio tries to solve this problem by providing a self hosted platform written in PHP which you can simply host on your
-own bare-metal server, but it is also possible to move the entire application to a serverless provider i.e. AWS. If you
-develop your API with Fusio you can start hosting your app on a cheap self-hosted server and move to serverless only
-if you actually need the scaling capabilities.
-
-For this we need to require a fitting adapter to support a serverless cloud provider. I.e. for AWS:
-
-```
-composer require fusio/adapter-aws
-php bin/fusio system:register "Fusio\Adapter\Aws\Adapter"
-```
-
-To push the app to a cloud provider we use the [serverless framework](https://www.serverless.com/). Through the
-following command Fusio generates a `serverless.yaml` file and the fitting action files at the `public/` folder.
-
-```
-php bin/fusio push aws
-```
-
-To finally push this to the cloud provider we use the recommended serverless framework via:
-
-```
-npm install -g serverless
-serverless config credentials --provider aws --key <key> --secret <secret>
-serverless deploy
-```
-
-## Ecosystem overview
+# Ecosystem overview
 
 This should give you a first overview about all important repositories which belong to the Fusio project:
 
@@ -311,6 +167,18 @@ feedback feel free to create an issue on GitHub.
 * [Videos](https://www.fusio-project.org/documentation/videos)
 * [Backend API](https://demo.fusio-project.org/apps/internal/#!/page/about)
 * [PHP API](https://www.fusio-project.org/documentation/php)
+* [Worker API](https://www.fusio-project.org/documentation/worker)
+
+# Development
+
+If you are interested in custom action development please take a look at our [development](./DEVELOPMENT.md) readme. 
+
+# Code-Generation
+
+Fusio can be used in a lot of use cases. If you build an API based on entities which should be stored in a relational
+database you can use our code generator to simply build all routes, schemas and actions based on a simple YAML
+definition. The code can be used as great starting point to rapidly build your API. The tool is available
+at: https://generate.apioo.de/
 
 # Use cases
 

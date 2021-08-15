@@ -1,9 +1,77 @@
 
 # Development
 
-## Getting started
+In Fusio an action contains the business logic of your API. It i.e. inserts data to a database or returns specific data
+for an endpoint. To give you a first impression the following action shows how to insert a todo entry:
 
-Fusio contains already a demo Todo API. To deploy this API you need to run the following commands.
+```php
+<?php
+
+namespace App\Action\Todo;
+
+use App\Model\Todo;
+use Fusio\Engine\ActionAbstract;
+use Fusio\Engine\ContextInterface;
+use Fusio\Engine\ParametersInterface;
+use Fusio\Engine\RequestInterface;
+
+class Insert extends ActionAbstract
+{
+    public function handle(RequestInterface $request, ParametersInterface $configuration, ContextInterface $context)
+    {
+        /** @var \Doctrine\DBAL\Connection $connection */
+        $connection = $this->connector->getConnection('System');
+
+        $body = $request->getPayload();
+        $now  = new \DateTime();
+
+        assert($body instanceof Todo);
+
+        $connection->insert('app_todo', [
+            'status' => 1,
+            'title' => $body->getTitle(),
+            'insert_date' => $now->format('Y-m-d H:i:s'),
+        ]);
+
+        return $this->response->build(201, [], [
+            'success' => true,
+            'message' => 'Insert successful',
+        ]);
+    }
+}
+
+```
+
+At the code we get the `System` connection which returns a `\Doctrine\DBAL\Connection` instance. We have already
+[many adapters](https://www.fusio-project.org/adapter) to connect to different services. Then we simply fire some
+queries and return the response.
+
+We have also a [CMS demo app](https://github.com/apioo/fusio-sample-cms) which is a headless CMS build with Fusio
+which shows how to design and structure a more complex app.
+
+## Folder structure
+
+* `resources/config.yaml`  
+  Contains common config values of your API
+* `resources/connections.yaml`  
+  Contains all available connections which can be used at an action. The `System` connection to the Fusio database is
+  always available
+* `resources/routes.yaml`  
+  Contains all routes of your API. Each route points to a dedicated `yaml` file which contains all information about the
+  endpoint
+* `src/Action`  
+  Contains all actions
+* `src/Migrations`  
+  Contains migrations which can be executed on a specific connection. To execute those migrations on the `System`
+  connection you can run the following command: `php bin/fusio migration:migrate --connection=System`
+* `src/Model`  
+  Contains all models which are used at your actions. You can also automatically generate those models, please take a
+  look at the `gen/` folder
+
+## Deployment
+
+To tell Fusio about all the routes, actions and connections which you define at the `yaml` files you need to run the
+deploy command:
 
 ```
 php bin/fusio deploy
@@ -20,8 +88,6 @@ php bin/fusio migration:migrate --connection=System
 ```
 
 Now you should be able to visit the `/todo` endpoint.
-
-## Deployment
 
 The deployment system provides a way to store all metadata about the routes and schemas inside simple `.yaml` files. The
 files are located at the `resources/` folder. Through the `php bin/fusio deploy` command it is then possible to insert
