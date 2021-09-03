@@ -12,7 +12,7 @@ the GET, POST, PUT and DELETE method of the resource. Internally we can send an
 HTTP request to Fusio without the need to setup an HTTP server. This makes these 
 tests very fast and efficient.
 
-The Method ``Fixture::getPhpUnitDataSet`` returns the data set which is inserted
+The Method ``Fixture::append`` returns the data set which is inserted
 for every test case. There we insert a fixed access token with the fitting 
 rights so that we can call our protected API endpoints.
 
