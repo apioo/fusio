@@ -34,6 +34,8 @@ return [
         \Fusio\Adapter\Fcgi\Action\FcgiProcessor::class,
         \Fusio\Adapter\File\Action\FileProcessor::class,
         \Fusio\Adapter\GraphQL\Action\GraphQLProcessor::class,
+        \Fusio\Adapter\Http\Action\HttpComposition::class,
+        \Fusio\Adapter\Http\Action\HttpLoadBalancer::class,
         \Fusio\Adapter\Http\Action\HttpProcessor::class,
         \Fusio\Adapter\Php\Action\PhpProcessor::class,
         \Fusio\Adapter\Php\Action\PhpSandbox::class,
