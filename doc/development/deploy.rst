@@ -85,28 +85,34 @@ schema
 ------
 
 The schema defines the format of the request and response data. It uses the 
-JsonSchema format. Inside a schema it is possible to refer to other schema 
+TypeSchema format. Inside a schema it is possible to refer to other schema
 definitions by using the ``$ref`` key and the ``file`` protocol i.e. 
 ``file:///[file]``.
 
 .. code-block:: json
 
     {
-        "id": "http://acme.com/schema",
-        "type": "object",
-        "title": "schema",
-        "properties": {
-            "name": {
-                "type": "string"
-            },
-            "author": {
-                "$ref": "file:///author.json"
-            },
-            "date": {
-                "type": "string",
-                "format": "date-time"
+        "$import": {
+            "my_ns": "schema:///external_schema"
+        },
+        "definitions": {
+            "Schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "author": {
+                        "$ref": "my_ns:author"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
             }
         }
+        "$ref": "Schema"
     }
 
 connection
