@@ -33,7 +33,7 @@ contains several keys:
 
 * **schema**
 
-  Contains the available request and response schema in the JSON-Schema format:
+  Contains the available request and response schema in the TypeSchema format:
 
   .. code-block:: yaml
 
