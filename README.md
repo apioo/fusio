@@ -95,6 +95,12 @@ file by defining the `FUSIO_APPS_URL` variable. Depending on your setup this can
 The backend app is the main app to configure and manage your API. The installer automatically installs this app. The app
 is located at `/apps/fusio/`.
 
+## VSCode
+
+Fusio provides a [VSCode extension](https://marketplace.visualstudio.com/items?itemName=Fusio.fusio)
+which can be used to simplify action development. This means you can develop every action directly inside
+the VSCode editor.
+
 # Installation
 
 It is possible to install Fusio either through composer or manually file download.
