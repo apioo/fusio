@@ -2,7 +2,7 @@
 Schema
 ======
 
-By default you need to write standard JSON Schema files to provide a schema for
+By default you need to write standard TypeSchema files to provide a schema for
 the request and response format of an endpoint. Besides this it is also possible
 to create a PHP class with specific annotations which can be transformed into
 JSON Schema by Fusio. This has the advantage that your action will receive this
@@ -21,30 +21,24 @@ The schema class can look like i.e.:
     
     namespace App\Schema;
     
-    /**
-     * @Title("Todo")
-     */
     class Todo
     {
         /**
-         * @Key("id")
-         * @Type("integer")
+         * @var integer
          */
         protected $id;
         /**
-         * @Key("status")
-         * @Type("integer")
+         * @var integer
          */
         protected $status;
         /**
-         * @Key("title")
-         * @Type("string")
+         * @var string
          * @MaxLength(64)
          */
         protected $title;
         /**
+         * @var string
          * @Key("insert_date")
-         * @Type("string")
          * @Format("date-time")
          */
         protected $insertDate;
@@ -106,7 +100,7 @@ The schema class can look like i.e.:
         }
     }
 
-If you run the ``deploy`` command Fusio will generate a JSON Schema based on
+If you run the ``deploy`` command Fusio will generate a TypeSchema based on
 the provided annotations. Fusio uses the `PSX Schema`_ library, please take a
 look at project for more information about available annotations.
 
