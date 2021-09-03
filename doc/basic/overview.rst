@@ -281,5 +281,5 @@ then can also be used by other applications.
 .. _monaco editor: https://microsoft.github.io/monaco-editor/
 .. _business logic: http://fusio.readthedocs.io/en/latest/development/business_logic.html
 .. _many adapters: https://www.fusio-project.org/adapter
-.. _documentation: http://demo.fusio-project.org/internal/#!/page/about
+.. _documentation: https://demo.fusio-project.org/apps/internal/#!/page/about
 .. _marketplace: https://www.fusio-project.org/marketplace
