@@ -112,7 +112,7 @@ abstract class ApiTestCase extends ControllerDbTestCase
     private function getAccessToken(): string
     {
         $transport = new Transport(Environment::getService('dispatch'));
-        $authenticator = new Authenticator($transport);
+        $authenticator = new Authenticator($transport, __DIR__);
 
         return $authenticator->getAccessToken();
     }
