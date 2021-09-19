@@ -184,7 +184,7 @@ If you are interested in custom action development please take a look at our [de
 Fusio can be used in a lot of use cases. If you build an API based on entities which should be stored in a relational
 database you can use our code generator to simply build all routes, schemas and actions based on a simple YAML
 definition. The code can be used as great starting point to rapidly build your API. The tool is available
-at: https://generate.apioo.de/
+at: https://apigen.app/
 
 # Use cases
 
