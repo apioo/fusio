@@ -1,4 +1,10 @@
 
+### 2.1.1 (2021-10-02)
+
+* Update dependencies
+* Add HttpComposition and HttpLoadBalancer action
+* Place CLI access token to current project folder to better handle multiple projects on a single server
+
 ### 2.1.0 (2021-08-07)
 
 * Added worker system and actions to support different programming languages
