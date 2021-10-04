@@ -1,12 +1,14 @@
 # This deploy configuration contains all routes, schemas and connections of the
-# app. The configuration can be deployed through the following command:
+# app in simple configuration files which you cna then deploy through the following command:
 # > php bin/fusio deploy
+# To see an example howto use the deployment please take a look at our repository:
+# https://github.com/apioo/fusio-sample-cms
 
 # ------------------------------------------------------------------------------
 # Contains all available routes of the app. Each route reference a yaml file 
 # which defines the request/response schema and the action which gets executed.
 # Documentation: https://fusio.readthedocs.io/en/latest/development/deploy.html#routes
-routes: !include resources/routes.yaml
+#routes: !include resources/routes.yaml
 
 # ------------------------------------------------------------------------------
 # Optional contains all available schema definitions. Each schema reference a json file
@@ -20,8 +22,8 @@ routes: !include resources/routes.yaml
 # mongodb connection. These connections can be used inside an action to produce 
 # a response or insert data from a request. 
 # Documentation: https://fusio.readthedocs.io/en/latest/development/deploy.html#connection
-connection: !include resources/connections.yaml
+#connection: !include resources/connections.yaml
 
 # ------------------------------------------------------------------------------
 # Contains general system settings
-config: !include resources/config.yaml
+#config: !include resources/config.yaml

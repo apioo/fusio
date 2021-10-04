@@ -30,9 +30,6 @@ jobs:
       - name: Setup Fusio
         run: |
           php bin/fusio install --no-interaction
-          php bin/fusio migration:migrate --connection=System --no-interaction
           php bin/fusio adduser --role=1 --username=test --email=test@test.com --password=test1234!
           php bin/fusio login --username=test --password=test1234!
           php bin/fusio deploy
-      - name: Run PHPUnit
-        run: vendor/bin/phpunit
