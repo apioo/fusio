@@ -7,7 +7,7 @@
     </condition>
 
     <property file="${properties-file}.properties" />
-    <property name="version" value="2.0.3" />
+    <property name="version" value="2.1.2" />
 
     <!-- ############################# INSTALL ############################# -->
     <!-- delete git dir -->
@@ -45,13 +45,8 @@
         </exec>
     </target>
 
-    <!-- run phpunit tests -->
-    <target name="phpunit">
-        <exec dir="${build}" executable="${phpunit}" failonerror="true" />
-    </target>
-
     <!-- this target runs all tests -->
-    <target name="test" depends="init,phpunit" />
+    <target name="test" depends="init" />
 
     <!-- ############################## CLEAN ############################## -->
     <!-- removes all files wich are not needed in the release -->
