@@ -1,8 +1,14 @@
 
+### 2.1.2 (2021-10-04)
+
+* Add wait for command
+* Handle empty fusio deploy config
+* Remove sample todo endpoint #403
+
 ### 2.1.1 (2021-10-02)
 
 * Update dependencies
-* Add HttpComposition and HttpLoadBalancer action
+* Add HttpComposition and HttpLoadBalancer action #391
 * Place CLI access token to current project folder to better handle multiple projects on a single server
 
 ### 2.1.0 (2021-08-07)
