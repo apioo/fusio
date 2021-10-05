@@ -62,10 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $return = executeFusioMigration();
             break;
 
-        case 'executeAppMigration':
-            $return = executeAppMigration();
-            break;
-
         case 'createAdminUser':
             $username = $_POST['username'] ?? '';
             $password = $_POST['password'] ?? '';
@@ -236,18 +232,6 @@ function executeFusioMigration()
         return true;
     } else {
         alert('danger', 'An error occurred on installation:<pre>' . htmlspecialchars($output) . '</pre>');
-        return false;
-    }
-}
-
-function executeAppMigration()
-{
-    $output = runCommand('migration:migrate', ['--connection' => 'System'], $exitCode);
-    if ($exitCode === 0) {
-        alert('success', 'App migration successful');
-        return true;
-    } else {
-        alert('danger', 'An error occurred on app migration:<pre>' . htmlspecialchars($output) . '</pre>');
         return false;
     }
 }
@@ -496,7 +480,6 @@ function alert($level, $message)
 var methods = [
     "adjustEnvFile",
     "executeFusioMigration",
-    "executeAppMigration",
     "createAdminUser",
     "login",
     "executeDeploy",
@@ -507,7 +490,6 @@ var methods = [
 var lang = {
     adjustEnvFile: "Adjusting environment file ...",
     executeFusioMigration: "Executing database migration ...",
-    executeAppMigration: "Executing app migration ...",
     createAdminUser: "Creating admin user ...",
     login: "Obtain access token ...",
     executeDeploy: "Executing deploy ...",
