@@ -1,4 +1,8 @@
 
+### 2.1.4
+
+* Fix installer remove app migration
+
 ### 2.1.3 (2021-10-05)
 
 * Add flush command to write cron file
