@@ -1520,16 +1520,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "c4ae5546e2099ccb702debf9cb79a37998b7501e"
+                "reference": "8081f24bd19ec6e3eb107ff362e4eb03881f3a42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/c4ae5546e2099ccb702debf9cb79a37998b7501e",
-                "reference": "c4ae5546e2099ccb702debf9cb79a37998b7501e",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/8081f24bd19ec6e3eb107ff362e4eb03881f3a42",
+                "reference": "8081f24bd19ec6e3eb107ff362e4eb03881f3a42",
                 "shasum": ""
             },
             "require": {
@@ -1581,7 +1581,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v5.1.4"
+                "source": "https://github.com/apioo/fusio-impl/tree/v5.1.5"
             },
             "funding": [
                 {
@@ -1597,7 +1597,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-10-04T13:42:00+00:00"
+            "time": "2021-10-05T09:21:01+00:00"
         },
         {
             "name": "fusio/model",
