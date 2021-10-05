@@ -1,4 +1,8 @@
 
+### 2.1.3 (2021-10-05)
+
+* Add flush command to write cron file
+
 ### 2.1.2 (2021-10-04)
 
 * Add wait for command
