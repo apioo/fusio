@@ -70,17 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $return = createAdminUser($username, $password, $email);
             break;
 
-        case 'login':
-            $username = $_POST['username'] ?? '';
-            $password = $_POST['password'] ?? '';
-
-            $return = login($username, $password);
-            break;
-
-        case 'executeDeploy':
-            $return = executeDeploy();
-            break;
-
         case 'installBackendApp':
             $return = installBackendApp();
             break;
@@ -232,30 +221,6 @@ function executeFusioMigration()
         return true;
     } else {
         alert('danger', 'An error occurred on installation:<pre>' . htmlspecialchars($output) . '</pre>');
-        return false;
-    }
-}
-
-function login(string $username, string $password)
-{
-    $output = runCommand('login', ['--username' => $username, '--password' => $password], $exitCode);
-    if ($exitCode === 0) {
-        alert('success', 'Login successful');
-        return true;
-    } else {
-        alert('danger', 'An error occurred on login:<pre>' . htmlspecialchars($output) . '</pre>');
-        return false;
-    }
-}
-
-function executeDeploy()
-{
-    $output = runCommand('deploy', [], $exitCode);
-    if ($exitCode === 0) {
-        alert('success', 'Deploy successful');
-        return true;
-    } else {
-        alert('danger', 'An error occurred on deploy:<pre>' . htmlspecialchars($output) . '</pre>');
         return false;
     }
 }
@@ -481,8 +446,6 @@ var methods = [
     "adjustEnvFile",
     "executeFusioMigration",
     "createAdminUser",
-    "login",
-    "executeDeploy",
     "installBackendApp",
     "finishInstall"
 ];
@@ -491,8 +454,6 @@ var lang = {
     adjustEnvFile: "Adjusting environment file ...",
     executeFusioMigration: "Executing database migration ...",
     createAdminUser: "Creating admin user ...",
-    login: "Obtain access token ...",
-    executeDeploy: "Executing deploy ...",
     installBackendApp: "Installing backend app ...",
     finishInstall: "Finishing installation ..."
 };
