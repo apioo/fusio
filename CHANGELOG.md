@@ -1,10 +1,11 @@
 
 ### 2.1.4
 
-* Fix installer remove app migration
+* Use thrift http client to connect to the worker
 
 ### 2.1.3 (2021-10-05)
 
+* Fix installer remove app migration
 * Add flush command to write cron file
 
 ### 2.1.2 (2021-10-04)
