@@ -101,6 +101,16 @@ Fusio provides a [VSCode extension](https://marketplace.visualstudio.com/items?i
 which can be used to simplify action development. This means you can develop every action directly inside
 the VSCode editor.
 
+# Services
+
+* [APIgen](https://apigen.app/)  
+  APIgen is a code generator tool which allows you to generate code based on Entity or OpenAPI definitions. The tool
+  generates then all routes, schemas and actions. You can then either download or deploy the generated code to a remote
+  instance.
+* [Cloud](https://fusio.cloud/)  
+  The cloud service allows you to create a Fusio instance in the cloud. It really simplifies the usage of Fusio since you
+  can create and manage an instance through a simple web interface.
+
 # Installation
 
 It is possible to install Fusio either through composer or manually file download.
@@ -178,13 +188,6 @@ feedback feel free to create an issue on GitHub.
 # Development
 
 If you are interested in custom action development please take a look at our [development](./DEVELOPMENT.md) readme. 
-
-# Code-Generation
-
-Fusio can be used in a lot of use cases. If you build an API based on entities which should be stored in a relational
-database you can use our code generator to simply build all routes, schemas and actions based on a simple YAML
-definition. The code can be used as great starting point to rapidly build your API. The tool is available
-at: https://apigen.app/
 
 # Use cases
 
