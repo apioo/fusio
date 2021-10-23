@@ -2,10 +2,10 @@
 Testing
 =======
 
-Fusio provides a complete Test-Setup for your API endpoints. For the test case
-we use an in-memory sqlite database which contains the schema defined in the
-``resources/migration`` folder. In the ``Fixture.php`` class it is also possible 
-to define fixture data which is inserted for every test case.
+Fusio provides a complete Test-Setup for your API endpoints. In the ``Fixture.php``
+class it is also possible to define fixture data which is inserted for every test case.
+Please take a look at the tests of our `sample cms repository`_ to see some live
+test examples.
 
 The idea is that each endpoint has a corresponding test case class which tests
 the GET, POST, PUT and DELETE method of the resource. Internally we can send an 
@@ -149,3 +149,5 @@ case from the example todo entity API endpoint:
             $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
         }
     }
+
+.. _sample cms repository: https://github.com/apioo/fusio-sample-cms/tree/master/tests

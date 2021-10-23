@@ -126,7 +126,7 @@ in your action directly with a specific library. Because of this Fusio has no
 model or entity system like many other frameworks, instead we recommend to write
 plain SQL in case you work with a relational database. We think that building 
 API endpoints based on models/entities limits the way how you would design a 
-response. You only need to describe the request and response in the JSON schema 
+response. You only need to describe the request and response in the TypeSchema
 format. This schema is then the contract of your API endpoint, how you produce 
 this response technically is secondary. Fusio provides the mentioned 
 connections, which help you to create complete customized responses based on 
