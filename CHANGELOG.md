@@ -1,5 +1,11 @@
 
-### 2.1.4
+### 2.1.5
+
+* Add OAuth2 connection handling
+* Add insomnia importer and improve postman import
+* Improve error messages when importing a schema
+
+### 2.1.4 (2021-10-06)
 
 * Use thrift http client to connect to the worker
 
