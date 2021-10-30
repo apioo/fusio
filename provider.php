@@ -75,6 +75,7 @@ return [
     'routes' => [
         \Fusio\Impl\Provider\Routes\OpenAPI::class,
         \Fusio\Impl\Provider\Routes\Postman::class,
+        \Fusio\Impl\Provider\Routes\Insomnia::class,
         \Fusio\Adapter\Sql\Routes\SqlTable::class,
     ],
 ];
