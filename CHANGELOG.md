@@ -1,6 +1,7 @@
 
-### 2.1.5
+### 2.1.5 (2021-11-27)
 
+* Improve cli adapter add uri fragment, query and header values as env values #421
 * Add OAuth2 connection handling
 * Add insomnia importer and improve postman import
 * Improve error messages when importing a schema
