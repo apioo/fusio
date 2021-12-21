@@ -2,7 +2,7 @@
 ### 2.1.6
 
 * Add stripe adapter #428
-* Fix SqlInsert action handle data withotu schema #423
+* Fix SqlInsert action handle data without schema #423
 * Add util redirect adapter
 * Update developer portal
 * Add consumer log endpoint
