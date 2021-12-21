@@ -1373,16 +1373,16 @@
         },
         {
             "name": "fusio/adapter-util",
-            "version": "v4.0.0",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-util.git",
-                "reference": "1183a23afb1b69857dea30e22715e8c9742781e5"
+                "reference": "e30f06f78bdbafe7518dc7c98ecee058a21691fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/1183a23afb1b69857dea30e22715e8c9742781e5",
-                "reference": "1183a23afb1b69857dea30e22715e8c9742781e5",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/e30f06f78bdbafe7518dc7c98ecee058a21691fc",
+                "reference": "e30f06f78bdbafe7518dc7c98ecee058a21691fc",
                 "shasum": ""
             },
             "require": {
@@ -1408,19 +1408,33 @@
                 {
                     "name": "Christoph Kappestein",
                     "email": "christoph.kappestein@gmail.com",
-                    "homepage": "http://christoph.kappestein.com"
+                    "homepage": "https://chrisk.app"
                 }
             ],
             "description": "Provides several utility actions",
-            "homepage": "http://fusio-project.org",
+            "homepage": "https://www.fusio-project.org",
             "keywords": [
                 "fusio-adapter"
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-util/issues",
-                "source": "https://github.com/apioo/fusio-adapter-util/tree/master"
+                "source": "https://github.com/apioo/fusio-adapter-util/tree/v4.0.1"
             },
-            "time": "2020-08-31T19:58:14+00:00"
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/fusioapi",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/chriskapp",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/fusio",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-12-20T20:39:25+00:00"
         },
         {
             "name": "fusio/cli",
@@ -1562,7 +1576,7 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v5.2.0",
+            "version": "v5.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
@@ -1623,7 +1637,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v5.2.0"
+                "source": "https://github.com/apioo/fusio-impl/tree/v5.2.1"
             },
             "funding": [
                 {
@@ -2019,16 +2033,16 @@
         },
         {
             "name": "laminas/laminas-code",
-            "version": "4.5.0",
+            "version": "4.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-code.git",
-                "reference": "c99ef8e5629c33bfaa3a8f1df773e916af564cd6"
+                "reference": "6fd96d4d913571a2cd056a27b123fa28cb90ac4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-code/zipball/c99ef8e5629c33bfaa3a8f1df773e916af564cd6",
-                "reference": "c99ef8e5629c33bfaa3a8f1df773e916af564cd6",
+                "url": "https://api.github.com/repos/laminas/laminas-code/zipball/6fd96d4d913571a2cd056a27b123fa28cb90ac4e",
+                "reference": "6fd96d4d913571a2cd056a27b123fa28cb90ac4e",
                 "shasum": ""
             },
             "require": {
@@ -2081,7 +2095,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2021-12-07T06:00:32+00:00"
+            "time": "2021-12-19T18:06:55+00:00"
         },
         {
             "name": "league/flysystem",
