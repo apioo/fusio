@@ -1,4 +1,12 @@
 
+### 2.1.6
+
+* Add stripe adapter #428
+* Fix SqlInsert action handle data withotu schema #423
+* Add util redirect adapter
+* Update developer portal
+* Add consumer log endpoint
+
 ### 2.1.5 (2021-11-27)
 
 * Improve cli adapter add uri fragment, query and header values as env values #421
