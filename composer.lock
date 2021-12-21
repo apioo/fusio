@@ -1309,7 +1309,7 @@
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v4.0.6",
+            "version": "v4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
@@ -1353,7 +1353,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-sql/issues",
-                "source": "https://github.com/apioo/fusio-adapter-sql/tree/v4.0.6"
+                "source": "https://github.com/apioo/fusio-adapter-sql/tree/v4.0.7"
             },
             "funding": [
                 {
