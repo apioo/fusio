@@ -1,5 +1,9 @@
 
-### 2.1.6
+### 2.1.7
+
+* Remove schema traverse max recursion check
+
+### 2.1.6 (2021-12-21)
 
 * Add stripe adapter #428
 * Fix SqlInsert action handle data without schema #423
