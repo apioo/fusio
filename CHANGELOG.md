@@ -1,5 +1,10 @@
 
-### 2.1.7
+### 2.1.8
+
+* Moved login provider keys to config
+* Improve routes provider import
+
+### 2.1.7 (2021-12-30)
 
 * Remove schema traverse max recursion check
 
