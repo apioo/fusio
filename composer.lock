@@ -1573,16 +1573,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "9b23a63b792b624efb59c0c0ba1fb3557a1e501e"
+                "reference": "13fe83d8733be8a50893c5040d6d5b176d8ece67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/9b23a63b792b624efb59c0c0ba1fb3557a1e501e",
-                "reference": "9b23a63b792b624efb59c0c0ba1fb3557a1e501e",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/13fe83d8733be8a50893c5040d6d5b176d8ece67",
+                "reference": "13fe83d8733be8a50893c5040d6d5b176d8ece67",
                 "shasum": ""
             },
             "require": {
@@ -1601,13 +1601,13 @@
                 "fusio/cli": "^0.2",
                 "fusio/engine": "^4.0",
                 "fusio/model": "^0.1",
-                "packaged/thrift": "^0.13",
+                "packaged/thrift": "^0.15",
                 "php": ">=7.4",
                 "psx/cloudevents": "^0.1",
                 "psx/framework": "^5.0",
                 "psx/openssl": "^2.0",
-                "swiftmailer/swiftmailer": "^6.2",
-                "symfony/filesystem": "^4.0|^5.0"
+                "symfony/filesystem": "^4.0|^5.0",
+                "symfony/mailer": "^5.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
@@ -1634,7 +1634,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v5.2.2"
+                "source": "https://github.com/apioo/fusio-impl/tree/v5.2.3"
             },
             "funding": [
                 {
@@ -1650,7 +1650,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-01-20T19:08:32+00:00"
+            "time": "2022-01-23T00:13:55+00:00"
         },
         {
             "name": "fusio/model",
@@ -2388,16 +2388,16 @@
         },
         {
             "name": "packaged/thrift",
-            "version": "0.13.01",
+            "version": "0.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/packaged/thrift.git",
-                "reference": "e3dbcfb79e319971d64264ffe9c340590cc8a228"
+                "reference": "dbf4e5ff5c85d56ccae62265ed25424b366ce269"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/packaged/thrift/zipball/e3dbcfb79e319971d64264ffe9c340590cc8a228",
-                "reference": "e3dbcfb79e319971d64264ffe9c340590cc8a228",
+                "url": "https://api.github.com/repos/packaged/thrift/zipball/dbf4e5ff5c85d56ccae62265ed25424b366ce269",
+                "reference": "dbf4e5ff5c85d56ccae62265ed25424b366ce269",
                 "shasum": ""
             },
             "require": {
@@ -2421,9 +2421,9 @@
             ],
             "support": {
                 "issues": "https://github.com/packaged/thrift/issues",
-                "source": "https://github.com/packaged/thrift/tree/0.13.01"
+                "source": "https://github.com/packaged/thrift/tree/0.15.0"
             },
-            "time": "2021-01-25T13:32:28+00:00"
+            "time": "2021-09-23T10:34:40+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -4558,6 +4558,165 @@
                 }
             ],
             "time": "2021-10-28T13:39:27+00:00"
+        },
+        {
+            "name": "symfony/mailer",
+            "version": "v5.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/mailer.git",
+                "reference": "309ba427654351dcad9691bef817b96920ebd2cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/mailer/zipball/309ba427654351dcad9691bef817b96920ebd2cf",
+                "reference": "309ba427654351dcad9691bef817b96920ebd2cf",
+                "shasum": ""
+            },
+            "require": {
+                "egulias/email-validator": "^2.1.10|^3",
+                "php": ">=7.2.5",
+                "psr/event-dispatcher": "^1",
+                "psr/log": "^1|^2|^3",
+                "symfony/deprecation-contracts": "^2.1|^3",
+                "symfony/event-dispatcher": "^4.4|^5.0|^6.0",
+                "symfony/mime": "^5.2.6|^6.0",
+                "symfony/polyfill-php80": "^1.16",
+                "symfony/service-contracts": "^1.1|^2|^3"
+            },
+            "conflict": {
+                "symfony/http-kernel": "<4.4"
+            },
+            "require-dev": {
+                "symfony/http-client-contracts": "^1.1|^2|^3",
+                "symfony/messenger": "^4.4|^5.0|^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Mailer\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Helps sending emails",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/mailer/tree/v5.4.2"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-12-11T16:33:38+00:00"
+        },
+        {
+            "name": "symfony/mime",
+            "version": "v5.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/mime.git",
+                "reference": "1bfd938cf9562822c05c4d00e8f92134d3c8e42d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/1bfd938cf9562822c05c4d00e8f92134d3c8e42d",
+                "reference": "1bfd938cf9562822c05c4d00e8f92134d3c8e42d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/deprecation-contracts": "^2.1|^3",
+                "symfony/polyfill-intl-idn": "^1.10",
+                "symfony/polyfill-mbstring": "^1.0",
+                "symfony/polyfill-php80": "^1.16"
+            },
+            "conflict": {
+                "egulias/email-validator": "~3.0.0",
+                "phpdocumentor/reflection-docblock": "<3.2.2",
+                "phpdocumentor/type-resolver": "<1.4.0",
+                "symfony/mailer": "<4.4"
+            },
+            "require-dev": {
+                "egulias/email-validator": "^2.1.10|^3.1",
+                "phpdocumentor/reflection-docblock": "^3.0|^4.0|^5.0",
+                "symfony/dependency-injection": "^4.4|^5.0|^6.0",
+                "symfony/property-access": "^4.4|^5.1|^6.0",
+                "symfony/property-info": "^4.4|^5.1|^6.0",
+                "symfony/serializer": "^5.2|^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Mime\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Allows manipulating MIME messages",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "mime",
+                "mime-type"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/mime/tree/v5.4.2"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-12-28T17:15:56+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
