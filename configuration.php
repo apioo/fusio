@@ -8,9 +8,8 @@ if (!getenv('FUSIO_ENV')) {
 
 return [
 
-    // This array contains a list of worker endpoints which can be used by
-    // Fusio to execute action code in different programming languages. For
-    // more information please take a look at our worker documentation:
+    // This array contains a list of worker endpoints which can be used by Fusio to execute action code in different
+    // programming languages. For more information please take a look at our worker documentation:
     // https://www.fusio-project.org/documentation/worker
     /*
     'fusio_worker'            => [
@@ -21,37 +20,30 @@ return [
     ],
     */
 
-    // OAuth2 access token expiration settings. How long can you use an access
-    // token and the refresh token. After the expiration a user either need to
-    // use a refresh token to extend the token or request a new token
+    // OAuth2 access token expiration settings. How long can you use an access token and the refresh token. After the
+    // expiration a user either need to use a refresh token to extend the token or request a new token
     'fusio_expire_token'      => 'P2D',
     'fusio_expire_refresh'    => 'P3D',
 
-    // The secret key of a project. It is recommended to change this to another
-    // random value. This is used i.e. to encrypt the connection credentials in 
-    // the database. NOTE IF YOU CHANGE THE KEY FUSIO CAN NO LONGER READ ANY 
-    // DATA WHICH WAS ENCRYPTED BEFORE. BECAUSE OF THAT IT IS RECOMMENDED TO 
-    // CHANGE THE KEY ONLY BEFORE THE INSTALLATION
+    // The secret key of a project. It is recommended to change this to another random value. This is used i.e. to
+    // encrypt the connection credentials in the database. NOTE IF YOU CHANGE THE KEY FUSIO CAN NO LONGER READ ANY DATA
+    // WHICH WAS ENCRYPTED BEFORE. BECAUSE OF THAT IT IS RECOMMENDED TO CHANGE THE KEY ONLY BEFORE THE INSTALLATION
     'fusio_project_key'       => getenv('FUSIO_PROJECT_KEY'),
 
-    // Indicates whether the PHP sandbox feature is enabled. If yes it is
-    // possible to use the PHP-Sandbox action which executes PHP code directly
-    // on the server. The code gets checked by a parser which prevents
-    // the use of unsafe functions but there is no guarantee that this is
-    // complete safe. Otherwise you can also use the PHP worker which executes
-    // the code at the worker.
-    'fusio_php_sandbox'       => false,
+    // Indicates whether the PHP sandbox feature is enabled. If yes it is possible to use the PHP-Sandbox action which
+    // executes PHP code directly on the server. The code gets checked by a parser which prevents the use of unsafe
+    // functions but there is no guarantee that this is complete safe. Otherwise you can also use the PHP worker which
+    // executes the code at the worker.
+    'fusio_php_sandbox'       => getenv('FUSIO_PHP_SANDBOX') === 'on',
 
-    // The three-character ISO-4217 currency code which is used to process
-    // payments
-    'fusio_payment_currency'  => 'EUR',
+    // The three-character ISO-4217 currency code which is used to process payments
+    'fusio_payment_currency'  => getenv('FUSIO_PAYMENT_CURRENCY') ?: 'EUR',
 
-    // Points to the Fusio provider file which contains specific classes for the
-    // system. Please take a look at the provider file for more information
+    // Points to the Fusio provider file which contains specific classes for the system. Please take a look at the
+    // provider file for more information
     'fusio_provider'          => __DIR__ . '/provider.php',
 
-    // A list of additional user attributes. Through this your app can easily
-    // store additional attributes to the account
+    // A list of additional user attributes. Through this your app can easily store additional attributes to the account
     /*
     'fusio_user_attributes'   => [
         'first_name',
@@ -59,54 +51,41 @@ return [
     ],
     */
 
-    // Settings of the internal mailer. By default we use the internal PHP mail
-    // function
-    /*
-    'fusio_mailer'            => [
-        'transport'           => 'smtp',
-        'host'                => 'email-smtp.us-east-1.amazonaws.com',
-        'port'                => 587,
-        'username'            => 'my-username',
-        'password'            => 'my-password',
-        'encryption'          => 'tls',
-    ],
-    */
+    // Settings of the internal mailer. By default we use the internal PHP mail function
+    'fusio_mailer'            => getenv('FUSIO_MAILER'),
 
-    // Endpoint of the apps repository. All listed apps can be installed by the
-    // user at the backend app
+    // Indicates whether the marketplace is enabled. If yes it is possible to download and install other apps through
+    // the backend
+    'fusio_marketplace'       => getenv('FUSIO_MARKETPLACE') === 'on',
+
+    // Endpoint of the apps repository. All listed apps can be installed by the user at the backend app
     'fusio_marketplace_url'   => 'https://www.fusio-project.org/marketplace.yaml',
 
-    // The public url to the apps folder (i.e. http://acme.com/apps or 
-    // http://apps.acme.com)
+    // The public url to the apps folder (i.e. http://acme.com/apps or http://apps.acme.com)
     'fusio_apps_url'          => getenv('FUSIO_APPS_URL'),
 
-    // Location where the apps are persisted from the marketplace. By default
-    // this is the public dir to access the apps directly, but it is also
-    // possible to specify a different folder
+    // Location where the apps are persisted from the marketplace. By default this is the public dir to access the apps
+    // directly, but it is also possible to specify a different folder
     'fusio_apps_dir'          => __DIR__ . '/public/apps',
 
-    // Location of the automatically generated cron file. Note Fusio writes only
-    // to this file if it exists. In order to use the cronjob service you need
-    // to create this file with i.e. "touch /etc/cron.d/fusio"
+    // Location of the automatically generated cron file. Note Fusio writes only to this file if it exists. In order to
+    // use the cronjob service you need to create this file with i.e. "touch /etc/cron.d/fusio"
     'fusio_cron_file'         => '/etc/cron.d/fusio',
 
-    // Command to execute the Fusio console which is used in the generated cron
-    // file
+    // Command to execute the Fusio console which is used in the generated cron file
     'fusio_cron_exec'         => '/usr/bin/php ' . __DIR__ . '/bin/fusio',
 
-    // The public url to the public folder (i.e. http://acme.com/public or 
-    // http://acme.com)
+    // The public url to the public folder (i.e. http://acme.com/public or http://acme.com)
     'psx_url'                 => getenv('FUSIO_URL'),
 
-    // To enable clean urls you need to set this to '' this works only in case
-    // mod rewrite is activated
+    // To enable clean urls you need to set this to '' this works only in case mod rewrite is activated
     'psx_dispatch'            => 'index.php/',
 
     // The default timezone
     'psx_timezone'            => 'UTC',
 
-    // Whether PSX runs in debug mode or not. If not error reporting is set to 0
-    // Also several caches are used if the debug mode is false
+    // Whether PSX runs in debug mode or not. If not error reporting is set to 0 also several caches are used if the
+    // debug mode is false
     'psx_debug'               => getenv('FUSIO_ENV') != 'prod',
 
     // Database parameters which are used for the doctrine DBAL connection
@@ -135,13 +114,12 @@ return [
         \PSX\Data\Writer\Jsonx::class,
     ],
 
-    // Global middleware which are applied before and after every request. Must
-    // bei either a classname, closure or PSX\Http\FilterInterface instance
+    // Global middleware which are applied before and after every request. Must bei either a classname, closure or
+    // PSX\Http\FilterInterface instance
     //'psx_filter_pre'          => [],
     //'psx_filter_post'         => [],
 
-    // A closure which returns a doctrine cache implementation. If null the
-    // filesystem cache is used
+    // A closure which returns a doctrine cache implementation. If null the filesystem cache is used
     /*
     'psx_cache_factory'       => function($config, $namespace){
         $memcached = new \Memcached();
@@ -158,8 +136,7 @@ return [
     // Specify a specific log level
     //'psx_log_level' => \Monolog\Logger::ERROR,
 
-    // A closure which returns a monolog handler implementation. If null the
-    // system handler is used
+    // A closure which returns a monolog handler implementation. If null the system handler is used
     //'psx_logger_factory'      => null,
 
 ];
