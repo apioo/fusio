@@ -175,46 +175,8 @@ run the container on the internet you must change these credentials.
 
 # Documentation
 
-Here we list all available documentation resources. If these resources dont answer your questions or you want to provide
-feedback feel free to create an issue on GitHub.
-
-* [Getting started](https://www.fusio-project.org/bootstrap)  
-* [Manual](https://fusio.readthedocs.io/en/latest/) 
-* [Recipes](https://www.fusio-project.org/documentation/recipes) 
-* [Videos](https://www.fusio-project.org/documentation/videos)
-* [Backend API](https://demo.fusio-project.org/apps/internal/#!/page/about)
-* [PHP API](https://www.fusio-project.org/documentation/php)
-* [Worker API](https://www.fusio-project.org/documentation/worker)
-
-# Development
-
-If you are interested in custom action development please take a look at our [development](./DEVELOPMENT.md) readme. 
-
-# Use cases
-
-Today there are many use cases where you need a great documented REST API. In the following we list the most popular
-choices where Fusio comes in to play.
-
-## Business functionality
-
-Exposing an API of your business functionality is a great way to extend your product. You enable customers to integrate
-it into other applications which gives the possibility to open up for new markets. With Fusio you can build such APIs
-and integrate them seamlessly into your product. We also see many companies which use the API itself as the core
-product.
-
-## Micro services
-
-With Fusio you can simply build small micro services which solve a specific task in a complex system.
-
-## Javascript applications
-
-Javascript frameworks like i.e. Angular or Vue becoming the standard. With Fusio you can easily build a backend for such
-applications. So you dont have to build the backend part by yourself.
-
-## Mobile apps
-
-Almost all mobile apps need some form to interact with a remote service. This is mostly done through REST APIs. With
-Fusio you can easily build such APIs which then can also be used by other applications.
+Please check out our official documentation website where we bundle all documentation resources:
+https://docs.fusio-project.org/
 
 # Contribution
 
@@ -252,11 +214,9 @@ every aspect of the system. In case you have found an issue please report it thr
 
 ## Documentation
 
-We want to create a system which is easy to use also by novice users. To enable everybody to start using Fusio we need a
-simple to understand documentation. Since we have not always the view of a novice developer please let us know about
-chapters which are difficult to understand or topics which are missing. You can also send us directly a pull request
-with an improved version. The main documentation of Fusio is available at [readthedocs](http://fusio.readthedocs.io/en/latest/).
-The documentation source is available in the `docs/` folder.
+We want to create a system which is easy to use also by novice users. To enable everybody to start using Fusio we need
+a great documentation. We have bundled all documentation at our [documentation website](https://docs.fusio-project.org/)
+please feel free to adjust or contribute new documents in case you think something is missing or wrong.
 
 # Support
 
@@ -274,7 +234,5 @@ functionality and answer your questions.
 
 ## Donations
 
-If this project helps you to generate revenue or in general if you like to support the project you can donate any amount
-through paypal. We like to thank every user who has donated to the project.
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/fusioapi)
+If this project helps you to generate revenue or in general if you like to support the project please check out the
+donation options at our repository.
