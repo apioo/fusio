@@ -1,5 +1,9 @@
 
-### 2.1.8
+### 2.1.9
+
+* Use symfony mailer
+
+### 2.1.8 (2022-21-01)
 
 * Moved login provider keys to config
 * Improve routes provider import
