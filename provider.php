@@ -58,7 +58,6 @@ return [
         \Fusio\Impl\Worker\Action\WorkerPython::class,
     ],
     'connection' => [
-        \Fusio\Adapter\File\Connection\Ftp::class,
         \Fusio\Adapter\GraphQL\Connection\GraphQL::class,
         \Fusio\Adapter\Http\Connection\Http::class,
         \Fusio\Adapter\Smtp\Connection\Smtp::class,
