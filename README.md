@@ -8,21 +8,24 @@
 Fusio is an open source API management platform which helps to build and manage REST APIs. It can help you with the
 following use cases:
 
+* __API-Product__  
+  Fusio provides a developer portal where developers can register to access your API.
 * __API-Gateway__  
   Fusio can be used as gateway to your internal API and microservices.
+* __SPA-Backend__  
+  Fusio can be used as backend to build SPAs using popular Javascript-Frameworks like i.e. Angular, React or Vue.
 * __Low-Code-Platform__  
   Fusio allows you to build API endpoints without coding knowledge.
-* __API-Monetization__  
-  Fusio provides a payment system where you can charge users for API calls.
-* __Developer-Portal__  
-  Fusio provides a developer portal where developers can register to access your API.
+* __API-Framework__  
+  For more complex use cases you can use Fusio also as framework to build complete APIs from scratch.
 
 ## API management and features
 
 Fusio is an API management platform where you can configure routes which execute specific actions. An action triggers
 your business logic, it is like a controller in a classical framework, you can also think of it like a serverless lambda
 function, which can be executed on a route call or via RPC. Fusio covers many aspects of the API management life cycle
-so that you can concentrate on writing the actual business logic of your API. The following feature list gives you a
+so that you can concentrate on writing the actual business logic of your API. Please take a look at our
+[documentation website](https://docs.fusio-project.org/) for more information. The following feature list gives you a
 first overview:
 
 * __OpenAPI generation__  
@@ -91,7 +94,7 @@ file by defining the `FUSIO_APPS_URL` variable. Depending on your setup this can
 
 ## Backend
 
-![Backend](https://github.com/apioo/fusio/blob/master/doc/_static/backend/routes.png)
+![Backend](https://www.fusio-project.org/media/backend/routes.png)
 
 The backend app is the main app to configure and manage your API. The installer automatically installs this app. The app
 is located at `/apps/fusio/`.
@@ -208,9 +211,9 @@ But you are also free to develop new apps for special use cases which talk to th
 
 ## Testing
 
-In general we have a high PHPUnit test case coverage and also automatic end-to-end AngularJS tests using protractor and
-selenium. Beside this it is always great if users checkout the current master version of the project and try to test
-every aspect of the system. In case you have found an issue please report it through the issue tracker.
+We have a high PHPUnit test case coverage and also automatic end-to-end AngularJS tests using protractor and selenium.
+Beside this it is always great if users checkout the current master version of the project and try to test every aspect
+of the system. In case you have found an issue please report it through the issue tracker.
 
 ## Documentation
 
