@@ -54,6 +54,9 @@ return [
     // Settings of the internal mailer. By default we use the internal PHP mail function
     'fusio_mailer'            => getenv('FUSIO_MAILER'),
 
+    // Describes the default email which Fusio uses as from address
+    'fusio_mail_sender'       => getenv('FUSIO_MAIL_SENDER'),
+
     // Indicates whether the marketplace is enabled. If yes it is possible to download and install other apps through
     // the backend
     'fusio_marketplace'       => getenv('FUSIO_MARKETPLACE') === 'on',
