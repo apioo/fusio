@@ -50,37 +50,6 @@ first overview:
   Fusio provides a developer app where new users can login or register a new account through GitHub, Google, Facebook or
   through normal email registration
 
-# Ecosystem overview
-
-This should give you a first overview about all important repositories which belong to the Fusio project:
-
-* [Fusio](https://github.com/apioo/fusio)  
-  Contains a configured Fusio instance with a simple Todo app. It is also the main place about Fusio where we collect
-  and discuss all ideas and issues
-* [Fusio-Impl](https://github.com/apioo/fusio-impl)  
-  Contains the backend API implementation of Fusio. This is the place if you like to change the internal API of Fusio
-* [Fusio-CLI](https://github.com/apioo/fusio-cli)  
-  Contains the CLI client for Fusio, it is automatically included in every Fusio installation but you can also run the
-  CLI client standalone. It allows you to directly interact with the API and to deploy specific YAML configuration files
-* [Fusio-Model](https://github.com/apioo/fusio-model)  
-  Contains all Fusio models automatically generated via [TypeSchema](https://typeschema.org/). This repository helps if
-  you want to work with the Fusio API since you can use the same model classes which we also use at the backend
-* [Fusio-Engine](https://github.com/apioo/fusio-engine)  
-  Contains mostly interfaces which are also needed by adapters. This repository is very stable and there are few
-  changes
-* [Fusio-Adapter](https://www.fusio-project.org/adapter)  
-  Page which shows all available adapters. An adapter can extend Fusio by providing i.e. custom Actions or Connections
-  to different services. I.e. we have an adapter [MongoDB](http://github.com/apioo/fusio-adapter-mongodb) which helps to
-  work with a [MongoDB](https://www.mongodb.com/)
-* [Fusio-Docker](https://github.com/apioo/fusio-docker)  
-  Contains a Docker-Image to run Fusio, it helps to quickly create a Fusio instance in the cloud. You can find it also
-  directly on [DockerHub](https://hub.docker.com/r/fusio/fusio)
-* [App-Backend](https://github.com/apioo/fusio-apps-backend)  
-  Contains the Fusio backend app which you can use to configure your API. This is the place if you like to change or
-  improve the backend app
-* [App-Consumer](https://github.com/apioo/fusio-apps-consumer)  
-  Contains a developer portal app where external developers can register to use your API
-
 # Apps
 
 Since it is difficult to work with an API only app Fusio provides apps which help to work with the API. Mostly apps are
@@ -180,6 +149,36 @@ run the container on the internet you must change these credentials.
 
 Please check out our official documentation website where we bundle all documentation resources:
 https://docs.fusio-project.org/
+
+# Ecosystem overview
+
+This should give you a first overview about all important repositories which belong to the Fusio project:
+
+* [Fusio](https://github.com/apioo/fusio)  
+  Contains the main Fusio repository where we collect and discuss all ideas and issues
+* [Fusio-Impl](https://github.com/apioo/fusio-impl)  
+  Contains the backend API implementation of Fusio. This is the place if you like to change the internal API of Fusio
+* [Fusio-CLI](https://github.com/apioo/fusio-cli)  
+  Contains the CLI client for Fusio, it is automatically included in every Fusio installation but you can also run the
+  CLI client standalone. It allows you to directly interact with the API and to deploy specific YAML configuration files
+* [Fusio-Model](https://github.com/apioo/fusio-model)  
+  Contains all Fusio models automatically generated via [TypeSchema](https://typeschema.org/). This repository helps if
+  you want to work with the Fusio API since you can use the same model classes which we also use at the backend
+* [Fusio-Engine](https://github.com/apioo/fusio-engine)  
+  Contains mostly interfaces which are also needed by adapters. This repository is very stable and there are few
+  changes
+* [Fusio-Adapter](https://www.fusio-project.org/adapter)  
+  Page which shows all available adapters. An adapter can extend Fusio by providing i.e. custom Actions or Connections
+  to different services. I.e. we have an adapter [MongoDB](http://github.com/apioo/fusio-adapter-mongodb) which helps to
+  work with a [MongoDB](https://www.mongodb.com/)
+* [Fusio-Docker](https://github.com/apioo/fusio-docker)  
+  Contains a Docker-Image to run Fusio, it helps to quickly create a Fusio instance in the cloud. You can find it also
+  directly on [DockerHub](https://hub.docker.com/r/fusio/fusio)
+* [App-Backend](https://github.com/apioo/fusio-apps-backend)  
+  Contains the Fusio backend app which you can use to configure your API. This is the place if you like to change or
+  improve the backend app
+* [App-Consumer](https://github.com/apioo/fusio-apps-consumer)  
+  Contains a developer portal app where external developers can register to use your API
 
 # Contribution
 
