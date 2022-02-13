@@ -1582,16 +1582,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v6.0.0-RC1",
+            "version": "v6.0.0-RC2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "13f68b6515c5b04d49c099e3fecddddd875501d7"
+                "reference": "072465e1bf120b117e30ac6711d3aa8e57e8556d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/13f68b6515c5b04d49c099e3fecddddd875501d7",
-                "reference": "13f68b6515c5b04d49c099e3fecddddd875501d7",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/072465e1bf120b117e30ac6711d3aa8e57e8556d",
+                "reference": "072465e1bf120b117e30ac6711d3aa8e57e8556d",
                 "shasum": ""
             },
             "require": {
@@ -1643,7 +1643,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v6.0.0-RC1"
+                "source": "https://github.com/apioo/fusio-impl/tree/v6.0.0-RC2"
             },
             "funding": [
                 {
@@ -1659,7 +1659,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-02-10T21:32:32+00:00"
+            "time": "2022-02-12T22:14:10+00:00"
         },
         {
             "name": "fusio/model",
@@ -5433,12 +5433,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Mbstring\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
