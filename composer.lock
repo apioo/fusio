@@ -1766,12 +1766,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3144,16 +3144,16 @@
         },
         {
             "name": "psx/data",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-data.git",
-                "reference": "dbb0f2bd87a7b86a7eb01c2b7255c7c0c9e79254"
+                "reference": "44103a059f8720ed1835dbbd16178cd6cf09c3cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-data/zipball/dbb0f2bd87a7b86a7eb01c2b7255c7c0c9e79254",
-                "reference": "dbb0f2bd87a7b86a7eb01c2b7255c7c0c9e79254",
+                "url": "https://api.github.com/repos/apioo/psx-data/zipball/44103a059f8720ed1835dbbd16178cd6cf09c3cc",
+                "reference": "44103a059f8720ed1835dbbd16178cd6cf09c3cc",
                 "shasum": ""
             },
             "require": {
@@ -3198,7 +3198,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-data/issues",
-                "source": "https://github.com/apioo/psx-data/tree/v4.0.3"
+                "source": "https://github.com/apioo/psx-data/tree/v4.0.4"
             },
             "funding": [
                 {
@@ -3214,7 +3214,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-01-28T23:01:58+00:00"
+            "time": "2022-02-14T21:53:38+00:00"
         },
         {
             "name": "psx/datetime",
