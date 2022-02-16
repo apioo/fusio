@@ -1582,16 +1582,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v6.0.0-RC2",
+            "version": "v6.0.0-RC3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "072465e1bf120b117e30ac6711d3aa8e57e8556d"
+                "reference": "f6da8c9441e0f338dde4be9e369ede746790ba76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/072465e1bf120b117e30ac6711d3aa8e57e8556d",
-                "reference": "072465e1bf120b117e30ac6711d3aa8e57e8556d",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/f6da8c9441e0f338dde4be9e369ede746790ba76",
+                "reference": "f6da8c9441e0f338dde4be9e369ede746790ba76",
                 "shasum": ""
             },
             "require": {
@@ -1643,7 +1643,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v6.0.0-RC2"
+                "source": "https://github.com/apioo/fusio-impl/tree/v6.0.0-RC3"
             },
             "funding": [
                 {
@@ -1659,7 +1659,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-02-12T22:14:10+00:00"
+            "time": "2022-02-13T20:41:19+00:00"
         },
         {
             "name": "fusio/model",
@@ -2163,16 +2163,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "2.4.2",
+            "version": "2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "ca8e4c10535be5c59c03f491310b60b9d6a60e24"
+                "reference": "4c56e451e10e3d9478f42f44c3d744bc17cdcede"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/ca8e4c10535be5c59c03f491310b60b9d6a60e24",
-                "reference": "ca8e4c10535be5c59c03f491310b60b9d6a60e24",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/4c56e451e10e3d9478f42f44c3d744bc17cdcede",
+                "reference": "4c56e451e10e3d9478f42f44c3d744bc17cdcede",
                 "shasum": ""
             },
             "require": {
@@ -2229,7 +2229,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/2.4.2"
+                "source": "https://github.com/thephpleague/flysystem/tree/2.4.3"
             },
             "funding": [
                 {
@@ -2245,7 +2245,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-31T19:40:25+00:00"
+            "time": "2022-02-16T18:44:00+00:00"
         },
         {
             "name": "league/mime-type-detection",
