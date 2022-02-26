@@ -71,13 +71,6 @@ return [
     // directly, but it is also possible to specify a different folder
     'fusio_apps_dir'          => __DIR__ . '/public/apps',
 
-    // Location of the automatically generated cron file. Note Fusio writes only to this file if it exists. In order to
-    // use the cronjob service you need to create this file with i.e. "touch /etc/cron.d/fusio"
-    'fusio_cron_file'         => '/etc/cron.d/fusio',
-
-    // Command to execute the Fusio console which is used in the generated cron file
-    'fusio_cron_exec'         => '/usr/bin/php ' . __DIR__ . '/bin/fusio',
-
     // The public url to the public folder (i.e. http://acme.com/public or http://acme.com)
     'psx_url'                 => getenv('FUSIO_URL'),
 
