@@ -1,4 +1,19 @@
 
+### 3.0.0
+
+* PHP 8.0 as minimum requirement
+* Updated code base and underling dependencies to PHP 8.0
+* Improved handling of social login credentials
+* Improved cron system
+* Removed internal scopes from OpenAPI spec #443
+* Reset password link in email incorrect #436
+* Notification in case a user runs out of points #427
+* "Entry successful deleted" incorrectly reported #429
+* Added an option to deactivate the marketplace
+* Updated docker image which now contains all apps and adapter
+* Include Swagger-UI in developer portal
+* Updated help in backend app using now our docs.fusio-project.org website
+
 ### 2.1.9
 
 * Use symfony mailer
