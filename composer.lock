@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9422e80c70e4e1513b2defd76f6e8c1",
+    "content-hash": "dc39816ca8f32d63713425dde6e0d4d0",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1643,16 +1643,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v6.0.0-RC9",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "87a9449751f7ecbede1ca5c7a5b0ac56ec89595f"
+                "reference": "f873dbda863f2d7cf1b608c4a780f69b930d7c12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/87a9449751f7ecbede1ca5c7a5b0ac56ec89595f",
-                "reference": "87a9449751f7ecbede1ca5c7a5b0ac56ec89595f",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/f873dbda863f2d7cf1b608c4a780f69b930d7c12",
+                "reference": "f873dbda863f2d7cf1b608c4a780f69b930d7c12",
                 "shasum": ""
             },
             "require": {
@@ -1705,7 +1705,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v6.0.0-RC9"
+                "source": "https://github.com/apioo/fusio-impl/tree/v6.0.0"
             },
             "funding": [
                 {
@@ -1721,7 +1721,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-03-12T19:04:07+00:00"
+            "time": "2022-03-12T21:22:22+00:00"
         },
         {
             "name": "fusio/model",
@@ -6521,9 +6521,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "fusio/impl": 5
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
