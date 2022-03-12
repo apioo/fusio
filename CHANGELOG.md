@@ -14,7 +14,7 @@
 * Include Swagger-UI in developer portal
 * Updated help in backend app using now our docs.fusio-project.org website
 
-### 2.1.9
+### 2.1.9 (2022-24-01)
 
 * Use symfony mailer
 
