@@ -13,6 +13,7 @@
 * Updated docker image which now contains all apps and adapter
 * Include Swagger-UI in developer portal
 * Updated help in backend app using now our docs.fusio-project.org website
+* Improved file upload handling
 
 ### 2.1.9 (2022-24-01)
 
