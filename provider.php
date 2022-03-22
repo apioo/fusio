@@ -32,6 +32,8 @@ return [
     'action' => [
         \Fusio\Adapter\Cli\Action\CliProcessor::class,
         \Fusio\Adapter\Fcgi\Action\FcgiProcessor::class,
+        \Fusio\Adapter\File\Action\FileDirectoryIndex::class,
+        \Fusio\Adapter\File\Action\FileDirectoryDetail::class,
         \Fusio\Adapter\File\Action\FileProcessor::class,
         \Fusio\Adapter\GraphQL\Action\GraphQLProcessor::class,
         \Fusio\Adapter\Http\Action\HttpComposition::class,
@@ -73,10 +75,11 @@ return [
         \Fusio\Impl\Provider\User\Google::class,
     ],
     'routes' => [
+        \Fusio\Adapter\File\Routes\FileDirectory::class,
+        \Fusio\Adapter\Sql\Routes\SqlTable::class,
         \Fusio\Impl\Provider\Routes\OpenAPI::class,
         \Fusio\Impl\Provider\Routes\Postman::class,
         \Fusio\Impl\Provider\Routes\Insomnia::class,
-        \Fusio\Adapter\Sql\Routes\SqlTable::class,
     ],
 ];
 
