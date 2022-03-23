@@ -1054,16 +1054,16 @@
         },
         {
             "name": "fusio/adapter-file",
-            "version": "v5.0.2",
+            "version": "v5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-file.git",
-                "reference": "94b9e6e2c24898df30e4b723964db773be64c206"
+                "reference": "a803a411e08949e575ca7f5294cfc7ac45872271"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-file/zipball/94b9e6e2c24898df30e4b723964db773be64c206",
-                "reference": "94b9e6e2c24898df30e4b723964db773be64c206",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-file/zipball/a803a411e08949e575ca7f5294cfc7ac45872271",
+                "reference": "a803a411e08949e575ca7f5294cfc7ac45872271",
                 "shasum": ""
             },
             "require": {
@@ -1100,7 +1100,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-file/issues",
-                "source": "https://github.com/apioo/fusio-adapter-file/tree/v5.0.2"
+                "source": "https://github.com/apioo/fusio-adapter-file/tree/v5.0.3"
             },
             "funding": [
                 {
@@ -1116,7 +1116,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-03-19T00:56:40+00:00"
+            "time": "2022-03-23T19:08:24+00:00"
         },
         {
             "name": "fusio/adapter-graphql",
