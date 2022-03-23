@@ -14,6 +14,7 @@
 * Include Swagger-UI in developer portal
 * Updated help in backend app using now our docs.fusio-project.org website
 * Improved file upload handling
+* Add files directory routes provider and actions
 
 ### 2.1.9 (2022-24-01)
 
