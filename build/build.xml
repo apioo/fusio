@@ -7,7 +7,7 @@
     </condition>
 
     <property file="${properties-file}.properties" />
-    <property name="version" value="2.1.2" />
+    <property name="version" value="3.0.0" />
 
     <!-- ############################# INSTALL ############################# -->
     <!-- delete git dir -->
