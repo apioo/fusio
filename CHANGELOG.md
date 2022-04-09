@@ -1,4 +1,9 @@
 
+### 3.0.1
+
+* Add autoload to src/ folder
+* Handle gracefully in case the apps dir does not exist
+
 ### 3.0.0
 
 * PHP 8.0 as minimum requirement
