@@ -42,6 +42,7 @@ return [
         \Fusio\Adapter\Php\Action\PhpProcessor::class,
         \Fusio\Adapter\Php\Action\PhpSandbox::class,
         \Fusio\Adapter\Smtp\Action\SmtpSend::class,
+        \Fusio\Adapter\Sql\Action\SqlBuilder::class,
         \Fusio\Adapter\Sql\Action\SqlSelectAll::class,
         \Fusio\Adapter\Sql\Action\SqlSelectRow::class,
         \Fusio\Adapter\Sql\Action\SqlInsert::class,
