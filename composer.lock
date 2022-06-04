@@ -1702,12 +1702,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "b0efd44347aeb17bdf24bf46ee8dd2b9e13e1f59"
+                "reference": "034b385ac3b240046b7e5d9a29f5a6e0a48f9590"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/b0efd44347aeb17bdf24bf46ee8dd2b9e13e1f59",
-                "reference": "b0efd44347aeb17bdf24bf46ee8dd2b9e13e1f59",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/034b385ac3b240046b7e5d9a29f5a6e0a48f9590",
+                "reference": "034b385ac3b240046b7e5d9a29f5a6e0a48f9590",
                 "shasum": ""
             },
             "require": {
@@ -1777,7 +1777,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-06-04T15:04:11+00:00"
+            "time": "2022-06-04T15:09:25+00:00"
         },
         {
             "name": "fusio/model",
