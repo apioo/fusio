@@ -1,6 +1,13 @@
 
-### 3.0.1
+### 3.1.0
 
+* Reworked payment system
+* Added deeper Stripe integration handle now complex pricing models through Stripe
+* Removed contract and invoice handling inside Fusio and outsource those to the payment provider
+* Use the Stripe billing portal where a user can manage all subscriptions
+* Remove contract and invoice panel from the backend app
+* Added payment provider webhook support where Fusio receives events from the payment provider
+* Added a trash panel to the backend app where user can restore a deleted record
 * Add autoload to src/ folder
 * Handle gracefully in case the apps dir does not exist
 
