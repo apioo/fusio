@@ -10,6 +10,7 @@
 * Added a trash panel to the backend app where user can restore a deleted record
 * Add autoload to src/ folder
 * Handle gracefully in case the apps dir does not exist
+* Added SqlBuilder action
 
 ### 3.0.0
 
