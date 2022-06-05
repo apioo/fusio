@@ -1,5 +1,9 @@
 
-### 3.1.0
+### 3.1.1 (2022-06-05)
+
+* Add migration to deactivate old contract and invoice routes
+
+### 3.1.0 (2022-06-05)
 
 * Reworked payment system
 * Added deeper Stripe integration handle now complex pricing models through Stripe
@@ -12,7 +16,7 @@
 * Handle gracefully in case the apps dir does not exist
 * Added SqlBuilder action
 
-### 3.0.0
+### 3.0.0 (2022-04-02)
 
 * PHP 8.0 as minimum requirement
 * Updated code base and underling dependencies to PHP 8.0
@@ -29,11 +33,11 @@
 * Improved file upload handling
 * Add files directory routes provider and actions
 
-### 2.1.9 (2022-24-01)
+### 2.1.9 (2022-01-24)
 
 * Use symfony mailer
 
-### 2.1.8 (2022-21-01)
+### 2.1.8 (2022-01-21)
 
 * Moved login provider keys to config
 * Improve routes provider import
