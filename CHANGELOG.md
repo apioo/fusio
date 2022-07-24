@@ -1,4 +1,14 @@
 
+### 3.2.0
+
+* Update backend app to Angular
+* Add connection inspection
+* Add SqlEntity generator provider
+* Marketplace install handle Angular apps
+* Move routes provider to generator namespace
+* Many small endpoint schema fixes
+* Add CORS handling to OAuth2 endpoint
+
 ### 3.1.1 (2022-06-05)
 
 * Add migration to deactivate old contract and invoice routes
