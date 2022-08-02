@@ -52,6 +52,7 @@ return [
         \Fusio\Adapter\Sql\Action\Query\SqlQueryRow::class,
         \Fusio\Adapter\Util\Action\UtilABTest::class,
         \Fusio\Adapter\Util\Action\UtilCache::class,
+        \Fusio\Adapter\Util\Action\UtilDispatchEvent::class,
         \Fusio\Adapter\Util\Action\UtilJsonPatch::class,
         \Fusio\Adapter\Util\Action\UtilRedirect::class,
         \Fusio\Adapter\Util\Action\UtilStaticResponse::class,
@@ -75,12 +76,13 @@ return [
         \Fusio\Impl\Provider\User\Github::class,
         \Fusio\Impl\Provider\User\Google::class,
     ],
-    'routes' => [
-        \Fusio\Adapter\File\Routes\FileDirectory::class,
-        \Fusio\Adapter\Sql\Routes\SqlTable::class,
-        \Fusio\Impl\Provider\Routes\OpenAPI::class,
-        \Fusio\Impl\Provider\Routes\Postman::class,
-        \Fusio\Impl\Provider\Routes\Insomnia::class,
+    'generator' => [
+        \Fusio\Adapter\File\Generator\FileDirectory::class,
+        \Fusio\Adapter\Sql\Generator\SqlTable::class,
+        \Fusio\Adapter\Sql\Generator\SqlEntity::class,
+        \Fusio\Impl\Provider\Generator\OpenAPI::class,
+        \Fusio\Impl\Provider\Generator\Postman::class,
+        \Fusio\Impl\Provider\Generator\Insomnia::class,
     ],
 ];
 
