@@ -4,10 +4,12 @@
 * Update backend app to Angular
 * Add connection inspection
 * Add SqlEntity generator provider
+* Improved sql adapter actions
 * Marketplace install handle Angular apps
 * Move routes provider to generator namespace
 * Many small endpoint schema fixes
 * Add CORS handling to OAuth2 endpoint
+* Add util event dispatch action
 
 ### 3.1.1 (2022-06-05)
 
