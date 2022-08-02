@@ -12,7 +12,7 @@
   ],
   "require": {
     "php": ">=8.0",
-    "fusio/impl": "^6.1",
+    "fusio/impl": "^6.2",
     "symfony/dotenv": "^6.0"
   },
   "autoload": {
