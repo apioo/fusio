@@ -1,31 +1,25 @@
 <?php
 
 /*
-This file contains classes which extend the functionality of Fusio. If you
-register a new adapter and this adapter provides such a class, Fusio will
-automatically add the class to this file. You can also manually add a new
-class. The following list contains an explanation of each extension point:
+This file contains classes which extend the functionality of Fusio. If you register a new adapter and this adapter
+provides such a class, Fusio will automatically add the class to this file. You can also manually add a new class. The
+following list contains an explanation of each extension point:
 
 - action
-  Contains all action classes which are available at the backend. If a class is
-  registered here the user can select this action. The class must implement the
-  interface: Fusio\Engine\ActionInterface
+  Contains all action classes which are available at the backend. If a class is registered here the user can select this
+  action at the backend. The class must implement the interface: Fusio\Engine\ActionInterface
 - connection
-  Contains all connection classes which are available at the backend. If a class
-  is registered here the user can select this connection. The class must
-  implement the interface: Fusio\Engine\ConnectionInterface
+  Contains all connection classes which are available at the backend. If a class is registered here the user can select
+  this connection at the backend. The class must implement the interface: Fusio\Engine\ConnectionInterface
 - payment
-  Contains all available payment provider. Through a payment provider it is
-  possible to charge for points which can be required for specific routes. The
-  class must implement the interface: Fusio\Engine\Payment\ProviderInterface
+  Contains all available payment provider. Through a payment provider it is possible to charge for points which can be
+  required for specific routes. The class must implement the interface: Fusio\Engine\Payment\ProviderInterface
 - user
-  Contains all available user provider. Through a user provider a user can
-  authenticate with a remote provider i.e. Google. The class must implement the
-  interface: Fusio\Engine\User\ProviderInterface
-- routes
-  Contains all available route provider. A provider can automatically create
-  multiple schemas, actions and routes under a provided base path. The class
-  must implement the interface: Fusio\Engine\Routes\ProviderInterface
+  Contains all available user provider. Through a user provider a user can authenticate with a remote provider i.e.
+  Google. The class must implement the interface: Fusio\Engine\User\ProviderInterface
+- generator
+  Contains all available generator provider. A provider can automatically create multiple schemas, actions and routes
+  under a provided base path. The class must implement the interface: Fusio\Engine\Generator\ProviderInterface
 */
 
 return [
