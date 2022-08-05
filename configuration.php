@@ -115,17 +115,14 @@ return [
     //'psx_filter_pre'          => [],
     //'psx_filter_post'         => [],
 
-    // A closure which returns a doctrine cache implementation. If null the filesystem cache is used
+    // A closure which returns a symfony cache implementation. If null the filesystem cache is used. Please take a look
+    // at the repository to see all available adapter: https://github.com/symfony/cache
     /*
-    'psx_cache_factory'       => function($config, $namespace){
-        $memcached = new \Memcached();
-        $memcached->addServer(getenv('FUSIO_MEMCACHE_HOST'), getenv('FUSIO_MEMCACHE_PORT'));
+    'psx_cache_factory'         => function($config, $namespace){
+        $client = new \Memcached();
+        $client->addServer(getenv('FUSIO_MEMCACHE_HOST'), getenv('FUSIO_MEMCACHE_PORT'));
 
-        $memcache = new \Doctrine\Common\Cache\MemcachedCache();
-        $memcache->setMemcached($memcached);
-        $memcache->setNamespace($namespace);
-
-        return $memcache;
+        return new \Symfony\Component\Cache\Adapter\MemcachedAdapter($client, $namespace);
     },
     */
 
