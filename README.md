@@ -9,15 +9,22 @@ Fusio is an open source API management platform which helps to build and manage 
 following use cases:
 
 * __API-Product__  
-  Fusio provides a developer portal where developers can register to access your API.
+  Fusio helps you to create a great API product, besides building an API it provides a
+  developer portal where developers can register and a way to monetize your API
 * __API-Gateway__  
-  Fusio can be used as gateway to your internal API and microservices.
+  Fusio can be used as gateway to your internal API and microservices. It handles all
+  common features like Authorization, Rate-Limiting and Schema-Validation
 * __SPA-Backend__  
-  Fusio can be used as backend to build SPAs using popular Javascript-Frameworks like i.e. Angular, React or Vue.
+  Fusio can be used as backend to build SPAs using popular Javascript-Frameworks like i.e.
+  Angular, React or Vue. It provides a powerful code generate which can automatically
+  generate a SDK for your API
 * __Low-Code-Platform__  
-  Fusio allows you to build API endpoints without coding knowledge.
+  Fusio allows you to build API endpoints without coding knowledge. I.e. it provides an
+  Entity generator which you can use to easily create complete CRUD APIs.
 * __API-Framework__  
-  For more complex use cases you can use Fusio also as framework to build complete APIs from scratch.
+  For more complex use cases you can use Fusio also as framework to build complete APIs
+  from scratch. This means you build custom actions where you can use the wide PHP
+  ecosystem to solve your task
 
 ## API management and features
 
@@ -33,7 +40,7 @@ first overview:
 * __SDK generation__  
   Fusio can automatically generate a client SDK for your API based on the defined schema
 * __Subscription support__  
-  Fusio contains a subscription layer which helps to build pub/sub for your API
+  Fusio contains a event subscription layer which helps to build pub/sub for your API
 * __Rate limiting__  
   Fusio provides a way to rate limit requests based on the user or app
 * __Authorization__  
@@ -76,13 +83,13 @@ the VSCode editor.
 
 # Services
 
+* [Cloud](https://fusio.cloud/)  
+  The cloud service allows you to create a Fusio instance in the cloud. It really simplifies the usage of Fusio since
+  you can create and manage an instance through a simple web interface.
 * [APIgen](https://apigen.app/)  
   APIgen is a code generator tool which allows you to generate code based on Entity or OpenAPI definitions. The tool
   generates then all routes, schemas and actions. You can then either download or deploy the generated code to a remote
   instance.
-* [Cloud](https://fusio.cloud/)  
-  The cloud service allows you to create a Fusio instance in the cloud. It really simplifies the usage of Fusio since you
-  can create and manage an instance through a simple web interface.
 
 # Installation
 
@@ -174,10 +181,13 @@ This should give you a first overview about all important repositories which bel
 * [Fusio-Docker](https://github.com/apioo/fusio-docker)  
   Contains a Docker-Image to run Fusio, it helps to quickly create a Fusio instance in the cloud. You can find it also
   directly on [DockerHub](https://hub.docker.com/r/fusio/fusio)
+* [Fusio-Docs](https://github.com/apioo/fusio-docs)  
+  Contains our complete documentation [website](https://docs.fusio-project.org/). This is the place if you like to
+  adjust or improve our documentation
 * [App-Backend](https://github.com/apioo/fusio-apps-backend)  
   Contains the Fusio backend app which you can use to configure your API. This is the place if you like to change or
   improve the backend app
-* [App-Consumer](https://github.com/apioo/fusio-apps-consumer)  
+* [App-Developer](https://github.com/apioo/fusio-apps-developer)  
   Contains a developer portal app where external developers can register to use your API
 
 # Contribution
@@ -205,14 +215,14 @@ automatically on our website.
 
 **[Backend-App](https://github.com/apioo/fusio-backend)**
 
-This is the AngularJS app which is used as GUI to control the backend. It is the main app to improve the Fusio backend.
+This is the Angular app which is used as GUI to control the backend. It is the main app to improve the Fusio backend.
 But you are also free to develop new apps for special use cases which talk to the internal API of Fusio.
 
 ## Testing
 
-We have a high PHPUnit test case coverage and also automatic end-to-end AngularJS tests using protractor and selenium.
-Beside this it is always great if users checkout the current master version of the project and try to test every aspect
-of the system. In case you have found an issue please report it through the issue tracker.
+We have a high PHPUnit test case coverage. Beside this it is always great if users checkout the current master version
+of the project and try to test every aspect of the system. In case you have found an issue please report it through the
+issue tracker.
 
 ## Documentation
 
