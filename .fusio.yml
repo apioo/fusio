@@ -9,21 +9,18 @@
 # ------------------------------------------------------------------------------
 # Contains all available routes of the app. Each route reference a yaml file 
 # which defines the request/response schema and the action which gets executed.
-# Documentation: https://fusio.readthedocs.io/en/latest/development/deploy.html#routes
 #routes: !include resources/routes.yaml
 
 # ------------------------------------------------------------------------------
 # Optional contains all available schema definitions. Each schema reference a json file
 # which contains a type schema. These schema names can be referenced in a route.
 # You dont need this in case your route directly references a model class.
-# Documentation: https://fusio.readthedocs.io/en/latest/development/deploy.html#schema
 #schema: !include resources/schemas.yaml
 
 # ------------------------------------------------------------------------------
 # Contains all available connections to remote services i.e. a database or 
 # mongodb connection. These connections can be used inside an action to produce 
 # a response or insert data from a request. 
-# Documentation: https://fusio.readthedocs.io/en/latest/development/deploy.html#connection
 #connection: !include resources/connections.yaml
 
 # ------------------------------------------------------------------------------
