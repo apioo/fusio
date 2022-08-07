@@ -1,0 +1,26 @@
+name: Build
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          coverage: none
+      - name: Composer install
+        run: composer install --no-interaction --no-ansi --no-progress
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: fusio
+          path: |
+            .
+            !./git
+            !./github
