@@ -1,5 +1,9 @@
 
-### 3.2.0
+### 3.2.1 (2022-08-09)
+
+* Fix data sync to properly migrate an older Fusio version
+
+### 3.2.0 (2022-08-07)
 
 * Update backend app to Angular
 * Add connection inspection
