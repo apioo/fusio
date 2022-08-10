@@ -3,6 +3,7 @@
 
 * Add missing event subscription response handling
 * Add missing default generators to docker image
+* Fix generator scope handling
 
 ### 3.2.1 (2022-08-09)
 
