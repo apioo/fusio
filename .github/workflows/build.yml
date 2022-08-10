@@ -22,5 +22,6 @@ jobs:
           name: fusio
           path: |
             .
-            !./git
-            !./github
+            !.git
+            !.github
+            !build
