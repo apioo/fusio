@@ -1,4 +1,9 @@
 
+### 3.2.2 (2022-08-10)
+
+* Add missing event subscription response handling
+* Add missing default generators to docker image
+
 ### 3.2.1 (2022-08-09)
 
 * Fix data sync to properly migrate an older Fusio version
