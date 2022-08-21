@@ -5,6 +5,7 @@
 * Update default developer portal page content
 * Register default scope to default role
 * Improve social login provider and token response
+* Transform transaction cents to usd
 
 ### 3.2.2 (2022-08-10)
 
