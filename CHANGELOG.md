@@ -1,5 +1,13 @@
 
-### 3.2.3
+### 3.2.4
+
+* Add option to configure a return url for the payment portal
+* Include plan scopes in user account response
+* Add generate SDK command
+* Add generate model command
+* Add generate table command
+
+### 3.2.3 (2022-08-21)
 
 * Update developer app to Angular
 * Update default developer portal page content
