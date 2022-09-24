@@ -1,5 +1,5 @@
 
-### 3.2.4
+### 3.3.0
 
 * Add option to configure a return url for the payment portal
 * Include plan scopes in user account response
