@@ -1623,16 +1623,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v5.2.4",
+            "version": "v5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "4b366a6c5d06724c21f0bdf4dd0062d1d0a1aa6c"
+                "reference": "c767223f3f88c40abe8f7e3092f993f2afc8bf5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/4b366a6c5d06724c21f0bdf4dd0062d1d0a1aa6c",
-                "reference": "4b366a6c5d06724c21f0bdf4dd0062d1d0a1aa6c",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/c767223f3f88c40abe8f7e3092f993f2afc8bf5e",
+                "reference": "c767223f3f88c40abe8f7e3092f993f2afc8bf5e",
                 "shasum": ""
             },
             "require": {
@@ -1671,7 +1671,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-engine/issues",
-                "source": "https://github.com/apioo/fusio-engine/tree/v5.2.4"
+                "source": "https://github.com/apioo/fusio-engine/tree/v5.3.0"
             },
             "funding": [
                 {
@@ -1687,20 +1687,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-07-31T11:04:35+00:00"
+            "time": "2022-09-30T21:22:23+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v6.3.0",
+            "version": "v6.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "054b5062d3914ce72e3969d95e354dd55b69af80"
+                "reference": "a508e288c6b52bd874f7a0a77e8f5a3021036b83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/054b5062d3914ce72e3969d95e354dd55b69af80",
-                "reference": "054b5062d3914ce72e3969d95e354dd55b69af80",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/a508e288c6b52bd874f7a0a77e8f5a3021036b83",
+                "reference": "a508e288c6b52bd874f7a0a77e8f5a3021036b83",
                 "shasum": ""
             },
             "require": {
@@ -1753,7 +1753,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v6.3.0"
+                "source": "https://github.com/apioo/fusio-impl/tree/v6.3.1"
             },
             "funding": [
                 {
@@ -1769,20 +1769,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-09-23T22:04:21+00:00"
+            "time": "2022-10-01T20:49:58+00:00"
         },
         {
             "name": "fusio/model",
-            "version": "v1.3.4",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-model.git",
-                "reference": "72a9a425e6550aa2c2fc0449dd4517a4d33bc8e9"
+                "reference": "299f6c057d05e94083fba67c111abdccd544c217"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-model/zipball/72a9a425e6550aa2c2fc0449dd4517a4d33bc8e9",
-                "reference": "72a9a425e6550aa2c2fc0449dd4517a4d33bc8e9",
+                "url": "https://api.github.com/repos/apioo/fusio-model/zipball/299f6c057d05e94083fba67c111abdccd544c217",
+                "reference": "299f6c057d05e94083fba67c111abdccd544c217",
                 "shasum": ""
             },
             "require": {
@@ -1814,7 +1814,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-model/issues",
-                "source": "https://github.com/apioo/fusio-model/tree/v1.3.4"
+                "source": "https://github.com/apioo/fusio-model/tree/v1.4.0"
             },
             "funding": [
                 {
@@ -1830,7 +1830,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-09-17T19:06:25+00:00"
+            "time": "2022-10-01T09:27:56+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3131,16 +3131,16 @@
         },
         {
             "name": "psx/api",
-            "version": "v4.3.1",
+            "version": "v4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-api.git",
-                "reference": "aa26200a4cbbb7677fbedf38703b6d27e01c6d88"
+                "reference": "0bb960a5a425382dd984f028bdb934c0137d82e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-api/zipball/aa26200a4cbbb7677fbedf38703b6d27e01c6d88",
-                "reference": "aa26200a4cbbb7677fbedf38703b6d27e01c6d88",
+                "url": "https://api.github.com/repos/apioo/psx-api/zipball/0bb960a5a425382dd984f028bdb934c0137d82e7",
+                "reference": "0bb960a5a425382dd984f028bdb934c0137d82e7",
                 "shasum": ""
             },
             "require": {
@@ -3189,7 +3189,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-api/issues",
-                "source": "https://github.com/apioo/psx-api/tree/v4.3.1"
+                "source": "https://github.com/apioo/psx-api/tree/v4.3.3"
             },
             "funding": [
                 {
@@ -3205,7 +3205,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-09-23T21:55:54+00:00"
+            "time": "2022-09-24T21:55:59+00:00"
         },
         {
             "name": "psx/cloudevents",
@@ -4085,16 +4085,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v4.2.4",
+            "version": "v4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "32d6ab3e302a483ee10ccbbb30835f90f24624f8"
+                "reference": "4932951c82bdd26ae537f4f7ed4734d040589b40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/32d6ab3e302a483ee10ccbbb30835f90f24624f8",
-                "reference": "32d6ab3e302a483ee10ccbbb30835f90f24624f8",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/4932951c82bdd26ae537f4f7ed4734d040589b40",
+                "reference": "4932951c82bdd26ae537f4f7ed4734d040589b40",
                 "shasum": ""
             },
             "require": {
@@ -4146,7 +4146,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-schema/issues",
-                "source": "https://github.com/apioo/psx-schema/tree/v4.2.4"
+                "source": "https://github.com/apioo/psx-schema/tree/v4.2.5"
             },
             "funding": [
                 {
@@ -4162,7 +4162,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-09-04T09:52:28+00:00"
+            "time": "2022-09-24T17:51:33+00:00"
         },
         {
             "name": "psx/sql",
@@ -4582,16 +4582,16 @@
         },
         {
             "name": "symfony/cache",
-            "version": "v6.0.11",
+            "version": "v6.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "8c98079892d254b4e5806bedf694bddab8fe92b4"
+                "reference": "908edffec894ef7c60d6a66869ecb826d76a491f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/8c98079892d254b4e5806bedf694bddab8fe92b4",
-                "reference": "8c98079892d254b4e5806bedf694bddab8fe92b4",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/908edffec894ef7c60d6a66869ecb826d76a491f",
+                "reference": "908edffec894ef7c60d6a66869ecb826d76a491f",
                 "shasum": ""
             },
             "require": {
@@ -4648,14 +4648,14 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "Provides an extended PSR-6, PSR-16 (and tags) implementation",
+            "description": "Provides extended PSR-6, PSR-16 (and tags) implementations",
             "homepage": "https://symfony.com",
             "keywords": [
                 "caching",
                 "psr6"
             ],
             "support": {
-                "source": "https://github.com/symfony/cache/tree/v6.0.11"
+                "source": "https://github.com/symfony/cache/tree/v6.0.13"
             },
             "funding": [
                 {
@@ -4671,7 +4671,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-29T07:39:48+00:00"
+            "time": "2022-09-08T09:32:44+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -5151,16 +5151,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v6.0.12",
+            "version": "v6.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "a36b782dc19dce3ab7e47d4b92b13cefb3511da3"
+                "reference": "3adca49133bd055ebe6011ed1e012be3c908af79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/a36b782dc19dce3ab7e47d4b92b13cefb3511da3",
-                "reference": "a36b782dc19dce3ab7e47d4b92b13cefb3511da3",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/3adca49133bd055ebe6011ed1e012be3c908af79",
+                "reference": "3adca49133bd055ebe6011ed1e012be3c908af79",
                 "shasum": ""
             },
             "require": {
@@ -5194,7 +5194,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v6.0.12"
+                "source": "https://github.com/symfony/filesystem/tree/v6.0.13"
             },
             "funding": [
                 {
@@ -5210,20 +5210,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-02T16:01:06+00:00"
+            "time": "2022-09-21T20:25:27+00:00"
         },
         {
             "name": "symfony/mailer",
-            "version": "v6.0.12",
+            "version": "v6.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailer.git",
-                "reference": "45aad5f8cfb481130e83dc4cb867c0f576182ea9"
+                "reference": "6269c872ab4792e8facbf8af27a2fbee8429f217"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailer/zipball/45aad5f8cfb481130e83dc4cb867c0f576182ea9",
-                "reference": "45aad5f8cfb481130e83dc4cb867c0f576182ea9",
+                "url": "https://api.github.com/repos/symfony/mailer/zipball/6269c872ab4792e8facbf8af27a2fbee8429f217",
+                "reference": "6269c872ab4792e8facbf8af27a2fbee8429f217",
                 "shasum": ""
             },
             "require": {
@@ -5268,7 +5268,7 @@
             "description": "Helps sending emails",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailer/tree/v6.0.12"
+                "source": "https://github.com/symfony/mailer/tree/v6.0.13"
             },
             "funding": [
                 {
@@ -5284,20 +5284,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-03T05:17:36+00:00"
+            "time": "2022-08-29T06:49:22+00:00"
         },
         {
             "name": "symfony/mime",
-            "version": "v6.0.12",
+            "version": "v6.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "02a11577f2f9522c783179712bdf6d2d3cb9fc1d"
+                "reference": "c1d6eba531d956c23b3127dc6ae6f5ac4a90db6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/02a11577f2f9522c783179712bdf6d2d3cb9fc1d",
-                "reference": "02a11577f2f9522c783179712bdf6d2d3cb9fc1d",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/c1d6eba531d956c23b3127dc6ae6f5ac4a90db6c",
+                "reference": "c1d6eba531d956c23b3127dc6ae6f5ac4a90db6c",
                 "shasum": ""
             },
             "require": {
@@ -5349,7 +5349,7 @@
                 "mime-type"
             ],
             "support": {
-                "source": "https://github.com/symfony/mime/tree/v6.0.12"
+                "source": "https://github.com/symfony/mime/tree/v6.0.13"
             },
             "funding": [
                 {
@@ -5365,7 +5365,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-19T14:25:15+00:00"
+            "time": "2022-09-02T08:05:03+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -6415,16 +6415,16 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v5.4.5",
+            "version": "v5.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
-                "reference": "4d04b5c24f3c9a1a168a131f6cbe297155bc0d30"
+                "reference": "6df7a3effde34d81717bbef4591e5ffe32226d69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/4d04b5c24f3c9a1a168a131f6cbe297155bc0d30",
-                "reference": "4d04b5c24f3c9a1a168a131f6cbe297155bc0d30",
+                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/6df7a3effde34d81717bbef4591e5ffe32226d69",
+                "reference": "6df7a3effde34d81717bbef4591e5ffe32226d69",
                 "shasum": ""
             },
             "require": {
@@ -6457,7 +6457,7 @@
             "description": "Provides a way to profile code",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/stopwatch/tree/v5.4.5"
+                "source": "https://github.com/symfony/stopwatch/tree/v5.4.13"
             },
             "funding": [
                 {
@@ -6473,20 +6473,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-02-18T16:06:09+00:00"
+            "time": "2022-09-28T13:19:49+00:00"
         },
         {
             "name": "symfony/string",
-            "version": "v5.4.12",
+            "version": "v5.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "2fc515e512d721bf31ea76bd02fe23ada4640058"
+                "reference": "2900c668a32138a34118740de3e4d5a701801f53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/2fc515e512d721bf31ea76bd02fe23ada4640058",
-                "reference": "2fc515e512d721bf31ea76bd02fe23ada4640058",
+                "url": "https://api.github.com/repos/symfony/string/zipball/2900c668a32138a34118740de3e4d5a701801f53",
+                "reference": "2900c668a32138a34118740de3e4d5a701801f53",
                 "shasum": ""
             },
             "require": {
@@ -6543,7 +6543,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v5.4.12"
+                "source": "https://github.com/symfony/string/tree/v5.4.13"
             },
             "funding": [
                 {
@@ -6559,7 +6559,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-12T17:03:11+00:00"
+            "time": "2022-09-01T01:52:16+00:00"
         },
         {
             "name": "symfony/var-exporter",
@@ -6710,16 +6710,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.4.2",
+            "version": "v3.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "e07cdd3d430cd7e453c31b36eb5ad6c0c5e43077"
+                "reference": "c38fd6b0b7f370c198db91ffd02e23b517426b58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e07cdd3d430cd7e453c31b36eb5ad6c0c5e43077",
-                "reference": "e07cdd3d430cd7e453c31b36eb5ad6c0c5e43077",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c38fd6b0b7f370c198db91ffd02e23b517426b58",
+                "reference": "c38fd6b0b7f370c198db91ffd02e23b517426b58",
                 "shasum": ""
             },
             "require": {
@@ -6770,7 +6770,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.4.2"
+                "source": "https://github.com/twigphp/Twig/tree/v3.4.3"
             },
             "funding": [
                 {
@@ -6782,7 +6782,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-12T06:47:24+00:00"
+            "time": "2022-09-28T08:42:51+00:00"
         },
         {
             "name": "webmozart/assert",
