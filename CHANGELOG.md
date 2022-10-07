@@ -2,7 +2,7 @@
 ### 3.3.0
 
 * Fix link of the default developer portal content #474
-* Add metadata property to important models and remove fusio_user_attributes config
+* Add metadata property to important models and remove fusio_user_attributes config #470
 * Record period start/end date of subscriptions to get a list of active plans for a user
 * Add option to configure a return url for the payment portal
 * Include plan scopes in user account response
