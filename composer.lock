@@ -1691,7 +1691,7 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v6.3.2",
+            "version": "v6.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
@@ -1753,7 +1753,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v6.3.2"
+                "source": "https://github.com/apioo/fusio-impl/tree/v6.3.3"
             },
             "funding": [
                 {
