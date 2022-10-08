@@ -1691,16 +1691,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v6.3.3",
+            "version": "v6.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "2a29e5433bf0a426b871842df204beb03498f9cb"
+                "reference": "96c24f9c2a8076cbdc53266cd23e3fe2796c54bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/2a29e5433bf0a426b871842df204beb03498f9cb",
-                "reference": "2a29e5433bf0a426b871842df204beb03498f9cb",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/96c24f9c2a8076cbdc53266cd23e3fe2796c54bf",
+                "reference": "96c24f9c2a8076cbdc53266cd23e3fe2796c54bf",
                 "shasum": ""
             },
             "require": {
@@ -1753,7 +1753,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v6.3.3"
+                "source": "https://github.com/apioo/fusio-impl/tree/v6.3.5"
             },
             "funding": [
                 {
@@ -1769,7 +1769,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-10-02T09:01:45+00:00"
+            "time": "2022-10-07T17:32:02+00:00"
         },
         {
             "name": "fusio/model",
