@@ -1,6 +1,7 @@
 
 ### 3.3.0
 
+* Updated developer app to latest sdk version
 * Fix link of the default developer portal content #474
 * Add metadata property to important models and remove fusio_user_attributes config #470
 * Record period start/end date of subscriptions to get a list of active plans for a user
