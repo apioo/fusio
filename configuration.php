@@ -36,14 +36,12 @@ return [
     // executes the code at the worker.
     'fusio_php_sandbox'       => getenv('FUSIO_PHP_SANDBOX') === 'on',
 
-    // The three-character ISO-4217 currency code which is used to process payments
-    'fusio_payment_currency'  => getenv('FUSIO_PAYMENT_CURRENCY') ?: 'EUR',
-
     // Points to the Fusio provider file which contains specific classes for the system. Please take a look at the
     // provider file for more information
     'fusio_provider'          => __DIR__ . '/provider.php',
 
-    // Settings of the internal mailer. By default we use the internal PHP mail function
+    // Settings of the internal mailer. More information s.
+    // https://symfony.com/doc/current/mailer.html#using-built-in-transports
     'fusio_mailer'            => getenv('FUSIO_MAILER'),
 
     // Describes the default email which Fusio uses as from address
