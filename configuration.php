@@ -43,14 +43,6 @@ return [
     // provider file for more information
     'fusio_provider'          => __DIR__ . '/provider.php',
 
-    // A list of additional user attributes. Through this your app can easily store additional attributes to the account
-    /*
-    'fusio_user_attributes'   => [
-        'first_name',
-        'last_name',
-    ],
-    */
-
     // Settings of the internal mailer. By default we use the internal PHP mail function
     'fusio_mailer'            => getenv('FUSIO_MAILER'),
 
