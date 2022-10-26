@@ -120,6 +120,8 @@ return [
     //'psx_log_level' => \Monolog\Logger::ERROR,
 
     // A closure which returns a monolog handler implementation. If null the system handler is used
-    //'psx_logger_factory'      => null,
+    'psx_logger_factory'      => function(){
+        return new \Monolog\Handler\StreamHandler(__DIR__ . '/log/app.log', \Monolog\Logger::ERROR);
+    },
 
 ];
