@@ -1,6 +1,7 @@
 
 ### 3.3.1
 
+* Add local log folder instead of using the system log 
 * Handle CORS headers on OpenAPI export
 * Add currency to system about
 
