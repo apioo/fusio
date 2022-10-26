@@ -1,5 +1,10 @@
 
-### 3.3.0
+### 3.3.1
+
+* Handle CORS headers on OpenAPI export
+* Add currency to system about
+
+### 3.3.0 (2022-10-13)
 
 * Updated developer app to latest sdk version
 * Fix link of the default developer portal content #474
