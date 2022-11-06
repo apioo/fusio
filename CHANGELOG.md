@@ -1,9 +1,13 @@
 
 ### 3.3.1
 
+* Improve generator always set prefix to route, action and schema 
+* Improve SQL adapter
+* Update model package and use model classes according to naming convention
 * Add local log folder instead of using the system log 
 * Handle CORS headers on OpenAPI export
 * Add currency to system about
+* Increase Psalm level
 
 ### 3.3.0 (2022-10-13)
 
