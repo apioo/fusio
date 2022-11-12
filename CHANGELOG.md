@@ -1,5 +1,7 @@
 
-### 3.3.1
+### 3.3.2
+
+### 3.3.1 (2022-11-12)
 
 * Improve generator always set prefix to route, action and schema 
 * Improve SQL adapter
