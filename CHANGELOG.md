@@ -1,6 +1,9 @@
 
 ### 3.3.2
 
+* Increase default rate limit to 3600 for authenticated and 900 for anonymous requests per hour
+* Fixed a bug to handle manual installed apps
+
 ### 3.3.1 (2022-11-12)
 
 * Improve generator always set prefix to route, action and schema 
