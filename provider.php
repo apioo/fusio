@@ -71,10 +71,10 @@ return [
         \Fusio\Impl\Provider\User\Google::class,
     ],
     'generator' => [
-        \Fusio\Adapter\File\Generator\FileDirectory::class,
+        \Fusio\Adapter\Sql\Generator\SqlEntity::class,
         \Fusio\Adapter\Sql\Generator\SqlDatabase::class,
         \Fusio\Adapter\Sql\Generator\SqlTable::class,
-        \Fusio\Adapter\Sql\Generator\SqlEntity::class,
+        \Fusio\Adapter\File\Generator\FileDirectory::class,
         \Fusio\Impl\Provider\Generator\OpenAPI::class,
         \Fusio\Impl\Provider\Generator\Postman::class,
         \Fusio\Impl\Provider\Generator\Insomnia::class,
