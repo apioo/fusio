@@ -3,6 +3,7 @@
 
 * Increase default rate limit to 3600 for authenticated and 900 for anonymous requests per hour
 * Fixed a bug to handle manual installed apps
+* Add Import prefix to OpenAPI/Postman/Insomnia generator
 
 ### 3.3.1 (2022-11-12)
 
