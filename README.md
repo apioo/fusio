@@ -16,7 +16,7 @@ following use cases:
   common features like Authorization, Rate-Limiting and Schema-Validation
 * __SPA-Backend__  
   Fusio can be used as backend to build SPAs using popular Javascript-Frameworks like i.e.
-  Angular, React or Vue. It provides a powerful code generate which can automatically
+  Angular, React or Vue. It provides a powerful code generator which can automatically
   generate a SDK for your API
 * __Low-Code-Platform__  
   Fusio allows you to build API endpoints without coding knowledge. I.e. it provides an
@@ -87,9 +87,9 @@ the VSCode editor.
   The cloud service allows you to create a Fusio instance in the cloud. It really simplifies the usage of Fusio since
   you can create and manage an instance through a simple web interface.
 * [APIgen](https://apigen.app/)  
-  APIgen is a code generator tool which allows you to generate code based on Entity or OpenAPI definitions. The tool
-  generates then all routes, schemas and actions. You can then either download or deploy the generated code to a remote
-  instance.
+  APIgen is a code generator tool which allows you to generate code based on a data structure, which you can define
+  at the backend. The tool then we generate based on this data structure a complete API tailored to your use case which
+  you can use to CRUD those entities.
 
 # Installation
 
