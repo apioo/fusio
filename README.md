@@ -87,8 +87,8 @@ the VSCode editor.
   The cloud service allows you to create a Fusio instance in the cloud. It really simplifies the usage of Fusio since
   you can create and manage an instance through a simple web interface.
 * [APIgen](https://apigen.app/)  
-  APIgen is a code generator tool which allows you to generate code based on a data structure, which you can define
-  at the backend. The tool then we generate based on this data structure a complete API tailored to your use case which
+  APIgen is a code generator which allows you to generate code based on a data structure, which you can define
+  at the backend. The tool generates based on this data structure a complete API tailored to your use case which
   you can use to CRUD those entities.
 
 # Installation
