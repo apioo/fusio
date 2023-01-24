@@ -1,5 +1,11 @@
 
-### 3.3.2
+### 3.3.3
+
+* Update schema editor and integrate typehub.cloud platform to easily include a remote schema
+* Update schema library to resolve TypeHub imports
+* Fixed an issue to upgrade older Fusio installations
+
+### 3.3.2 (2022-11-13)
 
 * Increase default rate limit to 3600 for authenticated and 900 for anonymous requests per hour
 * Fixed a bug to handle manual installed apps
