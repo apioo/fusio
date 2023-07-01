@@ -5,35 +5,52 @@
 
 # About
 
-Fusio is an open source API management platform which helps to build and manage REST APIs. It can help you with the
-following use cases:
+Fusio is an open source API management platform which helps to create innovative API solutions. We know that building a
+complete API product is no easy task, because of this we have created Fusio which supports you in every aspect of the
+API life cycle:  
+
+* __Building__  
+  Fusio provides many ways to build new API endpoints, it can proxy existing APIs, directly work with external databases
+  or files and it is also possible to implement custom logic 
+* __Documentation__  
+  Fusio contains a schema store which can be used to describe the request and response payloads of each endpoint. Those
+  schemas are then used to generate i.e. an OpenAPI specification or also client SDKs.
+* __Monetization__  
+  Fusio provides a simple way to monetize your existing API by using an payment provider like Stripe.
+* __Onboarding__  
+  Fusio provides a ready to use developer portal where external developers can register to consume your API.
+* __Integration__  
+  Fusio contains a powerful SDK generator which can automatically generate high quality and ready to use code so that
+  you users can easily consume your API.
+* __Monitoring__  
+  Fusio provides an intuitive backend where you can monitor important aspects of your API.
+
+## Use-Cases
+
+Fusio can help you with the following use cases:
 
 * __API-Product__  
-  Fusio helps you to create a great API product, besides building an API it provides a
-  developer portal where developers can register and a way to monetize your API
+  Fusio helps you to create a great API product, besides building an API it provides a developer portal where developers
+  can register and a way to monetize your API
 * __API-Gateway__  
-  Fusio can be used as gateway to your internal API and microservices. It handles all
-  common features like Authorization, Rate-Limiting and Schema-Validation
+  Fusio can be used as gateway to your internal API and microservices. It handles all common features like
+  Authorization, Rate-Limiting and Schema-Validation
 * __SPA-Backend__  
-  Fusio can be used as backend to build SPAs using popular Javascript-Frameworks like i.e.
-  Angular, React or Vue. It provides a powerful code generator which can automatically
-  generate a SDK for your API
+  Fusio can be used as backend to build SPAs using popular Javascript-Frameworks like i.e. Angular, React or Vue. It
+  provides a powerful code generator which can automatically generate an SDK for your API
 * __Low-Code-Platform__  
-  Fusio allows you to build API endpoints without coding knowledge. I.e. it provides an
-  Entity generator which you can use to easily create complete CRUD APIs.
+  Fusio allows you to build API endpoints without coding knowledge. I.e. it provides an Entity generator which you can
+  use to easily create complete CRUD APIs.
 * __API-Framework__  
-  For more complex use cases you can use Fusio also as framework to build complete APIs
-  from scratch. This means you build custom actions where you can use the wide PHP
-  ecosystem to solve your task
+  For more complex use cases you can use Fusio also as framework to build complete APIs from scratch. This means you
+  build custom actions where you can use the wide PHP ecosystem to solve your task.
 
-## API management and features
+## Features
 
-Fusio is an API management platform where you can configure routes which execute specific actions. An action triggers
-your business logic, it is like a controller in a classical framework, you can also think of it like a serverless lambda
-function, which can be executed on a route call or via RPC. Fusio covers many aspects of the API management life cycle
-so that you can concentrate on writing the actual business logic of your API. Please take a look at our
-[documentation website](https://docs.fusio-project.org/) for more information. The following feature list gives you a
-first overview:
+Fusio is an API management platform where you can configure operations which execute specific actions. An action
+triggers your business logic. Fusio covers many aspects of the API life cycle so that you can concentrate on writing
+the actual business logic of your API. Please take a look at our [documentation website](https://docs.fusio-project.org/)
+for more information. The following feature list gives you a first overview:
 
 * __OpenAPI generation__  
   Fusio generates automatically an OpenAPI specification for the defined routes
@@ -45,8 +62,6 @@ first overview:
   Fusio provides a way to rate limit requests based on the user or app
 * __Authorization__  
   Fusio uses OAuth2 for API authorization
-* __RPC support__  
-  Fusio provides RPC support, every action which you create can be also called via JsonRPC
 * __Monetization__  
   Fusio provides a simple payment system to charge for specific routes
 * __Validation__  
@@ -65,7 +80,7 @@ simple JS apps, which work with the internal API of Fusio. You can see a list of
 `php bin/fusio marketplace:install fusio` or through the backend app.
 
 All apps are installed to the `apps/` folder. You need to tell Fusio the public url to the apps folder at the `.env`
-file by defining the `FUSIO_APPS_URL` variable. Depending on your setup this can be either a custom sub-domain like
+file by defining the `APP_APPS_URL` variable. Depending on your setup this can be either a custom sub-domain like
 `https://apps.acme.com` or simply the sub folder `https://acme.com/apps`.
 
 ## Backend
@@ -83,6 +98,9 @@ the VSCode editor.
 
 # Services
 
+Besides our core open-source product we provide different services to augment the functionality of Fusio. If you are
+interested or you want to support our project please take a look at the following services:
+
 * [Cloud](https://fusio.cloud/)  
   The cloud service allows you to create a Fusio instance in the cloud. It really simplifies the usage of Fusio since
   you can create and manage an instance through a simple web interface.
@@ -90,6 +108,9 @@ the VSCode editor.
   APIgen is a code generator which allows you to generate code based on a data structure, which you can define
   at the backend. The tool generates based on this data structure a complete API tailored to your use case which
   you can use to CRUD those entities.
+* [SDKgen](https://sdkgen.app/)  
+  SDKgen provides an advanced client SDK generator to increase the adoption of your API by providing SDK support for
+  multiple popular programming languages.
 
 # Installation
 
@@ -112,8 +133,8 @@ You can either manually install Fusio with the steps below or you can also use t
 installation.
 
 * __Adjust the configuration file__  
-  Open the file `.env` in the Fusio directory and change the `FUSIO_URL` to the domain pointing to the public folder.
-  Also insert the database credentials to the `FUSIO_DB_*` keys. Optional adjust `FUSIO_APPS_URL` to the public url
+  Open the file `.env` in the Fusio directory and change the `APP_URL` to the domain pointing to the public folder.
+  Also insert the database credentials to the `APP_CONNECTION` keys. Optional adjust `APP_APPS_URL` to the public url
   of the apps folder (in case you want to use apps).
 * __Execute the installation command__  
   The installation script inserts the Fusio database schema into the provided database. It can be executed with the
@@ -125,24 +146,25 @@ installation.
   To manage your API through an admin panel you need to install the backend app. The app can be installed with the
   following command `php bin/fusio marketplace:install fusio`
 
-You can verify the installation by visiting the `FUSIO_URL` with a browser. You should see an API response that the
+You can verify the installation by visiting the `APP_URL` with a browser. You should see an API response that the
 installation was successful.
 
-In case you want to install Fusio on a specific database you need to adjust the `driver` parameter at the
-`configuration.php` file:
+In case you want to install Fusio on a specific database you need to adjust the `APP_CONNECTION` parameter. You can
+use the following connection strings:
 
-* `pdo_mysql`: MySQL
-* `pdo_sqlite`: SQLite
-* `pdo_pgsql`: PostgreSQL
-* `sqlsrv`: Microsoft SQL Server
-* `oci8`: Oracle
-* `sqlanywhere`: SAP Sybase SQL Anywhere
+* MySQL: `pdo-mysql://root:test1234@localhost/fusio`
+* PostgreSQL: `pdo-pgsql://postgres:postgres@localhost/fusio`
+* SQLite: `pdo-sqlite:///fusio.sqlite`
+
+In general it is possible to install Fusio on all database which are [supported](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/configuration.html#driver)
+by our database abstraction layer but our internal test cases are only covering MySQL, PostgreSQL and SQLite so there is
+no guarantee that everything works.
 
 ## Docker
 
-Alternatively it is also possible to setup Fusio through docker. This has the advantage that you automatically get a
-complete running Fusio system without configuration. This is especially great for testing and evaluation. To setup the
-container you have to checkout the [repository](https://github.com/apioo/fusio-docker) and run the following command:
+It is possible to setup Fusio through docker. This has the advantage that you automatically get a complete running Fusio
+system without configuration. This is especially great for testing and evaluation. To setup the container you have to
+checkout the [repository](https://github.com/apioo/fusio-docker) and run the following command:
 
 ```
 docker-compose up -d
@@ -172,8 +194,7 @@ This should give you a first overview about all important repositories which bel
   Contains all Fusio models automatically generated via [TypeSchema](https://typeschema.org/). This repository helps if
   you want to work with the Fusio API since you can use the same model classes which we also use at the backend
 * [Fusio-Engine](https://github.com/apioo/fusio-engine)  
-  Contains mostly interfaces which are also needed by adapters. This repository is very stable and there are few
-  changes
+  Contains mostly interfaces which are also needed by adapters.
 * [Fusio-Adapter](https://www.fusio-project.org/adapter)  
   Page which shows all available adapters. An adapter can extend Fusio by providing i.e. custom Actions or Connections
   to different services. I.e. we have an adapter [MongoDB](http://github.com/apioo/fusio-adapter-mongodb) which helps to
@@ -198,8 +219,8 @@ not limited to coding). The following list shows some ways how you can participa
 ## Developing
 
 If you are a PHP or Javascript developer you can help to improve the system. If you want to create a new feature it is
-in general recommended to create a new issue where we can talk about the feature before you start to hack on it. So
-there are three main components of Fusio:
+in general recommended to create a new issue where we can talk about the feature. There are three main components of
+Fusio:
 
 **[Backend-API](https://github.com/apioo/fusio-impl)**
 
@@ -209,18 +230,18 @@ place to develop new core features and improvements.
 **[Adapter](https://www.fusio-project.org/adapter)**
 
 An adapter is a plugin to the Fusio system which can be used to connect to other remote services. I.e. you could create
-a new adapter which speaks to a specific API or other remote service. This is easy to develop since you can build it in
+a new adapter which speaks to a specific API or other remote services. This is easy to develop since you can build it in
 a separate repository. Please use the keyword `fusio-adapter` in your `composer.json` file so that adapter gets listed
 automatically on our website.
 
 **[Backend-App](https://github.com/apioo/fusio-backend)**
 
-This is the Angular app which is used as GUI to control the backend. It is the main app to improve the Fusio backend.
+This is the Angular app which is used as UI to control the backend. It is the main app to improve the Fusio backend.
 But you are also free to develop new apps for special use cases which talk to the internal API of Fusio.
 
 ## Testing
 
-We have a high PHPUnit test case coverage. Beside this it is always great if users checkout the current master version
+We have a high PHPUnit test case coverage. Besides this it is always great if users checkout the current master version
 of the project and try to test every aspect of the system. In case you have found an issue please report it through the
 issue tracker.
 
