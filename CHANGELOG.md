@@ -1,9 +1,12 @@
 
-### 3.3.3
+### 4.0.0
 
 * Update schema editor and integrate typehub.cloud platform to easily include a remote schema
 * Update schema library to resolve TypeHub imports
 * Fixed an issue to upgrade older Fusio installations
+* Updated the underlying PSX framework to version 7.0
+* Changed license from AGPLv3 to Apache 2.0
+* Upgrade Backend apps to latest Angular 16
 
 ### 3.3.2 (2022-11-13)
 

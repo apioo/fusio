@@ -1,28 +1,11 @@
-# This deploy configuration contains all routes, schemas and connections of the app in simple
-# configuration files which you can then deploy through the following command:
+# The deploy configuration contains all resources of the app in simple configuration files which can be deployed through
+# the following command:
 # > php bin/fusio deploy
-# Through this you can basically persist your API configuration in simple configuration
-# files under GIT and reproduce your Fusio configuration on deployment. The deployment
-# then calls also the internal API to create these resources. To see an example howto use
-# the deployment please take a look at our repository: https://github.com/apioo/fusio-sample-cms
+# Through this you can store your complete app configuration in simple configuration files under GIT and reproduce your
+# Fusio configuration on deployment. The deployment then calls also the internal API to create these resources. To see
+# an example howto use the deployment please take a look at our repository: https://github.com/apioo/fusio-sample-cms
 
-# ------------------------------------------------------------------------------
-# Contains all available routes of the app. Each route reference a yaml file 
-# which defines the request/response schema and the action which gets executed.
-#routes: !include resources/routes.yaml
-
-# ------------------------------------------------------------------------------
-# Optional contains all available schema definitions. Each schema reference a json file
-# which contains a type schema. These schema names can be referenced in a route.
-# You dont need this in case your route directly references a model class.
+#operation: !include resources/operations.yaml
 #schema: !include resources/schemas.yaml
-
-# ------------------------------------------------------------------------------
-# Contains all available connections to remote services i.e. a database or 
-# mongodb connection. These connections can be used inside an action to produce 
-# a response or insert data from a request. 
 #connection: !include resources/connections.yaml
-
-# ------------------------------------------------------------------------------
-# Contains general system settings
 #config: !include resources/config.yaml

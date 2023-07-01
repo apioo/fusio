@@ -1,30 +1,28 @@
 <?php
 /*
- * Fusio
- * A web-application to create dynamically RESTful APIs
+ * Fusio is an open source API management platform which helps to create innovative API solutions.
+ * For the current version and information visit <https://www.fusio-project.org/>
  *
- * Copyright (C) 2015-2020 Christoph Kappestein <christoph.kappestein@gmail.com>
+ * Copyright 2015-2023 Christoph Kappestein <christoph.kappestein@gmail.com>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 
 /**
- * NOTE this installer helps to setup Fusio through a browser. It simply 
- * executes the steps of a manual installation. After successful installation
- * you should delete this installer script
+ * NOTE this installer helps to setup Fusio through a browser. It simply executes the steps of a manual installation.
+ * After successful installation you should delete this installer script
  */
 
 ignore_user_abort(true);
@@ -33,7 +31,7 @@ set_time_limit(0);
 $container = require_once(__DIR__ . '/../container.php');
 $messages  = [];
 
-PSX\Framework\Bootstrap::setupEnvironment($container->get('config'));
+PSX\Framework\Bootstrap::setupEnvironment();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $method = $_GET['method'] ?? '';
@@ -55,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'FUSIO_DB_HOST'     => $_POST['db_host'] ?? '',
             ];
 
-            $return = adjustEnvFile(__DIR__ . '/../.env', $env, $container->get('config'));
+            $return = adjustEnvFile(__DIR__ . '/../.env', $env, $container->get(\PSX\Framework\Config\ConfigInterface::class));
             break;
 
         case 'executeFusioMigration':
@@ -91,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit;
 }
 
-function checkEnv(string $envFile, array $env, \PSX\Framework\Config\Config $config)
+function checkEnv(string $envFile, array $env, \PSX\Framework\Config\ConfigInterface $config)
 {
     // check folder writable
     $appsDir = $config->get('fusio_apps_dir');
@@ -163,7 +161,7 @@ function checkEnv(string $envFile, array $env, \PSX\Framework\Config\Config $con
             alert('warning', 'Could not connect to database');
             return false;
         }
-    } catch (\Doctrine\DBAL\DBALException $e) {
+    } catch (\Doctrine\DBAL\Exception $e) {
         alert('warning', 'Could not connect to database');
         return false;
     }
@@ -231,15 +229,6 @@ function createAdminUser(string $username, string $password, string $email)
         return true;
     }
 
-    try {
-        \Fusio\Impl\Service\User\Validator::assertName($username);
-        \Fusio\Impl\Service\User\Validator::assertPassword($password, 8);
-        \Fusio\Impl\Service\User\Validator::assertEmail($email);
-    } catch (\Exception $e) {
-        alert('warning', $e->getMessage());
-        return false;
-    }
-
     $output = runCommand('adduser', ['--role' => '1', '--username' => $username, '--password' => $password, '--email' => $email], $exitCode);
     if ($exitCode == 0) {
         alert('success', 'Added admin user successful');
@@ -267,7 +256,7 @@ function installBackendApp()
     }
 }
 
-function finishInstall(\PSX\Framework\Config\Config $config)
+function finishInstall(\PSX\Framework\Config\ConfigInterface $config)
 {
     $apiUrl = $config->get('psx_url');
     $appsUrl = $config->get('fusio_apps_url');
@@ -292,7 +281,7 @@ function runCommand($command, array $params, &$exitCode)
     global $container;
 
     /** @var \Symfony\Component\Console\Application $app */
-    $app = $container->get('console');
+    $app = $container->get(\Symfony\Component\Console\Application::class);
     $app->setAutoExit(false);
 
     $input = new \Symfony\Component\Console\Input\ArrayInput(array_merge(['command' => $command], $params));
