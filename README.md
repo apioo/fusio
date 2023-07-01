@@ -138,7 +138,7 @@ installation.
   of the apps folder (in case you want to use apps).
 * __Execute the installation command__  
   The installation script inserts the Fusio database schema into the provided database. It can be executed with the
-  following command `php bin/fusio install`.
+  following command `php bin/fusio migrate`.
 * __Create administrator user__  
   After the installation is complete you have to create a new administrator account. Therefor you can use the following
   command `php bin/fusio adduser`. Choose as account type "Administrator".
