@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
 
         case 'finishInstall':
-            $return = finishInstall($container->get('config'));
+            $return = finishInstall($container->get(\PSX\Framework\Config\ConfigInterface::class));
             break;
 
         default:
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit;
 }
 
-function checkEnv(string $envFile, array $env, \PSX\Framework\Config\ConfigInterface $config)
+function checkEnv(string $envFile, array $env, \PSX\Framework\Config\ConfigInterface $config): bool
 {
     // check folder writable
     $appsDir = $config->get('fusio_apps_dir');
@@ -116,47 +116,24 @@ function checkEnv(string $envFile, array $env, \PSX\Framework\Config\ConfigInter
         return false;
     }
 
-    if (empty($env['FUSIO_PROJECT_KEY'])) {
+    if (empty($env['APP_PROJECT_KEY'])) {
         alert('warning', 'Project key must contain a value');
         return false;
     }
 
-    if (empty($env['FUSIO_HOST'])) {
-        alert('warning', 'Url must contain a host');
-        return false;
-    }
-
-    if (empty($env['FUSIO_URL']) || $env['FUSIO_URL'] === '://${FUSIO_HOST}') {
+    if (empty($env['APP_URL'])) {
         alert('warning', 'Url must contain a value');
         return false;
     }
 
-    if (empty($env['FUSIO_DB_NAME'])) {
-        alert('warning', 'Database name must contain a value');
+    if (empty($env['APP_CONNECTION'])) {
+        alert('warning', 'Database connection must contain a value');
         return false;
     }
-
-    if (empty($env['FUSIO_DB_USER'])) {
-        alert('warning', 'Database user must contain a value');
-        return false;
-    }
-
-    if (empty($env['FUSIO_DB_HOST'])) {
-        alert('warning', 'Database host must contain a value');
-        return false;
-    }
-
-    // check whether we can connect to the db with these credentials
-    $params = [
-        'dbname'   => $env['FUSIO_DB_NAME'],
-        'user'     => $env['FUSIO_DB_USER'],
-        'password' => $env['FUSIO_DB_PW'],
-        'host'     => $env['FUSIO_DB_HOST'],
-        'driver'   => 'pdo_mysql',
-    ];
 
     try {
-        $connection = \Doctrine\DBAL\DriverManager::getConnection($params);
+        $params = (new \Doctrine\DBAL\Tools\DsnParser())->parse($env['APP_CONNECTION']);
+        \Doctrine\DBAL\DriverManager::getConnection($params);
     } catch (\Doctrine\DBAL\Exception $e) {
         alert('warning', 'Could not connect to database');
         return false;
@@ -165,13 +142,13 @@ function checkEnv(string $envFile, array $env, \PSX\Framework\Config\ConfigInter
     return true;
 }
 
-function hasAdmin()
+function hasAdmin(): bool
 {
     runCommand('system:check', ['name' => 'user'], $exitCode);
     return $exitCode === 0;
 }
 
-function adjustEnvFile(string $envFile, array $env, \PSX\Framework\Config\Config $config)
+function adjustEnvFile(string $envFile, array $env, \PSX\Framework\Config\ConfigInterface $config): bool
 {
     if (!checkEnv($envFile, $env, $config)) {
         return false;
@@ -202,12 +179,12 @@ function adjustEnvFile(string $envFile, array $env, \PSX\Framework\Config\Config
     return true;
 }
 
-function escapeQuotedString(string $value)
+function escapeQuotedString(string $value): string
 {
     return str_replace(['"', '$'], ['\\"', '\\$'], $value);
 }
 
-function executeFusioMigration()
+function executeFusioMigration(): bool
 {
     $output = runCommand('migration:migrate', [], $exitCode);
     if ($exitCode === 0) {
@@ -219,7 +196,7 @@ function executeFusioMigration()
     }
 }
 
-function createAdminUser(string $username, string $password, string $email)
+function createAdminUser(string $username, string $password, string $email): bool
 {
     if (hasAdmin()) {
         return true;
@@ -235,7 +212,7 @@ function createAdminUser(string $username, string $password, string $email)
     }
 }
 
-function installBackendApp()
+function installBackendApp(): bool
 {
     if (is_dir(__DIR__ . '/apps/fusio')) {
         alert('success', 'Backend app already installed');
@@ -252,7 +229,7 @@ function installBackendApp()
     }
 }
 
-function finishInstall(\PSX\Framework\Config\ConfigInterface $config)
+function finishInstall(\PSX\Framework\Config\ConfigInterface $config): bool
 {
     $apiUrl = $config->get('psx_url');
     $appsUrl = $config->get('fusio_apps_url');
@@ -272,7 +249,7 @@ TEXT;
     return true;
 }
 
-function runCommand($command, array $params, &$exitCode)
+function runCommand($command, array $params, &$exitCode): string
 {
     global $container;
 
@@ -296,7 +273,7 @@ function runCommand($command, array $params, &$exitCode)
     }
 }
 
-function alert($level, $message)
+function alert(string $level, string $message): void
 {
     global $messages;
 
