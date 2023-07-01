@@ -11,7 +11,7 @@ API life cycle:
 
 * __Building__  
   Fusio provides many ways to build new API endpoints, it can proxy existing APIs, directly work with external databases
-  or files and it is also possible to implement custom logic 
+  or files and it is also possible to implement custom business logic 
 * __Documentation__  
   Fusio contains a schema store which can be used to describe the request and response payloads of each endpoint. Those
   schemas are then used to generate i.e. an OpenAPI specification or also client SDKs.
