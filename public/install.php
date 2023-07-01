@@ -42,15 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $host = parse_url($_POST['url'], PHP_URL_HOST);
             $path = parse_url($_POST['url'], PHP_URL_PATH);
 
+            $dbName = $_POST['db_name'] ?? '';
+            $dbUser = $_POST['db_user'] ?? '';
+            $dbPw = $_POST['db_pw'] ?? '';
+            $dbHost = $_POST['db_host'] ?? '';
+
             $env = [
-                'FUSIO_PROJECT_KEY' => $_POST['key'] ?? '',
-                'FUSIO_HOST'        => $host,
-                'FUSIO_URL'         => $scheme . '://' . $host . $path,
-                'FUSIO_APPS_URL'    => $scheme . '://' . $host . $path . '/apps',
-                'FUSIO_DB_NAME'     => $_POST['db_name'] ?? '',
-                'FUSIO_DB_USER'     => $_POST['db_user'] ?? '',
-                'FUSIO_DB_PW'       => $_POST['db_pw'] ?? '',
-                'FUSIO_DB_HOST'     => $_POST['db_host'] ?? '',
+                'APP_PROJECT_KEY' => $_POST['key'] ?? '',
+                'APP_URL'         => $scheme . '://' . $host . $path,
+                'APP_APPS_URL'    => $scheme . '://' . $host . $path . '/apps',
+                'APP_CONNECTION'  => 'pdo-mysql://' . $dbUser . ':' . $dbPw . '@' . $dbHost . '/' . $dbName,
             ];
 
             $return = adjustEnvFile(__DIR__ . '/../.env', $env, $container->get(\PSX\Framework\Config\ConfigInterface::class));
@@ -156,11 +157,6 @@ function checkEnv(string $envFile, array $env, \PSX\Framework\Config\ConfigInter
 
     try {
         $connection = \Doctrine\DBAL\DriverManager::getConnection($params);
-
-        if (!$connection->ping()) {
-            alert('warning', 'Could not connect to database');
-            return false;
-        }
     } catch (\Doctrine\DBAL\Exception $e) {
         alert('warning', 'Could not connect to database');
         return false;
