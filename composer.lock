@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76a14df388bcbf9fa448de33e34373a6",
+    "content-hash": "6acd9b31b1bf5dc3df8eafa2b6f5aec7",
     "packages": [
         {
             "name": "apache/thrift",
@@ -1624,7 +1624,7 @@
         },
         {
             "name": "fusio/impl",
-            "version": "dev-master",
+            "version": "v7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
@@ -1664,7 +1664,6 @@
                 "phpunit/phpunit": "^9.0",
                 "vimeo/psalm": "^5.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1686,7 +1685,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/master"
+                "source": "https://github.com/apioo/fusio-impl/tree/v7.0.0"
             },
             "funding": [
                 {
@@ -6762,9 +6761,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "fusio/impl": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
