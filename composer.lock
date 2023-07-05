@@ -1486,16 +1486,16 @@
         },
         {
             "name": "fusio/cli",
-            "version": "v3.0.5",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-cli.git",
-                "reference": "f197e02e8278e82b884e8ab89ce44428ace89b2d"
+                "reference": "9c616c39643d15594aa0a0b63db397552ee19b20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/f197e02e8278e82b884e8ab89ce44428ace89b2d",
-                "reference": "f197e02e8278e82b884e8ab89ce44428ace89b2d",
+                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/9c616c39643d15594aa0a0b63db397552ee19b20",
+                "reference": "9c616c39643d15594aa0a0b63db397552ee19b20",
                 "shasum": ""
             },
             "require": {
@@ -1534,7 +1534,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-cli/issues",
-                "source": "https://github.com/apioo/fusio-cli/tree/v3.0.5"
+                "source": "https://github.com/apioo/fusio-cli/tree/v3.0.6"
             },
             "funding": [
                 {
@@ -1550,7 +1550,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-01T10:19:07+00:00"
+            "time": "2023-07-02T08:32:33+00:00"
         },
         {
             "name": "fusio/engine",
@@ -1624,16 +1624,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v7.0.0",
+            "version": "v7.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "d5472aca6693ddf3b10ab0e1129c2999239898f8"
+                "reference": "7884451f4d6a80bab6aa30619048cc01d80f3d89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/d5472aca6693ddf3b10ab0e1129c2999239898f8",
-                "reference": "d5472aca6693ddf3b10ab0e1129c2999239898f8",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/7884451f4d6a80bab6aa30619048cc01d80f3d89",
+                "reference": "7884451f4d6a80bab6aa30619048cc01d80f3d89",
                 "shasum": ""
             },
             "require": {
@@ -1685,7 +1685,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v7.0.0"
+                "source": "https://github.com/apioo/fusio-impl/tree/v7.0.2"
             },
             "funding": [
                 {
@@ -1701,7 +1701,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-01T11:32:39+00:00"
+            "time": "2023-07-05T20:19:13+00:00"
         },
         {
             "name": "fusio/model",
@@ -2614,16 +2614,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.22.0",
+            "version": "1.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "ec58baf7b3c7f1c81b3b00617c953249fb8cf30c"
+                "reference": "65c39594fbd8c67abfc68bb323f86447bab79cc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/ec58baf7b3c7f1c81b3b00617c953249fb8cf30c",
-                "reference": "ec58baf7b3c7f1c81b3b00617c953249fb8cf30c",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/65c39594fbd8c67abfc68bb323f86447bab79cc0",
+                "reference": "65c39594fbd8c67abfc68bb323f86447bab79cc0",
                 "shasum": ""
             },
             "require": {
@@ -2655,9 +2655,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.22.0"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.22.1"
             },
-            "time": "2023-06-01T12:35:21+00:00"
+            "time": "2023-06-29T20:46:06+00:00"
         },
         {
             "name": "psr/cache",
@@ -3424,16 +3424,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v7.3.0",
+            "version": "v7.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "7ba99609b3d78a631811708970b19e65d0432e35"
+                "reference": "d3a4ff00d0c4404f066f91fc7a4ebeeb22770b56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/7ba99609b3d78a631811708970b19e65d0432e35",
-                "reference": "7ba99609b3d78a631811708970b19e65d0432e35",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/d3a4ff00d0c4404f066f91fc7a4ebeeb22770b56",
+                "reference": "d3a4ff00d0c4404f066f91fc7a4ebeeb22770b56",
                 "shasum": ""
             },
             "require": {
@@ -3493,7 +3493,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-framework/issues",
-                "source": "https://github.com/apioo/psx-framework/tree/v7.3.0"
+                "source": "https://github.com/apioo/psx-framework/tree/v7.3.1"
             },
             "funding": [
                 {
@@ -3509,7 +3509,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-06-17T15:59:24+00:00"
+            "time": "2023-07-02T08:08:30+00:00"
         },
         {
             "name": "psx/http",
