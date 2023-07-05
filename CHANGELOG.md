@@ -1,12 +1,13 @@
 
 ### 4.0.0
 
-* Update schema editor and integrate typehub.cloud platform to easily include a remote schema
-* Update schema library to resolve TypeHub imports
-* Fixed an issue to upgrade older Fusio installations
+* Transition from routes to operations
+* Use the Symfony DI container to manage all dependencies
 * Updated the underlying PSX framework to version 7.0
 * Changed license from AGPLv3 to Apache 2.0
-* Upgrade Backend apps to latest Angular 16
+* Upgrade backend apps to latest Angular 16
+* Option to support multiple action types
+* The "install" command was replaced by the "migrate" command
 
 ### 3.3.2 (2022-11-13)
 
