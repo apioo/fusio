@@ -85,7 +85,7 @@ file by defining the `APP_APPS_URL` variable. Depending on your setup this can b
 
 ## Backend
 
-![Backend](https://www.fusio-project.org/media/backend/routes.png)
+![Backend](https://www.fusio-project.org/media/backend/dashboard.png)
 
 The backend app is the main app to configure and manage your API. The installer automatically installs this app. The app
 is located at `/apps/fusio/`.
