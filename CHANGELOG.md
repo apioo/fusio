@@ -8,6 +8,7 @@
 * Upgrade backend apps to latest Angular 16
 * Option to support multiple action types
 * The "install" command was replaced by the "migrate" command
+* Require PHP 8.1 as minimum version
 
 ### 3.3.2 (2022-11-13)
 
