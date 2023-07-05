@@ -1,6 +1,7 @@
 {
   "name": "fusio/fusio",
   "description": "Fusio project",
+  "type": "project",
   "homepage": "https://www.fusio-project.org",
   "license": "Apache-2.0",
   "authors": [
