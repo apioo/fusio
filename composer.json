@@ -11,6 +11,26 @@
       "homepage": "https://chrisk.app"
     }
   ],
+  "support": {
+    "issues": "https://github.com/apioo/fusio/issues",
+    "source": "https://github.com/apioo/fusio",
+    "docs": "https://docs.fusio-project.org/",
+    "chat": "https://discord.gg/xjZQbZ3J"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/chriskapp"
+    },
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/fusio"
+    },
+    {
+      "type": "paypal",
+      "url": "https://www.paypal.me/fusioapi"
+    }
+  ],
   "require": {
     "php": ">=8.1",
     "fusio/impl": "^7.0"
