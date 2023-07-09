@@ -52,7 +52,7 @@ return [
 
     // Location where the apps are persisted from the marketplace. By default this is the public dir to access the apps
     // directly, but it is also possible to specify a different folder
-    'fusio_apps_dir'          => __DIR__ . '/apps',
+    'fusio_apps_dir'          => __DIR__ . '/public/apps',
 
     // The url to the psx public folder (i.e. http://api.acme.com or http://127.0.0.1/psx/public)
     'psx_url'                 => env('APP_URL')->string(),
