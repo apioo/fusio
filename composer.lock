@@ -768,16 +768,16 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v6.8.0",
+            "version": "v6.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "48b0210c51718d682e53210c24d25c5a10a2299b"
+                "reference": "5dbc8959427416b8ee09a100d7a8588c00fb2e26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/48b0210c51718d682e53210c24d25c5a10a2299b",
-                "reference": "48b0210c51718d682e53210c24d25c5a10a2299b",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/5dbc8959427416b8ee09a100d7a8588c00fb2e26",
+                "reference": "5dbc8959427416b8ee09a100d7a8588c00fb2e26",
                 "shasum": ""
             },
             "require": {
@@ -825,22 +825,22 @@
             ],
             "support": {
                 "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/v6.8.0"
+                "source": "https://github.com/firebase/php-jwt/tree/v6.8.1"
             },
-            "time": "2023-06-20T16:45:35+00:00"
+            "time": "2023-07-14T18:33:00+00:00"
         },
         {
             "name": "fusio/adapter-cli",
-            "version": "v6.0.3",
+            "version": "v6.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-cli.git",
-                "reference": "b119391bb0faa644eb6fe55127f29824b39b4885"
+                "reference": "42a1b682eaf9fee91f18591506f09bcedadff814"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-cli/zipball/b119391bb0faa644eb6fe55127f29824b39b4885",
-                "reference": "b119391bb0faa644eb6fe55127f29824b39b4885",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-cli/zipball/42a1b682eaf9fee91f18591506f09bcedadff814",
+                "reference": "42a1b682eaf9fee91f18591506f09bcedadff814",
                 "shasum": ""
             },
             "require": {
@@ -860,7 +860,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL-3.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -876,7 +876,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-cli/issues",
-                "source": "https://github.com/apioo/fusio-adapter-cli/tree/v6.0.3"
+                "source": "https://github.com/apioo/fusio-adapter-cli/tree/v6.0.4"
             },
             "funding": [
                 {
@@ -892,20 +892,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-06-25T21:35:29+00:00"
+            "time": "2023-07-15T17:38:32+00:00"
         },
         {
             "name": "fusio/adapter-fcgi",
-            "version": "v6.0.4",
+            "version": "v6.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-fcgi.git",
-                "reference": "c29f6ac5c0156f1e672316fa38650214e1830183"
+                "reference": "987250b1847f13428a7625709b1b2b17f2ec2897"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-fcgi/zipball/c29f6ac5c0156f1e672316fa38650214e1830183",
-                "reference": "c29f6ac5c0156f1e672316fa38650214e1830183",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-fcgi/zipball/987250b1847f13428a7625709b1b2b17f2ec2897",
+                "reference": "987250b1847f13428a7625709b1b2b17f2ec2897",
                 "shasum": ""
             },
             "require": {
@@ -925,7 +925,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL-3.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -941,7 +941,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-fcgi/issues",
-                "source": "https://github.com/apioo/fusio-adapter-fcgi/tree/v6.0.4"
+                "source": "https://github.com/apioo/fusio-adapter-fcgi/tree/v6.0.5"
             },
             "funding": [
                 {
@@ -957,20 +957,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-06-26T17:25:06+00:00"
+            "time": "2023-07-15T17:38:31+00:00"
         },
         {
             "name": "fusio/adapter-file",
-            "version": "v6.0.8",
+            "version": "v6.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-file.git",
-                "reference": "7f6cec76bf8ae0495dc23aa159867adfecdaf91e"
+                "reference": "5e5cf4fee161c7146f2839e5f17f6614f142a59a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-file/zipball/7f6cec76bf8ae0495dc23aa159867adfecdaf91e",
-                "reference": "7f6cec76bf8ae0495dc23aa159867adfecdaf91e",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-file/zipball/5e5cf4fee161c7146f2839e5f17f6614f142a59a",
+                "reference": "5e5cf4fee161c7146f2839e5f17f6614f142a59a",
                 "shasum": ""
             },
             "require": {
@@ -993,7 +993,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL-3.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -1009,7 +1009,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-file/issues",
-                "source": "https://github.com/apioo/fusio-adapter-file/tree/v6.0.8"
+                "source": "https://github.com/apioo/fusio-adapter-file/tree/v6.0.9"
             },
             "funding": [
                 {
@@ -1025,20 +1025,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-06-29T18:46:02+00:00"
+            "time": "2023-07-15T17:38:29+00:00"
         },
         {
             "name": "fusio/adapter-graphql",
-            "version": "v6.0.3",
+            "version": "v6.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-graphql.git",
-                "reference": "78117bc32382ce996d36f28ec81ad589d37aa02a"
+                "reference": "ab0784ab1f122c1abec4ff07f9f3a4f1a0614468"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-graphql/zipball/78117bc32382ce996d36f28ec81ad589d37aa02a",
-                "reference": "78117bc32382ce996d36f28ec81ad589d37aa02a",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-graphql/zipball/ab0784ab1f122c1abec4ff07f9f3a4f1a0614468",
+                "reference": "ab0784ab1f122c1abec4ff07f9f3a4f1a0614468",
                 "shasum": ""
             },
             "require": {
@@ -1058,7 +1058,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL-3.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -1074,7 +1074,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-graphql/issues",
-                "source": "https://github.com/apioo/fusio-adapter-graphql/tree/v6.0.3"
+                "source": "https://github.com/apioo/fusio-adapter-graphql/tree/v6.0.4"
             },
             "funding": [
                 {
@@ -1090,20 +1090,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-06-25T21:35:27+00:00"
+            "time": "2023-07-15T17:38:26+00:00"
         },
         {
             "name": "fusio/adapter-http",
-            "version": "v6.0.4",
+            "version": "v6.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-http.git",
-                "reference": "c554463c377f30e20a2d4d2e18dbf9e81038911f"
+                "reference": "78dd155be0c9ca0c712dda6ffe82db37e2d6ea84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/c554463c377f30e20a2d4d2e18dbf9e81038911f",
-                "reference": "c554463c377f30e20a2d4d2e18dbf9e81038911f",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/78dd155be0c9ca0c712dda6ffe82db37e2d6ea84",
+                "reference": "78dd155be0c9ca0c712dda6ffe82db37e2d6ea84",
                 "shasum": ""
             },
             "require": {
@@ -1123,7 +1123,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL-3.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -1139,7 +1139,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-http/issues",
-                "source": "https://github.com/apioo/fusio-adapter-http/tree/v6.0.4"
+                "source": "https://github.com/apioo/fusio-adapter-http/tree/v6.0.5"
             },
             "funding": [
                 {
@@ -1155,20 +1155,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-06-26T17:04:05+00:00"
+            "time": "2023-07-15T17:38:28+00:00"
         },
         {
             "name": "fusio/adapter-php",
-            "version": "v6.0.3",
+            "version": "v6.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-php.git",
-                "reference": "8e30366c967b6235dc85acae77a2b5918e9a4afc"
+                "reference": "00aabeecb3716684dd6cfc0ddbb38a212487a2bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/8e30366c967b6235dc85acae77a2b5918e9a4afc",
-                "reference": "8e30366c967b6235dc85acae77a2b5918e9a4afc",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-php/zipball/00aabeecb3716684dd6cfc0ddbb38a212487a2bf",
+                "reference": "00aabeecb3716684dd6cfc0ddbb38a212487a2bf",
                 "shasum": ""
             },
             "require": {
@@ -1188,7 +1188,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL-3.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -1204,7 +1204,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-php/issues",
-                "source": "https://github.com/apioo/fusio-adapter-php/tree/v6.0.3"
+                "source": "https://github.com/apioo/fusio-adapter-php/tree/v6.0.4"
             },
             "funding": [
                 {
@@ -1220,20 +1220,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-06-26T17:38:13+00:00"
+            "time": "2023-07-15T17:38:32+00:00"
         },
         {
             "name": "fusio/adapter-smtp",
-            "version": "v6.0.1",
+            "version": "v6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-smtp.git",
-                "reference": "b70ef63bb338812221d8c3b833b9369d47e0c402"
+                "reference": "5133ab9ecf56fd8dadaac96374291e3fb2708143"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-smtp/zipball/b70ef63bb338812221d8c3b833b9369d47e0c402",
-                "reference": "b70ef63bb338812221d8c3b833b9369d47e0c402",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-smtp/zipball/5133ab9ecf56fd8dadaac96374291e3fb2708143",
+                "reference": "5133ab9ecf56fd8dadaac96374291e3fb2708143",
                 "shasum": ""
             },
             "require": {
@@ -1253,7 +1253,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL-3.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -1269,7 +1269,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-smtp/issues",
-                "source": "https://github.com/apioo/fusio-adapter-smtp/tree/v6.0.1"
+                "source": "https://github.com/apioo/fusio-adapter-smtp/tree/v6.0.2"
             },
             "funding": [
                 {
@@ -1285,20 +1285,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-05-21T08:38:16+00:00"
+            "time": "2023-07-15T17:38:29+00:00"
         },
         {
             "name": "fusio/adapter-soap",
-            "version": "v6.0.1",
+            "version": "v6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-soap.git",
-                "reference": "cd360fefa826840a5c24a1d10a83ac0df6910a5e"
+                "reference": "e4e9f345e4345f438b7989c9154fc013813e0cf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-soap/zipball/cd360fefa826840a5c24a1d10a83ac0df6910a5e",
-                "reference": "cd360fefa826840a5c24a1d10a83ac0df6910a5e",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-soap/zipball/e4e9f345e4345f438b7989c9154fc013813e0cf9",
+                "reference": "e4e9f345e4345f438b7989c9154fc013813e0cf9",
                 "shasum": ""
             },
             "require": {
@@ -1318,7 +1318,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL-3.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -1334,7 +1334,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-soap/issues",
-                "source": "https://github.com/apioo/fusio-adapter-soap/tree/v6.0.1"
+                "source": "https://github.com/apioo/fusio-adapter-soap/tree/v6.0.2"
             },
             "funding": [
                 {
@@ -1350,20 +1350,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-05-21T08:38:14+00:00"
+            "time": "2023-07-15T17:38:29+00:00"
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v6.1.0",
+            "version": "v6.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
-                "reference": "e7a253bd93e7fd51e45d7f68b1d0c000f2da0920"
+                "reference": "739ebf14c85b47270ef4efe5d6c7b7c08943775a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/e7a253bd93e7fd51e45d7f68b1d0c000f2da0920",
-                "reference": "e7a253bd93e7fd51e45d7f68b1d0c000f2da0920",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/739ebf14c85b47270ef4efe5d6c7b7c08943775a",
+                "reference": "739ebf14c85b47270ef4efe5d6c7b7c08943775a",
                 "shasum": ""
             },
             "require": {
@@ -1384,7 +1384,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL-3.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -1400,7 +1400,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-sql/issues",
-                "source": "https://github.com/apioo/fusio-adapter-sql/tree/v6.1.0"
+                "source": "https://github.com/apioo/fusio-adapter-sql/tree/v6.1.3"
             },
             "funding": [
                 {
@@ -1416,20 +1416,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-01T10:40:26+00:00"
+            "time": "2023-07-15T17:38:31+00:00"
         },
         {
             "name": "fusio/adapter-util",
-            "version": "v6.0.2",
+            "version": "v6.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-util.git",
-                "reference": "345b4ace35257fcaef027b474bfe42c0888deb9e"
+                "reference": "db5bcb7ca9644f90465751af96eb56ff5cbf6ecf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/345b4ace35257fcaef027b474bfe42c0888deb9e",
-                "reference": "345b4ace35257fcaef027b474bfe42c0888deb9e",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/db5bcb7ca9644f90465751af96eb56ff5cbf6ecf",
+                "reference": "db5bcb7ca9644f90465751af96eb56ff5cbf6ecf",
                 "shasum": ""
             },
             "require": {
@@ -1450,7 +1450,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL-3.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -1466,7 +1466,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-util/issues",
-                "source": "https://github.com/apioo/fusio-adapter-util/tree/v6.0.2"
+                "source": "https://github.com/apioo/fusio-adapter-util/tree/v6.0.4"
             },
             "funding": [
                 {
@@ -1482,7 +1482,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-06-24T18:32:43+00:00"
+            "time": "2023-07-15T17:38:28+00:00"
         },
         {
             "name": "fusio/cli",
@@ -1554,16 +1554,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v6.2.4",
+            "version": "v6.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "f9e48d759c3b9c0f9896119d6182e76fbe190284"
+                "reference": "be7ab1aac22dbaf107cfe9a249cc65ed9611a933"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/f9e48d759c3b9c0f9896119d6182e76fbe190284",
-                "reference": "f9e48d759c3b9c0f9896119d6182e76fbe190284",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/be7ab1aac22dbaf107cfe9a249cc65ed9611a933",
+                "reference": "be7ab1aac22dbaf107cfe9a249cc65ed9611a933",
                 "shasum": ""
             },
             "require": {
@@ -1604,7 +1604,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-engine/issues",
-                "source": "https://github.com/apioo/fusio-engine/tree/v6.2.4"
+                "source": "https://github.com/apioo/fusio-engine/tree/v6.2.5"
             },
             "funding": [
                 {
@@ -1620,20 +1620,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-06-29T19:51:15+00:00"
+            "time": "2023-07-15T17:05:33+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v7.0.3",
+            "version": "v7.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "bd24e67f943c5fde5a92a64ce140fa2ed496b60f"
+                "reference": "7c919042efe7963fdff144c544b249f7ba68fd17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/bd24e67f943c5fde5a92a64ce140fa2ed496b60f",
-                "reference": "bd24e67f943c5fde5a92a64ce140fa2ed496b60f",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/7c919042efe7963fdff144c544b249f7ba68fd17",
+                "reference": "7c919042efe7963fdff144c544b249f7ba68fd17",
                 "shasum": ""
             },
             "require": {
@@ -1685,7 +1685,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v7.0.3"
+                "source": "https://github.com/apioo/fusio-impl/tree/v7.0.4"
             },
             "funding": [
                 {
@@ -1701,7 +1701,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-09T09:45:13+00:00"
+            "time": "2023-07-15T19:15:18+00:00"
         },
         {
             "name": "fusio/model",
@@ -3424,16 +3424,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v7.3.3",
+            "version": "v7.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "e0ca16d180835d6893c9c7b146e4891c38baad28"
+                "reference": "f41233be8d4c84a5c00be1e23aeaa6922d0502d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/e0ca16d180835d6893c9c7b146e4891c38baad28",
-                "reference": "e0ca16d180835d6893c9c7b146e4891c38baad28",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/f41233be8d4c84a5c00be1e23aeaa6922d0502d1",
+                "reference": "f41233be8d4c84a5c00be1e23aeaa6922d0502d1",
                 "shasum": ""
             },
             "require": {
@@ -3493,7 +3493,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-framework/issues",
-                "source": "https://github.com/apioo/psx-framework/tree/v7.3.3"
+                "source": "https://github.com/apioo/psx-framework/tree/v7.3.5"
             },
             "funding": [
                 {
@@ -3509,7 +3509,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-09T19:11:29+00:00"
+            "time": "2023-07-15T19:12:46+00:00"
         },
         {
             "name": "psx/http",
