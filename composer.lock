@@ -1486,16 +1486,16 @@
         },
         {
             "name": "fusio/cli",
-            "version": "v3.0.6",
+            "version": "v3.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-cli.git",
-                "reference": "9c616c39643d15594aa0a0b63db397552ee19b20"
+                "reference": "d8313afd7423c92ddb29b4f9d62eb53363ea71f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/9c616c39643d15594aa0a0b63db397552ee19b20",
-                "reference": "9c616c39643d15594aa0a0b63db397552ee19b20",
+                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/d8313afd7423c92ddb29b4f9d62eb53363ea71f0",
+                "reference": "d8313afd7423c92ddb29b4f9d62eb53363ea71f0",
                 "shasum": ""
             },
             "require": {
@@ -1534,7 +1534,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-cli/issues",
-                "source": "https://github.com/apioo/fusio-cli/tree/v3.0.6"
+                "source": "https://github.com/apioo/fusio-cli/tree/v3.0.7"
             },
             "funding": [
                 {
@@ -1550,7 +1550,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-02T08:32:33+00:00"
+            "time": "2023-07-16T19:12:46+00:00"
         },
         {
             "name": "fusio/engine",
