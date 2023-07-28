@@ -1624,16 +1624,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v7.1.2",
+            "version": "v7.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "4cfe57bd0742daa7c85ad1ef54b46f1ae69400db"
+                "reference": "3e7b643f8ae53805b4a61a9636af9dfc9c1bc194"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/4cfe57bd0742daa7c85ad1ef54b46f1ae69400db",
-                "reference": "4cfe57bd0742daa7c85ad1ef54b46f1ae69400db",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/3e7b643f8ae53805b4a61a9636af9dfc9c1bc194",
+                "reference": "3e7b643f8ae53805b4a61a9636af9dfc9c1bc194",
                 "shasum": ""
             },
             "require": {
@@ -1685,7 +1685,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v7.1.2"
+                "source": "https://github.com/apioo/fusio-impl/tree/v7.1.3"
             },
             "funding": [
                 {
@@ -1701,7 +1701,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-25T21:15:07+00:00"
+            "time": "2023-07-28T17:26:22+00:00"
         },
         {
             "name": "fusio/model",
@@ -6630,16 +6630,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.6.1",
+            "version": "v3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "7e7d5839d4bec168dfeef0ac66d5c5a2edbabffd"
+                "reference": "5cf942bbab3df42afa918caeba947f1b690af64b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/7e7d5839d4bec168dfeef0ac66d5c5a2edbabffd",
-                "reference": "7e7d5839d4bec168dfeef0ac66d5c5a2edbabffd",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/5cf942bbab3df42afa918caeba947f1b690af64b",
+                "reference": "5cf942bbab3df42afa918caeba947f1b690af64b",
                 "shasum": ""
             },
             "require": {
@@ -6685,7 +6685,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.6.1"
+                "source": "https://github.com/twigphp/Twig/tree/v3.7.0"
             },
             "funding": [
                 {
@@ -6697,7 +6697,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-06-08T12:52:13+00:00"
+            "time": "2023-07-26T07:16:09+00:00"
         },
         {
             "name": "webmozart/assert",
