@@ -96,21 +96,21 @@ Fusio provides a [VSCode extension](https://marketplace.visualstudio.com/items?i
 which can be used to simplify action development. This means you can develop every action directly inside
 the VSCode editor.
 
-# Services
+# Ecosystem
 
-Besides our core open-source product we provide different services to augment the functionality of Fusio. If you are
-interested or you want to support our project please take a look at the following services:
+Fusio is an open source project which you can use freely for private and commercial projects under the terms of the
+Apache 2.0 license. Besides our core product we offer additional services to augment the functionality of Fusio.
 
-* [Cloud](https://fusio.cloud/)  
-  The cloud service allows you to create a Fusio instance in the cloud. It really simplifies the usage of Fusio since
-  you can create and manage an instance through a simple web interface.
+* [TypeAPI](https://typeapi.org/)  
+  An OpenAPI alternative to describe REST APIs for type-safe code generation.
+* [TypeSchema](https://typeschema.org/)  
+  A JSON format to describe data models in a language neutral format.
+* [TypeHub](https://typehub.cloud/)  
+  A collaborative platform to design and build API models and client SDKs.
 * [APIgen](https://apigen.app/)  
-  APIgen is a code generator which allows you to generate code based on a data structure, which you can define
-  at the backend. The tool generates based on this data structure a complete API tailored to your use case which
-  you can use to CRUD those entities.
-* [SDKgen](https://sdkgen.app/)  
-  SDKgen provides an advanced client SDK generator to increase the adoption of your API by providing SDK support for
-  multiple popular programming languages.
+  Generate fully working and customizable APIs based on your data model.
+* [PSX](https://phpsx.org/)  
+  An innovative PHP framework dedicated to build fully typed REST APIs.
 
 # Installation
 
@@ -173,6 +173,23 @@ docker-compose up -d
 This builds the Fusio system with a predefined backend account. The credentials are taken from the env variables
 `FUSIO_BACKEND_USER`, `FUSIO_BACKEND_EMAIL` and `FUSIO_BACKEND_PW` in the `docker-compose.yml`. If you are planing to
 run the container on the internet you must change these credentials.
+
+## Domains
+
+By default the complete Fusio project can be hosted on a single domain. In this setup your API is served at the root
+directory and the developer portal and backend apps are directly served from the /apps folder. This setup is easy to use
+since it requires no configuration. If you want to run Fusio in a production environment we recommend to create the
+following sub-domain structure:
+
+* __api.acme.com__  
+  Contains only Fusio where your API is served, in this case you can delete the apps/ folder from the public/ folder
+* __developer.acme.com__  
+  Contains the developer portal app where external developers can register 
+* __fusio.acme.com__  
+  Optional the backend app where you can manage your Fusio instance. You can host this also on a complete separate
+  internal domain, the backend app only needs access to the Fusio API.
+
+This is of course only a suggestion and you are free to choose the domain names how you like.
 
 # Documentation
 

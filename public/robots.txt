@@ -1,0 +1,5 @@
+# By default we disallow all crawler since Fusio is an API management system which provides an REST API. The apps in the
+# apps/ folder are mostly for internal use. If you want to expose your developer portal to the public then it is
+# recommended to create a dedicated sub-domain for the portal i.e. developer.acme.com
+User-agent: *
+Disallow: /
