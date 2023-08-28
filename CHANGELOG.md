@@ -1,5 +1,11 @@
 
-### 4.0.0
+### 4.0.1
+
+* Improved Passthru handing for file uploads
+* Add new model SDK generator
+* Add default robots.txt
+
+### 4.0.0 (2023-07-30)
 
 * Transition from routes to operations
 * Use the Symfony DI container to manage all dependencies
