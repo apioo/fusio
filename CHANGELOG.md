@@ -4,6 +4,8 @@
 * Improved Passthru handing for file uploads
 * Add new model SDK generator
 * Add default robots.txt
+* Updated TypeSchema editor
+* Updated backend and developer app dependencies
 
 ### 4.0.0 (2023-07-30)
 
