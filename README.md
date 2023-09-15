@@ -214,3 +214,11 @@ functionality and answer your questions.
 
 If this project helps you to generate revenue or in general if you like to support the project please check out the
 donation options at our repository.
+
+## Supporter
+
+Thanks to [JetBrains](https://www.jetbrains.com/) for supporting our project.
+
+<a href="https://www.jetbrains.com/community/opensource/">
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg">
+</a>
