@@ -217,8 +217,8 @@ donation options at our repository.
 
 ## Supporter
 
-Thanks to [JetBrains](https://www.jetbrains.com/) for supporting our project.
+Thanks to JetBrains for supporting our project.
 
-<a href="https://www.jetbrains.com/community/opensource/">
+<a href="https://jb.gg/OpenSourceSupport">
 <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg">
 </a>
