@@ -1,5 +1,12 @@
 
-### 4.0.1
+### 4.0.2
+
+* Implemented symfony/messenger to support async work queues
+* Improved client SDK grouping
+* Added composite app filter
+* Change migration execution order to always execute the internal Fusio migration and then the App migrations
+
+### 4.0.1 (2023-08-31)
 
 * Improved Passthru handing for file uploads
 * Add new model SDK generator
