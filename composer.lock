@@ -1625,16 +1625,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v7.2.0",
+            "version": "v7.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "42be44c093c13aeebfc1e24833905280bc929e2e"
+                "reference": "c3c48200814b50fe79abfd2c65606e42a8c2ff46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/42be44c093c13aeebfc1e24833905280bc929e2e",
-                "reference": "42be44c093c13aeebfc1e24833905280bc929e2e",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/c3c48200814b50fe79abfd2c65606e42a8c2ff46",
+                "reference": "c3c48200814b50fe79abfd2c65606e42a8c2ff46",
                 "shasum": ""
             },
             "require": {
@@ -1658,10 +1658,8 @@
                 "psx/cloudevents": "^1.0",
                 "psx/framework": "^7.1",
                 "psx/openssl": "^2.0",
-                "symfony/doctrine-messenger": "^6.0",
                 "symfony/filesystem": "^6.0",
-                "symfony/mailer": "^6.0",
-                "symfony/messenger": "^6.0"
+                "symfony/mailer": "^6.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.0",
@@ -1688,7 +1686,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v7.2.0"
+                "source": "https://github.com/apioo/fusio-impl/tree/v7.2.1"
             },
             "funding": [
                 {
@@ -1704,7 +1702,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-09-22T19:46:31+00:00"
+            "time": "2023-09-23T08:04:52+00:00"
         },
         {
             "name": "fusio/model",
