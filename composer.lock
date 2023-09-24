@@ -1625,16 +1625,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v7.2.1",
+            "version": "v7.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "c3c48200814b50fe79abfd2c65606e42a8c2ff46"
+                "reference": "f664e8a1f09b53feb37370f448eb28f827925276"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/c3c48200814b50fe79abfd2c65606e42a8c2ff46",
-                "reference": "c3c48200814b50fe79abfd2c65606e42a8c2ff46",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/f664e8a1f09b53feb37370f448eb28f827925276",
+                "reference": "f664e8a1f09b53feb37370f448eb28f827925276",
                 "shasum": ""
             },
             "require": {
@@ -1686,7 +1686,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v7.2.1"
+                "source": "https://github.com/apioo/fusio-impl/tree/v7.2.2"
             },
             "funding": [
                 {
@@ -1702,7 +1702,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-09-23T08:04:52+00:00"
+            "time": "2023-09-24T01:00:15+00:00"
         },
         {
             "name": "fusio/model",
@@ -2864,16 +2864,16 @@
         },
         {
             "name": "psr/http-client",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-client.git",
-                "reference": "0955afe48220520692d2d09f7ab7e0f93ffd6a31"
+                "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-client/zipball/0955afe48220520692d2d09f7ab7e0f93ffd6a31",
-                "reference": "0955afe48220520692d2d09f7ab7e0f93ffd6a31",
+                "url": "https://api.github.com/repos/php-fig/http-client/zipball/bb5906edc1c324c9a05aa0873d40117941e5fa90",
+                "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90",
                 "shasum": ""
             },
             "require": {
@@ -2910,9 +2910,9 @@
                 "psr-18"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-client/tree/1.0.2"
+                "source": "https://github.com/php-fig/http-client"
             },
-            "time": "2023-04-10T20:12:12+00:00"
+            "time": "2023-09-23T14:17:50+00:00"
         },
         {
             "name": "psr/http-factory",
@@ -4151,16 +4151,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v5.1.7",
+            "version": "v5.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "cc00a24231723cd7026589caac99ca1070fde1cc"
+                "reference": "0014e3a859b30c03dd04becb7f87d411968b2e93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/cc00a24231723cd7026589caac99ca1070fde1cc",
-                "reference": "cc00a24231723cd7026589caac99ca1070fde1cc",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/0014e3a859b30c03dd04becb7f87d411968b2e93",
+                "reference": "0014e3a859b30c03dd04becb7f87d411968b2e93",
                 "shasum": ""
             },
             "require": {
@@ -4212,7 +4212,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-schema/issues",
-                "source": "https://github.com/apioo/psx-schema/tree/v5.1.7"
+                "source": "https://github.com/apioo/psx-schema/tree/v5.1.9"
             },
             "funding": [
                 {
@@ -4228,7 +4228,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-09-03T20:42:40+00:00"
+            "time": "2023-09-23T23:25:19+00:00"
         },
         {
             "name": "psx/sql",
