@@ -1,6 +1,8 @@
 
 ### 4.0.3
 
+* Fix backend sdk download button
+* OAuth2 endpoint use seconds for "expires_in" instead of unix timestamp
 * Add sdkgen integration
 
 ### 4.0.2 (2023-09-23)
