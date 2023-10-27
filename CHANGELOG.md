@@ -1,5 +1,9 @@
 
-### 4.0.2
+### 4.0.3
+
+* Add sdkgen integration
+
+### 4.0.2 (2023-09-23)
 
 * Implemented symfony/messenger to support async work queues
 * Improved client SDK grouping
