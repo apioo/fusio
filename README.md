@@ -107,6 +107,8 @@ Apache 2.0 license. Besides our core product we offer additional services to aug
   A JSON format to describe data models in a language neutral format.
 * [TypeHub](https://typehub.cloud/)  
   A collaborative platform to design and build API models and client SDKs.
+* [SDKgen](https://sdkgen.app/)  
+  SDKgen is a powerful code generator to automatically build client SDKs for your REST API.
 * [APIgen](https://apigen.app/)  
   Generate fully working and customizable APIs based on your data model.
 * [PSX](https://phpsx.org/)  
