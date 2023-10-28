@@ -1625,16 +1625,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v7.2.2",
+            "version": "v7.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "f664e8a1f09b53feb37370f448eb28f827925276"
+                "reference": "5cdc6e299f376051c09e68a7a9646bbeeaf3eaa7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/f664e8a1f09b53feb37370f448eb28f827925276",
-                "reference": "f664e8a1f09b53feb37370f448eb28f827925276",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/5cdc6e299f376051c09e68a7a9646bbeeaf3eaa7",
+                "reference": "5cdc6e299f376051c09e68a7a9646bbeeaf3eaa7",
                 "shasum": ""
             },
             "require": {
@@ -1686,7 +1686,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v7.2.2"
+                "source": "https://github.com/apioo/fusio-impl/tree/v7.2.3"
             },
             "funding": [
                 {
@@ -1702,7 +1702,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-09-24T01:00:15+00:00"
+            "time": "2023-10-27T22:44:29+00:00"
         },
         {
             "name": "fusio/model",
@@ -3125,16 +3125,16 @@
         },
         {
             "name": "psx/api",
-            "version": "v5.4.2",
+            "version": "v5.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-api.git",
-                "reference": "b62b45dfc65e2c344b412ab5db240d02876d0469"
+                "reference": "9f27cb685f947005777a3cc7672d994b8cd5055b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-api/zipball/b62b45dfc65e2c344b412ab5db240d02876d0469",
-                "reference": "b62b45dfc65e2c344b412ab5db240d02876d0469",
+                "url": "https://api.github.com/repos/apioo/psx-api/zipball/9f27cb685f947005777a3cc7672d994b8cd5055b",
+                "reference": "9f27cb685f947005777a3cc7672d994b8cd5055b",
                 "shasum": ""
             },
             "require": {
@@ -3184,7 +3184,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-api/issues",
-                "source": "https://github.com/apioo/psx-api/tree/v5.4.2"
+                "source": "https://github.com/apioo/psx-api/tree/v5.4.3"
             },
             "funding": [
                 {
@@ -3200,7 +3200,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-10-21T20:31:25+00:00"
+            "time": "2023-10-27T22:11:25+00:00"
         },
         {
             "name": "psx/cloudevents",
