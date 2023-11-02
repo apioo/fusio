@@ -217,10 +217,16 @@ functionality and answer your questions.
 If this project helps you to generate revenue or in general if you like to support the project please check out the
 donation options at our repository.
 
-## Supporter
+## Partner
 
-Thanks to JetBrains for supporting our project.
+The following list shows all partners of the Fusio project. We like to thank every partner supporting us in our vision
+to move API development to the next level. If you are interested in getting listed here feel free to sponsor our
+project.
 
+<a href="https://www.devmark.ai/fern/?utm_source=fusio&utm_loc=readme&utm_type=logo">
+<img src="https://www.fusio-project.org/img/partner/fern_logo_tagline.png">
+</a>
+<br>
 <a href="https://jb.gg/OpenSourceSupport">
 <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg">
 </a>
