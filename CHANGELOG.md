@@ -1,5 +1,10 @@
 
-### 4.0.3
+### 4.0.4
+
+* Backend app schema editor add raw JSON/YAML import
+* Fixed CLI login expires in
+
+### 4.0.3 (2023-10-28)
 
 * Fix backend sdk download button
 * OAuth2 endpoint use seconds for "expires_in" instead of unix timestamp
