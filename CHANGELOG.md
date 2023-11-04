@@ -1,6 +1,8 @@
 
 ### 4.0.4
 
+* SQL Adapter improve table generator schema name
+* Add oracle and mssql docker image flavor
 * Backend app schema editor add raw JSON/YAML import
 * Fixed CLI login expires in
 
