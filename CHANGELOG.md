@@ -3,6 +3,7 @@
 
 * SQL Adapter improve table generator schema name
 * Add oracle and mssql docker image flavor
+* Backend app improve change detection of action and schema links
 * Backend app schema editor add raw JSON/YAML import
 * Fixed CLI login expires in
 
