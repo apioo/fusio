@@ -1,6 +1,7 @@
 
 ### 4.0.4
 
+* Improve backend dashboard response to prevent null values
 * SQL Adapter improve table generator schema name
 * Add oracle and mssql docker image flavor
 * Backend app improve change detection of action and schema links
