@@ -7,6 +7,8 @@
 * Backend app improve change detection of action and schema links
 * Backend app schema editor add raw JSON/YAML import
 * Fixed CLI login expires in
+* Fixed Google social login
+* TypeAPI generate base url and security
 
 ### 4.0.3 (2023-10-28)
 
