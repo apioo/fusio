@@ -42,7 +42,7 @@ return [
 
     // Indicates whether the marketplace is enabled. If yes it is possible to download and install other apps through
     // the backend
-    'fusio_marketplace'       => env('APP_MARKETPLACE')->bool(),
+    'fusio_marketplace'       => env('APP_MARKETPLACE')->bool()->default(false),
 
     // Endpoint of the apps repository. All listed apps can be installed by the user at the backend app
     'fusio_marketplace_url'   => 'https://www.fusio-project.org/marketplace.yaml',
