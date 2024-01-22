@@ -1,0 +1,6 @@
+version: 3.0.4
+description: 'The developer app is designed to quickly setup an API program where new developers can register and create/manage their apps.'
+screenshot: 'https://www.fusio-project.org/media/apps/developer.png'
+website: 'https://github.com/apioo/fusio-apps-developer'
+downloadUrl: 'https://github.com/apioo/fusio-apps-developer/releases/download/v3.0.4/developer.zip'
+sha1Hash: b45c4ea7afe0c1f699ea96dff9148ceecf3c6f0b

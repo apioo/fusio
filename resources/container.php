@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 return static function (ContainerConfigurator $container) {
     $services = ServiceBuilder::build($container);
     $services = Configurator::services($services);
-
+    $services->load('App\\Action\\', __DIR__ . '/../src/Action');
     /*
     $services->load('App\\Action\\', __DIR__ . '/../src/Action');
     $services->load('App\\Connection\\', __DIR__ . '/../src/Connection');

@@ -1,0 +1,6 @@
+version: 2.0.0
+description: 'The Swagger UI app renders a documentation based on the OpenAPI specification.'
+screenshot: 'https://www.fusio-project.org/media/apps/swagger-ui.png'
+website: 'https://github.com/apioo/fusio-apps-swaggerui'
+downloadUrl: 'https://github.com/apioo/fusio-apps-swaggerui/archive/v2.0.0.zip'
+sha1Hash: 3b57da679e1dc6ff396cf0d5fdfab314572eb277
