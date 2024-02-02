@@ -5,29 +5,9 @@
 
 # About
 
-Fusio is an open source API management platform which helps to create innovative API solutions. We know that building a
-complete API product is no easy task, because of this we have created Fusio which supports you in every aspect of the
-API life cycle:  
-
-* __Building__  
-  Fusio provides many ways to build new API endpoints, it can proxy existing APIs, directly work with external databases
-  or files and it is also possible to implement custom business logic 
-* __Documentation__  
-  Fusio contains a schema store which can be used to describe the request and response payloads of each endpoint. Those
-  schemas are then used to generate i.e. an OpenAPI specification or also client SDKs.
-* __Monetization__  
-  Fusio provides a simple way to monetize your existing API by using an payment provider like Stripe.
-* __Onboarding__  
-  Fusio provides a ready to use developer portal where external developers can register to consume your API.
-* __Integration__  
-  Fusio contains a powerful SDK generator which can automatically generate high quality and ready to use code so that
-  you users can easily consume your API.
-* __Monitoring__  
-  Fusio provides an intuitive backend where you can monitor important aspects of your API.
+Fusio is an open source API management platform which helps to create innovative API solutions.
 
 ## Use-Cases
-
-Fusio can help you with the following use cases:
 
 * __API-Product__  
   Fusio helps you to create a great API product, besides building an API it provides a developer portal where developers
@@ -47,9 +27,8 @@ Fusio can help you with the following use cases:
 
 ## Features
 
-Fusio is an API management platform where you can configure operations which execute specific actions. An action
-triggers your business logic. Fusio covers many aspects of the API life cycle so that you can concentrate on writing
-the actual business logic of your API. Please take a look at our [documentation website](https://docs.fusio-project.org/)
+Fusio helps you to build APIs providing out-of-the-box enterprise features so that you can concentrate on your business
+case. Please take a look at our [documentation website](https://docs.fusio-project.org/)
 for more information. The following feature list gives you a first overview:
 
 * __OpenAPI generation__  
@@ -95,6 +74,30 @@ is located at `/apps/fusio/`.
 Fusio provides a [VSCode extension](https://marketplace.visualstudio.com/items?itemName=Fusio.fusio)
 which can be used to simplify action development. This means you can develop every action directly inside
 the VSCode editor.
+
+# SDK
+
+To build and integrate apps with Fusio we provide several SDKs which you can use to work with a Fusio instance or you
+can also simply manually talk to the REST API.
+
+* Javascript  
+  * [GitHub](https://github.com/apioo/fusio-sdk-javascript)  
+  * [NPM](https://www.npmjs.com/package/fusio-sdk)  
+* Javascript-Angular  
+  * [GitHub](https://github.com/apioo/fusio-sdk-javascript-angular)  
+  * [NPM](https://www.npmjs.com/package/ngx-fusio-sdk)  
+* PHP  
+  * [GitHub](https://github.com/apioo/fusio-sdk-php)  
+  * [Packageist](https://packagist.org/packages/fusio/sdk)  
+* Java  
+  * [GitHub](https://github.com/apioo/fusio-sdk-java)  
+  * [Package](https://mvnrepository.com/artifact/org.fusio-project/sdk)  
+* Go  
+  * [GitHub](https://github.com/apioo/fusio-sdk-go)  
+* REST API
+  * [Backend](https://www.fusio-project.org/api/backend)  
+  * [Consumer](https://www.fusio-project.org/api/consumer)  
+  * [System](https://www.fusio-project.org/api/system)  
 
 # Ecosystem
 
@@ -223,10 +226,6 @@ The following list shows all partners of the Fusio project. We like to thank eve
 to move API development to the next level. If you are interested in getting listed here feel free to sponsor our
 project.
 
-<a href="https://www.devmark.ai/fern/?utm_source=fusio&utm_loc=readme&utm_type=logo">
-<img src="https://www.fusio-project.org/img/partner/fern_logo_tagline.png">
-</a>
-<br>
 <a href="https://jb.gg/OpenSourceSupport">
 <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg">
 </a>
