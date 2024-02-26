@@ -2,3 +2,6 @@ build/fusio/
 cache/
 vendor/
 log/
+.DS_Store
+.env.local
+.vscode/

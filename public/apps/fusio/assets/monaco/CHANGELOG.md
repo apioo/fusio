@@ -1,5 +1,45 @@
 # Monaco Editor Changelog
 
+## [0.41.0]
+
+- `IDiffEditor.diffReviewNext` was renamed to `IDiffEditor.accessibleDiffViewerNext`.
+- `IDiffEditor.diffReviewPrev` was renamed to `IDiffEditor.accessibleDiffViewerPrev`.
+- Introduces `InlineCompletionsProvider.yieldsToGroupIds` to allows inline completion providers to yield to other providers.
+- Bugfixes
+
+Contributions to `monaco-editor`:
+
+- [@claylibrarymarket](https://github.com/claylibrarymarket): Fix Twig's plain text class expression [PR #4063](https://github.com/microsoft/monaco-editor/pull/4063)
+- [@FossPrime (Ray Foss)](https://github.com/FossPrime): Use new GitHub pages workflow [PR #4000](https://github.com/microsoft/monaco-editor/pull/4000)
+- [@leandrocp (Leandro Pereira)](https://github.com/leandrocp): Elixir - Add support for multi-letter uppercase sigils [PR #4041](https://github.com/microsoft/monaco-editor/pull/4041)
+- [@philippleidig (PhilippLe)](https://github.com/philippleidig): Add TwinCAT file support for structured text (st) language [PR #3315](https://github.com/microsoft/monaco-editor/pull/3315)
+- [@remcohaszing (Remco Haszing)](https://github.com/remcohaszing)
+  - Add mdx language [PR #3096](https://github.com/microsoft/monaco-editor/pull/3096)
+  - Export custom TypeScript worker variables [PR #3488](https://github.com/microsoft/monaco-editor/pull/3488)
+  - Document some basic concepts [PR #4087](https://github.com/microsoft/monaco-editor/pull/4087)
+
+## [0.40.0]
+
+- Support for Glyph Margin Widgets
+- Removes `getDiffLineInformationForOriginal` and `getDiffLineInformationForModified` from `IDiffEditor`
+- `createTrustedTypesPolicy` is optional now
+- New option `IModelDecorationOptions.shouldFillLineOnLineBreak`
+- New option `EditorOptions.readOnlyMessage`
+
+## [0.39.0]
+
+- New method `Environment.createTrustedTypesPolicy` to override trusted types handling.
+- Bugfixes
+
+Contributions to `monaco-editor`:
+
+- [@dlitsman (Dmitry Litsman)](https://github.com/dlitsman): Extend the "Rendering Glyphs In The Margin" example to include a transparent color note. [PR #3945](https://github.com/microsoft/monaco-editor/pull/3945)
+- [@dneto0 (David Neto)](https://github.com/dneto0): Avoid a hack in the WGSL lexer [PR #3887](https://github.com/microsoft/monaco-editor/pull/3887)
+- [@spahnke (Sebastian Pahnke)](https://github.com/spahnke)
+  - [JS, TS] Add Monarch support for private identifiers [PR #3919](https://github.com/microsoft/monaco-editor/pull/3919)
+  - [JS] Add static keyword [PR #3922](https://github.com/microsoft/monaco-editor/pull/3922)
+- [@titouanmathis (Titouan Mathis)](https://github.com/titouanmathis): [Webpack Plugin] Fix CJS being injected in ESM files [PR #3933](https://github.com/microsoft/monaco-editor/pull/3933)
+
 ## [0.38.0]
 
 - `diffAlgorithm` values changed: `smart` -> `legacy`, `experimental` -> `advanced`

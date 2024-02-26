@@ -1,5 +1,11 @@
 <?php
 
+if (!getenv('APP_ENV')) {
+    $dotenv = new \Symfony\Component\Dotenv\Dotenv();
+    $dotenv->usePutenv(true);
+    $dotenv->load(__DIR__ . '/.env');
+}
+
 return \PSX\Framework\Dependency\ContainerBuilder::build(
     __DIR__,
     null,

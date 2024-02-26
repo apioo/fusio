@@ -91,11 +91,16 @@ class DanapayHttpProcessor extends HttpSenderAbstract implements ConfigurableInt
         $requestContext = $request->getContext();
         $clientIp = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
 
+        /**
+         * @var Doctrine\DBAL\Connection $connection
+         */
+        $connection = $this->connector->getConnection('System');
+
         if ($requestContext instanceof HttpRequestContext) {
             $httpRequest = $requestContext->getRequest();
             $httpRequest->setHeader('X-API-SECRET', '5cdf808c1f8286019694325935');
         
-            $exclude = ['accept', 'accept-charset', 'accept-encoding', 'accept-language', 'authorization', 'connection', 'content-type', 'host', 'user-agent'];
+            $exclude = ['accept', 'accept-charset', 'accept-encoding', 'accept-language', 'connection', 'content-type', 'host', 'user-agent'];
             $headers = $httpRequest->getHeaders();
             $headers = array_diff_key($headers, array_combine($exclude, array_fill(0, count($exclude), null)));
 
@@ -123,6 +128,8 @@ class DanapayHttpProcessor extends HttpSenderAbstract implements ConfigurableInt
         $headers['x-forwarded-for'] = $clientIp;
         $headers['accept'] = 'application/json, application/x-www-form-urlencoded;q=0.9, */*;q=0.8';
 
+        $bearer_token = str_replace("Bearer ", "", $headers['authorization'][0]);
+
         if (!empty($host)) {
             $headers['x-forwarded-host'] = $host;
         }
@@ -135,7 +142,13 @@ class DanapayHttpProcessor extends HttpSenderAbstract implements ConfigurableInt
 
         if(!preg_match("/auth\/byEmail/", $url)) {
             //access token pour entrer dans danapay-api
-            $headers['authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgyIiwic3ViIjoiNjRkNTcwMzUtZjk1NS01MjhjLWJhYTktOTg5Njk4OGZiMWZkIiwiaWF0IjoxNzAzMDU2MjU5LCJleHAiOjE3MDMyMjkwNTksIm5hbWUiOiJhZG1pbiJ9.DKlsw4srXVscwTR0Eohzci9-kl8fG_j5M5RjA7UOF8c';
+            $map = $connection->fetchAssociative('SELECT dp_token FROM dp_token_maps WHERE fusio_token = :fusio_token', [
+                'fusio_token' => $bearer_token
+            ]);
+
+            if($map)  {
+                $headers['authorization'] = 'Bearer ' . $map['dp_token'];
+            }
         }
 
         $options = [
@@ -151,7 +164,7 @@ class DanapayHttpProcessor extends HttpSenderAbstract implements ConfigurableInt
         if ($type == self::TYPE_FORM) {
             $options['form_params'] = Transformer::toArray($request->getPayload());
         } else {
-            //$options['json'] = $request->getPayload();
+            $options['json'] = $request->getPayload();
         }
 
         if (!empty($uriFragments)) {
@@ -184,10 +197,14 @@ class DanapayHttpProcessor extends HttpSenderAbstract implements ConfigurableInt
 
         if(isset($data->access_token)) {
             //save the return access token and link it to a new fusio access_token
-            
+            $connection->insert('dp_token_maps', [
+                'fusio_token' => $bearer_token,
+                'dp_token' => $data->access_token,
+                'date' => date('Y-m-d H:i:s')
+            ]);
 
-            //access token pour entrer dans fusio
-            $data->access_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgyIiwic3ViIjoiNjRkNTcwMzUtZjk1NS01MjhjLWJhYTktOTg5Njk4OGZiMWZkIiwiaWF0IjoxNzA1OTM0NzgzLCJleHAiOjE3MDYxMDc1ODMsIm5hbWUiOiJhZG1pbiJ9.mHbQgS8L_PkfWijBlatyNret2pQXBjC60LoKTGO99jI';
+            //access token pour entrer dans fusio - for webapp usage
+            $data->access_token = $bearer_token;
         }
 
         $result = $this->response->build(
