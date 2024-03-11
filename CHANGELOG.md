@@ -1,5 +1,15 @@
 
-### 4.0.4
+### 4.0.5
+
+* Fix developer portal password reset captcha
+* Truncate long User-Agent headers 
+* HTTP processor ignore hop by hop headers
+* HTTP processor add input to configure fix query parameters
+* HTTP processor and connection set user agent
+* HTTP connection add option to set an Authorization header
+* Fix record serialization so that it is possible to put a record into the queue
+
+### 4.0.4 (2024-01-14)
 
 * Improve backend dashboard response to prevent null values
 * SQL Adapter improve table generator schema name
