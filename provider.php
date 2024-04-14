@@ -11,4 +11,5 @@ return [
     \Fusio\Adapter\Soap\Adapter::class,
     \Fusio\Adapter\Sql\Adapter::class,
     \Fusio\Adapter\Util\Adapter::class,
+    \Fusio\Adapter\Worker\Adapter::class,
 ];
