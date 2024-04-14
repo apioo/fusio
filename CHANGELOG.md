@@ -1,5 +1,15 @@
 
-### 4.0.5
+### 5.0.0
+
+* Multi tenancy
+* Worker redesign
+* Personal access token
+* Config add option to exclude specific actions and connections
+* Add account app
+* Access metadata in action
+* Backup import/export
+
+### 4.0.5 (2024-03-17)
 
 * Fix developer portal password reset captcha
 * Truncate long User-Agent headers 
