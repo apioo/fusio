@@ -53,7 +53,7 @@ for more information. The following feature list gives you a first overview:
 
 # Apps
 
-Since it is difficult to work with an API only app Fusio provides apps which help to work with the API. Mostly apps are
+Fusio provides many apps which help to work with the API. Mostly apps are
 simple JS apps, which work with the internal API of Fusio. You can see a list of all available apps at our
 [marketplace](https://www.fusio-project.org/marketplace). You can install such an app either through a CLI command i.e.
 `php bin/fusio marketplace:install fusio` or through the backend app.
@@ -80,40 +80,46 @@ the VSCode editor.
 To build and integrate apps with Fusio we provide several SDKs which you can use to work with a Fusio instance or you
 can also simply manually talk to the REST API.
 
-* Javascript  
-  * [GitHub](https://github.com/apioo/fusio-sdk-javascript)  
-  * [NPM](https://www.npmjs.com/package/fusio-sdk)  
-* Javascript-Angular  
-  * [GitHub](https://github.com/apioo/fusio-sdk-javascript-angular)  
-  * [NPM](https://www.npmjs.com/package/ngx-fusio-sdk)  
-* PHP  
-  * [GitHub](https://github.com/apioo/fusio-sdk-php)  
-  * [Packageist](https://packagist.org/packages/fusio/sdk)  
-* Java  
-  * [GitHub](https://github.com/apioo/fusio-sdk-java)  
-  * [Package](https://mvnrepository.com/artifact/org.fusio-project/sdk)  
-* Go  
-  * [GitHub](https://github.com/apioo/fusio-sdk-go)  
-* REST API
-  * [Backend](https://www.fusio-project.org/api/backend)  
-  * [Consumer](https://www.fusio-project.org/api/consumer)  
-  * [System](https://www.fusio-project.org/api/system)  
+| Language   | GitHub                                                  | Package                                                           | Example                                                      |
+|------------|---------------------------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------|
+| C#         | [GitHub](https://github.com/apioo/fusio-sdk-csharp)     | [NuGet](https://www.nuget.org/packages/Fusio.SDK)                 | [Example](https://github.com/apioo/fusio-sample-csharp-cli)  |
+| Go         | [GitHub](https://github.com/apioo/fusio-sdk-go)         |                                                                   | [Example](https://github.com/apioo/fusio-sample-go-cli)      |
+| Java       | [GitHub](https://github.com/apioo/fusio-sdk-java)       | [Maven](https://mvnrepository.com/artifact/org.fusio-project/sdk) | [Example](https://github.com/apioo/fusio-sample-java-cli)    |
+| Javascript | [GitHub](https://github.com/apioo/fusio-sdk-javascript) | [NPM](https://www.npmjs.com/package/fusio-sdk)                    |                                                              |
+| PHP        | [GitHub](https://github.com/apioo/fusio-sdk-php)        | [Packagist](https://packagist.org/packages/fusio/sdk)             | [Example](https://github.com/apioo/fusio-sample-php-cli)     |
+| Python     | [GitHub](https://github.com/apioo/fusio-sdk-python)     | [PyPI](https://pypi.org/project/fusio-sdk/)                       | [Example](https://github.com/apioo/fusio-sample-python-cli)  |
+
+## Frameworks
+
+| Framework | GitHub                                                           | Package                                             | Example |
+|-----------|------------------------------------------------------------------|-----------------------------------------------------|---------|
+| Angular   | [GitHub](https://github.com/apioo/fusio-sdk-javascript-angular)  | [NPM](https://www.npmjs.com/package/ngx-fusio-sdk)  | [Example](https://github.com/apioo/fusio-sample-javascript-angular)        |
+
+## REST API
+
+| Domain   | Documentation                                       | Specification                                                                           |
+|----------|-----------------------------------------------------|-----------------------------------------------------------------------------------------|
+| Backend  | [ReDoc](https://www.fusio-project.org/api/backend)  | [OpenAPI](https://demo.fusio-project.org/system/generator/spec-openapi?filter=backend)  |
+| Consumer | [ReDoc](https://www.fusio-project.org/api/consumer) | [OpenAPI](https://demo.fusio-project.org/system/generator/spec-openapi?filter=consumer) |
+| System   | [ReDoc](https://www.fusio-project.org/api/system)   | [OpenAPI](https://demo.fusio-project.org/system/generator/spec-openapi?filter=system)   |
 
 # Ecosystem
 
 Fusio is an open source project which you can use freely for private and commercial projects under the terms of the
 Apache 2.0 license. Besides our core product we offer additional services to augment the functionality of Fusio.
 
-* [TypeAPI](https://typeapi.org/)  
-  An OpenAPI alternative to describe REST APIs for type-safe code generation.
-* [TypeSchema](https://typeschema.org/)  
-  A JSON format to describe data models in a language neutral format.
-* [TypeHub](https://typehub.cloud/)  
-  A collaborative platform to design and build API models and client SDKs.
 * [SDKgen](https://sdkgen.app/)  
   SDKgen is a powerful code generator to automatically build client SDKs for your REST API.
 * [APIgen](https://apigen.app/)  
   Generate fully working and customizable APIs based on your data model.
+* [APImon](https://apimon.app/)  
+  APImon provides an intuitive service to monitor and analyze API endpoints.
+* [TypeSchema](https://typeschema.org/)  
+  A JSON format to describe data models in a language neutral format.
+* [TypeAPI](https://typeapi.org/)  
+  An OpenAPI alternative to describe REST APIs for type-safe code generation.
+* [TypeHub](https://typehub.cloud/)  
+  A collaborative platform to design and build API models and client SDKs.
 * [PSX](https://phpsx.org/)  
   An innovative PHP framework dedicated to build fully typed REST APIs.
 
