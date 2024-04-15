@@ -35,8 +35,8 @@ for more information. The following feature list gives you a first overview:
   Fusio generates automatically an OpenAPI specification for the defined routes
 * __SDK generation__  
   Fusio can automatically generate a client SDK for your API based on the defined schema
-* __Subscription support__  
-  Fusio contains a event subscription layer which helps to build pub/sub for your API
+* __Webhook support__  
+  Fusio contains a webhook system which helps to build publish/subscribe for your API
 * __Rate limiting__  
   Fusio provides a way to rate limit requests based on the user or app
 * __Authorization__  
