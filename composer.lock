@@ -1762,16 +1762,16 @@
         },
         {
             "name": "fusio/cli",
-            "version": "v4.0.1",
+            "version": "v4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-cli.git",
-                "reference": "16273f86a32f10a8b18ebf9c47306afa0ec6ea08"
+                "reference": "e5ec67ce10558eb453ca9b1eccd9bf89daf66683"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/16273f86a32f10a8b18ebf9c47306afa0ec6ea08",
-                "reference": "16273f86a32f10a8b18ebf9c47306afa0ec6ea08",
+                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/e5ec67ce10558eb453ca9b1eccd9bf89daf66683",
+                "reference": "e5ec67ce10558eb453ca9b1eccd9bf89daf66683",
                 "shasum": ""
             },
             "require": {
@@ -1810,7 +1810,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-cli/issues",
-                "source": "https://github.com/apioo/fusio-cli/tree/v4.0.1"
+                "source": "https://github.com/apioo/fusio-cli/tree/v4.0.2"
             },
             "funding": [
                 {
@@ -1826,7 +1826,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-04-06T21:52:22+00:00"
+            "time": "2024-04-26T21:57:34+00:00"
         },
         {
             "name": "fusio/engine",
