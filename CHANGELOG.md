@@ -8,6 +8,8 @@
 * Add account app
 * Access metadata in action
 * Backup import/export
+* Every create, update and delete operation now returns the affected id
+* Added and improved actions
 
 ### 4.0.5 (2024-03-17)
 
