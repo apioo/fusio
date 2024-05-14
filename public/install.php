@@ -318,9 +318,8 @@ function alert(string $level, string $message): void
         <div class="col">
             <div class="alert alert-primary">
                 <b>Welcome</b>, this installer helps to setup <a href="https://www.fusio-project.org">Fusio</a>.
-                It simply executes the steps of a <a href="https://www.fusio-project.org/bootstrap">manual
-                installation</a>. <b>After successful installation your should
-                delete this installer script.</b>
+                It simply executes the steps of a <a href="https://docs.fusio-project.org/docs/installation/">manual
+                installation</a>. <b>After successful installation it is recommended to delete this installer script.</b>
             </div>
         </div>
     </div>
@@ -340,19 +339,19 @@ function alert(string $level, string $message): void
                 needs a dedicated database</b>, it will delete any table on the database which does not belong
                 to the Fusio schema.</p>
                 <div class="form-group">
-                    <label for="db_name">Name:</label>
+                    <label for="dbName">Name:</label>
                     <input type="text" name="db_name" id="dbName" value="<?php echo htmlspecialchars($_POST['db_name'] ?? ''); ?>" placeholder="Database name" required class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="db_user">User:</label>
+                    <label for="dbUser">User:</label>
                     <input type="text" name="db_user" id="dbUser" value="<?php echo htmlspecialchars($_POST['db_user'] ?? ''); ?>" placeholder="Database user" required class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="db_pw">Password:</label>
+                    <label for="dbPw">Password:</label>
                     <input type="password" name="db_pw" id="dbPw" value="" placeholder="Database password" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="db_host">Host:</label>
+                    <label for="dbHost">Host:</label>
                     <input type="text" name="db_host" id="dbHost" value="<?php echo htmlspecialchars($_POST['db_host'] ?? ''); ?>" placeholder="Database host" required class="form-control">
                 </div>
             </fieldset>
