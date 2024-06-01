@@ -10,6 +10,7 @@
 * Backup import/export
 * Every create, update and delete operation now returns the affected id
 * Added and improved actions
+* Improved OAuth2 connection handling
 
 ### 4.0.5 (2024-03-17)
 
