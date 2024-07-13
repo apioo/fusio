@@ -5,7 +5,8 @@
 * Integrate the new marketplace
 * Add development section to the backend app
 * Add SDK Fabric adapter
-* Improve worker
+* Add PHP local worker
+* Improve PHP worker use engine interface
 
 ### 5.0.0 (2024-06-01)
 
