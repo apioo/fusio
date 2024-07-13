@@ -34,9 +34,6 @@ return [
     // the backend
     'fusio_marketplace'        => env('APP_MARKETPLACE')->bool(),
 
-    // Endpoint of the apps repository. All listed apps can be installed by the user at the backend app
-    'fusio_marketplace_url'    => 'https://www.fusio-project.org/marketplace.yaml',
-
     // The public url to the apps folder (i.e. http://acme.com/apps or http://apps.acme.com)
     'fusio_apps_url'           => env('APP_APPS_URL')->string(),
 
