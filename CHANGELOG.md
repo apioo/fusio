@@ -1,5 +1,13 @@
 
-### 5.0.0
+### 5.1.0
+
+* Add backend database panel
+* Integrate the new marketplace
+* Add development section to the backend app
+* Add SDK Fabric adapter
+* Improve worker
+
+### 5.0.0 (2024-06-01)
 
 * Multi tenancy
 * Worker redesign
