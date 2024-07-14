@@ -1974,16 +1974,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.2.0",
+            "version": "v8.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "e0fc7540e26033b2e3eb4c6c9e581f06a5a06315"
+                "reference": "3f47037346aa93cad05f142ee38dd8b7e3f83ea5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/e0fc7540e26033b2e3eb4c6c9e581f06a5a06315",
-                "reference": "e0fc7540e26033b2e3eb4c6c9e581f06a5a06315",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/3f47037346aa93cad05f142ee38dd8b7e3f83ea5",
+                "reference": "3f47037346aa93cad05f142ee38dd8b7e3f83ea5",
                 "shasum": ""
             },
             "require": {
@@ -2042,7 +2042,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.2.0"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.2.1"
             },
             "funding": [
                 {
@@ -2058,7 +2058,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-07-13T09:49:33+00:00"
+            "time": "2024-07-14T18:09:14+00:00"
         },
         {
             "name": "fusio/marketplace",
