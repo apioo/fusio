@@ -1,5 +1,9 @@
 
-### 5.1.0
+### 5.1.1
+
+* Fix marketplace env command
+
+### 5.1.0 (2024-07-14)
 
 * Add backend database panel
 * Integrate the new marketplace
