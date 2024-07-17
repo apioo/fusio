@@ -1,5 +1,9 @@
 
-### 5.1.1
+### 5.1.2
+
+* Fix installation sync to automatically add new scopes on migration
+
+### 5.1.1 (2024-07-14)
 
 * Fix marketplace env command
 
