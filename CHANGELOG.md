@@ -1,6 +1,7 @@
 
 ### 5.1.2
 
+* Fix app env command to include scopes
 * Fix installation sync to automatically add new scopes on migration
 
 ### 5.1.1 (2024-07-14)
