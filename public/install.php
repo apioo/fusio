@@ -219,7 +219,7 @@ function installBackendApp(): bool
         return true;
     }
 
-    $output = runCommand('marketplace:install', ['--disable_ssl_verify', 'name' => 'fusio'], $exitCode);
+    $output = runCommand('marketplace:install', ['--disable_ssl_verify', 'type' => 'app', 'name' => 'fusio/fusio'], $exitCode);
     if ($exitCode == 0) {
         alert('success', 'Installed backend app');
         return true;
