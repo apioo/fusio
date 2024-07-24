@@ -1,6 +1,7 @@
 
 ### 5.1.2
 
+* Fix install backend app
 * Fix app env command to include scopes
 * Fix installation sync to automatically add new scopes on migration
 
