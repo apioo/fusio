@@ -1,6 +1,10 @@
 
 ### 5.1.2
 
+* Add test panel to test the quality of your API
+* Add JSON detail view to backend
+* Add new statistic activities per user, must used activities, user registrations and update dashboard
+* Convert id response property from int to string and removed affected property
 * Fix install backend app
 * Fix app env command to include scopes
 * Fix installation sync to automatically add new scopes on migration
