@@ -22,7 +22,7 @@ a new adapter which speaks to a specific API or other remote services. This is e
 a separate repository. Please use the keyword `fusio-adapter` in your `composer.json` file so that adapter gets listed
 automatically on our website.
 
-**[Backend-App](https://github.com/apioo/fusio-backend)**
+**[Backend-App](https://github.com/apioo/fusio-apps-backend)**
 
 This is the Angular app which is used as UI to control the backend. It is the main app to improve the Fusio backend.
 But you are also free to develop new apps for special use cases which talk to the internal API of Fusio.
