@@ -1,5 +1,12 @@
 
-### 5.1.2
+### 5.1.3
+
+* Add option to disable a specific test case
+* Test use transaction around main connection
+* Fix set HTTP code on existing operation
+* Improve marketplace env handling to replace only string values
+
+### 5.1.2 (2024-07-28)
 
 * Add test panel to test the quality of your API
 * Add JSON detail view to backend
