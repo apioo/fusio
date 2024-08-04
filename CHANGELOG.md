@@ -3,9 +3,11 @@
 
 * Add category id to connection
 * Add option to disable a specific test case
+* Streamline worker response return
 * Test use transaction around main connection
 * Fix set HTTP code on existing operation
 * SQL action handle UUID as primary key
+* Add GraphQL-Query action
 * Improve marketplace env handling to replace only string values
 
 ### 5.1.2 (2024-07-28)
