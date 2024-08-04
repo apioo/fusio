@@ -1110,16 +1110,16 @@
         },
         {
             "name": "fusio/adapter-graphql",
-            "version": "v6.0.4",
+            "version": "v6.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-graphql.git",
-                "reference": "ab0784ab1f122c1abec4ff07f9f3a4f1a0614468"
+                "reference": "b1d2856339ef492af92e4e6e95d10c207e2541e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-graphql/zipball/ab0784ab1f122c1abec4ff07f9f3a4f1a0614468",
-                "reference": "ab0784ab1f122c1abec4ff07f9f3a4f1a0614468",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-graphql/zipball/b1d2856339ef492af92e4e6e95d10c207e2541e1",
+                "reference": "b1d2856339ef492af92e4e6e95d10c207e2541e1",
                 "shasum": ""
             },
             "require": {
@@ -1155,7 +1155,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-graphql/issues",
-                "source": "https://github.com/apioo/fusio-adapter-graphql/tree/v6.0.4"
+                "source": "https://github.com/apioo/fusio-adapter-graphql/tree/v6.0.5"
             },
             "funding": [
                 {
@@ -1171,7 +1171,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-15T17:38:26+00:00"
+            "time": "2024-08-03T10:00:14+00:00"
         },
         {
             "name": "fusio/adapter-http",
@@ -1573,16 +1573,16 @@
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v6.1.6",
+            "version": "v6.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
-                "reference": "de3bec60687696f22ca7d85203677058f0e19dbe"
+                "reference": "50297cea78f2cd71ec4a8586620d884b4d48acaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/de3bec60687696f22ca7d85203677058f0e19dbe",
-                "reference": "de3bec60687696f22ca7d85203677058f0e19dbe",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/50297cea78f2cd71ec4a8586620d884b4d48acaa",
+                "reference": "50297cea78f2cd71ec4a8586620d884b4d48acaa",
                 "shasum": ""
             },
             "require": {
@@ -1590,7 +1590,8 @@
                 "php": ">=8.1",
                 "psx/nested": "^0.1",
                 "psx/sql": "^3.0|^4.0",
-                "typeapi/editor": "^0.1"
+                "symfony/uid": "^6.0|^7.0",
+                "typeapi/editor": "^0.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.0",
@@ -1620,7 +1621,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-sql/issues",
-                "source": "https://github.com/apioo/fusio-adapter-sql/tree/v6.1.6"
+                "source": "https://github.com/apioo/fusio-adapter-sql/tree/v6.1.8"
             },
             "funding": [
                 {
@@ -1636,7 +1637,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-07-27T08:51:20+00:00"
+            "time": "2024-08-03T15:50:59+00:00"
         },
         {
             "name": "fusio/adapter-stripe",
@@ -1974,16 +1975,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.2.2",
+            "version": "v8.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "daabb124adcabcb9ebe71dca50c0bc38614ca8a2"
+                "reference": "2463a3239138c23896fd94c9d9d96263bdd2237e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/daabb124adcabcb9ebe71dca50c0bc38614ca8a2",
-                "reference": "daabb124adcabcb9ebe71dca50c0bc38614ca8a2",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/2463a3239138c23896fd94c9d9d96263bdd2237e",
+                "reference": "2463a3239138c23896fd94c9d9d96263bdd2237e",
                 "shasum": ""
             },
             "require": {
@@ -2042,7 +2043,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.2.2"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.2.3"
             },
             "funding": [
                 {
@@ -2058,7 +2059,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-07-28T17:43:51+00:00"
+            "time": "2024-08-03T19:13:15+00:00"
         },
         {
             "name": "fusio/marketplace",
@@ -7900,6 +7901,85 @@
             "time": "2024-06-19T12:35:24+00:00"
         },
         {
+            "name": "symfony/polyfill-uuid",
+            "version": "v1.30.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-uuid.git",
+                "reference": "2ba1f33797470debcda07fe9dce20a0003df18e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-uuid/zipball/2ba1f33797470debcda07fe9dce20a0003df18e9",
+                "reference": "2ba1f33797470debcda07fe9dce20a0003df18e9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "provide": {
+                "ext-uuid": "*"
+            },
+            "suggest": {
+                "ext-uuid": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Uuid\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grégoire Pineau",
+                    "email": "lyrixx@lyrixx.info"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for uuid functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "uuid"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-uuid/tree/v1.30.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-05-31T15:07:36+00:00"
+        },
+        {
             "name": "symfony/process",
             "version": "v6.4.8",
             "source": {
@@ -8602,6 +8682,80 @@
             "time": "2024-05-31T14:59:31+00:00"
         },
         {
+            "name": "symfony/uid",
+            "version": "v7.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/uid.git",
+                "reference": "bb59febeecc81528ff672fad5dab7f06db8c8277"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/uid/zipball/bb59febeecc81528ff672fad5dab7f06db8c8277",
+                "reference": "bb59febeecc81528ff672fad5dab7f06db8c8277",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "symfony/polyfill-uuid": "^1.15"
+            },
+            "require-dev": {
+                "symfony/console": "^6.4|^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Uid\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grégoire Pineau",
+                    "email": "lyrixx@lyrixx.info"
+                },
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides an object-oriented API to generate and represent UIDs",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "UID",
+                "ulid",
+                "uuid"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/uid/tree/v7.1.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-05-31T14:57:53+00:00"
+        },
+        {
             "name": "symfony/var-exporter",
             "version": "v7.1.2",
             "source": {
@@ -8830,22 +8984,23 @@
         },
         {
             "name": "typeapi/editor",
-            "version": "v0.1.9",
+            "version": "v0.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/typeapi-editor.git",
-                "reference": "1ea03ec83bf180ae279f24955195fe67696fa1fe"
+                "reference": "6a30f0f65b437c161b2f222b7b215054a085775e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/typeapi-editor/zipball/1ea03ec83bf180ae279f24955195fe67696fa1fe",
-                "reference": "1ea03ec83bf180ae279f24955195fe67696fa1fe",
+                "url": "https://api.github.com/repos/apioo/typeapi-editor/zipball/6a30f0f65b437c161b2f222b7b215054a085775e",
+                "reference": "6a30f0f65b437c161b2f222b7b215054a085775e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
                 "psx/api": "^5.0|^6.0",
-                "psx/schema": "^5.0|^6.0"
+                "psx/schema": "^5.0|^6.0",
+                "typeapi/model": "^0.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.0",
@@ -8876,7 +9031,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/typeapi-editor/issues",
-                "source": "https://github.com/apioo/typeapi-editor/tree/v0.1.9"
+                "source": "https://github.com/apioo/typeapi-editor/tree/v0.2.6"
             },
             "funding": [
                 {
@@ -8892,7 +9047,66 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-12-03T11:32:29+00:00"
+            "time": "2024-08-03T08:07:56+00:00"
+        },
+        {
+            "name": "typeapi/model",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apioo/typeapi-model-php.git",
+                "reference": "76ff49b984d577d2404893c5a62f67fcaf282fb2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apioo/typeapi-model-php/zipball/76ff49b984d577d2404893c5a62f67fcaf282fb2",
+                "reference": "76ff49b984d577d2404893c5a62f67fcaf282fb2",
+                "shasum": ""
+            },
+            "require": {
+                "psx/schema": "^6.0"
+            },
+            "require-dev": {
+                "vimeo/psalm": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TypeAPI\\Model\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kappestein",
+                    "email": "christoph.kappestein@gmail.com",
+                    "homepage": "https://chrisk.app/"
+                }
+            ],
+            "description": "This library contains models to represent a TypeAPI or TypeSchema specification",
+            "homepage": "https://typeapi.org/",
+            "support": {
+                "issues": "https://github.com/apioo/typeapi-model-php/issues",
+                "source": "https://github.com/apioo/typeapi-model-php/tree/v0.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/fusioapi",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/chriskapp",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/fusio",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2024-02-15T18:55:58+00:00"
         },
         {
             "name": "webmozart/assert",
