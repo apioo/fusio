@@ -1,6 +1,7 @@
 
 ### 5.1.4
 
+* Add Util-Template action
 * Add option to disable the database panel
 * SQL entity generator use plain table name if available and add index only if needed
 * Fix marketplace action installation
