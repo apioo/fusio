@@ -1,5 +1,11 @@
 
-### 5.1.3
+### 5.1.4
+
+* Add option to disable the database panel
+* SQL entity generator use plain table name if available and add index only if needed
+* Fix marketplace action installation
+
+### 5.1.3 (2024-08-05)
 
 * Add category id to connection
 * Add option to disable a specific test case
