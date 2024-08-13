@@ -161,16 +161,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "3.8.6",
+            "version": "3.8.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "b7411825cf7efb7e51f9791dea19d86e43b399a1"
+                "reference": "2093d670ca17f634f3c095ec10a20687eccebd99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/b7411825cf7efb7e51f9791dea19d86e43b399a1",
-                "reference": "b7411825cf7efb7e51f9791dea19d86e43b399a1",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2093d670ca17f634f3c095ec10a20687eccebd99",
+                "reference": "2093d670ca17f634f3c095ec10a20687eccebd99",
                 "shasum": ""
             },
             "require": {
@@ -186,12 +186,12 @@
                 "doctrine/coding-standard": "12.0.0",
                 "fig/log-test": "^1",
                 "jetbrains/phpstorm-stubs": "2023.1",
-                "phpstan/phpstan": "1.11.5",
+                "phpstan/phpstan": "1.11.7",
                 "phpstan/phpstan-strict-rules": "^1.6",
-                "phpunit/phpunit": "9.6.19",
+                "phpunit/phpunit": "9.6.20",
                 "psalm/plugin-phpunit": "0.18.4",
                 "slevomat/coding-standard": "8.13.1",
-                "squizlabs/php_codesniffer": "3.10.1",
+                "squizlabs/php_codesniffer": "3.10.2",
                 "symfony/cache": "^5.4|^6.0|^7.0",
                 "symfony/console": "^4.4|^5.4|^6.0|^7.0",
                 "vimeo/psalm": "4.30.0"
@@ -254,7 +254,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/3.8.6"
+                "source": "https://github.com/doctrine/dbal/tree/3.8.7"
             },
             "funding": [
                 {
@@ -270,7 +270,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-06-19T10:38:17+00:00"
+            "time": "2024-08-07T11:57:25+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -1573,16 +1573,16 @@
         },
         {
             "name": "fusio/adapter-sql",
-            "version": "v6.1.8",
+            "version": "v6.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-sql.git",
-                "reference": "50297cea78f2cd71ec4a8586620d884b4d48acaa"
+                "reference": "f99df8c20c952edfb1d7c3ed7fb30ccaf7108cf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/50297cea78f2cd71ec4a8586620d884b4d48acaa",
-                "reference": "50297cea78f2cd71ec4a8586620d884b4d48acaa",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-sql/zipball/f99df8c20c952edfb1d7c3ed7fb30ccaf7108cf2",
+                "reference": "f99df8c20c952edfb1d7c3ed7fb30ccaf7108cf2",
                 "shasum": ""
             },
             "require": {
@@ -1621,7 +1621,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-sql/issues",
-                "source": "https://github.com/apioo/fusio-adapter-sql/tree/v6.1.8"
+                "source": "https://github.com/apioo/fusio-adapter-sql/tree/v6.2.0"
             },
             "funding": [
                 {
@@ -1637,7 +1637,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-08-03T15:50:59+00:00"
+            "time": "2024-08-08T22:07:20+00:00"
         },
         {
             "name": "fusio/adapter-stripe",
@@ -1706,16 +1706,16 @@
         },
         {
             "name": "fusio/adapter-util",
-            "version": "v6.0.5",
+            "version": "v6.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-util.git",
-                "reference": "f03bb006055b0a8a408c3b91890fca1368461bbd"
+                "reference": "71b24149731c0ed2c40f8bc3f0d20d6d8c8184a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/f03bb006055b0a8a408c3b91890fca1368461bbd",
-                "reference": "f03bb006055b0a8a408c3b91890fca1368461bbd",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/71b24149731c0ed2c40f8bc3f0d20d6d8c8184a3",
+                "reference": "71b24149731c0ed2c40f8bc3f0d20d6d8c8184a3",
                 "shasum": ""
             },
             "require": {
@@ -1723,7 +1723,8 @@
                 "php": ">=8.1",
                 "psx/json": "^2.0|^3.0",
                 "symfony/cache": "^6.0",
-                "symfony/expression-language": "^6.0"
+                "symfony/expression-language": "^6.0",
+                "twig/twig": "^3.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.0",
@@ -1753,7 +1754,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-util/issues",
-                "source": "https://github.com/apioo/fusio-adapter-util/tree/v6.0.5"
+                "source": "https://github.com/apioo/fusio-adapter-util/tree/v6.0.6"
             },
             "funding": [
                 {
@@ -1769,7 +1770,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-04-23T19:45:53+00:00"
+            "time": "2024-08-09T17:01:34+00:00"
         },
         {
             "name": "fusio/adapter-worker",
@@ -3397,16 +3398,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.39",
+            "version": "3.0.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "211ebc399c6e73c225a018435fe5ae209d1d1485"
+                "reference": "621c73f7dcb310b61de34d1da4c4204e8ace6ceb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/211ebc399c6e73c225a018435fe5ae209d1d1485",
-                "reference": "211ebc399c6e73c225a018435fe5ae209d1d1485",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/621c73f7dcb310b61de34d1da4c4204e8ace6ceb",
+                "reference": "621c73f7dcb310b61de34d1da4c4204e8ace6ceb",
                 "shasum": ""
             },
             "require": {
@@ -3487,7 +3488,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.39"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.41"
             },
             "funding": [
                 {
@@ -3503,7 +3504,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-06-24T06:27:33+00:00"
+            "time": "2024-08-12T00:13:54+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
@@ -5609,16 +5610,16 @@
         },
         {
             "name": "sdkfabric/airtable",
-            "version": "v0.4.0",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdk-fabric/airtable-php.git",
-                "reference": "816c9641ebe8dadb7ab71a4929fc00c66ce52347"
+                "reference": "60bbc7a5c1cfa4ac92724af33562c7c544aba889"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sdk-fabric/airtable-php/zipball/816c9641ebe8dadb7ab71a4929fc00c66ce52347",
-                "reference": "816c9641ebe8dadb7ab71a4929fc00c66ce52347",
+                "url": "https://api.github.com/repos/sdk-fabric/airtable-php/zipball/60bbc7a5c1cfa4ac92724af33562c7c544aba889",
+                "reference": "60bbc7a5c1cfa4ac92724af33562c7c544aba889",
                 "shasum": ""
             },
             "require": {
@@ -5641,7 +5642,7 @@
             "homepage": "https://sdk-fabric.org",
             "support": {
                 "issues": "https://github.com/sdk-fabric/airtable-php/issues",
-                "source": "https://github.com/sdk-fabric/airtable-php/tree/v0.4.0"
+                "source": "https://github.com/sdk-fabric/airtable-php/tree/v0.4.1"
             },
             "funding": [
                 {
@@ -5649,7 +5650,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-25T07:06:15+00:00"
+            "time": "2024-08-06T21:03:47+00:00"
         },
         {
             "name": "sdkfabric/discord",
@@ -7825,6 +7826,82 @@
             "time": "2024-05-31T15:07:36+00:00"
         },
         {
+            "name": "symfony/polyfill-php81",
+            "version": "v1.30.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php81.git",
+                "reference": "3fb075789fb91f9ad9af537c4012d523085bd5af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php81/zipball/3fb075789fb91f9ad9af537c4012d523085bd5af",
+                "reference": "3fb075789fb91f9ad9af537c4012d523085bd5af",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php81\\": ""
+                },
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 8.1+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php81/tree/v1.30.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-06-19T12:30:46+00:00"
+        },
+        {
             "name": "symfony/polyfill-php83",
             "version": "v1.30.0",
             "source": {
@@ -8905,16 +8982,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.10.3",
+            "version": "v3.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "67f29781ffafa520b0bbfbd8384674b42db04572"
+                "reference": "e80fb8ebba85c7341a97a9ebf825d7fd4b77708d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/67f29781ffafa520b0bbfbd8384674b42db04572",
-                "reference": "67f29781ffafa520b0bbfbd8384674b42db04572",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e80fb8ebba85c7341a97a9ebf825d7fd4b77708d",
+                "reference": "e80fb8ebba85c7341a97a9ebf825d7fd4b77708d",
                 "shasum": ""
             },
             "require": {
@@ -8922,7 +8999,8 @@
                 "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/polyfill-ctype": "^1.8",
                 "symfony/polyfill-mbstring": "^1.3",
-                "symfony/polyfill-php80": "^1.22"
+                "symfony/polyfill-php80": "^1.22",
+                "symfony/polyfill-php81": "^1.29"
             },
             "require-dev": {
                 "psr/container": "^1.0|^2.0",
@@ -8968,7 +9046,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.10.3"
+                "source": "https://github.com/twigphp/Twig/tree/v3.11.0"
             },
             "funding": [
                 {
@@ -8980,7 +9058,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-16T10:04:27+00:00"
+            "time": "2024-08-08T16:15:16+00:00"
         },
         {
             "name": "typeapi/editor",
