@@ -1,9 +1,9 @@
 
-### 5.1.5
+### 5.1.5 (2024-08-31)
 
 * Fix migration Version20240121100724 handle test table
 
-### 5.1.4
+### 5.1.4 (2024-08-25)
 
 * Added new index to fusio_log #575
 * Add Util-Template action
