@@ -1,4 +1,8 @@
 
+### 5.1.5
+
+* Fix migration Version20240121100724 handle test table
+
 ### 5.1.4
 
 * Added new index to fusio_log #575
