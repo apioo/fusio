@@ -1,4 +1,9 @@
 
+### 5.1.6
+
+* Update deps which fixes a security issue in twig/twig
+* Fixed a CORS header problem for Firefox
+
 ### 5.1.5 (2024-08-31)
 
 * Fix migration Version20240121100724 handle test table
