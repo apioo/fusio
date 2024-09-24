@@ -1,6 +1,8 @@
 
 ### 5.1.6
 
+* It is no longer possible to invoke an inactive operation, in this case the user receives a 410 status code #582
+* Deleted scopes are no longer visible
 * Update deps which fixes a security issue in twig/twig
 * Fixed a CORS header problem for Firefox
 
