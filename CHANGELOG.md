@@ -2,6 +2,9 @@
 ### 5.1.6
 
 * Updated to latest TypeSchema version
+* Backend and Developer app update to Angular 18
+* Backend update TypeSchema editor
+* Update Fusio SDK to SDKgen 2.0
 * It is no longer possible to invoke an inactive operation, in this case the user receives a 410 status code #582
 * Deleted scopes are no longer visible
 * Update deps which fixes a security issue in twig/twig
