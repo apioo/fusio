@@ -1,4 +1,8 @@
 
+### 5.1.7
+
+* SQL-Query-All and SQL-Query-Row action add support for {user_id} and {user_name} placeholder which contains the user id and name of the current user
+
 ### 5.1.6
 
 * Updated to latest TypeSchema version
