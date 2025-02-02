@@ -1,7 +1,12 @@
 
-### 5.1.7
+### 5.2.0
 
+* Update Angular SDK
+* Update backend list and use table instead of sidebar
 * SQL-Query-All and SQL-Query-Row action add support for {user_id} and {user_name} placeholder which contains the user id and name of the current user
+* Use SQL generated column enum
+* Update PHP-Sandbox
+* Update PHP dependencies and full PHP 8.4 support
 
 ### 5.1.6
 
