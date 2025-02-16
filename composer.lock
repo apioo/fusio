@@ -1839,16 +1839,16 @@
         },
         {
             "name": "fusio/cli",
-            "version": "v4.1.0",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-cli.git",
-                "reference": "94ff00422aae56782b5c137f13392f395a5d8b74"
+                "reference": "a20627bdd68f8b308146ff275efd6ecd9b7ea2ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/94ff00422aae56782b5c137f13392f395a5d8b74",
-                "reference": "94ff00422aae56782b5c137f13392f395a5d8b74",
+                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/a20627bdd68f8b308146ff275efd6ecd9b7ea2ab",
+                "reference": "a20627bdd68f8b308146ff275efd6ecd9b7ea2ab",
                 "shasum": ""
             },
             "require": {
@@ -1887,7 +1887,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-cli/issues",
-                "source": "https://github.com/apioo/fusio-cli/tree/v4.1.0"
+                "source": "https://github.com/apioo/fusio-cli/tree/v4.1.2"
             },
             "funding": [
                 {
@@ -1903,7 +1903,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-11-01T21:27:57+00:00"
+            "time": "2025-02-09T19:12:42+00:00"
         },
         {
             "name": "fusio/engine",
@@ -1977,16 +1977,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.4.0",
+            "version": "v8.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "af067b90f5739c7d76d28cad83d6cdb9ba559c96"
+                "reference": "b8348ae7d6bd4672824a0d5c0ec7d680bf0a6ba8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/af067b90f5739c7d76d28cad83d6cdb9ba559c96",
-                "reference": "af067b90f5739c7d76d28cad83d6cdb9ba559c96",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/b8348ae7d6bd4672824a0d5c0ec7d680bf0a6ba8",
+                "reference": "b8348ae7d6bd4672824a0d5c0ec7d680bf0a6ba8",
                 "shasum": ""
             },
             "require": {
@@ -2046,7 +2046,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.4.0"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.4.2"
             },
             "funding": [
                 {
@@ -2062,7 +2062,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-02-02T19:37:50+00:00"
+            "time": "2025-02-16T00:05:10+00:00"
         },
         {
             "name": "fusio/marketplace",
@@ -2110,16 +2110,16 @@
         },
         {
             "name": "fusio/model",
-            "version": "v4.3.8",
+            "version": "v4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-model.git",
-                "reference": "378723d9212212e18849ee127e0cdd41455efcae"
+                "reference": "3a3246f2e32da57c381cb72999feadbb23664881"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-model/zipball/378723d9212212e18849ee127e0cdd41455efcae",
-                "reference": "378723d9212212e18849ee127e0cdd41455efcae",
+                "url": "https://api.github.com/repos/apioo/fusio-model/zipball/3a3246f2e32da57c381cb72999feadbb23664881",
+                "reference": "3a3246f2e32da57c381cb72999feadbb23664881",
                 "shasum": ""
             },
             "require": {
@@ -2151,7 +2151,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-model/issues",
-                "source": "https://github.com/apioo/fusio-model/tree/v4.3.8"
+                "source": "https://github.com/apioo/fusio-model/tree/v4.4.0"
             },
             "funding": [
                 {
@@ -2167,7 +2167,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-11-09T10:07:22+00:00"
+            "time": "2025-02-15T22:53:57+00:00"
         },
         {
             "name": "fusio/worker-sdk",
@@ -4082,16 +4082,16 @@
         },
         {
             "name": "psx/api",
-            "version": "v7.3.0",
+            "version": "v7.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-api.git",
-                "reference": "cab36a6f453dfefd400b6dad598f889b79a4ed1c"
+                "reference": "8b2dd6f461c3b07f0964b6313deccc41566cf6f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-api/zipball/cab36a6f453dfefd400b6dad598f889b79a4ed1c",
-                "reference": "cab36a6f453dfefd400b6dad598f889b79a4ed1c",
+                "url": "https://api.github.com/repos/apioo/psx-api/zipball/8b2dd6f461c3b07f0964b6313deccc41566cf6f6",
+                "reference": "8b2dd6f461c3b07f0964b6313deccc41566cf6f6",
                 "shasum": ""
             },
             "require": {
@@ -4137,7 +4137,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-api/issues",
-                "source": "https://github.com/apioo/psx-api/tree/v7.3.0"
+                "source": "https://github.com/apioo/psx-api/tree/v7.3.3"
             },
             "funding": [
                 {
@@ -4153,7 +4153,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-01-30T19:10:13+00:00"
+            "time": "2025-02-15T14:12:43+00:00"
         },
         {
             "name": "psx/cloudevents",
@@ -5123,16 +5123,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v7.2.9",
+            "version": "v7.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "5df895a48f576855d1461a8f9c8cddc34f3ac5f7"
+                "reference": "f155f883abfea1b7096a4b2c8137ed4ba785d487"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/5df895a48f576855d1461a8f9c8cddc34f3ac5f7",
-                "reference": "5df895a48f576855d1461a8f9c8cddc34f3ac5f7",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/f155f883abfea1b7096a4b2c8137ed4ba785d487",
+                "reference": "f155f883abfea1b7096a4b2c8137ed4ba785d487",
                 "shasum": ""
             },
             "require": {
@@ -5150,9 +5150,9 @@
                 "symfony/console": "^5.0|^6.0|^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
+                "phpunit/phpunit": "^10.0",
                 "symfony/yaml": "^5.0|^6.0|^7.0",
-                "vimeo/psalm": "^5.0"
+                "vimeo/psalm": "^5.0|^6.0"
             },
             "type": "library",
             "autoload": {
@@ -5181,7 +5181,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-schema/issues",
-                "source": "https://github.com/apioo/psx-schema/tree/v7.2.9"
+                "source": "https://github.com/apioo/psx-schema/tree/v7.3.0"
             },
             "funding": [
                 {
@@ -5197,7 +5197,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-01-29T20:26:41+00:00"
+            "time": "2025-02-11T21:32:08+00:00"
         },
         {
             "name": "psx/sql",
@@ -8169,82 +8169,6 @@
             "time": "2024-09-09T11:45:10+00:00"
         },
         {
-            "name": "symfony/polyfill-php81",
-            "version": "v1.31.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php81.git",
-                "reference": "4a4cfc2d253c21a5ad0e53071df248ed48c6ce5c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php81/zipball/4a4cfc2d253c21a5ad0e53071df248ed48c6ce5c",
-                "reference": "4a4cfc2d253c21a5ad0e53071df248ed48c6ce5c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2"
-            },
-            "type": "library",
-            "extra": {
-                "thanks": {
-                    "url": "https://github.com/symfony/polyfill",
-                    "name": "symfony/polyfill"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ],
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php81\\": ""
-                },
-                "classmap": [
-                    "Resources/stubs"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 8.1+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "support": {
-                "source": "https://github.com/symfony/polyfill-php81/tree/v1.31.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2024-09-09T11:45:10+00:00"
-        },
-        {
             "name": "symfony/polyfill-php83",
             "version": "v1.31.0",
             "source": {
@@ -9484,24 +9408,23 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.19.0",
+            "version": "v3.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "d4f8c2b86374f08efc859323dbcd95c590f7124e"
+                "reference": "3468920399451a384bef53cf7996965f7cd40183"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d4f8c2b86374f08efc859323dbcd95c590f7124e",
-                "reference": "d4f8c2b86374f08efc859323dbcd95c590f7124e",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3468920399451a384bef53cf7996965f7cd40183",
+                "reference": "3468920399451a384bef53cf7996965f7cd40183",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.2",
+                "php": ">=8.1.0",
                 "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/polyfill-ctype": "^1.8",
-                "symfony/polyfill-mbstring": "^1.3",
-                "symfony/polyfill-php81": "^1.29"
+                "symfony/polyfill-mbstring": "^1.3"
             },
             "require-dev": {
                 "phpstan/phpstan": "^2.0",
@@ -9548,7 +9471,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.19.0"
+                "source": "https://github.com/twigphp/Twig/tree/v3.20.0"
             },
             "funding": [
                 {
@@ -9560,20 +9483,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-29T07:06:14+00:00"
+            "time": "2025-02-13T08:34:43+00:00"
         },
         {
             "name": "typeapi/editor",
-            "version": "v1.0.6",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/typeapi-editor.git",
-                "reference": "2e3d8b1faad76845a94e5c5f0c5b45cfbaac6e3a"
+                "reference": "a97bc894e7fec84cbdcde5cb9e361a59dfa70451"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/typeapi-editor/zipball/2e3d8b1faad76845a94e5c5f0c5b45cfbaac6e3a",
-                "reference": "2e3d8b1faad76845a94e5c5f0c5b45cfbaac6e3a",
+                "url": "https://api.github.com/repos/apioo/typeapi-editor/zipball/a97bc894e7fec84cbdcde5cb9e361a59dfa70451",
+                "reference": "a97bc894e7fec84cbdcde5cb9e361a59dfa70451",
                 "shasum": ""
             },
             "require": {
@@ -9611,7 +9534,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/typeapi-editor/issues",
-                "source": "https://github.com/apioo/typeapi-editor/tree/v1.0.6"
+                "source": "https://github.com/apioo/typeapi-editor/tree/v1.1.1"
             },
             "funding": [
                 {
@@ -9627,7 +9550,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-12-07T15:07:13+00:00"
+            "time": "2025-02-15T22:11:53+00:00"
         },
         {
             "name": "typeapi/model",
