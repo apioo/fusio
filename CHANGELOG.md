@@ -1,5 +1,10 @@
 
-### 5.2.0
+### 5.2.1
+
+* Fix user role select #615
+* Add option to specify operations as PHP config files instead of YAML
+
+### 5.2.0 (2025-03-08)
 
 * Update Angular SDK
 * Update backend app using the new Angular SDK
@@ -10,7 +15,7 @@
 * Update PHP dependencies and full PHP 8.4 support
 * PHP 8.3 as minimum requirement
 
-### 5.1.6
+### 5.1.6 (2024-11-09)
 
 * Updated to latest TypeSchema version
 * Backend and Developer app update to Angular 18
