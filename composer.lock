@@ -1839,16 +1839,16 @@
         },
         {
             "name": "fusio/cli",
-            "version": "v4.1.2",
+            "version": "v4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-cli.git",
-                "reference": "a20627bdd68f8b308146ff275efd6ecd9b7ea2ab"
+                "reference": "bb58f580619ecaf3ce422940804c6adb15ce4189"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/a20627bdd68f8b308146ff275efd6ecd9b7ea2ab",
-                "reference": "a20627bdd68f8b308146ff275efd6ecd9b7ea2ab",
+                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/bb58f580619ecaf3ce422940804c6adb15ce4189",
+                "reference": "bb58f580619ecaf3ce422940804c6adb15ce4189",
                 "shasum": ""
             },
             "require": {
@@ -1858,13 +1858,13 @@
                 "psr/log": "^1.0|^2.0|^3.0",
                 "psx/http": "^4.0",
                 "psx/schema": "^7.0",
-                "symfony/console": "^5.0|^6.0|^7.0",
-                "symfony/dependency-injection": "^5.0|^6.0|^7.0",
-                "symfony/yaml": "^5.0|^6.0|^7.0"
+                "symfony/console": "^6.0|^7.0",
+                "symfony/dependency-injection": "^6.0|^7.0",
+                "symfony/yaml": "^6.0|^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.0"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -1887,7 +1887,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-cli/issues",
-                "source": "https://github.com/apioo/fusio-cli/tree/v4.1.2"
+                "source": "https://github.com/apioo/fusio-cli/tree/v4.2.0"
             },
             "funding": [
                 {
@@ -1903,7 +1903,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-02-09T19:12:42+00:00"
+            "time": "2025-03-15T00:04:47+00:00"
         },
         {
             "name": "fusio/engine",
