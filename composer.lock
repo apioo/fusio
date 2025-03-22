@@ -783,16 +783,16 @@
         },
         {
             "name": "fusio/adapter-amqp",
-            "version": "v6.0.3",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-amqp.git",
-                "reference": "38961a22b0e446b39500e70e82cf725fc7c48457"
+                "reference": "11e1b2cd6baae6333238dbc909b8e99d0f0b7f70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-amqp/zipball/38961a22b0e446b39500e70e82cf725fc7c48457",
-                "reference": "38961a22b0e446b39500e70e82cf725fc7c48457",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-amqp/zipball/11e1b2cd6baae6333238dbc909b8e99d0f0b7f70",
+                "reference": "11e1b2cd6baae6333238dbc909b8e99d0f0b7f70",
                 "shasum": ""
             },
             "require": {
@@ -801,8 +801,8 @@
                 "php-amqplib/php-amqplib": "^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -828,7 +828,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-amqp/issues",
-                "source": "https://github.com/apioo/fusio-adapter-amqp/tree/v6.0.3"
+                "source": "https://github.com/apioo/fusio-adapter-amqp/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -844,30 +844,30 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-04-21T10:40:56+00:00"
+            "time": "2025-03-13T23:16:11+00:00"
         },
         {
             "name": "fusio/adapter-beanstalk",
-            "version": "v6.0.3",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-beanstalk.git",
-                "reference": "309686c3e7a5f6d1a6051725ffd2f1658ec96605"
+                "reference": "67d82fceb6452873865df447f27b0e080b318062"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-beanstalk/zipball/309686c3e7a5f6d1a6051725ffd2f1658ec96605",
-                "reference": "309686c3e7a5f6d1a6051725ffd2f1658ec96605",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-beanstalk/zipball/67d82fceb6452873865df447f27b0e080b318062",
+                "reference": "67d82fceb6452873865df447f27b0e080b318062",
                 "shasum": ""
             },
             "require": {
                 "fusio/engine": "^6.0",
-                "pda/pheanstalk": "^4.0",
+                "pda/pheanstalk": "^5.0",
                 "php": ">=8.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -893,7 +893,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-beanstalk/issues",
-                "source": "https://github.com/apioo/fusio-adapter-beanstalk/tree/v6.0.3"
+                "source": "https://github.com/apioo/fusio-adapter-beanstalk/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -909,30 +909,30 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-04-21T10:41:11+00:00"
+            "time": "2025-03-14T21:06:52+00:00"
         },
         {
             "name": "fusio/adapter-cli",
-            "version": "v6.0.4",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-cli.git",
-                "reference": "42a1b682eaf9fee91f18591506f09bcedadff814"
+                "reference": "4dd19412244caf95326d458e808f10d8f700121a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-cli/zipball/42a1b682eaf9fee91f18591506f09bcedadff814",
-                "reference": "42a1b682eaf9fee91f18591506f09bcedadff814",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-cli/zipball/4dd19412244caf95326d458e808f10d8f700121a",
+                "reference": "4dd19412244caf95326d458e808f10d8f700121a",
                 "shasum": ""
             },
             "require": {
                 "fusio/engine": "^6.0",
                 "php": ">=8.1",
-                "symfony/process": "^5.0|^6.0"
+                "symfony/process": "^5.0|^6.0|^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -958,7 +958,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-cli/issues",
-                "source": "https://github.com/apioo/fusio-adapter-cli/tree/v6.0.4"
+                "source": "https://github.com/apioo/fusio-adapter-cli/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -974,20 +974,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-15T17:38:32+00:00"
+            "time": "2025-03-13T20:56:30+00:00"
         },
         {
             "name": "fusio/adapter-fcgi",
-            "version": "v6.0.5",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-fcgi.git",
-                "reference": "987250b1847f13428a7625709b1b2b17f2ec2897"
+                "reference": "c6497864cc21718ef8e9bbac4f672f2bccd2cbca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-fcgi/zipball/987250b1847f13428a7625709b1b2b17f2ec2897",
-                "reference": "987250b1847f13428a7625709b1b2b17f2ec2897",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-fcgi/zipball/c6497864cc21718ef8e9bbac4f672f2bccd2cbca",
+                "reference": "c6497864cc21718ef8e9bbac4f672f2bccd2cbca",
                 "shasum": ""
             },
             "require": {
@@ -996,8 +996,8 @@
                 "php": ">=8.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -1023,7 +1023,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-fcgi/issues",
-                "source": "https://github.com/apioo/fusio-adapter-fcgi/tree/v6.0.5"
+                "source": "https://github.com/apioo/fusio-adapter-fcgi/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -1039,20 +1039,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-15T17:38:31+00:00"
+            "time": "2025-03-13T22:29:33+00:00"
         },
         {
             "name": "fusio/adapter-file",
-            "version": "v6.0.9",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-file.git",
-                "reference": "5e5cf4fee161c7146f2839e5f17f6614f142a59a"
+                "reference": "6dc2e2b9f773ced9b976eb94899eb8ad763de957"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-file/zipball/5e5cf4fee161c7146f2839e5f17f6614f142a59a",
-                "reference": "5e5cf4fee161c7146f2839e5f17f6614f142a59a",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-file/zipball/6dc2e2b9f773ced9b976eb94899eb8ad763de957",
+                "reference": "6dc2e2b9f773ced9b976eb94899eb8ad763de957",
                 "shasum": ""
             },
             "require": {
@@ -1061,11 +1061,11 @@
                 "league/flysystem": "^3.0",
                 "php": ">=8.1",
                 "ramsey/uuid": "^4.2",
-                "symfony/yaml": "^5.0|^6.0"
+                "symfony/yaml": "^5.0|^6.0|^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -1091,7 +1091,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-file/issues",
-                "source": "https://github.com/apioo/fusio-adapter-file/tree/v6.0.9"
+                "source": "https://github.com/apioo/fusio-adapter-file/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -1107,20 +1107,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-15T17:38:29+00:00"
+            "time": "2025-03-14T21:33:03+00:00"
         },
         {
             "name": "fusio/adapter-graphql",
-            "version": "v6.0.5",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-graphql.git",
-                "reference": "b1d2856339ef492af92e4e6e95d10c207e2541e1"
+                "reference": "28a4820edfbe655d9d3430d7db8683221883ce07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-graphql/zipball/b1d2856339ef492af92e4e6e95d10c207e2541e1",
-                "reference": "b1d2856339ef492af92e4e6e95d10c207e2541e1",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-graphql/zipball/28a4820edfbe655d9d3430d7db8683221883ce07",
+                "reference": "28a4820edfbe655d9d3430d7db8683221883ce07",
                 "shasum": ""
             },
             "require": {
@@ -1129,8 +1129,8 @@
                 "php": ">=8.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -1156,7 +1156,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-graphql/issues",
-                "source": "https://github.com/apioo/fusio-adapter-graphql/tree/v6.0.5"
+                "source": "https://github.com/apioo/fusio-adapter-graphql/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -1172,32 +1172,33 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-08-03T10:00:14+00:00"
+            "time": "2025-03-13T22:52:18+00:00"
         },
         {
             "name": "fusio/adapter-http",
-            "version": "v6.0.8",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-http.git",
-                "reference": "9fa87187f9c77b4f6d16b77da21ee3b973ae7f8f"
+                "reference": "11ebf9631bddb20f4622709aa989d937e8faf610"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/9fa87187f9c77b4f6d16b77da21ee3b973ae7f8f",
-                "reference": "9fa87187f9c77b4f6d16b77da21ee3b973ae7f8f",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-http/zipball/11ebf9631bddb20f4622709aa989d937e8faf610",
+                "reference": "11ebf9631bddb20f4622709aa989d937e8faf610",
                 "shasum": ""
             },
             "require": {
                 "fusio/engine": "^6.0",
                 "guzzlehttp/guzzle": "^7.0",
-                "kevinrob/guzzle-cache-middleware": "^5.1",
+                "kevinrob/guzzle-cache-middleware": "^6.0",
                 "php": ">=8.1",
+                "psx/data": "^7.0",
                 "twig/twig": "^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -1223,7 +1224,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-http/issues",
-                "source": "https://github.com/apioo/fusio-adapter-http/tree/v6.0.8"
+                "source": "https://github.com/apioo/fusio-adapter-http/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -1239,7 +1240,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-03-29T15:23:45+00:00"
+            "time": "2025-03-22T10:34:06+00:00"
         },
         {
             "name": "fusio/adapter-php",
@@ -1308,16 +1309,16 @@
         },
         {
             "name": "fusio/adapter-redis",
-            "version": "v6.0.7",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-redis.git",
-                "reference": "3aac2a0b93a38e4c401de8abb09a1232c795b251"
+                "reference": "9840151a0e4b2c17f6e7957cdd72c7a0764ecab6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-redis/zipball/3aac2a0b93a38e4c401de8abb09a1232c795b251",
-                "reference": "3aac2a0b93a38e4c401de8abb09a1232c795b251",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-redis/zipball/9840151a0e4b2c17f6e7957cdd72c7a0764ecab6",
+                "reference": "9840151a0e4b2c17f6e7957cdd72c7a0764ecab6",
                 "shasum": ""
             },
             "require": {
@@ -1326,8 +1327,8 @@
                 "predis/predis": "^2.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -1353,7 +1354,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-redis/issues",
-                "source": "https://github.com/apioo/fusio-adapter-redis/tree/v6.0.7"
+                "source": "https://github.com/apioo/fusio-adapter-redis/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -1369,7 +1370,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-15T17:38:27+00:00"
+            "time": "2025-03-14T18:55:33+00:00"
         },
         {
             "name": "fusio/adapter-sdkfabric",
@@ -1443,27 +1444,27 @@
         },
         {
             "name": "fusio/adapter-smtp",
-            "version": "v6.0.3",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-smtp.git",
-                "reference": "1cb0d084a67b2c60b2a7d482a350a7b224775c1e"
+                "reference": "ef624143f8254dba45892fc4952626912dc5d080"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-smtp/zipball/1cb0d084a67b2c60b2a7d482a350a7b224775c1e",
-                "reference": "1cb0d084a67b2c60b2a7d482a350a7b224775c1e",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-smtp/zipball/ef624143f8254dba45892fc4952626912dc5d080",
+                "reference": "ef624143f8254dba45892fc4952626912dc5d080",
                 "shasum": ""
             },
             "require": {
                 "fusio/engine": "^6.0",
                 "php": ">=8.1",
-                "symfony/mailer": "^6.0",
+                "symfony/mailer": "^6.0|^7.0",
                 "twig/twig": "^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -1489,7 +1490,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-smtp/issues",
-                "source": "https://github.com/apioo/fusio-adapter-smtp/tree/v6.0.3"
+                "source": "https://github.com/apioo/fusio-adapter-smtp/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -1505,20 +1506,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-04-21T21:18:38+00:00"
+            "time": "2025-03-14T18:59:06+00:00"
         },
         {
             "name": "fusio/adapter-soap",
-            "version": "v6.0.2",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-soap.git",
-                "reference": "e4e9f345e4345f438b7989c9154fc013813e0cf9"
+                "reference": "ed267165611b8790f2a21180dec06f3ecb2a3626"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-soap/zipball/e4e9f345e4345f438b7989c9154fc013813e0cf9",
-                "reference": "e4e9f345e4345f438b7989c9154fc013813e0cf9",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-soap/zipball/ed267165611b8790f2a21180dec06f3ecb2a3626",
+                "reference": "ed267165611b8790f2a21180dec06f3ecb2a3626",
                 "shasum": ""
             },
             "require": {
@@ -1527,8 +1528,8 @@
                 "php": ">=8.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -1554,7 +1555,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-soap/issues",
-                "source": "https://github.com/apioo/fusio-adapter-soap/tree/v6.0.2"
+                "source": "https://github.com/apioo/fusio-adapter-soap/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -1570,7 +1571,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-15T17:38:29+00:00"
+            "time": "2025-03-14T19:01:22+00:00"
         },
         {
             "name": "fusio/adapter-sql",
@@ -1642,26 +1643,26 @@
         },
         {
             "name": "fusio/adapter-stripe",
-            "version": "v6.0.4",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-stripe.git",
-                "reference": "69442215e3e4759968f70f384906d201dcd199ad"
+                "reference": "3f929a6cc68c5de29441376dae29fde499b66a36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-stripe/zipball/69442215e3e4759968f70f384906d201dcd199ad",
-                "reference": "69442215e3e4759968f70f384906d201dcd199ad",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-stripe/zipball/3f929a6cc68c5de29441376dae29fde499b66a36",
+                "reference": "3f929a6cc68c5de29441376dae29fde499b66a36",
                 "shasum": ""
             },
             "require": {
                 "fusio/engine": "^6.0",
                 "php": ">=8.1",
-                "stripe/stripe-php": "^10.0"
+                "stripe/stripe-php": "^16.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -1687,7 +1688,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-stripe/issues",
-                "source": "https://github.com/apioo/fusio-adapter-stripe/tree/v6.0.4"
+                "source": "https://github.com/apioo/fusio-adapter-stripe/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -1703,33 +1704,33 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-07-15T21:19:00+00:00"
+            "time": "2025-03-14T19:35:30+00:00"
         },
         {
             "name": "fusio/adapter-util",
-            "version": "v6.0.6",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-util.git",
-                "reference": "71b24149731c0ed2c40f8bc3f0d20d6d8c8184a3"
+                "reference": "e920d6fd0afc0ea4f345161e8f837c8af4eadafd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/71b24149731c0ed2c40f8bc3f0d20d6d8c8184a3",
-                "reference": "71b24149731c0ed2c40f8bc3f0d20d6d8c8184a3",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-util/zipball/e920d6fd0afc0ea4f345161e8f837c8af4eadafd",
+                "reference": "e920d6fd0afc0ea4f345161e8f837c8af4eadafd",
                 "shasum": ""
             },
             "require": {
                 "fusio/engine": "^6.0",
                 "php": ">=8.1",
                 "psx/json": "^2.0|^3.0",
-                "symfony/cache": "^6.0",
-                "symfony/expression-language": "^6.0",
+                "symfony/cache": "^6.0|^7.0",
+                "symfony/expression-language": "^6.0|^7.0",
                 "twig/twig": "^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^5.9"
+                "phpunit/phpunit": "^10.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -1755,7 +1756,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-util/issues",
-                "source": "https://github.com/apioo/fusio-adapter-util/tree/v6.0.6"
+                "source": "https://github.com/apioo/fusio-adapter-util/tree/v6.1.0"
             },
             "funding": [
                 {
@@ -1771,7 +1772,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-08-09T17:01:34+00:00"
+            "time": "2025-03-14T19:59:42+00:00"
         },
         {
             "name": "fusio/adapter-worker",
@@ -2602,23 +2603,23 @@
         },
         {
             "name": "kevinrob/guzzle-cache-middleware",
-            "version": "v5.1.0",
+            "version": "6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kevinrob/guzzle-cache-middleware.git",
-                "reference": "6bd64dbbe5155107d84a0f67140a8822a709c6d0"
+                "reference": "61305ed694e763e887a04f61e71e2292bb4fbad1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kevinrob/guzzle-cache-middleware/zipball/6bd64dbbe5155107d84a0f67140a8822a709c6d0",
-                "reference": "6bd64dbbe5155107d84a0f67140a8822a709c6d0",
+                "url": "https://api.github.com/repos/Kevinrob/guzzle-cache-middleware/zipball/61305ed694e763e887a04f61e71e2292bb4fbad1",
+                "reference": "61305ed694e763e887a04f61e71e2292bb4fbad1",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/guzzle": "^6.0 || ^7.0",
-                "guzzlehttp/promises": "^1.4 || ^2.0",
-                "guzzlehttp/psr7": "^1.7.0 || ^2.0.0",
-                "php": ">=7.2.0"
+                "guzzlehttp/guzzle": "^7.9.2",
+                "guzzlehttp/promises": "^2.0.3",
+                "guzzlehttp/psr7": "^2.7.0",
+                "php": ">=8.1"
             },
             "require-dev": {
                 "cache/array-adapter": "^0.4 || ^0.5 || ^1.0",
@@ -2626,10 +2627,10 @@
                 "doctrine/cache": "^1.10",
                 "illuminate/cache": "^5.0",
                 "league/flysystem": "^2.5",
-                "phpunit/phpunit": "^8.5.15 || ^9.5",
+                "phpunit/phpunit": "^9.6.21",
                 "psr/cache": "^1.0",
                 "symfony/cache": "^4.4 || ^5.0",
-                "symfony/phpunit-bridge": "^4.4 || ^5.0"
+                "symfony/phpunit-bridge": "^7.1.4"
             },
             "suggest": {
                 "doctrine/cache": "This library has a lot of ready-to-use cache storage (to be used with Kevinrob\\GuzzleCache\\Storage\\DoctrineCacheStorage). Use only versions >=1.4.0 < 2.0.0",
@@ -2681,9 +2682,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Kevinrob/guzzle-cache-middleware/issues",
-                "source": "https://github.com/Kevinrob/guzzle-cache-middleware/tree/v5.1.0"
+                "source": "https://github.com/Kevinrob/guzzle-cache-middleware/tree/6.0.0"
             },
-            "time": "2023-11-09T06:53:45+00:00"
+            "time": "2024-10-17T09:11:54+00:00"
         },
         {
             "name": "league/flysystem",
@@ -3153,24 +3154,35 @@
         },
         {
             "name": "pda/pheanstalk",
-            "version": "v4.0.5",
+            "version": "v5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pheanstalk/pheanstalk.git",
-                "reference": "1459f2f62dddfe28902e0584708417dddd79bd70"
+                "reference": "e257a4a62ae7972a1ecb0b0e81cb6109efd6535a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pheanstalk/pheanstalk/zipball/1459f2f62dddfe28902e0584708417dddd79bd70",
-                "reference": "1459f2f62dddfe28902e0584708417dddd79bd70",
+                "url": "https://api.github.com/repos/pheanstalk/pheanstalk/zipball/e257a4a62ae7972a1ecb0b0e81cb6109efd6535a",
+                "reference": "e257a4a62ae7972a1ecb0b0e81cb6109efd6535a",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": ">=7.1.0"
+                "php": ">=8.1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7"
+                "captainhook/plugin-composer": "^5.3",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^1",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpstan/phpstan-strict-rules": "^1.1",
+                "phpunit/phpunit": "^10",
+                "ramsey/conventional-commits": "^1.2",
+                "symplify/easy-coding-standard": "^12",
+                "vimeo/psalm": "^5"
+            },
+            "suggest": {
+                "ext-sockets": "Socket implementation works best for long running processes"
             },
             "type": "library",
             "autoload": {
@@ -3202,9 +3214,9 @@
             ],
             "support": {
                 "issues": "https://github.com/pheanstalk/pheanstalk/issues",
-                "source": "https://github.com/pheanstalk/pheanstalk/tree/v4.0.5"
+                "source": "https://github.com/pheanstalk/pheanstalk/tree/v5.1.0"
             },
-            "time": "2024-01-11T15:06:06+00:00"
+            "time": "2025-03-17T19:28:20+00:00"
         },
         {
             "name": "php-amqplib/php-amqplib",
@@ -5441,16 +5453,16 @@
         },
         {
             "name": "ramsey/collection",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/collection.git",
-                "reference": "3c5990b8a5e0b79cd1cf11c2dc1229e58e93f109"
+                "reference": "344572933ad0181accbf4ba763e85a0306a8c5e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/collection/zipball/3c5990b8a5e0b79cd1cf11c2dc1229e58e93f109",
-                "reference": "3c5990b8a5e0b79cd1cf11c2dc1229e58e93f109",
+                "url": "https://api.github.com/repos/ramsey/collection/zipball/344572933ad0181accbf4ba763e85a0306a8c5e2",
+                "reference": "344572933ad0181accbf4ba763e85a0306a8c5e2",
                 "shasum": ""
             },
             "require": {
@@ -5511,9 +5523,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ramsey/collection/issues",
-                "source": "https://github.com/ramsey/collection/tree/2.1.0"
+                "source": "https://github.com/ramsey/collection/tree/2.1.1"
             },
-            "time": "2025-03-02T04:48:29+00:00"
+            "time": "2025-03-22T05:38:12+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -5891,16 +5903,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v10.21.0",
+            "version": "v16.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "b4ab319731958077227fad1874a3671458c5d593"
+                "reference": "d6de0a536f00b5c5c74f36b8f4d0d93b035499ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/b4ab319731958077227fad1874a3671458c5d593",
-                "reference": "b4ab319731958077227fad1874a3671458c5d593",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/d6de0a536f00b5c5c74f36b8f4d0d93b035499ff",
+                "reference": "d6de0a536f00b5c5c74f36b8f4d0d93b035499ff",
                 "shasum": ""
             },
             "require": {
@@ -5911,10 +5923,8 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "3.5.0",
-                "php-coveralls/php-coveralls": "^2.5",
                 "phpstan/phpstan": "^1.2",
-                "phpunit/phpunit": "^5.7 || ^9.0",
-                "squizlabs/php_codesniffer": "^3.3"
+                "phpunit/phpunit": "^5.7 || ^9.0"
             },
             "type": "library",
             "extra": {
@@ -5946,37 +5956,38 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v10.21.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v16.6.0"
             },
-            "time": "2023-08-11T00:23:24+00:00"
+            "time": "2025-02-24T22:35:29+00:00"
         },
         {
             "name": "symfony/cache",
-            "version": "v6.4.19",
+            "version": "v7.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "342e87b15ac02e4b4f0924ddc368e75d5262aab3"
+                "reference": "d33cd9e14326e14a4145c21e600602eaf17cc9e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/342e87b15ac02e4b4f0924ddc368e75d5262aab3",
-                "reference": "342e87b15ac02e4b4f0924ddc368e75d5262aab3",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/d33cd9e14326e14a4145c21e600602eaf17cc9e7",
+                "reference": "d33cd9e14326e14a4145c21e600602eaf17cc9e7",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
+                "php": ">=8.2",
                 "psr/cache": "^2.0|^3.0",
                 "psr/log": "^1.1|^2|^3",
                 "symfony/cache-contracts": "^2.5|^3",
+                "symfony/deprecation-contracts": "^2.5|^3.0",
                 "symfony/service-contracts": "^2.5|^3",
-                "symfony/var-exporter": "^6.3.6|^7.0"
+                "symfony/var-exporter": "^6.4|^7.0"
             },
             "conflict": {
-                "doctrine/dbal": "<2.13.1",
-                "symfony/dependency-injection": "<5.4",
-                "symfony/http-kernel": "<5.4",
-                "symfony/var-dumper": "<5.4"
+                "doctrine/dbal": "<3.6",
+                "symfony/dependency-injection": "<6.4",
+                "symfony/http-kernel": "<6.4",
+                "symfony/var-dumper": "<6.4"
             },
             "provide": {
                 "psr/cache-implementation": "2.0|3.0",
@@ -5985,15 +5996,16 @@
             },
             "require-dev": {
                 "cache/integration-tests": "dev-master",
-                "doctrine/dbal": "^2.13.1|^3|^4",
+                "doctrine/dbal": "^3.6|^4",
                 "predis/predis": "^1.1|^2.0",
                 "psr/simple-cache": "^1.0|^2.0|^3.0",
-                "symfony/config": "^5.4|^6.0|^7.0",
-                "symfony/dependency-injection": "^5.4|^6.0|^7.0",
-                "symfony/filesystem": "^5.4|^6.0|^7.0",
-                "symfony/http-kernel": "^5.4|^6.0|^7.0",
-                "symfony/messenger": "^5.4|^6.0|^7.0",
-                "symfony/var-dumper": "^5.4|^6.0|^7.0"
+                "symfony/clock": "^6.4|^7.0",
+                "symfony/config": "^6.4|^7.0",
+                "symfony/dependency-injection": "^6.4|^7.0",
+                "symfony/filesystem": "^6.4|^7.0",
+                "symfony/http-kernel": "^6.4|^7.0",
+                "symfony/messenger": "^6.4|^7.0",
+                "symfony/var-dumper": "^6.4|^7.0"
             },
             "type": "library",
             "autoload": {
@@ -6028,7 +6040,7 @@
                 "psr6"
             ],
             "support": {
-                "source": "https://github.com/symfony/cache/tree/v6.4.19"
+                "source": "https://github.com/symfony/cache/tree/v7.2.4"
             },
             "funding": [
                 {
@@ -6044,7 +6056,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-02-26T09:12:57+00:00"
+            "time": "2025-02-26T09:57:54+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -6890,21 +6902,21 @@
         },
         {
             "name": "symfony/expression-language",
-            "version": "v6.4.13",
+            "version": "v7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/expression-language.git",
-                "reference": "3524904fb026356a5230cd197f9a4e6a61e0e7df"
+                "reference": "26f4884a455e755e630a5fc372df124a3578da2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/expression-language/zipball/3524904fb026356a5230cd197f9a4e6a61e0e7df",
-                "reference": "3524904fb026356a5230cd197f9a4e6a61e0e7df",
+                "url": "https://api.github.com/repos/symfony/expression-language/zipball/26f4884a455e755e630a5fc372df124a3578da2e",
+                "reference": "26f4884a455e755e630a5fc372df124a3578da2e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
-                "symfony/cache": "^5.4|^6.0|^7.0",
+                "php": ">=8.2",
+                "symfony/cache": "^6.4|^7.0",
                 "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/service-contracts": "^2.5|^3"
             },
@@ -6934,7 +6946,7 @@
             "description": "Provides an engine that can compile and evaluate expressions",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/expression-language/tree/v6.4.13"
+                "source": "https://github.com/symfony/expression-language/tree/v7.2.0"
             },
             "funding": [
                 {
@@ -6950,7 +6962,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-09T08:40:40+00:00"
+            "time": "2024-10-15T11:52:45+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -7426,39 +7438,39 @@
         },
         {
             "name": "symfony/mailer",
-            "version": "v6.4.18",
+            "version": "v7.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailer.git",
-                "reference": "e93a6ae2767d7f7578c2b7961d9d8e27580b2b11"
+                "reference": "f3871b182c44997cf039f3b462af4a48fb85f9d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailer/zipball/e93a6ae2767d7f7578c2b7961d9d8e27580b2b11",
-                "reference": "e93a6ae2767d7f7578c2b7961d9d8e27580b2b11",
+                "url": "https://api.github.com/repos/symfony/mailer/zipball/f3871b182c44997cf039f3b462af4a48fb85f9d3",
+                "reference": "f3871b182c44997cf039f3b462af4a48fb85f9d3",
                 "shasum": ""
             },
             "require": {
                 "egulias/email-validator": "^2.1.10|^3|^4",
-                "php": ">=8.1",
+                "php": ">=8.2",
                 "psr/event-dispatcher": "^1",
                 "psr/log": "^1|^2|^3",
-                "symfony/event-dispatcher": "^5.4|^6.0|^7.0",
-                "symfony/mime": "^6.2|^7.0",
+                "symfony/event-dispatcher": "^6.4|^7.0",
+                "symfony/mime": "^7.2",
                 "symfony/service-contracts": "^2.5|^3"
             },
             "conflict": {
                 "symfony/http-client-contracts": "<2.5",
-                "symfony/http-kernel": "<5.4",
-                "symfony/messenger": "<6.2",
-                "symfony/mime": "<6.2",
-                "symfony/twig-bridge": "<6.2.1"
+                "symfony/http-kernel": "<6.4",
+                "symfony/messenger": "<6.4",
+                "symfony/mime": "<6.4",
+                "symfony/twig-bridge": "<6.4"
             },
             "require-dev": {
-                "symfony/console": "^5.4|^6.0|^7.0",
-                "symfony/http-client": "^5.4|^6.0|^7.0",
-                "symfony/messenger": "^6.2|^7.0",
-                "symfony/twig-bridge": "^6.2|^7.0"
+                "symfony/console": "^6.4|^7.0",
+                "symfony/http-client": "^6.4|^7.0",
+                "symfony/messenger": "^6.4|^7.0",
+                "symfony/twig-bridge": "^6.4|^7.0"
             },
             "type": "library",
             "autoload": {
@@ -7486,7 +7498,7 @@
             "description": "Helps sending emails",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailer/tree/v6.4.18"
+                "source": "https://github.com/symfony/mailer/tree/v7.2.3"
             },
             "funding": [
                 {
@@ -7502,7 +7514,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-24T15:27:15+00:00"
+            "time": "2025-01-27T11:08:17+00:00"
         },
         {
             "name": "symfony/messenger",
@@ -8300,20 +8312,20 @@
         },
         {
             "name": "symfony/process",
-            "version": "v6.4.19",
+            "version": "v7.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "7a1c12e87b08ec9c97abdd188c9b3f5a40e37fc3"
+                "reference": "d8f411ff3c7ddc4ae9166fb388d1190a2df5b5cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/7a1c12e87b08ec9c97abdd188c9b3f5a40e37fc3",
-                "reference": "7a1c12e87b08ec9c97abdd188c9b3f5a40e37fc3",
+                "url": "https://api.github.com/repos/symfony/process/zipball/d8f411ff3c7ddc4ae9166fb388d1190a2df5b5cf",
+                "reference": "d8f411ff3c7ddc4ae9166fb388d1190a2df5b5cf",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1"
+                "php": ">=8.2"
             },
             "type": "library",
             "autoload": {
@@ -8341,7 +8353,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v6.4.19"
+                "source": "https://github.com/symfony/process/tree/v7.2.4"
             },
             "funding": [
                 {
@@ -8357,7 +8369,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-02-04T13:35:48+00:00"
+            "time": "2025-02-05T08:33:46+00:00"
         },
         {
             "name": "symfony/property-access",
@@ -9311,28 +9323,28 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v6.4.18",
+            "version": "v7.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "bf598c9d9bb4a22f495a4e26e4c4fce2f8ecefc5"
+                "reference": "ac238f173df0c9c1120f862d0f599e17535a87ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/bf598c9d9bb4a22f495a4e26e4c4fce2f8ecefc5",
-                "reference": "bf598c9d9bb4a22f495a4e26e4c4fce2f8ecefc5",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/ac238f173df0c9c1120f862d0f599e17535a87ec",
+                "reference": "ac238f173df0c9c1120f862d0f599e17535a87ec",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
-                "symfony/deprecation-contracts": "^2.5|^3",
+                "php": ">=8.2",
+                "symfony/deprecation-contracts": "^2.5|^3.0",
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
-                "symfony/console": "<5.4"
+                "symfony/console": "<6.4"
             },
             "require-dev": {
-                "symfony/console": "^5.4|^6.0|^7.0"
+                "symfony/console": "^6.4|^7.0"
             },
             "bin": [
                 "Resources/bin/yaml-lint"
@@ -9363,7 +9375,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v6.4.18"
+                "source": "https://github.com/symfony/yaml/tree/v7.2.3"
             },
             "funding": [
                 {
@@ -9379,7 +9391,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-07T09:44:41+00:00"
+            "time": "2025-01-07T12:55:42+00:00"
         },
         {
             "name": "twig/twig",
