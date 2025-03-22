@@ -2,6 +2,7 @@
 ### 5.2.1
 
 * Add Content-Type handling
+* Update all adapter dependencies 
 * Improved marketplace list view
 * Fix user role select #615
 * Add option to specify operations as PHP config files instead of YAML
