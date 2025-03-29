@@ -1,5 +1,10 @@
 
-### 5.2.1
+### 5.2.2
+
+* Add form feature to build Forms for your API endpoints
+* Add command to migrate YAML definitions to PHP
+
+### 5.2.1 (2025-03-22)
 
 * Add Content-Type handling
 * Update all adapter dependencies 
