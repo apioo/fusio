@@ -3,6 +3,7 @@
 
 * Add form feature to build Forms for your API endpoints
 * Add command to migrate YAML definitions to PHP
+* Add OpenAI SDK integration
 
 ### 5.2.1 (2025-03-22)
 
