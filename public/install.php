@@ -3,7 +3,7 @@
  * Fusio is an open source API management platform which helps to create innovative API solutions.
  * For the current version and information visit <https://www.fusio-project.org/>
  *
- * Copyright 2015-2023 Christoph Kappestein <christoph.kappestein@gmail.com>
+ * Copyright (c) Christoph Kappestein <christoph.kappestein@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
