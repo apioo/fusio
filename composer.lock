@@ -272,26 +272,29 @@
         },
         {
             "name": "doctrine/deprecations",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/deprecations.git",
-                "reference": "31610dbb31faa98e6b5447b62340826f54fbc4e9"
+                "reference": "459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/31610dbb31faa98e6b5447b62340826f54fbc4e9",
-                "reference": "31610dbb31faa98e6b5447b62340826f54fbc4e9",
+                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38",
+                "reference": "459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
+            "conflict": {
+                "phpunit/phpunit": "<=7.5 || >=13"
+            },
             "require-dev": {
-                "doctrine/coding-standard": "^9 || ^12",
-                "phpstan/phpstan": "1.4.10 || 2.0.3",
+                "doctrine/coding-standard": "^9 || ^12 || ^13",
+                "phpstan/phpstan": "1.4.10 || 2.1.11",
                 "phpstan/phpstan-phpunit": "^1.0 || ^2",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.6 || ^10.5 || ^11.5 || ^12",
                 "psr/log": "^1 || ^2 || ^3"
             },
             "suggest": {
@@ -311,9 +314,9 @@
             "homepage": "https://www.doctrine-project.org/",
             "support": {
                 "issues": "https://github.com/doctrine/deprecations/issues",
-                "source": "https://github.com/doctrine/deprecations/tree/1.1.4"
+                "source": "https://github.com/doctrine/deprecations/tree/1.1.5"
             },
-            "time": "2024-12-07T21:18:45+00:00"
+            "time": "2025-04-07T20:06:18+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -720,16 +723,16 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v6.11.0",
+            "version": "v6.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "8f718f4dfc9c5d5f0c994cdfd103921b43592712"
+                "reference": "d1e91ecf8c598d073d0995afa8cd5c75c6e19e66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/8f718f4dfc9c5d5f0c994cdfd103921b43592712",
-                "reference": "8f718f4dfc9c5d5f0c994cdfd103921b43592712",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/d1e91ecf8c598d073d0995afa8cd5c75c6e19e66",
+                "reference": "d1e91ecf8c598d073d0995afa8cd5c75c6e19e66",
                 "shasum": ""
             },
             "require": {
@@ -777,9 +780,9 @@
             ],
             "support": {
                 "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/v6.11.0"
+                "source": "https://github.com/firebase/php-jwt/tree/v6.11.1"
             },
-            "time": "2025-01-23T05:11:06+00:00"
+            "time": "2025-04-09T20:32:01+00:00"
         },
         {
             "name": "fusio/adapter-amqp",
@@ -1979,16 +1982,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.4.5",
+            "version": "v8.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "f22274c534e5dca677cd7d1775f1dfb486274232"
+                "reference": "a426a876079126540c8649ed89d4d6240e4faacc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/f22274c534e5dca677cd7d1775f1dfb486274232",
-                "reference": "f22274c534e5dca677cd7d1775f1dfb486274232",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/a426a876079126540c8649ed89d4d6240e4faacc",
+                "reference": "a426a876079126540c8649ed89d4d6240e4faacc",
                 "shasum": ""
             },
             "require": {
@@ -2048,7 +2051,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.4.5"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.4.6"
             },
             "funding": [
                 {
@@ -2064,7 +2067,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-03-21T20:51:56+00:00"
+            "time": "2025-04-10T21:34:18+00:00"
         },
         {
             "name": "fusio/marketplace",
@@ -4438,16 +4441,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v7.9.4",
+            "version": "v7.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "fe70c5d06fcdb01b342844fdc81a9cc3be261574"
+                "reference": "6f5a3cae8186fbe9d96d71d4de9866eedb5ccd6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/fe70c5d06fcdb01b342844fdc81a9cc3be261574",
-                "reference": "fe70c5d06fcdb01b342844fdc81a9cc3be261574",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/6f5a3cae8186fbe9d96d71d4de9866eedb5ccd6f",
+                "reference": "6f5a3cae8186fbe9d96d71d4de9866eedb5ccd6f",
                 "shasum": ""
             },
             "require": {
@@ -4512,7 +4515,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-framework/issues",
-                "source": "https://github.com/apioo/psx-framework/tree/v7.9.4"
+                "source": "https://github.com/apioo/psx-framework/tree/v7.9.5"
             },
             "funding": [
                 {
@@ -4528,7 +4531,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-03-21T19:59:23+00:00"
+            "time": "2025-04-10T18:04:12+00:00"
         },
         {
             "name": "psx/http",
