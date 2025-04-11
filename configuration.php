@@ -72,6 +72,9 @@ return [
 
     'psx_migration_namespace'  => 'App\\Migrations',
 
+    // Trusted IP header i.e. X-Forwarded-For which contains the actual user ip in case the app runs behind a proxy
+    'psx_trusted_ip_header'    => env('APP_TRUSTED_IP_HEADER')->string(),
+
     // Optional an SDKgen access token which adds support for different SDK generators
     // https://sdkgen.app/
     'sdkgen_client_id'         => env('SDKGEN_CLIENT_ID')->string(),
