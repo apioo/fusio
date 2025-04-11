@@ -2,6 +2,7 @@
 ### 5.2.2
 
 * Add form feature to build Forms for your API endpoints
+* Add option to configure trusted IP header for proxy
 * Add command to migrate YAML definitions to PHP
 * Add OpenAI SDK integration
 
