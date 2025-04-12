@@ -5,6 +5,8 @@
 * Add option to configure trusted IP header for proxy
 * Add command to migrate YAML definitions to PHP
 * Add OpenAI SDK integration
+* Improved docker handling in case the marketplace is down
+* Fixed scope list empty #620
 
 ### 5.2.1 (2025-03-22)
 
