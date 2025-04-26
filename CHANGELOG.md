@@ -1,5 +1,11 @@
 
-### 5.2.2
+### 5.2.3
+
+* Added firewall feature #508 #154
+* Add verbose mode to marketplace env/install/upgrade command for debugging #625
+* Add CLI option to ready payload from stdin
+
+### 5.2.2 (2025-04-12)
 
 * Add form feature to build Forms for your API endpoints
 * Add option to configure trusted IP header for proxy
