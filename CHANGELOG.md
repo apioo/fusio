@@ -1,6 +1,7 @@
 
 ### 5.2.3
 
+* Add option to set user points via API #586
 * Added firewall feature #508 #154
 * Add verbose mode to marketplace env/install/upgrade command for debugging #625
 * Add CLI option to ready payload from stdin
