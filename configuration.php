@@ -5,6 +5,15 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\env;
 
 return [
 
+    // Firewall configuration, the firewall works similar to fail2ban, in case a client has produced a specific number
+    // of client errors, we insert a ban for this ip for a specific amount of time. This protects us from brute-force
+    // attacks and other malicious requests
+    'fusio_firewall_ignoreip'  => [],
+    'fusio_firewall_bantime'   => 'PT5M',
+    'fusio_firewall_findtime'  => 'PT2M',
+    'fusio_firewall_maxretry'  => 32,
+    'fusio_firewall_codes'     => [],
+
     // OAuth2 access token expiration settings. How long can you use an access token and the refresh token. After the
     // expiration a user either need to use a refresh token to extend the token or request a new token
     'fusio_expire_token'       => 'P2D',
