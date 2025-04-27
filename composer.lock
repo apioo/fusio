@@ -1844,16 +1844,16 @@
         },
         {
             "name": "fusio/cli",
-            "version": "v4.2.1",
+            "version": "v4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-cli.git",
-                "reference": "026b4a44296def247832814acad6a91cccd8ec58"
+                "reference": "84307d0a87317af998164706bcefdee48a34416f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/026b4a44296def247832814acad6a91cccd8ec58",
-                "reference": "026b4a44296def247832814acad6a91cccd8ec58",
+                "url": "https://api.github.com/repos/apioo/fusio-cli/zipball/84307d0a87317af998164706bcefdee48a34416f",
+                "reference": "84307d0a87317af998164706bcefdee48a34416f",
                 "shasum": ""
             },
             "require": {
@@ -1892,7 +1892,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-cli/issues",
-                "source": "https://github.com/apioo/fusio-cli/tree/v4.2.1"
+                "source": "https://github.com/apioo/fusio-cli/tree/v4.2.3"
             },
             "funding": [
                 {
@@ -1908,7 +1908,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-03-23T11:32:47+00:00"
+            "time": "2025-04-12T19:11:39+00:00"
         },
         {
             "name": "fusio/engine",
@@ -1982,16 +1982,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.4.6",
+            "version": "v8.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "a426a876079126540c8649ed89d4d6240e4faacc"
+                "reference": "fa6038de22289d8963ada6897a51da8bfe17b359"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/a426a876079126540c8649ed89d4d6240e4faacc",
-                "reference": "a426a876079126540c8649ed89d4d6240e4faacc",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/fa6038de22289d8963ada6897a51da8bfe17b359",
+                "reference": "fa6038de22289d8963ada6897a51da8bfe17b359",
                 "shasum": ""
             },
             "require": {
@@ -2051,7 +2051,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.4.6"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.4.7"
             },
             "funding": [
                 {
@@ -2067,7 +2067,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-04-10T21:34:18+00:00"
+            "time": "2025-04-27T18:08:59+00:00"
         },
         {
             "name": "fusio/marketplace",
@@ -2112,16 +2112,16 @@
         },
         {
             "name": "fusio/model",
-            "version": "v4.4.4",
+            "version": "v4.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-model.git",
-                "reference": "84f0957d4acef25a1c9c64d9b4d013d66ff2253a"
+                "reference": "2d9ee8a59300a0bc08c016b26e9ace52a2d390bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-model/zipball/84f0957d4acef25a1c9c64d9b4d013d66ff2253a",
-                "reference": "84f0957d4acef25a1c9c64d9b4d013d66ff2253a",
+                "url": "https://api.github.com/repos/apioo/fusio-model/zipball/2d9ee8a59300a0bc08c016b26e9ace52a2d390bf",
+                "reference": "2d9ee8a59300a0bc08c016b26e9ace52a2d390bf",
                 "shasum": ""
             },
             "require": {
@@ -2153,7 +2153,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-model/issues",
-                "source": "https://github.com/apioo/fusio-model/tree/v4.4.4"
+                "source": "https://github.com/apioo/fusio-model/tree/v4.4.6"
             },
             "funding": [
                 {
@@ -2169,7 +2169,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-03-23T18:23:45+00:00"
+            "time": "2025-04-26T20:25:44+00:00"
         },
         {
             "name": "fusio/worker-sdk",
@@ -4441,16 +4441,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v7.9.5",
+            "version": "v7.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "6f5a3cae8186fbe9d96d71d4de9866eedb5ccd6f"
+                "reference": "baffd446757b09303aba84365abfc7c7099c6d18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/6f5a3cae8186fbe9d96d71d4de9866eedb5ccd6f",
-                "reference": "6f5a3cae8186fbe9d96d71d4de9866eedb5ccd6f",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/baffd446757b09303aba84365abfc7c7099c6d18",
+                "reference": "baffd446757b09303aba84365abfc7c7099c6d18",
                 "shasum": ""
             },
             "require": {
@@ -4515,7 +4515,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-framework/issues",
-                "source": "https://github.com/apioo/psx-framework/tree/v7.9.5"
+                "source": "https://github.com/apioo/psx-framework/tree/v7.9.6"
             },
             "funding": [
                 {
@@ -4531,7 +4531,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-04-10T18:04:12+00:00"
+            "time": "2025-04-26T09:03:47+00:00"
         },
         {
             "name": "psx/http",
