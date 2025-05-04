@@ -5,6 +5,7 @@
 * Added firewall feature #508 #154
 * Add verbose mode to marketplace env/install/upgrade command for debugging #625
 * Add CLI option to ready payload from stdin
+* Updated marketplace env command, add an option to replace all available apps
 
 ### 5.2.2 (2025-04-12)
 
