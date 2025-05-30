@@ -1,5 +1,12 @@
 
-### 5.2.3
+### 5.2.4
+
+* Improve base url detection without defining a url
+* Exclude firewall and rate-limit on deploy and testing
+* Add schema nullable handling
+* Remove trailing slash from OpenAPI specification
+
+### 5.2.3 (2025-05-04)
 
 * Add option to set user points via API #586
 * Added firewall feature #508 #154
