@@ -1,6 +1,7 @@
 
 ### 5.2.4
 
+* Update apps list
 * Improve base url detection without defining a url
 * Exclude firewall and rate-limit on deploy and testing
 * Add schema nullable handling
