@@ -9,24 +9,32 @@ Open Source API Management Made Easy.
 
 ## 🚀 Use Cases
 
-- 🗄️ **Database API Gateway**
-   > Unlock legacy databases and expose them via modern REST APIs.
-- 🧠 **Custom Backend Logic for APIs**
-   > Build and manage custom business logic tailored to your domain.
-- 🔀 **Gateway for Microservices**
-   > Route, orchestrate, and secure traffic between internal services.
-- 🌐 **API Developer Portal**
-   > Provide docs, testing, and SDKs for internal or external developers.
-- 💰 **API Monetization**
-   > Enable freemium or tiered access with quotas, limits, and billing hooks.
-- ⚡ **Fast API Prototyping**
-   > Quickly scaffold APIs for testing, MVPs, or frontend-backend integration.
-- 📊 **API Usage Analytics**
-   > Monitor traffic, detect issues early, and understand API consumption.
-- 📰 **Headless CMS Backend**
-   > Manage and expose structured content to any frontend via APIs.
-- 🧰 **SDK Automation**
-   > Automatically generate ready-to-use client SDKs (PHP, TypeScript, Python, etc.).
+* __Database API Gateway__
+  > Unlock legacy databases and expose them via modern REST APIs.
+
+* __Custom Backend Logic for APIs__
+  > Build and manage custom business logic tailored to your domain.
+
+* __Gateway for Microservices__
+  > Route, orchestrate, and secure traffic between internal services.
+
+* __API Developer Portal__
+  > Provide docs, testing, and SDKs for internal or external developers.
+
+* __API Monetization__
+  > Enable freemium or tiered access with quotas, limits, and billing hooks.
+
+* __Fast API Prototyping__
+  > Quickly scaffold APIs for testing, MVPs, or frontend-backend integration.
+
+* __API Usage Analytics__
+  > Monitor traffic, detect issues early, and understand API consumption.
+
+* __Headless CMS Backend__
+  > Manage and expose structured content to any frontend via APIs.
+
+* __SDK Automation__
+  > Automatically generate ready-to-use client SDKs (PHP, TypeScript, Python, etc.).
 
 ## 📦 Quick Start
 
@@ -66,7 +74,7 @@ Open Source API Management Made Easy.
   php -S 127.0.0.1:8080 -t public
   ```
 
-### 🛠️ Web-Installer
+### 🌐 Web-Installer
 
 Instead of manual installation you can also use the web installer script located at `/install.php`
 to complete the installation. After installation, it is recommended to delete this "install" script.
