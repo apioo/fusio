@@ -3,82 +3,139 @@
     <a href="https://www.fusio-project.org/" target="_blank"><img src="https://www.fusio-project.org/img/fusio_64px.png"></a>
 </p>
 
-# About
+# Fusio
 
-Fusio is an open source API management platform which helps to create innovative API solutions.
+Open Source API Management Made Easy.
 
-## Use-Cases
+## 🚀 Use Cases
 
-* __API-Product__  
-  Fusio helps you to create a great API product, besides building an API it provides a developer portal where developers
-  can register and a way to monetize your API
-* __API-Gateway__  
-  Fusio can be used as gateway to your internal API and microservices. It handles all common features like
-  Authorization, Rate-Limiting and Schema-Validation
-* __SPA-Backend__  
-  Fusio can be used as backend to build SPAs using popular Javascript-Frameworks like i.e. Angular, React or Vue. It
-  provides a powerful code generator which can automatically generate an SDK for your API
-* __Low-Code-Platform__  
-  Fusio allows you to build API endpoints without coding knowledge. I.e. it provides an Entity generator which you can
-  use to easily create complete CRUD APIs.
-* __API-Framework__  
-  For more complex use cases you can use Fusio also as framework to build complete APIs from scratch. This means you
-  build custom actions where you can use the wide PHP ecosystem to solve your task.
+- 🗄️ **Database API Gateway**
+   > Unlock legacy databases and expose them via modern REST APIs.
+- 🧠 **Custom Backend Logic for APIs**
+   > Build and manage custom business logic tailored to your domain.
+- 🔀 **Gateway for Microservices**
+   > Route, orchestrate, and secure traffic between internal services.
+- 🌐 **API Developer Portal**
+   > Provide docs, testing, and SDKs for internal or external developers.
+- 💰 **API Monetization**
+   > Enable freemium or tiered access with quotas, limits, and billing hooks.
+- ⚡ **Fast API Prototyping**
+   > Quickly scaffold APIs for testing, MVPs, or frontend-backend integration.
+- 📊 **API Usage Analytics**
+   > Monitor traffic, detect issues early, and understand API consumption.
+- 📰 **Headless CMS Backend**
+   > Manage and expose structured content to any frontend via APIs.
+- 🧰 **SDK Automation**
+   > Automatically generate ready-to-use client SDKs (PHP, TypeScript, Python, etc.).
 
-## Features
+## 📦 Quick Start
 
-Fusio helps you to build APIs providing out-of-the-box enterprise features so that you can concentrate on your business
-case. Please take a look at our [documentation website](https://docs.fusio-project.org/)
-for more information. The following feature list gives you a first overview:
+### 🛠️ Installation
 
-* __OpenAPI generation__  
-  Fusio generates automatically an OpenAPI specification for the defined routes
-* __SDK generation__  
-  Fusio can automatically generate a client SDK for your API based on the defined schema
-* __Webhook support__  
-  Fusio contains a webhook system which helps to build publish/subscribe for your API
-* __Rate limiting__  
-  Fusio provides a way to rate limit requests based on the user or app
-* __Authorization__  
-  Fusio uses OAuth2 for API authorization
-* __Monetization__  
-  Fusio provides a simple payment system to charge for specific routes
-* __Validation__  
-  Fusio uses the TypeSchema to automatically validate incoming request data
-* __Analytics__  
-  Fusio monitors all API activities and shows them on a dashboard
-* __User management__  
-  Fusio provides a developer app where new users can login or register a new account through GitHub, Google, Facebook or
-  through normal email registration
+* __Download artifact__
+  > You can either download the official [release](https://github.com/apioo/fusio/releases) or clone the repository.
+  ```bash
+  git clone https://github.com/apioo/fusio.git
+  ```
 
-# Apps
+* __Set up your `.env`__
+  > Configure fitting database credentials at the `APP_CONNECTION` variable, all other parameters are optional.
+  > * MySQL: `pdo-mysql://root:test1234@localhost/fusio`
+  > * PostgreSQL: `pdo-pgsql://postgres:postgres@localhost/fusio`
+  > * SQLite: `pdo-sqlite:///fusio.sqlite`
 
-Fusio provides many apps which help to work with the API. Mostly apps are
-simple JS apps, which work with the internal API of Fusio. You can see a list of all available apps at our
-[marketplace](https://www.fusio-project.org/marketplace). You can install such an app either through a CLI command i.e.
-`php bin/fusio marketplace:install fusio` or through the backend app.
+* __Run migrations__
+  ```bash
+  php bin/fusio migrate
+  ```
 
-All apps are installed to the `apps/` folder. You need to tell Fusio the public url to the apps folder at the `.env`
-file by defining the `APP_APPS_URL` variable. Depending on your setup this can be either a custom sub-domain like
-`https://apps.acme.com` or simply the sub folder `https://acme.com/apps`.
+* __Create administrator user__
+  > After the installation is complete, you have to create a new administrator account. Choose as account type "Administrator".
+  ```bash
+  php bin/fusio adduser
+  ```
 
-## Backend
+* __Install backend app__
+  ```bash
+  php bin/fusio marketplace:install fusio
+  ```
+
+* __Start via PHP built-in server__
+  > This should be only used for testing, for production you need a classical Nginx/Apache setup or use Docker, take a look at our [installation documentation](https://docs.fusio-project.org/docs/installation/) for more details.
+  ```bash
+  php -S 127.0.0.1:8080 -t public
+  ```
+
+### 🛠️ Web-Installer
+
+Instead of manual installation you can also use the web installer script located at `/install.php`
+to complete the installation. After installation, it is recommended to delete this "install" script.
+
+### 🐳 Docker
+
+To run Fusio with Docker you only need the official Fusio [docker image](https://hub.docker.com/r/fusio/fusio)
+and a database. The following example shows a minimal `docker-compose.yaml` which you can use to run Fusio.
+
+```yaml
+version: '3'
+services:
+  fusio:
+    image: fusio/fusio
+    restart: always
+    environment:
+      FUSIO_PROJECT_KEY: "42eec18ffdbffc9fda6110dcc705d6ce"
+      FUSIO_CONNECTION: "pdo-mysql://fusio:61ad6c605975@mysql-fusio/fusio"
+      FUSIO_BACKEND_USER: "test"
+      FUSIO_BACKEND_EMAIL: "demo@fusio-project.org"
+      FUSIO_BACKEND_PW: "test1234"
+    links:
+      - mysql-fusio
+    ports:
+      - "8080:80"
+
+  mysql-fusio:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "1"
+      MYSQL_USER: "fusio"
+      MYSQL_PASSWORD: "61ad6c605975"
+      MYSQL_DATABASE: "fusio"
+    volumes:
+      - ./db:/var/lib/mysql
+```
+
+## 🧩 Apps
+
+Fusio includes a flexible app system that lets you install various web-based apps to support
+different API-related use cases. These apps are typically simple JavaScript frontends that
+interact with Fusio's internal API.
+
+You can browse all available apps in the [Fusio Marketplace](https://www.fusio-project.org/marketplace),
+and install them using either the CLI:
+
+```bash
+php bin/fusio marketplace:install fusio
+```
+
+or directly through the backend interface.
+
+### 🖥️ Backend
 
 ![Backend](https://www.fusio-project.org/media/backend/dashboard.png)
 
-The backend app is the main app to configure and manage your API. The installer automatically installs this app. The app
-is located at `/apps/fusio/`.
+The backend app is the main app to configure and manage your API located at `/apps/fusio/`.
 
-## VSCode
+### 💡 VSCode
 
 Fusio provides a [VSCode extension](https://marketplace.visualstudio.com/items?itemName=Fusio.fusio)
-which can be used to simplify action development. This means you can develop every action directly inside
-the VSCode editor.
+which can be used to simplify action development.
 
-# SDK
+## 🔗 Integration
 
-To build and integrate apps with Fusio we provide several SDKs which you can use to work with a Fusio instance or you
-can also simply manually talk to the REST API.
+### 🧰 SDK
+
+To build and integrate applications with Fusio, you can use one of our officially supported SDKs, which simplify interaction with a Fusio instance. Alternatively, you can directly communicate with the REST API for full control and flexibility.
 
 | Language   | GitHub                                                  | Package                                                           | Example                                                      |
 |------------|---------------------------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------|
@@ -89,13 +146,13 @@ can also simply manually talk to the REST API.
 | PHP        | [GitHub](https://github.com/apioo/fusio-sdk-php)        | [Packagist](https://packagist.org/packages/fusio/sdk)             | [Example](https://github.com/apioo/fusio-sample-php-cli)     |
 | Python     | [GitHub](https://github.com/apioo/fusio-sdk-python)     | [PyPI](https://pypi.org/project/fusio-sdk/)                       | [Example](https://github.com/apioo/fusio-sample-python-cli)  |
 
-## Frameworks
+### 🖥️ Frontend
 
 | Framework | GitHub                                                           | Package                                             | Example |
 |-----------|------------------------------------------------------------------|-----------------------------------------------------|---------|
 | Angular   | [GitHub](https://github.com/apioo/fusio-sdk-javascript-angular)  | [NPM](https://www.npmjs.com/package/ngx-fusio-sdk)  | [Example](https://github.com/apioo/fusio-sample-javascript-angular)        |
 
-## REST API
+### 📡 REST API
 
 | Domain   | Documentation                                       | Specification                                                                           |
 |----------|-----------------------------------------------------|-----------------------------------------------------------------------------------------|
@@ -103,10 +160,9 @@ can also simply manually talk to the REST API.
 | Consumer | [ReDoc](https://www.fusio-project.org/api/consumer) | [OpenAPI](https://demo.fusio-project.org/system/generator/spec-openapi?filter=consumer) |
 | System   | [ReDoc](https://www.fusio-project.org/api/system)   | [OpenAPI](https://demo.fusio-project.org/system/generator/spec-openapi?filter=system)   |
 
-# Ecosystem
+## 🌍 Ecosystem
 
-Fusio is an open source project which you can use freely for private and commercial projects under the terms of the
-Apache 2.0 license. Besides our core product we offer additional services to augment the functionality of Fusio.
+Besides our core product, we offer additional services to augment the functionality of Fusio.
 
 * [SDKgen](https://sdkgen.app/)  
   SDKgen is a powerful code generator to automatically build client SDKs for your REST API.
@@ -123,114 +179,81 @@ Apache 2.0 license. Besides our core product we offer additional services to aug
 * [PSX](https://phpsx.org/)  
   An innovative PHP framework dedicated to build fully typed REST APIs.
 
-# Installation
+## 🏷️ Domains
 
-It is possible to install Fusio either through composer or manually file download.
+By default, the entire Fusio project can be hosted on a single domain. In this setup:
 
-## Composer
+* Your API is served from the root path (e.g., https://acme.com/).
+* Web apps like the developer portal and admin backend are accessible under the `/apps` directory (e.g., https://acme.com/apps/developer).
 
-```
-composer create-project fusio/fusio
-```
-
-## Download
-
-https://github.com/apioo/fusio/releases
-
-## Configuration
-
-You can either manually install Fusio with the steps below or you can also use the browser based installer at
-`public/install.php`. Note because of security reasons it is highly recommended removing the installer script after the
-installation.
-
-* __Adjust the configuration file__  
-  Open the file `.env` in the Fusio directory and change the `APP_URL` to the domain pointing to the public folder.
-  Also insert the database credentials to the `APP_CONNECTION` keys. Optional adjust `APP_APPS_URL` to the public url
-  of the apps folder (in case you want to use apps).
-* __Execute the installation command__  
-  The installation script inserts the Fusio database schema into the provided database. It can be executed with the
-  following command `php bin/fusio migrate`.
-* __Create administrator user__  
-  After the installation is complete you have to create a new administrator account. Therefor you can use the following
-  command `php bin/fusio adduser`. Choose as account type "Administrator".
-* __Install backend app__  
-  To manage your API through an admin panel you need to install the backend app. The app can be installed with the
-  following command `php bin/fusio marketplace:install fusio`
-
-You can verify the installation by visiting the `APP_URL` with a browser. You should see an API response that the
-installation was successful.
-
-In case you want to install Fusio on a specific database you need to adjust the `APP_CONNECTION` parameter. You can
-use the following connection strings:
-
-* MySQL: `pdo-mysql://root:test1234@localhost/fusio`
-* PostgreSQL: `pdo-pgsql://postgres:postgres@localhost/fusio`
-* SQLite: `pdo-sqlite:///fusio.sqlite`
-
-In general it is possible to install Fusio on all database which are [supported](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/configuration.html#driver)
-by our database abstraction layer but our internal test cases are only covering MySQL, PostgreSQL and SQLite so there is
-no guarantee that everything works.
-
-## Docker
-
-It is possible to setup Fusio through docker. This has the advantage that you automatically get a complete running Fusio
-system without configuration. This is especially great for testing and evaluation. To setup the container you have to
-checkout the [repository](https://github.com/apioo/fusio-docker) and run the following command:
-
-```
-docker-compose up -d
-```
-
-This builds the Fusio system with a predefined backend account. The credentials are taken from the env variables
-`FUSIO_BACKEND_USER`, `FUSIO_BACKEND_EMAIL` and `FUSIO_BACKEND_PW` in the `docker-compose.yml`. If you are planing to
-run the container on the internet you must change these credentials.
-
-## Domains
-
-By default the complete Fusio project can be hosted on a single domain. In this setup your API is served at the root
-directory and the developer portal and backend apps are directly served from the /apps folder. This setup is easy to use
-since it requires no configuration. If you want to run Fusio in a production environment we recommend to create the
-following sub-domain structure:
+This setup is quick to get started with and requires no additional configuration.
+For production environments, we recommend a subdomain-based structure:
 
 * __api.acme.com__  
-  Contains only Fusio where your API is served, in this case you can delete the apps/ folder from the public/ folder
+  Hosts only the Fusio API. In this setup, you can safely remove the `apps/` folder from the `public/` directory.
 * __developer.acme.com__  
-  Contains the developer portal app where external developers can register 
-* __fusio.acme.com__  
-  Optional the backend app where you can manage your Fusio instance. You can host this also on a complete separate
-  internal domain, the backend app only needs access to the Fusio API.
+  Hosts the **Developer App**, a portal where third-party developers can register, view documentation, and access their credentials. 
+* __fusio.acme.com__ (optional)  
+  Hosts the **Backend App**, used to manage your Fusio instance. You can also host this on a separate internal domain.
 
-This is of course only a suggestion and you are free to choose the domain names how you like.
+> Note: This is just a suggested setup. You're free to choose any domain or subdomain structure that best fits your infrastructure.
 
-# Documentation
+## 📚 Documentation
 
 Please check out our official documentation website where we bundle all documentation resources:
+
 https://docs.fusio-project.org/
 
-# Support
+## 🤝 Support
 
-## Promotion
+### 💬 Get Help
 
-If you are a blogger or magazine we would be happy if you like to cover Fusio. Please take a look at the Media section
-of our [About Page](https://www.fusio-project.org/about) to download the official icon set. In case you have any
-questions please write us a message directly so we can help you to create great content.
+If you have questions or run into issues while using Fusio:
 
-## Consulting
+- Open a [discussion](https://github.com/apioo/fusio/discussions) for general questions, feedback, or feature ideas.
+- Report bugs or technical problems via the [issue tracker](https://github.com/apioo/fusio/issues).
+- Join our [Discord community](https://discord.gg/eMrMgwsc6e) to chat directly with the developers and other users.
 
-If you are a company or freelancer and want to get detailed information how you can use Fusio you can contact us for
-consulting. In the workshop we try to find the best way how you can use/integrate Fusio also we try to explain the
-functionality and answer your questions.
+If you're a company or freelancer looking for more tailored help, please check out our **consulting** services below.
 
-## Donations
+---
 
-If this project helps you to generate revenue or in general if you like to support the project please check out the
-donation options at our repository.
+### 📣 Promotion & Media
 
-## Partner
+Are you a blogger, writer, or run a developer-focused publication? We'd love for you to cover Fusio!
 
-The following list shows all partners of the Fusio project. We like to thank every partner supporting us in our vision
-to move API development to the next level. If you are interested in getting listed here feel free to sponsor our
-project.
+Visit the [Media Page](https://www.fusio-project.org/media) to download official icons for use in your articles or videos.
+
+---
+
+### 🧑‍🏫 Consulting & Workshops
+
+For companies or freelancers who want in-depth guidance on using and integrating Fusio:
+
+- We offer **consulting services** to help you evaluate whether Fusio fits your architecture.
+- Our **workshops** walk you through key functionality, answer your specific questions, and help identify the best integration approach.
+
+Feel free to [contact us](https://www.fusio-project.org/contact) for more details.
+
+---
+
+### 💖 Support Fusio
+
+If Fusio helps you build APIs faster or adds value to your projects, please consider supporting our work:
+
+- ⭐ Star the project on GitHub
+- ☕ [Sponsor via GitHub](https://github.com/sponsors/chriskapp)
+- 💬 Spread the word on social media or write about Fusio
+
+Every bit of support helps us continue improving the platform!
+
+---
+
+### 🤝 Project Partners
+
+We’re grateful to our partners who support the Fusio project and share our vision of advancing open API development.
+
+If your company is interested in becoming a partner and being listed here, consider [becoming a sponsor](https://github.com/sponsors/chriskapp).
 
 <a href="https://jb.gg/OpenSourceSupport">
 <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg">
