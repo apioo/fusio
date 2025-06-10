@@ -5,7 +5,7 @@
 
 # Fusio
 
-Open Source API Management Made Easy.
+Self-Hosted API Management for Builders.
 
 ## 🚀 Use Cases
 
