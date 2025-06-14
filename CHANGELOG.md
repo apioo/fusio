@@ -1,5 +1,12 @@
 
-### 5.2.4
+### 5.2.5
+
+* Upgrade command use resources path
+* App detect url via javascript for localhost
+* Implement API Catalog [RFC9727](https://www.rfc-editor.org/rfc/rfc9727.html)
+* Add `.well-known/` urls
+
+### 5.2.4 (2025-06-11)
 
 * Update apps list
 * Improve base url detection without defining a url
