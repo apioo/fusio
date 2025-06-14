@@ -4,7 +4,8 @@
 * Upgrade command use resources path
 * App detect url via javascript for localhost
 * Implement API Catalog [RFC9727](https://www.rfc-editor.org/rfc/rfc9727.html)
-* Add `.well-known/` urls
+* Add humans.txt and robots.txt
+* Added the following .well-known/ uris: api-catalog, oauth-authorization-server and security.txt
 
 ### 5.2.4 (2025-06-11)
 
