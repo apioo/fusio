@@ -6,6 +6,7 @@
 * Implement API Catalog [RFC9727](https://www.rfc-editor.org/rfc/rfc9727.html)
 * Add humans.txt and robots.txt
 * Added the following .well-known/ uris: api-catalog, oauth-authorization-server and security.txt
+* Fix redoc app handle dynamic urls
 
 ### 5.2.4 (2025-06-11)
 
