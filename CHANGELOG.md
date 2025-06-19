@@ -7,6 +7,8 @@
 * Add humans.txt and robots.txt
 * Added the following .well-known/ uris: api-catalog, oauth-authorization-server and security.txt
 * Fix redoc app handle dynamic urls
+* Add order direction parameter to SqlSelectAll action
+* Fix WorkerPHPLocal action cache path
 
 ### 5.2.4 (2025-06-11)
 
