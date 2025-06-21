@@ -9,6 +9,7 @@
 * Fix redoc app handle dynamic urls
 * Add order direction parameter to SqlSelectAll action
 * Fix WorkerPHPLocal action cache path
+* Removed introspection from database connections
 
 ### 5.2.4 (2025-06-11)
 
