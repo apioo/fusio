@@ -14,6 +14,13 @@ return [
     'fusio_firewall_maxretry'  => 32,
     'fusio_firewall_codes'     => [],
 
+    // Experimental MCP server configuration, if enabled, the MCP HTTP endpoint /mcp is active. The CLI stdio MCP service
+    // can always be used independent of this configuration via php bin/fusio mcp
+    // The MCP server helps to access all operations through an LLM
+    'fusio_mcp'                => false,
+    'fusio_mcp_queue_size'     => 500,
+    'fusio_mcp_timeout'        => 1800,
+
     // OAuth2 access token expiration settings. How long can you use an access token and the refresh token. After the
     // expiration a user either need to use a refresh token to extend the token or request a new token
     'fusio_expire_token'       => 'P2D',
