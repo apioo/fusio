@@ -1,5 +1,15 @@
 
-### 5.2.5
+### 5.3.0
+
+* Added MCP server
+* Improved API documentation
+* Added OAuth2 authorization server
+* Added Fusio identity provider to use the internal authorization server
+* Added well-known oauth protected resource endpoint [RFC9728](https://www.rfc-editor.org/rfc/rfc9728.html)
+* Add option to configure different captcha provider
+* Add config option to disable user registration
+
+### 5.2.5 (2025-06-21)
 
 * Upgrade command use resources path
 * App detect url via javascript for localhost
