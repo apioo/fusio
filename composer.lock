@@ -1893,16 +1893,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.5.4",
+            "version": "v8.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "5b61d0960c5c6194aed494bf65379fda38119b33"
+                "reference": "bbd1281690fbdec7c8c905324060da53a3b5bff2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/5b61d0960c5c6194aed494bf65379fda38119b33",
-                "reference": "5b61d0960c5c6194aed494bf65379fda38119b33",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/bbd1281690fbdec7c8c905324060da53a3b5bff2",
+                "reference": "bbd1281690fbdec7c8c905324060da53a3b5bff2",
                 "shasum": ""
             },
             "require": {
@@ -1963,7 +1963,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.5.4"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.5.5"
             },
             "funding": [
                 {
@@ -1979,7 +1979,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-07-20T21:39:01+00:00"
+            "time": "2025-07-24T19:36:26+00:00"
         },
         {
             "name": "fusio/marketplace",
@@ -2024,16 +2024,16 @@
         },
         {
             "name": "fusio/model",
-            "version": "v4.5.1",
+            "version": "v4.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-model.git",
-                "reference": "64be654fed97f4a33e813940084d23c47ca9683d"
+                "reference": "6518101e76a3b202590fae99a064e18a8ef8db65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-model/zipball/64be654fed97f4a33e813940084d23c47ca9683d",
-                "reference": "64be654fed97f4a33e813940084d23c47ca9683d",
+                "url": "https://api.github.com/repos/apioo/fusio-model/zipball/6518101e76a3b202590fae99a064e18a8ef8db65",
+                "reference": "6518101e76a3b202590fae99a064e18a8ef8db65",
                 "shasum": ""
             },
             "require": {
@@ -2065,7 +2065,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-model/issues",
-                "source": "https://github.com/apioo/fusio-model/tree/v4.5.1"
+                "source": "https://github.com/apioo/fusio-model/tree/v4.5.2"
             },
             "funding": [
                 {
@@ -2081,7 +2081,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-07-19T20:49:47+00:00"
+            "time": "2025-07-24T18:17:03+00:00"
         },
         {
             "name": "fusio/worker-sdk",
