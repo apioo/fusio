@@ -1893,16 +1893,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.5.5",
+            "version": "v8.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "bbd1281690fbdec7c8c905324060da53a3b5bff2"
+                "reference": "eb028e5a34e1af867767bb01a4cbe0b50eeac9c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/bbd1281690fbdec7c8c905324060da53a3b5bff2",
-                "reference": "bbd1281690fbdec7c8c905324060da53a3b5bff2",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/eb028e5a34e1af867767bb01a4cbe0b50eeac9c1",
+                "reference": "eb028e5a34e1af867767bb01a4cbe0b50eeac9c1",
                 "shasum": ""
             },
             "require": {
@@ -1963,7 +1963,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.5.5"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.5.6"
             },
             "funding": [
                 {
@@ -1979,7 +1979,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-07-24T19:36:26+00:00"
+            "time": "2025-07-26T19:57:23+00:00"
         },
         {
             "name": "fusio/marketplace",
@@ -2024,16 +2024,16 @@
         },
         {
             "name": "fusio/model",
-            "version": "v4.5.2",
+            "version": "v4.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-model.git",
-                "reference": "6518101e76a3b202590fae99a064e18a8ef8db65"
+                "reference": "4a51e42efca0dcd9cbd0f3cadcb0f3a8c3796912"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-model/zipball/6518101e76a3b202590fae99a064e18a8ef8db65",
-                "reference": "6518101e76a3b202590fae99a064e18a8ef8db65",
+                "url": "https://api.github.com/repos/apioo/fusio-model/zipball/4a51e42efca0dcd9cbd0f3cadcb0f3a8c3796912",
+                "reference": "4a51e42efca0dcd9cbd0f3cadcb0f3a8c3796912",
                 "shasum": ""
             },
             "require": {
@@ -2065,7 +2065,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-model/issues",
-                "source": "https://github.com/apioo/fusio-model/tree/v4.5.2"
+                "source": "https://github.com/apioo/fusio-model/tree/v4.5.4"
             },
             "funding": [
                 {
@@ -2081,7 +2081,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-07-24T18:17:03+00:00"
+            "time": "2025-07-26T18:16:58+00:00"
         },
         {
             "name": "fusio/worker-sdk",
@@ -9478,16 +9478,16 @@
         },
         {
             "name": "typeapi/editor",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/typeapi-editor.git",
-                "reference": "a97bc894e7fec84cbdcde5cb9e361a59dfa70451"
+                "reference": "0e0c989d7853744416eec801b18b9044eb6b9946"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/typeapi-editor/zipball/a97bc894e7fec84cbdcde5cb9e361a59dfa70451",
-                "reference": "a97bc894e7fec84cbdcde5cb9e361a59dfa70451",
+                "url": "https://api.github.com/repos/apioo/typeapi-editor/zipball/0e0c989d7853744416eec801b18b9044eb6b9946",
+                "reference": "0e0c989d7853744416eec801b18b9044eb6b9946",
                 "shasum": ""
             },
             "require": {
@@ -9497,9 +9497,9 @@
                 "typeapi/model": "^0.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
-                "symfony/yaml": "^5.0|^6.0|^7.0",
-                "vimeo/psalm": "^5.0"
+                "phpunit/phpunit": "^10.0",
+                "symfony/yaml": "^6.0|^7.0",
+                "vimeo/psalm": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -9525,7 +9525,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/typeapi-editor/issues",
-                "source": "https://github.com/apioo/typeapi-editor/tree/v1.1.1"
+                "source": "https://github.com/apioo/typeapi-editor/tree/v1.1.2"
             },
             "funding": [
                 {
@@ -9541,7 +9541,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-02-15T22:11:53+00:00"
+            "time": "2025-07-26T19:27:41+00:00"
         },
         {
             "name": "typeapi/model",
