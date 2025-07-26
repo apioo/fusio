@@ -1,12 +1,12 @@
 
 ### 5.3.0
 
-* Added MCP server
+* Added MCP server #626
 * Improved API documentation
-* Added OAuth2 authorization server
+* Added OAuth2 authorization server #245
 * Added Fusio identity provider to use the internal authorization server
 * Added well-known oauth protected resource endpoint [RFC9728](https://www.rfc-editor.org/rfc/rfc9728.html)
-* Add backend file API and panel 
+* Add backend file API and panel #609 
 * Add option to configure different captcha provider
 * Add config option to disable user registration
 
