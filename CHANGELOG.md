@@ -6,6 +6,7 @@
 * Added OAuth2 authorization server
 * Added Fusio identity provider to use the internal authorization server
 * Added well-known oauth protected resource endpoint [RFC9728](https://www.rfc-editor.org/rfc/rfc9728.html)
+* Add backend file API and panel 
 * Add option to configure different captcha provider
 * Add config option to disable user registration
 
