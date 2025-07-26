@@ -24,8 +24,8 @@ Self-Hosted API Management for Builders.
 * __API Monetization__
   > Enable freemium or tiered access with quotas, limits, and billing hooks.
 
-* __Fast API Prototyping__
-  > Quickly scaffold APIs for testing, MVPs, or frontend-backend integration.
+* __MCP Integration__
+  > Leverage the Model Context Protocol to enable AI-driven access and control of API endpoints.
 
 * __API Usage Analytics__
   > Monitor traffic, detect issues early, and understand API consumption.
