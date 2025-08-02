@@ -4,7 +4,26 @@
 This document describes how you can upgrade a Fusio installation to the next major version. Before upgrading the first
 step is to make a backup of your existing Fusio database to be able to restore your database in case of a problem.
 We recommend to upgrade each major version step by step i.e. if you have installed Fusio 3.x you should upgrade to 4.x
-before upgrading to 5.x.
+before upgrading to 5.x etc.
+
+## Upgrade to 6.x
+
+Fusio 6.x requires PHP 8.3 as minimum version.
+
+The upgrade to the 6.x version has one breaking change which could affect you,
+otherwise the upgrade should be smooth. In the 6.x version we have moved
+the `/backend/database` endpoint under the `/backend/connection` endpoint.
+In case you use those endpoints, you need to adjust them accordingly, the schema has
+otherwise not changed.
+
+### API changes
+
+| Old                                                      | New                                                                 |
+|----------------------------------------------------------|---------------------------------------------------------------------|
+| `/backend/database/:connection_id`                       | `/backend/connection/:connection_id/database`                      |
+| `/backend/database/:connection_id/:table_name`           | `/backend/connection/:connection_id/database/:table_name`          | 
+| `/backend/database/:connection_id/:table_name/rows`      | `/backend/connection/:connection_id/database/:table_name/rows`     | 
+| `/backend/database/:connection_id/:table_name/rows/:id`  | `/backend/connection/:connection_id/database/:table_name/rows/:id` | 
 
 ## Upgrade to 5.x
 
