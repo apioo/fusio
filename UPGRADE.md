@@ -25,6 +25,8 @@ otherwise not changed.
 | `/backend/database/:connection_id/:table_name/rows`      | `/backend/connection/:connection_id/database/:table_name/rows`     | 
 | `/backend/database/:connection_id/:table_name/rows/:id`  | `/backend/connection/:connection_id/database/:table_name/rows/:id` | 
 
+----
+
 ## Upgrade to 5.x
 
 Fusio 5.x requires PHP 8.2 as minimum version. 
