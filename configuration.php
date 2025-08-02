@@ -49,11 +49,9 @@ return [
     // Indicates whether the user registration is enabled. If true it is possible for external users to register a new account
     'fusio_registration'       => true,
 
-    // Indicates whether the database is enabled. If true it is possible to change the database schema through the backend
-    'fusio_database'           => true,
-
-    // Indicates whether the filesystem is enabled. If true it is possible to upload or delete files through the backend
-    'fusio_filesystem'         => true,
+    // Indicates whether the connection endpoints are enabled. Through a connection endpoint it is possible to access and modify
+    // a database or the filesystem. If false all those endpoints are disabled.
+    'fusio_connection'         => true,
 
     // Indicates whether the marketplace is enabled. If true it is possible to download and install other apps through the backend
     'fusio_marketplace'        => true,
