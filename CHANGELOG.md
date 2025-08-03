@@ -10,6 +10,7 @@
 * Moved backend database endpoint under connection (breaking change)
 * Add option to configure different captcha provider
 * Add config option to disable user registration
+* Improve responsive design of the backend app
 
 ### 5.2.5 (2025-06-21)
 
