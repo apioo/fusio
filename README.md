@@ -85,7 +85,6 @@ To run Fusio with Docker you only need the official Fusio [docker image](https:/
 and a database. The following example shows a minimal `docker-compose.yaml` which you can use to run Fusio.
 
 ```yaml
-version: '3'
 services:
   fusio:
     image: fusio/fusio
