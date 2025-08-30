@@ -285,123 +285,102 @@ function alert(string $level, string $message): void
 }
 
 ?>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html lang="en">
 <head>
-  <title>Fusio Installer</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fusio - Installer</title>
+  <link rel="icon" href="https://www.fusio-project.org/img/fusio_32px.png" type="image/png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <style type="text/css">
-    .fusio-installer {
-      max-width:600px;
-      margin-top:32px;
-      margin-bottom:128px;
-    }
-
-    .fusio-installer legend {
-      border-bottom:1px solid #ccc;
-    }
-
-    .fusio-installer fieldset {
-      margin-bottom:16px;
-    }
-
-    #messages {
-      margin-top:8px;
-    }
-  </style>
 </head>
-<body>
+<body style="background:linear-gradient(#ffffff, #cccccc);">
 
-<form method="POST" id="installer">
-<div class="container fusio-installer">
-    <div class="row">
-        <div class="col">
-            <div class="alert alert-primary">
-                <b>Welcome</b>, this installer helps to setup <a href="https://www.fusio-project.org">Fusio</a>.
-                It simply executes the steps of a <a href="https://docs.fusio-project.org/docs/installation/">manual
-                installation</a>. <b>After successful installation it is recommended to delete this installer script.</b>
-            </div>
-        </div>
+<div class="container bg-light mb-xl-5 mt-xl-5 shadow-lg" style="max-width:640px;z-index:1024">
+  <div class="text-center pt-4">
+    <img src="data:image/gif;base64,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">
+  </div>
+  <div class="mt-5 pb-5 mb-3 border-bottom">
+    <p class="lead"><b>Welcome</b>, this installer helps to setup <a href="https://www.fusio-project.org">Fusio</a>.
+    It simply executes the steps of a <a href="https://docs.fusio-project.org/docs/installation/">manual
+    installation</a>. <b>After successful installation it is recommended to delete this installer script.</b></p>
+    <div class="progress" role="progressbar" aria-label="Installation progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div id="progress" class="progress-bar" style="width:0%"></div>
     </div>
-    <div class="row">
-        <div class="col">
-            <div class="progress">
-                <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-            </div>
-            <div id="messages"></div>
+    <div id="messages" class="mt-3 mb-3"></div>
+    <form method="POST" id="installer">
+      <fieldset>
+        <legend>Database</legend>
+        <p class="text-muted">Connection credentials to the database.</p>
+        <div class="row mb-3">
+          <label for="dbName" class="col-sm-2 col-form-label fw-bold">Name</label>
+          <div class="col-sm-10">
+            <input type="text" name="db_name" id="dbName" value="<?php echo htmlspecialchars($_POST['db_name'] ?? ''); ?>" placeholder="Database name" required class="form-control">
+          </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <fieldset>
-                <legend>Database</legend>
-                <p class="text-muted">Connection credentials to the database. <b>Please be aware that Fusio 
-                needs a dedicated database</b>, it will delete any table on the database which does not belong
-                to the Fusio schema.</p>
-                <div class="form-group">
-                    <label for="dbName">Name:</label>
-                    <input type="text" name="db_name" id="dbName" value="<?php echo htmlspecialchars($_POST['db_name'] ?? ''); ?>" placeholder="Database name" required class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="dbUser">User:</label>
-                    <input type="text" name="db_user" id="dbUser" value="<?php echo htmlspecialchars($_POST['db_user'] ?? ''); ?>" placeholder="Database user" required class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="dbPw">Password:</label>
-                    <input type="password" name="db_pw" id="dbPw" value="" placeholder="Database password" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="dbHost">Host:</label>
-                    <input type="text" name="db_host" id="dbHost" value="<?php echo htmlspecialchars($_POST['db_host'] ?? ''); ?>" placeholder="Database host" required class="form-control">
-                </div>
-            </fieldset>
+        <div class="row mb-3">
+          <label for="dbUser" class="col-sm-2 col-form-label fw-bold">User</label>
+          <div class="col-sm-10">
+            <input type="text" name="db_user" id="dbUser" value="<?php echo htmlspecialchars($_POST['db_user'] ?? ''); ?>" placeholder="Database user" required class="form-control">
+          </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <fieldset>
-                <legend>User</legend>
-                <p class="text-muted">Credentials of the admin account.</p>
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" placeholder="Username" required minlength="3" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" placeholder="Password" minlength="8" required class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" placeholder="Email" required class="form-control">
-                </div>
-            </fieldset>
+        <div class="row mb-3">
+          <label for="dbPw" class="col-sm-2 col-form-label fw-bold">Password</label>
+          <div class="col-sm-10">
+            <input type="password" name="db_pw" id="dbPw" value="" placeholder="Database password" class="form-control">
+          </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <fieldset>
-                <legend>Settings</legend>
-                <p class="text-muted">General project settings which contain already
-                useful default values.</p>
-                <div class="form-group">
-                    <label for="key">Project-Key:</label>
-                    <input type="text" name="key" id="key" placeholder="Project key" value="<?php echo htmlspecialchars($_POST['key'] ?? md5(uniqid())); ?>" required aria-describedby="keyHelp" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="url">Url:</label>
-                    <input type="url" name="url" id="url" placeholder="Url" value="<?php echo htmlspecialchars($_POST['url'] ?? ''); ?>" required aria-describedby="urlHelp" class="form-control">
-                </div>
-            </fieldset>
+        <div class="row mb-3">
+          <label for="dbHost" class="col-sm-2 col-form-label fw-bold">Host</label>
+          <div class="col-sm-10">
+            <input type="text" name="db_host" id="dbHost" value="<?php echo htmlspecialchars($_POST['db_host'] ?? ''); ?>" placeholder="Database host" required class="form-control">
+          </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <hr>
-            <input type="submit" value="Install" class="btn btn-primary">
+      </fieldset>
+      <fieldset>
+        <legend>User</legend>
+        <p class="text-muted">Credentials of the admin account.</p>
+        <div class="row mb-3">
+          <label for="username" class="col-sm-2 col-form-label fw-bold">Username</label>
+          <div class="col-sm-10">
+            <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" placeholder="Username" required minlength="3" class="form-control">
+          </div>
         </div>
-    </div>
-</form>
+        <div class="row mb-3">
+          <label for="password" class="col-sm-2 col-form-label fw-bold">Password</label>
+          <div class="col-sm-10">
+            <input type="password" name="password" id="password" placeholder="Password" minlength="8" required class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="email" class="col-sm-2 col-form-label fw-bold">Email</label>
+          <div class="col-sm-10">
+            <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" placeholder="Email" required class="form-control">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Settings</legend>
+        <p class="text-muted">General project settings.</p>
+        <div class="row mb-3">
+          <label for="key" class="col-sm-2 col-form-label fw-bold">Secret</label>
+          <div class="col-sm-10">
+            <input type="text" name="key" id="key" placeholder="Project key" value="<?php echo htmlspecialchars($_POST['key'] ?? md5(uniqid())); ?>" required aria-describedby="keyHelp" class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="url" class="col-sm-2 col-form-label fw-bold">Url</label>
+          <div class="col-sm-10">
+            <input type="url" name="url" id="url" placeholder="Url" value="<?php echo htmlspecialchars($_POST['url'] ?? ''); ?>" required aria-describedby="urlHelp" class="form-control">
+          </div>
+        </div>
+      </fieldset>
+      <input type="submit" value="Install" class="btn btn-primary">
+    </form>
+  </div>
+  <p class="text-muted text-end pb-3"><small>powered by <a href="https://www.fusio-project.org/">Fusio</a></small></p>
+</div>
 
 <script type="text/javascript">
 var methods = [
@@ -469,7 +448,8 @@ function runNextAction() {
         };
     }
 
-    $("#messages").html('<div class="spinner-border text-primary spinner-border-sm" role="status"><span class="sr-only">Loading ...</span></div>&nbsp;' + lang[method]);
+    $("#messages").html('<div class="spinner-border text-primary spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div>&nbsp;' + lang[method]);
+
     $.post('install.php?method=' + method, params, function(data){
         $("#messages").html('');
         if (data.success) {
