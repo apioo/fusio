@@ -262,6 +262,4 @@ We’re grateful to our partners who support the Fusio project and share our vis
 
 If your company is interested in becoming a partner and being listed here, consider [becoming a sponsor](https://github.com/sponsors/chriskapp).
 
-<a href="https://jb.gg/OpenSourceSupport">
-<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg">
-</a>
+[![JetBrains logo.](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg)](https://jb.gg/OpenSource)
