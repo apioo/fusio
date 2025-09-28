@@ -1,5 +1,14 @@
 
-### 6.0.0
+### 6.1.0
+
+* Added JsonRPC server #650
+* Added GraphQL server #649
+* Added OIDC discovery #648
+* Implemented OpenRPC specification #306
+* Updated handling of public operations with invalid access token
+* Possibility to configure SDKgen credentials at settings
+
+### 6.0.0 (2025-09-06)
 
 * Added MCP server #626
 * Improved API documentation
