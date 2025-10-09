@@ -1,12 +1,14 @@
 
 ### 6.1.0
 
+* Added new trigger concept to invoke an action through an event
 * Added JsonRPC server #650
 * Added GraphQL server #649
 * Added OIDC discovery #648
 * Implemented OpenRPC specification #306
 * Updated handling of public operations with invalid access token
 * Possibility to configure SDKgen credentials at settings
+* Add option to resend the user activation code #642
 
 ### 6.0.0 (2025-09-06)
 
