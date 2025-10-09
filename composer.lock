@@ -1893,16 +1893,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.6.0",
+            "version": "v8.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "4e1619c18e1079eed3e7883719246d562e061d81"
+                "reference": "deaf25f3157fa19c5bbe8a5be515ac957e97a9a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/4e1619c18e1079eed3e7883719246d562e061d81",
-                "reference": "4e1619c18e1079eed3e7883719246d562e061d81",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/deaf25f3157fa19c5bbe8a5be515ac957e97a9a7",
+                "reference": "deaf25f3157fa19c5bbe8a5be515ac957e97a9a7",
                 "shasum": ""
             },
             "require": {
@@ -1936,7 +1936,8 @@
                 "psx/openssl": "^2.0",
                 "symfony/doctrine-messenger": "^6.0|^7.0",
                 "symfony/filesystem": "^6.0|^7.0",
-                "symfony/mailer": "^6.0|^7.0"
+                "symfony/mailer": "^6.0|^7.0",
+                "webonyx/graphql-php": "^15.24"
             },
             "require-dev": {
                 "phpunit/phpunit": "^10.0",
@@ -1963,7 +1964,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.6.0"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.6.1"
             },
             "funding": [
                 {
@@ -1979,7 +1980,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-08-23T08:07:10+00:00"
+            "time": "2025-10-09T09:53:20+00:00"
         },
         {
             "name": "fusio/marketplace",
@@ -10013,6 +10014,81 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "webonyx/graphql-php",
+            "version": "v15.25.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webonyx/graphql-php.git",
+                "reference": "60ef919138a171bdca5fc22c1e9aea8bbc59e5b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/60ef919138a171bdca5fc22c1e9aea8bbc59e5b7",
+                "reference": "60ef919138a171bdca5fc22c1e9aea8bbc59e5b7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": "^7.4 || ^8"
+            },
+            "require-dev": {
+                "amphp/amp": "^2.6",
+                "amphp/http-server": "^2.1",
+                "dms/phpunit-arraysubset-asserts": "dev-master",
+                "ergebnis/composer-normalize": "^2.28",
+                "friendsofphp/php-cs-fixer": "3.88.2",
+                "mll-lab/php-cs-fixer-config": "5.11.0",
+                "nyholm/psr7": "^1.5",
+                "phpbench/phpbench": "^1.2",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "2.1.30",
+                "phpstan/phpstan-phpunit": "2.0.7",
+                "phpstan/phpstan-strict-rules": "2.0.7",
+                "phpunit/phpunit": "^9.5 || ^10.5.21 || ^11",
+                "psr/http-message": "^1 || ^2",
+                "react/http": "^1.6",
+                "react/promise": "^2.0 || ^3.0",
+                "rector/rector": "^2.0",
+                "symfony/polyfill-php81": "^1.23",
+                "symfony/var-exporter": "^5 || ^6 || ^7",
+                "thecodingmachine/safe": "^1.3 || ^2 || ^3",
+                "ticketswap/phpstan-error-formatter": "1.2.3"
+            },
+            "suggest": {
+                "amphp/http-server": "To leverage async resolving with webserver on AMPHP platform",
+                "psr/http-message": "To use standard GraphQL server",
+                "react/promise": "To leverage async resolving on React PHP platform"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GraphQL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A PHP port of GraphQL reference implementation",
+            "homepage": "https://github.com/webonyx/graphql-php",
+            "keywords": [
+                "api",
+                "graphql"
+            ],
+            "support": {
+                "issues": "https://github.com/webonyx/graphql-php/issues",
+                "source": "https://github.com/webonyx/graphql-php/tree/v15.25.1"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/webonyx-graphql-php",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2025-10-08T10:29:48+00:00"
         }
     ],
     "packages-dev": [],
