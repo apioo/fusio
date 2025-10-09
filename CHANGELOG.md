@@ -1,7 +1,7 @@
 
 ### 6.1.0
 
-* Added new trigger concept to invoke an action through an event
+* Added new trigger concept to invoke an action through an event #359
 * Added JsonRPC server #650
 * Added GraphQL server #649
 * Added OIDC discovery #648
