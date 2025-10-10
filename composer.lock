@@ -68,16 +68,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "3.10.2",
+            "version": "3.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "c6c16cf787eaba3112203dfcd715fa2059c62282"
+                "reference": "65edaca19a752730f290ec2fb89d593cb40afb43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/c6c16cf787eaba3112203dfcd715fa2059c62282",
-                "reference": "c6c16cf787eaba3112203dfcd715fa2059c62282",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/65edaca19a752730f290ec2fb89d593cb40afb43",
+                "reference": "65edaca19a752730f290ec2fb89d593cb40afb43",
                 "shasum": ""
             },
             "require": {
@@ -93,14 +93,14 @@
             },
             "require-dev": {
                 "doctrine/cache": "^1.11|^2.0",
-                "doctrine/coding-standard": "13.0.1",
+                "doctrine/coding-standard": "14.0.0",
                 "fig/log-test": "^1",
                 "jetbrains/phpstorm-stubs": "2023.1",
-                "phpstan/phpstan": "2.1.22",
+                "phpstan/phpstan": "2.1.30",
                 "phpstan/phpstan-strict-rules": "^2",
-                "phpunit/phpunit": "9.6.23",
-                "slevomat/coding-standard": "8.16.2",
-                "squizlabs/php_codesniffer": "3.13.1",
+                "phpunit/phpunit": "9.6.29",
+                "slevomat/coding-standard": "8.24.0",
+                "squizlabs/php_codesniffer": "4.0.0",
                 "symfony/cache": "^5.4|^6.0|^7.0",
                 "symfony/console": "^4.4|^5.4|^6.0|^7.0"
             },
@@ -162,7 +162,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/3.10.2"
+                "source": "https://github.com/doctrine/dbal/tree/3.10.3"
             },
             "funding": [
                 {
@@ -178,7 +178,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-09-04T23:51:27+00:00"
+            "time": "2025-10-09T09:05:12+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -956,16 +956,16 @@
         },
         {
             "name": "fusio/adapter-file",
-            "version": "v6.1.0",
+            "version": "v6.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-file.git",
-                "reference": "6dc2e2b9f773ced9b976eb94899eb8ad763de957"
+                "reference": "66cab82e8c3f3cee842ec04289b70f56a03db381"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-file/zipball/6dc2e2b9f773ced9b976eb94899eb8ad763de957",
-                "reference": "6dc2e2b9f773ced9b976eb94899eb8ad763de957",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-file/zipball/66cab82e8c3f3cee842ec04289b70f56a03db381",
+                "reference": "66cab82e8c3f3cee842ec04289b70f56a03db381",
                 "shasum": ""
             },
             "require": {
@@ -1004,7 +1004,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-file/issues",
-                "source": "https://github.com/apioo/fusio-adapter-file/tree/v6.1.0"
+                "source": "https://github.com/apioo/fusio-adapter-file/tree/v6.1.1"
             },
             "funding": [
                 {
@@ -1020,7 +1020,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-03-14T21:33:03+00:00"
+            "time": "2025-10-09T11:06:17+00:00"
         },
         {
             "name": "fusio/adapter-graphql",
@@ -1893,16 +1893,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.6.1",
+            "version": "v8.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "deaf25f3157fa19c5bbe8a5be515ac957e97a9a7"
+                "reference": "34ece5cca9f05493e925a91a7d5f7ea2811e76c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/deaf25f3157fa19c5bbe8a5be515ac957e97a9a7",
-                "reference": "deaf25f3157fa19c5bbe8a5be515ac957e97a9a7",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/34ece5cca9f05493e925a91a7d5f7ea2811e76c7",
+                "reference": "34ece5cca9f05493e925a91a7d5f7ea2811e76c7",
                 "shasum": ""
             },
             "require": {
@@ -1964,7 +1964,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.6.1"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.6.2"
             },
             "funding": [
                 {
@@ -1980,7 +1980,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-10-09T09:53:20+00:00"
+            "time": "2025-10-10T08:57:01+00:00"
         },
         {
             "name": "fusio/marketplace",
