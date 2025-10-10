@@ -9,7 +9,6 @@
 * Updated handling of public operations with invalid access token
 * Possibility to configure SDKgen credentials at settings
 * Add option to resend the user activation code #642
-* Added new requests per ip, operation and user statistic
 
 ### 6.0.0 (2025-09-06)
 
