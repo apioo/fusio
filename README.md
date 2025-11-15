@@ -175,20 +175,27 @@ To build and integrate applications with Fusio, you can use one of our officiall
 
 Besides our core product, we offer additional services to augment the functionality of Fusio.
 
+* [Marketplace](https://www.fusio-project.org/marketplace)  
+  The Fusio marketplace is the place to share apps and actions with other Fusio users, it helps to quickly build
+  your API by using existing code from other users. You can register and configure those credentials at your local
+  Fusio installation under System / Config s. `marketplace_client_id` and `marketplace_client_secret` then you can use
+  the panel under Development / Marketplace to install apps or actions.
 * [SDKgen](https://sdkgen.app/)  
-  SDKgen is a powerful code generator to automatically build client SDKs for your REST API.
-* [APIgen](https://apigen.app/)  
-  Generate fully working and customizable APIs based on your data model.
-* [APImon](https://apimon.app/)  
-  APImon provides an intuitive service to monitor and analyze API endpoints.
-* [TypeSchema](https://typeschema.org/)  
-  A JSON format to describe data models in a language neutral format.
-* [TypeAPI](https://typeapi.org/)  
-  An OpenAPI alternative to describe REST APIs for type-safe code generation.
+  SDK as a service platform which helps you to generate client SDKs for your API in different languages like `CSharp`,
+  `Go`, `Java` and `Python` which helps your customers to interact with your API. Therefor you need to register at the
+  SDKgen app and provide the credentials under System / Config s. `sdkgen_client_id` and `sdkgen_client_secret`.
+  Then you can generate the SDK directly at the backend under Development / SDK. 
 * [TypeHub](https://typehub.cloud/)  
-  A collaborative platform to design and build API models and client SDKs.
-* [PSX](https://phpsx.org/)  
-  An innovative PHP framework dedicated to build fully typed REST APIs.
+  API and data design platform, basically you can push your API specification to this platform so that users can simply
+  discover your API. It tracks all changes of your API so that you have always a clean history how your API evolves.
+* [APIgen](https://apigen.app/)  
+  Service which generates fully working Fusio APIs based on a data model. It also includes a simple Angular
+  frontend app to CRUD your models. It can be seen as low-code generator to quickly generate CRUD APIs but the
+  generated code is clean and can be also used as foundation for your next app.
+* [APImon](https://apimon.app/)  
+  Simple API monitoring service which helps to monitor your Fusio installation. It is optimized for Fusio, but it can be
+  also used for different API endpoints. APImon invokes your endpoints in specific intervals and notifies you about
+  changes. It also includes an uptime page for your users for example s. https://api.apimon.app/status/fusio_marketplace
 
 ## 🏷️ Domains
 
