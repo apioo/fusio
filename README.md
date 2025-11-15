@@ -177,7 +177,7 @@ Besides our core product, we offer additional services to augment the functional
 
 * [Marketplace](https://www.fusio-project.org/marketplace)  
   The Fusio marketplace is the place to share apps and actions with other Fusio users, it helps to quickly build
-  your API by using existing code from other users. You can register and configure those credentials at your local
+  your API by using existing code from other users. You can register and configure the credentials at your local
   Fusio installation under System / Config s. `marketplace_client_id` and `marketplace_client_secret` then you can use
   the panel under Development / Marketplace to install apps or actions.
 * [SDKgen](https://sdkgen.app/)  
