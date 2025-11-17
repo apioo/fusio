@@ -1,5 +1,12 @@
 
-### 6.1.0
+### 6.1.1
+
+* Add marketplace bundle
+* HTTP-Raw Action GET Error - Template "body" is not defined in HTTP #659
+* Remove FQDN from OAuth2 username #655
+* Added new requests per ip, operation and user statistic
+
+### 6.1.0 (2025-10-10)
 
 * Added new trigger concept to invoke an action through an event #359
 * Added JsonRPC server #650
