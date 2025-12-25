@@ -1892,16 +1892,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.7.0",
+            "version": "v8.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "41e88d7aabfe7ec40f4081986ebbccc18f30542a"
+                "reference": "22d8885a9edbae3b8da9e4ee857352764d947ca8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/41e88d7aabfe7ec40f4081986ebbccc18f30542a",
-                "reference": "41e88d7aabfe7ec40f4081986ebbccc18f30542a",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/22d8885a9edbae3b8da9e4ee857352764d947ca8",
+                "reference": "22d8885a9edbae3b8da9e4ee857352764d947ca8",
                 "shasum": ""
             },
             "require": {
@@ -1963,7 +1963,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.7.0"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.7.1"
             },
             "funding": [
                 {
@@ -1979,20 +1979,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-12-14T08:53:53+00:00"
+            "time": "2025-12-25T14:46:19+00:00"
         },
         {
             "name": "fusio/marketplace",
-            "version": "v0.2.0",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-marketplace-sdk-php.git",
-                "reference": "b9e66bb9a74525ccd3697e1b008f31ea20f61044"
+                "reference": "b1ee51c0a3d876f4620ce1245e9ec9405a15d2b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-marketplace-sdk-php/zipball/b9e66bb9a74525ccd3697e1b008f31ea20f61044",
-                "reference": "b9e66bb9a74525ccd3697e1b008f31ea20f61044",
+                "url": "https://api.github.com/repos/apioo/fusio-marketplace-sdk-php/zipball/b1ee51c0a3d876f4620ce1245e9ec9405a15d2b0",
+                "reference": "b1ee51c0a3d876f4620ce1245e9ec9405a15d2b0",
                 "shasum": ""
             },
             "require": {
@@ -2012,7 +2012,7 @@
             "homepage": "https://www.fusio-project.org/",
             "support": {
                 "issues": "https://github.com/apioo/fusio-marketplace-sdk-php/issues",
-                "source": "https://github.com/apioo/fusio-marketplace-sdk-php/tree/v0.2.0"
+                "source": "https://github.com/apioo/fusio-marketplace-sdk-php/tree/v0.2.1"
             },
             "funding": [
                 {
@@ -2020,7 +2020,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-10-11T09:18:44+00:00"
+            "time": "2025-12-25T14:54:51+00:00"
         },
         {
             "name": "fusio/model",
