@@ -1,10 +1,14 @@
 
-### 6.1.1
+### 6.2.0
 
+* Migrate backend app from Angular 18 to 20
+* Added backend code editor view and improved code completion
+* Backend use schema editor
 * Add marketplace bundle
 * HTTP-Raw Action GET Error - Template "body" is not defined in HTTP #659
 * Remove FQDN from OAuth2 username #655
 * Added new requests per ip, operation and user statistic
+* Migrate from psalm to phpstan
 
 ### 6.1.0 (2025-10-10)
 
