@@ -1892,16 +1892,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.7.1",
+            "version": "v8.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "22d8885a9edbae3b8da9e4ee857352764d947ca8"
+                "reference": "4a4c7f0f2c035c88971b09407788c96c16be73b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/22d8885a9edbae3b8da9e4ee857352764d947ca8",
-                "reference": "22d8885a9edbae3b8da9e4ee857352764d947ca8",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/4a4c7f0f2c035c88971b09407788c96c16be73b9",
+                "reference": "4a4c7f0f2c035c88971b09407788c96c16be73b9",
                 "shasum": ""
             },
             "require": {
@@ -1963,7 +1963,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.7.1"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.7.2"
             },
             "funding": [
                 {
@@ -1979,7 +1979,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-12-25T14:46:19+00:00"
+            "time": "2025-12-25T22:02:40+00:00"
         },
         {
             "name": "fusio/marketplace",
@@ -10064,16 +10064,16 @@
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "v15.29.1",
+            "version": "v15.29.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "3f2b7e2ae367c1f19b5189af0a31651e95b69bb0"
+                "reference": "abe7cf760fd7d322e3e685b0b2fe14cedb73fafe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/3f2b7e2ae367c1f19b5189af0a31651e95b69bb0",
-                "reference": "3f2b7e2ae367c1f19b5189af0a31651e95b69bb0",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/abe7cf760fd7d322e3e685b0b2fe14cedb73fafe",
+                "reference": "abe7cf760fd7d322e3e685b0b2fe14cedb73fafe",
                 "shasum": ""
             },
             "require": {
@@ -10127,7 +10127,7 @@
             ],
             "support": {
                 "issues": "https://github.com/webonyx/graphql-php/issues",
-                "source": "https://github.com/webonyx/graphql-php/tree/v15.29.1"
+                "source": "https://github.com/webonyx/graphql-php/tree/v15.29.3"
             },
             "funding": [
                 {
@@ -10135,7 +10135,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-12-19T11:03:09+00:00"
+            "time": "2025-12-29T13:48:44+00:00"
         }
     ],
     "packages-dev": [],
