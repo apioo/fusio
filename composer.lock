@@ -5728,16 +5728,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v7.6.5",
+            "version": "v7.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "cfe7e6586d6a00a86550a8aa05366391e17f5534"
+                "reference": "4245c542aa8466bcb90a81471e4884ce87df7dfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/cfe7e6586d6a00a86550a8aa05366391e17f5534",
-                "reference": "cfe7e6586d6a00a86550a8aa05366391e17f5534",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/4245c542aa8466bcb90a81471e4884ce87df7dfd",
+                "reference": "4245c542aa8466bcb90a81471e4884ce87df7dfd",
                 "shasum": ""
             },
             "require": {
@@ -5786,7 +5786,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-schema/issues",
-                "source": "https://github.com/apioo/psx-schema/tree/v7.6.5"
+                "source": "https://github.com/apioo/psx-schema/tree/v7.6.6"
             },
             "funding": [
                 {
@@ -5802,7 +5802,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-01-16T20:22:32+00:00"
+            "time": "2026-01-31T17:11:21+00:00"
         },
         {
             "name": "psx/sql",
