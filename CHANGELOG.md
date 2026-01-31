@@ -1,9 +1,9 @@
 
 ### 6.3.0
 
-* Add ai adapter and agent connection
+* Add ai adapter and agent connection #657
 * Add agent designer which allows to build actions using an agent connection
-* Migrate from logiscape/mcp-sdk-php to mcp/sdk
+* Migrate from logiscape/mcp-sdk-php to mcp/sdk #651
 * Action execution wrapped in transaction
 * Add response factory "proxy" method which returns a PSR response
 * Improve HTTP adapter proxy performance
