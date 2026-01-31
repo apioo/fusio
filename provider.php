@@ -1,6 +1,7 @@
 <?php
 
 return [
+    \Fusio\Adapter\Ai\Adapter::class,
     \Fusio\Adapter\Amqp\Adapter::class,
     \Fusio\Adapter\Beanstalk\Adapter::class,
     \Fusio\Adapter\Cli\Adapter::class,
