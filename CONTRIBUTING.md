@@ -1,87 +1,190 @@
 
-# Contribution
+# Contributing to Fusio
 
-Contributions to the project are always appreciated. There are many options available to improve the project (which is
-not limited to coding). The following list shows some ways how you can participate:
+Thanks for your interest in contributing to **Fusio**! 🎉  
+We welcome all kinds of contributions, not only code, but also documentation, testing, bug reports, ideas, and
+community support.
 
-## Developing
+This guide helps you get started and shows you where your contribution fits best.
 
-If you are a PHP or Javascript developer you can help to improve the system. If you want to create a new feature it is
-in general recommended to create for larger topics a new issue where we can talk about the feature. There are three main
-components of Fusio:
+---
 
-**[Backend-API](https://github.com/apioo/fusio-impl)**
+## 🧑‍💻 Development
 
-The backend API is the core of the system developed in PHP, which provides the basic functionality of Fusio. This is the
-place to develop new core features and improvements.
+If you are a **PHP** or **JavaScript** developer, you can directly contribute to Fusio's core or ecosystem.
 
-**[Adapter](https://www.fusio-project.org/adapter)**
+Before starting work on larger features or changes, please **open an issue first** so we can discuss the idea and avoid
+duplicated work.
 
-An adapter is a plugin to the Fusio system which can be used to connect to other remote services. I.e. you could create
-a new adapter which speaks to a specific API or other remote services. This is easy to develop since you can build it in
-a separate repository. Please use the keyword `fusio-adapter` in your `composer.json` file so that adapter gets listed
-automatically on our website.
+Fusio consists of several main components:
 
-**[Backend-App](https://github.com/apioo/fusio-apps-backend)**
+### 🔧 Backend API (Core)
 
-This is the Angular app which is used as UI to control the backend. It is the main app to improve the Fusio backend.
-But you are also free to develop new apps for special use cases which talk to the internal API of Fusio.
+**Repository:** https://github.com/apioo/fusio-impl
 
-## Testing
+The backend API is the core of Fusio and is written in PHP.  
+This is the right place for:
 
-We have a high PHPUnit test case coverage. Besides this it is always great if users checkout the current master version
-of the project and try to test every aspect of the system. In case you have found an issue please report it on
-[GitHub](https://github.com/apioo/fusio/issues).
+- core features
+- API behavior changes
+- performance improvements
+- security fixes
 
-## Documentation
+---
 
-We want to create a system which is easy to use also by novice users. To enable everybody to start using Fusio we need
-a great documentation. We have bundled all documentation at our [documentation website](https://docs.fusio-project.org/).
-It is based on [Docusaurus](https://docusaurus.io/) so it should be easy to adjust or contribute new documents in case
-you think something is missing or wrong.
+### 🔌 Adapters (Plugins)
 
-## Donations
+**Overview:** https://www.fusio-project.org/adapter
 
-If your want to financially support our project you can take a look at the [Fusio repository](https://github.com/apioo/fusio)
-there is a "Sponsor this project" panel where you can find all donation options.
+Adapters extend Fusio with integrations to external services and APIs.
 
-# Repository overview
+Examples:
+- Database connectors
+- Third-party APIs
+- Custom action implementations
 
-The Fusio project has several components which together build the Fusio system. The following list provides an overview
-about all relevant repositories so that you can easily find the fitting repository for your contribution.
+You can build adapters in a separate repository.  
+Please add the keyword `fusio-adapter` to your `composer.json` so your adapter is automatically listed on the website.
 
-* [Fusio](https://github.com/apioo/fusio)  
-  Contains the main Fusio repository where we collect and discuss all ideas and issues. The repository does not contain
-  any Fusio related code, it only requires the `fusio/impl` package.
-* [Fusio-Impl](https://github.com/apioo/fusio-impl)  
-  Contains the backend API implementation of Fusio. This is the place if you like to change the internal API of Fusio.
-* [Fusio-CLI](https://github.com/apioo/fusio-cli)  
-  Contains the CLI client of Fusio, it is automatically included in every Fusio installation but you can also run the
-  CLI client standalone. It allows you to directly interact with the API and to deploy specific YAML configuration files.
-* [Fusio-Model](https://github.com/apioo/fusio-model)  
-  Contains all Fusio models automatically generated via [TypeSchema](https://typeschema.org/). This repository helps if
-  you want to work with the Fusio API since you can use the same model classes which we also use at the backend.
-* [Fusio-Engine](https://github.com/apioo/fusio-engine)  
-  Contains mostly interfaces which are also needed by adapters.
-* [Fusio-Adapter](https://www.fusio-project.org/adapter)  
-  Page which shows all available adapters. An adapter can extend Fusio by providing i.e. custom Actions or Connections
-  to different services. I.e. we have an adapter [MongoDB](http://github.com/apioo/fusio-adapter-mongodb) which helps to
-  work with a [MongoDB](https://www.mongodb.com/).
-* [Fusio-Docker](https://github.com/apioo/fusio-docker)  
-  Contains a Docker-Image to run Fusio, it helps to quickly create a Fusio instance in the cloud. You can find it also
-  directly on [DockerHub](https://hub.docker.com/r/fusio/fusio).
-* [Fusio-Worker](https://www.fusio-project.org/worker)  
-  This overview shows all available worker for Fusio. A worker provides a way to execute action logic in a different
-  programming language i.e. JavaScript or Python.
-* [Fusio-Docs](https://github.com/apioo/fusio-docs)  
-  Contains our complete documentation [website](https://docs.fusio-project.org/). This is the place if you like to
-  adjust or improve our documentation.
-* [App-Backend](https://github.com/apioo/fusio-apps-backend)  
-  Contains the Fusio backend app which you can use to configure your API. This is the place if you like to change or
-  improve the backend app.
-* [App-Developer](https://github.com/apioo/fusio-apps-developer)  
-  Contains the developer portal app where external developers can register to use your API.
-* [Apps](https://www.fusio-project.org/marketplace)
-  The Backend and Developer app are the main apps regarding Fusio but we have also several other small apps. You can
-  get an overview at our marketplace.
+---
+
+### 🖥 Backend App (Admin UI)
+
+**Repository:** https://github.com/apioo/fusio-apps-backend
+
+The backend app is the Angular-based UI used to manage Fusio.  
+This is the right place to improve:
+
+- user experience
+- dashboards
+- forms & workflows
+- admin tooling
+
+You are also welcome to create **custom apps** for specific use cases that talk to the Fusio internal API.
+
+---
+
+## 🧪 Testing
+
+Fusio has good PHPUnit test coverage, but manual testing is always valuable.
+
+You can help by:
+- testing new releases
+- testing the `main` branch
+- reporting regressions
+- improving test coverage
+
+If you find an issue, please report it here:  
+👉 https://github.com/apioo/fusio/issues
+
+---
+
+## 📚 Documentation
+
+Good documentation is essential to make Fusio accessible to new users.
+
+The documentation lives here:  
+👉 https://docs.fusio-project.org/  
+👉 Repository: https://github.com/apioo/fusio-docs
+
+The docs are built with **Docusaurus**, so contributions are straightforward:
+- fix typos
+- clarify confusing sections
+- add missing examples
+- improve onboarding guides
+
+Documentation contributions are just as valuable as code!
+
+---
+
+## 💬 Ideas & Feedback
+
+If you have:
+- feature ideas
+- UX feedback
+- architecture suggestions
+
+Please start a discussion or open an issue:
+
+👉 https://github.com/apioo/fusio/discussions
+
+This helps us align on direction before implementation starts.
+
+---
+
+## ❤️ Support & Sponsorship
+
+If you'd like to financially support Fusio, check out the **Sponsor this project** panel on GitHub:
+
+👉 https://github.com/apioo/fusio
+
+Your support helps keep the project healthy and evolving.
+
+---
+
+# 📦 Repository Overview
+
+Fusio is split into multiple repositories.  
+Use this overview to find the right place for your contribution:
+
+- **Fusio**  
+  https://github.com/apioo/fusio  
+  Main coordination repo (issues, discussions, meta project). This repository itself contains no core implementation code.
+
+- **Fusio-Impl (Backend API)**  
+  https://github.com/apioo/fusio-impl  
+  Core PHP implementation of Fusio.
+
+- **Fusio-CLI**  
+  https://github.com/apioo/fusio-cli  
+  CLI client for managing and deploying Fusio configurations.
+
+- **Fusio-Model**  
+  https://github.com/apioo/fusio-model  
+  Shared model classes generated via https://typeschema.org/  
+
+- **Fusio-Engine**  
+  https://github.com/apioo/fusio-engine  
+  Core interfaces and contracts used by adapters and extensions.
+
+- **Adapters**  
+  https://www.fusio-project.org/adapter  
+  List of all available adapters.  
+
+- **Fusio-Docker**  
+  https://github.com/apioo/fusio-docker  
+  Official Docker image and setup.
+
+- **Workers**  
+  https://www.fusio-project.org/worker  
+  Workers allow executing action logic in other languages like JavaScript or Python.
+
+- **Fusio Docs**  
+  https://github.com/apioo/fusio-docs  
+  Documentation website content.
+
+- **Backend App (Admin UI)**  
+  https://github.com/apioo/fusio-apps-backend  
+  Angular-based admin UI.
+
+- **Developer App (Developer Portal)**  
+  https://github.com/apioo/fusio-apps-developer  
+  Portal for API consumers.
+
+- **Apps Marketplace**  
+  https://www.fusio-project.org/marketplace  
+  Overview of all available apps.
+
+---
+
+## 🏁 Getting Started as a Contributor
+
+If you're new to Fusio, a great way to start is:
+
+1. Run Fusio locally
+2. Follow the Getting Started guide
+3. Look for small issues to fix (docs, tests, UX)
+4. Open a PR and ask for feedback
+
+We're happy to help you get started, welcome to the project! 🚀
 
