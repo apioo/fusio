@@ -18,7 +18,6 @@ Documentation: https://docs.fusio-project.org
 
 Fusio can be used in a wide range of API management and backend development scenarios:
 
-- **Database API Gateway** - Expose legacy databases as REST APIs
 - **Custom API Logic** - Build custom backend logic with reusable actions
 - **Microservice API Gateway** - Secure, route, and orchestrate traffic between microservices
 - **API Developer Portal** - Provide API docs, testing tools, and SDK downloads
@@ -27,6 +26,7 @@ Fusio can be used in a wide range of API management and backend development scen
 - **API Analytics & Monitoring** - Track API usage, performance, and errors
 - **AI-Assisted API Development** - Generate custom backend logic using AI and natural language
 - **SDK Automation** - Automatically generate client SDKs for your APIs
+- **Database API Gateway** - Expose legacy databases as REST APIs
 
 ## 📦 Installation
 
