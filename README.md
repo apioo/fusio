@@ -87,14 +87,14 @@ services:
   APP_URL=http://localhost:8080
   ```
 
+  > It is also recommended to provide the `APP_URL` which contains the domain pointing to the public folder i.e.
+    `https://api.my_domain.com` or `https://my_domain.com/fusio`, this is required if you host Fusio inside
+    a sub-folder otherwise Fusio tries to detect the domain via the Host header.
+
   Supported DBs:
   * MySQL: `pdo-mysql://user:pass@host/db`
   * PostgreSQL: `pdo-pgsql://user:pass@host/db`
   * SQLite: `pdo-sqlite:///fusio.sqlite`
-
-  > It is also recommended to provide the `APP_URL` which contains the domain pointing to the public folder i.e.
-    `https://api.my_domain.com` or `https://my_domain.com/fusio`, this is required if you host Fusio inside
-    a sub-folder otherwise Fusio tries to detect the domain via the Host header.
 
 * __Run migrations__
   ```bash
