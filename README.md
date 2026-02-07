@@ -5,88 +5,34 @@
 
 # Fusio
 
-Self-Hosted API Management for Builders.
+**Self-hosted API management platform to build, secure, and operate APIs.**
+
+Fusio is an open source API management and backend platform that helps you create,
+manage, and scale APIs in one place. It provides tools for routing, authentication,
+custom business logic, SDK generation, and optional AI-assisted backend development.
+
+Website: https://www.fusio-project.org  
+Documentation: https://docs.fusio-project.org
 
 ## 🚀 Use Cases
 
-* __Database API Gateway__
-  > Unlock legacy databases and expose them via modern REST APIs.
+Fusio can be used in a wide range of API management and backend development scenarios:
 
-* __Custom Backend Logic for APIs__
-  > Build and manage custom business logic tailored to your domain.
+- **Database API Gateway** - Expose legacy databases as REST APIs
+- **Custom API Logic** - Build custom backend logic with reusable actions
+- **Microservice API Gateway** - Secure, route, and orchestrate traffic between microservices
+- **API Developer Portal** - Provide API docs, testing tools, and SDK downloads
+- **API Monetization** - Manage plans, quotas, rate limits, and access control
+- **AI / MCP Integration** - Expose and control APIs for AI tools and agents
+- **API Analytics & Monitoring** - Track API usage, performance, and errors
+- **AI-Assisted API Development** - Generate custom backend logic using AI and natural language
+- **SDK Automation** - Automatically generate client SDKs for your APIs
 
-* __Gateway for Microservices__
-  > Route, orchestrate, and secure traffic between internal services.
-
-* __API Developer Portal__
-  > Provide docs, testing, and SDKs for internal or external developers.
-
-* __API Monetization__
-  > Enable freemium or tiered access with quotas, limits, and billing hooks.
-
-* __MCP Integration__
-  > Leverage the Model Context Protocol to enable AI-driven access and control of API endpoints.
-
-* __API Usage Analytics__
-  > Monitor traffic, detect issues early, and understand API consumption.
-
-* __Headless CMS Backend__
-  > Manage and expose structured content to any frontend via APIs.
-
-* __SDK Automation__
-  > Automatically generate ready-to-use client SDKs (PHP, TypeScript, Python, etc.).
-
-## 📦 Quick Start
-
-### 🛠️ Installation
-
-* __Download artifact__
-  > You can either download the official [release](https://github.com/apioo/fusio/releases) or clone the repository.
-  ```bash
-  git clone https://github.com/apioo/fusio.git
-  ```
-
-* __Set up your `.env`__
-  > Configure fitting database credentials at the `APP_CONNECTION` variable, all other parameters are optional.
-  > * MySQL: `pdo-mysql://root:test1234@localhost/fusio`
-  > * PostgreSQL: `pdo-pgsql://postgres:postgres@localhost/fusio`
-  > * SQLite: `pdo-sqlite:///fusio.sqlite`
-
-  > It is also recommended to provide the `APP_URL` which contains the domain pointing to the public folder i.e.
-    `https://api.my_domain.com` or `https://my_domain.com/fusio`, this is required if you host Fusio inside
-    a sub-folder otherwise Fusio tries to detect the domain via the host header.
-
-* __Run migrations__
-  ```bash
-  php bin/fusio migrate
-  ```
-
-* __Create administrator user__
-  > After the installation is complete, you have to create a new administrator account. Choose as account type "Administrator".
-  ```bash
-  php bin/fusio adduser
-  ```
-
-* __Install backend app__
-  ```bash
-  php bin/fusio marketplace:install fusio
-  ```
-
-* __Start via PHP built-in server__
-  > This should be only used for testing, for production you need a classical Nginx/Apache setup or use Docker, take a look at our [installation documentation](https://docs.fusio-project.org/docs/installation/) for more details.
-  ```bash
-  php -S 127.0.0.1:8080 -t public
-  ```
-
-### 🌐 Web-Installer
-
-Instead of manual installation you can also use the web installer script located at `/install.php`
-to complete the installation. After installation, it is recommended to delete this "install" script.
+## 📦 Installation
 
 ### 🐳 Docker
 
-To run Fusio with Docker you only need the official Fusio [docker image](https://hub.docker.com/r/fusio/fusio)
-and a database. The following example shows a minimal `docker-compose.yaml` which you can use to run Fusio.
+The fastest way to try Fusio locally is with Docker and docker-compose.
 
 ```yaml
 services:
@@ -115,6 +61,74 @@ services:
     volumes:
       - ./db:/var/lib/mysql
 ```
+
+> docker compose up -d
+
+**After startup**
+
+* Backend: http://localhost:8080/apps/fusio
+* Login with the credentials you configured
+* For the first steps, take a look at our [Getting Started](https://docs.fusio-project.org/docs/bootstrap) guide
+
+### 🛠️ Manual Installation
+
+* __Download artifact__
+
+  You can either download the official [release](https://github.com/apioo/fusio/releases) or clone the repository.
+  ```bash
+  git clone https://github.com/apioo/fusio.git
+  ```
+
+* __Configure `.env`__
+
+  Configure fitting database credentials at the `APP_CONNECTION` variable, all other parameters are optional.
+  ```bash
+  APP_CONNECTION=pdo-mysql://root:password@localhost/fusio
+  APP_URL=http://localhost:8080
+  ```
+
+  Supported DBs:
+  * MySQL: `pdo-mysql://user:pass@host/db`
+  * PostgreSQL: `pdo-pgsql://user:pass@host/db`
+  * SQLite: `pdo-sqlite:///fusio.sqlite`
+
+  > It is also recommended to provide the `APP_URL` which contains the domain pointing to the public folder i.e.
+    `https://api.my_domain.com` or `https://my_domain.com/fusio`, this is required if you host Fusio inside
+    a sub-folder otherwise Fusio tries to detect the domain via the Host header.
+
+* __Run migrations__
+  ```bash
+  php bin/fusio migrate
+  ```
+
+* __Create administrator user__
+  ```bash
+  php bin/fusio adduser
+  ```
+
+  > Choose Administrator as account type.
+
+* __Install backend app__
+  ```bash
+  php bin/fusio marketplace:install fusio
+  ```
+
+* __Start server (dev only)__
+  ```bash
+  php -S 127.0.0.1:8080 -t public
+  ```
+
+  > This should be only used for testing, for production you need a classical Nginx/Apache setup or use Docker, take a look at our [installation documentation](https://docs.fusio-project.org/docs/installation/) for more details.
+
+### 🌐 Web-Installer
+
+Instead of manual installation you can also use the web installer script located at `/install.php`
+to complete the installation. After installation, it is recommended to delete this "install" script.
+
+## 🧭 Getting Started
+
+Use our [Getting Started](https://docs.fusio-project.org/docs/bootstrap) guide to build your first action and configure
+an operation to expose the action as API endpoint.
 
 ## 🧩 Apps
 
