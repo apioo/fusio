@@ -1,5 +1,18 @@
 
-### 6.3.0
+### 7.0.0
+
+* Added a new taxonomy system #666
+* Added action and schema commit log and freeze production config 
+* Added new agent concept to allow users to build custom agents
+* Added AgentCall action which helps to build API an endpoint for custom agents
+* New backend filter query language
+* Implemented four internal agents: architect, action, schema and database
+* Migrate connection intents to agent designer
+* Migrated to Angular 21
+* Fix restore tenant handling
+* Improved error response in case in invalid payload was provided #668
+
+### 6.3.0 (2025-02-01)
 
 * Add ai adapter and agent connection #657
 * Add agent designer which allows to build actions using an agent connection
