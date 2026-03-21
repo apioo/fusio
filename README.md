@@ -1,32 +1,33 @@
 
 <p align="center">
-    <a href="https://www.fusio-project.org/" target="_blank"><img src="https://www.fusio-project.org/img/fusio_64px.png"></a>
+    <a href="https://www.fusio-project.org/" target="_blank">
+        <img src="https://www.fusio-project.org/img/fusio_64px.png" width="64">
+    </a>
 </p>
 
-# Fusio
+<h1 align="center">Fusio</h1>
 
-**Self-hosted API management platform to build, secure, and operate APIs.**
+<p align="center">
+  <strong>Open Source API Management Platform</strong><br />
+  Turn your business logic into scalable API products for humans and AI agents.
+</p>
 
-Fusio is an open source API management and backend platform that helps you create,
-manage, and scale APIs in one place. It provides tools for routing, authentication,
-custom business logic, SDK generation, and optional AI-assisted backend development.
+---
 
-Website: https://www.fusio-project.org  
-Documentation: https://docs.fusio-project.org
+Fusio is a self-hosted backend platform that sits between your data sources and your consumers. It automates the "boring" parts of API development: routing, auth, documentation, and SDK generation, so you can focus on writing business logic.
 
-## 🚀 Use Cases
+## 🚀 Features
 
-Fusio can be used in a wide range of API management and backend development scenarios:
-
-- **Custom API Logic** - Build custom backend logic with reusable actions
-- **Microservice API Gateway** - Secure, route, and orchestrate traffic between microservices
-- **API Developer Portal** - Provide API docs, testing tools, and SDK downloads
-- **API Monetization** - Manage plans, quotas, rate limits, and access control
-- **AI / MCP Integration** - Expose and control APIs for AI tools and agents
-- **API Analytics & Monitoring** - Track API usage, performance, and errors
-- **AI-Assisted API Development** - Generate custom backend logic using AI and natural language
-- **SDK Automation** - Automatically generate client SDKs for your APIs
-- **Database API Gateway** - Expose legacy databases as REST APIs
+* **Database API Gateway** - Instantly expose legacy SQL/NoSQL databases (MySQL, PostgreSQL, etc.) as REST APIs.
+* **Microservice Gateway** - Securely route, orchestrate, and load-balance traffic between your distributed services.
+* **Custom API Logic** - Build powerful backend logic using reusable actions in PHP or Javascript.
+* **Agent Development** - Use your custom API logic as "Tools" to build and power autonomous AI agents.
+* **AI-Assisted Development** - Generate custom backend logic and schemas using natural language prompts.
+* **MCP Integration** - Native support for the Model Context Protocol to expose APIs to AI ecosystems.
+* **API Developer Portal** - A self-service portal for third-party developers with docs, testing tools, and keys.
+* **SDK Automation** - Zero-effort generation of client SDKs for all major programming languages.
+* **API Monetization** - Turn your API into a product with subscription plans, quotas, and automated billing.
+* **Analytics & Monitoring** - Real-time tracking of API usage, performance metrics, and error logging.
 
 ## 📦 Installation
 
@@ -236,52 +237,16 @@ Please check out our official documentation website where we bundle all document
 
 https://docs.fusio-project.org/
 
-## 🤝 Support
+## 🤝 Support & Community
 
-### 💬 Get Help
+If you have questions, found a bug, or want to share your feedback, we are active across the following channels:
 
-If you have questions or run into issues while using Fusio:
+* **[GitHub Discussions](https://github.com/apioo/fusio/discussions)** - Best for "How-to" questions, architectural feedback, and sharing feature ideas.
+* **[Discord Community](https://discord.gg/eMrMgwsc6e)** - Join our real-time chat to connect with other Fusio developers and the core maintainers.
+* **[Issue Tracker](https://github.com/apioo/fusio/issues)** - Report technical bugs or reproducible errors. Please check the **[Documentation](https://docs.fusio-project.org/)** first.
+* **[Direct Contact](https://www.fusio-project.org/contact)** - Reach out via our official website for specific inquiries or high-level feedback.
 
-- Open a [discussion](https://github.com/apioo/fusio/discussions) for general questions, feedback, or feature ideas.
-- Report bugs or technical problems via the [issue tracker](https://github.com/apioo/fusio/issues).
-- Join our [Discord community](https://discord.gg/eMrMgwsc6e) to chat directly with the developers and other users.
-
-If you're a company or freelancer looking for more tailored help, please check out our **consulting** services below.
-
----
-
-### 📣 Promotion & Media
-
-Are you a blogger, writer, or run a developer-focused publication? We'd love for you to cover Fusio!
-
-Visit the [Media Page](https://www.fusio-project.org/media) to download official icons for use in your articles or videos.
-
----
-
-### 🧑‍🏫 Consulting & Workshops
-
-For companies or freelancers who want in-depth guidance on using and integrating Fusio:
-
-- We offer **consulting services** to help you evaluate whether Fusio fits your architecture.
-- Our **workshops** walk you through key functionality, answer your specific questions, and help identify the best integration approach.
-
-Feel free to [contact us](https://www.fusio-project.org/contact) for more details.
-
----
-
-### 💖 Support Fusio
-
-If Fusio helps you build APIs faster or adds value to your projects, please consider supporting our work:
-
-- ⭐ Star the project on GitHub
-- ☕ [Sponsor via GitHub](https://github.com/sponsors/chriskapp)
-- 💬 Spread the word on social media or write about Fusio
-
-Every bit of support helps us continue improving the platform!
-
----
-
-### 🤝 Project Partners
+## 🤝 Partners
 
 We’re grateful to our partners who support the Fusio project and share our vision of advancing open API development.
 
