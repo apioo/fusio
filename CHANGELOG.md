@@ -12,7 +12,6 @@
 * Fix restore tenant handling
 * Improved error response in case in invalid payload was provided #668
 * Add additional action response factory methods 
-* Redesigned website and documentation
 
 ### 6.3.0 (2025-02-01)
 
