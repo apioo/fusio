@@ -14,7 +14,11 @@
 
 ---
 
-Fusio is a self-hosted backend platform that sits between your data sources and your consumers. It automates the "boring" parts of API development: routing, auth, documentation, and SDK generation, so you can focus on writing business logic.
+Fusio is a self-hosted backend platform and API gateway that bridges the gap between your internal infrastructure and
+the outside world. Whether you are exposing legacy databases, orchestrating microservices, or building custom business
+logic, Fusio handles the heavy lifting. It transforms your services into a professional API product, complete with an
+automated developer portal, SDK generation, and monetization tools. With native MCP support, Fusio also acts as a bridge
+to the AI ecosystem, allowing you to turn your backend logic into tools for autonomous agents.
 
 ## 🚀 Features
 
@@ -133,7 +137,8 @@ an operation to expose the action as API endpoint.
 
 ### Action
 
-At the core of Fusio, you describe your business logic in an Action. An Action is a PHP class that receives an incoming request and returns a response.
+At the core of Fusio, you describe your business logic in an Action. An Action is a PHP class that receives an incoming
+request and returns a response.
 
 ```php
 <?php
@@ -157,9 +162,8 @@ Once defined, this action can be bound to an Operation so that it executes for a
 
 #### Configuration
 
-Fusio allows you to build actions that are configurable directly from the backend.
-In the example below, we add a `message` configuration parameter so a user can customize
-the response without changing the code.
+Fusio allows you to build actions that are configurable directly from the backend. In the example below, we add a
+`message` configuration parameter so a user can customize the response without changing the code.
 
 ```php
 <?php
@@ -188,44 +192,39 @@ In the backend, this parameter is now exposed via a generated form:
 
 ![Action_Configuration](https://www.fusio-project.org/media/backend/action_configuration.png)
 
-This concept makes actions highly reusable for both developers and non-technical users.
-We also provide a [preset of actions](https://docs.fusio-project.org/docs/backend/api/action/) for common tasks.
-If you build an action you'd like to share, check out our [Adapter](https://www.fusio-project.org/adapter) page.
-See our [custom action](https://docs.fusio-project.org/docs/development/custom_action) documentation for more details.
+This concept makes actions highly reusable for both developers and non-technical users. We also provide a
+[preset of actions](https://docs.fusio-project.org/docs/backend/api/action/) for common tasks. If you build an action
+you'd like to share, check out our [Adapter](https://www.fusio-project.org/adapter) page. See our
+[custom action](https://docs.fusio-project.org/docs/development/custom_action) documentation for more details.
 
 #### Worker
 
-Fusio provides Worker actions, which allow you to develop logic directly in the backend
-without building custom PHP classes.
+Fusio provides Worker actions, which allow you to develop logic directly in the backend without building custom PHP
+classes.
 
 ![Worker_PHP_Designer](https://www.fusio-project.org/media/backend/worker_php_designer.png)
 
-This also enables you to build actions in other languages like JavaScript or Python,
-which is ideal if your team is more familiar with those ecosystems. Learn more in the
-[worker documentation](https://docs.fusio-project.org/docs/action/worker).
+This also enables you to build actions in other languages like JavaScript or Python, which is ideal if your team is more
+familiar with those ecosystems. Learn more in the [worker documentation](https://docs.fusio-project.org/docs/action/worker).
 
 #### AI
 
-With the 7.0 release, we introduced a new Agent concept that allows you to generate
-worker actions using AI.
+With the 7.0 release, we introduced a new Agent concept that allows you to generate worker actions using AI.
 
 ![Agent_Message](https://www.fusio-project.org/media/backend/agent_message.png)
 
-This makes developing backend logic accessible to everyone. Simply describe the logic
-you need:
+This makes developing backend logic accessible to everyone. Simply describe the logic you need:
 
 > return a list of popular composers of the 19th century
 
-The Agent then generates the appropriate action logic automatically. Fusio supports
-multiple providers, including Ollama, ChatGPT, and Gemini, so you are never locked
-into a specific AI. Explore the AI [agent documentation](https://docs.fusio-project.org/docs/ai/)
-for more.
+The Agent then generates the appropriate action logic automatically. Fusio supports multiple providers, including
+Ollama, ChatGPT, and Gemini, so you are never locked into a specific AI. Explore the AI
+[agent documentation](https://docs.fusio-project.org/docs/ai/) for more.
 
 ## 🧩 Apps
 
-Fusio includes a flexible app system that lets you install various web-based apps to support
-different API-related use cases. These apps are typically simple JavaScript frontends that
-interact with Fusio's internal API.
+Fusio includes a flexible app system that lets you install various web-based apps to support different API-related use
+cases. These apps are typically simple JavaScript frontends that interact with Fusio's internal API.
 
 You can browse all available apps in the [Fusio Marketplace](https://www.fusio-project.org/marketplace),
 and install them using either the CLI:
@@ -251,7 +250,9 @@ which can be used to simplify action development.
 
 ### 🧰 SDK
 
-To build and integrate applications with Fusio, you can use one of our officially supported SDKs, which simplify interaction with a Fusio instance. Alternatively, you can directly communicate with the REST API for full control and flexibility.
+To build and integrate applications with Fusio, you can use one of our officially supported SDKs, which simplify
+interaction with a Fusio instance. Alternatively, you can directly communicate with the REST API for full control and
+flexibility.
 
 | Language   | GitHub                                                  | Package                                                           | Example                                                      |
 |------------|---------------------------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------|
@@ -281,10 +282,10 @@ To build and integrate applications with Fusio, you can use one of our officiall
 Besides our core product, we offer additional services to augment the functionality of Fusio.
 
 * [Marketplace](https://www.fusio-project.org/marketplace)  
-  The Fusio marketplace is the place to share apps and actions with other Fusio users, it helps to quickly build
-  your API by using existing code from other users. You can register and configure the credentials at your local
-  Fusio installation under System / Config s. `marketplace_client_id` and `marketplace_client_secret` then you can use
-  the panel under Development / Marketplace to install apps or actions.
+  The Fusio marketplace is the place to share apps and actions with other Fusio users, it helps to quickly build your
+  API by using existing code from other users. You can register and configure the credentials at your local Fusio
+  installation under System / Config s. `marketplace_client_id` and `marketplace_client_secret` then you can use the
+  panel under Development / Marketplace to install apps or actions.
 * [SDKgen](https://sdkgen.app/)  
   SDK as a service platform which helps you to generate client SDKs for your API in different languages like `CSharp`,
   `Go`, `Java` and `Python` which helps your customers to interact with your API. Therefor you need to register at the
@@ -294,9 +295,9 @@ Besides our core product, we offer additional services to augment the functional
   API and data design platform, basically you can push your API specification to this platform so that users can simply
   discover your API. It tracks all changes of your API so that you have always a clean history how your API evolves.
 * [APIgen](https://apigen.app/)  
-  Service which generates fully working Fusio APIs based on a data model. It also includes a simple Angular
-  frontend app to CRUD your models. It can be seen as low-code generator to quickly generate CRUD APIs but the
-  generated code is clean and can be also used as foundation for your next app.
+  Service which generates fully working Fusio APIs based on a data model. It also includes a simple Angular frontend app
+  to CRUD your models. It can be seen as low-code generator to quickly generate CRUD APIs but the generated code is
+  clean and can be also used as foundation for your next app.
 * [APImon](https://apimon.app/)  
   Simple API monitoring service which helps to monitor your Fusio installation. It is optimized for Fusio, but it can be
   also used for different API endpoints. APImon invokes your endpoints in specific intervals and notifies you about
@@ -309,8 +310,8 @@ By default, the entire Fusio project can be hosted on a single domain. In this s
 * Your API is served from the root path (e.g., https://acme.com/).
 * Web apps like the developer portal and admin backend are accessible under the `/apps` directory (e.g., https://acme.com/apps/developer).
 
-This setup is quick to get started with and requires no additional configuration.
-For production environments, we recommend a subdomain-based structure:
+This setup is quick to get started with and requires no additional configuration. For production environments, we
+recommend a subdomain-based structure:
 
 * __api.acme.com__  
   Hosts only the Fusio API. In this setup, you can safely remove the `apps/` folder from the `public/` directory.
@@ -338,7 +339,7 @@ If you have questions, found a bug, or want to share your feedback, we are activ
 
 ## 🤝 Partners
 
-We’re grateful to our partners who support the Fusio project and share our vision of advancing open API development.
+We're grateful to our partners who support the Fusio project and share our vision of advancing open API development.
 
 If your company is interested in becoming a partner and being listed here, consider [becoming a sponsor](https://github.com/sponsors/chriskapp).
 
