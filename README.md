@@ -131,6 +131,96 @@ to complete the installation. After installation, it is recommended to delete th
 Use our [Getting Started](https://docs.fusio-project.org/docs/bootstrap) guide to build your first action and configure
 an operation to expose the action as API endpoint.
 
+### Action
+
+At the core of Fusio, you describe your business logic in an Action. An Action is a PHP class that receives an incoming request and returns a response.
+
+```php
+<?php
+
+namespace App\Action;
+
+use Fusio\Engine;
+
+class MyAction implements Engine\ActionInterface
+{
+    public function handle(Engine\RequestInterface $request, Engine\ParametersInterface $configuration, Engine\ContextInterface $context): mixed
+    {
+        return [
+            'hello' => 'world'
+        ];
+    }
+}
+```
+
+Once defined, this action can be bound to an Operation so that it executes for a specific HTTP method and path.
+
+#### Configuration
+
+Fusio allows you to build actions that are configurable directly from the backend.
+In the example below, we add a `message` configuration parameter so a user can customize
+the response without changing the code.
+
+```php
+<?php
+
+namespace App\Action;
+
+use Fusio\Engine;
+
+class MyAction extends Engine\ActionAbstract
+{
+    public function handle(Engine\RequestInterface $request, Engine\ParametersInterface $configuration, Engine\ContextInterface $context): mixed
+    {
+        return [
+            'hello' => $configuration->get('message'),
+        ];
+    }
+
+    public function configure(Engine\Form\BuilderInterface $builder, Engine\Form\ElementFactoryInterface $elementFactory): void
+    {
+        $builder->add($elementFactory->newInput('message', 'Message', 'text', 'The message which should be returned'));
+    }
+}
+```
+
+In the backend, this parameter is now exposed via a generated form:
+
+![Action_Configuration](https://www.fusio-project.org/media/backend/action_configuration.png)
+
+This concept makes actions highly reusable for both developers and non-technical users.
+We also provide a [preset of actions](https://docs.fusio-project.org/docs/backend/api/action/) for common tasks.
+If you build an action you'd like to share, check out our [Adapter](https://www.fusio-project.org/adapter) page.
+See our [custom action](https://docs.fusio-project.org/docs/development/custom_action) documentation for more details.
+
+#### Worker
+
+Fusio provides Worker actions, which allow you to develop logic directly in the backend
+without building custom PHP classes.
+
+![Worker_PHP_Designer](https://www.fusio-project.org/media/backend/worker_php_designer.png)
+
+This also enables you to build actions in other languages like JavaScript or Python,
+which is ideal if your team is more familiar with those ecosystems. Learn more in the
+[worker documentation](https://docs.fusio-project.org/docs/action/worker).
+
+#### AI
+
+With the 7.0 release, we introduced a new Agent concept that allows you to generate
+worker actions using AI.
+
+![Agent_Message](https://www.fusio-project.org/media/backend/agent_message.png)
+
+This makes developing backend logic accessible to everyone. Simply describe the logic
+you need:
+
+> return a list of popular composers of the 19th century
+
+The Agent then generates the appropriate action logic automatically. Fusio supports
+multiple providers, including Ollama, ChatGPT, and Gemini, so you are never locked
+into a specific AI. Explore the AI [agent documentation](https://docs.fusio-project.org/docs/ai/)
+for more.
+
 ## 🧩 Apps
 
 Fusio includes a flexible app system that lets you install various web-based apps to support
