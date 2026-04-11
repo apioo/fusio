@@ -632,16 +632,16 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v7.0.4",
+            "version": "v7.0.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "e41f1bd7dbe3c5455c3f72d4338cfeb083b71931"
+                "url": "https://github.com/googleapis/php-jwt.git",
+                "reference": "47ad26bab5e7c70ae8a6f08ed25ff83631121380"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/e41f1bd7dbe3c5455c3f72d4338cfeb083b71931",
-                "reference": "e41f1bd7dbe3c5455c3f72d4338cfeb083b71931",
+                "url": "https://api.github.com/repos/googleapis/php-jwt/zipball/47ad26bab5e7c70ae8a6f08ed25ff83631121380",
+                "reference": "47ad26bab5e7c70ae8a6f08ed25ff83631121380",
                 "shasum": ""
             },
             "require": {
@@ -689,34 +689,34 @@
                 "php"
             ],
             "support": {
-                "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/v7.0.4"
+                "issues": "https://github.com/googleapis/php-jwt/issues",
+                "source": "https://github.com/googleapis/php-jwt/tree/v7.0.5"
             },
-            "time": "2026-03-27T21:17:19+00:00"
+            "time": "2026-04-01T20:38:03+00:00"
         },
         {
             "name": "fusio/adapter-ai",
-            "version": "v0.2.2",
+            "version": "v0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-adapter-ai.git",
-                "reference": "83378a2593a496e6f46facb6e8e4bffd3382d321"
+                "reference": "8397f2bffc3fcb1e7941afe1d82830b506968f30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-adapter-ai/zipball/83378a2593a496e6f46facb6e8e4bffd3382d321",
-                "reference": "83378a2593a496e6f46facb6e8e4bffd3382d321",
+                "url": "https://api.github.com/repos/apioo/fusio-adapter-ai/zipball/8397f2bffc3fcb1e7941afe1d82830b506968f30",
+                "reference": "8397f2bffc3fcb1e7941afe1d82830b506968f30",
                 "shasum": ""
             },
             "require": {
                 "fusio/engine": "^6.0",
                 "php": ">=8.1",
-                "symfony/ai-agent": "^0.6",
-                "symfony/ai-anthropic-platform": "^0.6",
-                "symfony/ai-gemini-platform": "^0.6",
-                "symfony/ai-ollama-platform": "^0.6",
-                "symfony/ai-open-ai-platform": "^0.6",
-                "symfony/ai-platform": "^0.6"
+                "symfony/ai-agent": "^0.7",
+                "symfony/ai-anthropic-platform": "^0.7",
+                "symfony/ai-gemini-platform": "^0.7",
+                "symfony/ai-ollama-platform": "^0.7",
+                "symfony/ai-open-ai-platform": "^0.7",
+                "symfony/ai-platform": "^0.7"
             },
             "require-dev": {
                 "phpstan/phpstan": "^2.1",
@@ -746,7 +746,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/fusio-adapter-ai/issues",
-                "source": "https://github.com/apioo/fusio-adapter-ai/tree/v0.2.2"
+                "source": "https://github.com/apioo/fusio-adapter-ai/tree/v0.2.4"
             },
             "funding": [
                 {
@@ -762,7 +762,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-03-27T22:33:11+00:00"
+            "time": "2026-04-11T07:31:37+00:00"
         },
         {
             "name": "fusio/adapter-amqp",
@@ -1892,16 +1892,16 @@
         },
         {
             "name": "fusio/engine",
-            "version": "v6.8.7",
+            "version": "v6.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-engine.git",
-                "reference": "34f6dae7debb34fdeb8d254d99fa587d79edf906"
+                "reference": "56f904f2f6825c20f3c246a74730f54318246e1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/34f6dae7debb34fdeb8d254d99fa587d79edf906",
-                "reference": "34f6dae7debb34fdeb8d254d99fa587d79edf906",
+                "url": "https://api.github.com/repos/apioo/fusio-engine/zipball/56f904f2f6825c20f3c246a74730f54318246e1c",
+                "reference": "56f904f2f6825c20f3c246a74730f54318246e1c",
                 "shasum": ""
             },
             "require": {
@@ -1944,7 +1944,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-engine/issues",
-                "source": "https://github.com/apioo/fusio-engine/tree/v6.8.7"
+                "source": "https://github.com/apioo/fusio-engine/tree/v6.9.0"
             },
             "funding": [
                 {
@@ -1960,20 +1960,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-03-16T18:30:22+00:00"
+            "time": "2026-04-11T07:51:08+00:00"
         },
         {
             "name": "fusio/impl",
-            "version": "v8.7.5",
+            "version": "v8.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "440ab71ce38dd77f2f686659875c36cc37d49ee8"
+                "reference": "e6160fb5209622a250bab513b42af4ab85457930"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/440ab71ce38dd77f2f686659875c36cc37d49ee8",
-                "reference": "440ab71ce38dd77f2f686659875c36cc37d49ee8",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/e6160fb5209622a250bab513b42af4ab85457930",
+                "reference": "e6160fb5209622a250bab513b42af4ab85457930",
                 "shasum": ""
             },
             "require": {
@@ -2037,7 +2037,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.7.5"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.7.6"
             },
             "funding": [
                 {
@@ -2053,7 +2053,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-04-01T18:28:52+00:00"
+            "time": "2026-04-11T08:45:22+00:00"
         },
         {
             "name": "fusio/marketplace",
@@ -3936,16 +3936,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.50",
+            "version": "3.0.51",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "aa6ad8321ed103dc3624fb600a25b66ebf78ec7b"
+                "reference": "d59c94077f9c9915abb51ddb52ce85188ece1748"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/aa6ad8321ed103dc3624fb600a25b66ebf78ec7b",
-                "reference": "aa6ad8321ed103dc3624fb600a25b66ebf78ec7b",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/d59c94077f9c9915abb51ddb52ce85188ece1748",
+                "reference": "d59c94077f9c9915abb51ddb52ce85188ece1748",
                 "shasum": ""
             },
             "require": {
@@ -4026,7 +4026,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.50"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.51"
             },
             "funding": [
                 {
@@ -4042,7 +4042,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-19T02:57:58+00:00"
+            "time": "2026-04-10T01:33:53+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
@@ -4969,16 +4969,16 @@
         },
         {
             "name": "psx/framework",
-            "version": "v8.1.2",
+            "version": "v8.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-framework.git",
-                "reference": "ebe7e0d79ae85050e4f57379ea2e6d4ccafb6f3f"
+                "reference": "f89eb76adea11ae8ba7fdbd7605606bde62a90da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/ebe7e0d79ae85050e4f57379ea2e6d4ccafb6f3f",
-                "reference": "ebe7e0d79ae85050e4f57379ea2e6d4ccafb6f3f",
+                "url": "https://api.github.com/repos/apioo/psx-framework/zipball/f89eb76adea11ae8ba7fdbd7605606bde62a90da",
+                "reference": "f89eb76adea11ae8ba7fdbd7605606bde62a90da",
                 "shasum": ""
             },
             "require": {
@@ -5044,7 +5044,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-framework/issues",
-                "source": "https://github.com/apioo/psx-framework/tree/v8.1.2"
+                "source": "https://github.com/apioo/psx-framework/tree/v8.1.3"
             },
             "funding": [
                 {
@@ -5060,7 +5060,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-01-30T22:49:14+00:00"
+            "time": "2026-04-11T07:56:27+00:00"
         },
         {
             "name": "psx/http",
@@ -6589,25 +6589,25 @@
         },
         {
             "name": "symfony/ai-agent",
-            "version": "v0.6.0",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ai-agent.git",
-                "reference": "77029cd84c123e2e3594627769fb801307f7305f"
+                "reference": "08f693e22d0584ef5a04ee5f37a449a947eb63a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ai-agent/zipball/77029cd84c123e2e3594627769fb801307f7305f",
-                "reference": "77029cd84c123e2e3594627769fb801307f7305f",
+                "url": "https://api.github.com/repos/symfony/ai-agent/zipball/08f693e22d0584ef5a04ee5f37a449a947eb63a4",
+                "reference": "08f693e22d0584ef5a04ee5f37a449a947eb63a4",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
                 "php": ">=8.2",
-                "phpdocumentor/reflection-docblock": "^5.4",
+                "phpdocumentor/reflection-docblock": "^5.4|^6.0",
                 "phpstan/phpdoc-parser": "^2.1",
                 "psr/log": "^3.0",
-                "symfony/ai-platform": "^0.6",
+                "symfony/ai-platform": "^0.7",
                 "symfony/clock": "^7.3|^8.0",
                 "symfony/http-client": "^7.3|^8.0",
                 "symfony/polyfill-php85": "^1.33",
@@ -6621,10 +6621,11 @@
                 "phpstan/phpstan-phpunit": "^2.0",
                 "phpstan/phpstan-strict-rules": "^2.0",
                 "phpunit/phpunit": "^11.5.53",
-                "symfony/ai-store": "^0.6",
+                "symfony/ai-store": "^0.7",
                 "symfony/event-dispatcher": "^7.3|^8.0",
                 "symfony/translation": "^7.3|^8.0",
-                "symfony/translation-contracts": "^3.6"
+                "symfony/translation-contracts": "^3.6",
+                "symfony/validator": "^7.3|^8.0"
             },
             "type": "library",
             "extra": {
@@ -6663,7 +6664,7 @@
                 "llm"
             ],
             "support": {
-                "source": "https://github.com/symfony/ai-agent/tree/v0.6.0"
+                "source": "https://github.com/symfony/ai-agent/tree/v0.7.0"
             },
             "funding": [
                 {
@@ -6683,25 +6684,25 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-04T23:27:55+00:00"
+            "time": "2026-04-09T22:05:57+00:00"
         },
         {
             "name": "symfony/ai-anthropic-platform",
-            "version": "v0.6.0",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ai-anthropic-platform.git",
-                "reference": "e47987ab95b02f725c3fa950a0113f659247b85b"
+                "reference": "7017893f936fe0a78b431e759e7875384fbdf2f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ai-anthropic-platform/zipball/e47987ab95b02f725c3fa950a0113f659247b85b",
-                "reference": "e47987ab95b02f725c3fa950a0113f659247b85b",
+                "url": "https://api.github.com/repos/symfony/ai-anthropic-platform/zipball/7017893f936fe0a78b431e759e7875384fbdf2f9",
+                "reference": "7017893f936fe0a78b431e759e7875384fbdf2f9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2",
-                "symfony/ai-platform": "^0.6",
+                "symfony/ai-platform": "^0.7",
                 "symfony/http-client": "^7.3|^8.0"
             },
             "require-dev": {
@@ -6749,7 +6750,7 @@
                 "platform"
             ],
             "support": {
-                "source": "https://github.com/symfony/ai-anthropic-platform/tree/v0.6.0"
+                "source": "https://github.com/symfony/ai-anthropic-platform/tree/v0.7.0"
             },
             "funding": [
                 {
@@ -6769,25 +6770,25 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-04T23:27:55+00:00"
+            "time": "2026-04-09T22:05:57+00:00"
         },
         {
             "name": "symfony/ai-gemini-platform",
-            "version": "v0.6.0",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ai-gemini-platform.git",
-                "reference": "4c7883439864a0e9673d7aa8f9d846f80f6856cd"
+                "reference": "aaaa2c4543842a610fc66eef0c7a98b74167dc82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ai-gemini-platform/zipball/4c7883439864a0e9673d7aa8f9d846f80f6856cd",
-                "reference": "4c7883439864a0e9673d7aa8f9d846f80f6856cd",
+                "url": "https://api.github.com/repos/symfony/ai-gemini-platform/zipball/aaaa2c4543842a610fc66eef0c7a98b74167dc82",
+                "reference": "aaaa2c4543842a610fc66eef0c7a98b74167dc82",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2",
-                "symfony/ai-platform": "^0.6",
+                "symfony/ai-platform": "^0.7",
                 "symfony/http-client": "^7.3|^8.0"
             },
             "require-dev": {
@@ -6795,7 +6796,7 @@
                 "phpstan/phpstan-phpunit": "^2.0",
                 "phpstan/phpstan-strict-rules": "^2.0",
                 "phpunit/phpunit": "^11.5.53",
-                "symfony/ai-agent": "^0.6"
+                "symfony/ai-agent": "^0.7"
             },
             "type": "symfony-ai-platform",
             "extra": {
@@ -6836,7 +6837,7 @@
                 "platform"
             ],
             "support": {
-                "source": "https://github.com/symfony/ai-gemini-platform/tree/v0.6.0"
+                "source": "https://github.com/symfony/ai-gemini-platform/tree/v0.7.0"
             },
             "funding": [
                 {
@@ -6856,25 +6857,25 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-04T23:27:55+00:00"
+            "time": "2026-04-09T22:05:57+00:00"
         },
         {
             "name": "symfony/ai-ollama-platform",
-            "version": "v0.6.0",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ai-ollama-platform.git",
-                "reference": "081bc812c6be48b83144d488eb57069e26904e45"
+                "reference": "6d7620c051243d0a778cbd704ac3b7de38bec733"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ai-ollama-platform/zipball/081bc812c6be48b83144d488eb57069e26904e45",
-                "reference": "081bc812c6be48b83144d488eb57069e26904e45",
+                "url": "https://api.github.com/repos/symfony/ai-ollama-platform/zipball/6d7620c051243d0a778cbd704ac3b7de38bec733",
+                "reference": "6d7620c051243d0a778cbd704ac3b7de38bec733",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2",
-                "symfony/ai-platform": "^0.6",
+                "symfony/ai-platform": "^0.7",
                 "symfony/http-client": "^7.3|^8.0"
             },
             "require-dev": {
@@ -6922,7 +6923,7 @@
                 "platform"
             ],
             "support": {
-                "source": "https://github.com/symfony/ai-ollama-platform/tree/v0.6.0"
+                "source": "https://github.com/symfony/ai-ollama-platform/tree/v0.7.0"
             },
             "funding": [
                 {
@@ -6942,26 +6943,26 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-04T23:27:55+00:00"
+            "time": "2026-04-09T22:05:57+00:00"
         },
         {
             "name": "symfony/ai-open-ai-platform",
-            "version": "v0.6.0",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ai-open-ai-platform.git",
-                "reference": "af6d2e2f1b712d5c109e96e087f0a6f5ee8c0305"
+                "reference": "8f1b50bed315e2c001ee77584238ad809d3de82b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ai-open-ai-platform/zipball/af6d2e2f1b712d5c109e96e087f0a6f5ee8c0305",
-                "reference": "af6d2e2f1b712d5c109e96e087f0a6f5ee8c0305",
+                "url": "https://api.github.com/repos/symfony/ai-open-ai-platform/zipball/8f1b50bed315e2c001ee77584238ad809d3de82b",
+                "reference": "8f1b50bed315e2c001ee77584238ad809d3de82b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2",
-                "symfony/ai-open-responses-platform": "^0.6",
-                "symfony/ai-platform": "^0.6",
+                "symfony/ai-open-responses-platform": "^0.7",
+                "symfony/ai-platform": "^0.7",
                 "symfony/http-client": "^7.3|^8.0"
             },
             "require-dev": {
@@ -7014,7 +7015,7 @@
                 "whisper"
             ],
             "support": {
-                "source": "https://github.com/symfony/ai-open-ai-platform/tree/v0.6.0"
+                "source": "https://github.com/symfony/ai-open-ai-platform/tree/v0.7.0"
             },
             "funding": [
                 {
@@ -7034,25 +7035,25 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-04T23:27:55+00:00"
+            "time": "2026-04-09T22:05:57+00:00"
         },
         {
             "name": "symfony/ai-open-responses-platform",
-            "version": "v0.6.0",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ai-open-responses-platform.git",
-                "reference": "3c2020b01e573ee3ac7ce2667a8f47b8eeeda89a"
+                "reference": "a3b926e7b690d2bf9f50320319cf0b6fabbd0d82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ai-open-responses-platform/zipball/3c2020b01e573ee3ac7ce2667a8f47b8eeeda89a",
-                "reference": "3c2020b01e573ee3ac7ce2667a8f47b8eeeda89a",
+                "url": "https://api.github.com/repos/symfony/ai-open-responses-platform/zipball/a3b926e7b690d2bf9f50320319cf0b6fabbd0d82",
+                "reference": "a3b926e7b690d2bf9f50320319cf0b6fabbd0d82",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2",
-                "symfony/ai-platform": "^0.6",
+                "symfony/ai-platform": "^0.7",
                 "symfony/http-client": "^7.3|^8.0"
             },
             "require-dev": {
@@ -7099,7 +7100,7 @@
                 "platform"
             ],
             "support": {
-                "source": "https://github.com/symfony/ai-open-responses-platform/tree/v0.6.0"
+                "source": "https://github.com/symfony/ai-open-responses-platform/tree/v0.7.0"
             },
             "funding": [
                 {
@@ -7119,27 +7120,27 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-04T23:27:55+00:00"
+            "time": "2026-04-09T22:05:57+00:00"
         },
         {
             "name": "symfony/ai-platform",
-            "version": "v0.6.0",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ai-platform.git",
-                "reference": "01d383270c470bd46ab73da9d8e6e83ff0670999"
+                "reference": "0527556737a991824105dd0443ba4e699978b4b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ai-platform/zipball/01d383270c470bd46ab73da9d8e6e83ff0670999",
-                "reference": "01d383270c470bd46ab73da9d8e6e83ff0670999",
+                "url": "https://api.github.com/repos/symfony/ai-platform/zipball/0527556737a991824105dd0443ba4e699978b4b0",
+                "reference": "0527556737a991824105dd0443ba4e699978b4b0",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
                 "oskarstark/enum-helper": "^1.5",
                 "php": ">=8.2",
-                "phpdocumentor/reflection-docblock": "^5.4",
+                "phpdocumentor/reflection-docblock": "^5.4|^6.0",
                 "phpstan/phpdoc-parser": "^2.1",
                 "psr/log": "^3.0",
                 "symfony/clock": "^7.3|^8.0",
@@ -7162,8 +7163,11 @@
                 "symfony/finder": "^7.3|^8.0",
                 "symfony/http-client": "^7.3|^8.0",
                 "symfony/http-client-contracts": "^3.5",
+                "symfony/intl": "^7.3|^8.0",
                 "symfony/process": "^7.3|^8.0",
-                "symfony/var-dumper": "^7.3|^8.0"
+                "symfony/validator": "^7.3|^8.0",
+                "symfony/var-dumper": "^7.3|^8.0",
+                "symfony/yaml": "^7.3|^8.0"
             },
             "type": "library",
             "extra": {
@@ -7222,12 +7226,13 @@
                 "ovh",
                 "perplexity",
                 "replicate",
+                "speech",
                 "transformers",
                 "vertexai",
                 "voyage"
             ],
             "support": {
-                "source": "https://github.com/symfony/ai-platform/tree/v0.6.0"
+                "source": "https://github.com/symfony/ai-platform/tree/v0.7.0"
             },
             "funding": [
                 {
@@ -7247,7 +7252,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-04T23:00:13+00:00"
+            "time": "2026-04-09T21:07:28+00:00"
         },
         {
             "name": "symfony/cache",
@@ -9316,16 +9321,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.33.0",
+            "version": "v1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "a3cc8b044a6ea513310cbd48ef7333b384945638"
+                "reference": "141046a8f9477948ff284fa65be2095baafb94f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/a3cc8b044a6ea513310cbd48ef7333b384945638",
-                "reference": "a3cc8b044a6ea513310cbd48ef7333b384945638",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/141046a8f9477948ff284fa65be2095baafb94f2",
+                "reference": "141046a8f9477948ff284fa65be2095baafb94f2",
                 "shasum": ""
             },
             "require": {
@@ -9375,7 +9380,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.34.0"
             },
             "funding": [
                 {
@@ -9395,20 +9400,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-09T11:45:10+00:00"
+            "time": "2026-04-10T16:19:22+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
-            "version": "v1.33.0",
+            "version": "v1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-                "reference": "380872130d3a5dd3ace2f4010d95125fde5d5c70"
+                "reference": "ad1b7b9092976d6c948b8a187cec9faaea9ec1df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/380872130d3a5dd3ace2f4010d95125fde5d5c70",
-                "reference": "380872130d3a5dd3ace2f4010d95125fde5d5c70",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/ad1b7b9092976d6c948b8a187cec9faaea9ec1df",
+                "reference": "ad1b7b9092976d6c948b8a187cec9faaea9ec1df",
                 "shasum": ""
             },
             "require": {
@@ -9457,7 +9462,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.34.0"
             },
             "funding": [
                 {
@@ -9477,11 +9482,11 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-06-27T09:58:17+00:00"
+            "time": "2026-04-10T16:19:22+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.33.0",
+            "version": "v1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
@@ -9544,7 +9549,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.34.0"
             },
             "funding": [
                 {
@@ -9568,7 +9573,7 @@
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.33.0",
+            "version": "v1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
@@ -9629,7 +9634,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.34.0"
             },
             "funding": [
                 {
@@ -9653,16 +9658,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.33.0",
+            "version": "v1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "6d857f4d76bd4b343eac26d6b539585d2bc56493"
+                "reference": "6a21eb99c6973357967f6ce3708cd55a6bec6315"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/6d857f4d76bd4b343eac26d6b539585d2bc56493",
-                "reference": "6d857f4d76bd4b343eac26d6b539585d2bc56493",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/6a21eb99c6973357967f6ce3708cd55a6bec6315",
+                "reference": "6a21eb99c6973357967f6ce3708cd55a6bec6315",
                 "shasum": ""
             },
             "require": {
@@ -9714,7 +9719,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.34.0"
             },
             "funding": [
                 {
@@ -9734,20 +9739,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-23T08:48:59+00:00"
+            "time": "2026-04-10T17:25:58+00:00"
         },
         {
             "name": "symfony/polyfill-php83",
-            "version": "v1.33.0",
+            "version": "v1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php83.git",
-                "reference": "17f6f9a6b1735c0f163024d959f700cfbc5155e5"
+                "reference": "3600c2cb22399e25bb226e4a135ce91eeb2a6149"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php83/zipball/17f6f9a6b1735c0f163024d959f700cfbc5155e5",
-                "reference": "17f6f9a6b1735c0f163024d959f700cfbc5155e5",
+                "url": "https://api.github.com/repos/symfony/polyfill-php83/zipball/3600c2cb22399e25bb226e4a135ce91eeb2a6149",
+                "reference": "3600c2cb22399e25bb226e4a135ce91eeb2a6149",
                 "shasum": ""
             },
             "require": {
@@ -9794,7 +9799,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php83/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-php83/tree/v1.34.0"
             },
             "funding": [
                 {
@@ -9814,20 +9819,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-07-08T02:45:35+00:00"
+            "time": "2026-04-10T17:25:58+00:00"
         },
         {
             "name": "symfony/polyfill-php84",
-            "version": "v1.33.0",
+            "version": "v1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php84.git",
-                "reference": "d8ced4d875142b6a7426000426b8abc631d6b191"
+                "reference": "88486db2c389b290bf87ff1de7ebc1e13e42bb06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php84/zipball/d8ced4d875142b6a7426000426b8abc631d6b191",
-                "reference": "d8ced4d875142b6a7426000426b8abc631d6b191",
+                "url": "https://api.github.com/repos/symfony/polyfill-php84/zipball/88486db2c389b290bf87ff1de7ebc1e13e42bb06",
+                "reference": "88486db2c389b290bf87ff1de7ebc1e13e42bb06",
                 "shasum": ""
             },
             "require": {
@@ -9874,7 +9879,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php84/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-php84/tree/v1.34.0"
             },
             "funding": [
                 {
@@ -9894,20 +9899,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-06-24T13:30:11+00:00"
+            "time": "2026-04-10T18:47:49+00:00"
         },
         {
             "name": "symfony/polyfill-php85",
-            "version": "v1.33.0",
+            "version": "v1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php85.git",
-                "reference": "d4e5fcd4ab3d998ab16c0db48e6cbb9a01993f91"
+                "reference": "2c408a6bb0313e6001a83628dc5506100474254e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/d4e5fcd4ab3d998ab16c0db48e6cbb9a01993f91",
-                "reference": "d4e5fcd4ab3d998ab16c0db48e6cbb9a01993f91",
+                "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/2c408a6bb0313e6001a83628dc5506100474254e",
+                "reference": "2c408a6bb0313e6001a83628dc5506100474254e",
                 "shasum": ""
             },
             "require": {
@@ -9954,7 +9959,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php85/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-php85/tree/v1.34.0"
             },
             "funding": [
                 {
@@ -9974,20 +9979,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-06-23T16:12:55+00:00"
+            "time": "2026-04-10T16:50:15+00:00"
         },
         {
             "name": "symfony/polyfill-uuid",
-            "version": "v1.33.0",
+            "version": "v1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-uuid.git",
-                "reference": "21533be36c24be3f4b1669c4725c7d1d2bab4ae2"
+                "reference": "26dfec253c4cf3e51b541b52ddf7e42cb0908e94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-uuid/zipball/21533be36c24be3f4b1669c4725c7d1d2bab4ae2",
-                "reference": "21533be36c24be3f4b1669c4725c7d1d2bab4ae2",
+                "url": "https://api.github.com/repos/symfony/polyfill-uuid/zipball/26dfec253c4cf3e51b541b52ddf7e42cb0908e94",
+                "reference": "26dfec253c4cf3e51b541b52ddf7e42cb0908e94",
                 "shasum": ""
             },
             "require": {
@@ -10037,7 +10042,7 @@
                 "uuid"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-uuid/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-uuid/tree/v1.34.0"
             },
             "funding": [
                 {
@@ -10057,7 +10062,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-09T11:45:10+00:00"
+            "time": "2026-04-10T16:19:22+00:00"
         },
         {
             "name": "symfony/process",
@@ -11474,16 +11479,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "2.1.6",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozarts/assert.git",
-                "reference": "ff31ad6efc62e66e518fbab1cde3453d389bcdc8"
+                "reference": "1b99650e7ffcad232624a260bc7fbdec2ffc407c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/assert/zipball/ff31ad6efc62e66e518fbab1cde3453d389bcdc8",
-                "reference": "ff31ad6efc62e66e518fbab1cde3453d389bcdc8",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/1b99650e7ffcad232624a260bc7fbdec2ffc407c",
+                "reference": "1b99650e7ffcad232624a260bc7fbdec2ffc407c",
                 "shasum": ""
             },
             "require": {
@@ -11530,22 +11535,22 @@
             ],
             "support": {
                 "issues": "https://github.com/webmozarts/assert/issues",
-                "source": "https://github.com/webmozarts/assert/tree/2.1.6"
+                "source": "https://github.com/webmozarts/assert/tree/2.2.0"
             },
-            "time": "2026-02-27T10:28:38+00:00"
+            "time": "2026-04-09T16:54:47+00:00"
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "v15.31.3",
+            "version": "v15.31.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "c20acbef1cb4af427ef6797512bfb2e651a85db9"
+                "reference": "8868e83562d9178e316097489440158b487be5fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/c20acbef1cb4af427ef6797512bfb2e651a85db9",
-                "reference": "c20acbef1cb4af427ef6797512bfb2e651a85db9",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/8868e83562d9178e316097489440158b487be5fd",
+                "reference": "8868e83562d9178e316097489440158b487be5fd",
                 "shasum": ""
             },
             "require": {
@@ -11563,7 +11568,7 @@
                 "nyholm/psr7": "^1.5",
                 "phpbench/phpbench": "^1.2",
                 "phpstan/extension-installer": "^1.1",
-                "phpstan/phpstan": "2.1.43",
+                "phpstan/phpstan": "2.1.46",
                 "phpstan/phpstan-phpunit": "2.0.16",
                 "phpstan/phpstan-strict-rules": "2.0.10",
                 "phpunit/phpunit": "^9.5 || ^10.5.21 || ^11",
@@ -11599,7 +11604,7 @@
             ],
             "support": {
                 "issues": "https://github.com/webonyx/graphql-php/issues",
-                "source": "https://github.com/webonyx/graphql-php/tree/v15.31.3"
+                "source": "https://github.com/webonyx/graphql-php/tree/v15.31.4"
             },
             "funding": [
                 {
@@ -11611,7 +11616,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2026-03-29T18:22:41+00:00"
+            "time": "2026-04-02T07:20:06+00:00"
         }
     ],
     "packages-dev": [],
