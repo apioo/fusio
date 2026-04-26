@@ -27,14 +27,27 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 
 ignore_user_abort(true);
 set_time_limit(0);
+session_start();
 
 $container = require_once(__DIR__ . '/../container.php');
 $messages  = [];
 
 PSX\Framework\Bootstrap::setupEnvironment();
 
+if (!isset($_SESSION['fusio_auth_token'])) {
+    $_SESSION['fusio_auth_token'] = substr(sha1(random_bytes(128)), 0, 16);
+}
+
+$authFile = $_SESSION['fusio_auth_token'] . '.lock';
+$isAuthenticated = is_file(__DIR__ . '/' . $authFile);
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $method = $_GET['method'] ?? '';
+
+    if (!$isAuthenticated) {
+        $method = '';
+        alert('danger', 'To use this installer you need to create the following file to indicate that you are the owner of the server: ./public/' . $authFile);
+    }
 
     switch ($method) {
         case 'adjustEnvFile':
@@ -305,6 +318,12 @@ function alert(string $level, string $message): void
     <p class="lead"><b>Welcome</b>, this installer helps to setup <a href="https://www.fusio-project.org">Fusio</a>.
     It simply executes the steps of a <a href="https://docs.fusio-project.org/docs/installation/">manual
     installation</a>. <b>After successful installation it is recommended to delete this installer script.</b></p>
+    <?php if (!$isAuthenticated): ?>
+      <div class="alert alert-danger">
+          To use this installer you need to create the following file to indicate that you are the owner of the server:
+          <pre class="mt-2">./public/<?php echo $authFile; ?></pre>
+      </div>
+    <?php endif; ?>
     <div class="progress" role="progressbar" aria-label="Installation progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
       <div id="progress" class="progress-bar" style="width:0%"></div>
     </div>
