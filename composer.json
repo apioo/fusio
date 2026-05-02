@@ -33,14 +33,14 @@
   ],
   "config": {
     "platform": {
-      "php": "8.3"
+      "php": "8.4"
     },
     "allow-plugins": {
       "php-http/discovery": false
     }
   },
   "require": {
-    "php": ">=8.1",
+    "php": ">=8.4",
     "fusio/impl": "^8.0"
   },
   "autoload": {
