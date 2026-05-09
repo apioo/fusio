@@ -6,6 +6,12 @@ step is to make a backup of your existing Fusio database to be able to restore y
 We recommend to upgrade each major version step by step i.e. if you have installed Fusio 3.x you should upgrade to 4.x
 before upgrading to 5.x etc.
 
+## Upgrade to 7.x
+
+Fusio 7.x requires PHP 8.4 as minimum version.
+
+There is no breaking change between 6.x and 7.x.
+
 ## Upgrade to 6.x
 
 Fusio 6.x requires PHP 8.3 as minimum version.
