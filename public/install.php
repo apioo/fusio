@@ -385,7 +385,7 @@ function alert(string $level, string $message): void
         <div class="row mb-3">
           <label for="key" class="col-sm-2 col-form-label fw-bold">Secret</label>
           <div class="col-sm-10">
-            <input type="text" name="key" id="key" placeholder="Project key" value="<?php echo htmlspecialchars($_POST['key'] ?? md5(uniqid())); ?>" required aria-describedby="keyHelp" class="form-control">
+            <input type="text" name="key" id="key" placeholder="Project key" value="<?php echo htmlspecialchars($_POST['key'] ?? bin2hex(random_bytes(32))); ?>" required aria-describedby="keyHelp" class="form-control">
           </div>
         </div>
         <div class="row mb-3">
