@@ -1964,16 +1964,16 @@
         },
         {
             "name": "fusio/impl",
-            "version": "v8.8.2",
+            "version": "v8.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/fusio-impl.git",
-                "reference": "8b19f31b820e8fcd63f33861090e6f253ecd5ca3"
+                "reference": "e0ddee459c1dc00d8a3c0359a4b88e2612a8945a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/8b19f31b820e8fcd63f33861090e6f253ecd5ca3",
-                "reference": "8b19f31b820e8fcd63f33861090e6f253ecd5ca3",
+                "url": "https://api.github.com/repos/apioo/fusio-impl/zipball/e0ddee459c1dc00d8a3c0359a4b88e2612a8945a",
+                "reference": "e0ddee459c1dc00d8a3c0359a4b88e2612a8945a",
                 "shasum": ""
             },
             "require": {
@@ -2038,7 +2038,7 @@
             "homepage": "https://www.fusio-project.org",
             "support": {
                 "issues": "https://github.com/apioo/fusio-impl/issues",
-                "source": "https://github.com/apioo/fusio-impl/tree/v8.8.2"
+                "source": "https://github.com/apioo/fusio-impl/tree/v8.8.3"
             },
             "funding": [
                 {
@@ -2054,7 +2054,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-05-18T19:34:49+00:00"
+            "time": "2026-05-18T20:33:50+00:00"
         },
         {
             "name": "fusio/marketplace",
@@ -5858,16 +5858,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v7.7.2",
+            "version": "v7.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "256bc858a419615bfe3dbf9bc5f31465f4d0efd3"
+                "reference": "fc7f3783e099f1102296971ef4f1cf8b8a0e923d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/256bc858a419615bfe3dbf9bc5f31465f4d0efd3",
-                "reference": "256bc858a419615bfe3dbf9bc5f31465f4d0efd3",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/fc7f3783e099f1102296971ef4f1cf8b8a0e923d",
+                "reference": "fc7f3783e099f1102296971ef4f1cf8b8a0e923d",
                 "shasum": ""
             },
             "require": {
@@ -5916,7 +5916,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-schema/issues",
-                "source": "https://github.com/apioo/psx-schema/tree/v7.7.2"
+                "source": "https://github.com/apioo/psx-schema/tree/v7.7.3"
             },
             "funding": [
                 {
@@ -5932,7 +5932,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-05-01T06:51:20+00:00"
+            "time": "2026-05-18T20:09:43+00:00"
         },
         {
             "name": "psx/sql",
