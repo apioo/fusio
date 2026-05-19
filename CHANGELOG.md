@@ -4,7 +4,7 @@
 * Added a new taxonomy system #666
 * Added action and schema commit log and freeze production config 
 * Added new agent concept to allow users to build custom agents
-* Added AgentCall action which helps to build API an endpoint for custom agents
+* Added AgentCall action which helps to build an API endpoint for custom agents
 * New backend filter query language
 * Implemented four internal agents: architect, action, schema and database
 * Migrate connection intents to agent designer
