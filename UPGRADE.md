@@ -10,7 +10,7 @@ before upgrading to 5.x etc.
 
 Fusio 7.x requires PHP 8.4 as minimum version.
 
-There is no breaking change between 6.x and 7.x.
+There are no breaking changes between 6.x and 7.x.
 
 ## Upgrade to 6.x
 
