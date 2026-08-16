@@ -1,6 +1,12 @@
 
-### 7.1.0
-  
+### 7.1.1
+
+* Update mcp/sdk to fix PKSA-p9gd-j6gr-6f9t
+* Update symfony/ai package
+* Fix CLI agent deployment detect correct connection
+
+### 7.1.0 (2025-07-28)
+
 * Added consumer agent
 * Add option to mark agent as public
 * Add option to configure temperature and costs for an agent
