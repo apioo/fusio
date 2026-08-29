@@ -1,5 +1,12 @@
 
-### 7.1.1
+### 7.1.2
+
+* Add missing API descriptions
+* Add kind property
+* Implemented proof of work captcha system
+* Updated mcp/sdk package
+
+### 7.1.1 (2025-08-16)
 
 * Update mcp/sdk to fix PKSA-p9gd-j6gr-6f9t
 * Update symfony/ai package
