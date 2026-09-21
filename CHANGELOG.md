@@ -4,7 +4,11 @@
 * Add missing API descriptions
 * Add kind property
 * Implemented proof of work captcha system
+* Add stricter rate limits to the authorization endpoints
 * Updated mcp/sdk package
+* Add option to configure an agent introduction agent
+* Add and handle reference id at an agent
+* Add option to edit existing schema or action through an agent
 
 ### 7.1.1 (2025-08-16)
 
