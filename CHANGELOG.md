@@ -9,6 +9,7 @@
 * Add option to configure an agent introduction agent
 * Add and handle reference id at an agent
 * Add option to edit existing schema or action through an agent
+* Add custom agent registry
 
 ### 7.1.1 (2025-08-16)
 
