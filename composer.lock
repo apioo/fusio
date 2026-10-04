@@ -396,16 +396,16 @@
         },
         {
             "name": "doctrine/migrations",
-            "version": "3.9.7",
+            "version": "3.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "96cb2a89b56c9efb0bac38e606dc0b0f13e650ec"
+                "reference": "eb0b9ce3f999d720fa73037bbd06977ea34b76a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/96cb2a89b56c9efb0bac38e606dc0b0f13e650ec",
-                "reference": "96cb2a89b56c9efb0bac38e606dc0b0f13e650ec",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/eb0b9ce3f999d720fa73037bbd06977ea34b76a0",
+                "reference": "eb0b9ce3f999d720fa73037bbd06977ea34b76a0",
                 "shasum": ""
             },
             "require": {
@@ -479,7 +479,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/migrations/issues",
-                "source": "https://github.com/doctrine/migrations/tree/3.9.7"
+                "source": "https://github.com/doctrine/migrations/tree/3.9.8"
             },
             "funding": [
                 {
@@ -495,7 +495,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-23T19:33:20+00:00"
+            "time": "2026-10-04T12:35:58+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -5888,16 +5888,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v7.8.2",
+            "version": "v7.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "cbd6e935a16e16c09bd93479da2eb4ca7ac8963d"
+                "reference": "1beb06792c0a8bc6fec02234dd405b76730bf387"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/cbd6e935a16e16c09bd93479da2eb4ca7ac8963d",
-                "reference": "cbd6e935a16e16c09bd93479da2eb4ca7ac8963d",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/1beb06792c0a8bc6fec02234dd405b76730bf387",
+                "reference": "1beb06792c0a8bc6fec02234dd405b76730bf387",
                 "shasum": ""
             },
             "require": {
@@ -5946,7 +5946,7 @@
             ],
             "support": {
                 "issues": "https://github.com/apioo/psx-schema/issues",
-                "source": "https://github.com/apioo/psx-schema/tree/v7.8.2"
+                "source": "https://github.com/apioo/psx-schema/tree/v7.8.3"
             },
             "funding": [
                 {
@@ -5962,7 +5962,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-09-03T20:16:59+00:00"
+            "time": "2026-10-03T21:57:48+00:00"
         },
         {
             "name": "psx/sql",
@@ -11671,16 +11671,16 @@
         },
         {
             "name": "typeapi/model",
-            "version": "v0.1.1",
+            "version": "v0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/typeapi-model-php.git",
-                "reference": "8811124ae24149665773756cff2eee062c4de3e3"
+                "reference": "c5425a256dc4019bf997deba4624eb695535bcc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/typeapi-model-php/zipball/8811124ae24149665773756cff2eee062c4de3e3",
-                "reference": "8811124ae24149665773756cff2eee062c4de3e3",
+                "url": "https://api.github.com/repos/apioo/typeapi-model-php/zipball/c5425a256dc4019bf997deba4624eb695535bcc2",
+                "reference": "c5425a256dc4019bf997deba4624eb695535bcc2",
                 "shasum": ""
             },
             "require": {
@@ -11710,7 +11710,7 @@
             "homepage": "https://typeapi.org/",
             "support": {
                 "issues": "https://github.com/apioo/typeapi-model-php/issues",
-                "source": "https://github.com/apioo/typeapi-model-php/tree/v0.1.1"
+                "source": "https://github.com/apioo/typeapi-model-php/tree/v0.1.2"
             },
             "funding": [
                 {
@@ -11726,20 +11726,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-12-16T13:22:43+00:00"
+            "time": "2026-10-03T15:46:22+00:00"
         },
         {
             "name": "typeschema/model",
-            "version": "v0.1.2",
+            "version": "v0.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/typeschema-model-php.git",
-                "reference": "e75e8d3bf67a6294044569e8491ba43dfee7e32d"
+                "reference": "33e8ab13f7ea74e7253d79380cd66f246a074ba6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/typeschema-model-php/zipball/e75e8d3bf67a6294044569e8491ba43dfee7e32d",
-                "reference": "e75e8d3bf67a6294044569e8491ba43dfee7e32d",
+                "url": "https://api.github.com/repos/apioo/typeschema-model-php/zipball/33e8ab13f7ea74e7253d79380cd66f246a074ba6",
+                "reference": "33e8ab13f7ea74e7253d79380cd66f246a074ba6",
                 "shasum": ""
             },
             "require": {
@@ -11769,7 +11769,7 @@
             "homepage": "https://typeapi.org/",
             "support": {
                 "issues": "https://github.com/apioo/typeschema-model-php/issues",
-                "source": "https://github.com/apioo/typeschema-model-php/tree/v0.1.2"
+                "source": "https://github.com/apioo/typeschema-model-php/tree/v0.1.3"
             },
             "funding": [
                 {
@@ -11785,7 +11785,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-10-19T20:52:23+00:00"
+            "time": "2026-10-03T14:14:51+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -11855,16 +11855,16 @@
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "v15.37.2",
+            "version": "v15.37.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "f2a5d802213eb231d17a21badbda22b01435f177"
+                "reference": "5b07b6fccc6f5f34c250136dfbbaabac5a69ec29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/f2a5d802213eb231d17a21badbda22b01435f177",
-                "reference": "f2a5d802213eb231d17a21badbda22b01435f177",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/5b07b6fccc6f5f34c250136dfbbaabac5a69ec29",
+                "reference": "5b07b6fccc6f5f34c250136dfbbaabac5a69ec29",
                 "shasum": ""
             },
             "require": {
@@ -11877,13 +11877,13 @@
                 "amphp/http-server": "^2.1 || ^3",
                 "dms/phpunit-arraysubset-asserts": "dev-master",
                 "ergebnis/composer-normalize": "^2.28",
-                "friendsofphp/php-cs-fixer": "3.95.18",
+                "friendsofphp/php-cs-fixer": "3.95.27",
                 "mll-lab/php-cs-fixer-config": "5.13.0",
                 "nyholm/psr7": "^1.5",
                 "phpbench/phpbench": "^1.2",
                 "phpstan/extension-installer": "^1.1",
-                "phpstan/phpstan": "2.2.8",
-                "phpstan/phpstan-phpunit": "2.0.18",
+                "phpstan/phpstan": "2.2.16",
+                "phpstan/phpstan-phpunit": "2.0.19",
                 "phpstan/phpstan-strict-rules": "2.0.12",
                 "phpunit/phpunit": "^9.5 || ^10.5.21 || ^11",
                 "psr/http-message": "^1 || ^2",
@@ -11919,7 +11919,7 @@
             ],
             "support": {
                 "issues": "https://github.com/webonyx/graphql-php/issues",
-                "source": "https://github.com/webonyx/graphql-php/tree/v15.37.2"
+                "source": "https://github.com/webonyx/graphql-php/tree/v15.37.3"
             },
             "funding": [
                 {
@@ -11931,7 +11931,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2026-08-14T06:29:42+00:00"
+            "time": "2026-10-03T16:44:55+00:00"
         }
     ],
     "packages-dev": [],
