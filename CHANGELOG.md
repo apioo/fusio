@@ -1,12 +1,19 @@
 
-### 7.2.0
+### 7.3.0
+
+* Add "search" query parameter to the SQL-Select-All action 
+* Internally reuse SQL and Filesystem actions
+* Add FTP adapter
+* Added Grid project
+
+### 7.2.0 (2025-10-04)
 
 * Add missing API descriptions
 * Add kind property
 * Implemented proof of work captcha system
 * Add stricter rate limits to the authorization endpoints
 * Updated mcp/sdk package
-* Add option to configure an agent introduction agent
+* Add option to configure an agent introduction action
 * Add and handle reference id at an agent
 * Add option to edit existing schema or action through an agent
 * Add custom agent registry
