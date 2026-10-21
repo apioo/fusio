@@ -1,5 +1,5 @@
 
-### 7.3.0
+### 7.2.1 (2025-10-21)
 
 * Add "search" query parameter to the SQL-Select-All action 
 * Internally reuse SQL and Filesystem actions
