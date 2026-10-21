@@ -5,6 +5,10 @@
 * Internally reuse SQL and Filesystem actions
 * Add FTP adapter
 * Added Grid project
+* Added Pulse project
+* Update OpenAPI version to 3.1.2
+* Add refresh token status check
+* Update our docker image to fix CVE-2026-109618 and CVE-2026-109619
 
 ### 7.2.0 (2025-10-04)
 
