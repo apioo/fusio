@@ -21,7 +21,8 @@ jobs:
           coverage: none
       - name: Setup MySQL
         run: |
-          sudo /etc/init.d/mysql start
+          echo -e "[mysqld]\nmysql_native_password=ON" | sudo tee /etc/mysql/conf.d/native-password.cnf
+          sudo systemctl start mysql.service
           mysql -e "CREATE DATABASE fusio;" -uroot -proot
           mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test1234';" -uroot -proot
       - name: Composer install
