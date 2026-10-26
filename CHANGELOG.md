@@ -1,4 +1,11 @@
 
+### 7.2.2
+
+* Added dedicated Agent app
+* Removed agent panel from account panel
+* Increase captcha difficulty
+* Updated mcp/sdk and symfony/ai
+
 ### 7.2.1 (2025-10-21)
 
 * Add "search" query parameter to the SQL-Select-All action 
