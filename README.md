@@ -80,6 +80,10 @@ services:
 * Login with the credentials you configured
 * For the first steps, take a look at our [Getting Started](https://docs.fusio-project.org/docs/bootstrap) guide
 
+### ☁️ One-Click Deploy
+
+[![Deploy on RepoCloud](https://d16t0pc4846x52.cloudfront.net/deploylobe.svg)](https://repocloud.io/details/Fusio/)
+
 ### 🛠️ Manual Installation
 
 * __Download artifact__
