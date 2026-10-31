@@ -18,6 +18,10 @@
   <a href="https://discord.gg/eMrMgwsc6e">💬 Discord Community</a>
 </p>
 
+<p align="center">
+  <a href="https://app.railyard.run/deploy?repo=https://github.com/apioo/fusio"><img src="https://app.railyard.run/deploy/badge" alt="Deploy to Railyard"></a>
+</p>
+
 ---
 
 Fusio is a self-hosted, open-source backend platform and API gateway written in PHP that bridges the gap between your
