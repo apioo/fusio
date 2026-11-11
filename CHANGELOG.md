@@ -1,10 +1,13 @@
 
 ### 7.2.2
 
-* Added dedicated Agent app
+* Improved marketplace action integration
+* Added agent app
 * Removed agent panel from account panel
+* Added form app
 * Increase captcha difficulty
 * Updated mcp/sdk and symfony/ai
+* Deprecate PHP-Sandbox actions
 
 ### 7.2.1 (2025-10-21)
 
